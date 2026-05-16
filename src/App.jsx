@@ -11,6 +11,7 @@ const SPECS = [
   "Arcane Mage", "Fire Mage", "Frost Mage", "Destro Warlock", "Demo Warlock", "Affliction Warlock"
 ];
 
+
 const CLASS_COLORS = {
   "Prot Warrior": "#C79C6E", "Arms Warrior": "#C79C6E", "Fury Warrior": "#C79C6E",
   "Prot Paladin": "#F58CBA", "Holy Paladin": "#F58CBA", "Ret Paladin": "#F58CBA",
