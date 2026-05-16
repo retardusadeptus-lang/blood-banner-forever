@@ -1,0 +1,2913 @@
+[
+  {
+    "name": "Destroyer Greathelm",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Prot Warrior": "BiS"
+    }
+  },
+  {
+    "name": "Tankatronic Goggles",
+    "slot": "Head",
+    "source": "Profession",
+    "eligible": {
+      "Prot Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Warbringer Greathelm",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Prot Warrior": "Opt"
+    }
+  },
+  {
+    "name": "The Sun King's Talisman",
+    "slot": "Neck",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Prot Warrior": "BiS",
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Frayed Tether of the Doomed",
+    "slot": "Neck",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Prot Warrior": "Opt",
+      "Feral (Tank)": "BiS"
+    }
+  },
+  {
+    "name": "Barbed Choker of Discipline",
+    "slot": "Neck",
+    "source": "Maiden of Virtue (Karazhan)",
+    "eligible": {
+      "Prot Warrior": "Opt",
+      "Prot Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Destroyer Shoulderguards",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Prot Warrior": "BiS"
+    }
+  },
+  {
+    "name": "Warbringer Shoulderguards",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "Prot Warrior": "Opt",
+      "Fury Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Phoenix-Wing Cloak",
+    "slot": "Back",
+    "source": "Al'ar (TK)",
+    "eligible": {
+      "Prot Warrior": "BiS",
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Gilded Thorium Cloak",
+    "slot": "Back",
+    "source": "Terestian Illhoof (Karazhan)",
+    "eligible": {
+      "Prot Warrior": "Opt",
+      "Prot Paladin": "Opt",
+      "Feral (Tank)": "BiS"
+    }
+  },
+  {
+    "name": "Destroyer Chestguard",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Prot Warrior": "BiS"
+    }
+  },
+  {
+    "name": "Chestguard of the Warlord",
+    "slot": "Chest",
+    "source": "Morogrim Tidewalker (SSC)",
+    "eligible": {
+      "Prot Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Warbringer Chestguard",
+    "slot": "Chest",
+    "source": "Magtheridon (Magtheridon)",
+    "eligible": {
+      "Prot Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Bracers of the Green Fortress",
+    "slot": "Wrist",
+    "source": "Profession",
+    "eligible": {
+      "Prot Warrior": "BiS",
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Vambraces of Courage",
+    "slot": "Wrist",
+    "source": "Attumen the Huntsman (Karazhan)",
+    "eligible": {
+      "Prot Warrior": "Opt",
+      "Prot Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Destroyer Handguards",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Prot Warrior": "BiS"
+    }
+  },
+  {
+    "name": "Topaz-Studded Battlegrips",
+    "slot": "Hands",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Prot Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Girdle of the Invulnerable",
+    "slot": "Waist",
+    "source": "Morogrim Tidewalker (SSC)",
+    "eligible": {
+      "Prot Warrior": "BiS",
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Crimson Girdle of the Indomitable",
+    "slot": "Waist",
+    "source": "Morogrim Tidewalker (SSC)",
+    "eligible": {
+      "Prot Warrior": "Opt",
+      "Prot Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Destroyer Legguards",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Prot Warrior": "BiS"
+    }
+  },
+  {
+    "name": "Warbringer Legguards",
+    "slot": "Legs",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Prot Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Boots of the Resilient",
+    "slot": "Feet",
+    "source": "The Lurker Below (SSC)",
+    "eligible": {
+      "Prot Warrior": "BiS",
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Battlescar Boots",
+    "slot": "Feet",
+    "source": "Chess Event (Karazhan)",
+    "eligible": {
+      "Prot Warrior": "Opt",
+      "Prot Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Band of the Abyssal Lord",
+    "slot": "Ring 1",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Prot Warrior": "BiS",
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Ring of the Invincible",
+    "slot": "Ring 2",
+    "source": "Morogrim Tidewalker (SSC)",
+    "eligible": {
+      "Prot Warrior": "BiS",
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Shermanar Great-Ring",
+    "slot": "Ring 2",
+    "source": "Doom Lord Kazzak (Karazhan)",
+    "eligible": {
+      "Prot Warrior": "Opt",
+      "Feral (Tank)": "Opt"
+    }
+  },
+  {
+    "name": "Shadowmoon Insignia",
+    "slot": "Trinket 1",
+    "source": "Sir Fik'reth (SSC)",
+    "eligible": {
+      "Prot Warrior": "BiS",
+      "Prot Paladin": "BiS",
+      "Feral (Tank)": "BiS"
+    }
+  },
+  {
+    "name": "Scarab of Displacement",
+    "slot": "Trinket 2",
+    "source": "Morogrim Tidewalker (SSC)",
+    "eligible": {
+      "Prot Warrior": "BiS"
+    }
+  },
+  {
+    "name": "Moroe's Lucky Pocket Watch",
+    "slot": "Trinket 2",
+    "source": "Moroes (Karazhan)",
+    "eligible": {
+      "Prot Warrior": "Opt",
+      "Feral (Tank)": "Opt"
+    }
+  },
+  {
+    "name": "Mallet of the Tides",
+    "slot": "Main Hand",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Prot Warrior": "BiS"
+    }
+  },
+  {
+    "name": "King's Defender",
+    "slot": "Main Hand",
+    "source": "Chess Event (Karazhan)",
+    "eligible": {
+      "Prot Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Aldori Legacy Defender",
+    "slot": "Shield",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Prot Warrior": "BiS",
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Shield of Impenetrable Darkness",
+    "slot": "Shield",
+    "source": "Nightbane (Karazhan)",
+    "eligible": {
+      "Prot Warrior": "Opt",
+      "Prot Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Gyro-Balanced Khorium Destroyer",
+    "slot": "Ranged",
+    "source": "Profession",
+    "eligible": {
+      "Prot Warrior": "BiS"
+    }
+  },
+  {
+    "name": "Rifle of the Stoic Guardian",
+    "slot": "Ranged",
+    "source": "Morogrim Tidewalker (SSC)",
+    "eligible": {
+      "Prot Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Destroyer Battle-Helm",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "BiS"
+    }
+  },
+  {
+    "name": "Warbringer Battle-Helm",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Arms Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Choker of Vile Intents",
+    "slot": "Neck",
+    "source": "G'eras (Badge)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "BiS",
+      "Ret Paladin": "Opt",
+      "Enhance Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Worgen Claw Necklace",
+    "slot": "Neck",
+    "source": "Attumen the Huntsman (Karazhan)",
+    "eligible": {
+      "Arms Warrior": "Opt",
+      "Fury Warrior": "Opt",
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt",
+      "Survival Hunter": "Opt",
+      "Feral (DPS)": "Opt",
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Destroyer Mantle",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "BiS"
+    }
+  },
+  {
+    "name": "Blood-Stained Pauldrons",
+    "slot": "Shoulder",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Arms Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Thalassian Wildercloak",
+    "slot": "Back",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "BiS",
+      "Ret Paladin": "BiS",
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS",
+      "Enhance Shaman": "BiS",
+      "Feral (DPS)": "BiS",
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Cloak of the Incarnate",
+    "slot": "Back",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Arms Warrior": "Opt",
+      "Fury Warrior": "Opt",
+      "Ret Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Destroyer Breastplate",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Heartshatter Breastplate",
+    "slot": "Chest",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Arms Warrior": "Opt"
+    }
+  },
+  {
+    "name": "True-Aim Stalker Bands",
+    "slot": "Wrist",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "BiS",
+      "Ret Paladin": "BiS",
+      "Enhance Shaman": "BiS",
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Vambraces of Daring",
+    "slot": "Wrist",
+    "source": "Attumen the Huntsman (Karazhan)",
+    "eligible": {
+      "Arms Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Destroyer Gauntlets",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "BiS"
+    }
+  },
+  {
+    "name": "Gauntlets of Martial Perfection",
+    "slot": "Hands",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Arms Warrior": "Opt",
+      "Fury Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Belt of One-Hundred Deaths",
+    "slot": "Waist",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "BiS",
+      "Ret Paladin": "BiS",
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS",
+      "Enhance Shaman": "BiS",
+      "Feral (Tank)": "BiS",
+      "Feral (DPS)": "BiS",
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Girdle of the Endless Pit",
+    "slot": "Waist",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Arms Warrior": "Opt",
+      "Fury Warrior": "Opt",
+      "Ret Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Destroyer Greaves",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "BiS"
+    }
+  },
+  {
+    "name": "Skulker's Greaves",
+    "slot": "Legs",
+    "source": "Netherspite (Karazhan)",
+    "eligible": {
+      "Arms Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Warboots of Obliteration",
+    "slot": "Feet",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "BiS",
+      "Ret Paladin": "BiS",
+      "Enhance Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Edgewalker Longboots",
+    "slot": "Feet",
+    "source": "Moroes (Karazhan)",
+    "eligible": {
+      "Arms Warrior": "Opt",
+      "Fury Warrior": "Opt",
+      "Ret Paladin": "Opt",
+      "Feral (DPS)": "BiS",
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Ring of Lethality",
+    "slot": "Ring 1",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "BiS",
+      "Ret Paladin": "BiS",
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS",
+      "Enhance Shaman": "BiS",
+      "Feral (Tank)": "BiS",
+      "Feral (DPS)": "BiS",
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Band of the Ranger-General",
+    "slot": "Ring 2",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "BiS",
+      "Ret Paladin": "BiS",
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS",
+      "Enhance Shaman": "BiS",
+      "Feral (Tank)": "BiS",
+      "Feral (DPS)": "BiS",
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Garona's Signet Ring",
+    "slot": "Ring 2",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "Arms Warrior": "Opt",
+      "Fury Warrior": "Opt",
+      "Ret Paladin": "Opt",
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt",
+      "Survival Hunter": "Opt",
+      "Enhance Shaman": "Opt",
+      "Feral (DPS)": "Opt",
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Dragonspine Trophy",
+    "slot": "Trinket 1",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "BiS",
+      "Ret Paladin": "BiS",
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS",
+      "Enhance Shaman": "BiS",
+      "Feral (DPS)": "BiS",
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Bloodlust Brooch",
+    "slot": "Trinket 2",
+    "source": "G'eras (Badge)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "Opt",
+      "Ret Paladin": "BiS",
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS",
+      "Enhance Shaman": "BiS",
+      "Feral (DPS)": "BiS",
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Hourglass of the Unraveller",
+    "slot": "Trinket 2",
+    "source": "Temporus (Black Morass)",
+    "eligible": {
+      "Arms Warrior": "Opt",
+      "Ret Paladin": "Opt",
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt",
+      "Survival Hunter": "Opt",
+      "Enhance Shaman": "Opt",
+      "Feral (DPS)": "Opt",
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Lionheart Champion",
+    "slot": "Main Hand",
+    "source": "Profession",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Ret Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Twin-Strike Polearm",
+    "slot": "Main Hand",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Arms Warrior": "Opt",
+      "BM Hunter": "Opt",
+      "Survival Hunter": "BiS"
+    }
+  },
+  {
+    "name": "Gorehowl",
+    "slot": "Main Hand",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Arms Warrior": "Opt",
+      "Ret Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Serpent Spine Longbow",
+    "slot": "Ranged",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Arms Warrior": "BiS",
+      "Fury Warrior": "BiS",
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS",
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Sunfury Bow of the Phoenix",
+    "slot": "Ranged",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Arms Warrior": "Opt",
+      "Fury Warrior": "Opt",
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt",
+      "Survival Hunter": "Opt",
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Furious Gizmatic Goggles",
+    "slot": "Head",
+    "source": "Profession",
+    "eligible": {
+      "Fury Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Bloodsea Brigand's Vest",
+    "slot": "Chest",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Fury Warrior": "BiS"
+    }
+  },
+  {
+    "name": "Bracers of Maliciousness",
+    "slot": "Wrist",
+    "source": "Maiden of Virtue (Karazhan)",
+    "eligible": {
+      "Fury Warrior": "Opt",
+      "Ret Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Warbringer Greaves",
+    "slot": "Legs",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Fury Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Romulo's Poison Vial",
+    "slot": "Trinket 2",
+    "source": "Opera Event (Karazhan)",
+    "eligible": {
+      "Fury Warrior": "Opt"
+    }
+  },
+  {
+    "name": "Rod of the Sun King",
+    "slot": "Main Hand",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Fury Warrior": "BiS"
+    }
+  },
+  {
+    "name": "Talon of Azshara",
+    "slot": "Main Hand",
+    "source": "Morogrim Tidewalker (SSC)",
+    "eligible": {
+      "Fury Warrior": "Opt",
+      "Enhance Shaman": "BiS",
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Spiteblade",
+    "slot": "Off Hand",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Fury Warrior": "Opt",
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge Faceguard",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Justicar Faceguard",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Prot Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge Shoulderguards",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Justicar Shoulderguards",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "Prot Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge Chestguard",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Pendant of the Violet Eye",
+    "slot": "Chest",
+    "source": "Aran (Karazhan)",
+    "eligible": {
+      "Prot Paladin": "Opt",
+      "Resto Shaman": "Opt",
+      "Holy Priest": "Opt",
+      "Discipline Priest": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge Handguards",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Gauntlets of the Iron Tower",
+    "slot": "Hands",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "Prot Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge Legguards",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Justicar Legguards",
+    "slot": "Legs",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Prot Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Ring of Unyielding Force",
+    "slot": "Ring 2",
+    "source": "G'eras (Badge)",
+    "eligible": {
+      "Prot Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Darkmoon Card: Vengeance",
+    "slot": "Trinket 2",
+    "source": "Profession",
+    "eligible": {
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Figurine - Dawnstone Crab",
+    "slot": "Trinket 2",
+    "source": "Profession",
+    "eligible": {
+      "Prot Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Fang of the Leviathan",
+    "slot": "Main Hand",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Bloodmaw Magus-Blade",
+    "slot": "Main Hand",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Prot Paladin": "Opt",
+      "Elemental Shaman": "Opt",
+      "Balance Druid": "Opt"
+    }
+  },
+  {
+    "name": "Libram of Repentance",
+    "slot": "Libram",
+    "source": "G'eras (Badge)",
+    "eligible": {
+      "Prot Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Libram of the Eternal Rest",
+    "slot": "Libram",
+    "source": "Darkweaver Syth (Sethekk Halls)",
+    "eligible": {
+      "Prot Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge Greathelm",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Holy Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Justicar Diadem",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Holy Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Lord Sanguinar's Claim",
+    "slot": "Neck",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Holy Paladin": "BiS",
+      "Resto Shaman": "BiS",
+      "Resto Druid": "BiS",
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Natasha's Guardian Cord",
+    "slot": "Neck",
+    "source": "Quest (Blade's Edge Mountains)",
+    "eligible": {
+      "Holy Paladin": "Opt",
+      "Resto Druid": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge Spaulders",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Holy Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Justicar Pauldrons",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "Holy Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Sunshower Light Cloak",
+    "slot": "Back",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Holy Paladin": "BiS",
+      "Resto Shaman": "BiS",
+      "Resto Druid": "BiS",
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Stainless Cloak of the Pure Heart",
+    "slot": "Back",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Holy Paladin": "Opt",
+      "Resto Shaman": "Opt",
+      "Resto Druid": "Opt",
+      "Holy Priest": "Opt",
+      "Discipline Priest": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge Chestpiece",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Holy Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Justicar Armor",
+    "slot": "Chest",
+    "source": "Magtheridon (Magtheridon)",
+    "eligible": {
+      "Holy Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Virtue Bearer's Vambraces",
+    "slot": "Wrist",
+    "source": "Trash (SSC)",
+    "eligible": {
+      "Holy Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Bracers of Justice",
+    "slot": "Wrist",
+    "source": "Maiden of Virtue (Karazhan)",
+    "eligible": {
+      "Holy Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge Gloves",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Holy Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Gloves of the Valiant",
+    "slot": "Hands",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "Holy Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Girdle of Truth",
+    "slot": "Waist",
+    "source": "Nightbane (Karazhan)",
+    "eligible": {
+      "Holy Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Girdle of Hope",
+    "slot": "Waist",
+    "source": "Trash (Karazhan)",
+    "eligible": {
+      "Holy Paladin": "Opt",
+      "Resto Shaman": "Opt",
+      "Resto Druid": "Opt",
+      "Holy Priest": "Opt",
+      "Discipline Priest": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge Greaves",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Holy Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Justicar Leggings",
+    "slot": "Legs",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Holy Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Boots of Courage Unending",
+    "slot": "Feet",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Holy Paladin": "BiS",
+      "Resto Shaman": "BiS",
+      "Resto Druid": "BiS",
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Boots of Valiance",
+    "slot": "Feet",
+    "source": "Moroes (Karazhan)",
+    "eligible": {
+      "Holy Paladin": "Opt",
+      "Resto Shaman": "Opt",
+      "Resto Druid": "Opt",
+      "Holy Priest": "Opt",
+      "Discipline Priest": "Opt"
+    }
+  },
+  {
+    "name": "Band of Eternity",
+    "slot": "Ring 1",
+    "source": "Reputation (Hyjal)",
+    "eligible": {
+      "Holy Paladin": "BiS",
+      "Resto Shaman": "BiS",
+      "Resto Druid": "BiS",
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Coral Band of the Revived",
+    "slot": "Ring 2",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Holy Paladin": "BiS",
+      "Resto Shaman": "BiS",
+      "Resto Druid": "BiS",
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Violet Signet of the Grand Restorer",
+    "slot": "Ring 2",
+    "source": "Reputation (Karazhan)",
+    "eligible": {
+      "Holy Paladin": "Opt",
+      "Resto Shaman": "Opt",
+      "Resto Druid": "Opt",
+      "Holy Priest": "Opt",
+      "Discipline Priest": "Opt"
+    }
+  },
+  {
+    "name": "Vial of the Sunwell",
+    "slot": "Trinket 1",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Holy Paladin": "BiS",
+      "Resto Shaman": "BiS",
+      "Resto Druid": "BiS",
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Ribbon of Sacrifice",
+    "slot": "Trinket 2",
+    "source": "Opera Event (Karazhan)",
+    "eligible": {
+      "Holy Paladin": "BiS",
+      "Resto Shaman": "BiS",
+      "Resto Druid": "BiS"
+    }
+  },
+  {
+    "name": "Scarab of the Infinite Cycle",
+    "slot": "Trinket 2",
+    "source": "Aeonus (Black Morass)",
+    "eligible": {
+      "Holy Paladin": "Opt",
+      "Resto Shaman": "Opt",
+      "Resto Druid": "Opt",
+      "Holy Priest": "Opt",
+      "Discipline Priest": "Opt"
+    }
+  },
+  {
+    "name": "Lightfathom Scepter",
+    "slot": "Main Hand",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Holy Paladin": "BiS",
+      "Resto Shaman": "BiS",
+      "Resto Druid": "BiS",
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Shard of the Virtuous",
+    "slot": "Main Hand",
+    "source": "Maiden of Virtue (Karazhan)",
+    "eligible": {
+      "Holy Paladin": "Opt",
+      "Resto Shaman": "Opt",
+      "Resto Druid": "Opt",
+      "Holy Priest": "Opt",
+      "Discipline Priest": "Opt"
+    }
+  },
+  {
+    "name": "Triptych Shield of the Ancients",
+    "slot": "Shield",
+    "source": "G'eras (Badge)",
+    "eligible": {
+      "Holy Paladin": "BiS",
+      "Resto Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Light-Eternum Band",
+    "slot": "Shield",
+    "source": "Trash (SSC)",
+    "eligible": {
+      "Holy Paladin": "Opt",
+      "Resto Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Libram of Absolute Truth",
+    "slot": "Libram",
+    "source": "Trash (SSC)",
+    "eligible": {
+      "Holy Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Libram of Souls Redeemed",
+    "slot": "Libram",
+    "source": "Trash (Karazhan)",
+    "eligible": {
+      "Holy Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge War-Helm",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Ret Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Justicar Crown",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Ret Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Choker of Animalistic Fury",
+    "slot": "Neck",
+    "source": "The Lurker Below (SSC)",
+    "eligible": {
+      "Ret Paladin": "BiS",
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS",
+      "Enhance Shaman": "BiS",
+      "Feral (DPS)": "BiS",
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Crystalforge Mantle",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Ret Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Justicar Shoulderplates",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "Ret Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge Battle-Breastplate",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Ret Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Justicar Breastplate",
+    "slot": "Chest",
+    "source": "Magtheridon (Magtheridon)",
+    "eligible": {
+      "Ret Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge Gauntlets",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Ret Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Justicar Gauntlets",
+    "slot": "Hands",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "Ret Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Crystalforge Legplates",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Ret Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Justicar Greaves",
+    "slot": "Legs",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Ret Paladin": "Opt"
+    }
+  },
+  {
+    "name": "World Breaker",
+    "slot": "Main Hand",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Ret Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Libram of Avengement",
+    "slot": "Libram",
+    "source": "Trash (SSC)",
+    "eligible": {
+      "Ret Paladin": "BiS"
+    }
+  },
+  {
+    "name": "Libram of Divine Purpose",
+    "slot": "Libram",
+    "source": "G'eras (Badge)",
+    "eligible": {
+      "Ret Paladin": "Opt"
+    }
+  },
+  {
+    "name": "Rift Stalker Helm",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS"
+    }
+  },
+  {
+    "name": "Demon Stalker Greathelm",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt",
+      "Survival Hunter": "Opt"
+    }
+  },
+  {
+    "name": "Rift Stalker Mantle",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS"
+    }
+  },
+  {
+    "name": "Demon Stalker Shoulderguards",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt",
+      "Survival Hunter": "Opt"
+    }
+  },
+  {
+    "name": "Blood Knight War Cloak",
+    "slot": "Back",
+    "source": "G'eras (Badge)",
+    "eligible": {
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt",
+      "Survival Hunter": "Opt",
+      "Enhance Shaman": "Opt",
+      "Feral (DPS)": "Opt",
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Rift Stalker Hauberk",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS"
+    }
+  },
+  {
+    "name": "Demon Stalker Harness",
+    "slot": "Chest",
+    "source": "Magtheridon (Magtheridon)",
+    "eligible": {
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt",
+      "Survival Hunter": "Opt"
+    }
+  },
+  {
+    "name": "Bracers of the Pathfinder",
+    "slot": "Wrist",
+    "source": "Trash (SSC)",
+    "eligible": {
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS"
+    }
+  },
+  {
+    "name": "Stalker's War Bands",
+    "slot": "Wrist",
+    "source": "Attumen the Huntsman (Karazhan)",
+    "eligible": {
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt",
+      "Survival Hunter": "Opt",
+      "Enhance Shaman": "Opt",
+      "Feral (DPS)": "Opt",
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Rift Stalker Gauntlets",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS"
+    }
+  },
+  {
+    "name": "Demon Stalker Gauntlets",
+    "slot": "Hands",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt",
+      "Survival Hunter": "Opt"
+    }
+  },
+  {
+    "name": "Girdle of the Treacherous",
+    "slot": "Waist",
+    "source": "Chess Event (Karazhan)",
+    "eligible": {
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt",
+      "Survival Hunter": "Opt",
+      "Enhance Shaman": "Opt",
+      "Feral (Tank)": "Opt",
+      "Feral (DPS)": "Opt",
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Rift Stalker Leggings",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS"
+    }
+  },
+  {
+    "name": "Demon Stalker Greaves",
+    "slot": "Legs",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt",
+      "Survival Hunter": "Opt"
+    }
+  },
+  {
+    "name": "Cobra-Lash Boots",
+    "slot": "Feet",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "BiS"
+    }
+  },
+  {
+    "name": "Fiend Slayer Boots",
+    "slot": "Feet",
+    "source": "Chess Event (Karazhan)",
+    "eligible": {
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt",
+      "Survival Hunter": "Opt",
+      "Enhance Shaman": "Opt",
+      "Feral (DPS)": "Opt",
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Legacy",
+    "slot": "Main Hand",
+    "source": "Opera Event (Karazhan)",
+    "eligible": {
+      "BM Hunter": "BiS",
+      "MM Hunter": "BiS",
+      "Survival Hunter": "Opt"
+    }
+  },
+  {
+    "name": "Sonic Spear",
+    "slot": "Main Hand",
+    "source": "Murmur (Shadow Labyrinth)",
+    "eligible": {
+      "BM Hunter": "Opt",
+      "MM Hunter": "Opt"
+    }
+  },
+  {
+    "name": "Cataclysm Headpiece",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Elemental Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cyclone Faceguard",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Elemental Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Ritssyn's Lost Pendant",
+    "slot": "Neck",
+    "source": "Trash (Karazhan)",
+    "eligible": {
+      "Elemental Shaman": "BiS",
+      "Balance Druid": "BiS",
+      "Shadow Priest": "BiS",
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Brooch of Unquenchable Fury",
+    "slot": "Neck",
+    "source": "Moroes (Karazhan)",
+    "eligible": {
+      "Elemental Shaman": "Opt",
+      "Balance Druid": "Opt",
+      "Shadow Priest": "Opt",
+      "Arcane Mage": "Opt",
+      "Fire Mage": "Opt",
+      "Frost Mage": "Opt",
+      "Destro Warlock": "Opt",
+      "Demo Warlock": "Opt",
+      "Affliction Warlock": "Opt"
+    }
+  },
+  {
+    "name": "Cataclysm Shoulderpads",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Elemental Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cyclone Shoulderguards",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "Elemental Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Ruby Drape of the Mysticant",
+    "slot": "Back",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Elemental Shaman": "BiS",
+      "Balance Druid": "BiS",
+      "Shadow Priest": "BiS",
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Cloak of the Black Void",
+    "slot": "Back",
+    "source": "Profession",
+    "eligible": {
+      "Elemental Shaman": "Opt",
+      "Balance Druid": "Opt",
+      "Shadow Priest": "Opt",
+      "Arcane Mage": "Opt",
+      "Fire Mage": "Opt",
+      "Frost Mage": "Opt",
+      "Destro Warlock": "Opt",
+      "Demo Warlock": "Opt",
+      "Affliction Warlock": "Opt"
+    }
+  },
+  {
+    "name": "Cataclysm Chestpiece",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Elemental Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cyclone Breastplate",
+    "slot": "Chest",
+    "source": "Magtheridon (Magtheridon)",
+    "eligible": {
+      "Elemental Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Bracers of Nimble Thought",
+    "slot": "Wrist",
+    "source": "Profession",
+    "eligible": {
+      "Elemental Shaman": "BiS",
+      "Balance Druid": "BiS",
+      "Shadow Priest": "BiS",
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Bands of Negation",
+    "slot": "Wrist",
+    "source": "Maiden of Virtue (Karazhan)",
+    "eligible": {
+      "Elemental Shaman": "Opt",
+      "Balance Druid": "Opt",
+      "Shadow Priest": "Opt",
+      "Arcane Mage": "Opt",
+      "Fire Mage": "Opt",
+      "Frost Mage": "Opt",
+      "Destro Warlock": "Opt",
+      "Demo Warlock": "Opt",
+      "Affliction Warlock": "Opt"
+    }
+  },
+  {
+    "name": "Cataclysm Gloves",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Elemental Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cyclone Gauntlets",
+    "slot": "Hands",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "Elemental Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Belt of Blasting",
+    "slot": "Waist",
+    "source": "Profession",
+    "eligible": {
+      "Elemental Shaman": "BiS",
+      "Balance Druid": "BiS",
+      "Shadow Priest": "BiS",
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Girdle of Ruination",
+    "slot": "Waist",
+    "source": "Profession",
+    "eligible": {
+      "Elemental Shaman": "Opt",
+      "Balance Druid": "Opt",
+      "Shadow Priest": "Opt",
+      "Arcane Mage": "Opt",
+      "Fire Mage": "Opt",
+      "Frost Mage": "Opt",
+      "Destro Warlock": "Opt",
+      "Demo Warlock": "Opt",
+      "Affliction Warlock": "Opt"
+    }
+  },
+  {
+    "name": "Cataclysm Leggings",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Elemental Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cyclone Kilt",
+    "slot": "Legs",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Elemental Shaman": "Opt",
+      "Resto Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Boots of Foretelling",
+    "slot": "Feet",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Elemental Shaman": "BiS",
+      "Balance Druid": "BiS",
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Sigil-Laced Boots",
+    "slot": "Feet",
+    "source": "Aran (Karazhan)",
+    "eligible": {
+      "Elemental Shaman": "Opt",
+      "Balance Druid": "Opt",
+      "Shadow Priest": "Opt",
+      "Arcane Mage": "Opt",
+      "Fire Mage": "Opt",
+      "Frost Mage": "Opt"
+    }
+  },
+  {
+    "name": "Band of the Inevitable",
+    "slot": "Ring 1",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Elemental Shaman": "BiS",
+      "Balance Druid": "BiS",
+      "Shadow Priest": "BiS",
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Ring of Captured Storms",
+    "slot": "Ring 2",
+    "source": "High Warlord Naj'entus (BT)",
+    "eligible": {
+      "Elemental Shaman": "BiS",
+      "Balance Druid": "BiS",
+      "Shadow Priest": "BiS",
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Violet Signet of the Archmage",
+    "slot": "Ring 2",
+    "source": "Reputation (Karazhan)",
+    "eligible": {
+      "Elemental Shaman": "Opt",
+      "Balance Druid": "Opt",
+      "Shadow Priest": "Opt",
+      "Arcane Mage": "Opt",
+      "Fire Mage": "Opt",
+      "Frost Mage": "Opt",
+      "Destro Warlock": "Opt",
+      "Demo Warlock": "Opt",
+      "Affliction Warlock": "Opt"
+    }
+  },
+  {
+    "name": "The Lightning Capacitor",
+    "slot": "Trinket 1",
+    "source": "Illhoof (Karazhan)",
+    "eligible": {
+      "Elemental Shaman": "BiS",
+      "Balance Druid": "Opt",
+      "Arcane Mage": "Opt"
+    }
+  },
+  {
+    "name": "Icon of the Silver Crescent",
+    "slot": "Trinket 2",
+    "source": "G'eras (Badge)",
+    "eligible": {
+      "Elemental Shaman": "BiS",
+      "Balance Druid": "BiS",
+      "Shadow Priest": "BiS",
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Quagmirran's Eye",
+    "slot": "Trinket 2",
+    "source": "Quagmirran (Heroic Slave Pens)",
+    "eligible": {
+      "Elemental Shaman": "Opt",
+      "Balance Druid": "BiS",
+      "Shadow Priest": "BiS",
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Nathrezim Mindblade",
+    "slot": "Main Hand",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Elemental Shaman": "BiS",
+      "Balance Druid": "BiS",
+      "Shadow Priest": "BiS",
+      "Arcane Mage": "Opt",
+      "Fire Mage": "Opt",
+      "Frost Mage": "Opt",
+      "Destro Warlock": "Opt",
+      "Demo Warlock": "Opt",
+      "Affliction Warlock": "Opt"
+    }
+  },
+  {
+    "name": "Mazthoril Honor Shield",
+    "slot": "Shield",
+    "source": "G'eras (Badge)",
+    "eligible": {
+      "Elemental Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Dragonheart Flameshield",
+    "slot": "Shield",
+    "source": "Nightbane (Karazhan)",
+    "eligible": {
+      "Elemental Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Totem of the Void",
+    "slot": "Totem",
+    "source": "Morogrim Tidewalker (SSC)",
+    "eligible": {
+      "Elemental Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Totem of Lightning",
+    "slot": "Totem",
+    "source": "Trash (Mechanar)",
+    "eligible": {
+      "Elemental Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Cataclysm Helm",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Enhance Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cyclone Helm",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Enhance Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Cataclysm Shoulderplates",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Enhance Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cyclone Shoulderplates",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "Enhance Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Cataclysm Harness",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Enhance Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cyclone Hauberk",
+    "slot": "Chest",
+    "source": "Magtheridon (Magtheridon)",
+    "eligible": {
+      "Enhance Shaman": "Opt",
+      "Resto Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Cataclysm Gauntlets",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Enhance Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cyclone Handguards",
+    "slot": "Hands",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "Enhance Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Cataclysm Legguards",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Enhance Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cyclone War-Kilt",
+    "slot": "Legs",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Enhance Shaman": "Opt"
+    }
+  },
+  {
+    "name": "The Decapitator",
+    "slot": "Main Hand",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Enhance Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Totem of the Astral Winds",
+    "slot": "Totem",
+    "source": "Quest (Terokkar Forest)",
+    "eligible": {
+      "Enhance Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cataclysm Headguard",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Resto Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cyclone Headdress",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Resto Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Cataclysm Spaulders",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Resto Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cyclone Spaulders",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "Resto Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Cataclysm Chestguard",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Resto Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Blackfathom Warbands",
+    "slot": "Wrist",
+    "source": "The Lurker Below (SSC)",
+    "eligible": {
+      "Resto Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Bracers of Healing",
+    "slot": "Wrist",
+    "source": "Maiden of Virtue (Karazhan)",
+    "eligible": {
+      "Resto Shaman": "Opt",
+      "Resto Druid": "Opt",
+      "Holy Priest": "Opt",
+      "Discipline Priest": "Opt"
+    }
+  },
+  {
+    "name": "Cataclysm Handguards",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Resto Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Cyclone Gloves",
+    "slot": "Hands",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "Resto Shaman": "Opt"
+    }
+  },
+  {
+    "name": "Girdle of Fallen Stars",
+    "slot": "Waist",
+    "source": "High Astromancer Solarian (TK)",
+    "eligible": {
+      "Resto Shaman": "BiS",
+      "Resto Druid": "BiS",
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Cataclysm Legbands",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Resto Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Totem of Healing Rains",
+    "slot": "Totem",
+    "source": "Quest (Hellfire Peninsula)",
+    "eligible": {
+      "Resto Shaman": "BiS"
+    }
+  },
+  {
+    "name": "Nordrassil Headpiece",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Balance Druid": "BiS"
+    }
+  },
+  {
+    "name": "Antlers of Malorne",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Balance Druid": "Opt"
+    }
+  },
+  {
+    "name": "Nordrassil Wrath-Mantle",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Balance Druid": "BiS"
+    }
+  },
+  {
+    "name": "Mantle of Malorne",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "Balance Druid": "Opt",
+      "Feral (Tank)": "Opt",
+      "Feral (DPS)": "Opt"
+    }
+  },
+  {
+    "name": "Nordrassil Chestpiece",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Balance Druid": "BiS"
+    }
+  },
+  {
+    "name": "Breastplate of Malorne",
+    "slot": "Chest",
+    "source": "Magtheridon (Magtheridon)",
+    "eligible": {
+      "Balance Druid": "Opt",
+      "Feral (Tank)": "Opt",
+      "Feral (DPS)": "Opt"
+    }
+  },
+  {
+    "name": "Nordrassil Gauntlets",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Balance Druid": "BiS"
+    }
+  },
+  {
+    "name": "Gauntlets of Malorne",
+    "slot": "Hands",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "Balance Druid": "Opt",
+      "Feral (Tank)": "Opt",
+      "Feral (DPS)": "Opt"
+    }
+  },
+  {
+    "name": "Nordrassil Wrath-Kilt",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Balance Druid": "BiS"
+    }
+  },
+  {
+    "name": "Greaves of Malorne",
+    "slot": "Legs",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Balance Druid": "Opt",
+      "Feral (Tank)": "Opt",
+      "Feral (DPS)": "Opt"
+    }
+  },
+  {
+    "name": "Fetish of the Sand Reaver",
+    "slot": "Off Hand",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Balance Druid": "BiS"
+    }
+  },
+  {
+    "name": "Jewel of Infinite Possibilities",
+    "slot": "Off Hand",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Balance Druid": "Opt"
+    }
+  },
+  {
+    "name": "Idol of the Avenger",
+    "slot": "Idol",
+    "source": "Quest (Shadowmoon Valley)",
+    "eligible": {
+      "Balance Druid": "BiS"
+    }
+  },
+  {
+    "name": "Nordrassil Headguard",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Feral (Tank)": "BiS",
+      "Feral (DPS)": "BiS"
+    }
+  },
+  {
+    "name": "Stag-Helm of Malorne",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Feral (Tank)": "Opt",
+      "Feral (DPS)": "Opt"
+    }
+  },
+  {
+    "name": "Mark of the Ravager",
+    "slot": "Neck",
+    "source": "Talon King Ikiss (Sethekk Halls)",
+    "eligible": {
+      "Feral (Tank)": "Opt"
+    }
+  },
+  {
+    "name": "Nordrassil Life-Mantle",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Feral (Tank)": "BiS",
+      "Feral (DPS)": "BiS"
+    }
+  },
+  {
+    "name": "Thoriumweave Cloak",
+    "slot": "Back",
+    "source": "Pathaleon the Calculator (Mechanar)",
+    "eligible": {
+      "Feral (Tank)": "Opt"
+    }
+  },
+  {
+    "name": "Nordrassil Chestguard",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Feral (Tank)": "BiS",
+      "Feral (DPS)": "BiS"
+    }
+  },
+  {
+    "name": "Bands of the Malignant",
+    "slot": "Wrist",
+    "source": "Trash (TK)",
+    "eligible": {
+      "Feral (Tank)": "BiS",
+      "Feral (DPS)": "BiS"
+    }
+  },
+  {
+    "name": "Umberhowl's Collar",
+    "slot": "Wrist",
+    "source": "Quest (Shadowmoon Valley)",
+    "eligible": {
+      "Feral (Tank)": "Opt"
+    }
+  },
+  {
+    "name": "Nordrassil Handgrips",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Feral (Tank)": "BiS",
+      "Feral (DPS)": "BiS"
+    }
+  },
+  {
+    "name": "Nordrassil Feral-Kilt",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Feral (Tank)": "BiS",
+      "Feral (DPS)": "BiS"
+    }
+  },
+  {
+    "name": "Boots of Natural Grace",
+    "slot": "Feet",
+    "source": "Trash (SSC)",
+    "eligible": {
+      "Feral (Tank)": "BiS"
+    }
+  },
+  {
+    "name": "Bark-Strap Boots",
+    "slot": "Feet",
+    "source": "Quagmirran (Heroic Slave Pens)",
+    "eligible": {
+      "Feral (Tank)": "Opt"
+    }
+  },
+  {
+    "name": "Badge of Tenacity",
+    "slot": "Trinket 2",
+    "source": "Quest (Blade's Edge Mountains)",
+    "eligible": {
+      "Feral (Tank)": "BiS"
+    }
+  },
+  {
+    "name": "Wildfury Greatstaff",
+    "slot": "Main Hand",
+    "source": "SSC (SSC)",
+    "eligible": {
+      "Feral (Tank)": "BiS",
+      "Feral (DPS)": "BiS"
+    }
+  },
+  {
+    "name": "Earthwarden",
+    "slot": "Main Hand",
+    "source": "Exalted (Cenarion Expedition)",
+    "eligible": {
+      "Feral (Tank)": "Opt"
+    }
+  },
+  {
+    "name": "Idol of Terror",
+    "slot": "Idol",
+    "source": "G'eras (Badge)",
+    "eligible": {
+      "Feral (Tank)": "BiS"
+    }
+  },
+  {
+    "name": "Idol of the Ursine",
+    "slot": "Idol",
+    "source": "Rokmar the Crackler (Underbog)",
+    "eligible": {
+      "Feral (Tank)": "Opt"
+    }
+  },
+  {
+    "name": "Terestian's Stranglestaff",
+    "slot": "Main Hand",
+    "source": "Terestian Illhoof (Karazhan)",
+    "eligible": {
+      "Feral (DPS)": "Opt"
+    }
+  },
+  {
+    "name": "Idol of the White Stag",
+    "slot": "Idol",
+    "source": "Mennu the Betrayer (Heroic Slave Pens)",
+    "eligible": {
+      "Feral (DPS)": "BiS"
+    }
+  },
+  {
+    "name": "Nordrassil Headdress",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Resto Druid": "BiS"
+    }
+  },
+  {
+    "name": "Crown of Malorne",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Resto Druid": "Opt"
+    }
+  },
+  {
+    "name": "Nordrassil Life-Spaulders",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Resto Druid": "BiS"
+    }
+  },
+  {
+    "name": "Shoulderpads of Malorne",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "Resto Druid": "Opt"
+    }
+  },
+  {
+    "name": "Nordrassil Life-Chestguard",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Resto Druid": "BiS"
+    }
+  },
+  {
+    "name": "Chestpiece of Malorne",
+    "slot": "Chest",
+    "source": "Magtheridon (Magtheridon)",
+    "eligible": {
+      "Resto Druid": "Opt"
+    }
+  },
+  {
+    "name": "Bind on Equip bracers",
+    "slot": "Wrist",
+    "source": "Trash (SSC)",
+    "eligible": {
+      "Resto Druid": "Opt"
+    }
+  },
+  {
+    "name": "Nordrassil Gloves",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Resto Druid": "BiS"
+    }
+  },
+  {
+    "name": "Handguards of Malorne",
+    "slot": "Hands",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "Resto Druid": "Opt"
+    }
+  },
+  {
+    "name": "Nordrassil Life-Kilt",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Resto Druid": "BiS"
+    }
+  },
+  {
+    "name": "Britches of Malorne",
+    "slot": "Legs",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Resto Druid": "Opt"
+    }
+  },
+  {
+    "name": "Windcaller's Orb",
+    "slot": "Off Hand",
+    "source": "Exalted (Cenarion Expedition)",
+    "eligible": {
+      "Resto Druid": "BiS",
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Idol of the Emerald Queen",
+    "slot": "Idol",
+    "source": "Quest (Shadowmoon Valley)",
+    "eligible": {
+      "Resto Druid": "BiS"
+    }
+  },
+  {
+    "name": "Deathmantle Helm",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Netherblade Facemask",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Deathmantle Spaulders",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Netherblade Shoulderpads",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Deathmantle Chestguard",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Netherblade Chestpiece",
+    "slot": "Chest",
+    "source": "Magtheridon (Magtheridon)",
+    "eligible": {
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Deathmantle Handguards",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Netherblade Gloves",
+    "slot": "Hands",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Deathmantle Legguards",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Netherblade Breeches",
+    "slot": "Legs",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Latro's Shifting Sword",
+    "slot": "Off Hand",
+    "source": "Aeonus (Black Morass)",
+    "eligible": {
+      "Combat Rogue": "BiS"
+    }
+  },
+  {
+    "name": "Blinkstrike",
+    "slot": "Off Hand",
+    "source": "World Drop",
+    "eligible": {
+      "Combat Rogue": "Opt"
+    }
+  },
+  {
+    "name": "Avatar Cowl",
+    "slot": "Head",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Cowl of the Incarnate",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Holy Priest": "Opt",
+      "Discipline Priest": "Opt",
+      "Shadow Priest": "Opt"
+    }
+  },
+  {
+    "name": "Avatar Mantle",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Mantle of the Incarnate",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "Holy Priest": "Opt",
+      "Discipline Priest": "Opt",
+      "Shadow Priest": "Opt"
+    }
+  },
+  {
+    "name": "Avatar Vestments",
+    "slot": "Chest",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Robes of the Incarnate",
+    "slot": "Chest",
+    "source": "Magtheridon (Magtheridon)",
+    "eligible": {
+      "Holy Priest": "Opt",
+      "Discipline Priest": "Opt",
+      "Shadow Priest": "Opt"
+    }
+  },
+  {
+    "name": "Bands of Indwelling",
+    "slot": "Wrist",
+    "source": "Maiden of Virtue (Karazhan)",
+    "eligible": {
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Avatar Gloves",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Gloves of the Incarnate",
+    "slot": "Hands",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "Holy Priest": "Opt",
+      "Discipline Priest": "Opt",
+      "Shadow Priest": "BiS"
+    }
+  },
+  {
+    "name": "Avatar Breeches",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Trousers of the Incarnate",
+    "slot": "Legs",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Holy Priest": "Opt",
+      "Discipline Priest": "Opt",
+      "Shadow Priest": "Opt"
+    }
+  },
+  {
+    "name": "Earring of Soulful Meditation",
+    "slot": "Trinket 2",
+    "source": "The Lurker Below (SSC)",
+    "eligible": {
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Blue Diamond Witch Wand",
+    "slot": "Wand",
+    "source": "Maiden of Virtue (Karazhan)",
+    "eligible": {
+      "Holy Priest": "BiS",
+      "Discipline Priest": "BiS"
+    }
+  },
+  {
+    "name": "Spellstrike Hood",
+    "slot": "Head",
+    "source": "Profession",
+    "eligible": {
+      "Shadow Priest": "BiS",
+      "Arcane Mage": "Opt",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "Opt",
+      "Demo Warlock": "Opt",
+      "Affliction Warlock": "Opt"
+    }
+  },
+  {
+    "name": "Frozen Shadoweave Shoulders",
+    "slot": "Shoulder",
+    "source": "Profession",
+    "eligible": {
+      "Shadow Priest": "BiS"
+    }
+  },
+  {
+    "name": "Frozen Shadoweave Robe",
+    "slot": "Chest",
+    "source": "Profession",
+    "eligible": {
+      "Shadow Priest": "BiS"
+    }
+  },
+  {
+    "name": "Spellstrike Pants",
+    "slot": "Legs",
+    "source": "Profession",
+    "eligible": {
+      "Shadow Priest": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "Opt",
+      "Demo Warlock": "Opt",
+      "Affliction Warlock": "Opt"
+    }
+  },
+  {
+    "name": "Frozen Shadoweave Boots",
+    "slot": "Feet",
+    "source": "Profession",
+    "eligible": {
+      "Shadow Priest": "BiS",
+      "Destro Warlock": "Opt",
+      "Demo Warlock": "Opt",
+      "Affliction Warlock": "Opt"
+    }
+  },
+  {
+    "name": "Orb of the Soul-Eater",
+    "slot": "Off Hand",
+    "source": "G'eras (Badge)",
+    "eligible": {
+      "Shadow Priest": "BiS"
+    }
+  },
+  {
+    "name": "Tirisfal Wand of Ascendancy",
+    "slot": "Wand",
+    "source": "Aran (Karazhan)",
+    "eligible": {
+      "Shadow Priest": "BiS",
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Cowl of the Grand Engineer",
+    "slot": "Head",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Arcane Mage": "BiS",
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Tirisfal Mantle",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS"
+    }
+  },
+  {
+    "name": "Mantle of the Aldor",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "Arcane Mage": "Opt",
+      "Fire Mage": "Opt",
+      "Frost Mage": "Opt"
+    }
+  },
+  {
+    "name": "Vestments of the Sea-Witch",
+    "slot": "Chest",
+    "source": "Lady Vashj (SSC)",
+    "eligible": {
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Robes of the Aldor",
+    "slot": "Chest",
+    "source": "Magtheridon (Magtheridon)",
+    "eligible": {
+      "Arcane Mage": "Opt",
+      "Fire Mage": "Opt",
+      "Frost Mage": "Opt"
+    }
+  },
+  {
+    "name": "Tirisfal Gloves",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS"
+    }
+  },
+  {
+    "name": "Gloves of the Aldor",
+    "slot": "Hands",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "Arcane Mage": "Opt",
+      "Fire Mage": "Opt",
+      "Frost Mage": "Opt"
+    }
+  },
+  {
+    "name": "Tirisfal Trousers",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Arcane Mage": "BiS"
+    }
+  },
+  {
+    "name": "Leggings of the Aldor",
+    "slot": "Legs",
+    "source": "Gruul the Dragonkiller (Gruul's Lair)",
+    "eligible": {
+      "Arcane Mage": "Opt",
+      "Fire Mage": "Opt",
+      "Frost Mage": "Opt"
+    }
+  },
+  {
+    "name": "Nexus Key",
+    "slot": "Main Hand",
+    "source": "Kael'thas (TK)",
+    "eligible": {
+      "Arcane Mage": "BiS",
+      "Fire Mage": "BiS",
+      "Frost Mage": "BiS",
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Cowl of the Aldor",
+    "slot": "Head",
+    "source": "Prince Malchezaar (Karazhan)",
+    "eligible": {
+      "Fire Mage": "Opt",
+      "Frost Mage": "Opt"
+    }
+  },
+  {
+    "name": "Mantle of the Corruptor",
+    "slot": "Shoulder",
+    "source": "Void Reaver (TK)",
+    "eligible": {
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Voidheart Mantle",
+    "slot": "Shoulder",
+    "source": "High King Maulgar (Gruul's Lair)",
+    "eligible": {
+      "Destro Warlock": "Opt",
+      "Demo Warlock": "Opt",
+      "Affliction Warlock": "Opt"
+    }
+  },
+  {
+    "name": "Voidheart Robe",
+    "slot": "Chest",
+    "source": "Magtheridon (Magtheridon)",
+    "eligible": {
+      "Destro Warlock": "Opt",
+      "Demo Warlock": "Opt",
+      "Affliction Warlock": "Opt"
+    }
+  },
+  {
+    "name": "Gloves of the Corruptor",
+    "slot": "Hands",
+    "source": "Leotheras the Blind (SSC)",
+    "eligible": {
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  },
+  {
+    "name": "Voidheart Gloves",
+    "slot": "Hands",
+    "source": "Curator (Karazhan)",
+    "eligible": {
+      "Destro Warlock": "Opt",
+      "Demo Warlock": "Opt",
+      "Affliction Warlock": "Opt"
+    }
+  },
+  {
+    "name": "Leggings of the Corruptor",
+    "slot": "Legs",
+    "source": "Fathom-Lord Karathress (SSC)",
+    "eligible": {
+      "Destro Warlock": "BiS",
+      "Demo Warlock": "BiS",
+      "Affliction Warlock": "BiS"
+    }
+  }
+]
