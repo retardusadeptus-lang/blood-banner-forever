@@ -205,13 +205,6 @@ export default function App() {
   // ==========================================
   // 5. WOWHEAD TOOLTIP ENGINE (Now safe!)
   // ==========================================
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://wow.zamimg.com/widgets/power.js';
-    script.async = true;
-    document.body.appendChild(script);
-    return () => { if (document.body.contains(script)) document.body.removeChild(script); };
-  }, []);
 
   useEffect(() => {
     const tooltips = document.querySelectorAll('.wowhead-tooltip');
