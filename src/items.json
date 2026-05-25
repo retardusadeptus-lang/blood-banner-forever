@@ -5,7 +5,8 @@
     "source": "Lady Vashj (SSC)",
     "eligible": {
       "Prot Warrior": "BiS"
-    }
+    },
+    "id": "171910"
   },
   {
     "name": "Tankatronic Goggles",
@@ -13,7 +14,8 @@
     "source": "Profession",
     "eligible": {
       "Prot Warrior": "Opt"
-    }
+    },
+    "id": "32473"
   },
   {
     "name": "Warbringer Greathelm",
@@ -21,7 +23,8 @@
     "source": "Prince Malchezaar (Karazhan)",
     "eligible": {
       "Prot Warrior": "Opt"
-    }
+    },
+    "id": "29011"
   },
   {
     "name": "The Sun King's Talisman",
@@ -30,7 +33,8 @@
     "eligible": {
       "Prot Warrior": "BiS",
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": "29994"
   },
   {
     "name": "Frayed Tether of the Doomed",
@@ -39,7 +43,8 @@
     "eligible": {
       "Prot Warrior": "Opt",
       "Feral (Tank)": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Barbed Choker of Discipline",
@@ -48,7 +53,8 @@
     "eligible": {
       "Prot Warrior": "Opt",
       "Prot Paladin": "Opt"
-    }
+    },
+    "id": "28516"
   },
   {
     "name": "Destroyer Shoulderguards",
@@ -56,7 +62,8 @@
     "source": "Void Reaver (TK)",
     "eligible": {
       "Prot Warrior": "BiS"
-    }
+    },
+    "id": "30117"
   },
   {
     "name": "Warbringer Shoulderguards",
@@ -65,7 +72,8 @@
     "eligible": {
       "Prot Warrior": "Opt",
       "Fury Warrior": "Opt"
-    }
+    },
+    "id": "29016"
   },
   {
     "name": "Phoenix-Wing Cloak",
@@ -74,7 +82,8 @@
     "eligible": {
       "Prot Warrior": "BiS",
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": "29925"
   },
   {
     "name": "Gilded Thorium Cloak",
@@ -84,7 +93,8 @@
       "Prot Warrior": "Opt",
       "Prot Paladin": "Opt",
       "Feral (Tank)": "BiS"
-    }
+    },
+    "id": "28660"
   },
   {
     "name": "Destroyer Chestguard",
@@ -92,7 +102,8 @@
     "source": "Kael'thas (TK)",
     "eligible": {
       "Prot Warrior": "BiS"
-    }
+    },
+    "id": "171893"
   },
   {
     "name": "Chestguard of the Warlord",
@@ -100,7 +111,8 @@
     "source": "Morogrim Tidewalker (SSC)",
     "eligible": {
       "Prot Warrior": "Opt"
-    }
+    },
+    "id": "33473"
   },
   {
     "name": "Warbringer Chestguard",
@@ -108,7 +120,8 @@
     "source": "Magtheridon (Magtheridon)",
     "eligible": {
       "Prot Warrior": "Opt"
-    }
+    },
+    "id": "29012"
   },
   {
     "name": "Bracers of the Green Fortress",
@@ -117,7 +130,8 @@
     "eligible": {
       "Prot Warrior": "BiS",
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": "23538"
   },
   {
     "name": "Vambraces of Courage",
@@ -126,7 +140,8 @@
     "eligible": {
       "Prot Warrior": "Opt",
       "Prot Paladin": "Opt"
-    }
+    },
+    "id": "28502"
   },
   {
     "name": "Destroyer Handguards",
@@ -134,7 +149,8 @@
     "source": "Leotheras the Blind (SSC)",
     "eligible": {
       "Prot Warrior": "BiS"
-    }
+    },
+    "id": "30114"
   },
   {
     "name": "Topaz-Studded Battlegrips",
@@ -142,7 +158,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Prot Warrior": "Opt"
-    }
+    },
+    "id": "30741"
   },
   {
     "name": "Girdle of the Invulnerable",
@@ -151,7 +168,8 @@
     "eligible": {
       "Prot Warrior": "BiS",
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": "30096"
   },
   {
     "name": "Crimson Girdle of the Indomitable",
@@ -160,7 +178,8 @@
     "eligible": {
       "Prot Warrior": "Opt",
       "Prot Paladin": "Opt"
-    }
+    },
+    "id": "28566"
   },
   {
     "name": "Destroyer Legguards",
@@ -168,7 +187,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Prot Warrior": "BiS"
-    }
+    },
+    "id": "30116"
   },
   {
     "name": "Warbringer Legguards",
@@ -176,7 +196,8 @@
     "source": "Gruul the Dragonkiller (Gruul's Lair)",
     "eligible": {
       "Prot Warrior": "Opt"
-    }
+    },
+    "id": "29015"
   },
   {
     "name": "Boots of the Resilient",
@@ -185,7 +206,8 @@
     "eligible": {
       "Prot Warrior": "BiS",
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": "32267"
   },
   {
     "name": "Battlescar Boots",
@@ -194,61 +216,68 @@
     "eligible": {
       "Prot Warrior": "Opt",
       "Prot Paladin": "Opt"
-    }
+    },
+    "id": "28747"
   },
   {
     "name": "Band of the Abyssal Lord",
-    "slot": "Ring 1",
+    "slot": "Ring",
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Prot Warrior": "BiS",
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": "150459"
   },
   {
     "name": "Ring of the Invincible",
-    "slot": "Ring 2",
+    "slot": "Ring",
     "source": "Morogrim Tidewalker (SSC)",
     "eligible": {
       "Prot Warrior": "BiS",
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Shermanar Great-Ring",
-    "slot": "Ring 2",
+    "slot": "Ring",
     "source": "Doom Lord Kazzak (Karazhan)",
     "eligible": {
       "Prot Warrior": "Opt",
       "Feral (Tank)": "Opt"
-    }
+    },
+    "id": "28675"
   },
   {
     "name": "Shadowmoon Insignia",
-    "slot": "Trinket 1",
+    "slot": "Trinket",
     "source": "Sir Fik'reth (SSC)",
     "eligible": {
       "Prot Warrior": "BiS",
       "Prot Paladin": "BiS",
       "Feral (Tank)": "BiS"
-    }
+    },
+    "id": "150526"
   },
   {
     "name": "Scarab of Displacement",
-    "slot": "Trinket 2",
+    "slot": "Trinket",
     "source": "Morogrim Tidewalker (SSC)",
     "eligible": {
       "Prot Warrior": "BiS"
-    }
+    },
+    "id": "30629"
   },
   {
     "name": "Moroe's Lucky Pocket Watch",
-    "slot": "Trinket 2",
+    "slot": "Trinket",
     "source": "Moroes (Karazhan)",
     "eligible": {
       "Prot Warrior": "Opt",
       "Feral (Tank)": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Mallet of the Tides",
@@ -256,7 +285,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Prot Warrior": "BiS"
-    }
+    },
+    "id": "30058"
   },
   {
     "name": "King's Defender",
@@ -264,7 +294,8 @@
     "source": "Chess Event (Karazhan)",
     "eligible": {
       "Prot Warrior": "Opt"
-    }
+    },
+    "id": "28749"
   },
   {
     "name": "Aldori Legacy Defender",
@@ -273,7 +304,8 @@
     "eligible": {
       "Prot Warrior": "BiS",
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": "28825"
   },
   {
     "name": "Shield of Impenetrable Darkness",
@@ -282,7 +314,8 @@
     "eligible": {
       "Prot Warrior": "Opt",
       "Prot Paladin": "Opt"
-    }
+    },
+    "id": "28606"
   },
   {
     "name": "Gyro-Balanced Khorium Destroyer",
@@ -290,7 +323,8 @@
     "source": "Profession",
     "eligible": {
       "Prot Warrior": "BiS"
-    }
+    },
+    "id": "32756"
   },
   {
     "name": "Rifle of the Stoic Guardian",
@@ -298,7 +332,8 @@
     "source": "Morogrim Tidewalker (SSC)",
     "eligible": {
       "Prot Warrior": "Opt"
-    }
+    },
+    "id": "150477"
   },
   {
     "name": "Destroyer Battle-Helm",
@@ -307,7 +342,8 @@
     "eligible": {
       "Arms Warrior": "BiS",
       "Fury Warrior": "BiS"
-    }
+    },
+    "id": "171911"
   },
   {
     "name": "Warbringer Battle-Helm",
@@ -315,7 +351,8 @@
     "source": "Prince Malchezaar (Karazhan)",
     "eligible": {
       "Arms Warrior": "Opt"
-    }
+    },
+    "id": "29021"
   },
   {
     "name": "Choker of Vile Intents",
@@ -326,7 +363,8 @@
       "Fury Warrior": "BiS",
       "Ret Paladin": "Opt",
       "Enhance Shaman": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Worgen Claw Necklace",
@@ -340,7 +378,8 @@
       "Survival Hunter": "Opt",
       "Feral (DPS)": "Opt",
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": "28509"
   },
   {
     "name": "Destroyer Mantle",
@@ -349,7 +388,8 @@
     "eligible": {
       "Arms Warrior": "BiS",
       "Fury Warrior": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Blood-Stained Pauldrons",
@@ -357,7 +397,8 @@
     "source": "Kael'thas (TK)",
     "eligible": {
       "Arms Warrior": "Opt"
-    }
+    },
+    "id": "30866"
   },
   {
     "name": "Thalassian Wildercloak",
@@ -373,7 +414,8 @@
       "Enhance Shaman": "BiS",
       "Feral (DPS)": "BiS",
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "171491"
   },
   {
     "name": "Cloak of the Incarnate",
@@ -383,7 +425,8 @@
       "Arms Warrior": "Opt",
       "Fury Warrior": "Opt",
       "Ret Paladin": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Destroyer Breastplate",
@@ -392,7 +435,8 @@
     "eligible": {
       "Arms Warrior": "BiS",
       "Fury Warrior": "Opt"
-    }
+    },
+    "id": "171894"
   },
   {
     "name": "Heartshatter Breastplate",
@@ -400,7 +444,8 @@
     "source": "Void Reaver (TK)",
     "eligible": {
       "Arms Warrior": "Opt"
-    }
+    },
+    "id": "150510"
   },
   {
     "name": "True-Aim Stalker Bands",
@@ -412,7 +457,8 @@
       "Ret Paladin": "BiS",
       "Enhance Shaman": "BiS",
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "30091"
   },
   {
     "name": "Vambraces of Daring",
@@ -420,7 +466,8 @@
     "source": "Attumen the Huntsman (Karazhan)",
     "eligible": {
       "Arms Warrior": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Destroyer Gauntlets",
@@ -429,7 +476,8 @@
     "eligible": {
       "Arms Warrior": "BiS",
       "Fury Warrior": "BiS"
-    }
+    },
+    "id": "30119"
   },
   {
     "name": "Gauntlets of Martial Perfection",
@@ -438,7 +486,8 @@
     "eligible": {
       "Arms Warrior": "Opt",
       "Fury Warrior": "Opt"
-    }
+    },
+    "id": "28824"
   },
   {
     "name": "Belt of One-Hundred Deaths",
@@ -455,7 +504,8 @@
       "Feral (Tank)": "BiS",
       "Feral (DPS)": "BiS",
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "171475"
   },
   {
     "name": "Girdle of the Endless Pit",
@@ -465,7 +515,8 @@
       "Arms Warrior": "Opt",
       "Fury Warrior": "Opt",
       "Ret Paladin": "Opt"
-    }
+    },
+    "id": "28779"
   },
   {
     "name": "Destroyer Greaves",
@@ -474,7 +525,8 @@
     "eligible": {
       "Arms Warrior": "BiS",
       "Fury Warrior": "BiS"
-    }
+    },
+    "id": "30121"
   },
   {
     "name": "Skulker's Greaves",
@@ -482,7 +534,8 @@
     "source": "Netherspite (Karazhan)",
     "eligible": {
       "Arms Warrior": "Opt"
-    }
+    },
+    "id": "28741"
   },
   {
     "name": "Warboots of Obliteration",
@@ -493,7 +546,8 @@
       "Fury Warrior": "BiS",
       "Ret Paladin": "BiS",
       "Enhance Shaman": "BiS"
-    }
+    },
+    "id": "30081"
   },
   {
     "name": "Edgewalker Longboots",
@@ -505,11 +559,12 @@
       "Ret Paladin": "Opt",
       "Feral (DPS)": "BiS",
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "28545"
   },
   {
     "name": "Ring of Lethality",
-    "slot": "Ring 1",
+    "slot": "Ring",
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Arms Warrior": "BiS",
@@ -522,11 +577,12 @@
       "Feral (Tank)": "BiS",
       "Feral (DPS)": "BiS",
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "30052"
   },
   {
     "name": "Band of the Ranger-General",
-    "slot": "Ring 2",
+    "slot": "Ring",
     "source": "Kael'thas (TK)",
     "eligible": {
       "Arms Warrior": "BiS",
@@ -539,11 +595,12 @@
       "Feral (Tank)": "BiS",
       "Feral (DPS)": "BiS",
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "29997"
   },
   {
     "name": "Garona's Signet Ring",
-    "slot": "Ring 2",
+    "slot": "Ring",
     "source": "Curator (Karazhan)",
     "eligible": {
       "Arms Warrior": "Opt",
@@ -555,11 +612,12 @@
       "Enhance Shaman": "Opt",
       "Feral (DPS)": "Opt",
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": "28649"
   },
   {
     "name": "Dragonspine Trophy",
-    "slot": "Trinket 1",
+    "slot": "Trinket",
     "source": "Gruul the Dragonkiller (Gruul's Lair)",
     "eligible": {
       "Arms Warrior": "BiS",
@@ -571,11 +629,12 @@
       "Enhance Shaman": "BiS",
       "Feral (DPS)": "BiS",
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "28830"
   },
   {
     "name": "Bloodlust Brooch",
-    "slot": "Trinket 2",
+    "slot": "Trinket",
     "source": "G'eras (Badge)",
     "eligible": {
       "Arms Warrior": "BiS",
@@ -587,11 +646,12 @@
       "Enhance Shaman": "BiS",
       "Feral (DPS)": "BiS",
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Hourglass of the Unraveller",
-    "slot": "Trinket 2",
+    "slot": "Trinket",
     "source": "Temporus (Black Morass)",
     "eligible": {
       "Arms Warrior": "Opt",
@@ -602,7 +662,8 @@
       "Enhance Shaman": "Opt",
       "Feral (DPS)": "Opt",
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Lionheart Champion",
@@ -611,7 +672,8 @@
     "eligible": {
       "Arms Warrior": "BiS",
       "Ret Paladin": "BiS"
-    }
+    },
+    "id": "28429"
   },
   {
     "name": "Twin-Strike Polearm",
@@ -621,7 +683,8 @@
       "Arms Warrior": "Opt",
       "BM Hunter": "Opt",
       "Survival Hunter": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Gorehowl",
@@ -630,7 +693,8 @@
     "eligible": {
       "Arms Warrior": "Opt",
       "Ret Paladin": "Opt"
-    }
+    },
+    "id": "28773"
   },
   {
     "name": "Serpent Spine Longbow",
@@ -643,7 +707,8 @@
       "MM Hunter": "BiS",
       "Survival Hunter": "BiS",
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "171474"
   },
   {
     "name": "Sunfury Bow of the Phoenix",
@@ -656,7 +721,8 @@
       "MM Hunter": "Opt",
       "Survival Hunter": "Opt",
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": "28772"
   },
   {
     "name": "Furious Gizmatic Goggles",
@@ -664,7 +730,8 @@
     "source": "Profession",
     "eligible": {
       "Fury Warrior": "Opt"
-    }
+    },
+    "id": "32461"
   },
   {
     "name": "Bloodsea Brigand's Vest",
@@ -672,7 +739,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Fury Warrior": "BiS"
-    }
+    },
+    "id": "30101"
   },
   {
     "name": "Bracers of Maliciousness",
@@ -681,7 +749,8 @@
     "eligible": {
       "Fury Warrior": "Opt",
       "Ret Paladin": "Opt"
-    }
+    },
+    "id": "28514"
   },
   {
     "name": "Warbringer Greaves",
@@ -689,15 +758,17 @@
     "source": "Gruul the Dragonkiller (Gruul's Lair)",
     "eligible": {
       "Fury Warrior": "Opt"
-    }
+    },
+    "id": "29022"
   },
   {
     "name": "Romulo's Poison Vial",
-    "slot": "Trinket 2",
+    "slot": "Trinket",
     "source": "Opera Event (Karazhan)",
     "eligible": {
       "Fury Warrior": "Opt"
-    }
+    },
+    "id": "28579"
   },
   {
     "name": "Rod of the Sun King",
@@ -705,7 +776,8 @@
     "source": "Kael'thas (TK)",
     "eligible": {
       "Fury Warrior": "BiS"
-    }
+    },
+    "id": "171493"
   },
   {
     "name": "Talon of Azshara",
@@ -715,7 +787,8 @@
       "Fury Warrior": "Opt",
       "Enhance Shaman": "BiS",
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "30082"
   },
   {
     "name": "Spiteblade",
@@ -724,7 +797,8 @@
     "eligible": {
       "Fury Warrior": "Opt",
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": "28729"
   },
   {
     "name": "Crystalforge Faceguard",
@@ -732,7 +806,8 @@
     "source": "Lady Vashj (SSC)",
     "eligible": {
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": "171912"
   },
   {
     "name": "Justicar Faceguard",
@@ -740,7 +815,8 @@
     "source": "Prince Malchezaar (Karazhan)",
     "eligible": {
       "Prot Paladin": "Opt"
-    }
+    },
+    "id": "29068"
   },
   {
     "name": "Crystalforge Shoulderguards",
@@ -748,7 +824,8 @@
     "source": "Void Reaver (TK)",
     "eligible": {
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": "30127"
   },
   {
     "name": "Justicar Shoulderguards",
@@ -756,7 +833,8 @@
     "source": "High King Maulgar (Gruul's Lair)",
     "eligible": {
       "Prot Paladin": "Opt"
-    }
+    },
+    "id": "29070"
   },
   {
     "name": "Crystalforge Chestguard",
@@ -764,7 +842,8 @@
     "source": "Kael'thas (TK)",
     "eligible": {
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": "171895"
   },
   {
     "name": "Pendant of the Violet Eye",
@@ -775,7 +854,8 @@
       "Resto Shaman": "Opt",
       "Holy Priest": "Opt",
       "Discipline Priest": "Opt"
-    }
+    },
+    "id": "28727"
   },
   {
     "name": "Crystalforge Handguards",
@@ -783,7 +863,8 @@
     "source": "Leotheras the Blind (SSC)",
     "eligible": {
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": "30124"
   },
   {
     "name": "Gauntlets of the Iron Tower",
@@ -791,7 +872,8 @@
     "source": "Curator (Karazhan)",
     "eligible": {
       "Prot Paladin": "Opt"
-    }
+    },
+    "id": "23532"
   },
   {
     "name": "Crystalforge Legguards",
@@ -799,7 +881,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": "30126"
   },
   {
     "name": "Justicar Legguards",
@@ -807,31 +890,35 @@
     "source": "Gruul the Dragonkiller (Gruul's Lair)",
     "eligible": {
       "Prot Paladin": "Opt"
-    }
+    },
+    "id": "29069"
   },
   {
     "name": "Ring of Unyielding Force",
-    "slot": "Ring 2",
+    "slot": "Ring",
     "source": "G'eras (Badge)",
     "eligible": {
       "Prot Paladin": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Darkmoon Card: Vengeance",
-    "slot": "Trinket 2",
+    "slot": "Trinket",
     "source": "Profession",
     "eligible": {
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Figurine - Dawnstone Crab",
-    "slot": "Trinket 2",
+    "slot": "Trinket",
     "source": "Profession",
     "eligible": {
       "Prot Paladin": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Fang of the Leviathan",
@@ -839,7 +926,8 @@
     "source": "Leotheras the Blind (SSC)",
     "eligible": {
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": "30095"
   },
   {
     "name": "Bloodmaw Magus-Blade",
@@ -849,7 +937,8 @@
       "Prot Paladin": "Opt",
       "Elemental Shaman": "Opt",
       "Balance Druid": "Opt"
-    }
+    },
+    "id": "28802"
   },
   {
     "name": "Libram of Repentance",
@@ -857,7 +946,8 @@
     "source": "G'eras (Badge)",
     "eligible": {
       "Prot Paladin": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Libram of the Eternal Rest",
@@ -865,7 +955,8 @@
     "source": "Darkweaver Syth (Sethekk Halls)",
     "eligible": {
       "Prot Paladin": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Crystalforge Greathelm",
@@ -873,7 +964,8 @@
     "source": "Lady Vashj (SSC)",
     "eligible": {
       "Holy Paladin": "BiS"
-    }
+    },
+    "id": "171914"
   },
   {
     "name": "Justicar Diadem",
@@ -881,7 +973,8 @@
     "source": "Prince Malchezaar (Karazhan)",
     "eligible": {
       "Holy Paladin": "Opt"
-    }
+    },
+    "id": "29061"
   },
   {
     "name": "Lord Sanguinar's Claim",
@@ -893,7 +986,8 @@
       "Resto Druid": "BiS",
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Natasha's Guardian Cord",
@@ -902,7 +996,8 @@
     "eligible": {
       "Holy Paladin": "Opt",
       "Resto Druid": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Crystalforge Spaulders",
@@ -910,7 +1005,8 @@
     "source": "Void Reaver (TK)",
     "eligible": {
       "Holy Paladin": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Justicar Pauldrons",
@@ -918,7 +1014,8 @@
     "source": "High King Maulgar (Gruul's Lair)",
     "eligible": {
       "Holy Paladin": "Opt"
-    }
+    },
+    "id": "29064"
   },
   {
     "name": "Sunshower Light Cloak",
@@ -930,7 +1027,8 @@
       "Resto Druid": "BiS",
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": "171486"
   },
   {
     "name": "Stainless Cloak of the Pure Heart",
@@ -942,7 +1040,8 @@
       "Resto Druid": "Opt",
       "Holy Priest": "Opt",
       "Discipline Priest": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Crystalforge Chestpiece",
@@ -950,7 +1049,8 @@
     "source": "Kael'thas (TK)",
     "eligible": {
       "Holy Paladin": "BiS"
-    }
+    },
+    "id": "171897"
   },
   {
     "name": "Justicar Armor",
@@ -958,7 +1058,8 @@
     "source": "Magtheridon (Magtheridon)",
     "eligible": {
       "Holy Paladin": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Virtue Bearer's Vambraces",
@@ -966,7 +1067,8 @@
     "source": "Trash (SSC)",
     "eligible": {
       "Holy Paladin": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Bracers of Justice",
@@ -974,7 +1076,8 @@
     "source": "Maiden of Virtue (Karazhan)",
     "eligible": {
       "Holy Paladin": "Opt"
-    }
+    },
+    "id": "28512"
   },
   {
     "name": "Crystalforge Gloves",
@@ -982,7 +1085,8 @@
     "source": "Leotheras the Blind (SSC)",
     "eligible": {
       "Holy Paladin": "BiS"
-    }
+    },
+    "id": "30135"
   },
   {
     "name": "Gloves of the Valiant",
@@ -990,7 +1094,8 @@
     "source": "Curator (Karazhan)",
     "eligible": {
       "Holy Paladin": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Girdle of Truth",
@@ -998,7 +1103,8 @@
     "source": "Nightbane (Karazhan)",
     "eligible": {
       "Holy Paladin": "BiS"
-    }
+    },
+    "id": "28733"
   },
   {
     "name": "Girdle of Hope",
@@ -1010,7 +1116,8 @@
       "Resto Druid": "Opt",
       "Holy Priest": "Opt",
       "Discipline Priest": "Opt"
-    }
+    },
+    "id": "30897"
   },
   {
     "name": "Crystalforge Greaves",
@@ -1018,7 +1125,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Holy Paladin": "BiS"
-    }
+    },
+    "id": "30132"
   },
   {
     "name": "Justicar Leggings",
@@ -1026,7 +1134,8 @@
     "source": "Gruul the Dragonkiller (Gruul's Lair)",
     "eligible": {
       "Holy Paladin": "Opt"
-    }
+    },
+    "id": "29063"
   },
   {
     "name": "Boots of Courage Unending",
@@ -1038,7 +1147,8 @@
       "Resto Druid": "BiS",
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": "30027"
   },
   {
     "name": "Boots of Valiance",
@@ -1050,11 +1160,12 @@
       "Resto Druid": "Opt",
       "Holy Priest": "Opt",
       "Discipline Priest": "Opt"
-    }
+    },
+    "id": "28569"
   },
   {
     "name": "Band of Eternity",
-    "slot": "Ring 1",
+    "slot": "Ring",
     "source": "Reputation (Hyjal)",
     "eligible": {
       "Holy Paladin": "BiS",
@@ -1062,11 +1173,12 @@
       "Resto Druid": "BiS",
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Coral Band of the Revived",
-    "slot": "Ring 2",
+    "slot": "Ring",
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Holy Paladin": "BiS",
@@ -1074,11 +1186,12 @@
       "Resto Druid": "BiS",
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": "30110"
   },
   {
     "name": "Violet Signet of the Grand Restorer",
-    "slot": "Ring 2",
+    "slot": "Ring",
     "source": "Reputation (Karazhan)",
     "eligible": {
       "Holy Paladin": "Opt",
@@ -1086,11 +1199,12 @@
       "Resto Druid": "Opt",
       "Holy Priest": "Opt",
       "Discipline Priest": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Vial of the Sunwell",
-    "slot": "Trinket 1",
+    "slot": "Trinket",
     "source": "Kael'thas (TK)",
     "eligible": {
       "Holy Paladin": "BiS",
@@ -1098,21 +1212,23 @@
       "Resto Druid": "BiS",
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": "34471"
   },
   {
     "name": "Ribbon of Sacrifice",
-    "slot": "Trinket 2",
+    "slot": "Trinket",
     "source": "Opera Event (Karazhan)",
     "eligible": {
       "Holy Paladin": "BiS",
       "Resto Shaman": "BiS",
       "Resto Druid": "BiS"
-    }
+    },
+    "id": "28590"
   },
   {
     "name": "Scarab of the Infinite Cycle",
-    "slot": "Trinket 2",
+    "slot": "Trinket",
     "source": "Aeonus (Black Morass)",
     "eligible": {
       "Holy Paladin": "Opt",
@@ -1120,7 +1236,8 @@
       "Resto Druid": "Opt",
       "Holy Priest": "Opt",
       "Discipline Priest": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Lightfathom Scepter",
@@ -1132,7 +1249,8 @@
       "Resto Druid": "BiS",
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": "171477"
   },
   {
     "name": "Shard of the Virtuous",
@@ -1144,7 +1262,8 @@
       "Resto Druid": "Opt",
       "Holy Priest": "Opt",
       "Discipline Priest": "Opt"
-    }
+    },
+    "id": "28522"
   },
   {
     "name": "Triptych Shield of the Ancients",
@@ -1153,7 +1272,8 @@
     "eligible": {
       "Holy Paladin": "BiS",
       "Resto Shaman": "BiS"
-    }
+    },
+    "id": "28754"
   },
   {
     "name": "Light-Eternum Band",
@@ -1162,7 +1282,8 @@
     "eligible": {
       "Holy Paladin": "Opt",
       "Resto Shaman": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Libram of Absolute Truth",
@@ -1170,7 +1291,8 @@
     "source": "Trash (SSC)",
     "eligible": {
       "Holy Paladin": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Libram of Souls Redeemed",
@@ -1178,7 +1300,8 @@
     "source": "Trash (Karazhan)",
     "eligible": {
       "Holy Paladin": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Crystalforge War-Helm",
@@ -1186,7 +1309,8 @@
     "source": "Lady Vashj (SSC)",
     "eligible": {
       "Ret Paladin": "BiS"
-    }
+    },
+    "id": "171913"
   },
   {
     "name": "Justicar Crown",
@@ -1194,7 +1318,8 @@
     "source": "Prince Malchezaar (Karazhan)",
     "eligible": {
       "Ret Paladin": "Opt"
-    }
+    },
+    "id": "29073"
   },
   {
     "name": "Choker of Animalistic Fury",
@@ -1208,7 +1333,8 @@
       "Enhance Shaman": "BiS",
       "Feral (DPS)": "BiS",
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "30059"
   },
   {
     "name": "Crystalforge Mantle",
@@ -1216,7 +1342,8 @@
     "source": "Void Reaver (TK)",
     "eligible": {
       "Ret Paladin": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Justicar Shoulderplates",
@@ -1224,7 +1351,8 @@
     "source": "High King Maulgar (Gruul's Lair)",
     "eligible": {
       "Ret Paladin": "Opt"
-    }
+    },
+    "id": "29075"
   },
   {
     "name": "Crystalforge Battle-Breastplate",
@@ -1232,7 +1360,8 @@
     "source": "Kael'thas (TK)",
     "eligible": {
       "Ret Paladin": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Justicar Breastplate",
@@ -1240,7 +1369,8 @@
     "source": "Magtheridon (Magtheridon)",
     "eligible": {
       "Ret Paladin": "Opt"
-    }
+    },
+    "id": "29071"
   },
   {
     "name": "Crystalforge Gauntlets",
@@ -1248,7 +1378,8 @@
     "source": "Leotheras the Blind (SSC)",
     "eligible": {
       "Ret Paladin": "BiS"
-    }
+    },
+    "id": "30130"
   },
   {
     "name": "Justicar Gauntlets",
@@ -1256,7 +1387,8 @@
     "source": "Curator (Karazhan)",
     "eligible": {
       "Ret Paladin": "Opt"
-    }
+    },
+    "id": "29072"
   },
   {
     "name": "Crystalforge Legplates",
@@ -1264,7 +1396,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Ret Paladin": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Justicar Greaves",
@@ -1272,7 +1405,8 @@
     "source": "Gruul the Dragonkiller (Gruul's Lair)",
     "eligible": {
       "Ret Paladin": "Opt"
-    }
+    },
+    "id": "29074"
   },
   {
     "name": "World Breaker",
@@ -1280,7 +1414,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Ret Paladin": "Opt"
-    }
+    },
+    "id": "30090"
   },
   {
     "name": "Libram of Avengement",
@@ -1288,7 +1423,8 @@
     "source": "Trash (SSC)",
     "eligible": {
       "Ret Paladin": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Libram of Divine Purpose",
@@ -1296,7 +1432,8 @@
     "source": "G'eras (Badge)",
     "eligible": {
       "Ret Paladin": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Rift Stalker Helm",
@@ -1306,7 +1443,8 @@
       "BM Hunter": "BiS",
       "MM Hunter": "BiS",
       "Survival Hunter": "BiS"
-    }
+    },
+    "id": "171915"
   },
   {
     "name": "Demon Stalker Greathelm",
@@ -1316,7 +1454,8 @@
       "BM Hunter": "Opt",
       "MM Hunter": "Opt",
       "Survival Hunter": "Opt"
-    }
+    },
+    "id": "29081"
   },
   {
     "name": "Rift Stalker Mantle",
@@ -1326,7 +1465,8 @@
       "BM Hunter": "BiS",
       "MM Hunter": "BiS",
       "Survival Hunter": "BiS"
-    }
+    },
+    "id": "30143"
   },
   {
     "name": "Demon Stalker Shoulderguards",
@@ -1336,7 +1476,8 @@
       "BM Hunter": "Opt",
       "MM Hunter": "Opt",
       "Survival Hunter": "Opt"
-    }
+    },
+    "id": "29084"
   },
   {
     "name": "Blood Knight War Cloak",
@@ -1349,7 +1490,8 @@
       "Enhance Shaman": "Opt",
       "Feral (DPS)": "Opt",
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": "29382"
   },
   {
     "name": "Rift Stalker Hauberk",
@@ -1359,7 +1501,8 @@
       "BM Hunter": "BiS",
       "MM Hunter": "BiS",
       "Survival Hunter": "BiS"
-    }
+    },
+    "id": "171898"
   },
   {
     "name": "Demon Stalker Harness",
@@ -1369,7 +1512,8 @@
       "BM Hunter": "Opt",
       "MM Hunter": "Opt",
       "Survival Hunter": "Opt"
-    }
+    },
+    "id": "29082"
   },
   {
     "name": "Bracers of the Pathfinder",
@@ -1379,7 +1523,8 @@
       "BM Hunter": "BiS",
       "MM Hunter": "BiS",
       "Survival Hunter": "BiS"
-    }
+    },
+    "id": "30864"
   },
   {
     "name": "Stalker's War Bands",
@@ -1392,7 +1537,8 @@
       "Enhance Shaman": "Opt",
       "Feral (DPS)": "Opt",
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": "28454"
   },
   {
     "name": "Rift Stalker Gauntlets",
@@ -1402,7 +1548,8 @@
       "BM Hunter": "BiS",
       "MM Hunter": "BiS",
       "Survival Hunter": "BiS"
-    }
+    },
+    "id": "30140"
   },
   {
     "name": "Demon Stalker Gauntlets",
@@ -1412,7 +1559,8 @@
       "BM Hunter": "Opt",
       "MM Hunter": "Opt",
       "Survival Hunter": "Opt"
-    }
+    },
+    "id": "29085"
   },
   {
     "name": "Girdle of the Treacherous",
@@ -1426,7 +1574,8 @@
       "Feral (Tank)": "Opt",
       "Feral (DPS)": "Opt",
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Rift Stalker Leggings",
@@ -1436,7 +1585,8 @@
       "BM Hunter": "BiS",
       "MM Hunter": "BiS",
       "Survival Hunter": "BiS"
-    }
+    },
+    "id": "30142"
   },
   {
     "name": "Demon Stalker Greaves",
@@ -1446,7 +1596,8 @@
       "BM Hunter": "Opt",
       "MM Hunter": "Opt",
       "Survival Hunter": "Opt"
-    }
+    },
+    "id": "29083"
   },
   {
     "name": "Cobra-Lash Boots",
@@ -1456,7 +1607,8 @@
       "BM Hunter": "BiS",
       "MM Hunter": "BiS",
       "Survival Hunter": "BiS"
-    }
+    },
+    "id": "171473"
   },
   {
     "name": "Fiend Slayer Boots",
@@ -1469,7 +1621,8 @@
       "Enhance Shaman": "Opt",
       "Feral (DPS)": "Opt",
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": "28746"
   },
   {
     "name": "Legacy",
@@ -1479,7 +1632,8 @@
       "BM Hunter": "BiS",
       "MM Hunter": "BiS",
       "Survival Hunter": "Opt"
-    }
+    },
+    "id": "28587"
   },
   {
     "name": "Sonic Spear",
@@ -1488,7 +1642,8 @@
     "eligible": {
       "BM Hunter": "Opt",
       "MM Hunter": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Cataclysm Headpiece",
@@ -1496,7 +1651,8 @@
     "source": "Lady Vashj (SSC)",
     "eligible": {
       "Elemental Shaman": "BiS"
-    }
+    },
+    "id": "171920"
   },
   {
     "name": "Cyclone Faceguard",
@@ -1504,7 +1660,8 @@
     "source": "Prince Malchezaar (Karazhan)",
     "eligible": {
       "Elemental Shaman": "Opt"
-    }
+    },
+    "id": "29035"
   },
   {
     "name": "Ritssyn's Lost Pendant",
@@ -1520,7 +1677,8 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Brooch of Unquenchable Fury",
@@ -1536,7 +1694,8 @@
       "Destro Warlock": "Opt",
       "Demo Warlock": "Opt",
       "Affliction Warlock": "Opt"
-    }
+    },
+    "id": "28530"
   },
   {
     "name": "Cataclysm Shoulderpads",
@@ -1544,7 +1703,8 @@
     "source": "Void Reaver (TK)",
     "eligible": {
       "Elemental Shaman": "BiS"
-    }
+    },
+    "id": "30173"
   },
   {
     "name": "Cyclone Shoulderguards",
@@ -1552,7 +1712,8 @@
     "source": "High King Maulgar (Gruul's Lair)",
     "eligible": {
       "Elemental Shaman": "Opt"
-    }
+    },
+    "id": "29037"
   },
   {
     "name": "Ruby Drape of the Mysticant",
@@ -1568,7 +1729,8 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": "28766"
   },
   {
     "name": "Cloak of the Black Void",
@@ -1584,7 +1746,8 @@
       "Destro Warlock": "Opt",
       "Demo Warlock": "Opt",
       "Affliction Warlock": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Cataclysm Chestpiece",
@@ -1592,7 +1755,8 @@
     "source": "Kael'thas (TK)",
     "eligible": {
       "Elemental Shaman": "BiS"
-    }
+    },
+    "id": "171903"
   },
   {
     "name": "Cyclone Breastplate",
@@ -1600,7 +1764,8 @@
     "source": "Magtheridon (Magtheridon)",
     "eligible": {
       "Elemental Shaman": "Opt"
-    }
+    },
+    "id": "29038"
   },
   {
     "name": "Bracers of Nimble Thought",
@@ -1616,7 +1781,8 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": "32586"
   },
   {
     "name": "Bands of Negation",
@@ -1632,7 +1798,8 @@
       "Destro Warlock": "Opt",
       "Demo Warlock": "Opt",
       "Affliction Warlock": "Opt"
-    }
+    },
+    "id": "29240"
   },
   {
     "name": "Cataclysm Gloves",
@@ -1640,7 +1807,8 @@
     "source": "Leotheras the Blind (SSC)",
     "eligible": {
       "Elemental Shaman": "BiS"
-    }
+    },
+    "id": "30165"
   },
   {
     "name": "Cyclone Gauntlets",
@@ -1648,7 +1816,8 @@
     "source": "Curator (Karazhan)",
     "eligible": {
       "Elemental Shaman": "Opt"
-    }
+    },
+    "id": "29039"
   },
   {
     "name": "Belt of Blasting",
@@ -1664,7 +1833,8 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": "30038"
   },
   {
     "name": "Girdle of Ruination",
@@ -1680,7 +1850,8 @@
       "Destro Warlock": "Opt",
       "Demo Warlock": "Opt",
       "Affliction Warlock": "Opt"
-    }
+    },
+    "id": "24256"
   },
   {
     "name": "Cataclysm Leggings",
@@ -1688,7 +1859,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Elemental Shaman": "BiS"
-    }
+    },
+    "id": "30172"
   },
   {
     "name": "Cyclone Kilt",
@@ -1697,7 +1869,8 @@
     "eligible": {
       "Elemental Shaman": "Opt",
       "Resto Shaman": "Opt"
-    }
+    },
+    "id": "29030"
   },
   {
     "name": "Boots of Foretelling",
@@ -1712,7 +1885,8 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": "28517"
   },
   {
     "name": "Sigil-Laced Boots",
@@ -1725,11 +1899,12 @@
       "Arcane Mage": "Opt",
       "Fire Mage": "Opt",
       "Frost Mage": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Band of the Inevitable",
-    "slot": "Ring 1",
+    "slot": "Ring",
     "source": "Void Reaver (TK)",
     "eligible": {
       "Elemental Shaman": "BiS",
@@ -1741,11 +1916,12 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Ring of Captured Storms",
-    "slot": "Ring 2",
+    "slot": "Ring",
     "source": "High Warlord Naj'entus (BT)",
     "eligible": {
       "Elemental Shaman": "BiS",
@@ -1757,11 +1933,12 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": "32247"
   },
   {
     "name": "Violet Signet of the Archmage",
-    "slot": "Ring 2",
+    "slot": "Ring",
     "source": "Reputation (Karazhan)",
     "eligible": {
       "Elemental Shaman": "Opt",
@@ -1773,21 +1950,23 @@
       "Destro Warlock": "Opt",
       "Demo Warlock": "Opt",
       "Affliction Warlock": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "The Lightning Capacitor",
-    "slot": "Trinket 1",
+    "slot": "Trinket",
     "source": "Illhoof (Karazhan)",
     "eligible": {
       "Elemental Shaman": "BiS",
       "Balance Druid": "Opt",
       "Arcane Mage": "Opt"
-    }
+    },
+    "id": "28785"
   },
   {
     "name": "Icon of the Silver Crescent",
-    "slot": "Trinket 2",
+    "slot": "Trinket",
     "source": "G'eras (Badge)",
     "eligible": {
       "Elemental Shaman": "BiS",
@@ -1799,11 +1978,12 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Quagmirran's Eye",
-    "slot": "Trinket 2",
+    "slot": "Trinket",
     "source": "Quagmirran (Heroic Slave Pens)",
     "eligible": {
       "Elemental Shaman": "Opt",
@@ -1815,7 +1995,8 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Nathrezim Mindblade",
@@ -1831,7 +2012,8 @@
       "Destro Warlock": "Opt",
       "Demo Warlock": "Opt",
       "Affliction Warlock": "Opt"
-    }
+    },
+    "id": "28770"
   },
   {
     "name": "Mazthoril Honor Shield",
@@ -1839,7 +2021,8 @@
     "source": "G'eras (Badge)",
     "eligible": {
       "Elemental Shaman": "BiS"
-    }
+    },
+    "id": "29268"
   },
   {
     "name": "Dragonheart Flameshield",
@@ -1847,7 +2030,8 @@
     "source": "Nightbane (Karazhan)",
     "eligible": {
       "Elemental Shaman": "Opt"
-    }
+    },
+    "id": "28611"
   },
   {
     "name": "Totem of the Void",
@@ -1855,7 +2039,8 @@
     "source": "Morogrim Tidewalker (SSC)",
     "eligible": {
       "Elemental Shaman": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Totem of Lightning",
@@ -1863,7 +2048,8 @@
     "source": "Trash (Mechanar)",
     "eligible": {
       "Elemental Shaman": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Cataclysm Helm",
@@ -1871,7 +2057,8 @@
     "source": "Lady Vashj (SSC)",
     "eligible": {
       "Enhance Shaman": "BiS"
-    }
+    },
+    "id": "171921"
   },
   {
     "name": "Cyclone Helm",
@@ -1879,7 +2066,8 @@
     "source": "Prince Malchezaar (Karazhan)",
     "eligible": {
       "Enhance Shaman": "Opt"
-    }
+    },
+    "id": "29040"
   },
   {
     "name": "Cataclysm Shoulderplates",
@@ -1887,7 +2075,8 @@
     "source": "Void Reaver (TK)",
     "eligible": {
       "Enhance Shaman": "BiS"
-    }
+    },
+    "id": "30194"
   },
   {
     "name": "Cyclone Shoulderplates",
@@ -1895,7 +2084,8 @@
     "source": "High King Maulgar (Gruul's Lair)",
     "eligible": {
       "Enhance Shaman": "Opt"
-    }
+    },
+    "id": "29043"
   },
   {
     "name": "Cataclysm Harness",
@@ -1903,7 +2093,8 @@
     "source": "Kael'thas (TK)",
     "eligible": {
       "Enhance Shaman": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Cyclone Hauberk",
@@ -1912,7 +2103,8 @@
     "eligible": {
       "Enhance Shaman": "Opt",
       "Resto Shaman": "Opt"
-    }
+    },
+    "id": "29029"
   },
   {
     "name": "Cataclysm Gauntlets",
@@ -1920,7 +2112,8 @@
     "source": "Leotheras the Blind (SSC)",
     "eligible": {
       "Enhance Shaman": "BiS"
-    }
+    },
+    "id": "30189"
   },
   {
     "name": "Cyclone Handguards",
@@ -1928,7 +2121,8 @@
     "source": "Curator (Karazhan)",
     "eligible": {
       "Enhance Shaman": "Opt"
-    }
+    },
+    "id": "29034"
   },
   {
     "name": "Cataclysm Legguards",
@@ -1936,7 +2130,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Enhance Shaman": "BiS"
-    }
+    },
+    "id": "30167"
   },
   {
     "name": "Cyclone War-Kilt",
@@ -1944,7 +2139,8 @@
     "source": "Gruul the Dragonkiller (Gruul's Lair)",
     "eligible": {
       "Enhance Shaman": "Opt"
-    }
+    },
+    "id": "29042"
   },
   {
     "name": "The Decapitator",
@@ -1952,7 +2148,8 @@
     "source": "Prince Malchezaar (Karazhan)",
     "eligible": {
       "Enhance Shaman": "Opt"
-    }
+    },
+    "id": "28767"
   },
   {
     "name": "Totem of the Astral Winds",
@@ -1960,7 +2157,8 @@
     "source": "Quest (Terokkar Forest)",
     "eligible": {
       "Enhance Shaman": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Cataclysm Headguard",
@@ -1968,7 +2166,8 @@
     "source": "Lady Vashj (SSC)",
     "eligible": {
       "Resto Shaman": "BiS"
-    }
+    },
+    "id": "171919"
   },
   {
     "name": "Cyclone Headdress",
@@ -1976,7 +2175,8 @@
     "source": "Prince Malchezaar (Karazhan)",
     "eligible": {
       "Resto Shaman": "Opt"
-    }
+    },
+    "id": "29028"
   },
   {
     "name": "Cataclysm Spaulders",
@@ -1984,7 +2184,8 @@
     "source": "Void Reaver (TK)",
     "eligible": {
       "Resto Shaman": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Cyclone Spaulders",
@@ -1992,7 +2193,8 @@
     "source": "High King Maulgar (Gruul's Lair)",
     "eligible": {
       "Resto Shaman": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Cataclysm Chestguard",
@@ -2000,7 +2202,8 @@
     "source": "Kael'thas (TK)",
     "eligible": {
       "Resto Shaman": "BiS"
-    }
+    },
+    "id": "171902"
   },
   {
     "name": "Blackfathom Warbands",
@@ -2008,7 +2211,8 @@
     "source": "The Lurker Below (SSC)",
     "eligible": {
       "Resto Shaman": "BiS"
-    }
+    },
+    "id": "30047"
   },
   {
     "name": "Bracers of Healing",
@@ -2019,7 +2223,8 @@
       "Resto Druid": "Opt",
       "Holy Priest": "Opt",
       "Discipline Priest": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Cataclysm Handguards",
@@ -2027,7 +2232,8 @@
     "source": "Leotheras the Blind (SSC)",
     "eligible": {
       "Resto Shaman": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Cyclone Gloves",
@@ -2035,7 +2241,8 @@
     "source": "Curator (Karazhan)",
     "eligible": {
       "Resto Shaman": "Opt"
-    }
+    },
+    "id": "29032"
   },
   {
     "name": "Girdle of Fallen Stars",
@@ -2046,7 +2253,8 @@
       "Resto Druid": "BiS",
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": "30030"
   },
   {
     "name": "Cataclysm Legbands",
@@ -2054,7 +2262,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Resto Shaman": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Totem of Healing Rains",
@@ -2062,7 +2271,8 @@
     "source": "Quest (Hellfire Peninsula)",
     "eligible": {
       "Resto Shaman": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Nordrassil Headpiece",
@@ -2070,7 +2280,8 @@
     "source": "Lady Vashj (SSC)",
     "eligible": {
       "Balance Druid": "BiS"
-    }
+    },
+    "id": "171926"
   },
   {
     "name": "Antlers of Malorne",
@@ -2078,7 +2289,8 @@
     "source": "Prince Malchezaar (Karazhan)",
     "eligible": {
       "Balance Druid": "Opt"
-    }
+    },
+    "id": "29093"
   },
   {
     "name": "Nordrassil Wrath-Mantle",
@@ -2086,7 +2298,8 @@
     "source": "Void Reaver (TK)",
     "eligible": {
       "Balance Druid": "BiS"
-    }
+    },
+    "id": "30235"
   },
   {
     "name": "Mantle of Malorne",
@@ -2096,7 +2309,8 @@
       "Balance Druid": "Opt",
       "Feral (Tank)": "Opt",
       "Feral (DPS)": "Opt"
-    }
+    },
+    "id": "29100"
   },
   {
     "name": "Nordrassil Chestpiece",
@@ -2104,7 +2318,8 @@
     "source": "Kael'thas (TK)",
     "eligible": {
       "Balance Druid": "BiS"
-    }
+    },
+    "id": "171909"
   },
   {
     "name": "Breastplate of Malorne",
@@ -2114,7 +2329,8 @@
       "Balance Druid": "Opt",
       "Feral (Tank)": "Opt",
       "Feral (DPS)": "Opt"
-    }
+    },
+    "id": "29096"
   },
   {
     "name": "Nordrassil Gauntlets",
@@ -2122,7 +2338,8 @@
     "source": "Leotheras the Blind (SSC)",
     "eligible": {
       "Balance Druid": "BiS"
-    }
+    },
+    "id": "30232"
   },
   {
     "name": "Gauntlets of Malorne",
@@ -2132,7 +2349,8 @@
       "Balance Druid": "Opt",
       "Feral (Tank)": "Opt",
       "Feral (DPS)": "Opt"
-    }
+    },
+    "id": "29097"
   },
   {
     "name": "Nordrassil Wrath-Kilt",
@@ -2140,7 +2358,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Balance Druid": "BiS"
-    }
+    },
+    "id": "30234"
   },
   {
     "name": "Greaves of Malorne",
@@ -2150,7 +2369,8 @@
       "Balance Druid": "Opt",
       "Feral (Tank)": "Opt",
       "Feral (DPS)": "Opt"
-    }
+    },
+    "id": "29099"
   },
   {
     "name": "Fetish of the Sand Reaver",
@@ -2158,7 +2378,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Balance Druid": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Jewel of Infinite Possibilities",
@@ -2166,7 +2387,8 @@
     "source": "Prince Malchezaar (Karazhan)",
     "eligible": {
       "Balance Druid": "Opt"
-    }
+    },
+    "id": "28734"
   },
   {
     "name": "Idol of the Avenger",
@@ -2174,7 +2396,8 @@
     "source": "Quest (Shadowmoon Valley)",
     "eligible": {
       "Balance Druid": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Nordrassil Headguard",
@@ -2183,7 +2406,8 @@
     "eligible": {
       "Feral (Tank)": "BiS",
       "Feral (DPS)": "BiS"
-    }
+    },
+    "id": "171924"
   },
   {
     "name": "Stag-Helm of Malorne",
@@ -2192,7 +2416,8 @@
     "eligible": {
       "Feral (Tank)": "Opt",
       "Feral (DPS)": "Opt"
-    }
+    },
+    "id": "29098"
   },
   {
     "name": "Mark of the Ravager",
@@ -2200,7 +2425,8 @@
     "source": "Talon King Ikiss (Sethekk Halls)",
     "eligible": {
       "Feral (Tank)": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Nordrassil Life-Mantle",
@@ -2209,7 +2435,8 @@
     "eligible": {
       "Feral (Tank)": "BiS",
       "Feral (DPS)": "BiS"
-    }
+    },
+    "id": "30221"
   },
   {
     "name": "Thoriumweave Cloak",
@@ -2217,7 +2444,8 @@
     "source": "Pathaleon the Calculator (Mechanar)",
     "eligible": {
       "Feral (Tank)": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Nordrassil Chestguard",
@@ -2226,7 +2454,8 @@
     "eligible": {
       "Feral (Tank)": "BiS",
       "Feral (DPS)": "BiS"
-    }
+    },
+    "id": "171907"
   },
   {
     "name": "Bands of the Malignant",
@@ -2235,7 +2464,8 @@
     "eligible": {
       "Feral (Tank)": "BiS",
       "Feral (DPS)": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Umberhowl's Collar",
@@ -2243,7 +2473,8 @@
     "source": "Quest (Shadowmoon Valley)",
     "eligible": {
       "Feral (Tank)": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Nordrassil Handgrips",
@@ -2252,7 +2483,8 @@
     "eligible": {
       "Feral (Tank)": "BiS",
       "Feral (DPS)": "BiS"
-    }
+    },
+    "id": "30223"
   },
   {
     "name": "Nordrassil Feral-Kilt",
@@ -2261,7 +2493,8 @@
     "eligible": {
       "Feral (Tank)": "BiS",
       "Feral (DPS)": "BiS"
-    }
+    },
+    "id": "30229"
   },
   {
     "name": "Boots of Natural Grace",
@@ -2269,7 +2502,8 @@
     "source": "Trash (SSC)",
     "eligible": {
       "Feral (Tank)": "BiS"
-    }
+    },
+    "id": "30041"
   },
   {
     "name": "Bark-Strap Boots",
@@ -2277,15 +2511,17 @@
     "source": "Quagmirran (Heroic Slave Pens)",
     "eligible": {
       "Feral (Tank)": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Badge of Tenacity",
-    "slot": "Trinket 2",
+    "slot": "Trinket",
     "source": "Quest (Blade's Edge Mountains)",
     "eligible": {
       "Feral (Tank)": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Wildfury Greatstaff",
@@ -2294,7 +2530,8 @@
     "eligible": {
       "Feral (Tank)": "BiS",
       "Feral (DPS)": "BiS"
-    }
+    },
+    "id": "30021"
   },
   {
     "name": "Earthwarden",
@@ -2302,7 +2539,8 @@
     "source": "Exalted (Cenarion Expedition)",
     "eligible": {
       "Feral (Tank)": "Opt"
-    }
+    },
+    "id": "29171"
   },
   {
     "name": "Idol of Terror",
@@ -2310,7 +2548,8 @@
     "source": "G'eras (Badge)",
     "eligible": {
       "Feral (Tank)": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Idol of the Ursine",
@@ -2318,7 +2557,8 @@
     "source": "Rokmar the Crackler (Underbog)",
     "eligible": {
       "Feral (Tank)": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Terestian's Stranglestaff",
@@ -2326,7 +2566,8 @@
     "source": "Terestian Illhoof (Karazhan)",
     "eligible": {
       "Feral (DPS)": "Opt"
-    }
+    },
+    "id": "28658"
   },
   {
     "name": "Idol of the White Stag",
@@ -2334,7 +2575,8 @@
     "source": "Mennu the Betrayer (Heroic Slave Pens)",
     "eligible": {
       "Feral (DPS)": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Nordrassil Headdress",
@@ -2342,7 +2584,8 @@
     "source": "Lady Vashj (SSC)",
     "eligible": {
       "Resto Druid": "BiS"
-    }
+    },
+    "id": "171925"
   },
   {
     "name": "Crown of Malorne",
@@ -2350,7 +2593,8 @@
     "source": "Prince Malchezaar (Karazhan)",
     "eligible": {
       "Resto Druid": "Opt"
-    }
+    },
+    "id": "29086"
   },
   {
     "name": "Nordrassil Life-Spaulders",
@@ -2358,7 +2602,8 @@
     "source": "Void Reaver (TK)",
     "eligible": {
       "Resto Druid": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Shoulderpads of Malorne",
@@ -2366,7 +2611,8 @@
     "source": "High King Maulgar (Gruul's Lair)",
     "eligible": {
       "Resto Druid": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Nordrassil Life-Chestguard",
@@ -2374,7 +2620,8 @@
     "source": "Kael'thas (TK)",
     "eligible": {
       "Resto Druid": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Chestpiece of Malorne",
@@ -2382,7 +2629,8 @@
     "source": "Magtheridon (Magtheridon)",
     "eligible": {
       "Resto Druid": "Opt"
-    }
+    },
+    "id": "29091"
   },
   {
     "name": "Bind on Equip bracers",
@@ -2390,7 +2638,8 @@
     "source": "Trash (SSC)",
     "eligible": {
       "Resto Druid": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Nordrassil Gloves",
@@ -2398,7 +2647,8 @@
     "source": "Leotheras the Blind (SSC)",
     "eligible": {
       "Resto Druid": "BiS"
-    }
+    },
+    "id": "30217"
   },
   {
     "name": "Handguards of Malorne",
@@ -2406,7 +2656,8 @@
     "source": "Curator (Karazhan)",
     "eligible": {
       "Resto Druid": "Opt"
-    }
+    },
+    "id": "29090"
   },
   {
     "name": "Nordrassil Life-Kilt",
@@ -2414,7 +2665,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Resto Druid": "BiS"
-    }
+    },
+    "id": "30220"
   },
   {
     "name": "Britches of Malorne",
@@ -2422,7 +2674,8 @@
     "source": "Gruul the Dragonkiller (Gruul's Lair)",
     "eligible": {
       "Resto Druid": "Opt"
-    }
+    },
+    "id": "29094"
   },
   {
     "name": "Windcaller's Orb",
@@ -2432,7 +2685,8 @@
       "Resto Druid": "BiS",
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": "29170"
   },
   {
     "name": "Idol of the Emerald Queen",
@@ -2440,7 +2694,8 @@
     "source": "Quest (Shadowmoon Valley)",
     "eligible": {
       "Resto Druid": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Deathmantle Helm",
@@ -2448,7 +2703,8 @@
     "source": "Lady Vashj (SSC)",
     "eligible": {
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "171916"
   },
   {
     "name": "Netherblade Facemask",
@@ -2456,7 +2712,8 @@
     "source": "Prince Malchezaar (Karazhan)",
     "eligible": {
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": "29044"
   },
   {
     "name": "Deathmantle Spaulders",
@@ -2464,7 +2721,8 @@
     "source": "Void Reaver (TK)",
     "eligible": {
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Netherblade Shoulderpads",
@@ -2472,7 +2730,8 @@
     "source": "High King Maulgar (Gruul's Lair)",
     "eligible": {
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": "29047"
   },
   {
     "name": "Deathmantle Chestguard",
@@ -2480,7 +2739,8 @@
     "source": "Kael'thas (TK)",
     "eligible": {
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "171899"
   },
   {
     "name": "Netherblade Chestpiece",
@@ -2488,7 +2748,8 @@
     "source": "Magtheridon (Magtheridon)",
     "eligible": {
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": "29045"
   },
   {
     "name": "Deathmantle Handguards",
@@ -2496,7 +2757,8 @@
     "source": "Leotheras the Blind (SSC)",
     "eligible": {
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "30145"
   },
   {
     "name": "Netherblade Gloves",
@@ -2504,7 +2766,8 @@
     "source": "Curator (Karazhan)",
     "eligible": {
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": "29048"
   },
   {
     "name": "Deathmantle Legguards",
@@ -2512,7 +2775,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": "30148"
   },
   {
     "name": "Netherblade Breeches",
@@ -2520,7 +2784,8 @@
     "source": "Gruul the Dragonkiller (Gruul's Lair)",
     "eligible": {
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": "29046"
   },
   {
     "name": "Latro's Shifting Sword",
@@ -2528,7 +2793,8 @@
     "source": "Aeonus (Black Morass)",
     "eligible": {
       "Combat Rogue": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Blinkstrike",
@@ -2536,7 +2802,8 @@
     "source": "World Drop",
     "eligible": {
       "Combat Rogue": "Opt"
-    }
+    },
+    "id": "31332"
   },
   {
     "name": "Avatar Cowl",
@@ -2545,7 +2812,8 @@
     "eligible": {
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Cowl of the Incarnate",
@@ -2555,7 +2823,8 @@
       "Holy Priest": "Opt",
       "Discipline Priest": "Opt",
       "Shadow Priest": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Avatar Mantle",
@@ -2564,7 +2833,8 @@
     "eligible": {
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Mantle of the Incarnate",
@@ -2574,7 +2844,8 @@
       "Holy Priest": "Opt",
       "Discipline Priest": "Opt",
       "Shadow Priest": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Avatar Vestments",
@@ -2583,7 +2854,8 @@
     "eligible": {
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Robes of the Incarnate",
@@ -2593,7 +2865,8 @@
       "Holy Priest": "Opt",
       "Discipline Priest": "Opt",
       "Shadow Priest": "Opt"
-    }
+    },
+    "id": "29050"
   },
   {
     "name": "Bands of Indwelling",
@@ -2602,7 +2875,8 @@
     "eligible": {
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": "28511"
   },
   {
     "name": "Avatar Gloves",
@@ -2611,7 +2885,8 @@
     "eligible": {
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Gloves of the Incarnate",
@@ -2621,7 +2896,8 @@
       "Holy Priest": "Opt",
       "Discipline Priest": "Opt",
       "Shadow Priest": "BiS"
-    }
+    },
+    "id": "29057"
   },
   {
     "name": "Avatar Breeches",
@@ -2630,7 +2906,8 @@
     "eligible": {
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Trousers of the Incarnate",
@@ -2640,16 +2917,18 @@
       "Holy Priest": "Opt",
       "Discipline Priest": "Opt",
       "Shadow Priest": "Opt"
-    }
+    },
+    "id": "29053"
   },
   {
     "name": "Earring of Soulful Meditation",
-    "slot": "Trinket 2",
+    "slot": "Trinket",
     "source": "The Lurker Below (SSC)",
     "eligible": {
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": "30665"
   },
   {
     "name": "Blue Diamond Witch Wand",
@@ -2658,7 +2937,8 @@
     "eligible": {
       "Holy Priest": "BiS",
       "Discipline Priest": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Spellstrike Hood",
@@ -2672,7 +2952,8 @@
       "Destro Warlock": "Opt",
       "Demo Warlock": "Opt",
       "Affliction Warlock": "Opt"
-    }
+    },
+    "id": "24266"
   },
   {
     "name": "Frozen Shadoweave Shoulders",
@@ -2680,7 +2961,8 @@
     "source": "Profession",
     "eligible": {
       "Shadow Priest": "BiS"
-    }
+    },
+    "id": "21869"
   },
   {
     "name": "Frozen Shadoweave Robe",
@@ -2688,7 +2970,8 @@
     "source": "Profession",
     "eligible": {
       "Shadow Priest": "BiS"
-    }
+    },
+    "id": "21871"
   },
   {
     "name": "Spellstrike Pants",
@@ -2701,7 +2984,8 @@
       "Destro Warlock": "Opt",
       "Demo Warlock": "Opt",
       "Affliction Warlock": "Opt"
-    }
+    },
+    "id": "24262"
   },
   {
     "name": "Frozen Shadoweave Boots",
@@ -2712,7 +2996,8 @@
       "Destro Warlock": "Opt",
       "Demo Warlock": "Opt",
       "Affliction Warlock": "Opt"
-    }
+    },
+    "id": "21870"
   },
   {
     "name": "Orb of the Soul-Eater",
@@ -2720,7 +3005,8 @@
     "source": "G'eras (Badge)",
     "eligible": {
       "Shadow Priest": "BiS"
-    }
+    },
+    "id": "29272"
   },
   {
     "name": "Tirisfal Wand of Ascendancy",
@@ -2734,7 +3020,8 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": "28673"
   },
   {
     "name": "Cowl of the Grand Engineer",
@@ -2745,7 +3032,8 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": "29986"
   },
   {
     "name": "Tirisfal Mantle",
@@ -2755,7 +3043,8 @@
       "Arcane Mage": "BiS",
       "Fire Mage": "BiS",
       "Frost Mage": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Mantle of the Aldor",
@@ -2765,7 +3054,8 @@
       "Arcane Mage": "Opt",
       "Fire Mage": "Opt",
       "Frost Mage": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Vestments of the Sea-Witch",
@@ -2778,7 +3068,8 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": "171476"
   },
   {
     "name": "Robes of the Aldor",
@@ -2788,7 +3079,8 @@
       "Arcane Mage": "Opt",
       "Fire Mage": "Opt",
       "Frost Mage": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Tirisfal Gloves",
@@ -2798,7 +3090,8 @@
       "Arcane Mage": "BiS",
       "Fire Mage": "BiS",
       "Frost Mage": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Gloves of the Aldor",
@@ -2808,7 +3101,8 @@
       "Arcane Mage": "Opt",
       "Fire Mage": "Opt",
       "Frost Mage": "Opt"
-    }
+    },
+    "id": "29080"
   },
   {
     "name": "Tirisfal Trousers",
@@ -2816,7 +3110,8 @@
     "source": "Fathom-Lord Karathress (SSC)",
     "eligible": {
       "Arcane Mage": "BiS"
-    }
+    },
+    "id": null
   },
   {
     "name": "Leggings of the Aldor",
@@ -2826,7 +3121,8 @@
       "Arcane Mage": "Opt",
       "Fire Mage": "Opt",
       "Frost Mage": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Nexus Key",
@@ -2839,7 +3135,8 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": "171485"
   },
   {
     "name": "Cowl of the Aldor",
@@ -2848,7 +3145,8 @@
     "eligible": {
       "Fire Mage": "Opt",
       "Frost Mage": "Opt"
-    }
+    },
+    "id": null
   },
   {
     "name": "Mantle of the Corruptor",
@@ -2858,7 +3156,8 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": "30215"
   },
   {
     "name": "Voidheart Mantle",
@@ -2868,7 +3167,8 @@
       "Destro Warlock": "Opt",
       "Demo Warlock": "Opt",
       "Affliction Warlock": "Opt"
-    }
+    },
+    "id": "28967"
   },
   {
     "name": "Voidheart Robe",
@@ -2878,7 +3178,8 @@
       "Destro Warlock": "Opt",
       "Demo Warlock": "Opt",
       "Affliction Warlock": "Opt"
-    }
+    },
+    "id": "28964"
   },
   {
     "name": "Gloves of the Corruptor",
@@ -2888,7 +3189,8 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": "30211"
   },
   {
     "name": "Voidheart Gloves",
@@ -2898,7 +3200,8 @@
       "Destro Warlock": "Opt",
       "Demo Warlock": "Opt",
       "Affliction Warlock": "Opt"
-    }
+    },
+    "id": "28968"
   },
   {
     "name": "Leggings of the Corruptor",
@@ -2908,6 +3211,7 @@
       "Destro Warlock": "BiS",
       "Demo Warlock": "BiS",
       "Affliction Warlock": "BiS"
-    }
+    },
+    "id": "30213"
   }
 ]

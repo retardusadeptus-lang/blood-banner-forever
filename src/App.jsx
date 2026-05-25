@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 import { db } from './firebase'; 
 import itemsData from './items.json';
+console.log(itemsData.map(item => item.slot).filter(s => s.toLowerCase().includes("ring") || s.toLowerCase().includes("trinket"))); // Debugging slot names in source data
 
 const SPECS = [
   "Prot Warrior", "Arms Warrior", "Fury Warrior", "Prot Paladin", "Holy Paladin", 
@@ -10,7 +11,6 @@ const SPECS = [
   "Resto Druid", "Combat Rogue", "Holy Priest", "Discipline Priest", "Shadow Priest", 
   "Arcane Mage", "Fire Mage", "Frost Mage", "Destro Warlock", "Demo Warlock", "Affliction Warlock"
 ];
-
 
 const CLASS_COLORS = {
   "Prot Warrior": "#C79C6E", "Arms Warrior": "#C79C6E", "Fury Warrior": "#C79C6E",
@@ -25,7 +25,7 @@ const CLASS_COLORS = {
 };
 
 const LEFT_SLOTS = ["Head", "Neck", "Shoulder", "Back", "Chest", "Wrist"];
-const RIGHT_SLOTS = ["Hands", "Waist", "Legs", "Feet", "Ring 1", "Ring 2", "Trinket 1", "Trinket 2"];
+const RIGHT_SLOTS = ["Hands", "Waist", "Legs", "Feet", "Ring", "Trinket"];
 const BOTTOM_SLOTS = ["Main Hand", "Off Hand", "Shield", "Ranged", "Wand", "Totem", "Libram", "Idol"];
 
 const P2_BOSSES = [
@@ -117,7 +117,10 @@ export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => sessionStorage.getItem('ar-auth') === 'true');
   const [passwordInput, setPasswordInput] = useState('');
 
-  const [activeTab, setActiveTab] = useState('loot');
+  // Default to public overview tab
+  const [activeTab, setActiveTab] = useState('overview');
+  const [overviewSearch, setOverviewSearch] = useState('');
+
   const [isDbConnected, setIsDbConnected] = useState(false);
   const [newName, setNewName] = useState('');
   const [newSpec, setNewSpec] = useState(SPECS[0]);
@@ -153,9 +156,6 @@ export default function App() {
   // 3. FIREBASE LIVE SYNC ENGINE
   // ==========================================
   useEffect(() => {
-    // Only connect to DB if they have passed the officer lock!
-    if (!isAuthenticated) return;
-
     const unsubs = [];
 
     const setupSync = (docName, setter, defaultVal) => {
@@ -176,13 +176,19 @@ export default function App() {
       const match = item.source.match(/(.+?)\s*\((.+?)\)/);
       if (match) { boss = match[1].trim(); zone = match[2].trim(); } 
       else if (item.source === "Profession") { boss = "Crafted"; zone = "Profession"; }
+      
+      let slot = item.slot;
+
+
       const mappedId = WOWHEAD_IDS[item.name] || item.itemId || '';
-      return { ...item, boss, zone, itemId: mappedId };
+      return { ...item, slot, boss, zone, itemId: mappedId };
     });
 
     setupSync('roster', setRosterLocal, []);
     setupSync('assignments', setAssignmentsLocal, {});
-    setupSync('scoringConfig', setScoringConfigLocal, { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5 });
+    
+    // Added afkPenalty to default scoring sync!
+    setupSync('scoringConfig', setScoringConfigLocal, { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5, afkPenalty: 5 });
     setupSync('playerStats', setPlayerStatsLocal, {});
     setupSync('raidLogs', setRaidLogsLocal, []);
     setupSync('mutableItems', setMutableItemsLocal, defaultItems);
@@ -190,7 +196,7 @@ export default function App() {
     setTimeout(() => setIsDbConnected(true), 1200);
 
     return () => unsubs.forEach(fn => fn());
-  }, [isAuthenticated]);
+  }, []);
 
   // ==========================================
   // 4. CLOUD WRITERS
@@ -203,21 +209,21 @@ export default function App() {
   const setMutableItems = (newVal) => { setMutableItemsLocal(newVal); setDoc(doc(db, 'guildData', 'mutableItems'), { data: newVal }); };
 
   // ==========================================
-  // 5. WOWHEAD TOOLTIP ENGINE (Now safe!)
+  // 5. WOWHEAD TOOLTIP ENGINE
   // ==========================================
 
   useEffect(() => {
     const tooltips = document.querySelectorAll('.wowhead-tooltip');
     tooltips.forEach(t => { t.style.display = 'none'; });
     if (window.$WowheadPower && window.$WowheadPower.hideTooltip) { window.$WowheadPower.hideTooltip(); }
-  }, [activeTab, filterBoss, filterZone, filterSlot, searchQuery, dbSearch]);
+  }, [activeTab, filterBoss, filterZone, filterSlot, searchQuery, dbSearch, overviewSearch]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (window.$WowheadPower && window.$WowheadPower.refreshLinks) { window.$WowheadPower.refreshLinks(); }
     }, 200);
     return () => clearTimeout(timer);
-  }, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, selectedBisSpec]);
+  }, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, overviewSearch, selectedBisSpec]);
 
   const hideWowheadTooltip = () => {
     if (window.$WowheadPower && window.$WowheadPower.hideTooltip) { window.$WowheadPower.hideTooltip(); }
@@ -240,13 +246,20 @@ export default function App() {
   // ==========================================
   const handleLogin = (e) => {
     if (e) e.preventDefault();
-    if (passwordInput === 'SteveIsGreat!2026') {
+    if (passwordInput === 'TBCOfficer2026!') {
       setIsAuthenticated(true);
       sessionStorage.setItem('ar-auth', 'true');
+      setPasswordInput('');
     } else {
       alert("Incorrect password! Access Denied.");
       setPasswordInput('');
     }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    sessionStorage.removeItem('ar-auth');
+    setActiveTab('overview');
   };
 
   const handleAddPlayer = (e) => {
@@ -254,7 +267,7 @@ export default function App() {
     if (!newName.trim()) return;
     const newId = Date.now();
     setRoster([...roster, { id: newId, name: newName, spec: newSpec, inRaid: true }]);
-    setPlayerStats({ ...playerStats, [newId]: { cons: true, enchants: true, gems: true, parses: {} } });
+    setPlayerStats({ ...playerStats, [newId]: { cons: true, enchants: true, gems: true, afks: 0, parses: {} } });
     setNewName('');
   };
 
@@ -277,7 +290,7 @@ export default function App() {
   };
 
   const calculateScore = (playerId) => {
-    const stats = playerStats[playerId] || { cons: false, enchants: false, gems: false, parses: {} };
+    const stats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {} };
     let parseSum = 0; let parseCount = 0;
     Object.values(stats.parses || {}).forEach(p => {
         if (p && p.val) { parseSum += Number(p.val) * (p.support ? Number(scoringConfig.supportMulti) : 1); parseCount++; }
@@ -287,7 +300,9 @@ export default function App() {
     const ench = stats.enchants ? Number(scoringConfig.enchantBonus) : 0;
     const gem = stats.gems ? Number(scoringConfig.gemBonus) : 0;
     const att = calculateAttendance(playerId) * Number(scoringConfig.attWeight);
-    return ((avgParse * Number(scoringConfig.parseWeight)) + cons + ench + gem + att).toFixed(1);
+    const afkPenalty = (stats.afks || 0) * Number(scoringConfig.afkPenalty || 5); // Subtracts the configured multiplier amount!
+
+    return ((avgParse * Number(scoringConfig.parseWeight)) + cons + ench + gem + att - afkPenalty).toFixed(1);
   };
 
   const handleSaveRaidLog = (e) => {
@@ -302,12 +317,12 @@ export default function App() {
   };
 
   const updatePlayerStat = (playerId, field, value) => {
-    const currentStats = playerStats[playerId] || { cons: false, enchants: false, gems: false, parses: {} };
+    const currentStats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {} };
     setPlayerStats({ ...playerStats, [playerId]: { ...currentStats, [field]: value } });
   };
 
   const updatePlayerParse = (playerId, bossName, field, value) => {
-    const currentStats = playerStats[playerId] || { cons: false, enchants: false, gems: false, parses: {} };
+    const currentStats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {} };
     const currentParses = currentStats.parses || {};
     const specificParse = currentParses[bossName] || { val: '', support: false };
     setPlayerStats({ ...playerStats, [playerId]: { ...currentStats, parses: { ...currentParses, [bossName]: { ...specificParse, [field]: value } } } });
@@ -363,17 +378,33 @@ export default function App() {
     }
   };
 
-  const clearDatabaseCache = () => {
-    if (window.confirm("WARNING: Doing this will wipe the cloud items database and reset it to default mappings. Are you sure?")) {
+const clearDatabaseCache = () => {
+    // Replaced window.confirm with window.prompt to ask for the password
+    const pwd = window.prompt("WARNING: Doing this will wipe the cloud items database and reset it to default mappings. Enter the officer password to confirm:");
+    
+    // Check if the entered password matches
+    if (pwd === 'DELETE') {
       const defaultItems = itemsData.map(item => {
         let zone = "Other"; let boss = item.source;
         const match = item.source.match(/(.+?)\s*\((.+?)\)/);
         if (match) { boss = match[1].trim(); zone = match[2].trim(); } 
         else if (item.source === "Profession") { boss = "Crafted"; zone = "Profession"; }
+        
+        let slot = item.slot;
+        // Keep the ring/trinket consolidation we added earlier!
+        if (slot.includes("Ring")) slot = "Ring";
+        if (slot.includes("Trinket")) slot = "Trinket";
+
         const mappedId = WOWHEAD_IDS[item.name] || item.itemId || '';
-        return { ...item, boss, zone, itemId: mappedId };
+        return { ...item, slot, boss, zone, itemId: mappedId };
       });
+      
       setMutableItems(defaultItems);
+      alert("Database successfully reset to defaults.");
+      
+    } else if (pwd !== null) {
+      // If they typed the wrong password (and didn't just click 'Cancel')
+      alert("Incorrect password. Database reset aborted.");
     }
   };
 
@@ -486,13 +517,28 @@ export default function App() {
     );
   };
 
-  const overviewItems = useMemo(() => {
-    return mutableItems.filter(item => {
+  const filteredOverviewItems = useMemo(() => {
+    // 1. First get all items that have at least one assignment
+    let items = mutableItems.filter(item => {
       const itemAssignments = assignments[item.name];
       if (!itemAssignments) return false;
       return Object.values(itemAssignments).some(rank => rank !== null && rank !== undefined);
     });
-  }, [mutableItems, assignments]);
+
+    // 2. Then apply the search filter (item name OR player name)
+    if (overviewSearch.trim() !== '') {
+      const term = overviewSearch.toLowerCase();
+      items = items.filter(item => {
+        if (item.name.toLowerCase().includes(term)) return true;
+        
+        const assignedPlayerIds = Object.keys(assignments[item.name] || {}).filter(id => assignments[item.name][id] !== null);
+        const assignedPlayers = roster.filter(p => assignedPlayerIds.includes(String(p.id)));
+        return assignedPlayers.some(p => p.name.toLowerCase().includes(term));
+      });
+    }
+
+    return items;
+  }, [mutableItems, assignments, roster, overviewSearch]);
 
   const PlayerNameWithScore = ({ player }) => (
     <div className="flex items-center gap-2">
@@ -507,31 +553,6 @@ export default function App() {
   // ==========================================
   // 7. RENDER SCREENS
   // ==========================================
-
-  // LOCK SCREEN
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-slate-200 selection:bg-amber-500/30 p-4">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600 tracking-tight font-serif italic drop-shadow-sm mb-10">
-          &lt;Adeptus Retardus&gt;
-        </h1>
-        <form onSubmit={handleLogin} className="bg-slate-900 p-8 rounded-xl border border-slate-800 shadow-[0_0_40px_rgba(0,0,0,0.5)] flex flex-col items-center w-full max-w-sm">
-          <h2 className="text-sm font-bold mb-6 uppercase tracking-widest text-slate-400 border-b border-slate-800 pb-2 w-full text-center">Officer Authentication</h2>
-          <input 
-            type="password" 
-            value={passwordInput} 
-            onChange={(e) => setPasswordInput(e.target.value)} 
-            className="w-full bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-3 mb-5 focus:outline-none focus:ring-2 focus:ring-amber-500 text-center tracking-widest shadow-inner" 
-            placeholder="Enter Password" 
-            autoFocus
-          />
-          <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-lg w-full tracking-wider uppercase text-sm">
-            Access Dashboard
-          </button>
-        </form>
-      </div>
-    );
-  }
 
   // LOADING SCREEN
   if (!isDbConnected) {
@@ -551,32 +572,115 @@ export default function App() {
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600 tracking-tight font-serif italic drop-shadow-sm">
-              &lt;Adeptus Retardus&gt;
+              &lt;Guild Name TBC&gt;
             </h1>
             <p className="text-slate-400 mt-2 font-medium uppercase tracking-widest text-sm flex items-center gap-2">
               TBC Priority Assignment Dashboard 
               <span className="bg-emerald-500/20 text-emerald-400 text-[10px] px-2 py-0.5 rounded border border-emerald-500/30 font-bold shadow-inner">CLOUD SYNC LIVE</span>
             </p>
           </div>
-          <button onClick={() => { sessionStorage.removeItem('ar-auth'); window.location.reload(); }} className="text-xs font-bold text-slate-500 hover:text-red-400 transition uppercase tracking-widest">
-            Lock App
-          </button>
+          
+          <div className="flex items-center">
+            {isAuthenticated ? (
+              <button onClick={handleLogout} className="text-xs font-bold text-slate-500 hover:text-red-400 transition uppercase tracking-widest">
+                Lock App (Log Out)
+              </button>
+            ) : (
+              <form onSubmit={handleLogin} className="flex gap-2 items-center bg-slate-900 border border-slate-800 p-1.5 rounded-lg shadow-inner">
+                <input 
+                  type="password" 
+                  value={passwordInput} 
+                  onChange={(e) => setPasswordInput(e.target.value)} 
+                  className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 tracking-widest w-40" 
+                  placeholder="Officer Password" 
+                />
+                <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-1.5 px-3 rounded transition shadow-lg tracking-wider uppercase text-[10px]">
+                  Unlock
+                </button>
+              </form>
+            )}
+          </div>
         </header>
 
         {/* --- NAVIGATION TABS --- */}
         <div className="flex overflow-x-auto gap-2 border-b border-slate-800 pb-px custom-scrollbar">
-          <button onClick={() => setActiveTab('loot')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'loot' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Loot Council</button>
           <button onClick={() => setActiveTab('overview')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'overview' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Priority Overview</button>
-          <button onClick={() => setActiveTab('roster')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'roster' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Roster & Attendance</button>
-          <button onClick={() => setActiveTab('scoring')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'scoring' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Scoring & Config</button>
-          <button onClick={() => setActiveTab('bis')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bis' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>BiS Config</button>
-          <button onClick={() => setActiveTab('itemsdb')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'itemsdb' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Master Items DB</button>
+          
+          {/* Lock down all editing tabs behind authentication */}
+          {isAuthenticated && (
+            <>
+              <button onClick={() => setActiveTab('loot')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'loot' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Loot Council</button>
+              <button onClick={() => setActiveTab('roster')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'roster' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Roster & Attendance</button>
+              <button onClick={() => setActiveTab('scoring')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'scoring' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Scoring & Config</button>
+              <button onClick={() => setActiveTab('bis')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bis' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>BiS Config</button>
+              <button onClick={() => setActiveTab('itemsdb')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'itemsdb' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Master Items DB</button>
+            </>
+          )}
         </div>
+
+        {/* =========================================
+            TAB: PRIORITY OVERVIEW (MASTER LEDGER - PUBLIC)
+            ========================================= */}
+        {activeTab === 'overview' && (
+          <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
+              <div>
+                <h2 className="text-xl font-bold text-slate-100 mb-1">Master Priority Ledger</h2>
+                <p className="text-sm text-slate-500">A bird's-eye view of every item that currently has an assigned Loot Council priority.</p>
+              </div>
+              <input 
+                type="text" 
+                placeholder="Search by item or player name..." 
+                className="w-full md:w-96 bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-inner" 
+                value={overviewSearch} 
+                onChange={e => setOverviewSearch(e.target.value)} 
+              />
+            </div>
+            {filteredOverviewItems.length === 0 ? (
+              <div className="text-center py-20 bg-slate-900/50 border-2 border-dashed border-slate-800 rounded-xl"><p className="text-slate-500 font-medium">No priorities match your search criteria.</p></div>
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                {filteredOverviewItems.map(item => {
+                  const assignedPlayers = roster.filter(p => typeof assignments[item.name]?.[p.id] === 'number');
+                  const sortedAssignedPlayers = assignedPlayers.sort((a, b) => assignments[item.name][a.id] - assignments[item.name][b.id]);
+                  return (
+                    <div key={item.name} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-lg flex flex-col">
+                      <div className="bg-slate-900 border-b border-slate-800 p-4">
+                         <h3 className="text-lg font-bold text-purple-400 truncate drop-shadow-sm mb-1">
+                           {renderItemLink(item)}
+                         </h3>
+                         <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-500 tracking-wider"><span>{item.slot}</span><span className="w-1 h-1 rounded-full bg-slate-700"></span><span className="text-amber-500/80">{item.boss}</span></div>
+                      </div>
+                      <div className="p-3 flex-1">
+                        {sortedAssignedPlayers.length === 0 ? ( <p className="text-xs text-slate-600 italic py-2">Only Passes recorded.</p> ) : (
+                          <ul className="space-y-2">
+                            {sortedAssignedPlayers.map(player => (
+                                <li key={player.id} className="flex items-center gap-3 bg-slate-900/50 p-2 rounded border border-slate-800/50">
+                                  <div className={`w-6 h-6 flex-shrink-0 rounded-full flex items-center justify-center font-bold text-xs shadow-inner ${getRankBadgeStyle(assignments[item.name][player.id])}`}>{assignments[item.name][player.id]}</div>
+                                  <div className="flex-1 min-w-0 flex items-center justify-between"><PlayerNameWithScore player={player} /></div>
+                                </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                      {/* Hide edit button for unauthenticated users */}
+                      {isAuthenticated && (
+                        <div className="bg-slate-900/30 p-2 border-t border-slate-800/50 text-right">
+                           <button onClick={() => { setActiveTab('loot'); setSearchQuery(item.name); setSelectedItemName(item.name); }} className="text-xs font-bold text-amber-500 hover:text-amber-400 uppercase tracking-wider px-2 py-1">Edit Priorities &rarr;</button>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </section>
+        )}
 
         {/* =========================================
             TAB: LOOT COUNCIL ASSIGNMENT
             ========================================= */}
-        {activeTab === 'loot' && (
+        {activeTab === 'loot' && isAuthenticated && (
           <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
             <div className="bg-slate-950 p-5 rounded-xl border border-slate-800 mb-8 shadow-inner">
               <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Item Database Filters</h3>
@@ -691,58 +795,9 @@ export default function App() {
         )}
 
         {/* =========================================
-            TAB: PRIORITY OVERVIEW (MASTER LEDGER)
-            ========================================= */}
-        {activeTab === 'overview' && (
-          <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
-             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
-              <div>
-                <h2 className="text-xl font-bold text-slate-100 mb-1">Master Priority Ledger</h2>
-                <p className="text-sm text-slate-500">A bird's-eye view of every item that currently has an assigned Loot Council priority.</p>
-              </div>
-            </div>
-            {overviewItems.length === 0 ? (
-              <div className="text-center py-20 bg-slate-900/50 border-2 border-dashed border-slate-800 rounded-xl"><p className="text-slate-500 font-medium">No priorities have been assigned yet.</p></div>
-            ) : (
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                {overviewItems.map(item => {
-                  const assignedPlayers = roster.filter(p => typeof assignments[item.name]?.[p.id] === 'number');
-                  const sortedAssignedPlayers = assignedPlayers.sort((a, b) => assignments[item.name][a.id] - assignments[item.name][b.id]);
-                  return (
-                    <div key={item.name} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-lg flex flex-col">
-                      <div className="bg-slate-900 border-b border-slate-800 p-4">
-                         <h3 className="text-lg font-bold text-purple-400 truncate drop-shadow-sm mb-1">
-                           {renderItemLink(item)}
-                         </h3>
-                         <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-500 tracking-wider"><span>{item.slot}</span><span className="w-1 h-1 rounded-full bg-slate-700"></span><span className="text-amber-500/80">{item.boss}</span></div>
-                      </div>
-                      <div className="p-3 flex-1">
-                        {sortedAssignedPlayers.length === 0 ? ( <p className="text-xs text-slate-600 italic py-2">Only Passes recorded.</p> ) : (
-                          <ul className="space-y-2">
-                            {sortedAssignedPlayers.map(player => (
-                                <li key={player.id} className="flex items-center gap-3 bg-slate-900/50 p-2 rounded border border-slate-800/50">
-                                  <div className={`w-6 h-6 flex-shrink-0 rounded-full flex items-center justify-center font-bold text-xs shadow-inner ${getRankBadgeStyle(assignments[item.name][player.id])}`}>{assignments[item.name][player.id]}</div>
-                                  <div className="flex-1 min-w-0 flex items-center justify-between"><PlayerNameWithScore player={player} /></div>
-                                </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                      <div className="bg-slate-900/30 p-2 border-t border-slate-800/50 text-right">
-                         <button onClick={() => { setActiveTab('loot'); setSearchQuery(item.name); setSelectedItemName(item.name); }} className="text-xs font-bold text-amber-500 hover:text-amber-400 uppercase tracking-wider px-2 py-1">Edit Item &rarr;</button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </section>
-        )}
-
-        {/* =========================================
             TAB: ROSTER & ATTENDANCE
             ========================================= */}
-        {activeTab === 'roster' && (
+        {activeTab === 'roster' && isAuthenticated && (
           <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
             <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner mb-8 grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
@@ -824,17 +879,18 @@ export default function App() {
         {/* =========================================
             TAB: SCORING & CONFIG
             ========================================= */}
-        {activeTab === 'scoring' && (
+        {activeTab === 'scoring' && isAuthenticated && (
           <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
             <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner mb-8">
               <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Global Score Weighting Weights</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Parse Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.parseWeight} onChange={e => setScoringConfig({...scoringConfig, parseWeight: e.target.value})} /></div>
                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Support Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.supportMulti} onChange={e => setScoringConfig({...scoringConfig, supportMulti: e.target.value})} /></div>
                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Consumables (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.consBonus} onChange={e => setScoringConfig({...scoringConfig, consBonus: e.target.value})} /></div>
                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Enchants (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.enchantBonus} onChange={e => setScoringConfig({...scoringConfig, enchantBonus: e.target.value})} /></div>
                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Gems (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.gemBonus} onChange={e => setScoringConfig({...scoringConfig, gemBonus: e.target.value})} /></div>
                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Attendance Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.attWeight} onChange={e => setScoringConfig({...scoringConfig, attWeight: e.target.value})} /></div>
+                <div><label className="block text-xs font-bold text-red-500 mb-1">AFK Penalty (-)</label><input type="number" step="0.1" className="w-full bg-slate-900 text-red-400 font-bold border border-red-900 rounded p-2 focus:outline-none" value={scoringConfig.afkPenalty || ''} onChange={e => setScoringConfig({...scoringConfig, afkPenalty: e.target.value})} /></div>
               </div>
             </div>
 
@@ -842,7 +898,7 @@ export default function App() {
             <div className="flex flex-col gap-3">
               {roster.map(player => {
                 const isExpanded = expandedPlayerId === player.id;
-                const stats = playerStats[player.id] || { cons: false, enchants: false, gems: false, parses: {} };
+                const stats = playerStats[player.id] || { cons: false, enchants: false, gems: false, afks: 0, parses: {} };
                 return (
                   <div key={player.id} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300">
                     <div className="p-4 flex items-center justify-between cursor-pointer hover:bg-slate-900 transition-colors" onClick={() => setExpandedPlayerId(isExpanded ? null : player.id)}>
@@ -860,10 +916,18 @@ export default function App() {
                              <label className="flex items-center gap-2 mb-2 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4" checked={stats.cons} onChange={(e) => updatePlayerStat(player.id, 'cons', e.target.checked)} /><span className="text-sm font-semibold text-slate-300">Full Consumables</span></label>
                              <label className="flex items-center gap-2 mb-2 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4" checked={stats.enchants} onChange={(e) => updatePlayerStat(player.id, 'enchants', e.target.checked)} /><span className="text-sm font-semibold text-slate-300">Fully Enchanted</span></label>
                              <label className="flex items-center gap-2 mb-4 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4" checked={stats.gems} onChange={(e) => updatePlayerStat(player.id, 'gems', e.target.checked)} /><span className="text-sm font-semibold text-slate-300">Fully Gemmed</span></label>
-                             <div className="mt-4 pt-3 border-t border-slate-800">
-                               <label className="block text-[10px] uppercase font-bold text-slate-500 mb-1">Lifetime Attendance %</label>
-                               <div className="bg-slate-900 text-amber-400 font-bold border border-slate-700 rounded p-2 text-center text-xl shadow-inner">{calculateAttendance(player.id)}%</div>
+                             
+                             <div className="mt-4 pt-3 border-t border-slate-800 flex gap-4">
+                               <div className="flex-1">
+                                 <label className="block text-[10px] uppercase font-bold text-slate-500 mb-1">Attendance %</label>
+                                 <div className="bg-slate-900 text-amber-400 font-bold border border-slate-700 rounded p-2 text-center text-xl shadow-inner">{calculateAttendance(player.id)}%</div>
+                               </div>
+                               <div className="flex-1">
+                                 <label className="block text-[10px] uppercase font-bold text-red-500 mb-1">AFKs on Trash</label>
+                                 <input type="number" min="0" className="w-full bg-slate-900 text-red-400 font-bold border border-red-900 rounded p-2 text-center text-xl shadow-inner focus:outline-none" value={stats.afks || 0} onChange={(e) => updatePlayerStat(player.id, 'afks', parseInt(e.target.value) || 0)} />
+                               </div>
                              </div>
+
                            </div>
                            <div className="md:col-span-3 bg-slate-950 p-4 rounded-lg border border-slate-800">
                              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Phase 2 Parse Logs</h4>
@@ -895,7 +959,7 @@ export default function App() {
         {/* =========================================
             TAB: BiS & ALTERNATIVES (CHARACTER SHEET)
             ========================================= */}
-        {activeTab === 'bis' && (
+        {activeTab === 'bis' && isAuthenticated && (
           <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
               <div>
@@ -928,7 +992,7 @@ export default function App() {
         {/* =========================================
             TAB: MASTER ITEMS DATABASE EDITING TABLE
             ========================================= */}
-        {activeTab === 'itemsdb' && (
+        {activeTab === 'itemsdb' && isAuthenticated && (
           <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
             <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
                <div className="flex justify-between items-center mb-4 border-b border-slate-800 pb-2">
