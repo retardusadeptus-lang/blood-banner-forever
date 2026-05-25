@@ -2,7 +2,23 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 import { db } from './firebase'; 
 import itemsData from './items.json';
+import aggregatedBisData from './aggregated_bis_with_ids.json';
 console.log(itemsData.map(item => item.slot).filter(s => s.toLowerCase().includes("ring") || s.toLowerCase().includes("trinket"))); // Debugging slot names in source data
+
+// Spec name mapping: display name <-> hyphenated lowercase for aggregated data
+const SPEC_MAPPING = {
+  "Prot Warrior": "prot-warrior", "Arms Warrior": "arms-warrior", "Fury Warrior": "fury-warrior",
+  "Prot Paladin": "prot-paladin", "Holy Paladin": "holy-paladin", "Ret Paladin": "ret-paladin",
+  "BM Hunter": "bm-hunter", "MM Hunter": "mm-hunter", "Survival Hunter": "survival-hunter",
+  "Elemental Shaman": "elemental-shaman", "Enhance Shaman": "enhance-shaman", "Resto Shaman": "resto-shaman",
+  "Balance Druid": "balance-druid", "Feral (Tank)": "feral-tank", "Feral (DPS)": "feral-dps", "Resto Druid": "resto-druid",
+  "Combat Rogue": "combat-rogue", "Holy Priest": "holy-priest", "Discipline Priest": "discipline-priest", "Shadow Priest": "shadow-priest",
+  "Arcane Mage": "arcane-mage", "Fire Mage": "fire-mage", "Frost Mage": "frost-mage",
+  "Destro Warlock": "destro-warlock", "Demo Warlock": "demo-warlock", "Affliction Warlock": "affliction-warlock"
+};
+
+const PHASES = ["Pre-BiS", "T4", "T5", "T6", "ZA", "SWP"];
+const PHASE_JSON_KEYS = { "Pre-BiS": "pre-bis", "T4": "t4", "T5": "t5", "T6": "t6", "ZA": "za", "SWP": "swp" };
 
 const SPECS = [
   "Prot Warrior", "Arms Warrior", "Fury Warrior", "Prot Paladin", "Holy Paladin", 
@@ -117,6 +133,9 @@ export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => sessionStorage.getItem('ar-auth') === 'true');
   const [passwordInput, setPasswordInput] = useState('');
 
+  // Global phase selector (controls which phase's assignments are shown)
+  const [globalPhase, setGlobalPhase] = useState('SWP');
+
   // Default to public overview tab
   const [activeTab, setActiveTab] = useState('overview');
   const [overviewSearch, setOverviewSearch] = useState('');
@@ -130,6 +149,8 @@ export default function App() {
   const [filterZone, setFilterZone] = useState('');
   const [filterSlot, setFilterSlot] = useState('');
   const [selectedBisSpec, setSelectedBisSpec] = useState(SPECS[0]);
+  const [selectedBisPhase, setSelectedBisPhase] = useState('SWP');
+  const [masterItemsDbPhase, setMasterItemsDbPhase] = useState('SWP');
   const [expandedPlayerId, setExpandedPlayerId] = useState(null);
   const [newRaidDate, setNewRaidDate] = useState(new Date().toISOString().split('T')[0]);
   const [newRaidZone, setNewRaidZone] = useState('SSC / TK');
@@ -141,6 +162,7 @@ export default function App() {
   const [dbNewBoss, setDbNewBoss] = useState(P2_BOSSES[0]);
   const [dbNewItemId, setDbNewItemId] = useState('');
   const [dbSearch, setDbSearch] = useState('');
+  const [showMissingWowheadFilter, setShowMissingWowheadFilter] = useState(false);
 
   // ==========================================
   // 2. CLOUD SYNCHRONIZATION STATES
@@ -151,6 +173,34 @@ export default function App() {
   const [playerStats, setPlayerStatsLocal] = useState({});
   const [raidLogs, setRaidLogsLocal] = useState([]);
   const [mutableItems, setMutableItemsLocal] = useState([]);
+  const [bisPriorities, setBisPrioritiesLocal] = useState({});
+  const [dbBisPriorities, setDbBisPrioritiesLocal] = useState({});
+
+  // ==========================================
+  // HELPER: Initialize default BiS priorities from aggregated data
+  // ==========================================
+  const initializeDefaultBisPriorities = (phase) => {
+    const phaseKey = PHASE_JSON_KEYS[phase];
+    const defaults = {};
+    aggregatedBisData.forEach(item => {
+      const phaseData = item[phaseKey];
+      if (phaseData && phaseData.bis === true) {
+        // Convert spec from hyphenated format (e.g., "balance-druid") to display name (e.g., "Balance Druid")
+        let displaySpec = null;
+        for (const [display, hyphenated] of Object.entries(SPEC_MAPPING)) {
+          if (hyphenated === item.spec) {
+            displaySpec = display;
+            break;
+          }
+        }
+        if (displaySpec) {
+          const key = `${item.name}|${displaySpec}`;
+          defaults[key] = 'BiS';
+        }
+      }
+    });
+    return defaults;
+  };
 
   // ==========================================
   // 3. FIREBASE LIVE SYNC ENGINE
@@ -171,21 +221,34 @@ export default function App() {
       unsubs.push(unsub);
     };
 
-    const defaultItems = itemsData.map(item => {
-      let zone = "Other"; let boss = item.source;
-      const match = item.source.match(/(.+?)\s*\((.+?)\)/);
-      if (match) { boss = match[1].trim(); zone = match[2].trim(); } 
-      else if (item.source === "Profession") { boss = "Crafted"; zone = "Profession"; }
-      
-      let slot = item.slot;
-
-
-      const mappedId = WOWHEAD_IDS[item.name] || item.itemId || '';
-      return { ...item, slot, boss, zone, itemId: mappedId };
+    // Convert aggregated BIS data directly to mutable items format
+    const defaultItems = aggregatedBisData.map(item => {
+      return {
+        name: item.name,
+        slot: item.slot,
+        itemId: item.id || '',
+        boss: item.source_type,
+        zone: item.source,
+        drop_chance: item.drop_chance || null,
+        spec: item.spec,
+        id: item.id,
+        rarity: item.rarity,
+        source: item.source,
+        source_type: item.source_type,
+        phase: item.phase
+      };
     });
 
     setupSync('roster', setRosterLocal, []);
-    setupSync('assignments', setAssignmentsLocal, {});
+    // Get assignments for the current phase
+    const phaseKey = PHASE_JSON_KEYS[globalPhase];
+    const assignmentsDocName = globalPhase === 'SWP' ? 'assignments' : `assignments_${phaseKey}`;
+    setupSync(assignmentsDocName, setAssignmentsLocal, {});
+    
+    // Setup phase-specific BiS priorities (for Loot Council/overview)
+    const bisPrioritiesDocName = globalPhase === 'SWP' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
+    const defaultBisPriorities = initializeDefaultBisPriorities(globalPhase);
+    setupSync(bisPrioritiesDocName, setBisPrioritiesLocal, defaultBisPriorities);
     
     // Added afkPenalty to default scoring sync!
     setupSync('scoringConfig', setScoringConfigLocal, { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5, afkPenalty: 5 });
@@ -196,13 +259,45 @@ export default function App() {
     setTimeout(() => setIsDbConnected(true), 1200);
 
     return () => unsubs.forEach(fn => fn());
-  }, []);
+  }, [globalPhase]);
+
+  // Separate sync for Master Items DB phase selector
+  useEffect(() => {
+    const ref = doc(db, 'guildData', masterItemsDbPhase === 'SWP' ? 'bisPriorities' : `bisPriorities_${PHASE_JSON_KEYS[masterItemsDbPhase]}`);
+    const defaultDbBis = initializeDefaultBisPriorities(masterItemsDbPhase);
+    const unsub = onSnapshot(ref, (snapshot) => {
+      if (snapshot.exists()) {
+        setDbBisPrioritiesLocal(snapshot.data().data);
+      } else {
+        setDoc(ref, { data: defaultDbBis });
+        setDbBisPrioritiesLocal(defaultDbBis);
+      }
+    });
+    return () => unsub();
+  }, [masterItemsDbPhase]);
 
   // ==========================================
   // 4. CLOUD WRITERS
   // ==========================================
   const setRoster = (newVal) => { setRosterLocal(newVal); setDoc(doc(db, 'guildData', 'roster'), { data: newVal }); };
-  const setAssignments = (newVal) => { setAssignmentsLocal(newVal); setDoc(doc(db, 'guildData', 'assignments'), { data: newVal }); };
+  const setAssignments = (newVal) => { 
+    setAssignmentsLocal(newVal); 
+    const phaseKey = PHASE_JSON_KEYS[globalPhase];
+    const assignmentsDocName = globalPhase === 'SWP' ? 'assignments' : `assignments_${phaseKey}`;
+    setDoc(doc(db, 'guildData', assignmentsDocName), { data: newVal }); 
+  };
+  const setBisPriorities = (newVal) => {
+    setBisPrioritiesLocal(newVal);
+    const phaseKey = PHASE_JSON_KEYS[globalPhase];
+    const bisPrioritiesDocName = globalPhase === 'SWP' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
+    setDoc(doc(db, 'guildData', bisPrioritiesDocName), { data: newVal });
+  };
+  const setDbBisPriorities = (newVal) => {
+    setDbBisPrioritiesLocal(newVal);
+    const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
+    const docName = masterItemsDbPhase === 'SWP' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
+    setDoc(doc(db, 'guildData', docName), { data: newVal });
+  };
   const setScoringConfig = (newVal) => { setScoringConfigLocal(newVal); setDoc(doc(db, 'guildData', 'scoringConfig'), { data: newVal }); };
   const setPlayerStats = (newVal) => { setPlayerStatsLocal(newVal); setDoc(doc(db, 'guildData', 'playerStats'), { data: newVal }); };
   const setRaidLogs = (newVal) => { setRaidLogsLocal(newVal); setDoc(doc(db, 'guildData', 'raidLogs'), { data: newVal }); };
@@ -292,7 +387,7 @@ useEffect(() => {
   };
 
   const calculateScore = (playerId) => {
-    const stats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {} };
+    const stats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {}, manualAdjustment: { value: 0, note: '' } };
     let parseSum = 0; let parseCount = 0;
     Object.values(stats.parses || {}).forEach(p => {
         if (p && p.val) { parseSum += Number(p.val) * (p.support ? Number(scoringConfig.supportMulti) : 1); parseCount++; }
@@ -302,9 +397,10 @@ useEffect(() => {
     const ench = stats.enchants ? Number(scoringConfig.enchantBonus) : 0;
     const gem = stats.gems ? Number(scoringConfig.gemBonus) : 0;
     const att = calculateAttendance(playerId) * Number(scoringConfig.attWeight);
-    const afkPenalty = (stats.afks || 0) * Number(scoringConfig.afkPenalty || 5); // Subtracts the configured multiplier amount!
+    const afkPenalty = (stats.afks || 0) * Number(scoringConfig.afkPenalty || 5);
+    const manualAdj = stats.manualAdjustment?.value || 0;
 
-    return ((avgParse * Number(scoringConfig.parseWeight)) + cons + ench + gem + att - afkPenalty).toFixed(1);
+    return ((avgParse * Number(scoringConfig.parseWeight)) + cons + ench + gem + att - afkPenalty + manualAdj).toFixed(1);
   };
 
   const handleSaveRaidLog = (e) => {
@@ -324,10 +420,15 @@ useEffect(() => {
   };
 
   const updatePlayerParse = (playerId, bossName, field, value) => {
-    const currentStats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {} };
+    const currentStats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {}, manualAdjustment: { value: 0, note: '' } };
     const currentParses = currentStats.parses || {};
     const specificParse = currentParses[bossName] || { val: '', support: false };
     setPlayerStats({ ...playerStats, [playerId]: { ...currentStats, parses: { ...currentParses, [bossName]: { ...specificParse, [field]: value } } } });
+  };
+
+  const updatePlayerManualAdjustment = (playerId, field, value) => {
+    const currentStats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {}, manualAdjustment: { value: 0, note: '' } };
+    setPlayerStats({ ...playerStats, [playerId]: { ...currentStats, manualAdjustment: { ...currentStats.manualAdjustment, [field]: value } } });
   };
 
   const handleAddItemToDb = (e) => {
@@ -350,21 +451,28 @@ useEffect(() => {
     alert(`Successfully added "${newItem.name}" to items table!`);
   };
 
-  const handleUpdateItemEligibility = (itemName, spec, currentStatus) => {
+  const handleUpdateItemEligibility = (itemName, spec, currentStatus, useDbPhase = false) => {
+    // Get the key for this item-spec combination
+    const itemKey = `${itemName}|${spec}`;
+    
     let nextStatus = '';
     if (currentStatus === '') nextStatus = 'BiS';
     else if (currentStatus === 'BiS') nextStatus = 'Opt';
     else nextStatus = '';
 
-    setMutableItems(mutableItems.map(item => {
-      if (item.name === itemName) {
-        const nextEligible = { ...item.eligible };
-        if (nextStatus) nextEligible[spec] = nextStatus;
-        else delete nextEligible[spec];
-        return { ...item, eligible: nextEligible };
-      }
-      return item;
-    }));
+    const currentBis = useDbPhase ? dbBisPriorities : bisPriorities;
+    const newBisPriorities = { ...currentBis };
+    if (nextStatus) {
+      newBisPriorities[itemKey] = nextStatus;
+    } else {
+      delete newBisPriorities[itemKey];
+    }
+    
+    if (useDbPhase) {
+      setDbBisPriorities(newBisPriorities);
+    } else {
+      setBisPriorities(newBisPriorities);
+    }
   };
 
   const handleUpdateItemId = (itemName, newId) => {
@@ -382,26 +490,29 @@ useEffect(() => {
 
 const clearDatabaseCache = () => {
     // Replaced window.confirm with window.prompt to ask for the password
-    const pwd = window.prompt("WARNING: Doing this will wipe the cloud items database and reset it to default mappings. Enter the officer password to confirm:");
+    const pwd = window.prompt("WARNING: Doing this will wipe the cloud items database and reset it to default mappings from aggregated BiS data. Enter the officer password to confirm:");
     
     // Check if the entered password matches
     if (pwd === 'DELETE') {
-      const defaultItems = itemsData.map(item => {
-        let zone = "Other"; let boss = item.source;
-        const match = item.source.match(/(.+?)\s*\((.+?)\)/);
-        if (match) { boss = match[1].trim(); zone = match[2].trim(); } 
-        else if (item.source === "Profession") { boss = "Crafted"; zone = "Profession"; }
-        
-        let slot = item.slot;
-        // Keep the ring/trinket consolidation we added earlier!
-        if (slot.includes("Ring")) slot = "Ring";
-        if (slot.includes("Trinket")) slot = "Trinket";
-
-        const mappedId = WOWHEAD_IDS[item.name] || item.itemId || '';
-        return { ...item, slot, boss, zone, itemId: mappedId };
+      const defaultItems = aggregatedBisData.map(item => {
+        return {
+          name: item.name,
+          slot: item.slot,
+          itemId: item.id || '',
+          boss: item.source_type,
+          zone: item.source,
+          drop_chance: item.drop_chance || null,
+          spec: item.spec,
+          id: item.id,
+          rarity: item.rarity,
+          source: item.source,
+          source_type: item.source_type,
+          phase: item.phase
+        };
       });
       
       setMutableItems(defaultItems);
+      setBisPriorities({});
       alert("Database successfully reset to defaults.");
       
     } else if (pwd !== null) {
@@ -428,9 +539,12 @@ const clearDatabaseCache = () => {
   });
 
   const dbFilteredItems = useMemo(() => {
-    return mutableItems.filter(item => item.name.toLowerCase().includes(dbSearch.toLowerCase()))
-      .sort((a,b) => a.name.localeCompare(b.name));
-  }, [mutableItems, dbSearch]);
+    let items = mutableItems.filter(item => item.name.toLowerCase().includes(dbSearch.toLowerCase()));
+    if (showMissingWowheadFilter) {
+      items = items.filter(item => !item.itemId || item.itemId.trim() === '');
+    }
+    return items.sort((a,b) => a.name.localeCompare(b.name));
+  }, [mutableItems, dbSearch, showMissingWowheadFilter]);
 
   useEffect(() => {
     if (filterZone && filterBoss && !mutableItems.some(i => i.zone === filterZone && i.boss === filterBoss)) setFilterBoss('');
@@ -457,9 +571,19 @@ const clearDatabaseCache = () => {
 
   const sortedEligiblePlayers = useMemo(() => {
     if (!selectedItem) return [];
-    const eligible = activeRaiders.filter(player => selectedItem.eligible[player.spec]);
+    // Get eligible specs: either from bisPriorities or from the item's spec field in aggregated data
+    const eligible = activeRaiders.filter(player => {
+      const specDisplay = player.spec;
+      const specKey = SPEC_MAPPING[specDisplay];
+      const itemKey = `${selectedItem.name}|${specDisplay}`;
+      const bisStatus = bisPriorities[itemKey];
+      // If explicitly set in bisPriorities, check that
+      if (bisStatus) return bisStatus !== '';
+      // Otherwise, use the aggregated data's spec field
+      return selectedItem.spec === specKey;
+    });
     return sortPlayersByRank(selectedItem, eligible, assignments);
-  }, [selectedItem, activeRaiders, assignments, playerStats, scoringConfig, raidLogs]);
+  }, [selectedItem, activeRaiders, assignments, playerStats, scoringConfig, raidLogs, bisPriorities]);
 
   const getRankBadgeStyle = (rank) => {
     if (rank === 1) return "bg-gradient-to-br from-yellow-300 to-yellow-600 text-yellow-950 border border-yellow-200 shadow-[0_0_10px_rgba(253,224,71,0.6)]";
@@ -470,31 +594,47 @@ const clearDatabaseCache = () => {
     return "bg-slate-900 text-slate-500 border border-slate-800 border-dashed";
   };
 
-const getItemsForSlotAndSpec = (slot, spec) => {
-  // Map display slot names back to data slot names
-  const dataSlot = slot === "Ring 1" || slot === "Ring 2" ? "Ring"
-                 : slot === "Trinket 1" || slot === "Trinket 2" ? "Trinket"
-                 : slot;
-  const slotIndex = slot === "Ring 2" || slot === "Trinket 2" ? 1 : 0;
-  const isDualSlot = slot.endsWith(" 1") || slot.endsWith(" 2");
+  const getItemsForSlotAndSpec = (slot, spec) => {
+    // Map display slot names back to data slot names
+    const dataSlot = slot === "Ring 1" || slot === "Ring 2" ? "Ring"
+                   : slot === "Trinket 1" || slot === "Trinket 2" ? "Trinket"
+                   : slot;
+    const slotIndex = slot === "Ring 2" || slot === "Trinket 2" ? 1 : 0;
+    const isDualSlot = slot.endsWith(" 1") || slot.endsWith(" 2");
 
-  const itemsInSlot = mutableItems.filter(i => i.slot === dataSlot && i.eligible[spec]);
-  const bis = itemsInSlot.filter(i => i.eligible[spec] === 'BiS');
-  const opt = itemsInSlot.filter(i => i.eligible[spec] === 'Opt');
+    // Get all items in this slot
+    const itemsInSlot = mutableItems.filter(i => i.slot === dataSlot);
+    
+    // Get BiS items for this phase and spec from aggregated data
+    const phaseKey = PHASE_JSON_KEYS[selectedBisPhase];
+    const specKey = SPEC_MAPPING[spec];
+    
+    const bis = itemsInSlot.filter(item => {
+      const aggregatedItem = aggregatedBisData.find(a => a.name === item.name);
+      if (!aggregatedItem) return false;
+      const phaseData = aggregatedItem[phaseKey];
+      return phaseData && phaseData.bis === true && aggregatedItem.spec === specKey;
+    });
+    
+    const opt = itemsInSlot.filter(item => {
+      const aggregatedItem = aggregatedBisData.find(a => a.name === item.name);
+      if (!aggregatedItem) return false;
+      // Also check current eligible object as fallback for compatibility
+      if (item.eligible && item.eligible[spec] === 'Opt') return true;
+      return false;
+    });
 
-  if (isDualSlot) {
-    // Slot 1 gets first BiS, Slot 2 gets second BiS (if it exists)
-    const bisForThisSlot = bis[slotIndex] ? [bis[slotIndex]] : [];
-    // Slot 2 also picks up any Opt items; Slot 1 shows all Opt if only 1 BiS
-    const optForThisSlot = slotIndex === 0 && bis.length <= 1 ? opt
-                         : slotIndex === 1 && bis.length >= 2 ? opt
-                         : slotIndex === 1 && bis.length < 2 ? [...bis.slice(1), ...opt]
-                         : [];
-    return { bis: bisForThisSlot, opt: optForThisSlot };
-  }
+    if (isDualSlot) {
+      const bisForThisSlot = bis[slotIndex] ? [bis[slotIndex]] : [];
+      const optForThisSlot = slotIndex === 0 && bis.length <= 1 ? opt
+                           : slotIndex === 1 && bis.length >= 2 ? opt
+                           : slotIndex === 1 && bis.length < 2 ? [...bis.slice(1), ...opt]
+                           : [];
+      return { bis: bisForThisSlot, opt: optForThisSlot };
+    }
 
-  return { bis, opt };
-};
+    return { bis, opt };
+  };
 
 const renderItemSlot = (slotName) => {
   const { bis, opt } = getItemsForSlotAndSpec(slotName, selectedBisSpec);
@@ -544,7 +684,10 @@ const renderItemSlot = (slotName) => {
   bis.map(i => (
     <div key={i.name} className="flex flex-col">
       {renderItemLink(i, "text-sm font-bold text-purple-400 drop-shadow-sm leading-tight")}
-      <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
+      <div className="flex gap-2 flex-wrap">
+        <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
+        {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
+      </div>
     </div>
   ))
 ) : ( <span className="text-sm font-bold text-slate-500 italic leading-tight">No primary BiS</span> )}
@@ -557,7 +700,12 @@ const renderItemSlot = (slotName) => {
           {renderItemLink(i, "text-[10px] text-slate-400 truncate max-w-[150px]")}
           {!isBottomSlot && <span className="text-[10px] text-amber-500/70 font-semibold whitespace-nowrap">{i.boss}</span>}
         </div>
-        {isBottomSlot && <span className="text-[10px] text-amber-500/70 font-semibold pl-6">{i.boss}</span>}
+        {isBottomSlot && (
+          <div className="flex gap-2 pl-6">
+            <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
+            {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
+          </div>
+        )}
       </div>
     ))}
   </div>
@@ -630,7 +778,19 @@ const renderItemSlot = (slotName) => {
             </p>
           </div>
           
-          <div className="flex items-center">
+          <div className="flex items-center gap-4">
+            {isAuthenticated && (
+              <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 p-2.5 rounded-lg">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Current Phase:</span>
+                <select 
+                  value={globalPhase} 
+                  onChange={e => setGlobalPhase(e.target.value)}
+                  className="bg-slate-950 text-amber-400 font-bold border border-slate-700 rounded px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                >
+                  {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
+                </select>
+              </div>
+            )}
             {isAuthenticated ? (
               <button onClick={handleLogout} className="text-xs font-bold text-slate-500 hover:text-red-400 transition uppercase tracking-widest">
                 Lock App (Log Out)
@@ -699,7 +859,17 @@ const renderItemSlot = (slotName) => {
                          <h3 className="text-lg font-bold text-purple-400 truncate drop-shadow-sm mb-1">
                            {renderItemLink(item)}
                          </h3>
-                         <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-500 tracking-wider"><span>{item.slot}</span><span className="w-1 h-1 rounded-full bg-slate-700"></span><span className="text-amber-500/80">{item.boss}</span></div>
+                         <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-500 tracking-wider flex-wrap">
+                           <span>{item.slot}</span>
+                           <span className="w-1 h-1 rounded-full bg-slate-700"></span>
+                           <span className="text-amber-500/80">{item.boss}</span>
+                           {item.drop_chance && (
+                             <>
+                               <span className="w-1 h-1 rounded-full bg-slate-700"></span>
+                               <span className="text-cyan-400">{(item.drop_chance * 100).toFixed(0)}% Drop</span>
+                             </>
+                           )}
+                         </div>
                       </div>
                       <div className="p-3 flex-1">
                         {sortedAssignedPlayers.length === 0 ? ( <p className="text-xs text-slate-600 italic py-2">Only Passes recorded.</p> ) : (
@@ -775,9 +945,12 @@ const renderItemSlot = (slotName) => {
                   <h3 className="text-3xl font-bold text-purple-400 drop-shadow-md mb-2">
                     {renderItemLink(selectedItem)}
                   </h3>
-                  <div className="flex gap-4 text-sm font-semibold text-slate-300">
+                  <div className="flex gap-4 text-sm font-semibold text-slate-300 flex-wrap">
                     <span className="bg-slate-800 px-3 py-1 rounded-full border border-slate-700">{selectedItem.slot}</span>
                     <span className="bg-slate-800 px-3 py-1 rounded-full border border-slate-700">{selectedItem.zone}</span>
+                    {selectedItem.drop_chance && (
+                      <span className="bg-cyan-900/30 px-3 py-1 rounded-full border border-cyan-700/50 text-cyan-400">{(selectedItem.drop_chance * 100).toFixed(0)}% Drop Chance</span>
+                    )}
                   </div>
                 </div>
 
@@ -788,9 +961,18 @@ const renderItemSlot = (slotName) => {
                   ) : (
                     <div className="flex flex-col gap-3">
                       {sortedEligiblePlayers.map(player => {
-                        const status = selectedItem.eligible[player.spec]; 
+                        const specDisplay = player.spec;
+                        const specKey = SPEC_MAPPING[specDisplay];
+                        const itemKey = `${selectedItem.name}|${specDisplay}`;
+                        const bisPriorityStatus = bisPriorities[itemKey];
+                        const status = bisPriorityStatus || (selectedItem.spec === specKey ? 'BiS' : '');
                         const currentPriority = assignments[selectedItem.name]?.[player.id];
-                        const playerAlts = mutableItems.filter(i => i.slot === selectedItem.slot && i.eligible[player.spec] && i.name !== selectedItem.name);
+                        const playerAlts = mutableItems.filter(i => {
+                          if (i.slot !== selectedItem.slot || i.name === selectedItem.name) return false;
+                          const altItemKey = `${i.name}|${specDisplay}`;
+                          const altBisPriority = bisPriorities[altItemKey];
+                          return altBisPriority || i.spec === specKey;
+                        });
 
                         return (
                           <div key={player.id} className={`flex flex-col p-4 rounded-xl shadow-sm border transition-all duration-300 ${currentPriority === 1 ? 'bg-slate-800/80 border-amber-500/50' : currentPriority === 'Pass' ? 'bg-slate-950/50 border-slate-900 opacity-60' : 'bg-slate-900 border-slate-700'}`}>
@@ -980,7 +1162,37 @@ const renderItemSlot = (slotName) => {
 
                            </div>
                            <div className="md:col-span-3 bg-slate-950 p-4 rounded-lg border border-slate-800">
-                             <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Phase 2 Parse Logs</h4>
+                             <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Officer Score Adjustments</h4>
+                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                               <div>
+                                 <label className="block text-xs font-semibold text-slate-400 mb-2">Manual Point Adjustment</label>
+                                 <input 
+                                   type="number" 
+                                   step="0.5"
+                                   className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none"
+                                   value={stats.manualAdjustment?.value || 0}
+                                   onChange={(e) => updatePlayerManualAdjustment(player.id, 'value', parseFloat(e.target.value) || 0)}
+                                   placeholder="e.g. +5 or -3"
+                                 />
+                               </div>
+                               <div>
+                                 <label className="block text-xs font-semibold text-slate-400 mb-2">Reason/Note (Optional)</label>
+                                 <input 
+                                   type="text"
+                                   className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none"
+                                   value={stats.manualAdjustment?.note || ''}
+                                   onChange={(e) => updatePlayerManualAdjustment(player.id, 'note', e.target.value)}
+                                   placeholder="e.g. Exceptional effort, Helping alts"
+                                   maxLength="50"
+                                 />
+                               </div>
+                             </div>
+                             {stats.manualAdjustment?.value !== 0 && stats.manualAdjustment?.value !== undefined && (
+                               <div className={`p-2 rounded text-xs font-semibold ${stats.manualAdjustment.value > 0 ? 'bg-emerald-900/30 text-emerald-400 border border-emerald-800' : 'bg-red-900/30 text-red-400 border border-red-800'}`}>
+                                 {stats.manualAdjustment.value > 0 ? '+' : ''}{stats.manualAdjustment.value} point{Math.abs(stats.manualAdjustment.value) !== 1 ? 's' : ''}{stats.manualAdjustment.note && ` — ${stats.manualAdjustment.note}`}
+                               </div>
+                             )}
+                             <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-6 mb-3">Phase 2 Parse Logs</h4>
                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-3">
                                {P2_BOSSES.map(boss => {
                                  const pData = stats.parses?.[boss] || { val: '', support: false };
@@ -1016,7 +1228,17 @@ const renderItemSlot = (slotName) => {
                 <h2 className="text-xl font-bold text-slate-100 mb-1">Class Configuration Viewer</h2>
                 <p className="text-sm text-slate-500">View primary BiS and alternate options mapped to the paper doll interface.</p>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Phase:</span>
+                  <select 
+                    className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[120px] focus:outline-none cursor-pointer font-bold text-sm" 
+                    value={selectedBisPhase} 
+                    onChange={e => setSelectedBisPhase(e.target.value)}
+                  >
+                    {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
+                  </select>
+                </div>
                 <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">Select Spec:</span>
                 <select className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[200px] focus:outline-none cursor-pointer font-bold style-sm" value={selectedBisSpec} onChange={e => setSelectedBisSpec(e.target.value)} style={{ color: CLASS_COLORS[selectedBisSpec] }}>
                   {SPECS.map(spec => <option key={spec} value={spec} style={{ color: CLASS_COLORS[spec] }}>{spec}</option>)}
@@ -1075,7 +1297,24 @@ const renderItemSlot = (slotName) => {
                  <h3 className="text-xl font-bold text-slate-100">Spreadsheet Matrix Editor</h3>
                  <p className="text-xs text-slate-500 mt-0.5">Click any grid cell to toggle its status: <span className="text-purple-400 font-bold">BiS</span> &rarr; <span className="text-amber-500 font-bold">Opt</span> &rarr; <span className="text-slate-700 font-bold">None</span></p>
                </div>
-               <input type="text" placeholder="Filter items list..." className="bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none w-full sm:w-64 shadow-inner" value={dbSearch} onChange={e => setDbSearch(e.target.value)} />
+               <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto items-start sm:items-center">
+                 <div>
+                   <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-widest">BiS Phase:</label>
+                   <select value={masterItemsDbPhase} onChange={e => setMasterItemsDbPhase(e.target.value)} className="bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none cursor-pointer font-bold shadow-inner">
+                     {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
+                   </select>
+                 </div>
+                 <input type="text" placeholder="Filter items list..." className="bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none flex-1 sm:flex-none sm:w-64 shadow-inner" value={dbSearch} onChange={e => setDbSearch(e.target.value)} />
+                 <label className="flex items-center gap-2 cursor-pointer bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm font-semibold text-slate-300 hover:bg-slate-900 transition whitespace-nowrap">
+                   <input 
+                     type="checkbox" 
+                     checked={showMissingWowheadFilter} 
+                     onChange={e => setShowMissingWowheadFilter(e.target.checked)}
+                     className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4 cursor-pointer"
+                   />
+                   Missing Wowhead ID
+                 </label>
+               </div>
             </div>
             <div className="border border-slate-800 rounded-xl overflow-hidden bg-slate-950 shadow-inner max-w-full overflow-x-auto custom-scrollbar">
               <table className="w-full text-left border-collapse table-auto">
@@ -1095,7 +1334,12 @@ const renderItemSlot = (slotName) => {
                     <tr key={item.name} className="hover:bg-slate-900/30 group">
                       <td className="p-3 sticky left-0 bg-slate-950 group-hover:bg-slate-900/90 border-r border-slate-800 transition-colors shadow-[2px_0_5px_rgba(0,0,0,0.3)] min-w-[200px]">
                         <div className="truncate mb-0.5">{renderItemLink(item, "font-bold text-purple-400")}</div>
-                        <span className="text-[10px] text-slate-500 uppercase tracking-wide truncate block font-semibold">{item.boss} ({item.zone})</span>
+                        <div className="flex gap-2 flex-wrap text-slate-500 uppercase tracking-wide text-[10px] font-semibold">
+                          <span className="truncate">{item.boss} ({item.zone})</span>
+                          {item.drop_chance && (
+                            <span className="text-cyan-400/80 flex-shrink-0">{(item.drop_chance * 100).toFixed(0)}% Drop</span>
+                          )}
+                        </div>
                       </td>
                       <td className="p-2 border-r border-slate-900 text-center">
                         <input 
@@ -1108,9 +1352,10 @@ const renderItemSlot = (slotName) => {
                       </td>
                       <td className="p-3 text-slate-400 font-semibold text-center whitespace-nowrap">{item.slot}</td>
                       {SPECS.map(spec => {
-                        const cellStatus = item.eligible[spec] || '';
+                        const itemKey = `${item.name}|${spec}`;
+                        const cellStatus = dbBisPriorities[itemKey] || '';
                         return (
-                          <td key={spec} onClick={() => handleUpdateItemEligibility(item.name, spec, cellStatus)} className={`p-2 border-r border-slate-900 text-center cursor-pointer select-none font-bold uppercase text-[10px] transition-all duration-150 ${cellStatus === 'BiS' ? 'bg-emerald-950/20 text-emerald-400 border-b border-emerald-900' : cellStatus === 'Opt' ? 'bg-amber-950/20 text-amber-500 border-b border-amber-900' : 'text-slate-800 hover:bg-slate-800/30 hover:text-slate-500'}`}>
+                          <td key={spec} onClick={() => handleUpdateItemEligibility(item.name, spec, cellStatus, true)} className={`p-2 border-r border-slate-900 text-center cursor-pointer select-none font-bold uppercase text-[10px] transition-all duration-150 ${cellStatus === 'BiS' ? 'bg-emerald-950/20 text-emerald-400 border-b border-emerald-900' : cellStatus === 'Opt' ? 'bg-amber-950/20 text-amber-500 border-b border-amber-900' : 'text-slate-800 hover:bg-slate-800/30 hover:text-slate-500'}`}>
                             {cellStatus || '-'}
                           </td>
                         );
