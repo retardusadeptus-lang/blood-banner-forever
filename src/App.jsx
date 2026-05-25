@@ -25,7 +25,7 @@ const CLASS_COLORS = {
 };
 
 const LEFT_SLOTS = ["Head", "Neck", "Shoulder", "Back", "Chest", "Wrist"];
-const RIGHT_SLOTS = ["Hands", "Waist", "Legs", "Feet", "Ring", "Trinket"];
+const RIGHT_SLOTS = ["Hands", "Waist", "Legs", "Feet", "Ring 1", "Ring 2", "Trinket 1", "Trinket 2"];
 const BOTTOM_SLOTS = ["Main Hand", "Off Hand", "Shield", "Ranged", "Wand", "Totem", "Libram", "Idol"];
 
 const P2_BOSSES = [
@@ -218,12 +218,14 @@ export default function App() {
     if (window.$WowheadPower && window.$WowheadPower.hideTooltip) { window.$WowheadPower.hideTooltip(); }
   }, [activeTab, filterBoss, filterZone, filterSlot, searchQuery, dbSearch, overviewSearch]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (window.$WowheadPower && window.$WowheadPower.refreshLinks) { window.$WowheadPower.refreshLinks(); }
-    }, 200);
-    return () => clearTimeout(timer);
-  }, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, overviewSearch, selectedBisSpec]);
+useEffect(() => {
+  const timer = setTimeout(() => {
+    if (window.$WowheadPower && window.$WowheadPower.refreshLinks) { 
+      window.$WowheadPower.refreshLinks();
+    }
+  }, 50);
+  return () => clearTimeout(timer);
+}, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, overviewSearch, selectedBisSpec]);
 
   const hideWowheadTooltip = () => {
     if (window.$WowheadPower && window.$WowheadPower.hideTooltip) { window.$WowheadPower.hideTooltip(); }
@@ -468,54 +470,93 @@ const clearDatabaseCache = () => {
     return "bg-slate-900 text-slate-500 border border-slate-800 border-dashed";
   };
 
-  const getItemsForSlotAndSpec = (slot, spec) => {
-    const itemsInSlot = mutableItems.filter(i => i.slot === slot && i.eligible[spec]);
-    const bis = itemsInSlot.filter(i => i.eligible[spec] === 'BiS');
-    const opt = itemsInSlot.filter(i => i.eligible[spec] === 'Opt');
-    return { bis, opt };
-  };
+const getItemsForSlotAndSpec = (slot, spec) => {
+  // Map display slot names back to data slot names
+  const dataSlot = slot === "Ring 1" || slot === "Ring 2" ? "Ring"
+                 : slot === "Trinket 1" || slot === "Trinket 2" ? "Trinket"
+                 : slot;
+  const slotIndex = slot === "Ring 2" || slot === "Trinket 2" ? 1 : 0;
+  const isDualSlot = slot.endsWith(" 1") || slot.endsWith(" 2");
 
-  const renderItemSlot = (slotName) => {
-    const { bis, opt } = getItemsForSlotAndSpec(slotName, selectedBisSpec);
-    if (bis.length === 0 && opt.length === 0 && !BOTTOM_SLOTS.includes(slotName)) {
-       return (
-         <div key={slotName} className="flex gap-3 bg-slate-900/40 border border-slate-800/50 p-2.5 rounded-lg opacity-50">
-           <div className="w-10 h-10 rounded bg-slate-950 border border-slate-800 flex-shrink-0"></div>
-           <div className="flex flex-col justify-center">
-             <span className="text-xs text-slate-600 font-bold uppercase tracking-wider">{slotName}</span>
-             <span className="text-sm text-slate-700 font-medium">No items found</span>
-           </div>
-         </div>
-       );
-    }
-    if (bis.length === 0 && opt.length === 0) return null;
+  const itemsInSlot = mutableItems.filter(i => i.slot === dataSlot && i.eligible[spec]);
+  const bis = itemsInSlot.filter(i => i.eligible[spec] === 'BiS');
+  const opt = itemsInSlot.filter(i => i.eligible[spec] === 'Opt');
 
+  if (isDualSlot) {
+    // Slot 1 gets first BiS, Slot 2 gets second BiS (if it exists)
+    const bisForThisSlot = bis[slotIndex] ? [bis[slotIndex]] : [];
+    // Slot 2 also picks up any Opt items; Slot 1 shows all Opt if only 1 BiS
+    const optForThisSlot = slotIndex === 0 && bis.length <= 1 ? opt
+                         : slotIndex === 1 && bis.length >= 2 ? opt
+                         : slotIndex === 1 && bis.length < 2 ? [...bis.slice(1), ...opt]
+                         : [];
+    return { bis: bisForThisSlot, opt: optForThisSlot };
+  }
+
+  return { bis, opt };
+};
+
+const renderItemSlot = (slotName) => {
+  const { bis, opt } = getItemsForSlotAndSpec(slotName, selectedBisSpec);
+
+  // For dual slots, hide the second slot entirely if there's no second item
+  const isDualSecond = slotName === "Ring 2" || slotName === "Trinket 2";
+  if (isDualSecond && bis.length === 0 && opt.length === 0) return null;
+
+  if (bis.length === 0 && opt.length === 0 && !BOTTOM_SLOTS.includes(slotName)) {
     return (
-      <div key={slotName} className="flex gap-3 bg-slate-900 border border-slate-700 hover:border-slate-500 p-2.5 rounded-lg transition-colors shadow-sm">
-        <div className="w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex-shrink-0 flex items-center justify-center relative shadow-inner overflow-hidden">
-           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent"></div>
-           <span className="text-[9px] font-bold text-slate-500 uppercase z-10 rotate-45 opacity-30">{slotName}</span>
-        </div>
-        <div className="flex flex-col min-w-0 justify-center">
-          <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">{slotName}</span>
-          {bis.length > 0 ? (
-            bis.map(i => <div key={i.name} className="truncate">{renderItemLink(i, "text-sm font-bold text-purple-400 drop-shadow-sm leading-tight")}</div>)
-          ) : ( <span className="text-sm font-bold text-slate-500 italic leading-tight">No primary BiS</span> )}
-          {opt.length > 0 && (
-            <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5 items-center">
-              <span className="text-[10px] text-amber-500/70 font-semibold uppercase">Alt:</span>
-              {opt.map((i, index) => (
-                <span key={i.name} className="flex items-center">
-                  {renderItemLink(i, "text-[10px] text-slate-400 truncate max-w-[150px]")}
-                  {index < opt.length - 1 ? <span className="text-[10px] text-slate-500 ml-0.5">,</span> : ''}
-                </span>
-              ))}
-            </div>
-          )}
+      <div key={slotName} className="flex gap-3 bg-slate-900/40 border border-slate-800/50 p-2.5 rounded-lg opacity-50">
+        <div className="w-10 h-10 rounded bg-slate-950 border border-slate-800 flex-shrink-0"></div>
+        <div className="flex flex-col justify-center">
+          <span className="text-xs text-slate-600 font-bold uppercase tracking-wider">{slotName}</span>
+          <span className="text-sm text-slate-700 font-medium">No items found</span>
         </div>
       </div>
     );
-  };
+  }
+  if (bis.length === 0 && opt.length === 0) return null;
+
+  return (
+    <div key={slotName} className="flex gap-3 bg-slate-900 border border-slate-700 hover:border-slate-500 p-2.5 rounded-lg transition-colors shadow-sm">
+      <div key={`${slotName}-${selectedBisSpec}`} className="w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex-shrink-0 flex items-center justify-center relative shadow-inner overflow-hidden character-slot-icon">
+        {bis.length > 0 && bis[0].itemId ? (
+          <a 
+            href={`https://tbc.wowhead.com/item=${bis[0].itemId}`} 
+            data-wh-rename-link="false" 
+            data-wh-icon-size="large"
+            className="item-link"
+            target="_blank"
+            rel="noreferrer"
+            onMouseLeave={hideWowheadTooltip}
+          />
+        ) : (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent"></div>
+            <span className="text-[9px] font-bold text-slate-500 uppercase z-10 rotate-45 opacity-30">{slotName}</span>
+          </>
+        )}
+      </div>
+
+      <div className="flex flex-col min-w-0 justify-center">
+        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">{slotName}</span>
+        {bis.length > 0 ? (
+          bis.map(i => <div key={i.name} className="truncate">{renderItemLink(i, "text-sm font-bold text-purple-400 drop-shadow-sm leading-tight")}</div>)
+        ) : ( <span className="text-sm font-bold text-slate-500 italic leading-tight">No primary BiS</span> )}
+        {opt.length > 0 && (
+          <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5 items-center">
+            <span className="text-[10px] text-amber-500/70 font-semibold uppercase">Alt:</span>
+            {opt.map((i, index) => (
+              <span key={i.name} className="flex items-center">
+                {renderItemLink(i, "text-[10px] text-slate-400 truncate max-w-[150px]")}
+                {index < opt.length - 1 ? <span className="text-[10px] text-slate-500 ml-0.5">,</span> : ''}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
   const filteredOverviewItems = useMemo(() => {
     // 1. First get all items that have at least one assignment
@@ -973,7 +1014,19 @@ const clearDatabaseCache = () => {
                 </select>
               </div>
             </div>
-
+<style>{`
+.character-slot-icon .iconlarge {
+  width: 30px !important;
+  height: 30px !important;
+  display: block !important;
+    margin-top: -15px !important;  /* shift up */
+  margin-left: -15px !important;
+}
+.character-slot-icon .iconlarge ins {
+  width: 32px !important;
+  height: 32px !important;
+}
+`}</style>
             <div className="bg-slate-950 rounded-xl border border-slate-800 p-6 lg:p-10 shadow-2xl relative overflow-hidden">
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
                 <img src={`/icons/${selectedBisSpec}.png`} alt="" className="w-96 h-96 object-cover filter grayscale blur-sm" onError={(e) => { e.target.style.display = 'none' }} />
