@@ -498,6 +498,7 @@ const getItemsForSlotAndSpec = (slot, spec) => {
 
 const renderItemSlot = (slotName) => {
   const { bis, opt } = getItemsForSlotAndSpec(slotName, selectedBisSpec);
+  const isBottomSlot = BOTTOM_SLOTS.includes(slotName);
 
   // For dual slots, hide the second slot entirely if there's no second item
   const isDualSecond = slotName === "Ring 2" || slotName === "Trinket 2";
@@ -539,20 +540,28 @@ const renderItemSlot = (slotName) => {
 
       <div className="flex flex-col min-w-0 justify-center">
         <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">{slotName}</span>
-        {bis.length > 0 ? (
-          bis.map(i => <div key={i.name} className="truncate">{renderItemLink(i, "text-sm font-bold text-purple-400 drop-shadow-sm leading-tight")}</div>)
-        ) : ( <span className="text-sm font-bold text-slate-500 italic leading-tight">No primary BiS</span> )}
-        {opt.length > 0 && (
-          <div className="mt-1 flex flex-wrap gap-x-2 gap-y-0.5 items-center">
-            <span className="text-[10px] text-amber-500/70 font-semibold uppercase">Alt:</span>
-            {opt.map((i, index) => (
-              <span key={i.name} className="flex items-center">
-                {renderItemLink(i, "text-[10px] text-slate-400 truncate max-w-[150px]")}
-                {index < opt.length - 1 ? <span className="text-[10px] text-slate-500 ml-0.5">,</span> : ''}
-              </span>
-            ))}
-          </div>
-        )}
+{bis.length > 0 ? (
+  bis.map(i => (
+    <div key={i.name} className="flex flex-col">
+      {renderItemLink(i, "text-sm font-bold text-purple-400 drop-shadow-sm leading-tight")}
+      <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
+    </div>
+  ))
+) : ( <span className="text-sm font-bold text-slate-500 italic leading-tight">No primary BiS</span> )}
+{opt.length > 0 && (
+  <div className="mt-1 flex flex-col gap-y-1">
+    {opt.map(i => (
+      <div key={i.name} className="flex flex-col">
+        <div className="flex items-baseline gap-2">
+          <span className="text-[10px] text-amber-500/70 font-semibold uppercase flex-shrink-0">Alt:</span>
+          {renderItemLink(i, "text-[10px] text-slate-400 truncate max-w-[150px]")}
+          {!isBottomSlot && <span className="text-[10px] text-amber-500/70 font-semibold whitespace-nowrap">{i.boss}</span>}
+        </div>
+        {isBottomSlot && <span className="text-[10px] text-amber-500/70 font-semibold pl-6">{i.boss}</span>}
+      </div>
+    ))}
+  </div>
+)}
       </div>
     </div>
   );
@@ -1035,7 +1044,7 @@ const renderItemSlot = (slotName) => {
                 <div className="flex flex-col gap-4">{LEFT_SLOTS.map(slot => renderItemSlot(slot))}</div>
                 <div className="flex flex-col gap-4">{RIGHT_SLOTS.map(slot => renderItemSlot(slot))}</div>
                 <div className="lg:col-span-2 pt-6 mt-2 border-t border-slate-800/80">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">{BOTTOM_SLOTS.map(slot => renderItemSlot(slot))}</div>
+                  <div className="flex flex-wrap gap-4">{BOTTOM_SLOTS.map(slot => renderItemSlot(slot)).filter(Boolean).map((slot, i) => <div key={i} className="flex-1 min-w-[160px]">{slot}</div>)}</div>
                 </div>
               </div>
             </div>
