@@ -134,7 +134,7 @@ export default function App() {
   const [passwordInput, setPasswordInput] = useState('');
 
   // Global phase selector (controls which phase's assignments are shown)
-  const [globalPhase, setGlobalPhase] = useState('SWP');
+  const [globalPhase, setGlobalPhase] = useState('T5');
 
   // Default to public overview tab
   const [activeTab, setActiveTab] = useState('overview');
@@ -149,8 +149,8 @@ export default function App() {
   const [filterZone, setFilterZone] = useState('');
   const [filterSlot, setFilterSlot] = useState('');
   const [selectedBisSpec, setSelectedBisSpec] = useState(SPECS[0]);
-  const [selectedBisPhase, setSelectedBisPhase] = useState('SWP');
-  const [masterItemsDbPhase, setMasterItemsDbPhase] = useState('SWP');
+  const [selectedBisPhase, setSelectedBisPhase] = useState('T5');
+  const [masterItemsDbPhase, setMasterItemsDbPhase] = useState('T5');
   const [expandedPlayerId, setExpandedPlayerId] = useState(null);
   const [newRaidDate, setNewRaidDate] = useState(new Date().toISOString().split('T')[0]);
   const [newRaidZone, setNewRaidZone] = useState('SSC / TK');
@@ -242,11 +242,11 @@ export default function App() {
     setupSync('roster', setRosterLocal, []);
     // Get assignments for the current phase
     const phaseKey = PHASE_JSON_KEYS[globalPhase];
-    const assignmentsDocName = globalPhase === 'SWP' ? 'assignments' : `assignments_${phaseKey}`;
+    const assignmentsDocName = globalPhase === 'T5' ? 'assignments' : `assignments_${phaseKey}`;
     setupSync(assignmentsDocName, setAssignmentsLocal, {});
     
     // Setup phase-specific BiS priorities (for Loot Council/overview)
-    const bisPrioritiesDocName = globalPhase === 'SWP' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
+    const bisPrioritiesDocName = globalPhase === 'T5' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
     const defaultBisPriorities = initializeDefaultBisPriorities(globalPhase);
     setupSync(bisPrioritiesDocName, setBisPrioritiesLocal, defaultBisPriorities);
     
@@ -263,7 +263,7 @@ export default function App() {
 
   // Separate sync for Master Items DB phase selector
   useEffect(() => {
-    const ref = doc(db, 'guildData', masterItemsDbPhase === 'SWP' ? 'bisPriorities' : `bisPriorities_${PHASE_JSON_KEYS[masterItemsDbPhase]}`);
+    const ref = doc(db, 'guildData', masterItemsDbPhase === 'T5' ? 'bisPriorities' : `bisPriorities_${PHASE_JSON_KEYS[masterItemsDbPhase]}`);
     const defaultDbBis = initializeDefaultBisPriorities(masterItemsDbPhase);
     const unsub = onSnapshot(ref, (snapshot) => {
       if (snapshot.exists()) {
@@ -283,19 +283,19 @@ export default function App() {
   const setAssignments = (newVal) => { 
     setAssignmentsLocal(newVal); 
     const phaseKey = PHASE_JSON_KEYS[globalPhase];
-    const assignmentsDocName = globalPhase === 'SWP' ? 'assignments' : `assignments_${phaseKey}`;
+    const assignmentsDocName = globalPhase === 'T5' ? 'assignments' : `assignments_${phaseKey}`;
     setDoc(doc(db, 'guildData', assignmentsDocName), { data: newVal }); 
   };
   const setBisPriorities = (newVal) => {
     setBisPrioritiesLocal(newVal);
     const phaseKey = PHASE_JSON_KEYS[globalPhase];
-    const bisPrioritiesDocName = globalPhase === 'SWP' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
+    const bisPrioritiesDocName = globalPhase === 'T5' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
     setDoc(doc(db, 'guildData', bisPrioritiesDocName), { data: newVal });
   };
   const setDbBisPriorities = (newVal) => {
     setDbBisPrioritiesLocal(newVal);
     const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
-    const docName = masterItemsDbPhase === 'SWP' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
+    const docName = masterItemsDbPhase === 'T5' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
     setDoc(doc(db, 'guildData', docName), { data: newVal });
   };
   const setScoringConfig = (newVal) => { setScoringConfigLocal(newVal); setDoc(doc(db, 'guildData', 'scoringConfig'), { data: newVal }); };
