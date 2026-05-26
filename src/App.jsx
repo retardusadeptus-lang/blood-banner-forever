@@ -7,15 +7,33 @@ console.log(itemsData.map(item => item.slot).filter(s => s.toLowerCase().include
 
 // Spec name mapping: display name <-> hyphenated lowercase for aggregated data
 const SPEC_MAPPING = {
-  "Prot Warrior": "prot-warrior", "Arms Warrior": "arms-warrior", "Fury Warrior": "fury-warrior",
-  "Prot Paladin": "prot-paladin", "Holy Paladin": "holy-paladin", "Ret Paladin": "ret-paladin",
-  "BM Hunter": "bm-hunter", "MM Hunter": "mm-hunter", "Survival Hunter": "survival-hunter",
-  "Elemental Shaman": "elemental-shaman", "Enhance Shaman": "enhance-shaman", "Resto Shaman": "resto-shaman",
-  "Balance Druid": "balance-druid", "Feral (Tank)": "feral-tank", "Feral (DPS)": "feral-dps", "Resto Druid": "resto-druid",
-  "Combat Rogue": "combat-rogue", "Holy Priest": "holy-priest", "Discipline Priest": "discipline-priest", "Shadow Priest": "shadow-priest",
-  "Arcane Mage": "arcane-mage", "Fire Mage": "fire-mage", "Frost Mage": "frost-mage",
-  "Destro Warlock": "destro-warlock", "Demo Warlock": "demo-warlock", "Affliction Warlock": "affliction-warlock"
-};
+  "Prot Warrior": "prot-warrior",
+  "Arms Warrior": "arms-warrior",
+  "Fury Warrior": "fury-warrior",
+  "Prot Paladin": "prot-paladin",
+  "Holy Paladin": "holy-paladin",
+  "Ret Paladin": "retribution-paladin",
+  "BM Hunter": "BM-hunter",
+  "MM Hunter": "marksmanship-hunter",
+  "Survival Hunter": "survival-hunter",
+  "Elemental Shaman": "elemental-shaman",
+  "Enhance Shaman": "enhancement-shaman",
+  "Resto Shaman": "restoration-shaman",
+  "Balance Druid": "balance-druid",
+  "Feral (Tank)": "feral-tank-druid",
+  "Feral (DPS)": "feral-dps-druid",
+  "Resto Druid": "restoration-druid",
+  "Combat Rogue": "combat-rogue",
+  "Holy Priest": "holy-priest",
+  "Discipline Priest": "holy-priest",
+  "Shadow Priest": "shadow-priest",
+  "Arcane Mage": "arcane-mage",
+  "Fire Mage": "fire-mage",
+  "Frost Mage": "frost-mage",
+  "Destro Warlock": "destruction-warlock",
+  "Demo Warlock": "demonology-warlock",
+  "Affliction Warlock": "affliction-warlock"
+}
 
 const PHASES = ["Pre-BiS", "T4", "T5", "T6", "ZA", "SWP"];
 const PHASE_JSON_KEYS = { "Pre-BiS": "pre-bis", "T4": "t4", "T5": "t5", "T6": "t6", "ZA": "za", "SWP": "swp" };
@@ -44,89 +62,62 @@ const LEFT_SLOTS = ["Head", "Neck", "Shoulder", "Back", "Chest", "Wrist"];
 const RIGHT_SLOTS = ["Hands", "Waist", "Legs", "Feet", "Ring 1", "Ring 2", "Trinket 1", "Trinket 2"];
 const BOTTOM_SLOTS = ["Main Hand", "Off Hand", "Shield", "Ranged", "Wand", "Totem", "Libram", "Idol"];
 
+// Normalize slot names from aggregated data (lowercase) to proper casing
+const normalizeSlot = (slot) => {
+  if (!slot) return slot;
+  const slotMap = {
+    "head": "Head",
+    "neck": "Neck",
+    "shoulder": "Shoulder",
+    "back": "Back",
+    "chest": "Chest",
+    "wrist": "Wrist",
+    "hands": "Hands",
+    "waist": "Waist",
+    "legs": "Legs",
+    "feet": "Feet",
+    "ring": "Ring",
+    "trinket": "Trinket",
+    "main hand": "Main Hand",
+    "off hand": "Off Hand",
+    "shield": "Shield",
+    "ranged": "Ranged",
+    "wand": "Wand",
+    "totem": "Totem",
+    "libram": "Libram",
+    "idol": "Idol",
+    "weapon": "Main Hand",
+    "relic": "Totem",
+    "18 slot ammo pouch": "Ranged",
+    "18 slot quiver": "Ranged"
+  };
+  return slotMap[slot.toLowerCase().trim()] || slot;
+};
+
 const P2_BOSSES = [
   "Hydross the Unstable", "The Lurker Below", "Leotheras the Blind", "Fathom-Lord Karathress", 
   "Morogrim Tidewalker", "Lady Vashj", "Al'ar", "Void Reaver", "High Astromancer Solarian", "Kael'thas"
 ];
 
 // Mined IDs from your uploaded CSV data!
-const WOWHEAD_IDS = {
-  "Destroyer Greathelm": "171910", "Tankatronic Goggles": "32473", "Warbringer Greathelm": "29011",
-  "The Sun King's Talisman": "29994", "Barbed Choker of Discipline": "28516", "Destroyer Shoulderguards": "30117",
-  "Warbringer Shoulderguards": "29016", "Phoenix-Wing Cloak": "29925", "Gilded Thorium Cloak": "28660",
-  "Destroyer Chestguard": "171893", "Chestguard of the Warlord": "33473", "Warbringer Chestguard": "29012",
-  "Bracers of the Green Fortress": "23538", "Vambraces of Courage": "28502", "Destroyer Handguards": "30114",
-  "Topaz-Studded Battlegrips": "30741", "Girdle of the Invulnerable": "30096", "Crimson Girdle of the Indomitable": "28566",
-  "Destroyer Legguards": "30116", "Warbringer Legguards": "29015", "Boots of the Resilient": "32267",
-  "Battlescar Boots": "28747", "Band of the Abyssal Lord": "150459", "Shermanar Great-Ring": "28675",
-  "Shadowmoon Insignia": "150526", "Scarab of Displacement": "30629", "Mallet of the Tides": "30058",
-  "King's Defender": "28749", "Aldori Legacy Defender": "28825", "Shield of Impenetrable Darkness": "28606",
-  "Gyro-Balanced Khorium Destroyer": "32756", "Rifle of the Stoic Guardian": "150477", "Destroyer Battle-Helm": "171911",
-  "Warbringer Battle-Helm": "29021", "Worgen Claw Necklace": "28509", "Blood-Stained Pauldrons": "30866",
-  "Thalassian Wildercloak": "171491", "Destroyer Breastplate": "171894", "Heartshatter Breastplate": "150510",
-  "True-Aim Stalker Bands": "30091", "Destroyer Gauntlets": "30119", "Gauntlets of Martial Perfection": "28824",
-  "Belt of One-Hundred Deaths": "171475", "Girdle of the Endless Pit": "28779", "Destroyer Greaves": "30121",
-  "Skulker's Greaves": "28741", "Warboots of Obliteration": "30081", "Edgewalker Longboots": "28545",
-  "Ring of Lethality": "30052", "Band of the Ranger-General": "29997", "Garona's Signet Ring": "28649",
-  "Dragonspine Trophy": "28830", "Lionheart Champion": "28429", "Gorehowl": "28773",
-  "Serpent Spine Longbow": "171474", "Sunfury Bow of the Phoenix": "28772", "Furious Gizmatic Goggles": "32461",
-  "Bloodsea Brigand's Vest": "30101", "Bracers of Maliciousness": "28514", "Warbringer Greaves": "29022",
-  "Romulo's Poison Vial": "28579", "Rod of the Sun King": "171493", "Talon of Azshara": "30082",
-  "Spiteblade": "28729", "Crystalforge Faceguard": "171912", "Justicar Faceguard": "29068",
-  "Crystalforge Shoulderguards": "30127", "Justicar Shoulderguards": "29070", "Crystalforge Chestguard": "171895",
-  "Pendant of the Violet Eye": "28727", "Crystalforge Handguards": "30124", "Gauntlets of the Iron Tower": "23532",
-  "Crystalforge Legguards": "30126", "Justicar Legguards": "29069", "Fang of the Leviathan": "30095",
-  "Bloodmaw Magus-Blade": "28802", "Crystalforge Greathelm": "171914", "Justicar Diadem": "29061",
-  "Justicar Pauldrons": "29064", "Sunshower Light Cloak": "171486", "Crystalforge Chestpiece": "171897",
-  "Bracers of Justice": "28512", "Crystalforge Gloves": "30135", "Girdle of Truth": "28733",
-  "Girdle of Hope": "30897", "Crystalforge Greaves": "30132", "Justicar Leggings": "29063",
-  "Boots of Courage Unending": "30027", "Boots of Valiance": "28569", "Coral Band of the Revived": "30110",
-  "Vial of the Sunwell": "34471", "Ribbon of Sacrifice": "28590", "Lightfathom Scepter": "171477",
-  "Shard of the Virtuous": "28522", "Triptych Shield of the Ancients": "28754", "Crystalforge War-Helm": "171913",
-  "Justicar Crown": "29073", "Choker of Animalistic Fury": "30059", "Justicar Shoulderplates": "29075",
-  "Justicar Breastplate": "29071", "Crystalforge Gauntlets": "30130", "Justicar Gauntlets": "29072",
-  "Justicar Greaves": "29074", "World Breaker": "30090", "Rift Stalker Helm": "171915",
-  "Demon Stalker Greathelm": "29081", "Rift Stalker Mantle": "30143", "Demon Stalker Shoulderguards": "29084",
-  "Blood Knight War Cloak": "29382", "Rift Stalker Hauberk": "171898", "Demon Stalker Harness": "29082",
-  "Bracers of the Pathfinder": "30864", "Stalker's War Bands": "28454", "Rift Stalker Gauntlets": "30140",
-  "Demon Stalker Gauntlets": "29085", "Rift Stalker Leggings": "30142", "Demon Stalker Greaves": "29083",
-  "Cobra-Lash Boots": "171473", "Fiend Slayer Boots": "28746", "Legacy": "28587",
-  "Cataclysm Headpiece": "171920", "Cyclone Faceguard": "29035", "Brooch of Unquenchable Fury": "28530",
-  "Cataclysm Shoulderpads": "30173", "Cyclone Shoulderguards": "29037", "Ruby Drape of the Mysticant": "28766",
-  "Cataclysm Chestpiece": "171903", "Cyclone Breastplate": "29038", "Bracers of Nimble Thought": "32586",
-  "Bands of Negation": "29240", "Cataclysm Gloves": "30165", "Cyclone Gauntlets": "29039",
-  "Belt of Blasting": "30038", "Girdle of Ruination": "24256", "Cataclysm Leggings": "30172",
-  "Cyclone Kilt": "29030", "Boots of Foretelling": "28517", "Ring of Captured Storms": "32247",
-  "The Lightning Capacitor": "28785", "Nathrezim Mindblade": "28770", "Mazthoril Honor Shield": "29268",
-  "Dragonheart Flameshield": "28611", "Cataclysm Helm": "171921", "Cyclone Helm": "29040",
-  "Cataclysm Shoulderplates": "30194", "Cyclone Shoulderplates": "29043", "Cyclone Hauberk": "29029",
-  "Cataclysm Gauntlets": "30189", "Cyclone Handguards": "29034", "Cataclysm Legguards": "30167",
-  "Cyclone War-Kilt": "29042", "The Decapitator": "28767", "Cataclysm Headguard": "171919",
-  "Cyclone Headdress": "29028", "Cataclysm Chestguard": "171902", "Blackfathom Warbands": "30047",
-  "Cyclone Gloves": "29032", "Girdle of Fallen Stars": "30030", "Nordrassil Headpiece": "171926",
-  "Antlers of Malorne": "29093", "Nordrassil Wrath-Mantle": "30235", "Mantle of Malorne": "29100",
-  "Nordrassil Chestpiece": "171909", "Breastplate of Malorne": "29096", "Nordrassil Gauntlets": "30232",
-  "Gauntlets of Malorne": "29097", "Nordrassil Wrath-Kilt": "30234", "Greaves of Malorne": "29099",
-  "Jewel of Infinite Possibilities": "28734", "Nordrassil Headguard": "171924", "Stag-Helm of Malorne": "29098",
-  "Nordrassil Life-Mantle": "30221", "Nordrassil Chestguard": "171907", "Nordrassil Handgrips": "30223",
-  "Nordrassil Feral-Kilt": "30229", "Boots of Natural Grace": "30041", "Wildfury Greatstaff": "30021",
-  "Earthwarden": "29171", "Terestian's Stranglestaff": "28658", "Nordrassil Headdress": "171925",
-  "Crown of Malorne": "29086", "Chestpiece of Malorne": "29091", "Nordrassil Gloves": "30217",
-  "Handguards of Malorne": "29090", "Nordrassil Life-Kilt": "30220", "Britches of Malorne": "29094",
-  "Windcaller's Orb": "29170", "Deathmantle Helm": "171916", "Netherblade Facemask": "29044",
-  "Netherblade Shoulderpads": "29047", "Deathmantle Chestguard": "171899", "Netherblade Chestpiece": "29045",
-  "Deathmantle Handguards": "30145", "Netherblade Gloves": "29048", "Deathmantle Legguards": "30148",
-  "Netherblade Breeches": "29046", "Blinkstrike": "31332", "Robes of the Incarnate": "29050",
-  "Bands of Indwelling": "28511", "Gloves of the Incarnate": "29057", "Trousers of the Incarnate": "29053",
-  "Earring of Soulful Meditation": "30665", "Spellstrike Hood": "24266", "Frozen Shadoweave Shoulders": "21869",
-  "Frozen Shadoweave Robe": "21871", "Spellstrike Pants": "24262", "Frozen Shadoweave Boots": "21870",
-  "Orb of the Soul-Eater": "29272", "Tirisfal Wand of Ascendancy": "28673", "Cowl of the Grand Engineer": "29986",
-  "Vestments of the Sea-Witch": "171476", "Gloves of the Aldor": "29080", "Nexus Key": "171485",
-  "Mantle of the Corruptor": "30215", "Voidheart Mantle": "28967", "Voidheart Robe": "28964",
-  "Gloves of the Corruptor": "30211", "Voidheart Gloves": "28968", "Leggings of the Corruptor": "30213"
+// Generate WowHead ID mapping dynamically from aggregatedBisData
+// Extracts unique item names and their IDs
+const generateWowheadIds = (data) => {
+  const mapping = {};
+  const seen = new Set();
+  data.forEach(item => {
+    if (item.name && item.id && !seen.has(item.name)) {
+      mapping[item.name] = String(item.id);
+      seen.add(item.name);
+    }
+  });
+  return mapping;
 };
 
 export default function App() {
+  // Generate WowHead ID mapping from aggregated data
+  const WOWHEAD_IDS = useMemo(() => generateWowheadIds(aggregatedBisData), []);
+
   // ==========================================
   // 1. ALL LOCAL UI AND FILTER STATES
   // ==========================================
@@ -149,7 +140,6 @@ export default function App() {
   const [filterZone, setFilterZone] = useState('');
   const [filterSlot, setFilterSlot] = useState('');
   const [selectedBisSpec, setSelectedBisSpec] = useState(SPECS[0]);
-  const [selectedBisPhase, setSelectedBisPhase] = useState('T5');
   const [masterItemsDbPhase, setMasterItemsDbPhase] = useState('T5');
   const [expandedPlayerId, setExpandedPlayerId] = useState(null);
   const [newRaidDate, setNewRaidDate] = useState(new Date().toISOString().split('T')[0]);
@@ -179,6 +169,16 @@ export default function App() {
   // ==========================================
   // HELPER: Initialize default BiS priorities from aggregated data
   // ==========================================
+  const aggregatedBisLookup = useMemo(() => {
+  const lookup = {};
+  aggregatedBisData.forEach(item => {
+    if (!item || !item.name || !item.spec) return;
+    const key = `${item.name}|${item.spec}`;
+    if (!lookup[key]) lookup[key] = item;
+  });
+  return lookup;
+}, []);
+
   const initializeDefaultBisPriorities = (phase) => {
     const phaseKey = PHASE_JSON_KEYS[phase];
     const defaults = {};
@@ -222,22 +222,32 @@ export default function App() {
     };
 
     // Convert aggregated BIS data directly to mutable items format
-    const defaultItems = aggregatedBisData.map(item => {
-      return {
-        name: item.name,
-        slot: item.slot,
-        itemId: item.id || '',
-        boss: item.source_type,
-        zone: item.source,
-        drop_chance: item.drop_chance || null,
-        spec: item.spec,
-        id: item.id,
-        rarity: item.rarity,
-        source: item.source,
-        source_type: item.source_type,
-        phase: item.phase
-      };
-    });
+    const defaultItems = (() => {
+      const seen = new Set();
+      return aggregatedBisData
+      .filter(item => item && item.name && item.slot)
+      .filter(item => {
+        if (seen.has(item.name)) return false;
+        seen.add(item.name);
+        return true;
+      })
+      .map(item => {
+        return {
+          name: item.name,
+          slot: normalizeSlot(item.slot),
+          itemId: item.id || '',
+          boss: item.source_type,
+          zone: item.source,
+          drop_chance: item.drop_chance || null,
+          spec: item.spec,
+          id: item.id,
+          rarity: item.rarity,
+          source: item.source,
+          source_type: item.source_type,
+          phase: item.phase
+        };
+      });
+    })();
 
     setupSync('roster', setRosterLocal, []);
     // Get assignments for the current phase
@@ -318,9 +328,10 @@ useEffect(() => {
     if (window.$WowheadPower && window.$WowheadPower.refreshLinks) { 
       window.$WowheadPower.refreshLinks();
     }
-  }, 50);
+  }, 300);
   return () => clearTimeout(timer);
 }, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, overviewSearch, selectedBisSpec]);
+
 
   const hideWowheadTooltip = () => {
     if (window.$WowheadPower && window.$WowheadPower.hideTooltip) { window.$WowheadPower.hideTooltip(); }
@@ -494,22 +505,32 @@ const clearDatabaseCache = () => {
     
     // Check if the entered password matches
     if (pwd === 'DELETE') {
-      const defaultItems = aggregatedBisData.map(item => {
-        return {
-          name: item.name,
-          slot: item.slot,
-          itemId: item.id || '',
-          boss: item.source_type,
-          zone: item.source,
-          drop_chance: item.drop_chance || null,
-          spec: item.spec,
-          id: item.id,
-          rarity: item.rarity,
-          source: item.source,
-          source_type: item.source_type,
-          phase: item.phase
-        };
-      });
+const defaultItems = (() => {
+  const seen = new Set();
+  return aggregatedBisData
+    .filter(item => item && item.name && item.slot)
+    .filter(item => {
+      if (seen.has(item.name)) return false;
+      seen.add(item.name);
+      return true;
+    })
+    .map(item => {
+      return {
+        name: item.name,
+        slot: normalizeSlot(item.slot),
+        itemId: item.id || '',
+        boss: item.source_type,
+        zone: item.source,
+        drop_chance: item.drop_chance || null,
+        spec: item.spec,
+        id: item.id,
+        rarity: item.rarity,
+        source: item.source,
+        source_type: item.source_type,
+        phase: item.phase
+      };
+    });
+})();
       
       setMutableItems(defaultItems);
       setBisPriorities({});
@@ -530,16 +551,17 @@ const clearDatabaseCache = () => {
   }, [mutableItems, filterZone]);
   const uniqueSlots = useMemo(() => [...new Set(mutableItems.map(i => i.slot))].sort(), [mutableItems]);
 
-  const filteredItems = mutableItems.filter(item => {
-    const matchSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+const filteredItems = mutableItems.filter(item => {
+  if (!item || !item.name) return false;
+  const matchSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchBoss = filterBoss === '' || item.boss === filterBoss;
     const matchZone = filterZone === '' || item.zone === filterZone;
     const matchSlot = filterSlot === '' || item.slot === filterSlot;
     return matchSearch && matchBoss && matchZone && matchSlot;
   });
 
-  const dbFilteredItems = useMemo(() => {
-    let items = mutableItems.filter(item => item.name.toLowerCase().includes(dbSearch.toLowerCase()));
+const dbFilteredItems = useMemo(() => {
+  let items = mutableItems.filter(item => item && item.name && item.name.toLowerCase().includes(dbSearch.toLowerCase()));
     if (showMissingWowheadFilter) {
       items = items.filter(item => !item.itemId || item.itemId.trim() === '');
     }
@@ -594,47 +616,49 @@ const clearDatabaseCache = () => {
     return "bg-slate-900 text-slate-500 border border-slate-800 border-dashed";
   };
 
-  const getItemsForSlotAndSpec = (slot, spec) => {
-    // Map display slot names back to data slot names
-    const dataSlot = slot === "Ring 1" || slot === "Ring 2" ? "Ring"
-                   : slot === "Trinket 1" || slot === "Trinket 2" ? "Trinket"
-                   : slot;
-    const slotIndex = slot === "Ring 2" || slot === "Trinket 2" ? 1 : 0;
-    const isDualSlot = slot.endsWith(" 1") || slot.endsWith(" 2");
+const getItemsForSlotAndSpec = (slot, spec) => {
+  const dataSlot = slot === "Ring 1" || slot === "Ring 2" ? "ring"
+                 : slot === "Trinket 1" || slot === "Trinket 2" ? "trinket"
+                 : slot.toLowerCase();
+  const slotIndex = slot === "Ring 2" || slot === "Trinket 2" ? 1 : 0;
+  const isDualSlot = slot.endsWith(" 1") || slot.endsWith(" 2");
 
-    // Get all items in this slot
-    const itemsInSlot = mutableItems.filter(i => i.slot === dataSlot);
-    
-    // Get BiS items for this phase and spec from aggregated data
-    const phaseKey = PHASE_JSON_KEYS[selectedBisPhase];
-    const specKey = SPEC_MAPPING[spec];
-    
-    const bis = itemsInSlot.filter(item => {
-      const aggregatedItem = aggregatedBisData.find(a => a.name === item.name);
-      if (!aggregatedItem) return false;
-      const phaseData = aggregatedItem[phaseKey];
-      return phaseData && phaseData.bis === true && aggregatedItem.spec === specKey;
-    });
-    
-    const opt = itemsInSlot.filter(item => {
-      const aggregatedItem = aggregatedBisData.find(a => a.name === item.name);
-      if (!aggregatedItem) return false;
-      // Also check current eligible object as fallback for compatibility
-      if (item.eligible && item.eligible[spec] === 'Opt') return true;
-      return false;
-    });
+  const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
+  const specKey = SPEC_MAPPING[spec];
 
-    if (isDualSlot) {
-      const bisForThisSlot = bis[slotIndex] ? [bis[slotIndex]] : [];
-      const optForThisSlot = slotIndex === 0 && bis.length <= 1 ? opt
-                           : slotIndex === 1 && bis.length >= 2 ? opt
-                           : slotIndex === 1 && bis.length < 2 ? [...bis.slice(1), ...opt]
-                           : [];
-      return { bis: bisForThisSlot, opt: optForThisSlot };
-    }
+  const itemsInSlot = mutableItems.filter(i => 
+    i.slot && i.slot.toLowerCase() === dataSlot
+  );
 
-    return { bis, opt };
-  };
+  const bis = itemsInSlot.filter(item => {
+    const itemKey = `${item.name}|${spec}`;
+    const manualOverride = dbBisPriorities[itemKey];
+    if (manualOverride === 'BiS') return true;
+    if (manualOverride === 'Opt' || manualOverride === '') return false;
+    // Check ALL aggregated entries for this item name
+const match = aggregatedBisLookup[`${item.name}|${specKey}`];
+return match?.[phaseKey]?.bis === true;
+  });
+
+  const opt = itemsInSlot.filter(item => {
+    const itemKey = `${item.name}|${spec}`;
+    const manualOverride = dbBisPriorities[itemKey];
+    if (manualOverride === 'Opt') return true;
+    if (manualOverride === 'BiS' || manualOverride === '') return false;
+    return item.eligible && item.eligible[spec] === 'Opt';
+  });
+
+  if (isDualSlot) {
+    const bisForThisSlot = bis[slotIndex] ? [bis[slotIndex]] : [];
+    const optForThisSlot = slotIndex === 0 && bis.length <= 1 ? opt
+                         : slotIndex === 1 && bis.length >= 2 ? opt
+                         : slotIndex === 1 && bis.length < 2 ? [...bis.slice(1), ...opt]
+                         : [];
+    return { bis: bisForThisSlot, opt: optForThisSlot };
+  }
+
+  return { bis, opt };
+};
 
 const renderItemSlot = (slotName) => {
   const { bis, opt } = getItemsForSlotAndSpec(slotName, selectedBisSpec);
@@ -715,13 +739,13 @@ const renderItemSlot = (slotName) => {
   );
 };
 
-  const filteredOverviewItems = useMemo(() => {
-    // 1. First get all items that have at least one assignment
-    let items = mutableItems.filter(item => {
-      const itemAssignments = assignments[item.name];
-      if (!itemAssignments) return false;
-      return Object.values(itemAssignments).some(rank => rank !== null && rank !== undefined);
-    });
+const filteredOverviewItems = useMemo(() => {
+  let items = mutableItems.filter(item => {
+    if (!item || !item.name) return false;  // add this line
+    const itemAssignments = assignments[item.name];
+    if (!itemAssignments) return false;
+    return Object.values(itemAssignments).some(rank => rank !== null && rank !== undefined);
+  });
 
     // 2. Then apply the search filter (item name OR player name)
     if (overviewSearch.trim() !== '') {
@@ -736,7 +760,17 @@ const renderItemSlot = (slotName) => {
     }
 
     return items;
-  }, [mutableItems, assignments, roster, overviewSearch]);
+}, [mutableItems, assignments, roster, overviewSearch]);
+
+  useEffect(() => {
+    if (activeTab !== 'overview') return;
+    const timer = setTimeout(() => {
+      if (window.$WowheadPower && window.$WowheadPower.refreshLinks) {
+        window.$WowheadPower.refreshLinks();
+      }
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [filteredOverviewItems]);
 
   const PlayerNameWithScore = ({ player }) => (
     <div className="flex items-center gap-2">
@@ -764,8 +798,23 @@ const renderItemSlot = (slotName) => {
 
   // MAIN DASHBOARD
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-amber-500/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
+<div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-amber-500/30">
+<style>{`
+        .character-slot-icon .iconlarge {
+          width: 30px !important;
+          height: 30px !important;
+          display: block !important;
+        }
+        .character-slot-icon .iconlarge ins {
+          width: 32px !important;
+          height: 32px !important;
+        }
+        .overview-tab .character-slot-icon .iconlarge {
+          margin-top: -4px !important;
+          margin-left: -4px !important;
+        }
+      `}</style>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
         
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
@@ -815,14 +864,14 @@ const renderItemSlot = (slotName) => {
         {/* --- NAVIGATION TABS --- */}
         <div className="flex overflow-x-auto gap-2 border-b border-slate-800 pb-px custom-scrollbar">
           <button onClick={() => setActiveTab('overview')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'overview' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Priority Overview</button>
-          
+          <button onClick={() => setActiveTab('bis')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bis' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>BiS Config</button>
+
           {/* Lock down all editing tabs behind authentication */}
           {isAuthenticated && (
             <>
               <button onClick={() => setActiveTab('loot')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'loot' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Loot Council</button>
               <button onClick={() => setActiveTab('roster')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'roster' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Roster & Attendance</button>
               <button onClick={() => setActiveTab('scoring')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'scoring' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Scoring & Config</button>
-              <button onClick={() => setActiveTab('bis')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bis' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>BiS Config</button>
               <button onClick={() => setActiveTab('itemsdb')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'itemsdb' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Master Items DB</button>
             </>
           )}
@@ -832,8 +881,8 @@ const renderItemSlot = (slotName) => {
             TAB: PRIORITY OVERVIEW (MASTER LEDGER - PUBLIC)
             ========================================= */}
         {activeTab === 'overview' && (
-          <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
-             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
+<section className="overview-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">              
               <div>
                 <h2 className="text-xl font-bold text-slate-100 mb-1">Master Priority Ledger</h2>
                 <p className="text-sm text-slate-500">A bird's-eye view of every item that currently has an assigned Loot Council priority.</p>
@@ -849,28 +898,49 @@ const renderItemSlot = (slotName) => {
             {filteredOverviewItems.length === 0 ? (
               <div className="text-center py-20 bg-slate-900/50 border-2 border-dashed border-slate-800 rounded-xl"><p className="text-slate-500 font-medium">No priorities match your search criteria.</p></div>
             ) : (
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                {filteredOverviewItems.map(item => {
+<div className="columns-1 lg:columns-2 xl:columns-3 gap-6 space-y-0">                {filteredOverviewItems.map(item => {
                   const assignedPlayers = roster.filter(p => typeof assignments[item.name]?.[p.id] === 'number');
-                  const sortedAssignedPlayers = assignedPlayers.sort((a, b) => assignments[item.name][a.id] - assignments[item.name][b.id]);
-                  return (
-                    <div key={item.name} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-lg flex flex-col">
-                      <div className="bg-slate-900 border-b border-slate-800 p-4">
-                         <h3 className="text-lg font-bold text-purple-400 truncate drop-shadow-sm mb-1">
-                           {renderItemLink(item)}
-                         </h3>
-                         <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-500 tracking-wider flex-wrap">
-                           <span>{item.slot}</span>
-                           <span className="w-1 h-1 rounded-full bg-slate-700"></span>
-                           <span className="text-amber-500/80">{item.boss}</span>
-                           {item.drop_chance && (
-                             <>
-                               <span className="w-1 h-1 rounded-full bg-slate-700"></span>
-                               <span className="text-cyan-400">{(item.drop_chance * 100).toFixed(0)}% Drop</span>
-                             </>
-                           )}
-                         </div>
-                      </div>
+const sortedAssignedPlayers = assignedPlayers.sort((a, b) => {
+  const rankA = assignments[item.name][a.id];
+  const rankB = assignments[item.name][b.id];
+  if (rankA !== rankB) return rankA - rankB;
+  return Number(calculateScore(b.id)) - Number(calculateScore(a.id));
+});                  return (
+<div key={item.name} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-lg flex flex-col break-inside-avoid mb-6">                      
+                           <div className="bg-slate-900 border-b border-slate-800 p-4">
+  <div className="flex items-center gap-3 mb-1">
+ <div className="character-slot-icon w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex-shrink-0 flex items-center justify-center overflow-hidden relative shadow-inner">
+  {item.itemId ? (
+    
+      <a href={"https://tbc.wowhead.com/item=" + item.itemId}
+      data-wh-rename-link="false"
+      data-wh-icon-size="large"
+      className="item-link absolute inset-0"
+      target="_blank"
+      rel="noreferrer"
+      onMouseLeave={hideWowheadTooltip}
+      style={{fontSize: 0, lineHeight: 0}}
+    />
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent" />
+      )}
+    </div>
+    <h3 className="text-lg font-bold text-purple-400 truncate drop-shadow-sm">
+      {renderItemLink(item)}
+    </h3>
+  </div>
+  <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-500 tracking-wider flex-wrap">
+    <span>{item.slot}</span>
+    <span className="w-1 h-1 rounded-full bg-slate-700"></span>
+    <span className="text-amber-500/80">{item.boss}</span>
+    {item.drop_chance && (
+      <>
+        <span className="w-1 h-1 rounded-full bg-slate-700"></span>
+        <span className="text-cyan-400">{(item.drop_chance * 100).toFixed(0)}% Drop</span>
+      </>
+    )}
+  </div>
+</div>
                       <div className="p-3 flex-1">
                         {sortedAssignedPlayers.length === 0 ? ( <p className="text-xs text-slate-600 italic py-2">Only Passes recorded.</p> ) : (
                           <ul className="space-y-2">
@@ -967,12 +1037,12 @@ const renderItemSlot = (slotName) => {
                         const bisPriorityStatus = bisPriorities[itemKey];
                         const status = bisPriorityStatus || (selectedItem.spec === specKey ? 'BiS' : '');
                         const currentPriority = assignments[selectedItem.name]?.[player.id];
-                        const playerAlts = mutableItems.filter(i => {
-                          if (i.slot !== selectedItem.slot || i.name === selectedItem.name) return false;
-                          const altItemKey = `${i.name}|${specDisplay}`;
-                          const altBisPriority = bisPriorities[altItemKey];
-                          return altBisPriority || i.spec === specKey;
-                        });
+const playerAlts = mutableItems.filter(i => {
+  if (i.slot !== selectedItem.slot || i.name === selectedItem.name) return false;
+  const altItemKey = `${i.name}|${specDisplay}`;
+  const altBisPriority = bisPriorities[altItemKey];
+  return altBisPriority || i.spec === specKey;
+}).map(i => ({ ...i, eligible: i.eligible || {} }));
 
                         return (
                           <div key={player.id} className={`flex flex-col p-4 rounded-xl shadow-sm border transition-all duration-300 ${currentPriority === 1 ? 'bg-slate-800/80 border-amber-500/50' : currentPriority === 'Pass' ? 'bg-slate-950/50 border-slate-900 opacity-60' : 'bg-slate-900 border-slate-700'}`}>
@@ -1096,10 +1166,14 @@ const renderItemSlot = (slotName) => {
                       <img src={`/icons/${player.spec}.png`} alt="" className="w-10 h-10 rounded border border-slate-700 bg-slate-900 object-cover" onError={(e) => { e.target.src = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg' }} />
                       {player.inRaid && ( <div className="absolute -bottom-1 -right-1 bg-emerald-500 rounded-full w-4 h-4 flex items-center justify-center border-2 border-slate-800"><svg className="w-2.5 h-2.5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="4"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg></div> )}
                     </div>
-                    <div className="flex-1 min-w-0 pointer-events-none">
-                      <PlayerNameWithScore player={player} />
-                      <p className="text-[10px] text-slate-400 uppercase tracking-wider truncate mt-0.5 font-semibold">{player.spec}</p>
-                    </div>
+<div className="flex-1 min-w-0 pointer-events-none">
+  <span className="font-bold text-lg leading-tight drop-shadow-sm" style={{ color: CLASS_COLORS[player.spec] }}>{player.name}</span>
+  <span className="bg-amber-900/60 text-amber-400 text-[10px] px-1.5 py-0.5 rounded border border-amber-500/30 font-bold shadow-inner flex items-center gap-1 w-fit my-0.5">
+    <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+    {calculateScore(player.id)}
+  </span>
+  <p className="text-[10px] text-slate-400 uppercase tracking-wider truncate font-semibold">{player.spec}</p>
+</div>
                     <button onClick={(e) => { e.stopPropagation(); handleRemovePlayer(player.id); }} className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">✕</button>
                   </div>
                 ))}
@@ -1221,9 +1295,8 @@ const renderItemSlot = (slotName) => {
         {/* =========================================
             TAB: BiS & ALTERNATIVES (CHARACTER SHEET)
             ========================================= */}
-        {activeTab === 'bis' && isAuthenticated && (
-          <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
+        {activeTab === 'bis' && (
+<section className="bis-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
               <div>
                 <h2 className="text-xl font-bold text-slate-100 mb-1">Class Configuration Viewer</h2>
                 <p className="text-sm text-slate-500">View primary BiS and alternate options mapped to the paper doll interface.</p>
@@ -1233,8 +1306,8 @@ const renderItemSlot = (slotName) => {
                   <span className="text-sm font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Phase:</span>
                   <select 
                     className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[120px] focus:outline-none cursor-pointer font-bold text-sm" 
-                    value={selectedBisPhase} 
-                    onChange={e => setSelectedBisPhase(e.target.value)}
+                    value={masterItemsDbPhase} 
+                    onChange={e => setMasterItemsDbPhase(e.target.value)}
                   >
                     {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
                   </select>
@@ -1246,17 +1319,10 @@ const renderItemSlot = (slotName) => {
               </div>
             </div>
 <style>{`
-.character-slot-icon .iconlarge {
-  width: 30px !important;
-  height: 30px !important;
-  display: block !important;
-    margin-top: -15px !important;  /* shift up */
-  margin-left: -15px !important;
-}
-.character-slot-icon .iconlarge ins {
-  width: 32px !important;
-  height: 32px !important;
-}
+  .bis-tab .character-slot-icon .iconlarge {
+    margin-top: -15px !important;
+    margin-left: -15px !important;
+  }
 `}</style>
             <div className="bg-slate-950 rounded-xl border border-slate-800 p-6 lg:p-10 shadow-2xl relative overflow-hidden">
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
@@ -1352,14 +1418,31 @@ const renderItemSlot = (slotName) => {
                       </td>
                       <td className="p-3 text-slate-400 font-semibold text-center whitespace-nowrap">{item.slot}</td>
                       {SPECS.map(spec => {
-                        const itemKey = `${item.name}|${spec}`;
-                        const cellStatus = dbBisPriorities[itemKey] || '';
-                        return (
-                          <td key={spec} onClick={() => handleUpdateItemEligibility(item.name, spec, cellStatus, true)} className={`p-2 border-r border-slate-900 text-center cursor-pointer select-none font-bold uppercase text-[10px] transition-all duration-150 ${cellStatus === 'BiS' ? 'bg-emerald-950/20 text-emerald-400 border-b border-emerald-900' : cellStatus === 'Opt' ? 'bg-amber-950/20 text-amber-500 border-b border-amber-900' : 'text-slate-800 hover:bg-slate-800/30 hover:text-slate-500'}`}>
-                            {cellStatus || '-'}
-                          </td>
-                        );
-                      })}
+  const itemKey = `${item.name}|${spec}`;
+  const manualOverride = dbBisPriorities[itemKey];
+  
+  let cellStatus = manualOverride || '';
+  
+  if (!cellStatus) {
+    const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
+    const specKey = SPEC_MAPPING[spec];
+    // Check ALL entries matching this item name and spec
+const match = aggregatedBisLookup[`${item.name}|${specKey}`];
+if (match?.[phaseKey]?.bis === true) {
+      cellStatus = 'BiS';
+    }
+  }
+  
+  return (
+    <td key={spec} onClick={() => handleUpdateItemEligibility(item.name, spec, cellStatus, true)} 
+      className={`p-2 border-r border-slate-900 text-center cursor-pointer select-none font-bold uppercase text-[10px] transition-all duration-150 
+        ${cellStatus === 'BiS' ? 'bg-emerald-950/20 text-emerald-400 border-b border-emerald-900' 
+        : cellStatus === 'Opt' ? 'bg-amber-950/20 text-amber-500 border-b border-amber-900' 
+        : 'text-slate-800 hover:bg-slate-800/30 hover:text-slate-500'}`}>
+      {cellStatus || '-'}
+    </td>
+  );
+})}
                       <td className="p-3 text-center bg-slate-950 group-hover:bg-slate-900/90 transition-colors">
                         <button onClick={() => handleDeleteItemFromDb(item.name)} className="text-red-500 hover:text-red-400 font-bold px-2 py-1 transition text-[11px] uppercase tracking-wide">Delete</button>
                       </td>
