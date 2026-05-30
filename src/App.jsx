@@ -1,6 +1,16 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { doc, onSnapshot, setDoc } from 'firebase/firestore';
-import { db } from './firebase'; 
+const API = 'http://localhost:3001/api';
+const fetchData = async (endpoint) => {
+  const res = await fetch(`${API}/${endpoint}`);
+  return res.json();
+};
+const putData = async (endpoint, data) => {
+  await fetch(`${API}/${endpoint}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+}; 
 import itemsData from './items.json';
 import aggregatedBisData from './aggregated_bis_with_ids.json';
 console.log(itemsData.map(item => item.slot).filter(s => s.toLowerCase().includes("ring") || s.toLowerCase().includes("trinket"))); // Debugging slot names in source data
@@ -205,114 +215,80 @@ export default function App() {
   // ==========================================
   // 3. FIREBASE LIVE SYNC ENGINE
   // ==========================================
-  useEffect(() => {
-    const unsubs = [];
+useEffect(() => {
+  const loadAll = async () => {
+    try {
+      const phaseKey = PHASE_JSON_KEYS[globalPhase];
+      const assignmentsDocName = globalPhase === 'T5' ? 't5' : phaseKey;
+      const bisPrioritiesDocName = globalPhase === 'T5' ? 't5' : phaseKey;
 
-    const setupSync = (docName, setter, defaultVal) => {
-      const ref = doc(db, 'guildData', docName);
-      const unsub = onSnapshot(ref, (snapshot) => {
-        if (snapshot.exists()) {
-          setter(snapshot.data().data);
-        } else {
-          setDoc(ref, { data: defaultVal });
-          setter(defaultVal);
-        }
-      });
-      unsubs.push(unsub);
-    };
+      const [rosterData, assignmentsData, bisData, configData, statsData, logsData, itemsData] = await Promise.all([
+        fetchData('roster'),
+        fetchData('assignments/' + assignmentsDocName),
+        fetchData('bis-priorities/' + bisPrioritiesDocName),
+        fetchData('scoring-config'),
+        fetchData('player-stats'),
+        fetchData('raid-logs'),
+        fetchData('mutable-items'),
+      ]);
 
-    // Convert aggregated BIS data directly to mutable items format
-    const defaultItems = (() => {
-      const seen = new Set();
-      return aggregatedBisData
-      .filter(item => item && item.name && item.slot)
-      .filter(item => {
-        if (seen.has(item.name)) return false;
-        seen.add(item.name);
-        return true;
-      })
-      .map(item => {
-        return {
-          name: item.name,
-          slot: normalizeSlot(item.slot),
-          itemId: item.id || '',
-          boss: item.source_type,
-          zone: item.source,
-          drop_chance: item.drop_chance || null,
-          spec: item.spec,
-          id: item.id,
-          rarity: item.rarity,
-          source: item.source,
-          source_type: item.source_type,
-          phase: item.phase
-        };
-      });
-    })();
+      setRosterLocal(rosterData);
+      setAssignmentsLocal(assignmentsData);
+      setBisPrioritiesLocal(Object.keys(bisData).length ? bisData : initializeDefaultBisPriorities(globalPhase));
+      setScoringConfigLocal(Object.keys(configData).length ? configData : { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5, afkPenalty: 5 });
+      setPlayerStatsLocal(statsData);
+      setRaidLogsLocal(logsData);
+      setMutableItemsLocal(itemsData.length ? itemsData : (() => {
+        const seen = new Set();
+        return aggregatedBisData
+          .filter(item => item && item.name && item.slot)
+          .filter(item => { if (seen.has(item.name)) return false; seen.add(item.name); return true; })
+          .map(item => ({ name: item.name, slot: normalizeSlot(item.slot), itemId: item.id || '', boss: item.source_type, zone: item.source, drop_chance: item.drop_chance || null, spec: item.spec, id: item.id, rarity: item.rarity, source: item.source, source_type: item.source_type, phase: item.phase }));
+      })());
+      setIsDbConnected(true);
+    } catch (e) {
+      console.error('Failed to load data:', e);
+    }
+  };
 
-    setupSync('roster', setRosterLocal, []);
-    // Get assignments for the current phase
-    const phaseKey = PHASE_JSON_KEYS[globalPhase];
-    const assignmentsDocName = globalPhase === 'T5' ? 'assignments' : `assignments_${phaseKey}`;
-    setupSync(assignmentsDocName, setAssignmentsLocal, {});
-    
-    // Setup phase-specific BiS priorities (for Loot Council/overview)
-    const bisPrioritiesDocName = globalPhase === 'T5' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
-    const defaultBisPriorities = initializeDefaultBisPriorities(globalPhase);
-    setupSync(bisPrioritiesDocName, setBisPrioritiesLocal, defaultBisPriorities);
-    
-    // Added afkPenalty to default scoring sync!
-    setupSync('scoringConfig', setScoringConfigLocal, { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5, afkPenalty: 5 });
-    setupSync('playerStats', setPlayerStatsLocal, {});
-    setupSync('raidLogs', setRaidLogsLocal, []);
-    setupSync('mutableItems', setMutableItemsLocal, defaultItems);
-
-    setTimeout(() => setIsDbConnected(true), 1200);
-
-    return () => unsubs.forEach(fn => fn());
-  }, [globalPhase]);
+  loadAll();
+  const interval = setInterval(loadAll, 5000);
+  return () => clearInterval(interval);
+}, [globalPhase]);
 
   // Separate sync for Master Items DB phase selector
-  useEffect(() => {
-    const ref = doc(db, 'guildData', masterItemsDbPhase === 'T5' ? 'bisPriorities' : `bisPriorities_${PHASE_JSON_KEYS[masterItemsDbPhase]}`);
-    const defaultDbBis = initializeDefaultBisPriorities(masterItemsDbPhase);
-    const unsub = onSnapshot(ref, (snapshot) => {
-      if (snapshot.exists()) {
-        setDbBisPrioritiesLocal(snapshot.data().data);
-      } else {
-        setDoc(ref, { data: defaultDbBis });
-        setDbBisPrioritiesLocal(defaultDbBis);
-      }
-    });
-    return () => unsub();
-  }, [masterItemsDbPhase]);
+useEffect(() => {
+  const loadDbBis = async () => {
+    const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
+    const data = await fetchData('bis-priorities/' + phaseKey);
+    setDbBisPrioritiesLocal(Object.keys(data).length ? data : initializeDefaultBisPriorities(masterItemsDbPhase));
+  };
+  loadDbBis();
+}, [masterItemsDbPhase]);
 
   // ==========================================
   // 4. CLOUD WRITERS
   // ==========================================
-  const setRoster = (newVal) => { setRosterLocal(newVal); setDoc(doc(db, 'guildData', 'roster'), { data: newVal }); };
-  const setAssignments = (newVal) => { 
-    setAssignmentsLocal(newVal); 
-    const phaseKey = PHASE_JSON_KEYS[globalPhase];
-    const assignmentsDocName = globalPhase === 'T5' ? 'assignments' : `assignments_${phaseKey}`;
-    setDoc(doc(db, 'guildData', assignmentsDocName), { data: newVal }); 
-  };
-  const setBisPriorities = (newVal) => {
-    setBisPrioritiesLocal(newVal);
-    const phaseKey = PHASE_JSON_KEYS[globalPhase];
-    const bisPrioritiesDocName = globalPhase === 'T5' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
-    setDoc(doc(db, 'guildData', bisPrioritiesDocName), { data: newVal });
-  };
-  const setDbBisPriorities = (newVal) => {
-    setDbBisPrioritiesLocal(newVal);
-    const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
-    const docName = masterItemsDbPhase === 'T5' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
-    setDoc(doc(db, 'guildData', docName), { data: newVal });
-  };
-  const setScoringConfig = (newVal) => { setScoringConfigLocal(newVal); setDoc(doc(db, 'guildData', 'scoringConfig'), { data: newVal }); };
-  const setPlayerStats = (newVal) => { setPlayerStatsLocal(newVal); setDoc(doc(db, 'guildData', 'playerStats'), { data: newVal }); };
-  const setRaidLogs = (newVal) => { setRaidLogsLocal(newVal); setDoc(doc(db, 'guildData', 'raidLogs'), { data: newVal }); };
-  const setMutableItems = (newVal) => { setMutableItemsLocal(newVal); setDoc(doc(db, 'guildData', 'mutableItems'), { data: newVal }); };
-
+const setRoster = (newVal) => { setRosterLocal(newVal); putData('roster', newVal); };
+const setAssignments = (newVal) => {
+  setAssignmentsLocal(newVal);
+  const phaseKey = PHASE_JSON_KEYS[globalPhase];
+  putData('assignments/' + phaseKey, newVal);
+};
+const setBisPriorities = (newVal) => {
+  setBisPrioritiesLocal(newVal);
+  const phaseKey = PHASE_JSON_KEYS[globalPhase];
+  putData('bis-priorities/' + phaseKey, newVal);
+};
+const setDbBisPriorities = (newVal) => {
+  setDbBisPrioritiesLocal(newVal);
+  const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
+  putData('bis-priorities/' + phaseKey, newVal);
+};
+const setScoringConfig = (newVal) => { setScoringConfigLocal(newVal); putData('scoring-config', newVal); };
+const setPlayerStats = (newVal) => { setPlayerStatsLocal(newVal); putData('player-stats', newVal); };
+const setRaidLogs = (newVal) => { setRaidLogsLocal(newVal); putData('raid-logs', newVal); };
+const setMutableItems = (newVal) => { setMutableItemsLocal(newVal); putData('mutable-items', newVal); };
   // ==========================================
   // 5. WOWHEAD TOOLTIP ENGINE
   // ==========================================
