@@ -5,45 +5,16 @@ const fetchData = async (endpoint) => {
   return res.json();
 };
 const putData = async (endpoint, data) => {
-  await fetch(`${API}/${endpoint}`, {
+  const res = await fetch(`${API}/${endpoint}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   });
+  return res.json();
 }; 
 import itemsData from './items.json';
 import aggregatedBisData from './aggregated_bis_with_ids.json';
 console.log(itemsData.map(item => item.slot).filter(s => s.toLowerCase().includes("ring") || s.toLowerCase().includes("trinket"))); // Debugging slot names in source data
-
-// Spec name mapping: display name <-> hyphenated lowercase for aggregated data
-const SPEC_MAPPING = {
-  "Prot Warrior": "prot-warrior",
-  "Arms Warrior": "arms-warrior",
-  "Fury Warrior": "fury-warrior",
-  "Prot Paladin": "prot-paladin",
-  "Holy Paladin": "holy-paladin",
-  "Ret Paladin": "retribution-paladin",
-  "BM Hunter": "BM-hunter",
-  "MM Hunter": "marksmanship-hunter",
-  "Survival Hunter": "survival-hunter",
-  "Elemental Shaman": "elemental-shaman",
-  "Enhance Shaman": "enhancement-shaman",
-  "Resto Shaman": "restoration-shaman",
-  "Balance Druid": "balance-druid",
-  "Feral (Tank)": "feral-tank-druid",
-  "Feral (DPS)": "feral-dps-druid",
-  "Resto Druid": "restoration-druid",
-  "Combat Rogue": "combat-rogue",
-  "Holy Priest": "holy-priest",
-  "Discipline Priest": "holy-priest",
-  "Shadow Priest": "shadow-priest",
-  "Arcane Mage": "arcane-mage",
-  "Fire Mage": "fire-mage",
-  "Frost Mage": "frost-mage",
-  "Destro Warlock": "destruction-warlock",
-  "Demo Warlock": "demonology-warlock",
-  "Affliction Warlock": "affliction-warlock"
-}
 
 const PHASES = ["Pre-BiS", "T4", "T5", "T6", "ZA", "SWP"];
 const PHASE_JSON_KEYS = { "Pre-BiS": "pre-bis", "T4": "t4", "T5": "t5", "T6": "t6", "ZA": "za", "SWP": "swp" };
@@ -129,6 +100,81 @@ export default function App() {
   const WOWHEAD_IDS = useMemo(() => generateWowheadIds(aggregatedBisData), []);
 
   // ==========================================
+  // SPECS DATA FROM DATABASE
+  // ==========================================
+  const [specsFromDb, setSpecsFromDb] = useState([]);
+
+  // Create lookup objects for specs
+  const specsByName = useMemo(() => {
+    const lookup = {};
+    specsFromDb.forEach(spec => {
+      lookup[spec.spec] = spec;
+    });
+    return lookup;
+  }, [specsFromDb]);
+
+  const specsBySlug = useMemo(() => {
+    const lookup = {};
+    specsFromDb.forEach(spec => {
+      lookup[spec.slug] = spec;
+    });
+    return lookup;
+  }, [specsFromDb]);
+
+  // Sorted specs by class for Master Items DB
+  const specsSortedByClass = useMemo(() => {
+    return [...specsFromDb].sort((a, b) => {
+      if (a.class !== b.class) {
+        return a.class.localeCompare(b.class);
+      }
+      return a.spec.localeCompare(b.spec);
+    });
+  }, [specsFromDb]);
+
+  // Helper to get slug from display name
+  const getSlugFromDisplay = (displayName) => {
+    const spec = specsByName[displayName];
+    return spec ? spec.slug : null;
+  };
+
+  // Helper to get display name from slug
+  const getDisplayFromSlug = (slug) => {
+    const spec = specsBySlug[slug];
+    return spec ? spec.spec : null;
+  };
+
+  // Helper to get display name from spec_id
+  const getDisplayFromId = (specId) => {
+    const spec = specsFromDb.find(s => s.id === specId);
+    return spec ? spec.spec : null;
+  };
+
+  // Helper to get spec object from spec_id
+  const getSpecById = (specId) => {
+    return specsFromDb.find(s => s.id === specId);
+  };
+
+  // Fetch specs on mount
+  useEffect(() => {
+    const loadSpecs = async () => {
+      try {
+        const specs = await fetchData('specs');
+        setSpecsFromDb(specs);
+        // Set default specs to first one from database
+        if (specs.length > 0 && newSpec === null) {
+          setNewSpec(specs[0].id);
+        }
+        if (specs.length > 0 && selectedBisSpec === null) {
+          setSelectedBisSpec(specs[0].spec);
+        }
+      } catch (e) {
+        console.error('Failed to load specs:', e);
+      }
+    };
+    loadSpecs();
+  }, []);
+
+  // ==========================================
   // 1. ALL LOCAL UI AND FILTER STATES
   // ==========================================
   const [isAuthenticated, setIsAuthenticated] = useState(() => sessionStorage.getItem('ar-auth') === 'true');
@@ -143,13 +189,13 @@ export default function App() {
 
   const [isDbConnected, setIsDbConnected] = useState(false);
   const [newName, setNewName] = useState('');
-  const [newSpec, setNewSpec] = useState(SPECS[0]);
+  const [newSpec, setNewSpec] = useState(null); // spec_id from database
   const [selectedItemName, setSelectedItemName] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [filterBoss, setFilterBoss] = useState('');
   const [filterZone, setFilterZone] = useState('');
   const [filterSlot, setFilterSlot] = useState('');
-  const [selectedBisSpec, setSelectedBisSpec] = useState(SPECS[0]);
+  const [selectedBisSpec, setSelectedBisSpec] = useState(null); // Will be set to first spec from DB
   const [masterItemsDbPhase, setMasterItemsDbPhase] = useState('T5');
   const [expandedPlayerId, setExpandedPlayerId] = useState(null);
   const [newRaidDate, setNewRaidDate] = useState(new Date().toISOString().split('T')[0]);
@@ -196,13 +242,7 @@ export default function App() {
       const phaseData = item[phaseKey];
       if (phaseData && phaseData.bis === true) {
         // Convert spec from hyphenated format (e.g., "balance-druid") to display name (e.g., "Balance Druid")
-        let displaySpec = null;
-        for (const [display, hyphenated] of Object.entries(SPEC_MAPPING)) {
-          if (hyphenated === item.spec) {
-            displaySpec = display;
-            break;
-          }
-        }
+        const displaySpec = getDisplayFromSlug(item.spec);
         if (displaySpec) {
           const key = `${item.name}|${displaySpec}`;
           defaults[key] = 'BiS';
@@ -213,7 +253,7 @@ export default function App() {
   };
 
   // ==========================================
-  // 3. FIREBASE LIVE SYNC ENGINE
+  // 3. SQL SYNC ENGINE
   // ==========================================
 useEffect(() => {
   const loadAll = async () => {
@@ -269,7 +309,28 @@ useEffect(() => {
   // ==========================================
   // 4. CLOUD WRITERS
   // ==========================================
-const setRoster = (newVal) => { setRosterLocal(newVal); putData('roster', newVal); };
+const setRoster = (newVal) => { 
+  const rosterWithoutIds = newVal.map(({ id, ...rest }) => rest);
+  putData('roster', rosterWithoutIds).then(updatedRoster => {
+    // Create a mapping from old ID to new ID
+    const idMap = {};
+    updatedRoster.forEach((newPlayer, index) => {
+      if (newVal[index]) {
+        idMap[newVal[index].id] = newPlayer.id;
+      }
+    });
+    
+    // Update playerStats with new IDs
+    const updatedStats = {};
+    Object.entries(playerStats).forEach(([oldId, stats]) => {
+      const newId = idMap[oldId] || oldId;
+      updatedStats[newId] = stats;
+    });
+    
+    setRosterLocal(updatedRoster);
+    setPlayerStatsLocal(updatedStats);
+  });
+};
 const setAssignments = (newVal) => {
   setAssignmentsLocal(newVal);
   const phaseKey = PHASE_JSON_KEYS[globalPhase];
@@ -350,7 +411,7 @@ useEffect(() => {
     e.preventDefault();
     if (!newName.trim()) return;
     const newId = Date.now();
-    setRoster([...roster, { id: newId, name: newName, spec: newSpec, inRaid: true }]);
+    setRoster([...roster, { id: newId, name: newName, spec_id: newSpec, in_raid: true }]);
     setPlayerStats({ ...playerStats, [newId]: { cons: true, enchants: true, gems: true, afks: 0, parses: {} } });
     setNewName('');
   };
@@ -361,8 +422,8 @@ useEffect(() => {
     }
   };
 
-  const toggleRaidStatus = (id) => setRoster(roster.map(p => p.id === id ? { ...p, inRaid: !p.inRaid } : p));
-  const setAllRaidStatus = (status) => setRoster(roster.map(p => ({ ...p, inRaid: status })));
+  const toggleRaidStatus = (id) => setRoster(roster.map(p => p.id === id ? { ...p, in_raid: !p.in_raid } : p));
+  const setAllRaidStatus = (status) => setRoster(roster.map(p => ({ ...p, in_raid: status })));
   const handleSetPriority = (playerId, priority) => {
     setAssignments({ ...assignments, [selectedItemName]: { ...(assignments[selectedItemName] || {}), [playerId]: priority } });
   };
@@ -392,7 +453,7 @@ useEffect(() => {
 
   const handleSaveRaidLog = (e) => {
     e.preventDefault();
-    const activeRaiderIds = roster.filter(p => p.inRaid).map(p => p.id);
+    const activeRaiderIds = roster.filter(p => p.in_raid).map(p => p.id);
     setRaidLogs([{ id: Date.now(), date: newRaidDate, zone: newRaidZone, attendees: activeRaiderIds }, ...raidLogs]);
     alert(`Saved raid log for ${activeRaiderIds.length} players!`);
   };
@@ -549,7 +610,7 @@ const dbFilteredItems = useMemo(() => {
   }, [filterZone, filterBoss, mutableItems]);
 
   const selectedItem = mutableItems.find(i => i.name === selectedItemName);
-  const activeRaiders = roster.filter(p => p.inRaid);
+  const activeRaiders = roster.filter(p => p.in_raid);
   
   const sortPlayersByRank = (itemObj, playerList, assignmentData) => {
     return [...playerList].sort((a, b) => {
@@ -571,8 +632,8 @@ const dbFilteredItems = useMemo(() => {
     if (!selectedItem) return [];
     // Get eligible specs: either from bisPriorities or from the item's spec field in aggregated data
     const eligible = activeRaiders.filter(player => {
-      const specDisplay = player.spec;
-      const specKey = SPEC_MAPPING[specDisplay];
+      const specDisplay = getDisplayFromId(player.spec_id) || '?';
+      const specKey = getSlugFromDisplay(specDisplay);
       const itemKey = `${selectedItem.name}|${specDisplay}`;
       const bisStatus = bisPriorities[itemKey];
       // If explicitly set in bisPriorities, check that
@@ -581,7 +642,7 @@ const dbFilteredItems = useMemo(() => {
       return selectedItem.spec === specKey;
     });
     return sortPlayersByRank(selectedItem, eligible, assignments);
-  }, [selectedItem, activeRaiders, assignments, playerStats, scoringConfig, raidLogs, bisPriorities]);
+  }, [selectedItem, activeRaiders, assignments, playerStats, scoringConfig, raidLogs, bisPriorities, specsByName]);
 
   const getRankBadgeStyle = (rank) => {
     if (rank === 1) return "bg-gradient-to-br from-yellow-300 to-yellow-600 text-yellow-950 border border-yellow-200 shadow-[0_0_10px_rgba(253,224,71,0.6)]";
@@ -600,7 +661,7 @@ const getItemsForSlotAndSpec = (slot, spec) => {
   const isDualSlot = slot.endsWith(" 1") || slot.endsWith(" 2");
 
   const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
-  const specKey = SPEC_MAPPING[spec];
+  const specKey = getSlugFromDisplay(spec);
 
   const itemsInSlot = mutableItems.filter(i => 
     i.slot && i.slot.toLowerCase() === dataSlot
@@ -748,22 +809,25 @@ const filteredOverviewItems = useMemo(() => {
     return () => clearTimeout(timer);
   }, [filteredOverviewItems]);
 
-  const PlayerNameWithScore = ({ player }) => (
+  const PlayerNameWithScore = ({ player }) => {
+    const specDisplay = getDisplayFromId(player.spec_id) || '?';
+    return (
     <div className="flex items-center gap-2">
-      <span className="font-bold text-lg leading-tight drop-shadow-sm" style={{ color: CLASS_COLORS[player.spec] }}>{player.name}</span>
+      <span className="font-bold text-lg leading-tight drop-shadow-sm" style={{ color: specsByName[specDisplay]?.color || '#FFFFFF' }}>{player.name}</span>
       <span className="bg-amber-900/60 text-amber-400 text-[10px] px-1.5 py-0.5 rounded border border-amber-500/30 font-bold shadow-inner flex items-center gap-1">
         <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
         {calculateScore(player.id)}
       </span>
     </div>
   );
+  };
 
   // ==========================================
   // 7. RENDER SCREENS
   // ==========================================
 
   // LOADING SCREEN
-  if (!isDbConnected) {
+  if (!isDbConnected || specsFromDb.length === 0) {
     return (
       <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-amber-500 space-y-4">
         <svg className="w-12 h-12 animate-spin text-amber-500" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
@@ -1007,8 +1071,8 @@ const sortedAssignedPlayers = assignedPlayers.sort((a, b) => {
                   ) : (
                     <div className="flex flex-col gap-3">
                       {sortedEligiblePlayers.map(player => {
-                        const specDisplay = player.spec;
-                        const specKey = SPEC_MAPPING[specDisplay];
+                        const specDisplay = getDisplayFromId(player.spec_id) || '?';
+                        const specKey = getSlugFromDisplay(specDisplay);
                         const itemKey = `${selectedItem.name}|${specDisplay}`;
                         const bisPriorityStatus = bisPriorities[itemKey];
                         const status = bisPriorityStatus || (selectedItem.spec === specKey ? 'BiS' : '');
@@ -1027,11 +1091,11 @@ const playerAlts = mutableItems.filter(i => {
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shadow-inner flex-shrink-0 ${getRankBadgeStyle(currentPriority)}`}>
                                   {typeof currentPriority === 'number' ? currentPriority : (currentPriority === 'Pass' ? '✕' : '-')}
                                 </div>
-                                <img src={`/icons/${player.spec}.png`} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover flex-shrink-0" onError={(e) => { e.target.src = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg' }} />
-                                <div>
+                                <img src={getSpecById(player.spec_id)?.icon_large || 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover flex-shrink-0" />
+                                  <div>
                                   <PlayerNameWithScore player={player} />
                                   <div className="flex items-center gap-2 mt-0.5">
-                                    <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{player.spec}</span>
+                                    <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{specDisplay}</span>
                                     <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${status === 'BiS' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-sky-500/20 text-sky-400'}`}>{status}</span>
                                   </div>
                                 </div>
@@ -1051,7 +1115,7 @@ const playerAlts = mutableItems.filter(i => {
                                 <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-2 block flex items-center gap-1"><span className="text-slate-600">Alternative {selectedItem.slot} Options:</span></span>
                                 <div className="flex flex-wrap gap-2">
                                   {playerAlts.map(alt => (
-                                    <span key={alt.name} className={`text-[10px] px-2 py-1 rounded border shadow-sm flex items-center gap-1 ${alt.eligible[player.spec] === 'BiS' ? 'bg-emerald-900/30 text-emerald-400 border-emerald-800/50' : 'bg-slate-950 text-slate-400 border-slate-800'}`}>
+                                    <span key={alt.name} className={`text-[10px] px-2 py-1 rounded border shadow-sm flex items-center gap-1 ${alt.eligible[specDisplay] === 'BiS' ? 'bg-emerald-900/30 text-emerald-400 border-emerald-800/50' : 'bg-slate-950 text-slate-400 border-slate-800'}`}>
                                       {renderItemLink(alt, "")}
                                       <span className="opacity-50 text-[9px]">({alt.boss})</span>
                                     </span>
@@ -1119,8 +1183,9 @@ const playerAlts = mutableItems.filter(i => {
               </div>
               <form onSubmit={handleAddPlayer} className="flex flex-wrap items-center gap-3">
                 <input type="text" placeholder="Player Name" className="bg-slate-900 text-white placeholder-slate-500 border border-slate-700 rounded-lg px-4 py-2.5 w-full sm:w-auto focus:outline-none" value={newName} onChange={e => setNewName(e.target.value)} />
-                <select className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 w-full sm:w-auto focus:outline-none cursor-pointer" value={newSpec} onChange={e => setNewSpec(e.target.value)}>
-                  {SPECS.map(spec => <option key={spec} value={spec} style={{ color: CLASS_COLORS[spec] }}>{spec}</option>)}
+                <select className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 w-full sm:w-auto focus:outline-none cursor-pointer" value={newSpec || ''} onChange={e => setNewSpec(parseInt(e.target.value))}>
+                  <option value="">Select Spec...</option>
+                  {specsFromDb.map(spec => <option key={spec.id} value={spec.id} style={{ color: spec.color }}>{spec.spec}</option>)}
                 </select>
                 <button type="submit" className="w-full sm:w-auto bg-amber-600 hover:bg-amber-500 text-white font-bold px-6 py-2.5 rounded-lg transition shadow-lg">Add Member</button>
               </form>
@@ -1136,23 +1201,28 @@ const playerAlts = mutableItems.filter(i => {
 
             {roster.length === 0 ? ( <p className="text-center text-slate-500 py-12 border-2 border-dashed border-slate-800 rounded-xl">Your guild roster is empty.</p> ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-                {roster.map(player => (
-                  <div key={player.id} className={`group relative flex items-center gap-3 p-3 rounded-lg transition-all duration-200 border cursor-pointer ${player.inRaid ? 'bg-slate-800/80 border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.1)]' : 'bg-slate-950 border-slate-800 opacity-60 hover:opacity-100'}`} onClick={() => toggleRaidStatus(player.id)}>
+                {roster.map(player => {
+                  const specData = getSpecById(player.spec_id);
+                  const specDisplay = specData?.spec || '?';
+                  const iconUrl = specData?.icon_large || 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg';
+                  return (
+                  <div key={player.id} className={`group relative flex items-center gap-3 p-3 rounded-lg transition-all duration-200 border cursor-pointer ${player.in_raid ? 'bg-slate-800/80 border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.1)]' : 'bg-slate-950 border-slate-800 opacity-60 hover:opacity-100'}`} onClick={() => toggleRaidStatus(player.id)}>
                     <div className="relative">
-                      <img src={`/icons/${player.spec}.png`} alt="" className="w-10 h-10 rounded border border-slate-700 bg-slate-900 object-cover" onError={(e) => { e.target.src = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg' }} />
-                      {player.inRaid && ( <div className="absolute -bottom-1 -right-1 bg-emerald-500 rounded-full w-4 h-4 flex items-center justify-center border-2 border-slate-800"><svg className="w-2.5 h-2.5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="4"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg></div> )}
+                      <img src={iconUrl} alt="" className="w-10 h-10 rounded border border-slate-700 bg-slate-900 object-cover" />
+                      {player.in_raid && ( <div className="absolute -bottom-1 -right-1 bg-emerald-500 rounded-full w-4 h-4 flex items-center justify-center border-2 border-slate-800"><svg className="w-2.5 h-2.5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="4"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg></div> )}
                     </div>
 <div className="flex-1 min-w-0 pointer-events-none">
-  <span className="font-bold text-lg leading-tight drop-shadow-sm" style={{ color: CLASS_COLORS[player.spec] }}>{player.name}</span>
-  <span className="bg-amber-900/60 text-amber-400 text-[10px] px-1.5 py-0.5 rounded border border-amber-500/30 font-bold shadow-inner flex items-center gap-1 w-fit my-0.5">
+  <span className="font-bold text-lg leading-tight drop-shadow-sm" style={{ color: specsByName[specDisplay]?.color || '#FFFFFF' }}>{player.name}</span>
+  <span className="bg-amber-900/60 text-amber-400 text[10px] px-1.5 py-0.5 rounded border border-amber-500/30 font-bold shadow-inner flex items-center gap-1 w-fit my-0.5">
     <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
     {calculateScore(player.id)}
   </span>
-  <p className="text-[10px] text-slate-400 uppercase tracking-wider truncate font-semibold">{player.spec}</p>
+  <p className="text-[10px] text-slate-400 uppercase tracking-wider truncate font-semibold">{specDisplay}</p>
 </div>
                     <button onClick={(e) => { e.stopPropagation(); handleRemovePlayer(player.id); }} className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">✕</button>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </section>
@@ -1185,8 +1255,8 @@ const playerAlts = mutableItems.filter(i => {
                   <div key={player.id} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300">
                     <div className="p-4 flex items-center justify-between cursor-pointer hover:bg-slate-900 transition-colors" onClick={() => setExpandedPlayerId(isExpanded ? null : player.id)}>
                       <div className="flex items-center gap-4">
-                        <img src={`/icons/${player.spec}.png`} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover" onError={(e) => { e.target.src = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg' }} />
-                        <div><PlayerNameWithScore player={player} /><span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{player.spec}</span></div>
+                        <img src={getSpecById(player.spec_id)?.icon_large || 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover" />
+                        <div><PlayerNameWithScore player={player} /><span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{getDisplayFromId(player.spec_id)}</span></div>
                       </div>
                       <div className="text-slate-500">{isExpanded ? '▲' : '▼'}</div>
                     </div>
@@ -1289,8 +1359,8 @@ const playerAlts = mutableItems.filter(i => {
                   </select>
                 </div>
                 <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">Select Spec:</span>
-                <select className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[200px] focus:outline-none cursor-pointer font-bold style-sm" value={selectedBisSpec} onChange={e => setSelectedBisSpec(e.target.value)} style={{ color: CLASS_COLORS[selectedBisSpec] }}>
-                  {SPECS.map(spec => <option key={spec} value={spec} style={{ color: CLASS_COLORS[spec] }}>{spec}</option>)}
+                <select className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[200px] focus:outline-none cursor-pointer font-bold style-sm" value={selectedBisSpec || ''} onChange={e => setSelectedBisSpec(e.target.value)} style={{ color: specsByName[selectedBisSpec]?.color || '#FFFFFF' }}>
+                  {specsFromDb.map(spec => <option key={spec.id} value={spec.spec} style={{ color: spec.color }}>{spec.spec}</option>)}
                 </select>
               </div>
             </div>
@@ -1302,7 +1372,7 @@ const playerAlts = mutableItems.filter(i => {
 `}</style>
             <div className="bg-slate-950 rounded-xl border border-slate-800 p-6 lg:p-10 shadow-2xl relative overflow-hidden">
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
-                <img src={`/icons/${selectedBisSpec}.png`} alt="" className="w-96 h-96 object-cover filter grayscale blur-sm" onError={(e) => { e.target.style.display = 'none' }} />
+                <img src={getSpecById(specsByName[selectedBisSpec]?.id)?.icon_large || 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'} alt="" className="w-96 h-96 object-cover filter grayscale blur-sm" />
               </div>
               <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-6 max-w-5xl mx-auto">
                 <div className="flex flex-col gap-4">{LEFT_SLOTS.map(slot => renderItemSlot(slot))}</div>
@@ -1365,8 +1435,8 @@ const playerAlts = mutableItems.filter(i => {
                     <th className="p-3 min-w-[200px] sticky left-0 bg-slate-900 border-r border-slate-800 shadow-[2px_0_5px_rgba(0,0,0,0.5)]">Item & Source</th>
                     <th className="p-3 text-center">Wowhead ID</th>
                     <th className="p-3 text-center">Slot</th>
-                    {SPECS.map(spec => (
-                      <th key={spec} className="p-2 text-center text-[9px] whitespace-nowrap min-w-[85px]" style={{ color: CLASS_COLORS[spec] }}>{spec}</th>
+                    {specsSortedByClass.map(spec => (
+                      <th key={spec.id} className="p-2 text-center text-[9px] whitespace-nowrap min-w-[85px]" style={{ color: spec.color }}>{spec.spec}</th>
                     ))}
                     <th className="p-3 text-center">Actions</th>
                   </tr>
@@ -1393,15 +1463,15 @@ const playerAlts = mutableItems.filter(i => {
                         />
                       </td>
                       <td className="p-3 text-slate-400 font-semibold text-center whitespace-nowrap">{item.slot}</td>
-                      {SPECS.map(spec => {
-  const itemKey = `${item.name}|${spec}`;
+                      {specsSortedByClass.map(spec => {
+  const itemKey = `${item.name}|${spec.spec}`;
   const manualOverride = dbBisPriorities[itemKey];
   
   let cellStatus = manualOverride || '';
   
   if (!cellStatus) {
     const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
-    const specKey = SPEC_MAPPING[spec];
+    const specKey = getSlugFromDisplay(spec.spec);
     // Check ALL entries matching this item name and spec
 const match = aggregatedBisLookup[`${item.name}|${specKey}`];
 if (match?.[phaseKey]?.bis === true) {
@@ -1410,7 +1480,7 @@ if (match?.[phaseKey]?.bis === true) {
   }
   
   return (
-    <td key={spec} onClick={() => handleUpdateItemEligibility(item.name, spec, cellStatus, true)} 
+    <td key={spec.id} onClick={() => handleUpdateItemEligibility(item.name, spec.spec, cellStatus, true)} 
       className={`p-2 border-r border-slate-900 text-center cursor-pointer select-none font-bold uppercase text-[10px] transition-all duration-150 
         ${cellStatus === 'BiS' ? 'bg-emerald-950/20 text-emerald-400 border-b border-emerald-900' 
         : cellStatus === 'Opt' ? 'bg-amber-950/20 text-amber-500 border-b border-amber-900' 

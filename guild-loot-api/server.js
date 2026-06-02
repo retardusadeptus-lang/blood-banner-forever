@@ -14,8 +14,8 @@ db.pragma('foreign_keys = ON');
 // ==========================================
 app.get('/api/roster', (req, res) => {
   try {
-    const rows = db.prepare('SELECT id, name, spec, inRaid FROM roster').all();
-    const roster = rows.map(r => ({ ...r, inRaid: r.inRaid === 1 }));
+    const rows = db.prepare('SELECT id, name, spec_id, in_raid FROM roster').all();
+    const roster = rows.map(r => ({ ...r, in_raid: r.in_raid === 1 }));
     res.json(roster);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -26,9 +26,14 @@ app.put('/api/roster', (req, res) => {
   try {
     const players = req.body;
     db.prepare('DELETE FROM roster').run();
-    const insert = db.prepare('INSERT INTO roster (id, name, spec, inRaid) VALUES (?, ?, ?, ?)');
-    players.forEach(p => insert.run(p.id, p.name, p.spec, p.inRaid ? 1 : 0));
-    res.json({ ok: true });
+    const insert = db.prepare('INSERT INTO roster (name, spec_id, in_raid) VALUES (?, ?, ?)');
+    
+    const updatedRosters = players.map(p => {
+      const info = insert.run(p.name, p.spec_id, p.in_raid ? 1 : 0);
+      return { id: info.lastInsertRowid, name: p.name, spec_id: p.spec_id, in_raid: p.in_raid };
+    });
+    
+    res.json(updatedRosters);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

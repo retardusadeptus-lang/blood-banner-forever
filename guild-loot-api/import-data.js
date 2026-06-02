@@ -44,6 +44,9 @@ const specMapping = {
 };
 
 console.log('Inserting specs...');
+// Delete in correct order to respect foreign key constraints
+db.prepare('DELETE FROM items_bis').run();
+db.prepare('DELETE FROM items').run();
 db.prepare('DELETE FROM specs').run();
 const insertSpec = db.prepare('INSERT INTO specs (class, spec) VALUES (?, ?)');
 for (const [key, val] of Object.entries(specMapping)) {
@@ -68,8 +71,6 @@ console.log(`Inserted ${specRows.length} specs`);
 // STEP 2: Insert all unique items
 // ==========================================
 console.log('Inserting items...');
-db.prepare('DELETE FROM items_bis').run();
-db.prepare('DELETE FROM items').run();
 
 const insertItem = db.prepare(`
   INSERT INTO items (name, slot, source, source_type, drop_chance, rarity, wowhead_id)
