@@ -16,6 +16,7 @@ change spec id mapping so roster uses id and
 add tokens and map tier pieces to tokens & quest items (KT ring, Maggy head) - add one-to-many table, autoincrement, one to reference base item, one to reference buy item
 Map specs to spec IDs in DB to show spec in the roster addition dropdown - done
 refactor into smaller files (app & node)
+front-end - figure out a way around the short delay before wowhead icons load. Implemented because icons were going stale when changing view but it's annoying
 
 integrate warcraftlogs
 integrate wowaudit

@@ -11,19 +11,18 @@ const putData = async (endpoint, data) => {
     body: JSON.stringify(data)
   });
   return res.json();
-}; 
+};
 import itemsData from './items.json';
 import aggregatedBisData from './aggregated_bis_with_ids.json';
-console.log(itemsData.map(item => item.slot).filter(s => s.toLowerCase().includes("ring") || s.toLowerCase().includes("trinket"))); // Debugging slot names in source data
 
 const PHASES = ["Pre-BiS", "T4", "T5", "T6", "ZA", "SWP"];
 const PHASE_JSON_KEYS = { "Pre-BiS": "pre-bis", "T4": "t4", "T5": "t5", "T6": "t6", "ZA": "za", "SWP": "swp" };
 
 const SPECS = [
-  "Prot Warrior", "Arms Warrior", "Fury Warrior", "Prot Paladin", "Holy Paladin", 
-  "Ret Paladin", "BM Hunter", "MM Hunter", "Survival Hunter", "Elemental Shaman", 
-  "Enhance Shaman", "Resto Shaman", "Balance Druid", "Feral (Tank)", "Feral (DPS)", 
-  "Resto Druid", "Combat Rogue", "Holy Priest", "Discipline Priest", "Shadow Priest", 
+  "Prot Warrior", "Arms Warrior", "Fury Warrior", "Prot Paladin", "Holy Paladin",
+  "Ret Paladin", "BM Hunter", "MM Hunter", "Survival Hunter", "Elemental Shaman",
+  "Enhance Shaman", "Resto Shaman", "Balance Druid", "Feral (Tank)", "Feral (DPS)",
+  "Resto Druid", "Combat Rogue", "Holy Priest", "Discipline Priest", "Shadow Priest",
   "Arcane Mage", "Fire Mage", "Frost Mage", "Destro Warlock", "Demo Warlock", "Affliction Warlock"
 ];
 
@@ -76,28 +75,11 @@ const normalizeSlot = (slot) => {
 };
 
 const P2_BOSSES = [
-  "Hydross the Unstable", "The Lurker Below", "Leotheras the Blind", "Fathom-Lord Karathress", 
+  "Hydross the Unstable", "The Lurker Below", "Leotheras the Blind", "Fathom-Lord Karathress",
   "Morogrim Tidewalker", "Lady Vashj", "Al'ar", "Void Reaver", "High Astromancer Solarian", "Kael'thas"
 ];
 
-// Mined IDs from your uploaded CSV data!
-// Generate WowHead ID mapping dynamically from aggregatedBisData
-// Extracts unique item names and their IDs
-const generateWowheadIds = (data) => {
-  const mapping = {};
-  const seen = new Set();
-  data.forEach(item => {
-    if (item.name && item.id && !seen.has(item.name)) {
-      mapping[item.name] = String(item.id);
-      seen.add(item.name);
-    }
-  });
-  return mapping;
-};
-
 export default function App() {
-  // Generate WowHead ID mapping from aggregated data
-  const WOWHEAD_IDS = useMemo(() => generateWowheadIds(aggregatedBisData), []);
 
   // ==========================================
   // SPECS DATA FROM DATABASE
@@ -200,7 +182,7 @@ export default function App() {
   const [expandedPlayerId, setExpandedPlayerId] = useState(null);
   const [newRaidDate, setNewRaidDate] = useState(new Date().toISOString().split('T')[0]);
   const [newRaidZone, setNewRaidZone] = useState('SSC / TK');
-  
+
   // Spreadsheet States
   const [dbNewName, setDbNewName] = useState('');
   const [dbNewSlot, setDbNewSlot] = useState(LEFT_SLOTS[0]);
@@ -209,6 +191,26 @@ export default function App() {
   const [dbNewItemId, setDbNewItemId] = useState('');
   const [dbSearch, setDbSearch] = useState('');
   const [showMissingWowheadFilter, setShowMissingWowheadFilter] = useState(false);
+
+  // Bank state
+  const [bankItems, setBankItems] = useState([]);
+  const [bankRequests, setBankRequests] = useState([]);
+  const [bankFilter, setBankFilter] = useState('All');
+  const [bankSearch, setBankSearch] = useState('');
+  const [requestModalItem, setRequestModalItem] = useState(null);
+  const [requestQuantity, setRequestQuantity] = useState(1);
+  const [requestReason, setRequestReason] = useState('');
+  const [requestPlayerId, setRequestPlayerId] = useState('');
+  const [denyReason, setDenyReason] = useState('');
+  const [approvePrice, setApprovePrice] = useState('');
+  const [respondingRequestId, setRespondingRequestId] = useState(null);
+  const [bankUploadFile, setBankUploadFile] = useState(null);
+  const [bankSubFilter, setBankSubFilter] = useState('');
+  const [bankUploadParsed, setBankUploadParsed] = useState(null);
+  const [bankUploadStatus, setBankUploadStatus] = useState('');
+  const [denyCustomReason, setDenyCustomReason] = useState('');
+  const [approveQuantity, setApproveQuantity] = useState('');
+  const [approveNote, setApproveNote] = useState('');
 
   // ==========================================
   // 2. CLOUD SYNCHRONIZATION STATES
@@ -226,130 +228,115 @@ export default function App() {
   // HELPER: Initialize default BiS priorities from aggregated data
   // ==========================================
   const aggregatedBisLookup = useMemo(() => {
-  const lookup = {};
-  aggregatedBisData.forEach(item => {
-    if (!item || !item.name || !item.spec) return;
-    const key = `${item.name}|${item.spec}`;
-    if (!lookup[key]) lookup[key] = item;
-  });
-  return lookup;
-}, []);
-
-  const initializeDefaultBisPriorities = (phase) => {
-    const phaseKey = PHASE_JSON_KEYS[phase];
-    const defaults = {};
+    const lookup = {};
     aggregatedBisData.forEach(item => {
-      const phaseData = item[phaseKey];
-      if (phaseData && phaseData.bis === true) {
-        // Convert spec from hyphenated format (e.g., "balance-druid") to display name (e.g., "Balance Druid")
-        const displaySpec = getDisplayFromSlug(item.spec);
-        if (displaySpec) {
-          const key = `${item.name}|${displaySpec}`;
-          defaults[key] = 'BiS';
-        }
-      }
+      if (!item || !item.name || !item.spec) return;
+      const key = `${item.name}|${item.spec}`;
+      if (!lookup[key]) lookup[key] = item;
     });
-    return defaults;
+    return lookup;
+  }, []);
+
+  const initializeDefaultBisPriorities = async (phase) => {
+    const phaseKey = PHASE_JSON_KEYS[phase];
+    const data = await fetchData(`bis-defaults/${phaseKey}`);
+    return data;
   };
 
   // ==========================================
   // 3. SQL SYNC ENGINE
   // ==========================================
-useEffect(() => {
-  const loadAll = async () => {
-    try {
-      const phaseKey = PHASE_JSON_KEYS[globalPhase];
-      const assignmentsDocName = globalPhase === 'T5' ? 't5' : phaseKey;
-      const bisPrioritiesDocName = globalPhase === 'T5' ? 't5' : phaseKey;
+  useEffect(() => {
+    const loadAll = async () => {
+      try {
+        const phaseKey = PHASE_JSON_KEYS[globalPhase];
+        const assignmentsDocName = globalPhase === 'T5' ? 't5' : phaseKey;
+        const bisPrioritiesDocName = globalPhase === 'T5' ? 't5' : phaseKey;
 
-      const [rosterData, assignmentsData, bisData, configData, statsData, logsData, itemsData] = await Promise.all([
-        fetchData('roster'),
-        fetchData('assignments/' + assignmentsDocName),
-        fetchData('bis-priorities/' + bisPrioritiesDocName),
-        fetchData('scoring-config'),
-        fetchData('player-stats'),
-        fetchData('raid-logs'),
-        fetchData('mutable-items'),
-      ]);
+        const [rosterData, assignmentsData, bisData, configData, statsData, logsData, itemsData] = await Promise.all([
+          fetchData('roster'),
+          fetchData('assignments/' + assignmentsDocName),
+          fetchData('bis-priorities/' + bisPrioritiesDocName),
+          fetchData('scoring-config'),
+          fetchData('player-stats'),
+          fetchData('raid-logs'),
+          fetchData('mutable-items'),
+        ]);
 
-      setRosterLocal(rosterData);
-      setAssignmentsLocal(assignmentsData);
-      setBisPrioritiesLocal(Object.keys(bisData).length ? bisData : initializeDefaultBisPriorities(globalPhase));
-      setScoringConfigLocal(Object.keys(configData).length ? configData : { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5, afkPenalty: 5 });
-      setPlayerStatsLocal(statsData);
-      setRaidLogsLocal(logsData);
-      setMutableItemsLocal(itemsData.length ? itemsData : (() => {
-        const seen = new Set();
-        return aggregatedBisData
-          .filter(item => item && item.name && item.slot)
-          .filter(item => { if (seen.has(item.name)) return false; seen.add(item.name); return true; })
-          .map(item => ({ name: item.name, slot: normalizeSlot(item.slot), itemId: item.id || '', boss: item.source_type, zone: item.source, drop_chance: item.drop_chance || null, spec: item.spec, id: item.id, rarity: item.rarity, source: item.source, source_type: item.source_type, phase: item.phase }));
-      })());
-      setIsDbConnected(true);
-    } catch (e) {
-      console.error('Failed to load data:', e);
-    }
-  };
+        setRosterLocal(rosterData);
+        setAssignmentsLocal(assignmentsData);
+        const defaults = Object.keys(bisData).length ? bisData : await initializeDefaultBisPriorities(globalPhase);
+        setBisPrioritiesLocal(defaults);
+        setScoringConfigLocal(Object.keys(configData).length ? configData : { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5, afkPenalty: 5 });
+        setPlayerStatsLocal(statsData);
+        setRaidLogsLocal(logsData);
+        setMutableItemsLocal(itemsData);
+        setIsDbConnected(true);
+      } catch (e) {
+        console.error('Failed to load data:', e);
+      }
+    };
 
-  loadAll();
-  const interval = setInterval(loadAll, 5000);
-  return () => clearInterval(interval);
-}, [globalPhase]);
+    loadAll();
+    const interval = setInterval(loadAll, 5000);
+    return () => clearInterval(interval);
+  }, [globalPhase]);
 
   // Separate sync for Master Items DB phase selector
-useEffect(() => {
-  const loadDbBis = async () => {
-    const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
-    const data = await fetchData('bis-priorities/' + phaseKey);
-    setDbBisPrioritiesLocal(Object.keys(data).length ? data : initializeDefaultBisPriorities(masterItemsDbPhase));
-  };
-  loadDbBis();
-}, [masterItemsDbPhase]);
+  useEffect(() => {
+    const loadDbBis = async () => {
+      const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
+      const data = await fetchData('bis-priorities/' + phaseKey);
+      const dbDefaults = Object.keys(data).length ? data : await initializeDefaultBisPriorities(masterItemsDbPhase);
+      setDbBisPrioritiesLocal(dbDefaults);
+    };
+    loadDbBis();
+  }, [masterItemsDbPhase]);
 
   // ==========================================
   // 4. CLOUD WRITERS
   // ==========================================
-const setRoster = (newVal) => { 
-  const rosterWithoutIds = newVal.map(({ id, ...rest }) => rest);
-  putData('roster', rosterWithoutIds).then(updatedRoster => {
-    // Create a mapping from old ID to new ID
-    const idMap = {};
-    updatedRoster.forEach((newPlayer, index) => {
-      if (newVal[index]) {
-        idMap[newVal[index].id] = newPlayer.id;
-      }
+  const setRoster = (newVal) => {
+    const rosterWithoutIds = newVal.map(({ id, ...rest }) => rest);
+    putData('roster', rosterWithoutIds).then(updatedRoster => {
+      // Create a mapping from old ID to new ID
+      const idMap = {};
+      updatedRoster.forEach((newPlayer, index) => {
+        if (newVal[index]) {
+          idMap[newVal[index].id] = newPlayer.id;
+        }
+      });
+
+      // Update playerStats with new IDs
+      const updatedStats = {};
+      Object.entries(playerStats).forEach(([oldId, stats]) => {
+        const newId = idMap[oldId] || oldId;
+        updatedStats[newId] = stats;
+      });
+
+      setRosterLocal(updatedRoster);
+      setPlayerStatsLocal(updatedStats);
     });
-    
-    // Update playerStats with new IDs
-    const updatedStats = {};
-    Object.entries(playerStats).forEach(([oldId, stats]) => {
-      const newId = idMap[oldId] || oldId;
-      updatedStats[newId] = stats;
-    });
-    
-    setRosterLocal(updatedRoster);
-    setPlayerStatsLocal(updatedStats);
-  });
-};
-const setAssignments = (newVal) => {
-  setAssignmentsLocal(newVal);
-  const phaseKey = PHASE_JSON_KEYS[globalPhase];
-  putData('assignments/' + phaseKey, newVal);
-};
-const setBisPriorities = (newVal) => {
-  setBisPrioritiesLocal(newVal);
-  const phaseKey = PHASE_JSON_KEYS[globalPhase];
-  putData('bis-priorities/' + phaseKey, newVal);
-};
-const setDbBisPriorities = (newVal) => {
-  setDbBisPrioritiesLocal(newVal);
-  const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
-  putData('bis-priorities/' + phaseKey, newVal);
-};
-const setScoringConfig = (newVal) => { setScoringConfigLocal(newVal); putData('scoring-config', newVal); };
-const setPlayerStats = (newVal) => { setPlayerStatsLocal(newVal); putData('player-stats', newVal); };
-const setRaidLogs = (newVal) => { setRaidLogsLocal(newVal); putData('raid-logs', newVal); };
-const setMutableItems = (newVal) => { setMutableItemsLocal(newVal); putData('mutable-items', newVal); };
+  };
+  const setAssignments = (newVal) => {
+    setAssignmentsLocal(newVal);
+    const phaseKey = PHASE_JSON_KEYS[globalPhase];
+    putData('assignments/' + phaseKey, newVal);
+  };
+  const setBisPriorities = (newVal) => {
+    setBisPrioritiesLocal(newVal);
+    const phaseKey = PHASE_JSON_KEYS[globalPhase];
+    putData('bis-priorities/' + phaseKey, newVal);
+  };
+  const setDbBisPriorities = (newVal) => {
+    setDbBisPrioritiesLocal(newVal);
+    const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
+    putData('bis-priorities/' + phaseKey, newVal);
+  };
+  const setScoringConfig = (newVal) => { setScoringConfigLocal(newVal); putData('scoring-config', newVal); };
+  const setPlayerStats = (newVal) => { setPlayerStatsLocal(newVal); putData('player-stats', newVal); };
+  const setRaidLogs = (newVal) => { setRaidLogsLocal(newVal); putData('raid-logs', newVal); };
+  const setMutableItems = (newVal) => { setMutableItemsLocal(newVal); putData('mutable-items', newVal); };
   // ==========================================
   // 5. WOWHEAD TOOLTIP ENGINE
   // ==========================================
@@ -360,14 +347,14 @@ const setMutableItems = (newVal) => { setMutableItemsLocal(newVal); putData('mut
     if (window.$WowheadPower && window.$WowheadPower.hideTooltip) { window.$WowheadPower.hideTooltip(); }
   }, [activeTab, filterBoss, filterZone, filterSlot, searchQuery, dbSearch, overviewSearch]);
 
-useEffect(() => {
-  const timer = setTimeout(() => {
-    if (window.$WowheadPower && window.$WowheadPower.refreshLinks) { 
-      window.$WowheadPower.refreshLinks();
-    }
-  }, 300);
-  return () => clearTimeout(timer);
-}, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, overviewSearch, selectedBisSpec]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (window.$WowheadPower && window.$WowheadPower.refreshLinks) {
+        window.$WowheadPower.refreshLinks();
+      }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, overviewSearch, selectedBisSpec]);
 
 
   const hideWowheadTooltip = () => {
@@ -375,7 +362,7 @@ useEffect(() => {
   };
 
   const renderItemLink = (item, className = "") => {
-    const url = item.itemId 
+    const url = item.itemId
       ? `https://www.wowhead.com/tbc/item=${item.itemId}`
       : `https://www.wowhead.com/tbc/search?q=${encodeURIComponent(item.name)}`;
 
@@ -417,7 +404,7 @@ useEffect(() => {
   };
 
   const handleRemovePlayer = (id) => {
-    if(window.confirm("Are you sure you want to permanently delete this player?")) {
+    if (window.confirm("Are you sure you want to permanently delete this player?")) {
       setRoster(roster.filter(p => p.id !== id));
     }
   };
@@ -438,7 +425,7 @@ useEffect(() => {
     const stats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {}, manualAdjustment: { value: 0, note: '' } };
     let parseSum = 0; let parseCount = 0;
     Object.values(stats.parses || {}).forEach(p => {
-        if (p && p.val) { parseSum += Number(p.val) * (p.support ? Number(scoringConfig.supportMulti) : 1); parseCount++; }
+      if (p && p.val) { parseSum += Number(p.val) * (p.support ? Number(scoringConfig.supportMulti) : 1); parseCount++; }
     });
     const avgParse = parseCount > 0 ? parseSum / parseCount : 0;
     const cons = stats.cons ? Number(scoringConfig.consBonus) : 0;
@@ -459,7 +446,7 @@ useEffect(() => {
   };
 
   const handleDeleteRaidLog = (logId) => {
-    if(window.confirm("Delete this raid log?")) setRaidLogs(raidLogs.filter(log => log.id !== logId));
+    if (window.confirm("Delete this raid log?")) setRaidLogs(raidLogs.filter(log => log.id !== logId));
   };
 
   const updatePlayerStat = (playerId, field, value) => {
@@ -482,7 +469,7 @@ useEffect(() => {
   const handleAddItemToDb = (e) => {
     e.preventDefault();
     if (!dbNewName.trim()) return;
-    
+
     if (mutableItems.some(i => i.name.toLowerCase() === dbNewName.trim().toLowerCase())) {
       alert("An item with that name already exists in the database!");
       return;
@@ -502,7 +489,7 @@ useEffect(() => {
   const handleUpdateItemEligibility = (itemName, spec, currentStatus, useDbPhase = false) => {
     // Get the key for this item-spec combination
     const itemKey = `${itemName}|${spec}`;
-    
+
     let nextStatus = '';
     if (currentStatus === '') nextStatus = 'BiS';
     else if (currentStatus === 'BiS') nextStatus = 'Opt';
@@ -515,7 +502,7 @@ useEffect(() => {
     } else {
       delete newBisPriorities[itemKey];
     }
-    
+
     if (useDbPhase) {
       setDbBisPriorities(newBisPriorities);
     } else {
@@ -524,7 +511,7 @@ useEffect(() => {
   };
 
   const handleUpdateItemId = (itemName, newId) => {
-    setMutableItems(mutableItems.map(item => 
+    setMutableItems(mutableItems.map(item =>
       item.name === itemName ? { ...item, itemId: newId } : item
     ));
   };
@@ -536,43 +523,139 @@ useEffect(() => {
     }
   };
 
-const clearDatabaseCache = () => {
+  const handleSubmitBankRequest = async () => {
+    if (!requestPlayerId || !requestModalItem) return;
+    try {
+      await fetch(`${API}/bank-requests`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          player_id: parseInt(requestPlayerId),
+          item_wowhead_id: requestModalItem.item_wowhead_id,
+          item_name: requestModalItem.name,
+          quantity: requestQuantity,
+          reason: requestReason
+        })
+      });
+      setRequestModalItem(null);
+      setRequestQuantity(1);
+      setRequestReason('');
+      alert('Request submitted!');
+    } catch (e) {
+      alert('Failed to submit request.');
+    }
+  };
+
+  const handleResolveBankRequest = async (id, status, price, note, approvedQuantity) => {
+    try {
+      await fetch(`${API}/bank-requests/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status, price, officer_note: note, approved_quantity: approvedQuantity })
+      });
+      const requests = await fetchData('bank-requests');
+      setBankRequests(requests);
+      setRespondingRequestId(null);
+      setApprovePrice('');
+      setApproveQuantity('');
+      setApproveNote('');
+      setDenyReason('');
+      setDenyCustomReason('');
+    } catch (e) {
+      alert('Failed to resolve request.');
+    }
+  };
+
+  const CATEGORY_MAP = {
+    'Consumable': 'Consumable',
+    'Trade Goods': 'Materials',
+    'Item Enhancement': 'Materials',
+    'Gem': 'Materials',
+    'Armor': 'Gear',
+    'Weapon': 'Gear',
+    'Recipe': 'Recipe'
+  };
+
+  const handleBankFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      const text = evt.target.result;
+      const parsed = [];
+
+      const idRegex = /\[(\d+)\]\s*=\s*\{/g;
+      let match;
+
+      while ((match = idRegex.exec(text)) !== null) {
+        const id = match[1];
+        const restOfFile = text.substring(match.index);
+        const closingBracket = restOfFile.indexOf('},');
+        const itemDataStr = restOfFile.substring(0, closingBracket);
+
+        const countMatch = itemDataStr.match(/\["count"\]\s*=\s*(\d+)/);
+        const count = countMatch ? parseInt(countMatch[1]) : 1;
+
+        const nameMatch = itemDataStr.match(/\["name"\]\s*=\s*"([^"]+)"/);
+        const name = nameMatch ? nameMatch[1] : 'Unknown Item';
+
+        const catMatch = itemDataStr.match(/\["category"\]\s*=\s*"([^"]+)"/);
+        const rawCat = catMatch ? catMatch[1] : 'Misc';
+        const cleanCat = CATEGORY_MAP[rawCat] || 'Misc';
+
+        const subTypeMatch = itemDataStr.match(/\["subtype"\]\s*=\s*"([^"]+)"/);
+        const subType = subTypeMatch ? subTypeMatch[1] : '';
+
+        parsed.push({
+          item_wowhead_id: parseInt(id),
+          count,
+          name,
+          category: cleanCat,
+          sub_type: subType
+        });
+      }
+
+      if (parsed.length === 0) {
+        setBankUploadStatus('⚠️ Found 0 items. Check your Lua file.');
+        setBankUploadParsed(null);
+      } else {
+        setBankUploadStatus(`✅ Loaded ${parsed.length} items. Click Save to update the bank.`);
+        setBankUploadParsed(parsed);
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  const handleSaveBankUpload = async () => {
+    if (!bankUploadParsed) return;
+    setBankUploadStatus('Uploading...');
+    try {
+      const res = await fetch(`${API}/bank-items`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bankUploadParsed)
+      });
+      const data = await res.json();
+      setBankUploadStatus(`✅ Bank updated with ${data.count} items! Discord notified.`);
+      setBankUploadParsed(null);
+      const items = await fetchData('bank-items');
+      setBankItems(items);
+    } catch (e) {
+      setBankUploadStatus('❌ Error uploading.');
+    }
+  };
+
+  const clearDatabaseCache = () => {
     // Replaced window.confirm with window.prompt to ask for the password
     const pwd = window.prompt("WARNING: Doing this will wipe the cloud items database and reset it to default mappings from aggregated BiS data. Enter the officer password to confirm:");
-    
+
     // Check if the entered password matches
     if (pwd === 'DELETE') {
-const defaultItems = (() => {
-  const seen = new Set();
-  return aggregatedBisData
-    .filter(item => item && item.name && item.slot)
-    .filter(item => {
-      if (seen.has(item.name)) return false;
-      seen.add(item.name);
-      return true;
-    })
-    .map(item => {
-      return {
-        name: item.name,
-        slot: normalizeSlot(item.slot),
-        itemId: item.id || '',
-        boss: item.source_type,
-        zone: item.source,
-        drop_chance: item.drop_chance || null,
-        spec: item.spec,
-        id: item.id,
-        rarity: item.rarity,
-        source: item.source,
-        source_type: item.source_type,
-        phase: item.phase
-      };
-    });
-})();
-      
-      setMutableItems(defaultItems);
+      setMutableItems([]);
       setBisPriorities({});
       alert("Database successfully reset to defaults.");
-      
+
     } else if (pwd !== null) {
       // If they typed the wrong password (and didn't just click 'Cancel')
       alert("Incorrect password. Database reset aborted.");
@@ -588,21 +671,21 @@ const defaultItems = (() => {
   }, [mutableItems, filterZone]);
   const uniqueSlots = useMemo(() => [...new Set(mutableItems.map(i => i.slot))].sort(), [mutableItems]);
 
-const filteredItems = mutableItems.filter(item => {
-  if (!item || !item.name) return false;
-  const matchSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+  const filteredItems = mutableItems.filter(item => {
+    if (!item || !item.name) return false;
+    const matchSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchBoss = filterBoss === '' || item.boss === filterBoss;
     const matchZone = filterZone === '' || item.zone === filterZone;
     const matchSlot = filterSlot === '' || item.slot === filterSlot;
     return matchSearch && matchBoss && matchZone && matchSlot;
   });
 
-const dbFilteredItems = useMemo(() => {
-  let items = mutableItems.filter(item => item && item.name && item.name.toLowerCase().includes(dbSearch.toLowerCase()));
+  const dbFilteredItems = useMemo(() => {
+    let items = mutableItems.filter(item => item && item.name && item.name.toLowerCase().includes(dbSearch.toLowerCase()));
     if (showMissingWowheadFilter) {
       items = items.filter(item => !item.itemId || item.itemId.trim() === '');
     }
-    return items.sort((a,b) => a.name.localeCompare(b.name));
+    return items.sort((a, b) => a.name.localeCompare(b.name));
   }, [mutableItems, dbSearch, showMissingWowheadFilter]);
 
   useEffect(() => {
@@ -611,7 +694,7 @@ const dbFilteredItems = useMemo(() => {
 
   const selectedItem = mutableItems.find(i => i.name === selectedItemName);
   const activeRaiders = roster.filter(p => p.in_raid);
-  
+
   const sortPlayersByRank = (itemObj, playerList, assignmentData) => {
     return [...playerList].sort((a, b) => {
       const rankA = assignmentData[itemObj.name]?.[a.id];
@@ -653,143 +736,143 @@ const dbFilteredItems = useMemo(() => {
     return "bg-slate-900 text-slate-500 border border-slate-800 border-dashed";
   };
 
-const getItemsForSlotAndSpec = (slot, spec) => {
-  const dataSlot = slot === "Ring 1" || slot === "Ring 2" ? "ring"
-                 : slot === "Trinket 1" || slot === "Trinket 2" ? "trinket"
-                 : slot.toLowerCase();
-  const slotIndex = slot === "Ring 2" || slot === "Trinket 2" ? 1 : 0;
-  const isDualSlot = slot.endsWith(" 1") || slot.endsWith(" 2");
+  const getItemsForSlotAndSpec = (slot, spec) => {
+    const dataSlot = slot === "Ring 1" || slot === "Ring 2" ? "ring"
+      : slot === "Trinket 1" || slot === "Trinket 2" ? "trinket"
+        : slot.toLowerCase();
+    const slotIndex = slot === "Ring 2" || slot === "Trinket 2" ? 1 : 0;
+    const isDualSlot = slot.endsWith(" 1") || slot.endsWith(" 2");
 
-  const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
-  const specKey = getSlugFromDisplay(spec);
+    const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
+    const specKey = getSlugFromDisplay(spec);
 
-  const itemsInSlot = mutableItems.filter(i => 
-    i.slot && i.slot.toLowerCase() === dataSlot
-  );
+    const itemsInSlot = mutableItems.filter(i =>
+      i.slot && i.slot.toLowerCase() === dataSlot
+    );
 
-  const bis = itemsInSlot.filter(item => {
-    const itemKey = `${item.name}|${spec}`;
-    const manualOverride = dbBisPriorities[itemKey];
-    if (manualOverride === 'BiS') return true;
-    if (manualOverride === 'Opt' || manualOverride === '') return false;
-    // Check ALL aggregated entries for this item name
-const match = aggregatedBisLookup[`${item.name}|${specKey}`];
-return match?.[phaseKey]?.bis === true;
-  });
+    const bis = itemsInSlot.filter(item => {
+      const itemKey = `${item.name}|${spec}`;
+      const manualOverride = dbBisPriorities[itemKey];
+      if (manualOverride === 'BiS') return true;
+      if (manualOverride === 'Opt' || manualOverride === '') return false;
+      // Check ALL aggregated entries for this item name
+      const match = aggregatedBisLookup[`${item.name}|${specKey}`];
+      return match?.[phaseKey]?.bis === true;
+    });
 
-  const opt = itemsInSlot.filter(item => {
-    const itemKey = `${item.name}|${spec}`;
-    const manualOverride = dbBisPriorities[itemKey];
-    if (manualOverride === 'Opt') return true;
-    if (manualOverride === 'BiS' || manualOverride === '') return false;
-    return item.eligible && item.eligible[spec] === 'Opt';
-  });
+    const opt = itemsInSlot.filter(item => {
+      const itemKey = `${item.name}|${spec}`;
+      const manualOverride = dbBisPriorities[itemKey];
+      if (manualOverride === 'Opt') return true;
+      if (manualOverride === 'BiS' || manualOverride === '') return false;
+      return item.eligible && item.eligible[spec] === 'Opt';
+    });
 
-  if (isDualSlot) {
-    const bisForThisSlot = bis[slotIndex] ? [bis[slotIndex]] : [];
-    const optForThisSlot = slotIndex === 0 && bis.length <= 1 ? opt
-                         : slotIndex === 1 && bis.length >= 2 ? opt
-                         : slotIndex === 1 && bis.length < 2 ? [...bis.slice(1), ...opt]
-                         : [];
-    return { bis: bisForThisSlot, opt: optForThisSlot };
-  }
+    if (isDualSlot) {
+      const bisForThisSlot = bis[slotIndex] ? [bis[slotIndex]] : [];
+      const optForThisSlot = slotIndex === 0 && bis.length <= 1 ? opt
+        : slotIndex === 1 && bis.length >= 2 ? opt
+          : slotIndex === 1 && bis.length < 2 ? [...bis.slice(1), ...opt]
+            : [];
+      return { bis: bisForThisSlot, opt: optForThisSlot };
+    }
 
-  return { bis, opt };
-};
+    return { bis, opt };
+  };
 
-const renderItemSlot = (slotName) => {
-  const { bis, opt } = getItemsForSlotAndSpec(slotName, selectedBisSpec);
-  const isBottomSlot = BOTTOM_SLOTS.includes(slotName);
+  const renderItemSlot = (slotName) => {
+    const { bis, opt } = getItemsForSlotAndSpec(slotName, selectedBisSpec);
+    const isBottomSlot = BOTTOM_SLOTS.includes(slotName);
 
-  // For dual slots, hide the second slot entirely if there's no second item
-  const isDualSecond = slotName === "Ring 2" || slotName === "Trinket 2";
-  if (isDualSecond && bis.length === 0 && opt.length === 0) return null;
+    // For dual slots, hide the second slot entirely if there's no second item
+    const isDualSecond = slotName === "Ring 2" || slotName === "Trinket 2";
+    if (isDualSecond && bis.length === 0 && opt.length === 0) return null;
 
-  if (bis.length === 0 && opt.length === 0 && !BOTTOM_SLOTS.includes(slotName)) {
+    if (bis.length === 0 && opt.length === 0 && !BOTTOM_SLOTS.includes(slotName)) {
+      return (
+        <div key={slotName} className="flex gap-3 bg-slate-900/40 border border-slate-800/50 p-2.5 rounded-lg opacity-50">
+          <div className="w-10 h-10 rounded bg-slate-950 border border-slate-800 flex-shrink-0"></div>
+          <div className="flex flex-col justify-center">
+            <span className="text-xs text-slate-600 font-bold uppercase tracking-wider">{slotName}</span>
+            <span className="text-sm text-slate-700 font-medium">No items found</span>
+          </div>
+        </div>
+      );
+    }
+    if (bis.length === 0 && opt.length === 0) return null;
+
     return (
-      <div key={slotName} className="flex gap-3 bg-slate-900/40 border border-slate-800/50 p-2.5 rounded-lg opacity-50">
-        <div className="w-10 h-10 rounded bg-slate-950 border border-slate-800 flex-shrink-0"></div>
-        <div className="flex flex-col justify-center">
-          <span className="text-xs text-slate-600 font-bold uppercase tracking-wider">{slotName}</span>
-          <span className="text-sm text-slate-700 font-medium">No items found</span>
+      <div key={slotName} className="flex gap-3 bg-slate-900 border border-slate-700 hover:border-slate-500 p-2.5 rounded-lg transition-colors shadow-sm">
+        <div key={`${slotName}-${selectedBisSpec}`} className="w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex-shrink-0 flex items-center justify-center relative shadow-inner overflow-hidden character-slot-icon">
+          {bis.length > 0 && bis[0].itemId ? (
+            <a
+              href={`https://tbc.wowhead.com/item=${bis[0].itemId}`}
+              data-wh-rename-link="false"
+              data-wh-icon-size="large"
+              className="item-link"
+              target="_blank"
+              rel="noreferrer"
+              onMouseLeave={hideWowheadTooltip}
+            />
+          ) : (
+            <>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent"></div>
+              <span className="text-[9px] font-bold text-slate-500 uppercase z-10 rotate-45 opacity-30">{slotName}</span>
+            </>
+          )}
+        </div>
+
+        <div className="flex flex-col min-w-0 justify-center">
+          <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">{slotName}</span>
+          {bis.length > 0 ? (
+            bis.map(i => (
+              <div key={i.name} className="flex flex-col">
+                {renderItemLink(i, "text-sm font-bold text-purple-400 drop-shadow-sm leading-tight")}
+                <div className="flex gap-2 flex-wrap">
+                  <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
+                  {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
+                </div>
+              </div>
+            ))
+          ) : (<span className="text-sm font-bold text-slate-500 italic leading-tight">No primary BiS</span>)}
+          {opt.length > 0 && (
+            <div className="mt-1 flex flex-col gap-y-1">
+              {opt.map(i => (
+                <div key={i.name} className="flex flex-col">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-[10px] text-amber-500/70 font-semibold uppercase flex-shrink-0">Alt:</span>
+                    {renderItemLink(i, "text-[10px] text-slate-400 truncate max-w-[150px]")}
+                    {!isBottomSlot && <span className="text-[10px] text-amber-500/70 font-semibold whitespace-nowrap">{i.boss}</span>}
+                  </div>
+                  {isBottomSlot && (
+                    <div className="flex gap-2 pl-6">
+                      <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
+                      {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );
-  }
-  if (bis.length === 0 && opt.length === 0) return null;
+  };
 
-  return (
-    <div key={slotName} className="flex gap-3 bg-slate-900 border border-slate-700 hover:border-slate-500 p-2.5 rounded-lg transition-colors shadow-sm">
-      <div key={`${slotName}-${selectedBisSpec}`} className="w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex-shrink-0 flex items-center justify-center relative shadow-inner overflow-hidden character-slot-icon">
-        {bis.length > 0 && bis[0].itemId ? (
-          <a 
-            href={`https://tbc.wowhead.com/item=${bis[0].itemId}`} 
-            data-wh-rename-link="false" 
-            data-wh-icon-size="large"
-            className="item-link"
-            target="_blank"
-            rel="noreferrer"
-            onMouseLeave={hideWowheadTooltip}
-          />
-        ) : (
-          <>
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent"></div>
-            <span className="text-[9px] font-bold text-slate-500 uppercase z-10 rotate-45 opacity-30">{slotName}</span>
-          </>
-        )}
-      </div>
-
-      <div className="flex flex-col min-w-0 justify-center">
-        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">{slotName}</span>
-{bis.length > 0 ? (
-  bis.map(i => (
-    <div key={i.name} className="flex flex-col">
-      {renderItemLink(i, "text-sm font-bold text-purple-400 drop-shadow-sm leading-tight")}
-      <div className="flex gap-2 flex-wrap">
-        <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
-        {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
-      </div>
-    </div>
-  ))
-) : ( <span className="text-sm font-bold text-slate-500 italic leading-tight">No primary BiS</span> )}
-{opt.length > 0 && (
-  <div className="mt-1 flex flex-col gap-y-1">
-    {opt.map(i => (
-      <div key={i.name} className="flex flex-col">
-        <div className="flex items-baseline gap-2">
-          <span className="text-[10px] text-amber-500/70 font-semibold uppercase flex-shrink-0">Alt:</span>
-          {renderItemLink(i, "text-[10px] text-slate-400 truncate max-w-[150px]")}
-          {!isBottomSlot && <span className="text-[10px] text-amber-500/70 font-semibold whitespace-nowrap">{i.boss}</span>}
-        </div>
-        {isBottomSlot && (
-          <div className="flex gap-2 pl-6">
-            <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
-            {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
-          </div>
-        )}
-      </div>
-    ))}
-  </div>
-)}
-      </div>
-    </div>
-  );
-};
-
-const filteredOverviewItems = useMemo(() => {
-  let items = mutableItems.filter(item => {
-    if (!item || !item.name) return false;  // add this line
-    const itemAssignments = assignments[item.name];
-    if (!itemAssignments) return false;
-    return Object.values(itemAssignments).some(rank => rank !== null && rank !== undefined);
-  });
+  const filteredOverviewItems = useMemo(() => {
+    let items = mutableItems.filter(item => {
+      if (!item || !item.name) return false;  // add this line
+      const itemAssignments = assignments[item.name];
+      if (!itemAssignments) return false;
+      return Object.values(itemAssignments).some(rank => rank !== null && rank !== undefined);
+    });
 
     // 2. Then apply the search filter (item name OR player name)
     if (overviewSearch.trim() !== '') {
       const term = overviewSearch.toLowerCase();
       items = items.filter(item => {
         if (item.name.toLowerCase().includes(term)) return true;
-        
+
         const assignedPlayerIds = Object.keys(assignments[item.name] || {}).filter(id => assignments[item.name][id] !== null);
         const assignedPlayers = roster.filter(p => assignedPlayerIds.includes(String(p.id)));
         return assignedPlayers.some(p => p.name.toLowerCase().includes(term));
@@ -797,7 +880,7 @@ const filteredOverviewItems = useMemo(() => {
     }
 
     return items;
-}, [mutableItems, assignments, roster, overviewSearch]);
+  }, [mutableItems, assignments, roster, overviewSearch]);
 
   useEffect(() => {
     if (activeTab !== 'overview') return;
@@ -809,17 +892,35 @@ const filteredOverviewItems = useMemo(() => {
     return () => clearTimeout(timer);
   }, [filteredOverviewItems]);
 
+  useEffect(() => {
+    const loadBankData = async () => {
+      try {
+        const items = await fetchData('bank-items');
+        setBankItems(items);
+        if (isAuthenticated) {
+          const requests = await fetchData('bank-requests');
+          setBankRequests(requests);
+        }
+      } catch (e) {
+        console.error('Failed to load bank data:', e);
+      }
+    };
+    loadBankData();
+    const interval = setInterval(loadBankData, 10000);
+    return () => clearInterval(interval);
+  }, [isAuthenticated]);
+
   const PlayerNameWithScore = ({ player }) => {
     const specDisplay = getDisplayFromId(player.spec_id) || '?';
     return (
-    <div className="flex items-center gap-2">
-      <span className="font-bold text-lg leading-tight drop-shadow-sm" style={{ color: specsByName[specDisplay]?.color || '#FFFFFF' }}>{player.name}</span>
-      <span className="bg-amber-900/60 text-amber-400 text-[10px] px-1.5 py-0.5 rounded border border-amber-500/30 font-bold shadow-inner flex items-center gap-1">
-        <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-        {calculateScore(player.id)}
-      </span>
-    </div>
-  );
+      <div className="flex items-center gap-2">
+        <span className="font-bold text-lg leading-tight drop-shadow-sm" style={{ color: specsByName[specDisplay]?.color || '#FFFFFF' }}>{player.name}</span>
+        <span className="bg-amber-900/60 text-amber-400 text-[10px] px-1.5 py-0.5 rounded border border-amber-500/30 font-bold shadow-inner flex items-center gap-1">
+          <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+          {calculateScore(player.id)}
+        </span>
+      </div>
+    );
   };
 
   // ==========================================
@@ -838,8 +939,8 @@ const filteredOverviewItems = useMemo(() => {
 
   // MAIN DASHBOARD
   return (
-<div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-amber-500/30">
-<style>{`
+    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-amber-500/30">
+      <style>{`
         .character-slot-icon .iconlarge {
           width: 30px !important;
           height: 30px !important;
@@ -854,25 +955,25 @@ const filteredOverviewItems = useMemo(() => {
           margin-left: -4px !important;
         }
       `}</style>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
-        
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
+
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600 tracking-tight font-serif italic drop-shadow-sm">
               &lt;Guild Name TBC&gt;
             </h1>
             <p className="text-slate-400 mt-2 font-medium uppercase tracking-widest text-sm flex items-center gap-2">
-              TBC Priority Assignment Dashboard 
+              TBC Priority Assignment Dashboard
               <span className="bg-emerald-500/20 text-emerald-400 text-[10px] px-2 py-0.5 rounded border border-emerald-500/30 font-bold shadow-inner">CLOUD SYNC LIVE</span>
             </p>
           </div>
-          
+
           <div className="flex items-center gap-4">
             {isAuthenticated && (
               <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 p-2.5 rounded-lg">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Current Phase:</span>
-                <select 
-                  value={globalPhase} 
+                <select
+                  value={globalPhase}
                   onChange={e => setGlobalPhase(e.target.value)}
                   className="bg-slate-950 text-amber-400 font-bold border border-slate-700 rounded px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                 >
@@ -886,12 +987,12 @@ const filteredOverviewItems = useMemo(() => {
               </button>
             ) : (
               <form onSubmit={handleLogin} className="flex gap-2 items-center bg-slate-900 border border-slate-800 p-1.5 rounded-lg shadow-inner">
-                <input 
-                  type="password" 
-                  value={passwordInput} 
-                  onChange={(e) => setPasswordInput(e.target.value)} 
-                  className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 tracking-widest w-40" 
-                  placeholder="Officer Password" 
+                <input
+                  type="password"
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                  className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 tracking-widest w-40"
+                  placeholder="Officer Password"
                 />
                 <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-1.5 px-3 rounded transition shadow-lg tracking-wider uppercase text-[10px]">
                   Unlock
@@ -905,10 +1006,11 @@ const filteredOverviewItems = useMemo(() => {
         <div className="flex overflow-x-auto gap-2 border-b border-slate-800 pb-px custom-scrollbar">
           <button onClick={() => setActiveTab('overview')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'overview' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Priority Overview</button>
           <button onClick={() => setActiveTab('bis')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bis' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>BiS Config</button>
-
+          <button onClick={() => setActiveTab('bank')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bank' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Guild Bank</button>
           {/* Lock down all editing tabs behind authentication */}
           {isAuthenticated && (
             <>
+              <button onClick={() => setActiveTab('bankRequests')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bankRequests' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Bank Requests</button>
               <button onClick={() => setActiveTab('loot')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'loot' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Loot Council</button>
               <button onClick={() => setActiveTab('roster')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'roster' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Roster & Attendance</button>
               <button onClick={() => setActiveTab('scoring')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'scoring' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Scoring & Config</button>
@@ -921,83 +1023,326 @@ const filteredOverviewItems = useMemo(() => {
             TAB: PRIORITY OVERVIEW (MASTER LEDGER - PUBLIC)
             ========================================= */}
         {activeTab === 'overview' && (
-<section className="overview-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
-             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">              
+          <section className="overview-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
               <div>
                 <h2 className="text-xl font-bold text-slate-100 mb-1">Master Priority Ledger</h2>
                 <p className="text-sm text-slate-500">A bird's-eye view of every item that currently has an assigned Loot Council priority.</p>
               </div>
-              <input 
-                type="text" 
-                placeholder="Search by item or player name..." 
-                className="w-full md:w-96 bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-inner" 
-                value={overviewSearch} 
-                onChange={e => setOverviewSearch(e.target.value)} 
+              <input
+                type="text"
+                placeholder="Search by item or player name..."
+                className="w-full md:w-96 bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-inner"
+                value={overviewSearch}
+                onChange={e => setOverviewSearch(e.target.value)}
               />
             </div>
             {filteredOverviewItems.length === 0 ? (
               <div className="text-center py-20 bg-slate-900/50 border-2 border-dashed border-slate-800 rounded-xl"><p className="text-slate-500 font-medium">No priorities match your search criteria.</p></div>
             ) : (
-<div className="columns-1 lg:columns-2 xl:columns-3 gap-6 space-y-0">                {filteredOverviewItems.map(item => {
-                  const assignedPlayers = roster.filter(p => typeof assignments[item.name]?.[p.id] === 'number');
-const sortedAssignedPlayers = assignedPlayers.sort((a, b) => {
-  const rankA = assignments[item.name][a.id];
-  const rankB = assignments[item.name][b.id];
-  if (rankA !== rankB) return rankA - rankB;
-  return Number(calculateScore(b.id)) - Number(calculateScore(a.id));
-});                  return (
-<div key={item.name} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-lg flex flex-col break-inside-avoid mb-6">                      
-                           <div className="bg-slate-900 border-b border-slate-800 p-4">
-  <div className="flex items-center gap-3 mb-1">
- <div className="character-slot-icon w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex-shrink-0 flex items-center justify-center overflow-hidden relative shadow-inner">
-  {item.itemId ? (
-    
-      <a href={"https://tbc.wowhead.com/item=" + item.itemId}
-      data-wh-rename-link="false"
-      data-wh-icon-size="large"
-      className="item-link absolute inset-0"
-      target="_blank"
-      rel="noreferrer"
-      onMouseLeave={hideWowheadTooltip}
-      style={{fontSize: 0, lineHeight: 0}}
-    />
-      ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent" />
-      )}
-    </div>
-    <h3 className="text-lg font-bold text-purple-400 truncate drop-shadow-sm">
-      {renderItemLink(item)}
-    </h3>
-  </div>
-  <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-500 tracking-wider flex-wrap">
-    <span>{item.slot}</span>
-    <span className="w-1 h-1 rounded-full bg-slate-700"></span>
-    <span className="text-amber-500/80">{item.boss}</span>
-    {item.drop_chance && (
-      <>
-        <span className="w-1 h-1 rounded-full bg-slate-700"></span>
-        <span className="text-cyan-400">{(item.drop_chance * 100).toFixed(0)}% Drop</span>
-      </>
-    )}
-  </div>
-</div>
-                      <div className="p-3 flex-1">
-                        {sortedAssignedPlayers.length === 0 ? ( <p className="text-xs text-slate-600 italic py-2">Only Passes recorded.</p> ) : (
-                          <ul className="space-y-2">
-                            {sortedAssignedPlayers.map(player => (
-                                <li key={player.id} className="flex items-center gap-3 bg-slate-900/50 p-2 rounded border border-slate-800/50">
-                                  <div className={`w-6 h-6 flex-shrink-0 rounded-full flex items-center justify-center font-bold text-xs shadow-inner ${getRankBadgeStyle(assignments[item.name][player.id])}`}>{assignments[item.name][player.id]}</div>
-                                  <div className="flex-1 min-w-0 flex items-center justify-between"><PlayerNameWithScore player={player} /></div>
-                                </li>
-                            ))}
-                          </ul>
+              <div className="columns-1 lg:columns-2 xl:columns-3 gap-6 space-y-0">                {filteredOverviewItems.map(item => {
+                const assignedPlayers = roster.filter(p => typeof assignments[item.name]?.[p.id] === 'number');
+                const sortedAssignedPlayers = assignedPlayers.sort((a, b) => {
+                  const rankA = assignments[item.name][a.id];
+                  const rankB = assignments[item.name][b.id];
+                  if (rankA !== rankB) return rankA - rankB;
+                  return Number(calculateScore(b.id)) - Number(calculateScore(a.id));
+                }); return (
+                  <div key={item.name} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-lg flex flex-col break-inside-avoid mb-6">
+                    <div className="bg-slate-900 border-b border-slate-800 p-4">
+                      <div className="flex items-center gap-3 mb-1">
+                        <div className="character-slot-icon w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex-shrink-0 flex items-center justify-center overflow-hidden relative shadow-inner">
+                          {item.itemId ? (
+
+                            <a href={"https://tbc.wowhead.com/item=" + item.itemId}
+                              data-wh-rename-link="false"
+                              data-wh-icon-size="large"
+                              className="item-link absolute inset-0"
+                              target="_blank"
+                              rel="noreferrer"
+                              onMouseLeave={hideWowheadTooltip}
+                              style={{ fontSize: 0, lineHeight: 0 }}
+                            />
+                          ) : (
+                            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent" />
+                          )}
+                        </div>
+                        <h3 className="text-lg font-bold text-purple-400 truncate drop-shadow-sm">
+                          {renderItemLink(item)}
+                        </h3>
+                      </div>
+                      <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-500 tracking-wider flex-wrap">
+                        <span>{item.slot}</span>
+                        <span className="w-1 h-1 rounded-full bg-slate-700"></span>
+                        <span className="text-amber-500/80">{item.boss}</span>
+                        {item.drop_chance && (
+                          <>
+                            <span className="w-1 h-1 rounded-full bg-slate-700"></span>
+                            <span className="text-cyan-400">{(item.drop_chance * 100).toFixed(0)}% Drop</span>
+                          </>
                         )}
                       </div>
-                      {/* Hide edit button for unauthenticated users */}
-                      {isAuthenticated && (
-                        <div className="bg-slate-900/30 p-2 border-t border-slate-800/50 text-right">
-                           <button onClick={() => { setActiveTab('loot'); setSearchQuery(item.name); setSelectedItemName(item.name); }} className="text-xs font-bold text-amber-500 hover:text-amber-400 uppercase tracking-wider px-2 py-1">Edit Priorities &rarr;</button>
+                    </div>
+                    <div className="p-3 flex-1">
+                      {sortedAssignedPlayers.length === 0 ? (<p className="text-xs text-slate-600 italic py-2">Only Passes recorded.</p>) : (
+                        <ul className="space-y-2">
+                          {sortedAssignedPlayers.map(player => (
+                            <li key={player.id} className="flex items-center gap-3 bg-slate-900/50 p-2 rounded border border-slate-800/50">
+                              <div className={`w-6 h-6 flex-shrink-0 rounded-full flex items-center justify-center font-bold text-xs shadow-inner ${getRankBadgeStyle(assignments[item.name][player.id])}`}>{assignments[item.name][player.id]}</div>
+                              <div className="flex-1 min-w-0 flex items-center justify-between"><PlayerNameWithScore player={player} /></div>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    {/* Hide edit button for unauthenticated users */}
+                    {isAuthenticated && (
+                      <div className="bg-slate-900/30 p-2 border-t border-slate-800/50 text-right">
+                        <button onClick={() => { setActiveTab('loot'); setSearchQuery(item.name); setSelectedItemName(item.name); }} className="text-xs font-bold text-amber-500 hover:text-amber-400 uppercase tracking-wider px-2 py-1">Edit Priorities &rarr;</button>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+              </div>
+            )}
+          </section>
+        )}
+
+        {
+ /* =========================================
+    TAB: GUILD BANK (PUBLIC)
+    ========================================= */}
+        {activeTab === 'bank' && (
+          <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
+              <div>
+                <h2 className="text-xl font-bold text-slate-100 mb-1">Guild Bank Inventory</h2>
+                <p className="text-sm text-slate-500">Browse current bank contents. Click an item to request it.</p>
+              </div>
+              <input
+                type="text"
+                placeholder="Search items..."
+                className="w-full md:w-96 bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-inner"
+                value={bankSearch}
+                onChange={e => setBankSearch(e.target.value)}
+              />
+            </div>
+
+            {/* Primary filters */}
+            <div className="flex gap-2 mb-3 flex-wrap">
+              {['All', 'Consumable', 'Materials', 'Gear', 'Recipe', 'Misc'].map(cat => (
+                <button
+                  key={cat}
+                  onClick={() => { setBankFilter(cat); setBankSubFilter(''); }}
+                  className={`px-4 py-2 rounded-full text-sm font-bold transition ${bankFilter === cat ? 'bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {/* Subcategory filters — driven by subtype values from GetItemInfo */}
+            {bankFilter !== 'All' && (() => {
+              const subTypes = [...new Set(
+                bankItems
+                  .filter(item => bankFilter === 'All' || item.category === bankFilter)
+                  .map(item => item.sub_type)
+                  .filter(Boolean)
+              )].sort();
+
+              if (subTypes.length <= 1) return null;
+
+              return (
+                <div className="flex gap-2 mb-6 flex-wrap pl-2 border-l-2 border-amber-500/30">
+                  {subTypes.map(sub => (
+                    <button
+                      key={sub}
+                      onClick={() => setBankSubFilter(bankSubFilter === sub ? '' : sub)}
+                      className={`px-3 py-1.5 rounded-full text-xs font-bold transition border ${bankSubFilter === sub ? 'bg-amber-500/20 border-amber-500 text-amber-400' : 'bg-slate-900 border-slate-700 text-slate-400 hover:border-slate-500'}`}
+                    >
+                      {sub}
+                    </button>
+                  ))}
+                </div>
+              );
+            })()}
+
+            {bankItems.length === 0 ? (
+              <div className="text-center py-20 bg-slate-900/50 border-2 border-dashed border-slate-800 rounded-xl">
+                <p className="text-slate-500 font-medium">Bank inventory is empty.</p>
+              </div>
+            ) : (
+              <div className="flex flex-wrap gap-2">
+                {bankItems
+                  .filter(item => bankFilter === 'All' || item.category === bankFilter)
+                  .filter(item => !bankSubFilter || item.sub_type === bankSubFilter)
+                  .filter(item => item.name.toLowerCase().includes(bankSearch.toLowerCase()))
+                  .map(item => (
+                    <div key={item.id} className="inline-flex items-center gap-2 bg-slate-900 border border-slate-700 hover:border-amber-500/50 rounded-lg px-3 py-1.5 transition-colors group">
+
+                      <a href={"https://tbc.wowhead.com/item=" + item.item_wowhead_id}
+                        target="_blank" rel="noreferrer"
+                        onMouseLeave={hideWowheadTooltip}
+                        className="font-bold text-purple-400 hover:underline text-sm whitespace-nowrap"
+                      >
+                        {item.name}
+                      </a>
+                      <span className="text-xs text-slate-500 font-mono whitespace-nowrap">x{item.count}</span>
+                      <button
+                        onClick={() => setRequestModalItem(item)}
+                        className="text-[10px] font-bold bg-amber-600 hover:bg-amber-500 text-white px-2 py-0.5 rounded transition opacity-0 group-hover:opacity-100 whitespace-nowrap"
+                      >
+                        Request
+                      </button>
+                    </div>
+                  ))}
+              </div>
+            )}
+
+            {/* Request Modal - unchanged */}
+            {requestModalItem && (
+              <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4" onClick={() => setRequestModalItem(null)}>
+                <div className="bg-slate-900 border border-slate-700 rounded-xl p-6 max-w-md w-full shadow-2xl" onClick={e => e.stopPropagation()}>
+                  <h3 className="text-lg font-bold text-purple-400 mb-4">Request: {requestModalItem.name}</h3>
+                  <label className="block text-xs font-semibold text-slate-400 mb-1.5">Your Character</label>
+                  <select className="w-full bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2.5 mb-4 focus:outline-none" value={requestPlayerId} onChange={e => setRequestPlayerId(e.target.value)}>
+                    <option value="">-- Select your character --</option>
+                    {roster.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                  </select>
+                  <label className="block text-xs font-semibold text-slate-400 mb-1.5">Quantity (available: {requestModalItem.count})</label>
+                  <input type="number" min="1" max={requestModalItem.count} className="w-full bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2.5 mb-4 focus:outline-none" value={requestQuantity} onChange={e => setRequestQuantity(parseInt(e.target.value) || 1)} />
+                  <label className="block text-xs font-semibold text-slate-400 mb-1.5">Reason</label>
+                  <textarea className="w-full bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2.5 mb-4 focus:outline-none" rows="3" value={requestReason} onChange={e => setRequestReason(e.target.value)} placeholder="What do you need this for?" />
+                  <div className="flex gap-3">
+                    <button onClick={() => setRequestModalItem(null)} className="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-2.5 rounded-lg transition">Cancel</button>
+                    <button onClick={handleSubmitBankRequest} disabled={!requestPlayerId} className="flex-1 bg-amber-600 hover:bg-amber-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-2.5 rounded-lg transition">Submit Request</button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
+        )}
+
+        {/* =========================================
+    TAB: BANK REQUESTS (AUTH-GATED)
+    ========================================= */}
+        {activeTab === 'bankRequests' && isAuthenticated && (
+          <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+            <h2 className="text-xl font-bold text-slate-100 mb-6">Bank Requests</h2>
+
+            <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner mb-8">
+              <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Update Bank Inventory</h3>
+              <p className="text-xs text-slate-500 mb-4">Upload the <code className="text-amber-500">TBCBankLogger.lua</code> SavedVariables file after scanning the bank in-game.</p>
+              <div className="flex items-center gap-3 flex-wrap">
+                <label className="bg-amber-600 hover:bg-amber-500 text-white font-bold px-4 py-2.5 rounded-lg transition cursor-pointer text-sm">
+                  📂 Select Lua File
+                  <input type="file" accept=".lua" className="hidden" onChange={handleBankFileUpload} />
+                </label>
+                {bankUploadParsed && (
+                  <button onClick={handleSaveBankUpload} className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2.5 rounded-lg transition text-sm">
+                    💾 Save & Notify Discord
+                  </button>
+                )}
+                {bankUploadStatus && <span className="text-sm font-semibold text-slate-300">{bankUploadStatus}</span>}
+              </div>
+            </div>
+
+            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Pending Requests</h3>
+            {bankRequests.filter(r => r.status === 'pending').length === 0 ? (
+              <p className="text-slate-600 italic py-4 mb-8">No pending requests.</p>
+            ) : (
+              <div className="flex flex-col gap-3 mb-8">
+                {bankRequests.filter(r => r.status === 'pending').map(req => {
+                  const player = roster.find(p => p.id === req.player_id);
+                  const isResponding = respondingRequestId === req.id;
+                  return (
+                    <div key={req.id} className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                      <div className="flex items-center justify-between gap-4 flex-wrap mb-2">
+                        <div>
+                          <span className="font-bold text-purple-400">{req.item_name}</span>
+                          <span className="text-slate-500 text-sm"> x{req.quantity}</span>
+                          <p className="text-xs text-slate-500 mt-1">Requested by <span className="font-bold" style={{ color: player ? specsByName[getDisplayFromId(player.spec_id)]?.color : undefined }}>{player?.name || 'Unknown'}</span></p>
                         </div>
+                        <span className="text-[10px] text-slate-500 font-bold uppercase">{new Date(req.created_at).toLocaleString()}</span>
+                      </div>
+                      {req.reason && <p className="text-sm text-slate-300 bg-slate-900 p-2 rounded mb-3">{req.reason}</p>}
+
+                      {!isResponding ? (
+                        <div className="flex gap-2">
+                          <button onClick={() => setRespondingRequestId(req.id)} className="text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded transition">Approve</button>
+                          <button onClick={() => setRespondingRequestId(`deny-${req.id}`)} className="text-xs font-bold bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded transition">Deny</button>
+                        </div>
+                      ) : null}
+
+                      {respondingRequestId === req.id && (
+                        <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-slate-800">
+                          <div className="flex gap-2 items-end">
+                            <div className="flex-1">
+                              <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Quantity to Approve (requested: {req.quantity})</label>
+                              <input type="number" min="1" max={req.quantity} className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none" value={approveQuantity} onChange={e => setApproveQuantity(e.target.value)} placeholder={String(req.quantity)} />
+                            </div>
+                            <div className="flex-1">
+                              <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Price (gold)</label>
+                              <input type="number" min="0" className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none" value={approvePrice} onChange={e => setApprovePrice(e.target.value)} placeholder="0" />
+                            </div>
+                          </div>
+                          <div>
+                            <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Comment (optional)</label>
+                            <input type="text" className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none" value={approveNote} onChange={e => setApproveNote(e.target.value)} placeholder="e.g. Only 3 in stock, rest on order" />
+                          </div>
+                          <div className="flex gap-2">
+                            <button onClick={() => handleResolveBankRequest(req.id, 'approved', parseInt(approvePrice) || 0, approveNote, parseInt(approveQuantity) || req.quantity)} className="text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded transition">Confirm Approval</button>
+                            <button onClick={() => setRespondingRequestId(null)} className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded transition">Cancel</button>
+                          </div>
+                        </div>
+                      )}
+
+                      {respondingRequestId === `deny-${req.id}` && (
+                        <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-slate-800">
+                          <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Reason for denial</label>
+                          <select className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none mb-2" value={denyReason} onChange={e => setDenyReason(e.target.value)}>
+                            <option value="">-- Select a reason --</option>
+                            <option value="Item reserved for raid use">Item reserved for raid use</option>
+                            <option value="Insufficient justification">Insufficient justification</option>
+                            <option value="Item not currently in bank">Item not currently in bank</option>
+                            <option value="custom">Other (write below)</option>
+                          </select>
+                          {denyReason === 'custom' && (
+                            <input type="text" className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none mb-2" placeholder="Enter custom reason..." value={denyCustomReason} onChange={e => setDenyCustomReason(e.target.value)} />
+                          )}
+                          <div className="flex gap-2">
+                            <button onClick={() => handleResolveBankRequest(req.id, 'denied', null, denyReason === 'custom' ? denyCustomReason : denyReason)} className="text-xs font-bold bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded transition">Confirm Denial</button>
+                            <button onClick={() => setRespondingRequestId(null)} className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded transition">Cancel</button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Resolved Requests</h3>
+            {bankRequests.filter(r => r.status !== 'pending').length === 0 ? (
+              <p className="text-slate-600 italic py-4">No resolved requests yet.</p>
+            ) : (
+              <div className="flex flex-col gap-2">
+                {bankRequests.filter(r => r.status !== 'pending').map(req => {
+                  const player = roster.find(p => p.id === req.player_id);
+                  return (
+                    <div key={req.id} className={`flex items-center justify-between gap-4 p-3 rounded border ${req.status === 'approved' ? 'bg-emerald-950/20 border-emerald-900' : 'bg-red-950/20 border-red-900'}`}>
+                      <div className="flex-1 min-w-0">
+                        <span className="font-bold text-sm text-slate-200">{req.item_name}</span>
+                        <span className="text-slate-500 text-xs"> x{req.quantity}</span>
+                        <span className="text-xs text-slate-500"> — {player?.name || 'Unknown'}</span>
+                      </div>
+                      {req.status === 'approved' ? (
+                        <span className="text-xs font-bold text-emerald-400" title={req.officer_note}>
+                          Approved {req.approved_quantity && req.approved_quantity < req.quantity ? `(${req.approved_quantity}/${req.quantity})` : ''}{req.price ? ` — ${req.price}g` : ''}
+                        </span>
+                      ) : (
+                        <span className="text-xs font-bold text-red-400" title={req.officer_note}>Denied{req.officer_note ? `: ${req.officer_note}` : ''}</span>
                       )}
                     </div>
                   );
@@ -1042,7 +1387,7 @@ const sortedAssignedPlayers = assignedPlayers.sort((a, b) => {
                 </div>
               </div>
               <div>
-                 <select className="w-full bg-slate-900 text-purple-400 font-bold border border-slate-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:outline-none cursor-pointer" value={selectedItemName} onChange={e => setSelectedItemName(e.target.value)}>
+                <select className="w-full bg-slate-900 text-purple-400 font-bold border border-slate-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:outline-none cursor-pointer" value={selectedItemName} onChange={e => setSelectedItemName(e.target.value)}>
                   <option value="" className="text-slate-500">-- Select Dropped Item ({filteredItems.length} matches) --</option>
                   {filteredItems.map(item => <option key={item.name} value={item.name} className="text-purple-400">{item.name}</option>)}
                 </select>
@@ -1077,12 +1422,21 @@ const sortedAssignedPlayers = assignedPlayers.sort((a, b) => {
                         const bisPriorityStatus = bisPriorities[itemKey];
                         const status = bisPriorityStatus || (selectedItem.spec === specKey ? 'BiS' : '');
                         const currentPriority = assignments[selectedItem.name]?.[player.id];
-const playerAlts = mutableItems.filter(i => {
-  if (i.slot !== selectedItem.slot || i.name === selectedItem.name) return false;
-  const altItemKey = `${i.name}|${specDisplay}`;
-  const altBisPriority = bisPriorities[altItemKey];
-  return altBisPriority || i.spec === specKey;
-}).map(i => ({ ...i, eligible: i.eligible || {} }));
+                        const PHASE_ORDER = ["Pre-BiS", "T4", "T5", "T6", "ZA", "SWP"];
+                        const currentPhaseIndex = PHASE_ORDER.indexOf(globalPhase);
+
+                        const playerAlts = mutableItems.filter(i => {
+                          if (i.slot !== selectedItem.slot || i.name === selectedItem.name) return false;
+                          const altItemKey = `${i.name}|${specDisplay}`;
+                          const altBisPriority = bisPriorities[altItemKey];
+                          if (!altBisPriority && i.spec !== specKey) return false;
+                          // Exclude items from future phases
+                          if (i.phase) {
+                            const itemPhaseIndex = PHASE_ORDER.indexOf(i.phase);
+                            if (itemPhaseIndex > currentPhaseIndex) return false;
+                          }
+                          return true;
+                        }).map(i => ({ ...i, eligible: i.eligible || {} }));
 
                         return (
                           <div key={player.id} className={`flex flex-col p-4 rounded-xl shadow-sm border transition-all duration-300 ${currentPriority === 1 ? 'bg-slate-800/80 border-amber-500/50' : currentPriority === 'Pass' ? 'bg-slate-950/50 border-slate-900 opacity-60' : 'bg-slate-900 border-slate-700'}`}>
@@ -1092,7 +1446,7 @@ const playerAlts = mutableItems.filter(i => {
                                   {typeof currentPriority === 'number' ? currentPriority : (currentPriority === 'Pass' ? '✕' : '-')}
                                 </div>
                                 <img src={getSpecById(player.spec_id)?.icon_large || 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover flex-shrink-0" />
-                                  <div>
+                                <div>
                                   <PlayerNameWithScore player={player} />
                                   <div className="flex items-center gap-2 mt-0.5">
                                     <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{specDisplay}</span>
@@ -1109,7 +1463,7 @@ const playerAlts = mutableItems.filter(i => {
                                 <button onClick={() => handleSetPriority(player.id, currentPriority === 'Pass' ? null : 'Pass')} className={`px-3 h-8 flex-shrink-0 rounded font-bold text-xs uppercase transition-all ${currentPriority === 'Pass' ? 'bg-red-900/60 text-red-400 border border-red-800' : 'bg-slate-900 text-slate-500 hover:bg-red-950 hover:text-red-400'}`}>Pass</button>
                               </div>
                             </div>
-                            
+
                             {playerAlts.length > 0 && (
                               <div className="mt-4 pt-3 border-t border-slate-800/50">
                                 <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-2 block flex items-center gap-1"><span className="text-slate-600">Alternative {selectedItem.slot} Options:</span></span>
@@ -1131,7 +1485,7 @@ const playerAlts = mutableItems.filter(i => {
                 </div>
               </div>
             ) : (
-               <div className="text-center py-20 bg-slate-900/50 border-2 border-dashed border-slate-800 rounded-xl"><p className="text-slate-500 font-medium">Use the filters above and select an item to assign priorities.</p></div>
+              <div className="text-center py-20 bg-slate-900/50 border-2 border-dashed border-slate-800 rounded-xl"><p className="text-slate-500 font-medium">Use the filters above and select an item to assign priorities.</p></div>
             )}
           </section>
         )}
@@ -1160,7 +1514,7 @@ const playerAlts = mutableItems.filter(i => {
               </div>
               <div>
                 <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2 flex justify-between items-center"><span>Raid History Logs</span><span className="bg-slate-800 text-slate-400 px-2 py-0.5 rounded text-[10px]">{raidLogs.length} Records</span></h3>
-                {raidLogs.length === 0 ? ( <p className="text-xs text-slate-600 italic py-4">No raids logged yet.</p> ) : (
+                {raidLogs.length === 0 ? (<p className="text-xs text-slate-600 italic py-4">No raids logged yet.</p>) : (
                   <ul className="max-h-[140px] overflow-y-auto pr-2 custom-scrollbar space-y-2">
                     {raidLogs.map(log => (
                       <li key={log.id} className="flex justify-between items-center bg-slate-900 border border-slate-800 p-2.5 rounded hover:border-slate-700 transition group">
@@ -1199,28 +1553,28 @@ const playerAlts = mutableItems.filter(i => {
               </div>
             </div>
 
-            {roster.length === 0 ? ( <p className="text-center text-slate-500 py-12 border-2 border-dashed border-slate-800 rounded-xl">Your guild roster is empty.</p> ) : (
+            {roster.length === 0 ? (<p className="text-center text-slate-500 py-12 border-2 border-dashed border-slate-800 rounded-xl">Your guild roster is empty.</p>) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
                 {roster.map(player => {
                   const specData = getSpecById(player.spec_id);
                   const specDisplay = specData?.spec || '?';
                   const iconUrl = specData?.icon_large || 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg';
                   return (
-                  <div key={player.id} className={`group relative flex items-center gap-3 p-3 rounded-lg transition-all duration-200 border cursor-pointer ${player.in_raid ? 'bg-slate-800/80 border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.1)]' : 'bg-slate-950 border-slate-800 opacity-60 hover:opacity-100'}`} onClick={() => toggleRaidStatus(player.id)}>
-                    <div className="relative">
-                      <img src={iconUrl} alt="" className="w-10 h-10 rounded border border-slate-700 bg-slate-900 object-cover" />
-                      {player.in_raid && ( <div className="absolute -bottom-1 -right-1 bg-emerald-500 rounded-full w-4 h-4 flex items-center justify-center border-2 border-slate-800"><svg className="w-2.5 h-2.5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="4"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg></div> )}
+                    <div key={player.id} className={`group relative flex items-center gap-3 p-3 rounded-lg transition-all duration-200 border cursor-pointer ${player.in_raid ? 'bg-slate-800/80 border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.1)]' : 'bg-slate-950 border-slate-800 opacity-60 hover:opacity-100'}`} onClick={() => toggleRaidStatus(player.id)}>
+                      <div className="relative">
+                        <img src={iconUrl} alt="" className="w-10 h-10 rounded border border-slate-700 bg-slate-900 object-cover" />
+                        {player.in_raid && (<div className="absolute -bottom-1 -right-1 bg-emerald-500 rounded-full w-4 h-4 flex items-center justify-center border-2 border-slate-800"><svg className="w-2.5 h-2.5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="4"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg></div>)}
+                      </div>
+                      <div className="flex-1 min-w-0 pointer-events-none">
+                        <span className="font-bold text-lg leading-tight drop-shadow-sm" style={{ color: specsByName[specDisplay]?.color || '#FFFFFF' }}>{player.name}</span>
+                        <span className="bg-amber-900/60 text-amber-400 text[10px] px-1.5 py-0.5 rounded border border-amber-500/30 font-bold shadow-inner flex items-center gap-1 w-fit my-0.5">
+                          <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                          {calculateScore(player.id)}
+                        </span>
+                        <p className="text-[10px] text-slate-400 uppercase tracking-wider truncate font-semibold">{specDisplay}</p>
+                      </div>
+                      <button onClick={(e) => { e.stopPropagation(); handleRemovePlayer(player.id); }} className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">✕</button>
                     </div>
-<div className="flex-1 min-w-0 pointer-events-none">
-  <span className="font-bold text-lg leading-tight drop-shadow-sm" style={{ color: specsByName[specDisplay]?.color || '#FFFFFF' }}>{player.name}</span>
-  <span className="bg-amber-900/60 text-amber-400 text[10px] px-1.5 py-0.5 rounded border border-amber-500/30 font-bold shadow-inner flex items-center gap-1 w-fit my-0.5">
-    <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-    {calculateScore(player.id)}
-  </span>
-  <p className="text-[10px] text-slate-400 uppercase tracking-wider truncate font-semibold">{specDisplay}</p>
-</div>
-                    <button onClick={(e) => { e.stopPropagation(); handleRemovePlayer(player.id); }} className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">✕</button>
-                  </div>
                   );
                 })}
               </div>
@@ -1236,13 +1590,13 @@ const playerAlts = mutableItems.filter(i => {
             <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner mb-8">
               <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Global Score Weighting Weights</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
-                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Parse Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.parseWeight} onChange={e => setScoringConfig({...scoringConfig, parseWeight: e.target.value})} /></div>
-                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Support Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.supportMulti} onChange={e => setScoringConfig({...scoringConfig, supportMulti: e.target.value})} /></div>
-                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Consumables (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.consBonus} onChange={e => setScoringConfig({...scoringConfig, consBonus: e.target.value})} /></div>
-                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Enchants (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.enchantBonus} onChange={e => setScoringConfig({...scoringConfig, enchantBonus: e.target.value})} /></div>
-                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Gems (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.gemBonus} onChange={e => setScoringConfig({...scoringConfig, gemBonus: e.target.value})} /></div>
-                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Attendance Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.attWeight} onChange={e => setScoringConfig({...scoringConfig, attWeight: e.target.value})} /></div>
-                <div><label className="block text-xs font-bold text-red-500 mb-1">AFK Penalty (-)</label><input type="number" step="0.1" className="w-full bg-slate-900 text-red-400 font-bold border border-red-900 rounded p-2 focus:outline-none" value={scoringConfig.afkPenalty || ''} onChange={e => setScoringConfig({...scoringConfig, afkPenalty: e.target.value})} /></div>
+                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Parse Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.parseWeight} onChange={e => setScoringConfig({ ...scoringConfig, parseWeight: e.target.value })} /></div>
+                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Support Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.supportMulti} onChange={e => setScoringConfig({ ...scoringConfig, supportMulti: e.target.value })} /></div>
+                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Consumables (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.consBonus} onChange={e => setScoringConfig({ ...scoringConfig, consBonus: e.target.value })} /></div>
+                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Enchants (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.enchantBonus} onChange={e => setScoringConfig({ ...scoringConfig, enchantBonus: e.target.value })} /></div>
+                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Gems (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.gemBonus} onChange={e => setScoringConfig({ ...scoringConfig, gemBonus: e.target.value })} /></div>
+                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Attendance Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.attWeight} onChange={e => setScoringConfig({ ...scoringConfig, attWeight: e.target.value })} /></div>
+                <div><label className="block text-xs font-bold text-red-500 mb-1">AFK Penalty (-)</label><input type="number" step="0.1" className="w-full bg-slate-900 text-red-400 font-bold border border-red-900 rounded p-2 focus:outline-none" value={scoringConfig.afkPenalty || ''} onChange={e => setScoringConfig({ ...scoringConfig, afkPenalty: e.target.value })} /></div>
               </div>
             </div>
 
@@ -1263,71 +1617,71 @@ const playerAlts = mutableItems.filter(i => {
                     {isExpanded && (
                       <div className="p-4 border-t border-slate-800 bg-slate-900/50">
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                           <div className="bg-slate-950 p-4 rounded-lg border border-slate-800">
-                             <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Base Checks</h4>
-                             <label className="flex items-center gap-2 mb-2 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4" checked={stats.cons} onChange={(e) => updatePlayerStat(player.id, 'cons', e.target.checked)} /><span className="text-sm font-semibold text-slate-300">Full Consumables</span></label>
-                             <label className="flex items-center gap-2 mb-2 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4" checked={stats.enchants} onChange={(e) => updatePlayerStat(player.id, 'enchants', e.target.checked)} /><span className="text-sm font-semibold text-slate-300">Fully Enchanted</span></label>
-                             <label className="flex items-center gap-2 mb-4 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4" checked={stats.gems} onChange={(e) => updatePlayerStat(player.id, 'gems', e.target.checked)} /><span className="text-sm font-semibold text-slate-300">Fully Gemmed</span></label>
-                             
-                             <div className="mt-4 pt-3 border-t border-slate-800 flex gap-4">
-                               <div className="flex-1">
-                                 <label className="block text-[10px] uppercase font-bold text-slate-500 mb-1">Attendance %</label>
-                                 <div className="bg-slate-900 text-amber-400 font-bold border border-slate-700 rounded p-2 text-center text-xl shadow-inner">{calculateAttendance(player.id)}%</div>
-                               </div>
-                               <div className="flex-1">
-                                 <label className="block text-[10px] uppercase font-bold text-red-500 mb-1">AFKs on Trash</label>
-                                 <input type="number" min="0" className="w-full bg-slate-900 text-red-400 font-bold border border-red-900 rounded p-2 text-center text-xl shadow-inner focus:outline-none" value={stats.afks || 0} onChange={(e) => updatePlayerStat(player.id, 'afks', parseInt(e.target.value) || 0)} />
-                               </div>
-                             </div>
+                          <div className="bg-slate-950 p-4 rounded-lg border border-slate-800">
+                            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Base Checks</h4>
+                            <label className="flex items-center gap-2 mb-2 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4" checked={stats.cons} onChange={(e) => updatePlayerStat(player.id, 'cons', e.target.checked)} /><span className="text-sm font-semibold text-slate-300">Full Consumables</span></label>
+                            <label className="flex items-center gap-2 mb-2 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4" checked={stats.enchants} onChange={(e) => updatePlayerStat(player.id, 'enchants', e.target.checked)} /><span className="text-sm font-semibold text-slate-300">Fully Enchanted</span></label>
+                            <label className="flex items-center gap-2 mb-4 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4" checked={stats.gems} onChange={(e) => updatePlayerStat(player.id, 'gems', e.target.checked)} /><span className="text-sm font-semibold text-slate-300">Fully Gemmed</span></label>
 
-                           </div>
-                           <div className="md:col-span-3 bg-slate-950 p-4 rounded-lg border border-slate-800">
-                             <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Officer Score Adjustments</h4>
-                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                               <div>
-                                 <label className="block text-xs font-semibold text-slate-400 mb-2">Manual Point Adjustment</label>
-                                 <input 
-                                   type="number" 
-                                   step="0.5"
-                                   className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none"
-                                   value={stats.manualAdjustment?.value || 0}
-                                   onChange={(e) => updatePlayerManualAdjustment(player.id, 'value', parseFloat(e.target.value) || 0)}
-                                   placeholder="e.g. +5 or -3"
-                                 />
-                               </div>
-                               <div>
-                                 <label className="block text-xs font-semibold text-slate-400 mb-2">Reason/Note (Optional)</label>
-                                 <input 
-                                   type="text"
-                                   className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none"
-                                   value={stats.manualAdjustment?.note || ''}
-                                   onChange={(e) => updatePlayerManualAdjustment(player.id, 'note', e.target.value)}
-                                   placeholder="e.g. Exceptional effort, Helping alts"
-                                   maxLength="50"
-                                 />
-                               </div>
-                             </div>
-                             {stats.manualAdjustment?.value !== 0 && stats.manualAdjustment?.value !== undefined && (
-                               <div className={`p-2 rounded text-xs font-semibold ${stats.manualAdjustment.value > 0 ? 'bg-emerald-900/30 text-emerald-400 border border-emerald-800' : 'bg-red-900/30 text-red-400 border border-red-800'}`}>
-                                 {stats.manualAdjustment.value > 0 ? '+' : ''}{stats.manualAdjustment.value} point{Math.abs(stats.manualAdjustment.value) !== 1 ? 's' : ''}{stats.manualAdjustment.note && ` — ${stats.manualAdjustment.note}`}
-                               </div>
-                             )}
-                             <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-6 mb-3">Phase 2 Parse Logs</h4>
-                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-3">
-                               {P2_BOSSES.map(boss => {
-                                 const pData = stats.parses?.[boss] || { val: '', support: false };
-                                 return (
-                                   <div key={boss} className="flex flex-col bg-slate-900 p-2 rounded border border-slate-800/80">
-                                     <span className="text-xs font-bold text-amber-500/80 mb-1 truncate">{boss}</span>
-                                     <div className="flex items-center gap-2">
-                                       <input type="number" placeholder="Parse" min="0" max="100" className="w-16 bg-slate-950 text-white border border-slate-700 rounded p-1 text-sm focus:outline-none" value={pData.val} onChange={(e) => updatePlayerParse(player.id, boss, 'val', e.target.value)} />
-                                       <label className="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-purple-500 w-3.5 h-3.5" checked={pData.support} onChange={(e) => updatePlayerParse(player.id, boss, 'support', e.target.checked)} /><span className="text-[10px] font-semibold text-purple-400 uppercase">Support Role</span></label>
-                                     </div>
-                                   </div>
-                                 );
-                               })}
-                             </div>
-                           </div>
+                            <div className="mt-4 pt-3 border-t border-slate-800 flex gap-4">
+                              <div className="flex-1">
+                                <label className="block text-[10px] uppercase font-bold text-slate-500 mb-1">Attendance %</label>
+                                <div className="bg-slate-900 text-amber-400 font-bold border border-slate-700 rounded p-2 text-center text-xl shadow-inner">{calculateAttendance(player.id)}%</div>
+                              </div>
+                              <div className="flex-1">
+                                <label className="block text-[10px] uppercase font-bold text-red-500 mb-1">AFKs on Trash</label>
+                                <input type="number" min="0" className="w-full bg-slate-900 text-red-400 font-bold border border-red-900 rounded p-2 text-center text-xl shadow-inner focus:outline-none" value={stats.afks || 0} onChange={(e) => updatePlayerStat(player.id, 'afks', parseInt(e.target.value) || 0)} />
+                              </div>
+                            </div>
+
+                          </div>
+                          <div className="md:col-span-3 bg-slate-950 p-4 rounded-lg border border-slate-800">
+                            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Officer Score Adjustments</h4>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                              <div>
+                                <label className="block text-xs font-semibold text-slate-400 mb-2">Manual Point Adjustment</label>
+                                <input
+                                  type="number"
+                                  step="0.5"
+                                  className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none"
+                                  value={stats.manualAdjustment?.value || 0}
+                                  onChange={(e) => updatePlayerManualAdjustment(player.id, 'value', parseFloat(e.target.value) || 0)}
+                                  placeholder="e.g. +5 or -3"
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-xs font-semibold text-slate-400 mb-2">Reason/Note (Optional)</label>
+                                <input
+                                  type="text"
+                                  className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none"
+                                  value={stats.manualAdjustment?.note || ''}
+                                  onChange={(e) => updatePlayerManualAdjustment(player.id, 'note', e.target.value)}
+                                  placeholder="e.g. Exceptional effort, Helping alts"
+                                  maxLength="50"
+                                />
+                              </div>
+                            </div>
+                            {stats.manualAdjustment?.value !== 0 && stats.manualAdjustment?.value !== undefined && (
+                              <div className={`p-2 rounded text-xs font-semibold ${stats.manualAdjustment.value > 0 ? 'bg-emerald-900/30 text-emerald-400 border border-emerald-800' : 'bg-red-900/30 text-red-400 border border-red-800'}`}>
+                                {stats.manualAdjustment.value > 0 ? '+' : ''}{stats.manualAdjustment.value} point{Math.abs(stats.manualAdjustment.value) !== 1 ? 's' : ''}{stats.manualAdjustment.note && ` — ${stats.manualAdjustment.note}`}
+                              </div>
+                            )}
+                            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-6 mb-3">Phase 2 Parse Logs</h4>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-3">
+                              {P2_BOSSES.map(boss => {
+                                const pData = stats.parses?.[boss] || { val: '', support: false };
+                                return (
+                                  <div key={boss} className="flex flex-col bg-slate-900 p-2 rounded border border-slate-800/80">
+                                    <span className="text-xs font-bold text-amber-500/80 mb-1 truncate">{boss}</span>
+                                    <div className="flex items-center gap-2">
+                                      <input type="number" placeholder="Parse" min="0" max="100" className="w-16 bg-slate-950 text-white border border-slate-700 rounded p-1 text-sm focus:outline-none" value={pData.val} onChange={(e) => updatePlayerParse(player.id, boss, 'val', e.target.value)} />
+                                      <label className="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-purple-500 w-3.5 h-3.5" checked={pData.support} onChange={(e) => updatePlayerParse(player.id, boss, 'support', e.target.checked)} /><span className="text-[10px] font-semibold text-purple-400 uppercase">Support Role</span></label>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     )}
@@ -1342,29 +1696,29 @@ const playerAlts = mutableItems.filter(i => {
             TAB: BiS & ALTERNATIVES (CHARACTER SHEET)
             ========================================= */}
         {activeTab === 'bis' && (
-<section className="bis-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
-              <div>
-                <h2 className="text-xl font-bold text-slate-100 mb-1">Class Configuration Viewer</h2>
-                <p className="text-sm text-slate-500">View primary BiS and alternate options mapped to the paper doll interface.</p>
-              </div>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Phase:</span>
-                  <select 
-                    className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[120px] focus:outline-none cursor-pointer font-bold text-sm" 
-                    value={masterItemsDbPhase} 
-                    onChange={e => setMasterItemsDbPhase(e.target.value)}
-                  >
-                    {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
-                  </select>
-                </div>
-                <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">Select Spec:</span>
-                <select className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[200px] focus:outline-none cursor-pointer font-bold style-sm" value={selectedBisSpec || ''} onChange={e => setSelectedBisSpec(e.target.value)} style={{ color: specsByName[selectedBisSpec]?.color || '#FFFFFF' }}>
-                  {specsFromDb.map(spec => <option key={spec.id} value={spec.spec} style={{ color: spec.color }}>{spec.spec}</option>)}
+          <section className="bis-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
+            <div>
+              <h2 className="text-xl font-bold text-slate-100 mb-1">Class Configuration Viewer</h2>
+              <p className="text-sm text-slate-500">View primary BiS and alternate options mapped to the paper doll interface.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Phase:</span>
+                <select
+                  className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[120px] focus:outline-none cursor-pointer font-bold text-sm"
+                  value={masterItemsDbPhase}
+                  onChange={e => setMasterItemsDbPhase(e.target.value)}
+                >
+                  {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
                 </select>
               </div>
+              <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">Select Spec:</span>
+              <select className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[200px] focus:outline-none cursor-pointer font-bold style-sm" value={selectedBisSpec || ''} onChange={e => setSelectedBisSpec(e.target.value)} style={{ color: specsByName[selectedBisSpec]?.color || '#FFFFFF' }}>
+                {specsFromDb.map(spec => <option key={spec.id} value={spec.spec} style={{ color: spec.color }}>{spec.spec}</option>)}
+              </select>
             </div>
-<style>{`
+          </div>
+            <style>{`
   .bis-tab .character-slot-icon .iconlarge {
     margin-top: -15px !important;
     margin-left: -15px !important;
@@ -1391,42 +1745,42 @@ const playerAlts = mutableItems.filter(i => {
         {activeTab === 'itemsdb' && isAuthenticated && (
           <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
             <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
-               <div className="flex justify-between items-center mb-4 border-b border-slate-800 pb-2">
-                 <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Add New Loot Item to Tables</h3>
-                 <button onClick={clearDatabaseCache} className="text-xs font-bold text-red-500 hover:text-red-400 uppercase">Reset Database (Clear Cache)</button>
-               </div>
-               <form onSubmit={handleAddItemToDb} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 items-end">
-                 <div className="lg:col-span-2"><label className="block text-xs font-semibold text-slate-500 mb-1">Item Name</label><input type="text" required placeholder="e.g. Ashen Scale Belt" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none" value={dbNewName} onChange={e => setDbNewName(e.target.value)} /></div>
-                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Slot</label><select className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none cursor-pointer" value={dbNewSlot} onChange={e => setDbNewSlot(e.target.value)}>{[...LEFT_SLOTS, ...RIGHT_SLOTS, ...BOTTOM_SLOTS].map(s => <option key={s} value={s}>{s}</option>)}</select></div>
-                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Zone</label><input type="text" required placeholder="e.g. SSC" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none" value={dbNewZone} onChange={e => setDbNewZone(e.target.value)} /></div>
-                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Boss</label><input type="text" required placeholder="e.g. Lady Vashj" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none" value={dbNewBoss} onChange={e => setDbNewBoss(e.target.value)} /></div>
-                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Wowhead ID</label><input type="text" placeholder="e.g. 30038" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none" value={dbNewItemId} onChange={e => setDbNewItemId(e.target.value)} /></div>
-                 <button type="submit" className="lg:col-span-6 bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 rounded text-sm transition shadow-lg h-9">Add to Database</button>
-               </form>
+              <div className="flex justify-between items-center mb-4 border-b border-slate-800 pb-2">
+                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Add New Loot Item to Tables</h3>
+                <button onClick={clearDatabaseCache} className="text-xs font-bold text-red-500 hover:text-red-400 uppercase">Reset Database (Clear Cache)</button>
+              </div>
+              <form onSubmit={handleAddItemToDb} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 items-end">
+                <div className="lg:col-span-2"><label className="block text-xs font-semibold text-slate-500 mb-1">Item Name</label><input type="text" required placeholder="e.g. Ashen Scale Belt" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none" value={dbNewName} onChange={e => setDbNewName(e.target.value)} /></div>
+                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Slot</label><select className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none cursor-pointer" value={dbNewSlot} onChange={e => setDbNewSlot(e.target.value)}>{[...LEFT_SLOTS, ...RIGHT_SLOTS, ...BOTTOM_SLOTS].map(s => <option key={s} value={s}>{s}</option>)}</select></div>
+                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Zone</label><input type="text" required placeholder="e.g. SSC" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none" value={dbNewZone} onChange={e => setDbNewZone(e.target.value)} /></div>
+                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Boss</label><input type="text" required placeholder="e.g. Lady Vashj" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none" value={dbNewBoss} onChange={e => setDbNewBoss(e.target.value)} /></div>
+                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Wowhead ID</label><input type="text" placeholder="e.g. 30038" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none" value={dbNewItemId} onChange={e => setDbNewItemId(e.target.value)} /></div>
+                <button type="submit" className="lg:col-span-6 bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 rounded text-sm transition shadow-lg h-9">Add to Database</button>
+              </form>
             </div>
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-               <div>
-                 <h3 className="text-xl font-bold text-slate-100">Spreadsheet Matrix Editor</h3>
-                 <p className="text-xs text-slate-500 mt-0.5">Click any grid cell to toggle its status: <span className="text-purple-400 font-bold">BiS</span> &rarr; <span className="text-amber-500 font-bold">Opt</span> &rarr; <span className="text-slate-700 font-bold">None</span></p>
-               </div>
-               <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto items-start sm:items-center">
-                 <div>
-                   <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-widest">BiS Phase:</label>
-                   <select value={masterItemsDbPhase} onChange={e => setMasterItemsDbPhase(e.target.value)} className="bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none cursor-pointer font-bold shadow-inner">
-                     {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
-                   </select>
-                 </div>
-                 <input type="text" placeholder="Filter items list..." className="bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none flex-1 sm:flex-none sm:w-64 shadow-inner" value={dbSearch} onChange={e => setDbSearch(e.target.value)} />
-                 <label className="flex items-center gap-2 cursor-pointer bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm font-semibold text-slate-300 hover:bg-slate-900 transition whitespace-nowrap">
-                   <input 
-                     type="checkbox" 
-                     checked={showMissingWowheadFilter} 
-                     onChange={e => setShowMissingWowheadFilter(e.target.checked)}
-                     className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4 cursor-pointer"
-                   />
-                   Missing Wowhead ID
-                 </label>
-               </div>
+              <div>
+                <h3 className="text-xl font-bold text-slate-100">Spreadsheet Matrix Editor</h3>
+                <p className="text-xs text-slate-500 mt-0.5">Click any grid cell to toggle its status: <span className="text-purple-400 font-bold">BiS</span> &rarr; <span className="text-amber-500 font-bold">Opt</span> &rarr; <span className="text-slate-700 font-bold">None</span></p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto items-start sm:items-center">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-widest">BiS Phase:</label>
+                  <select value={masterItemsDbPhase} onChange={e => setMasterItemsDbPhase(e.target.value)} className="bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none cursor-pointer font-bold shadow-inner">
+                    {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
+                  </select>
+                </div>
+                <input type="text" placeholder="Filter items list..." className="bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none flex-1 sm:flex-none sm:w-64 shadow-inner" value={dbSearch} onChange={e => setDbSearch(e.target.value)} />
+                <label className="flex items-center gap-2 cursor-pointer bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm font-semibold text-slate-300 hover:bg-slate-900 transition whitespace-nowrap">
+                  <input
+                    type="checkbox"
+                    checked={showMissingWowheadFilter}
+                    onChange={e => setShowMissingWowheadFilter(e.target.checked)}
+                    className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4 cursor-pointer"
+                  />
+                  Missing Wowhead ID
+                </label>
+              </div>
             </div>
             <div className="border border-slate-800 rounded-xl overflow-hidden bg-slate-950 shadow-inner max-w-full overflow-x-auto custom-scrollbar">
               <table className="w-full text-left border-collapse table-auto">
@@ -1454,8 +1808,8 @@ const playerAlts = mutableItems.filter(i => {
                         </div>
                       </td>
                       <td className="p-2 border-r border-slate-900 text-center">
-                        <input 
-                          type="text" 
+                        <input
+                          type="text"
                           className="w-16 bg-slate-900 border border-slate-700 text-slate-300 text-[10px] text-center rounded p-1 focus:outline-none"
                           value={item.itemId || ''}
                           onChange={(e) => handleUpdateItemId(item.name, e.target.value)}
@@ -1464,31 +1818,31 @@ const playerAlts = mutableItems.filter(i => {
                       </td>
                       <td className="p-3 text-slate-400 font-semibold text-center whitespace-nowrap">{item.slot}</td>
                       {specsSortedByClass.map(spec => {
-  const itemKey = `${item.name}|${spec.spec}`;
-  const manualOverride = dbBisPriorities[itemKey];
-  
-  let cellStatus = manualOverride || '';
-  
-  if (!cellStatus) {
-    const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
-    const specKey = getSlugFromDisplay(spec.spec);
-    // Check ALL entries matching this item name and spec
-const match = aggregatedBisLookup[`${item.name}|${specKey}`];
-if (match?.[phaseKey]?.bis === true) {
-      cellStatus = 'BiS';
-    }
-  }
-  
-  return (
-    <td key={spec.id} onClick={() => handleUpdateItemEligibility(item.name, spec.spec, cellStatus, true)} 
-      className={`p-2 border-r border-slate-900 text-center cursor-pointer select-none font-bold uppercase text-[10px] transition-all duration-150 
-        ${cellStatus === 'BiS' ? 'bg-emerald-950/20 text-emerald-400 border-b border-emerald-900' 
-        : cellStatus === 'Opt' ? 'bg-amber-950/20 text-amber-500 border-b border-amber-900' 
-        : 'text-slate-800 hover:bg-slate-800/30 hover:text-slate-500'}`}>
-      {cellStatus || '-'}
-    </td>
-  );
-})}
+                        const itemKey = `${item.name}|${spec.spec}`;
+                        const manualOverride = dbBisPriorities[itemKey];
+
+                        let cellStatus = manualOverride || '';
+
+                        if (!cellStatus) {
+                          const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
+                          const specKey = getSlugFromDisplay(spec.spec);
+                          // Check ALL entries matching this item name and spec
+                          const match = aggregatedBisLookup[`${item.name}|${specKey}`];
+                          if (match?.[phaseKey]?.bis === true) {
+                            cellStatus = 'BiS';
+                          }
+                        }
+
+                        return (
+                          <td key={spec.id} onClick={() => handleUpdateItemEligibility(item.name, spec.spec, cellStatus, true)}
+                            className={`p-2 border-r border-slate-900 text-center cursor-pointer select-none font-bold uppercase text-[10px] transition-all duration-150 
+        ${cellStatus === 'BiS' ? 'bg-emerald-950/20 text-emerald-400 border-b border-emerald-900'
+                                : cellStatus === 'Opt' ? 'bg-amber-950/20 text-amber-500 border-b border-amber-900'
+                                  : 'text-slate-800 hover:bg-slate-800/30 hover:text-slate-500'}`}>
+                            {cellStatus || '-'}
+                          </td>
+                        );
+                      })}
                       <td className="p-3 text-center bg-slate-950 group-hover:bg-slate-900/90 transition-colors">
                         <button onClick={() => handleDeleteItemFromDb(item.name)} className="text-red-500 hover:text-red-400 font-bold px-2 py-1 transition text-[11px] uppercase tracking-wide">Delete</button>
                       </td>

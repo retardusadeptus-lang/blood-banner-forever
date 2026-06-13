@@ -10,6 +10,96 @@ const db = new Database('C:/Users/Steve/Projects/wow-loot-dashboard/guild-loot-a
 db.pragma('foreign_keys = ON');
 
 // ==========================================
+// DISCORD WEBHOOKS
+// ==========================================
+const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1472708740993253570/NVYBC50w0AIWSn6d0dX-8oDMJLyI6sL0OskRxTRYP59ZKWRoalzDczdN6q-8dyX43XhN';
+const SITE_URL = 'https://tbc-loot-dashboard.vercel.app/';
+
+async function postToDiscord(payload) {
+  try {
+    await fetch(DISCORD_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch (e) {
+    console.error('Discord webhook failed:', e.message);
+  }
+}
+
+async function sendBankInventoryWebhook(items) {
+  const sorted = [...items].sort((a, b) => a.name.localeCompare(b.name));
+
+  const getCategoryBlock = (catName) => {
+    const catItems = sorted.filter(i => i.category === catName);
+    if (catItems.length === 0) return 'None';
+    const topItems = catItems.slice(0, 15);
+    let block = topItems.map(i => `**${i.count}x** ${i.name}`).join('\n');
+    if (catItems.length > 15) block += `\n*...and ${catItems.length - 15} more*`;
+    return block;
+  };
+
+  await postToDiscord({
+    username: 'Guild Banker',
+    avatar_url: 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_bag_10_green.jpg',
+    embeds: [{
+      title: '🏦 Guild Bank Inventory Report',
+      description: `[**Click here to view full inventory**](${SITE_URL})`,
+      color: 3066993,
+      fields: [
+        { name: '🧪 Consumables', value: getCategoryBlock('Consumable'), inline: true },
+        { name: '💎 Materials', value: getCategoryBlock('Materials'), inline: true },
+        { name: '⚔️ Gear', value: getCategoryBlock('Gear'), inline: true },
+        { name: '📜 Patterns', value: getCategoryBlock('Recipe'), inline: true }
+      ],
+      footer: { text: 'Updated just now' },
+      timestamp: new Date().toISOString()
+    }]
+  });
+}
+
+async function sendBankRequestWebhook({ player_name, item_name, quantity, reason }) {
+  await postToDiscord({
+    username: 'Guild Banker',
+    avatar_url: 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_bag_10_green.jpg',
+    embeds: [{
+      title: '📥 New Bank Request',
+      color: 15844367, // amber
+      fields: [
+        { name: 'Player', value: player_name, inline: true },
+        { name: 'Item', value: item_name, inline: true },
+        { name: 'Quantity', value: String(quantity), inline: true },
+        { name: 'Reason', value: reason || '_No reason given_' }
+      ],
+      timestamp: new Date().toISOString()
+    }]
+  });
+}
+
+async function sendBankResolutionWebhook({ player_name, item_name, quantity, status, price, officer_note, approved_quantity }) {
+  const isApproved = status === 'approved';
+  const isPartial = isApproved && approved_quantity && approved_quantity < quantity;
+
+  await postToDiscord({
+    username: 'Guild Banker',
+    avatar_url: 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_bag_10_green.jpg',
+    embeds: [{
+      title: isApproved ? (isPartial ? '⚠️ Bank Request Partially Approved' : '✅ Bank Request Approved') : '❌ Bank Request Denied',
+      color: isApproved ? 3066993 : 15158332, // green or red
+      fields: [
+        { name: 'Player', value: player_name, inline: true },
+        { name: 'Item', value: item_name, inline: true },
+        { name: 'Requested', value: String(quantity), inline: true },
+        ...(isApproved ? [{ name: 'Approved', value: String(approved_quantity || quantity), inline: true }] : []),
+        ...(isApproved && price ? [{ name: 'Price', value: `${price}g`, inline: true }] : []),
+        ...(officer_note ? [{ name: isApproved ? 'Note' : 'Reason', value: officer_note }] : [])
+      ],
+      timestamp: new Date().toISOString()
+    }]
+  });
+}
+
+// ==========================================
 // ROSTER
 // ==========================================
 app.get('/api/roster', (req, res) => {
@@ -27,12 +117,12 @@ app.put('/api/roster', (req, res) => {
     const players = req.body;
     db.prepare('DELETE FROM roster').run();
     const insert = db.prepare('INSERT INTO roster (name, spec_id, in_raid) VALUES (?, ?, ?)');
-    
+
     const updatedRosters = players.map(p => {
       const info = insert.run(p.name, p.spec_id, p.in_raid ? 1 : 0);
       return { id: info.lastInsertRowid, name: p.name, spec_id: p.spec_id, in_raid: p.in_raid };
     });
-    
+
     res.json(updatedRosters);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -120,6 +210,48 @@ app.put('/api/bis-priorities/:phase', (req, res) => {
       db.prepare('INSERT INTO bis_priorities (phase, data) VALUES (?, ?)').run(req.params.phase, JSON.stringify(req.body));
     }
     res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// ==========================================
+// DEFAULT BiS PRIORITIES FROM items_bis TABLE
+// ==========================================
+app.get('/api/bis-defaults/:phase', (req, res) => {
+  try {
+    const phaseMap = {
+      'pre-bis': 'preraid',
+      't4': 't4',
+      't5': 't5',
+      't6': 't6',
+      'za': 'za',
+      'swp': 'swp'
+    };
+
+    const phaseKey = phaseMap[req.params.phase.toLowerCase()];
+    if (!phaseKey) return res.status(400).json({ error: 'Invalid phase' });
+
+    const bisCol = `${phaseKey}_bis`;
+    const optCol = `${phaseKey}_opt`;
+
+    const rows = db.prepare(`
+      SELECT i.name, s.spec,
+        ib.${bisCol} as is_bis,
+        ib.${optCol} as is_opt
+      FROM items_bis ib
+      JOIN items i ON i.id = ib.item_id
+      JOIN specs s ON s.id = ib.spec_id
+      WHERE ib.${bisCol} = 1 OR ib.${optCol} = 1
+    `).all();
+
+    const result = {};
+    rows.forEach(row => {
+      const key = `${row.name}|${row.spec}`;
+      result[key] = row.is_bis ? 'BiS' : 'Opt';
+    });
+
+    res.json(result);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -538,6 +670,120 @@ app.get('/api/slots', (req, res) => {
   try {
     const rows = db.prepare('SELECT DISTINCT slot FROM items WHERE slot IS NOT NULL ORDER BY slot').all();
     res.json(rows.map(r => r.slot));
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// ==========================================
+// BANK ITEMS
+// ==========================================
+app.get('/api/bank-items', (req, res) => {
+  try {
+    const rows = db.prepare('SELECT * FROM bank_items ORDER BY category, name').all();
+    res.json(rows);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.put('/api/bank-items', async (req, res) => {
+  try {
+    const items = req.body; // [{ item_wowhead_id, name, category, count }]
+
+    db.prepare('DELETE FROM bank_items').run();
+    const insert = db.prepare(`
+      INSERT INTO bank_items (item_wowhead_id, name, category, count, sub_type)
+      VALUES (?, ?, ?, ?, ?)
+    `);
+
+    const insertAll = db.transaction(() => {
+      items.forEach(item => {
+        insert.run(item.item_wowhead_id, item.name, item.category, item.count, item.sub_type || '');
+      });
+    });
+    insertAll();
+
+    db.prepare('INSERT INTO bank_uploads (item_count) VALUES (?)').run(items.length);
+
+    // Fire Discord webhook
+    await sendBankInventoryWebhook(items);
+
+    res.json({ ok: true, count: items.length });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// ==========================================
+// BANK REQUESTS
+// ==========================================
+app.get('/api/bank-requests', (req, res) => {
+  try {
+    const { status } = req.query;
+    let sql = 'SELECT * FROM bank_requests';
+    const params = [];
+    if (status) {
+      sql += ' WHERE status = ?';
+      params.push(status);
+    }
+    sql += ' ORDER BY created_at DESC';
+    const rows = db.prepare(sql).all(...params);
+    res.json(rows);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.post('/api/bank-requests', async (req, res) => {
+  try {
+    const { player_id, item_wowhead_id, item_name, quantity, reason } = req.body;
+
+    const result = db.prepare(`
+      INSERT INTO bank_requests (player_id, item_wowhead_id, item_name, quantity, reason, status)
+      VALUES (?, ?, ?, ?, ?, 'pending')
+    `).run(player_id, item_wowhead_id, item_name, quantity || 1, reason || '');
+
+    // Get player name for the webhook
+    const player = db.prepare('SELECT name FROM roster WHERE id = ?').get(player_id);
+
+    await sendBankRequestWebhook({
+      player_name: player?.name || 'Unknown',
+      item_name,
+      quantity: quantity || 1,
+      reason
+    });
+
+    res.json({ ok: true, id: result.lastInsertRowid });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.put('/api/bank-requests/:id', async (req, res) => {
+  try {
+    const { status, price, officer_note, approved_quantity } = req.body; // status: 'approved' | 'denied'
+
+    db.prepare(`
+      UPDATE bank_requests
+      SET status = ?, price = ?, officer_note = ?, approved_quantity = ?, resolved_at = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(status, price || null, officer_note || '', approved_quantity || null, req.params.id);
+
+    const request = db.prepare('SELECT * FROM bank_requests WHERE id = ?').get(req.params.id);
+    const player = db.prepare('SELECT name FROM roster WHERE id = ?').get(request.player_id);
+
+    await sendBankResolutionWebhook({
+      player_name: player?.name || 'Unknown',
+      item_name: request.item_name,
+      quantity: request.quantity,
+      status,
+      price,
+      officer_note,
+      approved_quantity
+    });
+
+    res.json({ ok: true });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
