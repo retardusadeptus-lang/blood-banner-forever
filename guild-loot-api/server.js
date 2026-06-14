@@ -1,12 +1,13 @@
 const express = require('express');
 const Database = require('better-sqlite3');
 const cors = require('cors');
+const path = require('path'); // Added for deployment pathway flexibility
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const db = new Database('C:/Users/Steve/Projects/wow-loot-dashboard/guild-loot-api/mydb.db');
+const db = new Database(path.join('C:/Users/Steve/Projects/wow-loot-dashboard/guild-loot-api/mydb.db'));
 db.pragma('foreign_keys = ON');
 
 // ==========================================
@@ -64,7 +65,7 @@ async function sendBankRequestWebhook({ player_name, item_name, quantity, reason
     avatar_url: 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_bag_10_green.jpg',
     embeds: [{
       title: '📥 New Bank Request',
-      color: 15844367, // amber
+      color: 15844367,
       fields: [
         { name: 'Player', value: player_name, inline: true },
         { name: 'Item', value: item_name, inline: true },
@@ -85,7 +86,7 @@ async function sendBankResolutionWebhook({ player_name, item_name, quantity, sta
     avatar_url: 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_bag_10_green.jpg',
     embeds: [{
       title: isApproved ? (isPartial ? '⚠️ Bank Request Partially Approved' : '✅ Bank Request Approved') : '❌ Bank Request Denied',
-      color: isApproved ? 3066993 : 15158332, // green or red
+      color: isApproved ? 3066993 : 15158332,
       fields: [
         { name: 'Player', value: player_name, inline: true },
         { name: 'Item', value: item_name, inline: true },
@@ -421,27 +422,6 @@ app.put('/api/raid-logs', (req, res) => {
 });
 
 // ==========================================
-// ATTENDANCE
-// ==========================================
-app.get('/api/attendance/:playerId', (req, res) => {
-  try {
-    const totalRaids = db.prepare('SELECT COUNT(*) as count FROM raid_logs').get().count;
-    const attended = db.prepare(`
-      SELECT COUNT(*) as count FROM raid_attendees WHERE player_id = ?
-    `).get(req.params.playerId).count;
-
-    res.json({
-      player_id: parseInt(req.params.playerId),
-      attended,
-      total: totalRaids,
-      percentage: totalRaids > 0 ? Math.round((attended / totalRaids) * 100) : 100
-    });
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
-
-// ==========================================
 // SCORING CONFIG
 // ==========================================
 app.get('/api/scoring-config', (req, res) => {
@@ -502,7 +482,7 @@ app.put('/api/mutable-items', (req, res) => {
 });
 
 // ==========================================
-// ITEMS
+// ITEMS INDEXING
 // ==========================================
 app.get('/api/items', (req, res) => {
   try {
@@ -582,7 +562,7 @@ app.get('/api/items/:id', (req, res) => {
 });
 
 // ==========================================
-// BiS
+// BiS MAPPINGS
 // ==========================================
 app.get('/api/bis', (req, res) => {
   try {
@@ -664,18 +644,6 @@ app.get('/api/specs', (req, res) => {
 });
 
 // ==========================================
-// SLOTS
-// ==========================================
-app.get('/api/slots', (req, res) => {
-  try {
-    const rows = db.prepare('SELECT DISTINCT slot FROM items WHERE slot IS NOT NULL ORDER BY slot').all();
-    res.json(rows.map(r => r.slot));
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
-
-// ==========================================
 // BANK ITEMS
 // ==========================================
 app.get('/api/bank-items', (req, res) => {
@@ -689,7 +657,7 @@ app.get('/api/bank-items', (req, res) => {
 
 app.put('/api/bank-items', async (req, res) => {
   try {
-    const items = req.body; // [{ item_wowhead_id, name, category, count }]
+    const items = req.body;
 
     db.prepare('DELETE FROM bank_items').run();
     const insert = db.prepare(`
@@ -706,9 +674,7 @@ app.put('/api/bank-items', async (req, res) => {
 
     db.prepare('INSERT INTO bank_uploads (item_count) VALUES (?)').run(items.length);
 
-    // Fire Discord webhook
     await sendBankInventoryWebhook(items);
-
     res.json({ ok: true, count: items.length });
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -744,7 +710,6 @@ app.post('/api/bank-requests', async (req, res) => {
       VALUES (?, ?, ?, ?, ?, 'pending')
     `).run(player_id, item_wowhead_id, item_name, quantity || 1, reason || '');
 
-    // Get player name for the webhook
     const player = db.prepare('SELECT name FROM roster WHERE id = ?').get(player_id);
 
     await sendBankRequestWebhook({
@@ -762,7 +727,7 @@ app.post('/api/bank-requests', async (req, res) => {
 
 app.put('/api/bank-requests/:id', async (req, res) => {
   try {
-    const { status, price, officer_note, approved_quantity } = req.body; // status: 'approved' | 'denied'
+    const { status, price, officer_note, approved_quantity } = req.body;
 
     db.prepare(`
       UPDATE bank_requests
