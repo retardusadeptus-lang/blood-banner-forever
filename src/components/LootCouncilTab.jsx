@@ -104,9 +104,15 @@ export default function LootCouncilTab({
                     const altItemKey = `${i.name}|${specDisplay}`;
                     const altBisPriority = bisPriorities[altItemKey];
                     if (!altBisPriority && i.spec !== specKey) return false;
+                    // Only show alternates from the current phase or earlier.
+                    // i.phase is expected to be a single string ("T5"). If it's
+                    // an array or anything else non-string, we can't trust it
+                    // represents a real phase, so exclude rather than guess.
                     if (i.phase) {
+                      if (typeof i.phase !== 'string') return false;
                       const itemPhaseIndex = PHASE_ORDER.indexOf(i.phase);
-                      if (itemPhaseIndex > currentPhaseIndex) return false;
+                      if (itemPhaseIndex === -1) return false; // unrecognized phase tag, exclude
+                      if (currentPhaseIndex !== -1 && itemPhaseIndex > currentPhaseIndex) return false;
                     }
                     return true;
                   }).map(i => ({ ...i, eligible: i.eligible || {} }));

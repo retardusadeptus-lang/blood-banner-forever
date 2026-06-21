@@ -754,4 +754,86 @@ app.put('/api/bank-requests/:id', async (req, res) => {
   }
 });
 
+// ==========================================
+// RAID ASSIGNMENTS
+// ==========================================
+
+// Whole-document blob: { [bossName]: { tanks, healers, hunterMDs, curses, soulstones, judgements, notes } }
+app.get('/api/raid-assignment-data', (req, res) => {
+  try {
+    const row = db.prepare('SELECT data FROM raid_assignment_data ORDER BY id LIMIT 1').get();
+    res.json(row ? JSON.parse(row.data) : {});
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.put('/api/raid-assignment-data', (req, res) => {
+  try {
+    const existing = db.prepare('SELECT id FROM raid_assignment_data ORDER BY id LIMIT 1').get();
+    if (existing) {
+      db.prepare('UPDATE raid_assignment_data SET data = ? WHERE id = ?').run(JSON.stringify(req.body), existing.id);
+    } else {
+      db.prepare('INSERT INTO raid_assignment_data (data) VALUES (?)').run(JSON.stringify(req.body));
+    }
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// Which bosses currently have a visible assignment card: array of boss name strings
+app.get('/api/raid-assignment-config', (req, res) => {
+  try {
+    const row = db.prepare('SELECT enabled_bosses FROM raid_assignment_config ORDER BY id LIMIT 1').get();
+    res.json(row ? JSON.parse(row.enabled_bosses) : []);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.put('/api/raid-assignment-config', (req, res) => {
+  try {
+    const existing = db.prepare('SELECT id FROM raid_assignment_config ORDER BY id LIMIT 1').get();
+    if (existing) {
+      db.prepare('UPDATE raid_assignment_config SET enabled_bosses = ? WHERE id = ?').run(JSON.stringify(req.body), existing.id);
+    } else {
+      db.prepare('INSERT INTO raid_assignment_config (enabled_bosses) VALUES (?)').run(JSON.stringify(req.body));
+    }
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// Placement screenshots, stored inline as base64 data URLs
+app.get('/api/raid-assignment-images', (req, res) => {
+  try {
+    const rows = db.prepare('SELECT id, boss_name, caption, image_data, created_at FROM raid_assignment_images ORDER BY created_at ASC').all();
+    res.json(rows);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.post('/api/raid-assignment-images', (req, res) => {
+  try {
+    const { boss_name, caption, image_data } = req.body;
+    if (!boss_name || !image_data) return res.status(400).json({ error: 'boss_name and image_data are required' });
+    const result = db.prepare('INSERT INTO raid_assignment_images (boss_name, caption, image_data) VALUES (?, ?, ?)').run(boss_name, caption || '', image_data);
+    res.json({ id: result.lastInsertRowid, boss_name, caption: caption || '', image_data });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.delete('/api/raid-assignment-images/:id', (req, res) => {
+  try {
+    db.prepare('DELETE FROM raid_assignment_images WHERE id = ?').run(req.params.id);
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 app.listen(3001, () => console.log('Guild Loot API running on http://localhost:3001'));
