@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { PHASES, PHASE_JSON_KEYS, SPECS, CLASS_COLORS, LEFT_SLOTS, RIGHT_SLOTS, BOTTOM_SLOTS, P2_BOSSES, CATEGORY_MAP, RAID_ZONES } from './constants';
+import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, RIGHT_SLOTS, BOTTOM_SLOTS, P2_BOSSES, CATEGORY_MAP, RAID_ZONES } from './constants';
 import { fetchData, putData, postData, deleteData } from './services/apiService';
 import OverviewTab from './components/OverviewTab';
 import GuildBankTab from './components/GuildBankTab';
@@ -11,7 +11,9 @@ import RosterTab from './components/RosterTab';
 import ScoringTab from './components/ScoringTab';
 import RaidAssignmentsTab from './components/RaidAssignmentsTab';
 
-const API = 'http://localhost:3001/api';
+const CORE_SYNC_INTERVAL_MS = 15000;
+const BANK_SYNC_INTERVAL_MS = 20000;
+const RAID_ASSIGNMENTS_SYNC_INTERVAL_MS = 15000;
 
 export default function App() {
 
@@ -25,14 +27,6 @@ export default function App() {
     const lookup = {};
     specsFromDb.forEach(spec => {
       lookup[spec.spec] = spec;
-    });
-    return lookup;
-  }, [specsFromDb]);
-
-  const specsBySlug = useMemo(() => {
-    const lookup = {};
-    specsFromDb.forEach(spec => {
-      lookup[spec.slug] = spec;
     });
     return lookup;
   }, [specsFromDb]);
@@ -51,12 +45,6 @@ export default function App() {
   const getSlugFromDisplay = (displayName) => {
     const spec = specsByName[displayName];
     return spec ? spec.slug : null;
-  };
-
-  // Helper to get display name from slug
-  const getDisplayFromSlug = (slug) => {
-    const spec = specsBySlug[slug];
-    return spec ? spec.spec : null;
   };
 
   // Helper to get display name from spec_id
@@ -129,17 +117,10 @@ export default function App() {
   // Bank state
   const [bankItems, setBankItems] = useState([]);
   const [bankRequests, setBankRequests] = useState([]);
-  const [bankFilter, setBankFilter] = useState('All');
   const [bankSearch, setBankSearch] = useState('');
-  const [requestModalItem, setRequestModalItem] = useState(null);
-  const [requestQuantity, setRequestQuantity] = useState(1);
-  const [requestReason, setRequestReason] = useState('');
-  const [requestPlayerId, setRequestPlayerId] = useState('');
   const [denyReason, setDenyReason] = useState('');
   const [approvePrice, setApprovePrice] = useState('');
   const [respondingRequestId, setRespondingRequestId] = useState(null);
-  const [bankUploadFile, setBankUploadFile] = useState(null);
-  const [bankSubFilter, setBankSubFilter] = useState('');
   const [bankUploadParsed, setBankUploadParsed] = useState(null);
   const [bankUploadStatus, setBankUploadStatus] = useState('');
   const [denyCustomReason, setDenyCustomReason] = useState('');
@@ -159,7 +140,6 @@ export default function App() {
   const [dbBisPriorities, setDbBisPrioritiesLocal] = useState({});
   const [raidAssignmentData, setRaidAssignmentDataLocal] = useState({});
   const [enabledBosses, setEnabledBossesLocal] = useState([]);
-  const [raidImages, setRaidImages] = useState([]);
   const [mutableItemsBaseline, setMutableItemsBaseline] = useState([]);
 
   const [assignmentsDirty, setAssignmentsDirty] = useState(false);
@@ -199,7 +179,11 @@ export default function App() {
   // 3. SQL SYNC ENGINE
   // ==========================================
   useEffect(() => {
+    let isSyncInFlight = false;
+
     const loadAll = async () => {
+      if (document.hidden || isSyncInFlight) return;
+      isSyncInFlight = true;
       try {
         const phaseKey = PHASE_JSON_KEYS[globalPhase];
         const assignmentsDocName = globalPhase === 'T5' ? 't5' : phaseKey;
@@ -231,16 +215,20 @@ export default function App() {
         setIsDbConnected(true);
       } catch (e) {
         console.error('Failed to load data:', e);
+      } finally {
+        isSyncInFlight = false;
       }
     };
 
     loadAll();
-    const interval = setInterval(loadAll, 5000);
+    const interval = setInterval(loadAll, CORE_SYNC_INTERVAL_MS);
     return () => clearInterval(interval);
   }, [globalPhase, rosterDirty, assignmentsDirty, scoringConfigDirty, playerStatsDirty, raidLogsDirty, mutableItemsDirty]);
 
   // Separate sync for Master Items DB phase selector
   useEffect(() => {
+    if (activeTab !== 'bis' && activeTab !== 'itemsdb') return;
+
     const loadDbBis = async () => {
       const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
       const data = await fetchData('bis-priorities/' + phaseKey);
@@ -248,7 +236,7 @@ export default function App() {
       setDbBisPrioritiesLocal(dbDefaults);
     };
     loadDbBis();
-  }, [masterItemsDbPhase]);
+  }, [masterItemsDbPhase, activeTab]);
 
   // ==========================================
   // 4. CLOUD WRITERS
@@ -613,36 +601,9 @@ export default function App() {
     }
   };
 
-  const handleSubmitBankRequest = async () => {
-    if (!requestPlayerId || !requestModalItem) return;
-    try {
-      await fetch(`${API}/bank-requests`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          player_id: parseInt(requestPlayerId),
-          item_wowhead_id: requestModalItem.item_wowhead_id,
-          item_name: requestModalItem.name,
-          quantity: requestQuantity,
-          reason: requestReason
-        })
-      });
-      setRequestModalItem(null);
-      setRequestQuantity(1);
-      setRequestReason('');
-      alert('Request submitted!');
-    } catch (e) {
-      alert('Failed to submit request.');
-    }
-  };
-
   const handleResolveBankRequest = async (id, status, price, note, approvedQuantity) => {
     try {
-      await fetch(`http://localhost:3001/api/bank-requests/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status, price, officer_note: note, approved_quantity: approvedQuantity })
-      });
+      await putData(`bank-requests/${id}`, { status, price, officer_note: note, approved_quantity: approvedQuantity });
       const requests = await fetchData('bank-requests');
       setBankRequests(requests);
       setRespondingRequestId(null);
@@ -711,12 +672,7 @@ export default function App() {
     if (!bankUploadParsed) return;
     setBankUploadStatus('Uploading...');
     try {
-      const res = await fetch(`${API}/bank-items`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(bankUploadParsed)
-      });
-      const data = await res.json();
+      const data = await putData('bank-items', bankUploadParsed);
       setBankUploadStatus(`✅ Bank updated with ${data.count} items! Discord notified.`);
       setBankUploadParsed(null);
       const items = await fetchData('bank-items');
@@ -724,101 +680,6 @@ export default function App() {
     } catch (e) {
       setBankUploadStatus('❌ Error uploading.');
     }
-  };
-
-  // ==========================================
-  // RAID ASSIGNMENTS: HANDLERS
-  // ==========================================
-  const updateBossAssignment = (bossName, updater) => {
-    const current = raidAssignmentData[bossName] || {};
-    const updated = updater(current);
-    setRaidAssignmentData({ ...raidAssignmentData, [bossName]: updated });
-  };
-
-  const handleAssignTank = (bossName, slotIndex, playerId) => {
-    updateBossAssignment(bossName, (b) => {
-      const tanks = b.tanks && b.tanks.length === 3 ? [...b.tanks] : [null, null, null];
-      tanks[slotIndex] = playerId;
-      return { ...b, tanks };
-    });
-  };
-
-  const handleAssignHealer = (bossName, slotIndex, playerId) => {
-    updateBossAssignment(bossName, (b) => {
-      const healers = b.healers && b.healers.length === 5 ? [...b.healers] : [null, null, null, null, null];
-      healers[slotIndex] = playerId;
-      return { ...b, healers };
-    });
-  };
-
-  const handleSetHunterMD = (bossName, hunterId, targetLabel) => {
-    updateBossAssignment(bossName, (b) => ({
-      ...b,
-      hunterMDs: { ...(b.hunterMDs || {}), [hunterId]: targetLabel }
-    }));
-  };
-
-  const genAssignmentId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-
-  const handleAddCurse = (bossName) => {
-    updateBossAssignment(bossName, (b) => ({
-      ...b,
-      curses: [...(b.curses || []), { id: genAssignmentId(), warlockId: null, curseType: 'Curse of Elements' }]
-    }));
-  };
-  const handleUpdateCurse = (bossName, curseId, field, value) => {
-    updateBossAssignment(bossName, (b) => ({
-      ...b,
-      curses: (b.curses || []).map(c => c.id === curseId ? { ...c, [field]: value } : c)
-    }));
-  };
-  const handleRemoveCurse = (bossName, curseId) => {
-    updateBossAssignment(bossName, (b) => ({
-      ...b,
-      curses: (b.curses || []).filter(c => c.id !== curseId)
-    }));
-  };
-
-  const handleAddSoulstone = (bossName) => {
-    updateBossAssignment(bossName, (b) => ({
-      ...b,
-      soulstones: [...(b.soulstones || []), { id: genAssignmentId(), warlockId: null, targetId: null }]
-    }));
-  };
-  const handleUpdateSoulstone = (bossName, ssId, field, value) => {
-    updateBossAssignment(bossName, (b) => ({
-      ...b,
-      soulstones: (b.soulstones || []).map(s => s.id === ssId ? { ...s, [field]: value } : s)
-    }));
-  };
-  const handleRemoveSoulstone = (bossName, ssId) => {
-    updateBossAssignment(bossName, (b) => ({
-      ...b,
-      soulstones: (b.soulstones || []).filter(s => s.id !== ssId)
-    }));
-  };
-
-  const handleAddJudgement = (bossName) => {
-    updateBossAssignment(bossName, (b) => ({
-      ...b,
-      judgements: [...(b.judgements || []), { id: genAssignmentId(), paladinId: null, judgementType: 'Judgement of Wisdom' }]
-    }));
-  };
-  const handleUpdateJudgement = (bossName, jId, field, value) => {
-    updateBossAssignment(bossName, (b) => ({
-      ...b,
-      judgements: (b.judgements || []).map(j => j.id === jId ? { ...j, [field]: value } : j)
-    }));
-  };
-  const handleRemoveJudgement = (bossName, jId) => {
-    updateBossAssignment(bossName, (b) => ({
-      ...b,
-      judgements: (b.judgements || []).filter(j => j.id !== jId)
-    }));
-  };
-
-  const handleSetBossNotes = (bossName, notes) => {
-    updateBossAssignment(bossName, (b) => ({ ...b, notes }));
   };
 
   const handleToggleZone = (zoneName, checked) => {
@@ -832,33 +693,6 @@ export default function App() {
     const set = new Set(enabledBosses);
     if (checked) set.add(bossName); else set.delete(bossName);
     setEnabledBosses([...set]);
-  };
-
-  const handleUploadRaidImage = (bossName, file, caption) => {
-    const reader = new FileReader();
-    reader.onload = async (evt) => {
-      try {
-        const res = await fetch('http://localhost:3001/api/raid-assignment-images', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ boss_name: bossName, caption: caption || '', image_data: evt.target.result })
-        });
-        const newImg = await res.json();
-        setRaidImages(prev => [...prev, newImg]);
-      } catch (e) {
-        alert('Failed to upload image.');
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleDeleteRaidImage = async (id) => {
-    try {
-      await fetch(`http://localhost:3001/api/raid-assignment-images/${id}`, { method: 'DELETE' });
-      setRaidImages(prev => prev.filter(img => img.id !== id));
-    } catch (e) {
-      alert('Failed to delete image.');
-    }
   };
 
   // --- FILTERS ---
@@ -1076,7 +910,11 @@ export default function App() {
   }, [filteredOverviewItems]);
 
   useEffect(() => {
+    const isBankTabActive = activeTab === 'bank' || activeTab === 'bankRequests';
+    if (!isBankTabActive) return;
+
     const loadBankData = async () => {
+      if (document.hidden) return;
       try {
         const items = await fetchData('bank-items');
         setBankItems(items);
@@ -1089,29 +927,30 @@ export default function App() {
       }
     };
     loadBankData();
-    const interval = setInterval(loadBankData, 10000);
+    const interval = setInterval(loadBankData, BANK_SYNC_INTERVAL_MS);
     return () => clearInterval(interval);
-  }, [isAuthenticated]);
+  }, [activeTab, isAuthenticated]);
 
   useEffect(() => {
+    if (activeTab !== 'raidAssignments') return;
+
     const loadRaidAssignments = async () => {
+      if (document.hidden) return;
       try {
-        const [data, config, images] = await Promise.all([
+        const [data, config] = await Promise.all([
           fetchData('raid-assignment-data'),
-          fetchData('raid-assignment-config'),
-          fetchData('raid-assignment-images')
+          fetchData('raid-assignment-config')
         ]);
         if (!raidAssignmentDataDirty) setRaidAssignmentDataLocal(data);
         if (!enabledBossesDirty) setEnabledBossesLocal(config);
-        setRaidImages(images);
       } catch (e) {
         console.error('Failed to load raid assignments:', e);
       }
     };
     loadRaidAssignments();
-    const interval = setInterval(loadRaidAssignments, 10000);
+    const interval = setInterval(loadRaidAssignments, RAID_ASSIGNMENTS_SYNC_INTERVAL_MS);
     return () => clearInterval(interval);
-  }, [raidAssignmentDataDirty, enabledBossesDirty]);
+  }, [activeTab, raidAssignmentDataDirty, enabledBossesDirty]);
 
   useEffect(() => {
     if (!hasAnyUnsavedChanges) return undefined;

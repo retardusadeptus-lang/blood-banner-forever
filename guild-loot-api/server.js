@@ -1,20 +1,30 @@
 const express = require('express');
 const Database = require('better-sqlite3');
 const cors = require('cors');
+const fs = require('fs');
 const path = require('path'); // Added for deployment pathway flexibility
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const db = new Database(path.join('C:/Users/Steve/Projects/wow-loot-dashboard/guild-loot-api/mydb.db'));
+const HARD_CODED_DB_PATH = 'C:/Users/Steve/Projects/wow-loot-dashboard/guild-loot-api/mydb.db';
+const LOCAL_DB_PATH = path.join(__dirname, 'mydb.db');
+const DB_PATH_CANDIDATES = [
+  process.env.GUILD_LOOT_DB_PATH,
+  LOCAL_DB_PATH,
+  HARD_CODED_DB_PATH
+].filter(Boolean);
+const DB_PATH = DB_PATH_CANDIDATES.find(candidate => fs.existsSync(candidate)) || LOCAL_DB_PATH;
+
+const db = new Database(DB_PATH);
 db.pragma('foreign_keys = ON');
 
 // ==========================================
 // DISCORD WEBHOOKS
 // ==========================================
-const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1472708740993253570/NVYBC50w0AIWSn6d0dX-8oDMJLyI6sL0OskRxTRYP59ZKWRoalzDczdN6q-8dyX43XhN';
-const SITE_URL = 'https://tbc-loot-dashboard.vercel.app/';
+const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || 'https://discord.com/api/webhooks/1472708740993253570/NVYBC50w0AIWSn6d0dX-8oDMJLyI6sL0OskRxTRYP59ZKWRoalzDczdN6q-8dyX43XhN';
+const SITE_URL = process.env.SITE_URL || 'https://tbc-loot-dashboard.vercel.app/';
 
 async function postToDiscord(payload) {
   try {
@@ -864,7 +874,28 @@ app.put('/api/raid-assignment-config', (req, res) => {
 app.get('/api/raid-assignment-images', (req, res) => {
   try {
     const rows = db.prepare('SELECT id, boss_name, caption, image_data, created_at FROM raid_assignment_images ORDER BY created_at ASC').all();
-    res.json(rows);
+    const mapped = rows.map(row => {
+      const isUrl = typeof row.image_data === 'string' && /^https?:\/\//i.test(row.image_data);
+      return {
+        ...row,
+        image_url: isUrl ? row.image_data : null
+      };
+    });
+    res.json(mapped);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// Migration stub: allows callers to persist a hosted image URL now, while
+// we still store it in the existing image_data column.
+app.post('/api/raid-assignment-images/url', (req, res) => {
+  try {
+    const { boss_name, caption, image_url } = req.body;
+    if (!boss_name || !image_url) return res.status(400).json({ error: 'boss_name and image_url are required' });
+
+    const result = db.prepare('INSERT INTO raid_assignment_images (boss_name, caption, image_data) VALUES (?, ?, ?)').run(boss_name, caption || '', image_url);
+    res.json({ id: result.lastInsertRowid, boss_name, caption: caption || '', image_url });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

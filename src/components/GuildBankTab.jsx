@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { postData } from '../services/apiService';
 
 export default function GuildBankTab({
   bankItems,
@@ -59,19 +60,9 @@ export default function GuildBankTab({
   const submitBasket = async () => {
     setIsSubmitting(true);
     try {
-      const results = await Promise.all(basket.map(req => 
-        fetch('http://localhost:3001/api/bank-requests', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(req)
-        })
-      ));
-      if (results.every(r => r.ok)) {
-        alert(`🎉 Successfully submitted ${basket.length} requests!`);
-        setBasket([]);
-      } else {
-        alert('❌ Some requests failed to submit.');
-      }
+      await Promise.all(basket.map(req => postData('bank-requests', req)));
+      alert(`🎉 Successfully submitted ${basket.length} requests!`);
+      setBasket([]);
     } catch (err) {
       console.error(err);
       alert('❌ Server error.');

@@ -2,14 +2,16 @@
 // GUILD LOOT SYSTEM - API NETWORK SERVICE
 // ============================================================
 
-const API_BASE_URL = 'http://localhost:3001/api';
+import { API_BASE_URL } from '../config';
+
+export const apiUrl = (endpoint) => `${API_BASE_URL}/${endpoint}`;
 
 /**
  * Standard GET request to fetch data from the server
  * @param {string} endpoint - The API endpoint (e.g., 'specs', 'roster')
  */
 export const fetchData = async (endpoint) => {
-  const res = await fetch(`${API_BASE_URL}/${endpoint}`);
+  const res = await fetch(apiUrl(endpoint));
   if (!res.ok) {
     throw new Error(`Network response was not ok for endpoint: ${endpoint}`);
   }
@@ -22,7 +24,7 @@ export const fetchData = async (endpoint) => {
  * @param {any} data - The payload to send to the server
  */
 export const putData = async (endpoint, data) => {
-  const res = await fetch(`${API_BASE_URL}/${endpoint}`, {
+  const res = await fetch(apiUrl(endpoint), {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
@@ -39,7 +41,7 @@ export const putData = async (endpoint, data) => {
  * @param {any} data - The payload to send to the server
  */
 export const postData = async (endpoint, data) => {
-  const res = await fetch(`${API_BASE_URL}/${endpoint}`, {
+  const res = await fetch(apiUrl(endpoint), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
@@ -55,7 +57,7 @@ export const postData = async (endpoint, data) => {
  * @param {string} endpoint - The API endpoint (e.g., 'items/42')
  */
 export const deleteData = async (endpoint) => {
-  const res = await fetch(`${API_BASE_URL}/${endpoint}`, {
+  const res = await fetch(apiUrl(endpoint), {
     method: 'DELETE'
   });
   if (!res.ok) {
