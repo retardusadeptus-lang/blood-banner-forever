@@ -1,22 +1,22 @@
 icons in bis config tab - done
 Phase dropdown in bis config tab - done
 change master items db to use new json - done
-find missing items from new json - done?
+find missing items from new json - done
 icons on priority overview - done
 change priority to take score into account - done
 Add manual score adjustment option - done
 put bis config in public view - done
 page crashes if trying to assign an item with no id - done
 
-Fix wrong or missing item IDs
-Add optional items back in
-add save button to put request to api rather than sending on every change
-change bis_priorities table to not include JSON
-change spec id mapping so roster uses id and 
-add tokens and map tier pieces to tokens & quest items (KT ring, Maggy head) - add one-to-many table, autoincrement, one to reference base item, one to reference buy item
+Fix wrong or missing item IDs - pending
+Add optional items back in - pending
+add save button to put request to api rather than sending on every change - done
+change bis_priorities table to not include JSON - done
+change spec id mapping so roster uses id - done
+add tokens and map tier pieces to tokens & quest items (KT ring, Maggy head) - add one-to-many table, autoincrement, one to reference base item, one to reference buy item - done
 Map specs to spec IDs in DB to show spec in the roster addition dropdown - done
-refactor into smaller files (app & node)
-front-end - figure out a way around the short delay before wowhead icons load. Implemented because icons were going stale when changing view but it's annoying
+refactor into smaller files (app & node) - done
+front-end - figure out a way around the short delay before wowhead icons load. Implemented because icons were going stale when changing view but it's annoying - Pending
 
 integrate warcraftlogs
 integrate wowaudit
@@ -24,4 +24,4 @@ integrate rclc
 hosting
 DNS
 
-Refactor mutable items as it still uses JSON 
+Refactor mutable items as it still uses JSON - done
