@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const ADMIN_API_TOKEN = process.env.ADMIN_API_TOKEN || 'TBCOfficer2026!';
 const HARD_CODED_DB_PATH = 'C:/Users/Steve/Projects/wow-loot-dashboard/guild-loot-api/mydb.db';
 const LOCAL_DB_PATH = path.join(__dirname, 'mydb.db');
 const DB_PATH_CANDIDATES = [
@@ -19,6 +20,18 @@ const DB_PATH = DB_PATH_CANDIDATES.find(candidate => fs.existsSync(candidate)) |
 
 const db = new Database(DB_PATH);
 db.pragma('foreign_keys = ON');
+
+app.use((req, res, next) => {
+  const isWriteMethod = ['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method);
+  if (!isWriteMethod) return next();
+
+  const token = req.get('x-admin-token') || req.get('authorization')?.replace(/^Bearer\s+/i, '');
+  if (!token || token !== ADMIN_API_TOKEN) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  return next();
+});
 
 const TIER_TOKEN_SEED_ROWS = [
   // Tier 4: Fallen
@@ -254,10 +267,155 @@ function getTokenRedemptionByItemId(itemId) {
 
 ensureTierTokenSupport();
 
+function ensureNormalizedOperationalTables() {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS bis_priority_entries (
+      phase TEXT NOT NULL,
+      item_name TEXT NOT NULL,
+      spec_name TEXT NOT NULL,
+      status TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY (phase, item_name, spec_name)
+    )
+  `).run();
+
+  db.prepare('CREATE INDEX IF NOT EXISTS idx_bis_priority_entries_phase_item ON bis_priority_entries (phase, item_name)').run();
+  db.prepare('CREATE INDEX IF NOT EXISTS idx_bis_priority_entries_phase_spec ON bis_priority_entries (phase, spec_name)').run();
+
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS scoring_config_values (
+      id INTEGER PRIMARY KEY CHECK (id = 1),
+      parse_weight REAL NOT NULL DEFAULT 1,
+      support_multi REAL NOT NULL DEFAULT 1.5,
+      cons_bonus REAL NOT NULL DEFAULT 10,
+      enchant_bonus REAL NOT NULL DEFAULT 10,
+      gem_bonus REAL NOT NULL DEFAULT 10,
+      att_weight REAL NOT NULL DEFAULT 0.5,
+      afk_penalty REAL NOT NULL DEFAULT 5,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS raid_assignment_config_bosses (
+      boss_name TEXT PRIMARY KEY,
+      enabled INTEGER NOT NULL DEFAULT 1,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  const bisCount = db.prepare('SELECT COUNT(*) as count FROM bis_priority_entries').get().count;
+  if (bisCount === 0) {
+    const legacyRows = db.prepare('SELECT phase, data FROM bis_priorities').all();
+    const insertEntry = db.prepare('INSERT OR REPLACE INTO bis_priority_entries (phase, item_name, spec_name, status) VALUES (?, ?, ?, ?)');
+    const migrateBis = db.transaction(() => {
+      legacyRows.forEach(row => {
+        let parsed = {};
+        try {
+          parsed = JSON.parse(row.data || '{}');
+        } catch (e) {
+          parsed = {};
+        }
+
+        Object.entries(parsed).forEach(([itemKey, status]) => {
+          const splitIndex = itemKey.lastIndexOf('|');
+          if (splitIndex === -1) return;
+          const itemName = itemKey.slice(0, splitIndex);
+          const specName = itemKey.slice(splitIndex + 1);
+          insertEntry.run(row.phase, itemName, specName, status);
+        });
+      });
+    });
+    migrateBis();
+  }
+
+  const scoringCount = db.prepare('SELECT COUNT(*) as count FROM scoring_config_values').get().count;
+  if (scoringCount === 0) {
+    let legacyConfig = {};
+    const legacyRow = db.prepare('SELECT data FROM scoring_config WHERE id = 1').get();
+    if (legacyRow) {
+      try {
+        legacyConfig = JSON.parse(legacyRow.data || '{}');
+      } catch (e) {
+        legacyConfig = {};
+      }
+    }
+
+    const defaults = {
+      parseWeight: legacyConfig.parseWeight ?? 1,
+      supportMulti: legacyConfig.supportMulti ?? 1.5,
+      consBonus: legacyConfig.consBonus ?? 10,
+      enchantBonus: legacyConfig.enchantBonus ?? 10,
+      gemBonus: legacyConfig.gemBonus ?? 10,
+      attWeight: legacyConfig.attWeight ?? 0.5,
+      afkPenalty: legacyConfig.afkPenalty ?? 5
+    };
+
+    db.prepare(`
+      INSERT INTO scoring_config_values (id, parse_weight, support_multi, cons_bonus, enchant_bonus, gem_bonus, att_weight, afk_penalty)
+      VALUES (1, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      defaults.parseWeight,
+      defaults.supportMulti,
+      defaults.consBonus,
+      defaults.enchantBonus,
+      defaults.gemBonus,
+      defaults.attWeight,
+      defaults.afkPenalty
+    );
+  }
+
+  const bossCount = db.prepare('SELECT COUNT(*) as count FROM raid_assignment_config_bosses').get().count;
+  if (bossCount === 0) {
+    const legacyRow = db.prepare('SELECT enabled_bosses FROM raid_assignment_config ORDER BY id LIMIT 1').get();
+    let enabledBosses = [];
+    if (legacyRow) {
+      try {
+        enabledBosses = JSON.parse(legacyRow.enabled_bosses || '[]');
+      } catch (e) {
+        enabledBosses = [];
+      }
+    }
+
+    const insertBoss = db.prepare('INSERT OR REPLACE INTO raid_assignment_config_bosses (boss_name, enabled) VALUES (?, ?)');
+    const migrateBosses = db.transaction(() => {
+      enabledBosses.forEach(bossName => insertBoss.run(bossName, 1));
+    });
+    migrateBosses();
+  }
+}
+
+ensureNormalizedOperationalTables();
+
+function ensureDatabaseIndexes() {
+  const statements = [
+    'CREATE INDEX IF NOT EXISTS idx_assignments_phase_item ON assignments (phase, item_name)',
+    'CREATE INDEX IF NOT EXISTS idx_assignments_phase_player ON assignments (phase, player_id)',
+    'CREATE INDEX IF NOT EXISTS idx_player_parses_player_boss ON player_parses (player_id, boss_name)',
+    'CREATE INDEX IF NOT EXISTS idx_player_stats_player_id ON player_stats (player_id)',
+    'CREATE INDEX IF NOT EXISTS idx_raid_logs_date ON raid_logs (raid_date)',
+    'CREATE INDEX IF NOT EXISTS idx_roster_spec_id ON roster (spec_id)',
+    'CREATE INDEX IF NOT EXISTS idx_items_name ON items (name)',
+    'CREATE INDEX IF NOT EXISTS idx_items_slot_phase ON items (slot, phase)',
+    'CREATE INDEX IF NOT EXISTS idx_items_source ON items (source, source_type)',
+    'CREATE INDEX IF NOT EXISTS idx_items_bis_item_spec ON items_bis (item_id, spec_id)',
+    'CREATE INDEX IF NOT EXISTS idx_bank_items_category_name ON bank_items (category, name)',
+    'CREATE INDEX IF NOT EXISTS idx_bank_requests_status_created ON bank_requests (status, created_at)',
+    'CREATE INDEX IF NOT EXISTS idx_raid_assignment_images_boss_created ON raid_assignment_images (boss_name, created_at)'
+  ];
+
+  statements.forEach(sql => db.prepare(sql).run());
+}
+
+ensureDatabaseIndexes();
+
 // ==========================================
 // DISCORD WEBHOOKS
 // ==========================================
-const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || 'https://discord.com/api/webhooks/1472708740993253570/NVYBC50w0AIWSn6d0dX-8oDMJLyI6sL0OskRxTRYP59ZKWRoalzDczdN6q-8dyX43XhN';
+const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
+if (!DISCORD_WEBHOOK_URL) {
+  throw new Error('DISCORD_WEBHOOK_URL is required');
+}
 const SITE_URL = process.env.SITE_URL || 'https://tbc-loot-dashboard.vercel.app/';
 
 async function postToDiscord(payload) {
@@ -439,8 +597,12 @@ app.put('/api/assignments/:phase', (req, res) => {
 // ==========================================
 app.get('/api/bis-priorities/:phase', (req, res) => {
   try {
-    const row = db.prepare('SELECT data FROM bis_priorities WHERE phase = ?').get(req.params.phase);
-    res.json(row ? JSON.parse(row.data) : {});
+    const rows = db.prepare('SELECT item_name, spec_name, status FROM bis_priority_entries WHERE phase = ?').all(req.params.phase);
+    const result = {};
+    rows.forEach(row => {
+      result[`${row.item_name}|${row.spec_name}`] = row.status;
+    });
+    res.json(result);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -448,12 +610,22 @@ app.get('/api/bis-priorities/:phase', (req, res) => {
 
 app.put('/api/bis-priorities/:phase', (req, res) => {
   try {
-    const exists = db.prepare('SELECT id FROM bis_priorities WHERE phase = ?').get(req.params.phase);
-    if (exists) {
-      db.prepare('UPDATE bis_priorities SET data = ? WHERE phase = ?').run(JSON.stringify(req.body), req.params.phase);
-    } else {
-      db.prepare('INSERT INTO bis_priorities (phase, data) VALUES (?, ?)').run(req.params.phase, JSON.stringify(req.body));
-    }
+    const phase = req.params.phase;
+    const deletePhase = db.prepare('DELETE FROM bis_priority_entries WHERE phase = ?');
+    const insertEntry = db.prepare('INSERT INTO bis_priority_entries (phase, item_name, spec_name, status) VALUES (?, ?, ?, ?)');
+
+    const updateAll = db.transaction(() => {
+      deletePhase.run(phase);
+      for (const [itemKey, status] of Object.entries(req.body || {})) {
+        const splitIndex = itemKey.lastIndexOf('|');
+        if (splitIndex === -1 || !status) continue;
+        const itemName = itemKey.slice(0, splitIndex);
+        const specName = itemKey.slice(splitIndex + 1);
+        insertEntry.run(phase, itemName, specName, status);
+      }
+    });
+
+    updateAll();
     res.json({ ok: true });
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -670,8 +842,16 @@ app.put('/api/raid-logs', (req, res) => {
 // ==========================================
 app.get('/api/scoring-config', (req, res) => {
   try {
-    const row = db.prepare('SELECT data FROM scoring_config WHERE id = 1').get();
-    res.json(row ? JSON.parse(row.data) : {
+    const row = db.prepare('SELECT * FROM scoring_config_values WHERE id = 1').get();
+    res.json(row ? {
+      parseWeight: row.parse_weight,
+      supportMulti: row.support_multi,
+      consBonus: row.cons_bonus,
+      enchantBonus: row.enchant_bonus,
+      gemBonus: row.gem_bonus,
+      attWeight: row.att_weight,
+      afkPenalty: row.afk_penalty
+    } : {
       parseWeight: 1,
       supportMulti: 1.5,
       consBonus: 10,
@@ -687,12 +867,27 @@ app.get('/api/scoring-config', (req, res) => {
 
 app.put('/api/scoring-config', (req, res) => {
   try {
-    const exists = db.prepare('SELECT id FROM scoring_config WHERE id = 1').get();
-    if (exists) {
-      db.prepare('UPDATE scoring_config SET data = ? WHERE id = 1').run(JSON.stringify(req.body));
-    } else {
-      db.prepare('INSERT INTO scoring_config (id, data) VALUES (1, ?)').run(JSON.stringify(req.body));
-    }
+    const payload = req.body || {};
+    db.prepare(`
+      INSERT INTO scoring_config_values (id, parse_weight, support_multi, cons_bonus, enchant_bonus, gem_bonus, att_weight, afk_penalty)
+      VALUES (1, ?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(id) DO UPDATE SET
+        parse_weight = excluded.parse_weight,
+        support_multi = excluded.support_multi,
+        cons_bonus = excluded.cons_bonus,
+        enchant_bonus = excluded.enchant_bonus,
+        gem_bonus = excluded.gem_bonus,
+        att_weight = excluded.att_weight,
+        afk_penalty = excluded.afk_penalty
+    `).run(
+      payload.parseWeight ?? 1,
+      payload.supportMulti ?? 1.5,
+      payload.consBonus ?? 10,
+      payload.enchantBonus ?? 10,
+      payload.gemBonus ?? 10,
+      payload.attWeight ?? 0.5,
+      payload.afkPenalty ?? 5
+    );
     res.json({ ok: true });
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -1120,8 +1315,8 @@ app.put('/api/raid-assignment-data', (req, res) => {
 // Which bosses currently have a visible assignment card: array of boss name strings
 app.get('/api/raid-assignment-config', (req, res) => {
   try {
-    const row = db.prepare('SELECT enabled_bosses FROM raid_assignment_config ORDER BY id LIMIT 1').get();
-    res.json(row ? JSON.parse(row.enabled_bosses) : []);
+    const rows = db.prepare('SELECT boss_name FROM raid_assignment_config_bosses WHERE enabled = 1 ORDER BY boss_name').all();
+    res.json(rows.map(row => row.boss_name));
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -1129,12 +1324,16 @@ app.get('/api/raid-assignment-config', (req, res) => {
 
 app.put('/api/raid-assignment-config', (req, res) => {
   try {
-    const existing = db.prepare('SELECT id FROM raid_assignment_config ORDER BY id LIMIT 1').get();
-    if (existing) {
-      db.prepare('UPDATE raid_assignment_config SET enabled_bosses = ? WHERE id = ?').run(JSON.stringify(req.body), existing.id);
-    } else {
-      db.prepare('INSERT INTO raid_assignment_config (enabled_bosses) VALUES (?)').run(JSON.stringify(req.body));
-    }
+    const enabledBosses = Array.isArray(req.body) ? req.body : [];
+    const deleteAll = db.prepare('DELETE FROM raid_assignment_config_bosses');
+    const insertBoss = db.prepare('INSERT INTO raid_assignment_config_bosses (boss_name, enabled) VALUES (?, 1)');
+
+    const updateAll = db.transaction(() => {
+      deleteAll.run();
+      enabledBosses.forEach(bossName => insertBoss.run(bossName));
+    });
+
+    updateAll();
     res.json({ ok: true });
   } catch (e) {
     res.status(500).json({ error: e.message });

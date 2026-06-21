@@ -35,3 +35,8 @@ CREATE TABLE IF NOT EXISTS items_bis (
     za_opt INTEGER DEFAULT 0,
     swp_opt INTEGER DEFAULT 0
 );
+
+CREATE INDEX IF NOT EXISTS idx_items_name ON items (name);
+CREATE INDEX IF NOT EXISTS idx_items_slot_phase ON items (slot, phase);
+CREATE INDEX IF NOT EXISTS idx_items_source ON items (source, source_type);
+CREATE INDEX IF NOT EXISTS idx_items_bis_item_spec ON items_bis (item_id, spec_id);

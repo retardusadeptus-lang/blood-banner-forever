@@ -1,6 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, RIGHT_SLOTS, BOTTOM_SLOTS, P2_BOSSES, CATEGORY_MAP, RAID_ZONES } from './constants';
 import { fetchData, putData, postData, deleteData } from './services/apiService';
+import { ADMIN_API_TOKEN } from './config';
+import { useItemsDatabase } from './hooks/useItemsDatabase';
 import OverviewTab from './components/OverviewTab';
 import GuildBankTab from './components/GuildBankTab';
 import BisConfigTab from './components/BisConfigTab';
@@ -101,19 +103,56 @@ export default function App() {
   const [filterSlot, setFilterSlot] = useState('');
   const [filterCategory, setFilterCategory] = useState('');
   const [selectedBisSpec, setSelectedBisSpec] = useState(null); // Will be set to first spec from DB
-  const [masterItemsDbPhase, setMasterItemsDbPhase] = useState('T5');
   const [expandedPlayerId, setExpandedPlayerId] = useState(null);
   const [newRaidDate, setNewRaidDate] = useState(new Date().toISOString().split('T')[0]);
   const [newRaidZone, setNewRaidZone] = useState('SSC / TK');
 
-  // Spreadsheet States
-  const [dbNewName, setDbNewName] = useState('');
-  const [dbNewSlot, setDbNewSlot] = useState(LEFT_SLOTS[0]);
-  const [dbNewZone, setDbNewZone] = useState('SSC');
-  const [dbNewBoss, setDbNewBoss] = useState(P2_BOSSES[0]);
-  const [dbNewItemId, setDbNewItemId] = useState('');
-  const [dbSearch, setDbSearch] = useState('');
-  const [showMissingWowheadFilter, setShowMissingWowheadFilter] = useState(false);
+  const {
+    mutableItems,
+    setMutableItemsLocal,
+    mutableItemsBaseline,
+    setMutableItemsBaseline,
+    bisPriorities,
+    setBisPrioritiesLocal,
+    dbBisPriorities,
+    setDbBisPrioritiesLocal,
+    masterItemsDbPhase,
+    setMasterItemsDbPhase,
+    dbNewName,
+    setDbNewName,
+    dbNewSlot,
+    setDbNewSlot,
+    dbNewZone,
+    setDbNewZone,
+    dbNewBoss,
+    setDbNewBoss,
+    dbNewItemId,
+    setDbNewItemId,
+    dbSearch,
+    setDbSearch,
+    showMissingWowheadFilter,
+    setShowMissingWowheadFilter,
+    dbBisPrioritiesDirty,
+    setDbBisPrioritiesDirty,
+    mutableItemsDirty,
+    setMutableItemsDirty,
+    isSavingItemsDb,
+    handleAddItemToDb,
+    handleUpdateItemEligibility,
+    handleUpdateItemId,
+    handleDeleteItemFromDb,
+    handleSaveItemsDbChanges,
+  } = useItemsDatabase({
+    fetchData,
+    putData,
+    postData,
+    deleteData,
+    phaseJsonKeys: PHASE_JSON_KEYS,
+    leftSlots: LEFT_SLOTS,
+    p2Bosses: P2_BOSSES,
+    globalPhase,
+    setSelectedItemName,
+  });
 
   // Bank state
   const [bankItems, setBankItems] = useState([]);
@@ -136,17 +175,11 @@ export default function App() {
   const [scoringConfig, setScoringConfigLocal] = useState({});
   const [playerStats, setPlayerStatsLocal] = useState({});
   const [raidLogs, setRaidLogsLocal] = useState([]);
-  const [mutableItems, setMutableItemsLocal] = useState([]);
-  const [bisPriorities, setBisPrioritiesLocal] = useState({});
-  const [dbBisPriorities, setDbBisPrioritiesLocal] = useState({});
+  const [tokenRedemptionsByItemId, setTokenRedemptionsByItemId] = useState({});
   const [raidAssignmentData, setRaidAssignmentDataLocal] = useState({});
   const [enabledBosses, setEnabledBossesLocal] = useState([]);
-  const [mutableItemsBaseline, setMutableItemsBaseline] = useState([]);
-  const [tokenRedemptionsByItemId, setTokenRedemptionsByItemId] = useState({});
 
   const [assignmentsDirty, setAssignmentsDirty] = useState(false);
-  const [dbBisPrioritiesDirty, setDbBisPrioritiesDirty] = useState(false);
-  const [mutableItemsDirty, setMutableItemsDirty] = useState(false);
   const [rosterDirty, setRosterDirty] = useState(false);
   const [scoringConfigDirty, setScoringConfigDirty] = useState(false);
   const [playerStatsDirty, setPlayerStatsDirty] = useState(false);
@@ -155,7 +188,6 @@ export default function App() {
   const [enabledBossesDirty, setEnabledBossesDirty] = useState(false);
 
   const [isSavingLootCouncil, setIsSavingLootCouncil] = useState(false);
-  const [isSavingItemsDb, setIsSavingItemsDb] = useState(false);
   const [isSavingRosterAttendance, setIsSavingRosterAttendance] = useState(false);
   const [isSavingScoring, setIsSavingScoring] = useState(false);
   const [isSavingRaidAssignments, setIsSavingRaidAssignments] = useState(false);
@@ -306,8 +338,9 @@ export default function App() {
   // ==========================================
   const handleLogin = (e) => {
     if (e) e.preventDefault();
-    if (passwordInput === 'TBCOfficer2026!') {
+    if (passwordInput === ADMIN_API_TOKEN) {
       setIsAuthenticated(true);
+      sessionStorage.setItem('ar-auth-token', passwordInput);
       sessionStorage.setItem('ar-auth', 'true');
       setPasswordInput('');
     } else {
@@ -319,6 +352,7 @@ export default function App() {
   const handleLogout = () => {
     setIsAuthenticated(false);
     sessionStorage.removeItem('ar-auth');
+    sessionStorage.removeItem('ar-auth-token');
     setActiveTab('overview');
   };
 
@@ -394,81 +428,6 @@ export default function App() {
     setPlayerStats({ ...playerStats, [playerId]: { ...currentStats, manualAdjustment: { ...currentStats.manualAdjustment, [field]: value } } });
   };
 
-  const handleAddItemToDb = async (e) => {
-    e.preventDefault();
-    if (!dbNewName.trim()) return;
-
-    if (mutableItems.some(i => i.name.toLowerCase() === dbNewName.trim().toLowerCase())) {
-      alert("An item with that name already exists in the database!");
-      return;
-    }
-
-    try {
-      const newItem = await postData('items', {
-        name: dbNewName.trim(),
-        slot: dbNewSlot,
-        zone: dbNewZone,
-        boss: dbNewBoss,
-        itemId: dbNewItemId.trim()
-      });
-      const updatedItems = [newItem, ...mutableItems];
-      setMutableItemsLocal(updatedItems);
-      setMutableItemsBaseline(updatedItems);
-      setMutableItemsDirty(false);
-      setDbNewName('');
-      setDbNewItemId('');
-      alert(`Successfully added "${newItem.name}" to items table!`);
-    } catch (e) {
-      alert('Failed to add item.');
-    }
-  };
-
-  const handleUpdateItemEligibility = (itemName, spec, currentStatus, useDbPhase = false) => {
-    // Get the key for this item-spec combination
-    const itemKey = `${itemName}|${spec}`;
-
-    let nextStatus = '';
-    if (currentStatus === '') nextStatus = 'BiS';
-    else if (currentStatus === 'BiS') nextStatus = 'Opt';
-    else nextStatus = '';
-
-    const currentBis = useDbPhase ? dbBisPriorities : bisPriorities;
-    const newBisPriorities = { ...currentBis };
-    if (nextStatus) {
-      newBisPriorities[itemKey] = nextStatus;
-    } else {
-      delete newBisPriorities[itemKey];
-    }
-
-    if (useDbPhase) {
-      setDbBisPriorities(newBisPriorities);
-    } else {
-      setBisPriorities(newBisPriorities);
-    }
-  };
-
-  const handleUpdateItemId = (id, newId) => {
-    setMutableItemsLocal(mutableItems.map(item =>
-      item.id === id ? { ...item, itemId: newId } : item
-    ));
-    setMutableItemsDirty(true);
-  };
-
-  const handleDeleteItemFromDb = async (id, itemName) => {
-    if (window.confirm(`Permanently remove "${itemName}" from the master loot tables?`)) {
-      try {
-        await deleteData(`items/${id}`);
-        const updatedItems = mutableItems.filter(i => i.id !== id);
-        setMutableItemsLocal(updatedItems);
-        setMutableItemsBaseline(updatedItems);
-        setMutableItemsDirty(false);
-        if (selectedItemName === itemName) setSelectedItemName('');
-      } catch (e) {
-        alert('Failed to delete item.');
-      }
-    }
-  };
-
   const handleSaveLootCouncilChanges = async () => {
     if (!assignmentsDirty) return;
     setIsSavingLootCouncil(true);
@@ -481,38 +440,6 @@ export default function App() {
       alert('Failed to save loot council assignments.');
     } finally {
       setIsSavingLootCouncil(false);
-    }
-  };
-
-  const handleSaveItemsDbChanges = async () => {
-    if (!dbBisPrioritiesDirty && !mutableItemsDirty) return;
-    setIsSavingItemsDb(true);
-    try {
-      if (dbBisPrioritiesDirty) {
-        const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
-        await putData('bis-priorities/' + phaseKey, dbBisPriorities);
-      }
-
-      if (mutableItemsDirty) {
-        const baselineById = new Map(mutableItemsBaseline.map(item => [item.id, item]));
-        const changedIds = mutableItems.filter(item => {
-          const baselineItem = baselineById.get(item.id);
-          return baselineItem && String(baselineItem.itemId || '') !== String(item.itemId || '');
-        });
-
-        await Promise.all(changedIds.map(item => putData(`items/${item.id}`, { itemId: item.itemId || '' })));
-      }
-
-      const refreshedItems = await fetchData('mutable-items');
-      setMutableItemsLocal(refreshedItems);
-      setMutableItemsBaseline(refreshedItems);
-      setDbBisPrioritiesDirty(false);
-      setMutableItemsDirty(false);
-      alert('Master items changes saved.');
-    } catch (e) {
-      alert('Failed to save master items changes.');
-    } finally {
-      setIsSavingItemsDb(false);
     }
   };
 

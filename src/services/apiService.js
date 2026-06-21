@@ -6,6 +6,11 @@ import { API_BASE_URL } from '../config';
 
 export const apiUrl = (endpoint) => `${API_BASE_URL}/${endpoint}`;
 
+const getAuthHeaders = () => {
+  const token = sessionStorage.getItem('ar-auth-token');
+  return token ? { 'x-admin-token': token } : {};
+};
+
 /**
  * Standard GET request to fetch data from the server
  * @param {string} endpoint - The API endpoint (e.g., 'specs', 'roster')
@@ -26,7 +31,7 @@ export const fetchData = async (endpoint) => {
 export const putData = async (endpoint, data) => {
   const res = await fetch(apiUrl(endpoint), {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
     body: JSON.stringify(data)
   });
   if (!res.ok) {
@@ -43,7 +48,7 @@ export const putData = async (endpoint, data) => {
 export const postData = async (endpoint, data) => {
   const res = await fetch(apiUrl(endpoint), {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
     body: JSON.stringify(data)
   });
   if (!res.ok) {
@@ -58,7 +63,8 @@ export const postData = async (endpoint, data) => {
  */
 export const deleteData = async (endpoint) => {
   const res = await fetch(apiUrl(endpoint), {
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: { ...getAuthHeaders() }
   });
   if (!res.ok) {
     throw new Error(`Network response was not ok for delete on endpoint: ${endpoint}`);
