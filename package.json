@@ -6,11 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:prod": "vite build --mode production",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:docker": "docker build -t wow-loot-dashboard:latest -f ./Dockerfile ."
   },
   "dependencies": {
-    "firebase": "^12.13.0",
+    "axios": "^1.17.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   },

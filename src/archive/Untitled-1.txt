@@ -1,0 +1,18 @@
+curl -s -u "4880ec3f26d14a979d6eb1ae92f9ee95:VzHREjokwAaR6RszAtDm13PYUh1Q8zuC" \
+    -d grant_type=client_credentials \
+    https://oauth.battle.net/token | jq -r '.access_token'
+
+    curl.exe -s -u "4880ec3f26d14a979d6eb1ae92f9ee95:VzHREjokwAaR6RszAtDm13PYUh1Q8zuC" -d "grant_type=client_credentials" https://oauth.battle.net/token
+
+    EUkSXEG2AnY5QbfRcBiCYuAtpcmXNq2hcT
+
+
+curl.exe -s -G "https://us.api.blizzard.com/data/wow/search/item"     --data-urlencode "namespace=static-us" --data-urlencode ":region=eu"     --data-urlencode "name.en_US=Thunderfury"     --data-urlencode "orderby=id"     --data-urlencode "_page=1"    -H "Authorization: Bearer EUkSXEG2AnY5QbfRcBiCYuAtpcmXNq2hcT" -o output.json
+
+    curl.exe -s -G "https://us.api.blizzard.com/data/wow/search/item" --data-urlencode "namespace=static-classic-us" --data-urlencode
+  "name.en_US=Spellfire Robe" --data-urlencode "orderby=id" --data-urlencode "_page=1" -H "Authorization: Bearer EUkSXEG2AnY5QbfRcBiCYuAtpcmXNq2hcT"
+
+  curl.exe -s "https://us.api.blizzard.com/data/wow/search/item" --data-urlencode "name.en_US=Fathomstone" --data-urlencode "namespace=static-classic-us" -H "Authorization: Bearer EUkSXEG2AnY5QbfRcBiCYuAtpcmXNq2hcT"
+
+
+curl.exe -s -G "https://eu.api.blizzard.com/data/wow/search/item"   --data-urlencode "namespace=static-classic-eu"   --data-urlencode "name.en_US.exact=Nordrassil Headpiece"   --data-urlencode "orderby=id"   --data-urlencode "_page=1"   -H "Authorization: Bearer EUkSXEG2AnY5QbfRcBiCYuAtpcmXNq2hcT"   -o output.json

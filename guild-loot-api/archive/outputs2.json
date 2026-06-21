@@ -1,0 +1,1452 @@
+[
+  {
+    "db_id": 2064,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 2066,
+    "name": "Nature Sword",
+    "media_id": 948
+  },
+  {
+    "db_id": 2067,
+    "name": "Poison-tipped Bone Spear",
+    "media_id": 1726
+  },
+  {
+    "db_id": 2069,
+    "name": "Guardian Talisman",
+    "media_id": 1490
+  },
+  {
+    "db_id": 2070,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 2074,
+    "name": "Dire Wolf Fang",
+    "media_id": 893
+  },
+  {
+    "db_id": 2075,
+    "name": "Prophetic Cane",
+    "media_id": 6803
+  },
+  {
+    "db_id": 2076,
+    "name": "Bernice's Necklace",
+    "media_id": 981
+  },
+  {
+    "db_id": 2078,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 2098,
+    "name": "Torn Murloc Fin",
+    "media_id": 780
+  },
+  {
+    "db_id": 2099,
+    "name": "Primitive Mantle",
+    "media_id": 154
+  },
+  {
+    "db_id": 2109,
+    "name": "Overseer's Cloak",
+    "media_id": 1190
+  },
+  {
+    "db_id": 2112,
+    "name": "Overseer's Cloak",
+    "media_id": 1190
+  },
+  {
+    "db_id": 2119,
+    "name": "Fel Steed Saddlebags",
+    "media_id": 932
+  },
+  {
+    "db_id": 2134,
+    "name": "Warped Leather Belt",
+    "media_id": 1502
+  },
+  {
+    "db_id": 2151,
+    "name": "Bracers of the People's Militia",
+    "media_id": 710
+  },
+  {
+    "db_id": 2209,
+    "name": "Recruit's Boots",
+    "media_id": 40
+  },
+  {
+    "db_id": 2220,
+    "name": "Goblin Power Shovel",
+    "media_id": 1991
+  },
+  {
+    "db_id": 2221,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2224,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2225,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 2226,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2227,
+    "name": "Forester's Axe",
+    "media_id": 790
+  },
+  {
+    "db_id": 2228,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2229,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2232,
+    "name": "Myrmidon's Signet",
+    "media_id": 2246
+  },
+  {
+    "db_id": 2234,
+    "name": "Red Ribboned Gift",
+    "media_id": 5043
+  },
+  {
+    "db_id": 2235,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 2237,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 2238,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2239,
+    "name": "Seal of Wrynn",
+    "media_id": 2933
+  },
+  {
+    "db_id": 2241,
+    "name": "Myrmidon's Signet",
+    "media_id": 2246
+  },
+  {
+    "db_id": 2244,
+    "name": "Garrick's Head",
+    "media_id": 182
+  },
+  {
+    "db_id": 2245,
+    "name": "Guardian Talisman",
+    "media_id": 1490
+  },
+  {
+    "db_id": 2246,
+    "name": "Silver Defias Belt",
+    "media_id": 832
+  },
+  {
+    "db_id": 2248,
+    "name": "Miners' Union Card",
+    "media_id": 1894
+  },
+  {
+    "db_id": 2249,
+    "name": "Neltharion's Tear",
+    "media_id": 19379
+  },
+  {
+    "db_id": 2250,
+    "name": "The Skull of Scryer",
+    "media_id": 16869
+  },
+  {
+    "db_id": 2254,
+    "name": "The Restrained Essence of Sapphiron",
+    "media_id": 23046
+  },
+  {
+    "db_id": 2257,
+    "name": "Intricate Bauble",
+    "media_id": 5430
+  },
+  {
+    "db_id": 2263,
+    "name": "Stone Gnoll Hammer",
+    "media_id": 781
+  },
+  {
+    "db_id": 2287,
+    "name": "Sapphiron's Left Eye",
+    "media_id": 23049
+  },
+  {
+    "db_id": 2291,
+    "name": "Royal Scepter of Vek'lor",
+    "media_id": 21597
+  },
+  {
+    "db_id": 2296,
+    "name": "Carved Stone Idol",
+    "media_id": 2636
+  },
+  {
+    "db_id": 2297,
+    "name": "Carved Stone Idol",
+    "media_id": 2636
+  },
+  {
+    "db_id": 2298,
+    "name": "Carved Stone Idol",
+    "media_id": 2636
+  },
+  {
+    "db_id": 2299,
+    "name": "Idol of the Moon",
+    "media_id": 23197
+  },
+  {
+    "db_id": 2320,
+    "name": "Deft Stiletto",
+    "media_id": 2766
+  },
+  {
+    "db_id": 2322,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 2323,
+    "name": "Hard Spider Leg Tip",
+    "media_id": 1074
+  },
+  {
+    "db_id": 2325,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 2328,
+    "name": "Vile Fin Scale",
+    "media_id": 2859
+  },
+  {
+    "db_id": 2329,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 2331,
+    "name": "Bernice's Necklace",
+    "media_id": 981
+  },
+  {
+    "db_id": 2334,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 2335,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 2336,
+    "name": "Glowing Brightwood Staff",
+    "media_id": 812
+  },
+  {
+    "db_id": 2338,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 2409,
+    "name": "Elastic Wristguards",
+    "media_id": 1183
+  },
+  {
+    "db_id": 2488,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 2489,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2491,
+    "name": "Troll Protector",
+    "media_id": 2040
+  },
+  {
+    "db_id": 2493,
+    "name": "Myrmidon's Signet",
+    "media_id": 2246
+  },
+  {
+    "db_id": 2494,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2495,
+    "name": "Myrmidon's Signet",
+    "media_id": 2246
+  },
+  {
+    "db_id": 2496,
+    "name": "Myrmidon's Signet",
+    "media_id": 2246
+  },
+  {
+    "db_id": 2498,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 2504,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 2506,
+    "name": "Assassin's Blade",
+    "media_id": 1935
+  },
+  {
+    "db_id": 2508,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2509,
+    "name": "Commander's Crest",
+    "media_id": 6320
+  },
+  {
+    "db_id": 2510,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2514,
+    "name": "Call of the Raptor",
+    "media_id": 4546
+  },
+  {
+    "db_id": 2519,
+    "name": "Drake Fang Talisman",
+    "media_id": 19406
+  },
+  {
+    "db_id": 2520,
+    "name": "Bloodlust Breastplate",
+    "media_id": 14798
+  },
+  {
+    "db_id": 2521,
+    "name": "Slayer's Crest",
+    "media_id": 23041
+  },
+  {
+    "db_id": 2523,
+    "name": "Kiss of the Spider",
+    "media_id": 22954
+  },
+  {
+    "db_id": 2525,
+    "name": "Thistlenettle's Badge",
+    "media_id": 1875
+  },
+  {
+    "db_id": 2528,
+    "name": "Shortsword of Vengeance",
+    "media_id": 754
+  },
+  {
+    "db_id": 2529,
+    "name": "Explosive Rocket",
+    "media_id": 1178
+  },
+  {
+    "db_id": 2530,
+    "name": "Thistlenettle's Badge",
+    "media_id": 1875
+  },
+  {
+    "db_id": 2531,
+    "name": "Azuredeep Shards",
+    "media_id": 1706
+  },
+  {
+    "db_id": 2535,
+    "name": "Dried King Bolete",
+    "media_id": 8948
+  },
+  {
+    "db_id": 2536,
+    "name": "Enigma Robes",
+    "media_id": 21343
+  },
+  {
+    "db_id": 2537,
+    "name": "Dusky Crab Cakes",
+    "media_id": 2250
+  },
+  {
+    "db_id": 2555,
+    "name": "Carved Stone Idol",
+    "media_id": 2636
+  },
+  {
+    "db_id": 2556,
+    "name": "Idol of Brutality",
+    "media_id": 23198
+  },
+  {
+    "db_id": 2557,
+    "name": "Idol of the Wild",
+    "media_id": 210534
+  },
+  {
+    "db_id": 2558,
+    "name": "Carved Stone Idol",
+    "media_id": 2636
+  },
+  {
+    "db_id": 2559,
+    "name": "Wolfshead Helm",
+    "media_id": 8345
+  },
+  {
+    "db_id": 2561,
+    "name": "Large Ogre Chain Armor",
+    "media_id": 914
+  },
+  {
+    "db_id": 2563,
+    "name": "Small Hand Blade",
+    "media_id": 816
+  },
+  {
+    "db_id": 2564,
+    "name": "Death's Bargain",
+    "media_id": 23075
+  },
+  {
+    "db_id": 2565,
+    "name": "Bernice's Necklace",
+    "media_id": 981
+  },
+  {
+    "db_id": 2586,
+    "name": "Bracers of the People's Militia",
+    "media_id": 710
+  },
+  {
+    "db_id": 2589,
+    "name": "Thick Cloth Gloves",
+    "media_id": 203
+  },
+  {
+    "db_id": 2597,
+    "name": "Smith's Trousers",
+    "media_id": 1310
+  },
+  {
+    "db_id": 2605,
+    "name": "Miner's Revenge",
+    "media_id": 1893
+  },
+  {
+    "db_id": 2609,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 2611,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2612,
+    "name": "Overseer's Ring",
+    "media_id": 1189
+  },
+  {
+    "db_id": 2614,
+    "name": "Myrmidon's Signet",
+    "media_id": 2246
+  },
+  {
+    "db_id": 2616,
+    "name": "Crystalforged Trinket",
+    "media_id": 32654
+  },
+  {
+    "db_id": 2617,
+    "name": "Heartswood Core",
+    "media_id": 6913
+  },
+  {
+    "db_id": 2618,
+    "name": "Blackhand's Breadth",
+    "media_id": 13965
+  },
+  {
+    "db_id": 2619,
+    "name": "Panther Hunter Leggings",
+    "media_id": 4108
+  },
+  {
+    "db_id": 2620,
+    "name": "Stone Gnoll Hammer",
+    "media_id": 781
+  },
+  {
+    "db_id": 2621,
+    "name": "Miners' Union Card",
+    "media_id": 1894
+  },
+  {
+    "db_id": 2623,
+    "name": "Carved Stone Idol",
+    "media_id": 2636
+  },
+  {
+    "db_id": 2643,
+    "name": "Jeweled Amulet of Cainwyn",
+    "media_id": 1443
+  },
+  {
+    "db_id": 2644,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 2646,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 2648,
+    "name": "Lord Brandon's Tabard (Test)",
+    "media_id": 746
+  },
+  {
+    "db_id": 2650,
+    "name": "Tidal Charm",
+    "media_id": 1404
+  },
+  {
+    "db_id": 2651,
+    "name": "Guardian Talisman",
+    "media_id": 1490
+  },
+  {
+    "db_id": 2653,
+    "name": "Rolf and Malakai's Medallions",
+    "media_id": 735
+  },
+  {
+    "db_id": 2655,
+    "name": "Dire Wolf Fang",
+    "media_id": 893
+  },
+  {
+    "db_id": 2656,
+    "name": "Amulet of the Fallen God",
+    "media_id": 21712
+  },
+  {
+    "db_id": 2657,
+    "name": "Guardian Talisman",
+    "media_id": 1490
+  },
+  {
+    "db_id": 2658,
+    "name": "Necklace of Necropsy",
+    "media_id": 23036
+  },
+  {
+    "db_id": 2660,
+    "name": "Bernice's Necklace",
+    "media_id": 981
+  },
+  {
+    "db_id": 2662,
+    "name": "Vile Fin Oracle Staff",
+    "media_id": 3327
+  },
+  {
+    "db_id": 2688,
+    "name": "Overseer's Cloak",
+    "media_id": 1190
+  },
+  {
+    "db_id": 2723,
+    "name": "Bracelets of Royal Redemption",
+    "media_id": 21604
+  },
+  {
+    "db_id": 2725,
+    "name": "Dreamwalker Wristguards",
+    "media_id": 22495
+  },
+  {
+    "db_id": 2744,
+    "name": "Salma's Oven Mitts",
+    "media_id": 1479
+  },
+  {
+    "db_id": 2776,
+    "name": "Recruit's Pants",
+    "media_id": 39
+  },
+  {
+    "db_id": 2795,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2796,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 2798,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2802,
+    "name": "Light Hide",
+    "media_id": 783
+  },
+  {
+    "db_id": 2803,
+    "name": "Restoring Balm",
+    "media_id": 1970
+  },
+  {
+    "db_id": 2804,
+    "name": "Mark of Kern",
+    "media_id": 2262
+  },
+  {
+    "db_id": 2807,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2809,
+    "name": "Red Ribboned Gift",
+    "media_id": 5043
+  },
+  {
+    "db_id": 2810,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2812,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 2813,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2816,
+    "name": "Essence of Pain",
+    "media_id": 2930
+  },
+  {
+    "db_id": 2818,
+    "name": "Stone Gnoll Hammer",
+    "media_id": 781
+  },
+  {
+    "db_id": 2819,
+    "name": "Battlemaster's Perseverance",
+    "media_id": 34580
+  },
+  {
+    "db_id": 2820,
+    "name": "Eye of the Dead",
+    "media_id": 23047
+  },
+  {
+    "db_id": 2821,
+    "name": "Rejuvenating Gem",
+    "media_id": 19395
+  },
+  {
+    "db_id": 2822,
+    "name": "Letter to the City Architect",
+    "media_id": 2891
+  },
+  {
+    "db_id": 2823,
+    "name": "Mathystra Relic",
+    "media_id": 5273
+  },
+  {
+    "db_id": 2857,
+    "name": "Sapphiron's Right Eye",
+    "media_id": 23048
+  },
+  {
+    "db_id": 2859,
+    "name": "Noth's Frigid Heart",
+    "media_id": 23029
+  },
+  {
+    "db_id": 2865,
+    "name": "Carved Stone Idol",
+    "media_id": 2636
+  },
+  {
+    "db_id": 2866,
+    "name": "Minor Rejuvenation Potion",
+    "media_id": 2456
+  },
+  {
+    "db_id": 2867,
+    "name": "Ankh of Life",
+    "media_id": 1713
+  },
+  {
+    "db_id": 2878,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 2879,
+    "name": "Choker of the High Shaman",
+    "media_id": 4112
+  },
+  {
+    "db_id": 2880,
+    "name": "Choker of the High Shaman",
+    "media_id": 4112
+  },
+  {
+    "db_id": 2881,
+    "name": "Prestor's Talisman of Connivery",
+    "media_id": 19377
+  },
+  {
+    "db_id": 2883,
+    "name": "Mark of Kern",
+    "media_id": 2262
+  },
+  {
+    "db_id": 2908,
+    "name": "Cryptstalker Wristguards",
+    "media_id": 22443
+  },
+  {
+    "db_id": 2947,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2949,
+    "name": "Slayer's Battle Axe",
+    "media_id": 1461
+  },
+  {
+    "db_id": 2950,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2951,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 2952,
+    "name": "Mark of Kern",
+    "media_id": 2262
+  },
+  {
+    "db_id": 2973,
+    "name": "Fist-sized Spinneret",
+    "media_id": 878
+  },
+  {
+    "db_id": 3005,
+    "name": "Nerubian Slavemaker",
+    "media_id": 22812
+  },
+  {
+    "db_id": 3008,
+    "name": "Small Red Pouch",
+    "media_id": 805
+  },
+  {
+    "db_id": 3009,
+    "name": "Light Hide",
+    "media_id": 783
+  },
+  {
+    "db_id": 3017,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 3018,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 3019,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 3020,
+    "name": "Ivy-weave Bracers",
+    "media_id": 2326
+  },
+  {
+    "db_id": 3021,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 3073,
+    "name": "Lola's Eve",
+    "media_id": 31339
+  },
+  {
+    "db_id": 3074,
+    "name": "Mark of Kern",
+    "media_id": 2262
+  },
+  {
+    "db_id": 3075,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 3078,
+    "name": "Crystal Kelp Frond",
+    "media_id": 1256
+  },
+  {
+    "db_id": 3079,
+    "name": "Red Ribboned Gift",
+    "media_id": 5043
+  },
+  {
+    "db_id": 3080,
+    "name": "Shortsword of Vengeance",
+    "media_id": 754
+  },
+  {
+    "db_id": 3081,
+    "name": "Tablet Shard",
+    "media_id": 4094
+  },
+  {
+    "db_id": 3082,
+    "name": "Monster - Mace, Standard Serpent",
+    "media_id": 2810
+  },
+  {
+    "db_id": 3108,
+    "name": "Murloc Eye",
+    "media_id": 730
+  },
+  {
+    "db_id": 3109,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 3119,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 3120,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 3121,
+    "name": "Robes of Insight",
+    "media_id": 940
+  },
+  {
+    "db_id": 3124,
+    "name": "Doomfinger",
+    "media_id": 22821
+  },
+  {
+    "db_id": 3126,
+    "name": "Wand of Fates",
+    "media_id": 22820
+  },
+  {
+    "db_id": 3149,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 3168,
+    "name": "Overseer's Cloak",
+    "media_id": 1190
+  },
+  {
+    "db_id": 3184,
+    "name": "Layered Tunic",
+    "media_id": 60
+  },
+  {
+    "db_id": 3222,
+    "name": "Grasp of the Old God",
+    "media_id": 21582
+  },
+  {
+    "db_id": 3250,
+    "name": "Strigid Owl Feather",
+    "media_id": 3411
+  },
+  {
+    "db_id": 3252,
+    "name": "Stone Gnoll Hammer",
+    "media_id": 781
+  },
+  {
+    "db_id": 3258,
+    "name": "Monster - Shield, Stormwind Guard",
+    "media_id": 143
+  },
+  {
+    "db_id": 3263,
+    "name": "Libram of Light",
+    "media_id": 23006
+  },
+  {
+    "db_id": 3264,
+    "name": "Book from Sven's Farm",
+    "media_id": 2161
+  },
+  {
+    "db_id": 3265,
+    "name": "Soul Gem",
+    "media_id": 3912
+  },
+  {
+    "db_id": 3266,
+    "name": "Libram of Rumination",
+    "media_id": 11732
+  },
+  {
+    "db_id": 3267,
+    "name": "Libram of Rumination",
+    "media_id": 11732
+  },
+  {
+    "db_id": 3278,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 3331,
+    "name": "Support Girdle",
+    "media_id": 1215
+  },
+  {
+    "db_id": 3355,
+    "name": "Mark of Kern",
+    "media_id": 2262
+  },
+  {
+    "db_id": 3356,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 3357,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 3374,
+    "name": "Avenger's Armor",
+    "media_id": 1488
+  },
+  {
+    "db_id": 3375,
+    "name": "Divined Scroll",
+    "media_id": 5455
+  },
+  {
+    "db_id": 3376,
+    "name": "Heart of Zeal",
+    "media_id": 5805
+  },
+  {
+    "db_id": 3377,
+    "name": "Ring of Righteous Flame (TEST)",
+    "media_id": 996
+  },
+  {
+    "db_id": 3393,
+    "name": "Shoulderpads of Faith",
+    "media_id": 22515
+  },
+  {
+    "db_id": 3401,
+    "name": "Bindings of Faith",
+    "media_id": 22519
+  },
+  {
+    "db_id": 3406,
+    "name": "Thick Cloth Gloves",
+    "media_id": 203
+  },
+  {
+    "db_id": 3415,
+    "name": "Recruit's Boots",
+    "media_id": 40
+  },
+  {
+    "db_id": 3416,
+    "name": "Sandals of Faith",
+    "media_id": 22516
+  },
+  {
+    "db_id": 3417,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 3418,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 3424,
+    "name": "Wand of the Whispering Dead",
+    "media_id": 23009
+  },
+  {
+    "db_id": 3430,
+    "name": "Shadow Sword",
+    "media_id": 945
+  },
+  {
+    "db_id": 3436,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 3437,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 3438,
+    "name": "Choker of the Fire Lord",
+    "media_id": 18814
+  },
+  {
+    "db_id": 3439,
+    "name": "Amulet of Vek'nilash",
+    "media_id": 21608
+  },
+  {
+    "db_id": 3445,
+    "name": "Shadow Sword",
+    "media_id": 945
+  },
+  {
+    "db_id": 3446,
+    "name": "Shadow Sword",
+    "media_id": 945
+  },
+  {
+    "db_id": 3454,
+    "name": "Shadow Sword",
+    "media_id": 945
+  },
+  {
+    "db_id": 3456,
+    "name": "Shadow Sword",
+    "media_id": 945
+  },
+  {
+    "db_id": 3459,
+    "name": "Thick Cloth Gloves",
+    "media_id": 203
+  },
+  {
+    "db_id": 3461,
+    "name": "Blackrock Gauntlets",
+    "media_id": 1448
+  },
+  {
+    "db_id": 3463,
+    "name": "Shadow Sword",
+    "media_id": 945
+  },
+  {
+    "db_id": 3465,
+    "name": "Eyestalk Waist Cord",
+    "media_id": 22730
+  },
+  {
+    "db_id": 3473,
+    "name": "Magic Candle",
+    "media_id": 1399
+  },
+  {
+    "db_id": 3475,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 3479,
+    "name": "Glowing Brightwood Staff",
+    "media_id": 812
+  },
+  {
+    "db_id": 3484,
+    "name": "Shadow Sword",
+    "media_id": 945
+  },
+  {
+    "db_id": 3485,
+    "name": "Tome of Shadow Force",
+    "media_id": 19309
+  },
+  {
+    "db_id": 3486,
+    "name": "Shadow Sword",
+    "media_id": 945
+  },
+  {
+    "db_id": 3487,
+    "name": "Woven Wand",
+    "media_id": 3425
+  },
+  {
+    "db_id": 3493,
+    "name": "Lord Brandon's Tabard (Test)",
+    "media_id": 746
+  },
+  {
+    "db_id": 3515,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 3517,
+    "name": "Guardian Talisman",
+    "media_id": 1490
+  },
+  {
+    "db_id": 3518,
+    "name": "Ring of Precision",
+    "media_id": 1491
+  },
+  {
+    "db_id": 3539,
+    "name": "The Twin Blades of Azzinoth",
+    "media_id": 18582
+  },
+  {
+    "db_id": 3579,
+    "name": "Nature Sword",
+    "media_id": 948
+  },
+  {
+    "db_id": 3626,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 3627,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 3630,
+    "name": "Aegis of Stormwind",
+    "media_id": 1203
+  },
+  {
+    "db_id": 3633,
+    "name": "Totem of Infliction",
+    "media_id": 1131
+  },
+  {
+    "db_id": 3634,
+    "name": "Totem of Infliction",
+    "media_id": 1131
+  },
+  {
+    "db_id": 3635,
+    "name": "Totem of Infliction",
+    "media_id": 1131
+  },
+  {
+    "db_id": 3636,
+    "name": "Totem of Infliction",
+    "media_id": 1131
+  },
+  {
+    "db_id": 3637,
+    "name": "Totem of Infliction",
+    "media_id": 1131
+  },
+  {
+    "db_id": 3665,
+    "name": "Guardian Talisman",
+    "media_id": 1490
+  },
+  {
+    "db_id": 3679,
+    "name": "Totem of Infliction",
+    "media_id": 1131
+  },
+  {
+    "db_id": 3680,
+    "name": "Hammer of the Northern Wind",
+    "media_id": 810
+  },
+  {
+    "db_id": 3681,
+    "name": "Totem of Infliction",
+    "media_id": 1131
+  },
+  {
+    "db_id": 3719,
+    "name": "Minor Healing Potion",
+    "media_id": 118
+  },
+  {
+    "db_id": 3720,
+    "name": "Refreshing Spring Water",
+    "media_id": 159
+  },
+  {
+    "db_id": 3721,
+    "name": "Totem of Infliction",
+    "media_id": 1131
+  },
+  {
+    "db_id": 3722,
+    "name": "Totem of Infliction",
+    "media_id": 1131
+  },
+  {
+    "db_id": 3723,
+    "name": "Totem of the Plains",
+    "media_id": 228179
+  },
+  {
+    "db_id": 3738,
+    "name": "Bracers of the People's Militia",
+    "media_id": 710
+  },
+  {
+    "db_id": 3768,
+    "name": "Glutton Shackle",
+    "media_id": 3156
+  },
+  {
+    "db_id": 3774,
+    "name": "Blackrock Gauntlets",
+    "media_id": 1448
+  },
+  {
+    "db_id": 3788,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 3794,
+    "name": "Fist-sized Spinneret",
+    "media_id": 878
+  },
+  {
+    "db_id": 3799,
+    "name": "Axe of the Deep Woods",
+    "media_id": 811
+  },
+  {
+    "db_id": 3810,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 3811,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 3844,
+    "name": "Cobrahn's Grasp",
+    "media_id": 6460
+  },
+  {
+    "db_id": 3845,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 3846,
+    "name": "Shadowhide Pendant",
+    "media_id": 1075
+  },
+  {
+    "db_id": 3848,
+    "name": "Scroll of Strength",
+    "media_id": 954
+  },
+  {
+    "db_id": 3850,
+    "name": "Mark of Kern",
+    "media_id": 2262
+  },
+  {
+    "db_id": 3851,
+    "name": "Tidal Charm",
+    "media_id": 1404
+  },
+  {
+    "db_id": 3853,
+    "name": "Naga Battle Gloves",
+    "media_id": 888
+  },
+  {
+    "db_id": 3854,
+    "name": "Choker of the High Shaman",
+    "media_id": 4112
+  },
+  {
+    "db_id": 3973,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 3974,
+    "name": "Runed Ring",
+    "media_id": 862
+  },
+  {
+    "db_id": 3975,
+    "name": "Myrmidon's Signet",
+    "media_id": 2246
+  },
+  {
+    "db_id": 3978,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 3979,
+    "name": "Tear of Tilloa",
+    "media_id": 2779
+  },
+  {
+    "db_id": 3981,
+    "name": "Gnomeregan Band",
+    "media_id": 10298
+  },
+  {
+    "db_id": 4005,
+    "name": "Libram of Rumination",
+    "media_id": 11732
+  },
+  {
+    "db_id": 4006,
+    "name": "Torch of the Eternal Flame",
+    "media_id": 6654
+  },
+  {
+    "db_id": 4007,
+    "name": "Divined Scroll",
+    "media_id": 5455
+  },
+  {
+    "db_id": 4008,
+    "name": "Sam's Tome",
+    "media_id": 1164
+  },
+  {
+    "db_id": 4009,
+    "name": "Libram of Truth",
+    "media_id": 22400
+  },
+  {
+    "db_id": 4028,
+    "name": "Mark of C'Thun",
+    "media_id": 22732
+  },
+  {
+    "db_id": 4041,
+    "name": "Runed Copper Breastplate",
+    "media_id": 2864
+  },
+  {
+    "db_id": 4064,
+    "name": "Freezing Band",
+    "media_id": 942
+  },
+  {
+    "db_id": 4066,
+    "name": "Hammer of the Northern Wind",
+    "media_id": 810
+  },
+  {
+    "db_id": 4067,
+    "name": "Styleen's Impeding Scarab",
+    "media_id": 19431
+  },
+  {
+    "db_id": 4073,
+    "name": "Small Hand Blade",
+    "media_id": 816
+  }
+]

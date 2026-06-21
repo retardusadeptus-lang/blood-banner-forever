@@ -1,122 +1,84 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { doc, onSnapshot, setDoc } from 'firebase/firestore';
-import { db } from './firebase'; 
-import itemsData from './items.json';
-import aggregatedBisData from './aggregated_bis_with_ids.json';
-console.log(itemsData.map(item => item.slot).filter(s => s.toLowerCase().includes("ring") || s.toLowerCase().includes("trinket"))); // Debugging slot names in source data
+import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, RIGHT_SLOTS, BOTTOM_SLOTS, P2_BOSSES, CATEGORY_MAP, RAID_ZONES } from './constants';
+import { fetchData, putData, postData, deleteData } from './services/apiService';
+import { ADMIN_API_TOKEN } from './config';
+import { useItemsDatabase } from './hooks/useItemsDatabase';
+import OverviewTab from './components/OverviewTab';
+import GuildBankTab from './components/GuildBankTab';
+import BisConfigTab from './components/BisConfigTab';
+import ItemsDatabaseTab from './components/ItemsDatabaseTab';
+import BankRequestsTab from './components/BankRequestsTab';
+import LootCouncilTab from './components/LootCouncilTab';
+import RosterTab from './components/RosterTab';
+import ScoringTab from './components/ScoringTab';
+import RaidAssignmentsTab from './components/RaidAssignmentsTab';
 
-// Spec name mapping: display name <-> hyphenated lowercase for aggregated data
-const SPEC_MAPPING = {
-  "Prot Warrior": "prot-warrior",
-  "Arms Warrior": "arms-warrior",
-  "Fury Warrior": "fury-warrior",
-  "Prot Paladin": "prot-paladin",
-  "Holy Paladin": "holy-paladin",
-  "Ret Paladin": "retribution-paladin",
-  "BM Hunter": "BM-hunter",
-  "MM Hunter": "marksmanship-hunter",
-  "Survival Hunter": "survival-hunter",
-  "Elemental Shaman": "elemental-shaman",
-  "Enhance Shaman": "enhancement-shaman",
-  "Resto Shaman": "restoration-shaman",
-  "Balance Druid": "balance-druid",
-  "Feral (Tank)": "feral-tank-druid",
-  "Feral (DPS)": "feral-dps-druid",
-  "Resto Druid": "restoration-druid",
-  "Combat Rogue": "combat-rogue",
-  "Holy Priest": "holy-priest",
-  "Discipline Priest": "holy-priest",
-  "Shadow Priest": "shadow-priest",
-  "Arcane Mage": "arcane-mage",
-  "Fire Mage": "fire-mage",
-  "Frost Mage": "frost-mage",
-  "Destro Warlock": "destruction-warlock",
-  "Demo Warlock": "demonology-warlock",
-  "Affliction Warlock": "affliction-warlock"
-}
-
-const PHASES = ["Pre-BiS", "T4", "T5", "T6", "ZA", "SWP"];
-const PHASE_JSON_KEYS = { "Pre-BiS": "pre-bis", "T4": "t4", "T5": "t5", "T6": "t6", "ZA": "za", "SWP": "swp" };
-
-const SPECS = [
-  "Prot Warrior", "Arms Warrior", "Fury Warrior", "Prot Paladin", "Holy Paladin", 
-  "Ret Paladin", "BM Hunter", "MM Hunter", "Survival Hunter", "Elemental Shaman", 
-  "Enhance Shaman", "Resto Shaman", "Balance Druid", "Feral (Tank)", "Feral (DPS)", 
-  "Resto Druid", "Combat Rogue", "Holy Priest", "Discipline Priest", "Shadow Priest", 
-  "Arcane Mage", "Fire Mage", "Frost Mage", "Destro Warlock", "Demo Warlock", "Affliction Warlock"
-];
-
-const CLASS_COLORS = {
-  "Prot Warrior": "#C79C6E", "Arms Warrior": "#C79C6E", "Fury Warrior": "#C79C6E",
-  "Prot Paladin": "#F58CBA", "Holy Paladin": "#F58CBA", "Ret Paladin": "#F58CBA",
-  "BM Hunter": "#ABD473", "MM Hunter": "#ABD473", "Survival Hunter": "#ABD473",
-  "Combat Rogue": "#FFF569",
-  "Holy Priest": "#FFFFFF", "Discipline Priest": "#FFFFFF", "Shadow Priest": "#FFFFFF",
-  "Elemental Shaman": "#0070DE", "Enhance Shaman": "#0070DE", "Resto Shaman": "#0070DE",
-  "Arcane Mage": "#69CCF0", "Fire Mage": "#69CCF0", "Frost Mage": "#69CCF0",
-  "Destro Warlock": "#8788EE", "Demo Warlock": "#8788EE", "Affliction Warlock": "#8788EE",
-  "Balance Druid": "#FF7D0A", "Feral (Tank)": "#FF7D0A", "Feral (DPS)": "#FF7D0A", "Resto Druid": "#FF7D0A"
-};
-
-const LEFT_SLOTS = ["Head", "Neck", "Shoulder", "Back", "Chest", "Wrist"];
-const RIGHT_SLOTS = ["Hands", "Waist", "Legs", "Feet", "Ring 1", "Ring 2", "Trinket 1", "Trinket 2"];
-const BOTTOM_SLOTS = ["Main Hand", "Off Hand", "Shield", "Ranged", "Wand", "Totem", "Libram", "Idol"];
-
-// Normalize slot names from aggregated data (lowercase) to proper casing
-const normalizeSlot = (slot) => {
-  if (!slot) return slot;
-  const slotMap = {
-    "head": "Head",
-    "neck": "Neck",
-    "shoulder": "Shoulder",
-    "back": "Back",
-    "chest": "Chest",
-    "wrist": "Wrist",
-    "hands": "Hands",
-    "waist": "Waist",
-    "legs": "Legs",
-    "feet": "Feet",
-    "ring": "Ring",
-    "trinket": "Trinket",
-    "main hand": "Main Hand",
-    "off hand": "Off Hand",
-    "shield": "Shield",
-    "ranged": "Ranged",
-    "wand": "Wand",
-    "totem": "Totem",
-    "libram": "Libram",
-    "idol": "Idol",
-    "weapon": "Main Hand",
-    "relic": "Totem",
-    "18 slot ammo pouch": "Ranged",
-    "18 slot quiver": "Ranged"
-  };
-  return slotMap[slot.toLowerCase().trim()] || slot;
-};
-
-const P2_BOSSES = [
-  "Hydross the Unstable", "The Lurker Below", "Leotheras the Blind", "Fathom-Lord Karathress", 
-  "Morogrim Tidewalker", "Lady Vashj", "Al'ar", "Void Reaver", "High Astromancer Solarian", "Kael'thas"
-];
-
-// Mined IDs from your uploaded CSV data!
-// Generate WowHead ID mapping dynamically from aggregatedBisData
-// Extracts unique item names and their IDs
-const generateWowheadIds = (data) => {
-  const mapping = {};
-  const seen = new Set();
-  data.forEach(item => {
-    if (item.name && item.id && !seen.has(item.name)) {
-      mapping[item.name] = String(item.id);
-      seen.add(item.name);
-    }
-  });
-  return mapping;
-};
+const CORE_SYNC_INTERVAL_MS = 15000;
+const BANK_SYNC_INTERVAL_MS = 20000;
+const RAID_ASSIGNMENTS_SYNC_INTERVAL_MS = 15000;
 
 export default function App() {
-  // Generate WowHead ID mapping from aggregated data
-  const WOWHEAD_IDS = useMemo(() => generateWowheadIds(aggregatedBisData), []);
+
+  // ==========================================
+  // SPECS DATA FROM DATABASE
+  // ==========================================
+  const [specsFromDb, setSpecsFromDb] = useState([]);
+
+  // Create lookup objects for specs
+  const specsByName = useMemo(() => {
+    const lookup = {};
+    specsFromDb.forEach(spec => {
+      lookup[spec.spec] = spec;
+    });
+    return lookup;
+  }, [specsFromDb]);
+
+  // Sorted specs by class for Master Items DB
+  const specsSortedByClass = useMemo(() => {
+    return [...specsFromDb].sort((a, b) => {
+      if (a.class !== b.class) {
+        return a.class.localeCompare(b.class);
+      }
+      return a.spec.localeCompare(b.spec);
+    });
+  }, [specsFromDb]);
+
+  // Helper to get slug from display name
+  const getSlugFromDisplay = (displayName) => {
+    const spec = specsByName[displayName];
+    return spec ? spec.slug : null;
+  };
+
+  // Helper to get display name from spec_id
+  const getDisplayFromId = (specId) => {
+    const spec = specsFromDb.find(s => s.id === specId);
+    return spec ? spec.spec : null;
+  };
+
+  // Helper to get spec object from spec_id
+  const getSpecById = (specId) => {
+    return specsFromDb.find(s => s.id === specId);
+  };
+
+  // Fetch specs on mount
+  useEffect(() => {
+    const loadSpecs = async () => {
+      try {
+        const specs = await fetchData('specs');
+        setSpecsFromDb(specs);
+        // Set default specs to first one from database
+        if (specs.length > 0 && newSpec === null) {
+          setNewSpec(specs[0].id);
+        }
+        if (specs.length > 0 && selectedBisSpec === null) {
+          setSelectedBisSpec(specs[0].spec);
+        }
+      } catch (e) {
+        console.error('Failed to load specs:', e);
+      }
+    };
+    loadSpecs();
+  }, []);
 
   // ==========================================
   // 1. ALL LOCAL UI AND FILTER STATES
@@ -133,26 +95,77 @@ export default function App() {
 
   const [isDbConnected, setIsDbConnected] = useState(false);
   const [newName, setNewName] = useState('');
-  const [newSpec, setNewSpec] = useState(SPECS[0]);
+  const [newSpec, setNewSpec] = useState(null); // spec_id from database
   const [selectedItemName, setSelectedItemName] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [filterBoss, setFilterBoss] = useState('');
   const [filterZone, setFilterZone] = useState('');
   const [filterSlot, setFilterSlot] = useState('');
-  const [selectedBisSpec, setSelectedBisSpec] = useState(SPECS[0]);
-  const [masterItemsDbPhase, setMasterItemsDbPhase] = useState('T5');
+  const [filterCategory, setFilterCategory] = useState('');
+  const [selectedBisSpec, setSelectedBisSpec] = useState(null); // Will be set to first spec from DB
   const [expandedPlayerId, setExpandedPlayerId] = useState(null);
   const [newRaidDate, setNewRaidDate] = useState(new Date().toISOString().split('T')[0]);
   const [newRaidZone, setNewRaidZone] = useState('SSC / TK');
-  
-  // Spreadsheet States
-  const [dbNewName, setDbNewName] = useState('');
-  const [dbNewSlot, setDbNewSlot] = useState(LEFT_SLOTS[0]);
-  const [dbNewZone, setDbNewZone] = useState('SSC');
-  const [dbNewBoss, setDbNewBoss] = useState(P2_BOSSES[0]);
-  const [dbNewItemId, setDbNewItemId] = useState('');
-  const [dbSearch, setDbSearch] = useState('');
-  const [showMissingWowheadFilter, setShowMissingWowheadFilter] = useState(false);
+
+  const {
+    mutableItems,
+    setMutableItemsLocal,
+    mutableItemsBaseline,
+    setMutableItemsBaseline,
+    bisPriorities,
+    setBisPrioritiesLocal,
+    dbBisPriorities,
+    setDbBisPrioritiesLocal,
+    masterItemsDbPhase,
+    setMasterItemsDbPhase,
+    dbNewName,
+    setDbNewName,
+    dbNewSlot,
+    setDbNewSlot,
+    dbNewZone,
+    setDbNewZone,
+    dbNewBoss,
+    setDbNewBoss,
+    dbNewItemId,
+    setDbNewItemId,
+    dbSearch,
+    setDbSearch,
+    showMissingWowheadFilter,
+    setShowMissingWowheadFilter,
+    dbBisPrioritiesDirty,
+    setDbBisPrioritiesDirty,
+    mutableItemsDirty,
+    setMutableItemsDirty,
+    isSavingItemsDb,
+    handleAddItemToDb,
+    handleUpdateItemEligibility,
+    handleUpdateItemId,
+    handleDeleteItemFromDb,
+    handleSaveItemsDbChanges,
+  } = useItemsDatabase({
+    fetchData,
+    putData,
+    postData,
+    deleteData,
+    phaseJsonKeys: PHASE_JSON_KEYS,
+    leftSlots: LEFT_SLOTS,
+    p2Bosses: P2_BOSSES,
+    globalPhase,
+    setSelectedItemName,
+  });
+
+  // Bank state
+  const [bankItems, setBankItems] = useState([]);
+  const [bankRequests, setBankRequests] = useState([]);
+  const [bankSearch, setBankSearch] = useState('');
+  const [denyReason, setDenyReason] = useState('');
+  const [approvePrice, setApprovePrice] = useState('');
+  const [respondingRequestId, setRespondingRequestId] = useState(null);
+  const [bankUploadParsed, setBankUploadParsed] = useState(null);
+  const [bankUploadStatus, setBankUploadStatus] = useState('');
+  const [denyCustomReason, setDenyCustomReason] = useState('');
+  const [approveQuantity, setApproveQuantity] = useState('');
+  const [approveNote, setApproveNote] = useState('');
 
   // ==========================================
   // 2. CLOUD SYNCHRONIZATION STATES
@@ -162,157 +175,128 @@ export default function App() {
   const [scoringConfig, setScoringConfigLocal] = useState({});
   const [playerStats, setPlayerStatsLocal] = useState({});
   const [raidLogs, setRaidLogsLocal] = useState([]);
-  const [mutableItems, setMutableItemsLocal] = useState([]);
-  const [bisPriorities, setBisPrioritiesLocal] = useState({});
-  const [dbBisPriorities, setDbBisPrioritiesLocal] = useState({});
+  const [tokenRedemptionsByItemId, setTokenRedemptionsByItemId] = useState({});
+  const [raidAssignmentData, setRaidAssignmentDataLocal] = useState({});
+  const [enabledBosses, setEnabledBossesLocal] = useState([]);
+
+  const [assignmentsDirty, setAssignmentsDirty] = useState(false);
+  const [rosterDirty, setRosterDirty] = useState(false);
+  const [scoringConfigDirty, setScoringConfigDirty] = useState(false);
+  const [playerStatsDirty, setPlayerStatsDirty] = useState(false);
+  const [raidLogsDirty, setRaidLogsDirty] = useState(false);
+  const [raidAssignmentDataDirty, setRaidAssignmentDataDirty] = useState(false);
+  const [enabledBossesDirty, setEnabledBossesDirty] = useState(false);
+
+  const [isSavingLootCouncil, setIsSavingLootCouncil] = useState(false);
+  const [isSavingRosterAttendance, setIsSavingRosterAttendance] = useState(false);
+  const [isSavingScoring, setIsSavingScoring] = useState(false);
+  const [isSavingRaidAssignments, setIsSavingRaidAssignments] = useState(false);
+
+  const hasLootUnsavedChanges = assignmentsDirty;
+  const hasItemsDbUnsavedChanges = dbBisPrioritiesDirty || mutableItemsDirty;
+  const hasRosterUnsavedChanges = rosterDirty || raidLogsDirty || playerStatsDirty;
+  const hasScoringUnsavedChanges = scoringConfigDirty || playerStatsDirty;
+  const hasRaidAssignmentsUnsavedChanges = raidAssignmentDataDirty || enabledBossesDirty;
+  const hasAnyUnsavedChanges = hasLootUnsavedChanges || hasItemsDbUnsavedChanges || hasRosterUnsavedChanges || hasScoringUnsavedChanges || hasRaidAssignmentsUnsavedChanges;
 
   // ==========================================
   // HELPER: Initialize default BiS priorities from aggregated data
   // ==========================================
-  const aggregatedBisLookup = useMemo(() => {
-  const lookup = {};
-  aggregatedBisData.forEach(item => {
-    if (!item || !item.name || !item.spec) return;
-    const key = `${item.name}|${item.spec}`;
-    if (!lookup[key]) lookup[key] = item;
-  });
-  return lookup;
-}, []);
 
-  const initializeDefaultBisPriorities = (phase) => {
+  const initializeDefaultBisPriorities = async (phase) => {
     const phaseKey = PHASE_JSON_KEYS[phase];
-    const defaults = {};
-    aggregatedBisData.forEach(item => {
-      const phaseData = item[phaseKey];
-      if (phaseData && phaseData.bis === true) {
-        // Convert spec from hyphenated format (e.g., "balance-druid") to display name (e.g., "Balance Druid")
-        let displaySpec = null;
-        for (const [display, hyphenated] of Object.entries(SPEC_MAPPING)) {
-          if (hyphenated === item.spec) {
-            displaySpec = display;
-            break;
-          }
-        }
-        if (displaySpec) {
-          const key = `${item.name}|${displaySpec}`;
-          defaults[key] = 'BiS';
-        }
-      }
-    });
-    return defaults;
+    const data = await fetchData(`bis-defaults/${phaseKey}`);
+    return data;
   };
 
   // ==========================================
-  // 3. FIREBASE LIVE SYNC ENGINE
+  // 3. SQL SYNC ENGINE
   // ==========================================
   useEffect(() => {
-    const unsubs = [];
+    let isSyncInFlight = false;
 
-    const setupSync = (docName, setter, defaultVal) => {
-      const ref = doc(db, 'guildData', docName);
-      const unsub = onSnapshot(ref, (snapshot) => {
-        if (snapshot.exists()) {
-          setter(snapshot.data().data);
-        } else {
-          setDoc(ref, { data: defaultVal });
-          setter(defaultVal);
+    const loadAll = async () => {
+      if (document.hidden || isSyncInFlight) return;
+      isSyncInFlight = true;
+      try {
+        const phaseKey = PHASE_JSON_KEYS[globalPhase];
+        const assignmentsDocName = globalPhase === 'T5' ? 't5' : phaseKey;
+        const bisPrioritiesDocName = globalPhase === 'T5' ? 't5' : phaseKey;
+
+        const [rosterData, assignmentsData, bisData, configData, statsData, logsData, itemsData] = await Promise.all([
+          fetchData('roster'),
+          fetchData('assignments/' + assignmentsDocName),
+          fetchData('bis-priorities/' + bisPrioritiesDocName),
+          fetchData('scoring-config'),
+          fetchData('player-stats'),
+          fetchData('raid-logs'),
+          fetchData('mutable-items'),
+        ]);
+
+        if (!rosterDirty) setRosterLocal(rosterData);
+        if (!assignmentsDirty) setAssignmentsLocal(assignmentsData);
+        const defaults = Object.keys(bisData).length ? bisData : await initializeDefaultBisPriorities(globalPhase);
+        setBisPrioritiesLocal(defaults);
+        if (!scoringConfigDirty) {
+          setScoringConfigLocal(Object.keys(configData).length ? configData : { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5, afkPenalty: 5 });
         }
-      });
-      unsubs.push(unsub);
+        if (!playerStatsDirty) setPlayerStatsLocal(statsData);
+        if (!raidLogsDirty) setRaidLogsLocal(logsData);
+        if (!mutableItemsDirty) {
+          setMutableItemsLocal(itemsData);
+          setMutableItemsBaseline(itemsData);
+        }
+        setIsDbConnected(true);
+      } catch (e) {
+        console.error('Failed to load data:', e);
+      } finally {
+        isSyncInFlight = false;
+      }
     };
 
-    // Convert aggregated BIS data directly to mutable items format
-    const defaultItems = (() => {
-      const seen = new Set();
-      return aggregatedBisData
-      .filter(item => item && item.name && item.slot)
-      .filter(item => {
-        if (seen.has(item.name)) return false;
-        seen.add(item.name);
-        return true;
-      })
-      .map(item => {
-        return {
-          name: item.name,
-          slot: normalizeSlot(item.slot),
-          itemId: item.id || '',
-          boss: item.source_type,
-          zone: item.source,
-          drop_chance: item.drop_chance || null,
-          spec: item.spec,
-          id: item.id,
-          rarity: item.rarity,
-          source: item.source,
-          source_type: item.source_type,
-          phase: item.phase
-        };
-      });
-    })();
-
-    setupSync('roster', setRosterLocal, []);
-    // Get assignments for the current phase
-    const phaseKey = PHASE_JSON_KEYS[globalPhase];
-    const assignmentsDocName = globalPhase === 'T5' ? 'assignments' : `assignments_${phaseKey}`;
-    setupSync(assignmentsDocName, setAssignmentsLocal, {});
-    
-    // Setup phase-specific BiS priorities (for Loot Council/overview)
-    const bisPrioritiesDocName = globalPhase === 'T5' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
-    const defaultBisPriorities = initializeDefaultBisPriorities(globalPhase);
-    setupSync(bisPrioritiesDocName, setBisPrioritiesLocal, defaultBisPriorities);
-    
-    // Added afkPenalty to default scoring sync!
-    setupSync('scoringConfig', setScoringConfigLocal, { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5, afkPenalty: 5 });
-    setupSync('playerStats', setPlayerStatsLocal, {});
-    setupSync('raidLogs', setRaidLogsLocal, []);
-    setupSync('mutableItems', setMutableItemsLocal, defaultItems);
-
-    setTimeout(() => setIsDbConnected(true), 1200);
-
-    return () => unsubs.forEach(fn => fn());
-  }, [globalPhase]);
+    loadAll();
+    const interval = setInterval(loadAll, CORE_SYNC_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, [globalPhase, rosterDirty, assignmentsDirty, scoringConfigDirty, playerStatsDirty, raidLogsDirty, mutableItemsDirty]);
 
   // Separate sync for Master Items DB phase selector
   useEffect(() => {
-    const ref = doc(db, 'guildData', masterItemsDbPhase === 'T5' ? 'bisPriorities' : `bisPriorities_${PHASE_JSON_KEYS[masterItemsDbPhase]}`);
-    const defaultDbBis = initializeDefaultBisPriorities(masterItemsDbPhase);
-    const unsub = onSnapshot(ref, (snapshot) => {
-      if (snapshot.exists()) {
-        setDbBisPrioritiesLocal(snapshot.data().data);
-      } else {
-        setDoc(ref, { data: defaultDbBis });
-        setDbBisPrioritiesLocal(defaultDbBis);
-      }
-    });
-    return () => unsub();
-  }, [masterItemsDbPhase]);
+    if (activeTab !== 'bis' && activeTab !== 'itemsdb') return;
+
+    const loadDbBis = async () => {
+      const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
+      const data = await fetchData('bis-priorities/' + phaseKey);
+      const dbDefaults = Object.keys(data).length ? data : await initializeDefaultBisPriorities(masterItemsDbPhase);
+      setDbBisPrioritiesLocal(dbDefaults);
+    };
+    loadDbBis();
+  }, [masterItemsDbPhase, activeTab]);
 
   // ==========================================
   // 4. CLOUD WRITERS
   // ==========================================
-  const setRoster = (newVal) => { setRosterLocal(newVal); setDoc(doc(db, 'guildData', 'roster'), { data: newVal }); };
-  const setAssignments = (newVal) => { 
-    setAssignmentsLocal(newVal); 
-    const phaseKey = PHASE_JSON_KEYS[globalPhase];
-    const assignmentsDocName = globalPhase === 'T5' ? 'assignments' : `assignments_${phaseKey}`;
-    setDoc(doc(db, 'guildData', assignmentsDocName), { data: newVal }); 
+  const setRoster = (newVal) => {
+    setRosterLocal(newVal);
+    setRosterDirty(true);
+  };
+  const setAssignments = (newVal) => {
+    setAssignmentsLocal(newVal);
+    setAssignmentsDirty(true);
   };
   const setBisPriorities = (newVal) => {
     setBisPrioritiesLocal(newVal);
     const phaseKey = PHASE_JSON_KEYS[globalPhase];
-    const bisPrioritiesDocName = globalPhase === 'T5' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
-    setDoc(doc(db, 'guildData', bisPrioritiesDocName), { data: newVal });
+    putData('bis-priorities/' + phaseKey, newVal);
   };
   const setDbBisPriorities = (newVal) => {
     setDbBisPrioritiesLocal(newVal);
-    const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
-    const docName = masterItemsDbPhase === 'T5' ? 'bisPriorities' : `bisPriorities_${phaseKey}`;
-    setDoc(doc(db, 'guildData', docName), { data: newVal });
+    setDbBisPrioritiesDirty(true);
   };
-  const setScoringConfig = (newVal) => { setScoringConfigLocal(newVal); setDoc(doc(db, 'guildData', 'scoringConfig'), { data: newVal }); };
-  const setPlayerStats = (newVal) => { setPlayerStatsLocal(newVal); setDoc(doc(db, 'guildData', 'playerStats'), { data: newVal }); };
-  const setRaidLogs = (newVal) => { setRaidLogsLocal(newVal); setDoc(doc(db, 'guildData', 'raidLogs'), { data: newVal }); };
-  const setMutableItems = (newVal) => { setMutableItemsLocal(newVal); setDoc(doc(db, 'guildData', 'mutableItems'), { data: newVal }); };
-
+  const setScoringConfig = (newVal) => { setScoringConfigLocal(newVal); setScoringConfigDirty(true); };
+  const setPlayerStats = (newVal) => { setPlayerStatsLocal(newVal); setPlayerStatsDirty(true); };
+  const setRaidLogs = (newVal) => { setRaidLogsLocal(newVal); setRaidLogsDirty(true); };
+  const setRaidAssignmentData = (newVal) => { setRaidAssignmentDataLocal(newVal); setRaidAssignmentDataDirty(true); };
+  const setEnabledBosses = (newVal) => { setEnabledBossesLocal(newVal); setEnabledBossesDirty(true); };
   // ==========================================
   // 5. WOWHEAD TOOLTIP ENGINE
   // ==========================================
@@ -323,14 +307,14 @@ export default function App() {
     if (window.$WowheadPower && window.$WowheadPower.hideTooltip) { window.$WowheadPower.hideTooltip(); }
   }, [activeTab, filterBoss, filterZone, filterSlot, searchQuery, dbSearch, overviewSearch]);
 
-useEffect(() => {
-  const timer = setTimeout(() => {
-    if (window.$WowheadPower && window.$WowheadPower.refreshLinks) { 
-      window.$WowheadPower.refreshLinks();
-    }
-  }, 300);
-  return () => clearTimeout(timer);
-}, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, overviewSearch, selectedBisSpec]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (window.$WowheadPower && window.$WowheadPower.refreshLinks) {
+        window.$WowheadPower.refreshLinks();
+      }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, overviewSearch, selectedBisSpec]);
 
 
   const hideWowheadTooltip = () => {
@@ -338,7 +322,7 @@ useEffect(() => {
   };
 
   const renderItemLink = (item, className = "") => {
-    const url = item.itemId 
+    const url = item.itemId
       ? `https://www.wowhead.com/tbc/item=${item.itemId}`
       : `https://www.wowhead.com/tbc/search?q=${encodeURIComponent(item.name)}`;
 
@@ -354,8 +338,9 @@ useEffect(() => {
   // ==========================================
   const handleLogin = (e) => {
     if (e) e.preventDefault();
-    if (passwordInput === 'TBCOfficer2026!') {
+    if (passwordInput === ADMIN_API_TOKEN) {
       setIsAuthenticated(true);
+      sessionStorage.setItem('ar-auth-token', passwordInput);
       sessionStorage.setItem('ar-auth', 'true');
       setPasswordInput('');
     } else {
@@ -367,6 +352,7 @@ useEffect(() => {
   const handleLogout = () => {
     setIsAuthenticated(false);
     sessionStorage.removeItem('ar-auth');
+    sessionStorage.removeItem('ar-auth-token');
     setActiveTab('overview');
   };
 
@@ -374,19 +360,19 @@ useEffect(() => {
     e.preventDefault();
     if (!newName.trim()) return;
     const newId = Date.now();
-    setRoster([...roster, { id: newId, name: newName, spec: newSpec, inRaid: true }]);
+    setRoster([...roster, { id: newId, name: newName, spec_id: newSpec, in_raid: true }]);
     setPlayerStats({ ...playerStats, [newId]: { cons: true, enchants: true, gems: true, afks: 0, parses: {} } });
     setNewName('');
   };
 
   const handleRemovePlayer = (id) => {
-    if(window.confirm("Are you sure you want to permanently delete this player?")) {
+    if (window.confirm("Are you sure you want to permanently delete this player?")) {
       setRoster(roster.filter(p => p.id !== id));
     }
   };
 
-  const toggleRaidStatus = (id) => setRoster(roster.map(p => p.id === id ? { ...p, inRaid: !p.inRaid } : p));
-  const setAllRaidStatus = (status) => setRoster(roster.map(p => ({ ...p, inRaid: status })));
+  const toggleRaidStatus = (id) => setRoster(roster.map(p => p.id === id ? { ...p, in_raid: !p.in_raid } : p));
+  const setAllRaidStatus = (status) => setRoster(roster.map(p => ({ ...p, in_raid: status })));
   const handleSetPriority = (playerId, priority) => {
     setAssignments({ ...assignments, [selectedItemName]: { ...(assignments[selectedItemName] || {}), [playerId]: priority } });
   };
@@ -401,7 +387,7 @@ useEffect(() => {
     const stats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {}, manualAdjustment: { value: 0, note: '' } };
     let parseSum = 0; let parseCount = 0;
     Object.values(stats.parses || {}).forEach(p => {
-        if (p && p.val) { parseSum += Number(p.val) * (p.support ? Number(scoringConfig.supportMulti) : 1); parseCount++; }
+      if (p && p.val) { parseSum += Number(p.val) * (p.support ? Number(scoringConfig.supportMulti) : 1); parseCount++; }
     });
     const avgParse = parseCount > 0 ? parseSum / parseCount : 0;
     const cons = stats.cons ? Number(scoringConfig.consBonus) : 0;
@@ -416,13 +402,13 @@ useEffect(() => {
 
   const handleSaveRaidLog = (e) => {
     e.preventDefault();
-    const activeRaiderIds = roster.filter(p => p.inRaid).map(p => p.id);
+    const activeRaiderIds = roster.filter(p => p.in_raid).map(p => p.id);
     setRaidLogs([{ id: Date.now(), date: newRaidDate, zone: newRaidZone, attendees: activeRaiderIds }, ...raidLogs]);
     alert(`Saved raid log for ${activeRaiderIds.length} players!`);
   };
 
   const handleDeleteRaidLog = (logId) => {
-    if(window.confirm("Delete this raid log?")) setRaidLogs(raidLogs.filter(log => log.id !== logId));
+    if (window.confirm("Delete this raid log?")) setRaidLogs(raidLogs.filter(log => log.id !== logId));
   };
 
   const updatePlayerStat = (playerId, field, value) => {
@@ -442,104 +428,200 @@ useEffect(() => {
     setPlayerStats({ ...playerStats, [playerId]: { ...currentStats, manualAdjustment: { ...currentStats.manualAdjustment, [field]: value } } });
   };
 
-  const handleAddItemToDb = (e) => {
-    e.preventDefault();
-    if (!dbNewName.trim()) return;
-    
-    if (mutableItems.some(i => i.name.toLowerCase() === dbNewName.trim().toLowerCase())) {
-      alert("An item with that name already exists in the database!");
-      return;
+  const handleSaveLootCouncilChanges = async () => {
+    if (!assignmentsDirty) return;
+    setIsSavingLootCouncil(true);
+    try {
+      const phaseKey = PHASE_JSON_KEYS[globalPhase];
+      await putData('assignments/' + phaseKey, assignments);
+      setAssignmentsDirty(false);
+      alert('Loot council assignments saved.');
+    } catch (e) {
+      alert('Failed to save loot council assignments.');
+    } finally {
+      setIsSavingLootCouncil(false);
     }
+  };
 
-    const newItem = {
-      name: dbNewName.trim(), slot: dbNewSlot, zone: dbNewZone, boss: dbNewBoss,
-      source: `${dbNewBoss} (${dbNewZone})`, itemId: dbNewItemId.trim(), eligible: {}
+  const handleSaveRosterAttendanceChanges = async () => {
+    if (!rosterDirty && !playerStatsDirty && !raidLogsDirty) return;
+    setIsSavingRosterAttendance(true);
+    try {
+      let updatedRoster = roster;
+      let updatedStats = playerStats;
+
+      if (rosterDirty) {
+        const rosterWithoutIds = roster.map(({ id, ...rest }) => rest);
+        updatedRoster = await putData('roster', rosterWithoutIds);
+
+        const idMap = {};
+        updatedRoster.forEach((newPlayer, index) => {
+          if (roster[index]) {
+            idMap[roster[index].id] = newPlayer.id;
+          }
+        });
+
+        updatedStats = {};
+        Object.entries(playerStats).forEach(([oldId, stats]) => {
+          const newId = idMap[oldId] || oldId;
+          updatedStats[newId] = stats;
+        });
+
+        setRosterLocal(updatedRoster);
+        setPlayerStatsLocal(updatedStats);
+      }
+
+      if (playerStatsDirty || rosterDirty) {
+        await putData('player-stats', updatedStats);
+      }
+
+      if (raidLogsDirty) {
+        await putData('raid-logs', raidLogs);
+      }
+
+      setRosterDirty(false);
+      setPlayerStatsDirty(false);
+      setRaidLogsDirty(false);
+      alert('Roster and attendance changes saved.');
+    } catch (e) {
+      alert('Failed to save roster/attendance changes.');
+    } finally {
+      setIsSavingRosterAttendance(false);
+    }
+  };
+
+  const handleSaveScoringChanges = async () => {
+    if (!scoringConfigDirty && !playerStatsDirty) return;
+    setIsSavingScoring(true);
+    try {
+      if (scoringConfigDirty) {
+        await putData('scoring-config', scoringConfig);
+      }
+      if (playerStatsDirty) {
+        await putData('player-stats', playerStats);
+      }
+      setScoringConfigDirty(false);
+      setPlayerStatsDirty(false);
+      alert('Scoring configuration saved.');
+    } catch (e) {
+      alert('Failed to save scoring changes.');
+    } finally {
+      setIsSavingScoring(false);
+    }
+  };
+
+  const handleSaveRaidAssignmentsChanges = async () => {
+    if (!raidAssignmentDataDirty && !enabledBossesDirty) return;
+    setIsSavingRaidAssignments(true);
+    try {
+      if (raidAssignmentDataDirty) {
+        await putData('raid-assignment-data', raidAssignmentData);
+      }
+      if (enabledBossesDirty) {
+        await putData('raid-assignment-config', enabledBosses);
+      }
+      setRaidAssignmentDataDirty(false);
+      setEnabledBossesDirty(false);
+      alert('Raid assignments saved.');
+    } catch (e) {
+      alert('Failed to save raid assignments.');
+    } finally {
+      setIsSavingRaidAssignments(false);
+    }
+  };
+
+  const handleResolveBankRequest = async (id, status, price, note, approvedQuantity) => {
+    try {
+      await putData(`bank-requests/${id}`, { status, price, officer_note: note, approved_quantity: approvedQuantity });
+      const requests = await fetchData('bank-requests');
+      setBankRequests(requests);
+      setRespondingRequestId(null);
+      setApprovePrice('');
+      setApproveQuantity('');
+      setApproveNote('');
+      setDenyReason('');
+      setDenyCustomReason('');
+    } catch (e) {
+      alert('Failed to resolve request.');
+    }
+  };
+
+  const handleBankFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      const text = evt.target.result;
+      const parsed = [];
+
+      const idRegex = /\[(\d+)\]\s*=\s*\{/g;
+      let match;
+
+      while ((match = idRegex.exec(text)) !== null) {
+        const id = match[1];
+        const restOfFile = text.substring(match.index);
+        const closingBracket = restOfFile.indexOf('},');
+        const itemDataStr = restOfFile.substring(0, closingBracket);
+
+        const countMatch = itemDataStr.match(/\["count"\]\s*=\s*(\d+)/);
+        const count = countMatch ? parseInt(countMatch[1]) : 1;
+
+        const nameMatch = itemDataStr.match(/\["name"\]\s*=\s*"([^"]+)"/);
+        const name = nameMatch ? nameMatch[1] : 'Unknown Item';
+
+        const catMatch = itemDataStr.match(/\["category"\]\s*=\s*"([^"]+)"/);
+        const rawCat = catMatch ? catMatch[1] : 'Misc';
+        const cleanCat = CATEGORY_MAP[rawCat] || 'Misc';
+
+        const subTypeMatch = itemDataStr.match(/\["subtype"\]\s*=\s*"([^"]+)"/);
+        const subType = subTypeMatch ? subTypeMatch[1] : '';
+
+        parsed.push({
+          item_wowhead_id: parseInt(id),
+          count,
+          name,
+          category: cleanCat,
+          sub_type: subType
+        });
+      }
+
+      if (parsed.length === 0) {
+        setBankUploadStatus('⚠️ Found 0 items. Check your Lua file.');
+        setBankUploadParsed(null);
+      } else {
+        setBankUploadStatus(`✅ Loaded ${parsed.length} items. Click Save to update the bank.`);
+        setBankUploadParsed(parsed);
+      }
     };
-
-    setMutableItems([newItem, ...mutableItems]);
-    setDbNewName('');
-    setDbNewItemId('');
-    alert(`Successfully added "${newItem.name}" to items table!`);
+    reader.readAsText(file);
   };
 
-  const handleUpdateItemEligibility = (itemName, spec, currentStatus, useDbPhase = false) => {
-    // Get the key for this item-spec combination
-    const itemKey = `${itemName}|${spec}`;
-    
-    let nextStatus = '';
-    if (currentStatus === '') nextStatus = 'BiS';
-    else if (currentStatus === 'BiS') nextStatus = 'Opt';
-    else nextStatus = '';
-
-    const currentBis = useDbPhase ? dbBisPriorities : bisPriorities;
-    const newBisPriorities = { ...currentBis };
-    if (nextStatus) {
-      newBisPriorities[itemKey] = nextStatus;
-    } else {
-      delete newBisPriorities[itemKey];
-    }
-    
-    if (useDbPhase) {
-      setDbBisPriorities(newBisPriorities);
-    } else {
-      setBisPriorities(newBisPriorities);
+  const handleSaveBankUpload = async () => {
+    if (!bankUploadParsed) return;
+    setBankUploadStatus('Uploading...');
+    try {
+      const data = await putData('bank-items', bankUploadParsed);
+      setBankUploadStatus(`✅ Bank updated with ${data.count} items! Discord notified.`);
+      setBankUploadParsed(null);
+      const items = await fetchData('bank-items');
+      setBankItems(items);
+    } catch (e) {
+      setBankUploadStatus('❌ Error uploading.');
     }
   };
 
-  const handleUpdateItemId = (itemName, newId) => {
-    setMutableItems(mutableItems.map(item => 
-      item.name === itemName ? { ...item, itemId: newId } : item
-    ));
+  const handleToggleZone = (zoneName, checked) => {
+    const zone = RAID_ZONES.find(z => z.name === zoneName);
+    if (!zone) return;
+    const set = new Set(enabledBosses);
+    zone.bosses.forEach(b => checked ? set.add(b) : set.delete(b));
+    setEnabledBosses([...set]);
   };
-
-  const handleDeleteItemFromDb = (itemName) => {
-    if (window.confirm(`Permanently remove "${itemName}" from the master loot tables?`)) {
-      setMutableItems(mutableItems.filter(i => i.name !== itemName));
-      if (selectedItemName === itemName) setSelectedItemName('');
-    }
-  };
-
-const clearDatabaseCache = () => {
-    // Replaced window.confirm with window.prompt to ask for the password
-    const pwd = window.prompt("WARNING: Doing this will wipe the cloud items database and reset it to default mappings from aggregated BiS data. Enter the officer password to confirm:");
-    
-    // Check if the entered password matches
-    if (pwd === 'DELETE') {
-const defaultItems = (() => {
-  const seen = new Set();
-  return aggregatedBisData
-    .filter(item => item && item.name && item.slot)
-    .filter(item => {
-      if (seen.has(item.name)) return false;
-      seen.add(item.name);
-      return true;
-    })
-    .map(item => {
-      return {
-        name: item.name,
-        slot: normalizeSlot(item.slot),
-        itemId: item.id || '',
-        boss: item.source_type,
-        zone: item.source,
-        drop_chance: item.drop_chance || null,
-        spec: item.spec,
-        id: item.id,
-        rarity: item.rarity,
-        source: item.source,
-        source_type: item.source_type,
-        phase: item.phase
-      };
-    });
-})();
-      
-      setMutableItems(defaultItems);
-      setBisPriorities({});
-      alert("Database successfully reset to defaults.");
-      
-    } else if (pwd !== null) {
-      // If they typed the wrong password (and didn't just click 'Cancel')
-      alert("Incorrect password. Database reset aborted.");
-    }
+  const handleToggleBoss = (bossName, checked) => {
+    const set = new Set(enabledBosses);
+    if (checked) set.add(bossName); else set.delete(bossName);
+    setEnabledBosses([...set]);
   };
 
   // --- FILTERS ---
@@ -551,21 +633,26 @@ const defaultItems = (() => {
   }, [mutableItems, filterZone]);
   const uniqueSlots = useMemo(() => [...new Set(mutableItems.map(i => i.slot))].sort(), [mutableItems]);
 
-const filteredItems = mutableItems.filter(item => {
-  if (!item || !item.name) return false;
-  const matchSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+  const filteredItems = mutableItems.filter(item => {
+    if (!item || !item.name) return false;
+    const matchSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchBoss = filterBoss === '' || item.boss === filterBoss;
     const matchZone = filterZone === '' || item.zone === filterZone;
     const matchSlot = filterSlot === '' || item.slot === filterSlot;
-    return matchSearch && matchBoss && matchZone && matchSlot;
+    const isTokenItem = !!item.is_token;
+    const matchCategory =
+      filterCategory === '' ||
+      (filterCategory === 'token' && isTokenItem) ||
+      (filterCategory === 'item' && !isTokenItem);
+    return matchSearch && matchBoss && matchZone && matchSlot && matchCategory;
   });
 
-const dbFilteredItems = useMemo(() => {
-  let items = mutableItems.filter(item => item && item.name && item.name.toLowerCase().includes(dbSearch.toLowerCase()));
+  const dbFilteredItems = useMemo(() => {
+    let items = mutableItems.filter(item => item && item.name && item.name.toLowerCase().includes(dbSearch.toLowerCase()));
     if (showMissingWowheadFilter) {
-      items = items.filter(item => !item.itemId || item.itemId.trim() === '');
+      items = items.filter(item => !item.itemId || String(item.itemId).trim() === '');
     }
-    return items.sort((a,b) => a.name.localeCompare(b.name));
+    return items.sort((a, b) => a.name.localeCompare(b.name));
   }, [mutableItems, dbSearch, showMissingWowheadFilter]);
 
   useEffect(() => {
@@ -573,8 +660,45 @@ const dbFilteredItems = useMemo(() => {
   }, [filterZone, filterBoss, mutableItems]);
 
   const selectedItem = mutableItems.find(i => i.name === selectedItemName);
-  const activeRaiders = roster.filter(p => p.inRaid);
-  
+  const activeRaiders = roster.filter(p => p.in_raid);
+
+  useEffect(() => {
+    const loadRedemption = async () => {
+      if (!selectedItem || !selectedItem.is_token) return;
+      if (tokenRedemptionsByItemId[selectedItem.id]) return;
+      try {
+        const data = await fetchData('token-redemptions/' + selectedItem.id);
+        setTokenRedemptionsByItemId(prev => ({ ...prev, [selectedItem.id]: data }));
+      } catch (e) {
+        console.error('Failed to load token redemption mapping:', e);
+      }
+    };
+
+    loadRedemption();
+  }, [selectedItem, tokenRedemptionsByItemId]);
+
+  const getPlayerItemPriorityStatus = (itemObj, specDisplay) => {
+    if (!itemObj) return '';
+
+    if (!itemObj.is_token) {
+      const itemKey = `${itemObj.name}|${specDisplay}`;
+      return bisPriorities[itemKey] || '';
+    }
+
+    const redemption = tokenRedemptionsByItemId[itemObj.id];
+    const rewards = redemption?.redeemableItems || [];
+    if (rewards.length === 0) return '';
+
+    let hasOpt = false;
+    for (const reward of rewards) {
+      const rewardKey = `${reward.name}|${specDisplay}`;
+      const rewardStatus = bisPriorities[rewardKey];
+      if (rewardStatus === 'BiS') return 'BiS';
+      if (rewardStatus === 'Opt') hasOpt = true;
+    }
+    return hasOpt ? 'Opt' : '';
+  };
+
   const sortPlayersByRank = (itemObj, playerList, assignmentData) => {
     return [...playerList].sort((a, b) => {
       const rankA = assignmentData[itemObj.name]?.[a.id];
@@ -593,19 +717,25 @@ const dbFilteredItems = useMemo(() => {
 
   const sortedEligiblePlayers = useMemo(() => {
     if (!selectedItem) return [];
-    // Get eligible specs: either from bisPriorities or from the item's spec field in aggregated data
+    const tokenClasses = Array.isArray(selectedItem.token_classes)
+      ? selectedItem.token_classes.map(c => String(c).toLowerCase())
+      : [];
+
+    // Eligibility is determined from phase-specific BiS priority docs.
     const eligible = activeRaiders.filter(player => {
-      const specDisplay = player.spec;
-      const specKey = SPEC_MAPPING[specDisplay];
-      const itemKey = `${selectedItem.name}|${specDisplay}`;
-      const bisStatus = bisPriorities[itemKey];
-      // If explicitly set in bisPriorities, check that
-      if (bisStatus) return bisStatus !== '';
-      // Otherwise, use the aggregated data's spec field
-      return selectedItem.spec === specKey;
+      const specDisplay = getDisplayFromId(player.spec_id) || '?';
+      const specObj = getSpecById(player.spec_id);
+      const className = String(specObj?.class || '').toLowerCase();
+
+      if (selectedItem.is_token && tokenClasses.length > 0 && !tokenClasses.includes(className)) {
+        return false;
+      }
+
+      const bisStatus = getPlayerItemPriorityStatus(selectedItem, specDisplay);
+      return !!bisStatus && bisStatus !== '';
     });
     return sortPlayersByRank(selectedItem, eligible, assignments);
-  }, [selectedItem, activeRaiders, assignments, playerStats, scoringConfig, raidLogs, bisPriorities]);
+  }, [selectedItem, activeRaiders, assignments, playerStats, scoringConfig, raidLogs, bisPriorities, specsByName, getSpecById, tokenRedemptionsByItemId]);
 
   const getRankBadgeStyle = (rank) => {
     if (rank === 1) return "bg-gradient-to-br from-yellow-300 to-yellow-600 text-yellow-950 border border-yellow-200 shadow-[0_0_10px_rgba(253,224,71,0.6)]";
@@ -616,143 +746,131 @@ const dbFilteredItems = useMemo(() => {
     return "bg-slate-900 text-slate-500 border border-slate-800 border-dashed";
   };
 
-const getItemsForSlotAndSpec = (slot, spec) => {
-  const dataSlot = slot === "Ring 1" || slot === "Ring 2" ? "ring"
-                 : slot === "Trinket 1" || slot === "Trinket 2" ? "trinket"
-                 : slot.toLowerCase();
-  const slotIndex = slot === "Ring 2" || slot === "Trinket 2" ? 1 : 0;
-  const isDualSlot = slot.endsWith(" 1") || slot.endsWith(" 2");
+  const getItemsForSlotAndSpec = (slot, spec) => {
+    const dataSlot = slot === "Ring 1" || slot === "Ring 2" ? "ring"
+      : slot === "Trinket 1" || slot === "Trinket 2" ? "trinket"
+        : slot.toLowerCase();
+    const slotIndex = slot === "Ring 2" || slot === "Trinket 2" ? 1 : 0;
+    const isDualSlot = slot.endsWith(" 1") || slot.endsWith(" 2");
 
-  const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
-  const specKey = SPEC_MAPPING[spec];
+    const itemsInSlot = mutableItems.filter(i =>
+      i.slot && i.slot.toLowerCase() === dataSlot
+    );
 
-  const itemsInSlot = mutableItems.filter(i => 
-    i.slot && i.slot.toLowerCase() === dataSlot
-  );
+    const bis = itemsInSlot.filter(item => {
+      const itemKey = `${item.name}|${spec}`;
+      return dbBisPriorities[itemKey] === 'BiS';
+    });
+    const opt = itemsInSlot.filter(item => {
+      const itemKey = `${item.name}|${spec}`;
+      return dbBisPriorities[itemKey] === 'Opt';
+    });
 
-  const bis = itemsInSlot.filter(item => {
-    const itemKey = `${item.name}|${spec}`;
-    const manualOverride = dbBisPriorities[itemKey];
-    if (manualOverride === 'BiS') return true;
-    if (manualOverride === 'Opt' || manualOverride === '') return false;
-    // Check ALL aggregated entries for this item name
-const match = aggregatedBisLookup[`${item.name}|${specKey}`];
-return match?.[phaseKey]?.bis === true;
-  });
+    if (isDualSlot) {
+      const bisForThisSlot = bis[slotIndex] ? [bis[slotIndex]] : [];
+      const optForThisSlot = slotIndex === 0 && bis.length <= 1 ? opt
+        : slotIndex === 1 && bis.length >= 2 ? opt
+          : slotIndex === 1 && bis.length < 2 ? [...bis.slice(1), ...opt]
+            : [];
+      return { bis: bisForThisSlot, opt: optForThisSlot };
+    }
 
-  const opt = itemsInSlot.filter(item => {
-    const itemKey = `${item.name}|${spec}`;
-    const manualOverride = dbBisPriorities[itemKey];
-    if (manualOverride === 'Opt') return true;
-    if (manualOverride === 'BiS' || manualOverride === '') return false;
-    return item.eligible && item.eligible[spec] === 'Opt';
-  });
+    return { bis, opt };
+  };
 
-  if (isDualSlot) {
-    const bisForThisSlot = bis[slotIndex] ? [bis[slotIndex]] : [];
-    const optForThisSlot = slotIndex === 0 && bis.length <= 1 ? opt
-                         : slotIndex === 1 && bis.length >= 2 ? opt
-                         : slotIndex === 1 && bis.length < 2 ? [...bis.slice(1), ...opt]
-                         : [];
-    return { bis: bisForThisSlot, opt: optForThisSlot };
-  }
+  const renderItemSlot = (slotName) => {
+    const { bis, opt } = getItemsForSlotAndSpec(slotName, selectedBisSpec);
+    const isBottomSlot = BOTTOM_SLOTS.includes(slotName);
 
-  return { bis, opt };
-};
+    // For dual slots, hide the second slot entirely if there's no second item
+    const isDualSecond = slotName === "Ring 2" || slotName === "Trinket 2";
+    if (isDualSecond && bis.length === 0 && opt.length === 0) return null;
 
-const renderItemSlot = (slotName) => {
-  const { bis, opt } = getItemsForSlotAndSpec(slotName, selectedBisSpec);
-  const isBottomSlot = BOTTOM_SLOTS.includes(slotName);
+    if (bis.length === 0 && opt.length === 0 && !BOTTOM_SLOTS.includes(slotName)) {
+      return (
+        <div key={slotName} className="flex gap-3 bg-slate-900/40 border border-slate-800/50 p-2.5 rounded-lg opacity-50">
+          <div className="w-10 h-10 rounded bg-slate-950 border border-slate-800 flex-shrink-0"></div>
+          <div className="flex flex-col justify-center">
+            <span className="text-xs text-slate-600 font-bold uppercase tracking-wider">{slotName}</span>
+            <span className="text-sm text-slate-700 font-medium">No items found</span>
+          </div>
+        </div>
+      );
+    }
+    if (bis.length === 0 && opt.length === 0) return null;
 
-  // For dual slots, hide the second slot entirely if there's no second item
-  const isDualSecond = slotName === "Ring 2" || slotName === "Trinket 2";
-  if (isDualSecond && bis.length === 0 && opt.length === 0) return null;
-
-  if (bis.length === 0 && opt.length === 0 && !BOTTOM_SLOTS.includes(slotName)) {
     return (
-      <div key={slotName} className="flex gap-3 bg-slate-900/40 border border-slate-800/50 p-2.5 rounded-lg opacity-50">
-        <div className="w-10 h-10 rounded bg-slate-950 border border-slate-800 flex-shrink-0"></div>
-        <div className="flex flex-col justify-center">
-          <span className="text-xs text-slate-600 font-bold uppercase tracking-wider">{slotName}</span>
-          <span className="text-sm text-slate-700 font-medium">No items found</span>
+      <div key={slotName} className="flex gap-3 bg-slate-900 border border-slate-700 hover:border-slate-500 p-2.5 rounded-lg transition-colors shadow-sm">
+        <div key={`${slotName}-${selectedBisSpec}`} className="w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex-shrink-0 flex items-center justify-center relative shadow-inner overflow-hidden character-slot-icon">
+          {bis.length > 0 && bis[0].itemId ? (
+            <a
+              href={`https://tbc.wowhead.com/item=${bis[0].itemId}`}
+              data-wh-rename-link="false"
+              data-wh-icon-size="large"
+              className="item-link"
+              target="_blank"
+              rel="noreferrer"
+              onMouseLeave={hideWowheadTooltip}
+            />
+          ) : (
+            <>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent"></div>
+              <span className="text-[9px] font-bold text-slate-500 uppercase z-10 rotate-45 opacity-30">{slotName}</span>
+            </>
+          )}
+        </div>
+
+        <div className="flex flex-col min-w-0 justify-center">
+          <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">{slotName}</span>
+          {bis.length > 0 ? (
+            bis.map(i => (
+              <div key={i.name} className="flex flex-col">
+                {renderItemLink(i, "text-sm font-bold text-purple-400 drop-shadow-sm leading-tight")}
+                <div className="flex gap-2 flex-wrap">
+                  <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
+                  {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
+                </div>
+              </div>
+            ))
+          ) : (<span className="text-sm font-bold text-slate-500 italic leading-tight">No primary BiS</span>)}
+          {opt.length > 0 && (
+            <div className="mt-1 flex flex-col gap-y-1">
+              {opt.map(i => (
+                <div key={i.name} className="flex flex-col">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-[10px] text-amber-500/70 font-semibold uppercase flex-shrink-0">Alt:</span>
+                    {renderItemLink(i, "text-[10px] text-slate-400 truncate max-w-[150px]")}
+                    {!isBottomSlot && <span className="text-[10px] text-amber-500/70 font-semibold whitespace-nowrap">{i.boss}</span>}
+                  </div>
+                  {isBottomSlot && (
+                    <div className="flex gap-2 pl-6">
+                      <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
+                      {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );
-  }
-  if (bis.length === 0 && opt.length === 0) return null;
+  };
 
-  return (
-    <div key={slotName} className="flex gap-3 bg-slate-900 border border-slate-700 hover:border-slate-500 p-2.5 rounded-lg transition-colors shadow-sm">
-      <div key={`${slotName}-${selectedBisSpec}`} className="w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex-shrink-0 flex items-center justify-center relative shadow-inner overflow-hidden character-slot-icon">
-        {bis.length > 0 && bis[0].itemId ? (
-          <a 
-            href={`https://tbc.wowhead.com/item=${bis[0].itemId}`} 
-            data-wh-rename-link="false" 
-            data-wh-icon-size="large"
-            className="item-link"
-            target="_blank"
-            rel="noreferrer"
-            onMouseLeave={hideWowheadTooltip}
-          />
-        ) : (
-          <>
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent"></div>
-            <span className="text-[9px] font-bold text-slate-500 uppercase z-10 rotate-45 opacity-30">{slotName}</span>
-          </>
-        )}
-      </div>
-
-      <div className="flex flex-col min-w-0 justify-center">
-        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">{slotName}</span>
-{bis.length > 0 ? (
-  bis.map(i => (
-    <div key={i.name} className="flex flex-col">
-      {renderItemLink(i, "text-sm font-bold text-purple-400 drop-shadow-sm leading-tight")}
-      <div className="flex gap-2 flex-wrap">
-        <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
-        {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
-      </div>
-    </div>
-  ))
-) : ( <span className="text-sm font-bold text-slate-500 italic leading-tight">No primary BiS</span> )}
-{opt.length > 0 && (
-  <div className="mt-1 flex flex-col gap-y-1">
-    {opt.map(i => (
-      <div key={i.name} className="flex flex-col">
-        <div className="flex items-baseline gap-2">
-          <span className="text-[10px] text-amber-500/70 font-semibold uppercase flex-shrink-0">Alt:</span>
-          {renderItemLink(i, "text-[10px] text-slate-400 truncate max-w-[150px]")}
-          {!isBottomSlot && <span className="text-[10px] text-amber-500/70 font-semibold whitespace-nowrap">{i.boss}</span>}
-        </div>
-        {isBottomSlot && (
-          <div className="flex gap-2 pl-6">
-            <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
-            {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
-          </div>
-        )}
-      </div>
-    ))}
-  </div>
-)}
-      </div>
-    </div>
-  );
-};
-
-const filteredOverviewItems = useMemo(() => {
-  let items = mutableItems.filter(item => {
-    if (!item || !item.name) return false;  // add this line
-    const itemAssignments = assignments[item.name];
-    if (!itemAssignments) return false;
-    return Object.values(itemAssignments).some(rank => rank !== null && rank !== undefined);
-  });
+  const filteredOverviewItems = useMemo(() => {
+    let items = mutableItems.filter(item => {
+      if (!item || !item.name) return false;  // add this line
+      const itemAssignments = assignments[item.name];
+      if (!itemAssignments) return false;
+      return Object.values(itemAssignments).some(rank => rank !== null && rank !== undefined);
+    });
 
     // 2. Then apply the search filter (item name OR player name)
     if (overviewSearch.trim() !== '') {
       const term = overviewSearch.toLowerCase();
       items = items.filter(item => {
         if (item.name.toLowerCase().includes(term)) return true;
-        
+
         const assignedPlayerIds = Object.keys(assignments[item.name] || {}).filter(id => assignments[item.name][id] !== null);
         const assignedPlayers = roster.filter(p => assignedPlayerIds.includes(String(p.id)));
         return assignedPlayers.some(p => p.name.toLowerCase().includes(term));
@@ -760,7 +878,7 @@ const filteredOverviewItems = useMemo(() => {
     }
 
     return items;
-}, [mutableItems, assignments, roster, overviewSearch]);
+  }, [mutableItems, assignments, roster, overviewSearch]);
 
   useEffect(() => {
     if (activeTab !== 'overview') return;
@@ -772,22 +890,80 @@ const filteredOverviewItems = useMemo(() => {
     return () => clearTimeout(timer);
   }, [filteredOverviewItems]);
 
-  const PlayerNameWithScore = ({ player }) => (
-    <div className="flex items-center gap-2">
-      <span className="font-bold text-lg leading-tight drop-shadow-sm" style={{ color: CLASS_COLORS[player.spec] }}>{player.name}</span>
-      <span className="bg-amber-900/60 text-amber-400 text-[10px] px-1.5 py-0.5 rounded border border-amber-500/30 font-bold shadow-inner flex items-center gap-1">
-        <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-        {calculateScore(player.id)}
-      </span>
-    </div>
-  );
+  useEffect(() => {
+    const isBankTabActive = activeTab === 'bank' || activeTab === 'bankRequests';
+    if (!isBankTabActive) return;
+
+    const loadBankData = async () => {
+      if (document.hidden) return;
+      try {
+        const items = await fetchData('bank-items');
+        setBankItems(items);
+        if (isAuthenticated) {
+          const requests = await fetchData('bank-requests');
+          setBankRequests(requests);
+        }
+      } catch (e) {
+        console.error('Failed to load bank data:', e);
+      }
+    };
+    loadBankData();
+    const interval = setInterval(loadBankData, BANK_SYNC_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, [activeTab, isAuthenticated]);
+
+  useEffect(() => {
+    if (activeTab !== 'raidAssignments') return;
+
+    const loadRaidAssignments = async () => {
+      if (document.hidden) return;
+      try {
+        const [data, config] = await Promise.all([
+          fetchData('raid-assignment-data'),
+          fetchData('raid-assignment-config')
+        ]);
+        if (!raidAssignmentDataDirty) setRaidAssignmentDataLocal(data);
+        if (!enabledBossesDirty) setEnabledBossesLocal(config);
+      } catch (e) {
+        console.error('Failed to load raid assignments:', e);
+      }
+    };
+    loadRaidAssignments();
+    const interval = setInterval(loadRaidAssignments, RAID_ASSIGNMENTS_SYNC_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, [activeTab, raidAssignmentDataDirty, enabledBossesDirty]);
+
+  useEffect(() => {
+    if (!hasAnyUnsavedChanges) return undefined;
+
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [hasAnyUnsavedChanges]);
+
+  const PlayerNameWithScore = ({ player }) => {
+    const specDisplay = getDisplayFromId(player.spec_id) || '?';
+    return (
+      <div className="flex items-center gap-2">
+        <span className="font-bold text-lg leading-tight drop-shadow-sm" style={{ color: specsByName[specDisplay]?.color || '#FFFFFF' }}>{player.name}</span>
+        <span className="bg-amber-900/60 text-amber-400 text-[10px] px-1.5 py-0.5 rounded border border-amber-500/30 font-bold shadow-inner flex items-center gap-1">
+          <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+          {calculateScore(player.id)}
+        </span>
+      </div>
+    );
+  };
 
   // ==========================================
   // 7. RENDER SCREENS
   // ==========================================
 
   // LOADING SCREEN
-  if (!isDbConnected) {
+  if (!isDbConnected || specsFromDb.length === 0) {
     return (
       <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-amber-500 space-y-4">
         <svg className="w-12 h-12 animate-spin text-amber-500" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
@@ -798,41 +974,41 @@ const filteredOverviewItems = useMemo(() => {
 
   // MAIN DASHBOARD
   return (
-<div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-amber-500/30">
-<style>{`
-        .character-slot-icon .iconlarge {
-          width: 30px !important;
-          height: 30px !important;
-          display: block !important;
-        }
-        .character-slot-icon .iconlarge ins {
-          width: 32px !important;
-          height: 32px !important;
-        }
-        .overview-tab .character-slot-icon .iconlarge {
-          margin-top: -4px !important;
-          margin-left: -4px !important;
-        }
-      `}</style>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
-        
+    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-amber-500/30">
+      <style>{`
+          .character-slot-icon .iconlarge {
+            width: 30px !important;
+            height: 30px !important;
+            display: block !important;
+          }
+          .character-slot-icon .iconlarge ins {
+            width: 32px !important;
+            height: 32px !important;
+          }
+          .overview-tab .character-slot-icon .iconlarge {
+            margin-top: -4px !important;
+            margin-left: -4px !important;
+          }
+        `}</style>
+      <div className="max-w-10/12 mx-auto px-4 sm:px-6 lg:px-0 py-10 space-y-6">
+
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600 tracking-tight font-serif italic drop-shadow-sm">
               &lt;Guild Name TBC&gt;
             </h1>
             <p className="text-slate-400 mt-2 font-medium uppercase tracking-widest text-sm flex items-center gap-2">
-              TBC Priority Assignment Dashboard 
+              TBC Priority Assignment Dashboard
               <span className="bg-emerald-500/20 text-emerald-400 text-[10px] px-2 py-0.5 rounded border border-emerald-500/30 font-bold shadow-inner">CLOUD SYNC LIVE</span>
             </p>
           </div>
-          
+
           <div className="flex items-center gap-4">
             {isAuthenticated && (
               <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 p-2.5 rounded-lg">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Current Phase:</span>
-                <select 
-                  value={globalPhase} 
+                <select
+                  value={globalPhase}
                   onChange={e => setGlobalPhase(e.target.value)}
                   className="bg-slate-950 text-amber-400 font-bold border border-slate-700 rounded px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                 >
@@ -846,12 +1022,12 @@ const filteredOverviewItems = useMemo(() => {
               </button>
             ) : (
               <form onSubmit={handleLogin} className="flex gap-2 items-center bg-slate-900 border border-slate-800 p-1.5 rounded-lg shadow-inner">
-                <input 
-                  type="password" 
-                  value={passwordInput} 
-                  onChange={(e) => setPasswordInput(e.target.value)} 
-                  className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 tracking-widest w-40" 
-                  placeholder="Officer Password" 
+                <input
+                  type="password"
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                  className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 tracking-widest w-40"
+                  placeholder="Officer Password"
                 />
                 <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-1.5 px-3 rounded transition shadow-lg tracking-wider uppercase text-[10px]">
                   Unlock
@@ -865,596 +1041,274 @@ const filteredOverviewItems = useMemo(() => {
         <div className="flex overflow-x-auto gap-2 border-b border-slate-800 pb-px custom-scrollbar">
           <button onClick={() => setActiveTab('overview')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'overview' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Priority Overview</button>
           <button onClick={() => setActiveTab('bis')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bis' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>BiS Config</button>
-
+          <button onClick={() => setActiveTab('bank')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bank' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Guild Bank</button>
+          <button onClick={() => setActiveTab('raidAssignments')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'raidAssignments' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
+            <span className="inline-flex items-center gap-2">
+              <span>Raid Assignments</span>
+              {hasRaidAssignmentsUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
+            </span>
+          </button>
           {/* Lock down all editing tabs behind authentication */}
           {isAuthenticated && (
             <>
-              <button onClick={() => setActiveTab('loot')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'loot' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Loot Council</button>
-              <button onClick={() => setActiveTab('roster')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'roster' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Roster & Attendance</button>
-              <button onClick={() => setActiveTab('scoring')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'scoring' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Scoring & Config</button>
-              <button onClick={() => setActiveTab('itemsdb')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'itemsdb' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Master Items DB</button>
+              <button onClick={() => setActiveTab('bankRequests')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bankRequests' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Bank Requests</button>
+              <button onClick={() => setActiveTab('loot')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'loot' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
+                <span className="inline-flex items-center gap-2">
+                  <span>Loot Council</span>
+                  {hasLootUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
+                </span>
+              </button>
+              <button onClick={() => setActiveTab('roster')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'roster' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
+                <span className="inline-flex items-center gap-2">
+                  <span>Roster & Attendance</span>
+                  {hasRosterUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
+                </span>
+              </button>
+              <button onClick={() => setActiveTab('scoring')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'scoring' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
+                <span className="inline-flex items-center gap-2">
+                  <span>Scoring & Config</span>
+                  {hasScoringUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
+                </span>
+              </button>
+              <button onClick={() => setActiveTab('itemsdb')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'itemsdb' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
+                <span className="inline-flex items-center gap-2">
+                  <span>Master Items DB</span>
+                  {hasItemsDbUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
+                </span>
+              </button>
             </>
           )}
         </div>
 
         {/* =========================================
-            TAB: PRIORITY OVERVIEW (MASTER LEDGER - PUBLIC)
-            ========================================= */}
+              TAB: PRIORITY OVERVIEW (MASTER LEDGER - PUBLIC)
+              ========================================= */}
         {activeTab === 'overview' && (
-<section className="overview-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
-             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">              
-              <div>
-                <h2 className="text-xl font-bold text-slate-100 mb-1">Master Priority Ledger</h2>
-                <p className="text-sm text-slate-500">A bird's-eye view of every item that currently has an assigned Loot Council priority.</p>
-              </div>
-              <input 
-                type="text" 
-                placeholder="Search by item or player name..." 
-                className="w-full md:w-96 bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-inner" 
-                value={overviewSearch} 
-                onChange={e => setOverviewSearch(e.target.value)} 
-              />
-            </div>
-            {filteredOverviewItems.length === 0 ? (
-              <div className="text-center py-20 bg-slate-900/50 border-2 border-dashed border-slate-800 rounded-xl"><p className="text-slate-500 font-medium">No priorities match your search criteria.</p></div>
-            ) : (
-<div className="columns-1 lg:columns-2 xl:columns-3 gap-6 space-y-0">                {filteredOverviewItems.map(item => {
-                  const assignedPlayers = roster.filter(p => typeof assignments[item.name]?.[p.id] === 'number');
-const sortedAssignedPlayers = assignedPlayers.sort((a, b) => {
-  const rankA = assignments[item.name][a.id];
-  const rankB = assignments[item.name][b.id];
-  if (rankA !== rankB) return rankA - rankB;
-  return Number(calculateScore(b.id)) - Number(calculateScore(a.id));
-});                  return (
-<div key={item.name} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-lg flex flex-col break-inside-avoid mb-6">                      
-                           <div className="bg-slate-900 border-b border-slate-800 p-4">
-  <div className="flex items-center gap-3 mb-1">
- <div className="character-slot-icon w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex-shrink-0 flex items-center justify-center overflow-hidden relative shadow-inner">
-  {item.itemId ? (
-    
-      <a href={"https://tbc.wowhead.com/item=" + item.itemId}
-      data-wh-rename-link="false"
-      data-wh-icon-size="large"
-      className="item-link absolute inset-0"
-      target="_blank"
-      rel="noreferrer"
-      onMouseLeave={hideWowheadTooltip}
-      style={{fontSize: 0, lineHeight: 0}}
-    />
-      ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent" />
-      )}
-    </div>
-    <h3 className="text-lg font-bold text-purple-400 truncate drop-shadow-sm">
-      {renderItemLink(item)}
-    </h3>
-  </div>
-  <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-500 tracking-wider flex-wrap">
-    <span>{item.slot}</span>
-    <span className="w-1 h-1 rounded-full bg-slate-700"></span>
-    <span className="text-amber-500/80">{item.boss}</span>
-    {item.drop_chance && (
-      <>
-        <span className="w-1 h-1 rounded-full bg-slate-700"></span>
-        <span className="text-cyan-400">{(item.drop_chance * 100).toFixed(0)}% Drop</span>
-      </>
-    )}
-  </div>
-</div>
-                      <div className="p-3 flex-1">
-                        {sortedAssignedPlayers.length === 0 ? ( <p className="text-xs text-slate-600 italic py-2">Only Passes recorded.</p> ) : (
-                          <ul className="space-y-2">
-                            {sortedAssignedPlayers.map(player => (
-                                <li key={player.id} className="flex items-center gap-3 bg-slate-900/50 p-2 rounded border border-slate-800/50">
-                                  <div className={`w-6 h-6 flex-shrink-0 rounded-full flex items-center justify-center font-bold text-xs shadow-inner ${getRankBadgeStyle(assignments[item.name][player.id])}`}>{assignments[item.name][player.id]}</div>
-                                  <div className="flex-1 min-w-0 flex items-center justify-between"><PlayerNameWithScore player={player} /></div>
-                                </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                      {/* Hide edit button for unauthenticated users */}
-                      {isAuthenticated && (
-                        <div className="bg-slate-900/30 p-2 border-t border-slate-800/50 text-right">
-                           <button onClick={() => { setActiveTab('loot'); setSearchQuery(item.name); setSelectedItemName(item.name); }} className="text-xs font-bold text-amber-500 hover:text-amber-400 uppercase tracking-wider px-2 py-1">Edit Priorities &rarr;</button>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </section>
+          <OverviewTab
+            filteredOverviewItems={filteredOverviewItems}
+            overviewSearch={overviewSearch}
+            setOverviewSearch={setOverviewSearch}
+            roster={roster}
+            assignments={assignments}
+            calculateScore={calculateScore}
+            getRankBadgeStyle={getRankBadgeStyle}
+            renderItemLink={renderItemLink}
+            hideWowheadTooltip={hideWowheadTooltip}
+            isAuthenticated={isAuthenticated}
+            setActiveTab={setActiveTab}
+            setSearchQuery={setSearchQuery}
+            setSelectedItemName={setSelectedItemName}
+            specsByName={specsByName}
+            getDisplayFromId={getDisplayFromId}
+          />
+        )}
+
+        {
+  /* =========================================
+      TAB: GUILD BANK (PUBLIC)
+      ========================================= */}
+        {activeTab === 'bank' && (
+          <GuildBankTab
+            bankItems={bankItems}
+            bankSearch={bankSearch}
+            setBankSearch={setBankSearch}
+            isAuthenticated={isAuthenticated}
+            roster={roster}
+          />
         )}
 
         {/* =========================================
-            TAB: LOOT COUNCIL ASSIGNMENT
-            ========================================= */}
+      TAB: RAID ASSIGNMENTS (PUBLIC, EDIT GATED)
+      ========================================= */}
+        {activeTab === 'raidAssignments' && (
+          <RaidAssignmentsTab
+            isAuthenticated={isAuthenticated}
+            roster={roster}
+            getSpecById={getSpecById}
+            enabledBosses={enabledBosses}
+            handleToggleZone={handleToggleZone}
+            handleToggleBoss={handleToggleBoss}
+            raidAssignmentData={raidAssignmentData}
+            setRaidAssignmentData={setRaidAssignmentData}
+            hasUnsavedChanges={raidAssignmentDataDirty || enabledBossesDirty}
+            onSaveChanges={handleSaveRaidAssignmentsChanges}
+            isSaving={isSavingRaidAssignments}
+          />
+        )}
+
+        {/* =========================================
+      TAB: BANK REQUESTS (AUTH-GATED)
+      ========================================= */}
+        {activeTab === 'bankRequests' && isAuthenticated && (
+          <BankRequestsTab
+            bankRequests={bankRequests}
+            roster={roster}
+            specsByName={specsByName}
+            getDisplayFromId={getDisplayFromId}
+            respondingRequestId={respondingRequestId}
+            setRespondingRequestId={setRespondingRequestId}
+            approveQuantity={approveQuantity}
+            setApproveQuantity={setApproveQuantity}
+            approvePrice={approvePrice}
+            setApprovePrice={setApprovePrice}
+            approveNote={approveNote}
+            setApproveNote={setApproveNote}
+            denyReason={denyReason}
+            setDenyReason={setDenyReason}
+            denyCustomReason={denyCustomReason}
+            setDenyCustomReason={setDenyCustomReason}
+            handleResolveBankRequest={handleResolveBankRequest}
+            handleBankFileUpload={handleBankFileUpload}
+            bankUploadParsed={bankUploadParsed}
+            handleSaveBankUpload={handleSaveBankUpload}
+            bankUploadStatus={bankUploadStatus}
+          />
+        )}
+
+        {/* =========================================
+              TAB: LOOT COUNCIL ASSIGNMENT
+              ========================================= */}
         {activeTab === 'loot' && isAuthenticated && (
-          <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
-            <div className="bg-slate-950 p-5 rounded-xl border border-slate-800 mb-8 shadow-inner">
-              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Item Database Filters</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-400 mb-1.5">Search Name</label>
-                  <input type="text" className="w-full bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-purple-500 focus:outline-none" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-slate-400 mb-1.5">Filter Zone</label>
-                  <select className="w-full bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-purple-500 focus:outline-none" value={filterZone} onChange={e => setFilterZone(e.target.value)}>
-                    <option value="">All Zones</option>
-                    {uniqueZones.map(z => <option key={z} value={z}>{z}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-slate-400 mb-1.5">Filter Boss</label>
-                  <select className="w-full bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-purple-500 focus:outline-none truncate" value={filterBoss} onChange={e => setFilterBoss(e.target.value)}>
-                    <option value="">All Bosses</option>
-                    {uniqueBosses.map(b => <option key={b} value={b}>{b}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-slate-400 mb-1.5">Filter Slot</label>
-                  <select className="w-full bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-purple-500 focus:outline-none" value={filterSlot} onChange={e => setFilterSlot(e.target.value)}>
-                    <option value="">All Slots</option>
-                    {uniqueSlots.map(s => <option key={s} value={s}>{s}</option>)}
-                  </select>
-                </div>
-              </div>
-              <div>
-                 <select className="w-full bg-slate-900 text-purple-400 font-bold border border-slate-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:outline-none cursor-pointer" value={selectedItemName} onChange={e => setSelectedItemName(e.target.value)}>
-                  <option value="" className="text-slate-500">-- Select Dropped Item ({filteredItems.length} matches) --</option>
-                  {filteredItems.map(item => <option key={item.name} value={item.name} className="text-purple-400">{item.name}</option>)}
-                </select>
-              </div>
-            </div>
-
-            {selectedItem ? (
-              <div className="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-2xl">
-                <div className="bg-gradient-to-b from-slate-900 to-slate-950 p-6 border-b border-slate-800">
-                  <h3 className="text-3xl font-bold text-purple-400 drop-shadow-md mb-2">
-                    {renderItemLink(selectedItem)}
-                  </h3>
-                  <div className="flex gap-4 text-sm font-semibold text-slate-300 flex-wrap">
-                    <span className="bg-slate-800 px-3 py-1 rounded-full border border-slate-700">{selectedItem.slot}</span>
-                    <span className="bg-slate-800 px-3 py-1 rounded-full border border-slate-700">{selectedItem.zone}</span>
-                    {selectedItem.drop_chance && (
-                      <span className="bg-cyan-900/30 px-3 py-1 rounded-full border border-cyan-700/50 text-cyan-400">{(selectedItem.drop_chance * 100).toFixed(0)}% Drop Chance</span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <h4 className="text-sm font-bold mb-4 text-slate-400 uppercase tracking-widest border-b border-slate-800 pb-2">Council Priority Queue</h4>
-                  {sortedEligiblePlayers.length === 0 ? (
-                    <div className="text-center py-12 bg-slate-900/50 rounded-lg border-2 border-dashed border-slate-800"><p className="text-slate-400 font-medium text-sm">None of your active raiders need this item.</p></div>
-                  ) : (
-                    <div className="flex flex-col gap-3">
-                      {sortedEligiblePlayers.map(player => {
-                        const specDisplay = player.spec;
-                        const specKey = SPEC_MAPPING[specDisplay];
-                        const itemKey = `${selectedItem.name}|${specDisplay}`;
-                        const bisPriorityStatus = bisPriorities[itemKey];
-                        const status = bisPriorityStatus || (selectedItem.spec === specKey ? 'BiS' : '');
-                        const currentPriority = assignments[selectedItem.name]?.[player.id];
-const playerAlts = mutableItems.filter(i => {
-  if (i.slot !== selectedItem.slot || i.name === selectedItem.name) return false;
-  const altItemKey = `${i.name}|${specDisplay}`;
-  const altBisPriority = bisPriorities[altItemKey];
-  return altBisPriority || i.spec === specKey;
-}).map(i => ({ ...i, eligible: i.eligible || {} }));
-
-                        return (
-                          <div key={player.id} className={`flex flex-col p-4 rounded-xl shadow-sm border transition-all duration-300 ${currentPriority === 1 ? 'bg-slate-800/80 border-amber-500/50' : currentPriority === 'Pass' ? 'bg-slate-950/50 border-slate-900 opacity-60' : 'bg-slate-900 border-slate-700'}`}>
-                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                              <div className="flex items-center gap-4">
-                                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shadow-inner flex-shrink-0 ${getRankBadgeStyle(currentPriority)}`}>
-                                  {typeof currentPriority === 'number' ? currentPriority : (currentPriority === 'Pass' ? '✕' : '-')}
-                                </div>
-                                <img src={`/icons/${player.spec}.png`} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover flex-shrink-0" onError={(e) => { e.target.src = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg' }} />
-                                <div>
-                                  <PlayerNameWithScore player={player} />
-                                  <div className="flex items-center gap-2 mt-0.5">
-                                    <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{player.spec}</span>
-                                    <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${status === 'BiS' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-sky-500/20 text-sky-400'}`}>{status}</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-2 bg-slate-950 p-1.5 rounded-lg border border-slate-800 overflow-x-auto custom-scrollbar">
-                                <span className="text-xs font-semibold text-slate-500 mr-2 ml-1 uppercase tracking-wider whitespace-nowrap">Assign Rank:</span>
-                                {[1, 2, 3, 4, 5].map(rank => (
-                                  <button key={rank} onClick={() => handleSetPriority(player.id, currentPriority === rank ? null : rank)} className={`w-8 h-8 flex-shrink-0 rounded font-bold text-sm transition-all ${currentPriority === rank ? 'bg-purple-600 text-white shadow-[0_0_8px_rgba(147,51,234,0.6)]' : 'bg-slate-900 text-slate-400 hover:bg-slate-800 hover:text-white'}`}>{rank}</button>
-                                ))}
-                                <div className="w-px h-6 bg-slate-800 mx-1 flex-shrink-0"></div>
-                                <button onClick={() => handleSetPriority(player.id, currentPriority === 'Pass' ? null : 'Pass')} className={`px-3 h-8 flex-shrink-0 rounded font-bold text-xs uppercase transition-all ${currentPriority === 'Pass' ? 'bg-red-900/60 text-red-400 border border-red-800' : 'bg-slate-900 text-slate-500 hover:bg-red-950 hover:text-red-400'}`}>Pass</button>
-                              </div>
-                            </div>
-                            
-                            {playerAlts.length > 0 && (
-                              <div className="mt-4 pt-3 border-t border-slate-800/50">
-                                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-2 block flex items-center gap-1"><span className="text-slate-600">Alternative {selectedItem.slot} Options:</span></span>
-                                <div className="flex flex-wrap gap-2">
-                                  {playerAlts.map(alt => (
-                                    <span key={alt.name} className={`text-[10px] px-2 py-1 rounded border shadow-sm flex items-center gap-1 ${alt.eligible[player.spec] === 'BiS' ? 'bg-emerald-900/30 text-emerald-400 border-emerald-800/50' : 'bg-slate-950 text-slate-400 border-slate-800'}`}>
-                                      {renderItemLink(alt, "")}
-                                      <span className="opacity-50 text-[9px]">({alt.boss})</span>
-                                    </span>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ) : (
-               <div className="text-center py-20 bg-slate-900/50 border-2 border-dashed border-slate-800 rounded-xl"><p className="text-slate-500 font-medium">Use the filters above and select an item to assign priorities.</p></div>
-            )}
-          </section>
+          <LootCouncilTab
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            filterZone={filterZone}
+            setFilterZone={setFilterZone}
+            uniqueZones={uniqueZones}
+            filterBoss={filterBoss}
+            setFilterBoss={setFilterBoss}
+            uniqueBosses={uniqueBosses}
+            filterSlot={filterSlot}
+            setFilterSlot={setFilterSlot}
+            filterCategory={filterCategory}
+            setFilterCategory={setFilterCategory}
+            uniqueSlots={uniqueSlots}
+            selectedItemName={selectedItemName}
+            setSelectedItemName={setSelectedItemName}
+            filteredItems={filteredItems}
+            selectedItem={selectedItem}
+            sortedEligiblePlayers={sortedEligiblePlayers}
+            getDisplayFromId={getDisplayFromId}
+            getSlugFromDisplay={getSlugFromDisplay}
+            bisPriorities={bisPriorities}
+            globalPhase={globalPhase}
+            assignments={assignments}
+            mutableItems={mutableItems}
+            getPlayerItemPriorityStatus={getPlayerItemPriorityStatus}
+            getSpecById={getSpecById}
+            getRankBadgeStyle={getRankBadgeStyle}
+            renderItemLink={renderItemLink}
+            handleSetPriority={handleSetPriority}
+            PlayerNameWithScore={PlayerNameWithScore}
+            hasUnsavedChanges={assignmentsDirty}
+            onSaveChanges={handleSaveLootCouncilChanges}
+            isSaving={isSavingLootCouncil}
+          />
         )}
 
         {/* =========================================
-            TAB: ROSTER & ATTENDANCE
-            ========================================= */}
+              TAB: ROSTER & ATTENDANCE
+              ========================================= */}
         {activeTab === 'roster' && isAuthenticated && (
-          <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
-            <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner mb-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Log Current Raid</h3>
-                <form onSubmit={handleSaveRaidLog} className="flex flex-col gap-3">
-                  <div className="flex gap-3">
-                    <div className="flex-1">
-                      <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Date</label>
-                      <input type="date" required className="w-full bg-slate-900 text-white border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none" value={newRaidDate} onChange={e => setNewRaidDate(e.target.value)} />
-                    </div>
-                    <div className="flex-1">
-                      <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Zone</label>
-                      <input type="text" required placeholder="e.g. SSC" className="w-full bg-slate-900 text-white border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none" value={newRaidZone} onChange={e => setNewRaidZone(e.target.value)} />
-                    </div>
-                  </div>
-                  <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-2 rounded-lg transition shadow-lg text-sm mt-1">Save Active Roster to History</button>
-                </form>
-              </div>
-              <div>
-                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2 flex justify-between items-center"><span>Raid History Logs</span><span className="bg-slate-800 text-slate-400 px-2 py-0.5 rounded text-[10px]">{raidLogs.length} Records</span></h3>
-                {raidLogs.length === 0 ? ( <p className="text-xs text-slate-600 italic py-4">No raids logged yet.</p> ) : (
-                  <ul className="max-h-[140px] overflow-y-auto pr-2 custom-scrollbar space-y-2">
-                    {raidLogs.map(log => (
-                      <li key={log.id} className="flex justify-between items-center bg-slate-900 border border-slate-800 p-2.5 rounded hover:border-slate-700 transition group">
-                        <div>
-                          <span className="font-bold text-sm text-amber-500 block leading-tight">{log.date}</span>
-                          <span className="text-[10px] text-slate-400 uppercase tracking-wider">{log.zone} • {log.attendees.length} Attendees</span>
-                        </div>
-                        <button onClick={() => handleDeleteRaidLog(log.id)} className="text-slate-600 hover:text-red-400 text-xs font-bold opacity-0 group-hover:opacity-100 transition px-2">Delete</button>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
-              <div>
-                <h2 className="text-xl font-bold text-slate-100 mb-1">Master Guild Roster</h2>
-                <p className="text-sm text-slate-500">Toggle players "In Raid" to include them in the Loot Council & Attendance logging.</p>
-              </div>
-              <form onSubmit={handleAddPlayer} className="flex flex-wrap items-center gap-3">
-                <input type="text" placeholder="Player Name" className="bg-slate-900 text-white placeholder-slate-500 border border-slate-700 rounded-lg px-4 py-2.5 w-full sm:w-auto focus:outline-none" value={newName} onChange={e => setNewName(e.target.value)} />
-                <select className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 w-full sm:w-auto focus:outline-none cursor-pointer" value={newSpec} onChange={e => setNewSpec(e.target.value)}>
-                  {SPECS.map(spec => <option key={spec} value={spec} style={{ color: CLASS_COLORS[spec] }}>{spec}</option>)}
-                </select>
-                <button type="submit" className="w-full sm:w-auto bg-amber-600 hover:bg-amber-500 text-white font-bold px-6 py-2.5 rounded-lg transition shadow-lg">Add Member</button>
-              </form>
-            </div>
-
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Live Raid Setup</h3>
-              <div className="flex gap-2">
-                <button onClick={() => setAllRaidStatus(true)} className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded transition">Select All</button>
-                <button onClick={() => setAllRaidStatus(false)} className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded transition">Deselect All</button>
-              </div>
-            </div>
-
-            {roster.length === 0 ? ( <p className="text-center text-slate-500 py-12 border-2 border-dashed border-slate-800 rounded-xl">Your guild roster is empty.</p> ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-                {roster.map(player => (
-                  <div key={player.id} className={`group relative flex items-center gap-3 p-3 rounded-lg transition-all duration-200 border cursor-pointer ${player.inRaid ? 'bg-slate-800/80 border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.1)]' : 'bg-slate-950 border-slate-800 opacity-60 hover:opacity-100'}`} onClick={() => toggleRaidStatus(player.id)}>
-                    <div className="relative">
-                      <img src={`/icons/${player.spec}.png`} alt="" className="w-10 h-10 rounded border border-slate-700 bg-slate-900 object-cover" onError={(e) => { e.target.src = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg' }} />
-                      {player.inRaid && ( <div className="absolute -bottom-1 -right-1 bg-emerald-500 rounded-full w-4 h-4 flex items-center justify-center border-2 border-slate-800"><svg className="w-2.5 h-2.5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="4"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path></svg></div> )}
-                    </div>
-<div className="flex-1 min-w-0 pointer-events-none">
-  <span className="font-bold text-lg leading-tight drop-shadow-sm" style={{ color: CLASS_COLORS[player.spec] }}>{player.name}</span>
-  <span className="bg-amber-900/60 text-amber-400 text-[10px] px-1.5 py-0.5 rounded border border-amber-500/30 font-bold shadow-inner flex items-center gap-1 w-fit my-0.5">
-    <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-    {calculateScore(player.id)}
-  </span>
-  <p className="text-[10px] text-slate-400 uppercase tracking-wider truncate font-semibold">{player.spec}</p>
-</div>
-                    <button onClick={(e) => { e.stopPropagation(); handleRemovePlayer(player.id); }} className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">✕</button>
-                  </div>
-                ))}
-              </div>
-            )}
-          </section>
+          <RosterTab
+            handleSaveRaidLog={handleSaveRaidLog}
+            newRaidDate={newRaidDate}
+            setNewRaidDate={setNewRaidDate}
+            newRaidZone={newRaidZone}
+            setNewRaidZone={setNewRaidZone}
+            raidLogs={raidLogs}
+            handleDeleteRaidLog={handleDeleteRaidLog}
+            handleAddPlayer={handleAddPlayer}
+            newName={newName}
+            setNewName={setNewName}
+            newSpec={newSpec}
+            setNewSpec={setNewSpec}
+            specsFromDb={specsFromDb}
+            setAllRaidStatus={setAllRaidStatus}
+            roster={roster}
+            getSpecById={getSpecById}
+            toggleRaidStatus={toggleRaidStatus}
+            handleRemovePlayer={handleRemovePlayer}
+            specsByName={specsByName}
+            PlayerNameWithScore={PlayerNameWithScore}
+            hasUnsavedChanges={rosterDirty || raidLogsDirty || playerStatsDirty}
+            onSaveChanges={handleSaveRosterAttendanceChanges}
+            isSaving={isSavingRosterAttendance}
+          />
         )}
 
         {/* =========================================
-            TAB: SCORING & CONFIG
-            ========================================= */}
+              TAB: SCORING & CONFIG
+              ========================================= */}
         {activeTab === 'scoring' && isAuthenticated && (
-          <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
-            <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner mb-8">
-              <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Global Score Weighting Weights</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
-                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Parse Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.parseWeight} onChange={e => setScoringConfig({...scoringConfig, parseWeight: e.target.value})} /></div>
-                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Support Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.supportMulti} onChange={e => setScoringConfig({...scoringConfig, supportMulti: e.target.value})} /></div>
-                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Consumables (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.consBonus} onChange={e => setScoringConfig({...scoringConfig, consBonus: e.target.value})} /></div>
-                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Enchants (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.enchantBonus} onChange={e => setScoringConfig({...scoringConfig, enchantBonus: e.target.value})} /></div>
-                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Gems (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.gemBonus} onChange={e => setScoringConfig({...scoringConfig, gemBonus: e.target.value})} /></div>
-                <div><label className="block text-xs font-semibold text-slate-500 mb-1">Attendance Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.attWeight} onChange={e => setScoringConfig({...scoringConfig, attWeight: e.target.value})} /></div>
-                <div><label className="block text-xs font-bold text-red-500 mb-1">AFK Penalty (-)</label><input type="number" step="0.1" className="w-full bg-slate-900 text-red-400 font-bold border border-red-900 rounded p-2 focus:outline-none" value={scoringConfig.afkPenalty || ''} onChange={e => setScoringConfig({...scoringConfig, afkPenalty: e.target.value})} /></div>
-              </div>
-            </div>
-
-            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Player Performance Profiles</h3>
-            <div className="flex flex-col gap-3">
-              {roster.map(player => {
-                const isExpanded = expandedPlayerId === player.id;
-                const stats = playerStats[player.id] || { cons: false, enchants: false, gems: false, afks: 0, parses: {} };
-                return (
-                  <div key={player.id} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300">
-                    <div className="p-4 flex items-center justify-between cursor-pointer hover:bg-slate-900 transition-colors" onClick={() => setExpandedPlayerId(isExpanded ? null : player.id)}>
-                      <div className="flex items-center gap-4">
-                        <img src={`/icons/${player.spec}.png`} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover" onError={(e) => { e.target.src = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg' }} />
-                        <div><PlayerNameWithScore player={player} /><span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{player.spec}</span></div>
-                      </div>
-                      <div className="text-slate-500">{isExpanded ? '▲' : '▼'}</div>
-                    </div>
-                    {isExpanded && (
-                      <div className="p-4 border-t border-slate-800 bg-slate-900/50">
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                           <div className="bg-slate-950 p-4 rounded-lg border border-slate-800">
-                             <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Base Checks</h4>
-                             <label className="flex items-center gap-2 mb-2 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4" checked={stats.cons} onChange={(e) => updatePlayerStat(player.id, 'cons', e.target.checked)} /><span className="text-sm font-semibold text-slate-300">Full Consumables</span></label>
-                             <label className="flex items-center gap-2 mb-2 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4" checked={stats.enchants} onChange={(e) => updatePlayerStat(player.id, 'enchants', e.target.checked)} /><span className="text-sm font-semibold text-slate-300">Fully Enchanted</span></label>
-                             <label className="flex items-center gap-2 mb-4 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4" checked={stats.gems} onChange={(e) => updatePlayerStat(player.id, 'gems', e.target.checked)} /><span className="text-sm font-semibold text-slate-300">Fully Gemmed</span></label>
-                             
-                             <div className="mt-4 pt-3 border-t border-slate-800 flex gap-4">
-                               <div className="flex-1">
-                                 <label className="block text-[10px] uppercase font-bold text-slate-500 mb-1">Attendance %</label>
-                                 <div className="bg-slate-900 text-amber-400 font-bold border border-slate-700 rounded p-2 text-center text-xl shadow-inner">{calculateAttendance(player.id)}%</div>
-                               </div>
-                               <div className="flex-1">
-                                 <label className="block text-[10px] uppercase font-bold text-red-500 mb-1">AFKs on Trash</label>
-                                 <input type="number" min="0" className="w-full bg-slate-900 text-red-400 font-bold border border-red-900 rounded p-2 text-center text-xl shadow-inner focus:outline-none" value={stats.afks || 0} onChange={(e) => updatePlayerStat(player.id, 'afks', parseInt(e.target.value) || 0)} />
-                               </div>
-                             </div>
-
-                           </div>
-                           <div className="md:col-span-3 bg-slate-950 p-4 rounded-lg border border-slate-800">
-                             <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Officer Score Adjustments</h4>
-                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                               <div>
-                                 <label className="block text-xs font-semibold text-slate-400 mb-2">Manual Point Adjustment</label>
-                                 <input 
-                                   type="number" 
-                                   step="0.5"
-                                   className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none"
-                                   value={stats.manualAdjustment?.value || 0}
-                                   onChange={(e) => updatePlayerManualAdjustment(player.id, 'value', parseFloat(e.target.value) || 0)}
-                                   placeholder="e.g. +5 or -3"
-                                 />
-                               </div>
-                               <div>
-                                 <label className="block text-xs font-semibold text-slate-400 mb-2">Reason/Note (Optional)</label>
-                                 <input 
-                                   type="text"
-                                   className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none"
-                                   value={stats.manualAdjustment?.note || ''}
-                                   onChange={(e) => updatePlayerManualAdjustment(player.id, 'note', e.target.value)}
-                                   placeholder="e.g. Exceptional effort, Helping alts"
-                                   maxLength="50"
-                                 />
-                               </div>
-                             </div>
-                             {stats.manualAdjustment?.value !== 0 && stats.manualAdjustment?.value !== undefined && (
-                               <div className={`p-2 rounded text-xs font-semibold ${stats.manualAdjustment.value > 0 ? 'bg-emerald-900/30 text-emerald-400 border border-emerald-800' : 'bg-red-900/30 text-red-400 border border-red-800'}`}>
-                                 {stats.manualAdjustment.value > 0 ? '+' : ''}{stats.manualAdjustment.value} point{Math.abs(stats.manualAdjustment.value) !== 1 ? 's' : ''}{stats.manualAdjustment.note && ` — ${stats.manualAdjustment.note}`}
-                               </div>
-                             )}
-                             <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-6 mb-3">Phase 2 Parse Logs</h4>
-                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-3">
-                               {P2_BOSSES.map(boss => {
-                                 const pData = stats.parses?.[boss] || { val: '', support: false };
-                                 return (
-                                   <div key={boss} className="flex flex-col bg-slate-900 p-2 rounded border border-slate-800/80">
-                                     <span className="text-xs font-bold text-amber-500/80 mb-1 truncate">{boss}</span>
-                                     <div className="flex items-center gap-2">
-                                       <input type="number" placeholder="Parse" min="0" max="100" className="w-16 bg-slate-950 text-white border border-slate-700 rounded p-1 text-sm focus:outline-none" value={pData.val} onChange={(e) => updatePlayerParse(player.id, boss, 'val', e.target.value)} />
-                                       <label className="flex items-center gap-1.5 cursor-pointer"><input type="checkbox" className="rounded bg-slate-800 border-slate-600 text-purple-500 w-3.5 h-3.5" checked={pData.support} onChange={(e) => updatePlayerParse(player.id, boss, 'support', e.target.checked)} /><span className="text-[10px] font-semibold text-purple-400 uppercase">Support Role</span></label>
-                                     </div>
-                                   </div>
-                                 );
-                               })}
-                             </div>
-                           </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </section>
+          <ScoringTab
+            scoringConfig={scoringConfig}
+            setScoringConfig={setScoringConfig}
+            roster={roster}
+            playerStats={playerStats}
+            expandedPlayerId={expandedPlayerId}
+            setExpandedPlayerId={setExpandedPlayerId}
+            getSpecById={getSpecById}
+            getDisplayFromId={getDisplayFromId}
+            calculateAttendance={calculateAttendance}
+            updatePlayerStat={updatePlayerStat}
+            updatePlayerParse={updatePlayerParse}
+            updatePlayerManualAdjustment={updatePlayerManualAdjustment}
+            PlayerNameWithScore={PlayerNameWithScore}
+            hasUnsavedChanges={scoringConfigDirty || playerStatsDirty}
+            onSaveChanges={handleSaveScoringChanges}
+            isSaving={isSavingScoring}
+          />
         )}
 
         {/* =========================================
-            TAB: BiS & ALTERNATIVES (CHARACTER SHEET)
-            ========================================= */}
+              TAB: BiS & ALTERNATIVES (CHARACTER SHEET)
+              ========================================= */}
         {activeTab === 'bis' && (
-<section className="bis-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
-              <div>
-                <h2 className="text-xl font-bold text-slate-100 mb-1">Class Configuration Viewer</h2>
-                <p className="text-sm text-slate-500">View primary BiS and alternate options mapped to the paper doll interface.</p>
-              </div>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Phase:</span>
-                  <select 
-                    className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[120px] focus:outline-none cursor-pointer font-bold text-sm" 
-                    value={masterItemsDbPhase} 
-                    onChange={e => setMasterItemsDbPhase(e.target.value)}
-                  >
-                    {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
-                  </select>
-                </div>
-                <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">Select Spec:</span>
-                <select className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[200px] focus:outline-none cursor-pointer font-bold style-sm" value={selectedBisSpec} onChange={e => setSelectedBisSpec(e.target.value)} style={{ color: CLASS_COLORS[selectedBisSpec] }}>
-                  {SPECS.map(spec => <option key={spec} value={spec} style={{ color: CLASS_COLORS[spec] }}>{spec}</option>)}
-                </select>
-              </div>
-            </div>
-<style>{`
-  .bis-tab .character-slot-icon .iconlarge {
-    margin-top: -15px !important;
-    margin-left: -15px !important;
-  }
-`}</style>
-            <div className="bg-slate-950 rounded-xl border border-slate-800 p-6 lg:p-10 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
-                <img src={`/icons/${selectedBisSpec}.png`} alt="" className="w-96 h-96 object-cover filter grayscale blur-sm" onError={(e) => { e.target.style.display = 'none' }} />
-              </div>
-              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-6 max-w-5xl mx-auto">
-                <div className="flex flex-col gap-4">{LEFT_SLOTS.map(slot => renderItemSlot(slot))}</div>
-                <div className="flex flex-col gap-4">{RIGHT_SLOTS.map(slot => renderItemSlot(slot))}</div>
-                <div className="lg:col-span-2 pt-6 mt-2 border-t border-slate-800/80">
-                  <div className="flex flex-wrap gap-4">{BOTTOM_SLOTS.map(slot => renderItemSlot(slot)).filter(Boolean).map((slot, i) => <div key={i} className="flex-1 min-w-[160px]">{slot}</div>)}</div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <BisConfigTab
+            selectedBisSpec={selectedBisSpec}
+            setSelectedBisSpec={setSelectedBisSpec}
+            masterItemsDbPhase={masterItemsDbPhase}
+            setMasterItemsDbPhase={setMasterItemsDbPhase}
+            specsFromDb={specsFromDb}
+            renderItemSlot={renderItemSlot}
+            specsByName={specsByName}
+          />
         )}
 
         {/* =========================================
-            TAB: MASTER ITEMS DATABASE EDITING TABLE
-            ========================================= */}
+              TAB: MASTER ITEMS DATABASE EDITING TABLE
+              ========================================= */}
         {activeTab === 'itemsdb' && isAuthenticated && (
-          <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
-            <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
-               <div className="flex justify-between items-center mb-4 border-b border-slate-800 pb-2">
-                 <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Add New Loot Item to Tables</h3>
-                 <button onClick={clearDatabaseCache} className="text-xs font-bold text-red-500 hover:text-red-400 uppercase">Reset Database (Clear Cache)</button>
-               </div>
-               <form onSubmit={handleAddItemToDb} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 items-end">
-                 <div className="lg:col-span-2"><label className="block text-xs font-semibold text-slate-500 mb-1">Item Name</label><input type="text" required placeholder="e.g. Ashen Scale Belt" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none" value={dbNewName} onChange={e => setDbNewName(e.target.value)} /></div>
-                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Slot</label><select className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none cursor-pointer" value={dbNewSlot} onChange={e => setDbNewSlot(e.target.value)}>{[...LEFT_SLOTS, ...RIGHT_SLOTS, ...BOTTOM_SLOTS].map(s => <option key={s} value={s}>{s}</option>)}</select></div>
-                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Zone</label><input type="text" required placeholder="e.g. SSC" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none" value={dbNewZone} onChange={e => setDbNewZone(e.target.value)} /></div>
-                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Boss</label><input type="text" required placeholder="e.g. Lady Vashj" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none" value={dbNewBoss} onChange={e => setDbNewBoss(e.target.value)} /></div>
-                 <div><label className="block text-xs font-semibold text-slate-500 mb-1">Wowhead ID</label><input type="text" placeholder="e.g. 30038" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 text-sm focus:outline-none" value={dbNewItemId} onChange={e => setDbNewItemId(e.target.value)} /></div>
-                 <button type="submit" className="lg:col-span-6 bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 rounded text-sm transition shadow-lg h-9">Add to Database</button>
-               </form>
-            </div>
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-               <div>
-                 <h3 className="text-xl font-bold text-slate-100">Spreadsheet Matrix Editor</h3>
-                 <p className="text-xs text-slate-500 mt-0.5">Click any grid cell to toggle its status: <span className="text-purple-400 font-bold">BiS</span> &rarr; <span className="text-amber-500 font-bold">Opt</span> &rarr; <span className="text-slate-700 font-bold">None</span></p>
-               </div>
-               <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto items-start sm:items-center">
-                 <div>
-                   <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-widest">BiS Phase:</label>
-                   <select value={masterItemsDbPhase} onChange={e => setMasterItemsDbPhase(e.target.value)} className="bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none cursor-pointer font-bold shadow-inner">
-                     {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
-                   </select>
-                 </div>
-                 <input type="text" placeholder="Filter items list..." className="bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none flex-1 sm:flex-none sm:w-64 shadow-inner" value={dbSearch} onChange={e => setDbSearch(e.target.value)} />
-                 <label className="flex items-center gap-2 cursor-pointer bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm font-semibold text-slate-300 hover:bg-slate-900 transition whitespace-nowrap">
-                   <input 
-                     type="checkbox" 
-                     checked={showMissingWowheadFilter} 
-                     onChange={e => setShowMissingWowheadFilter(e.target.checked)}
-                     className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4 cursor-pointer"
-                   />
-                   Missing Wowhead ID
-                 </label>
-               </div>
-            </div>
-            <div className="border border-slate-800 rounded-xl overflow-hidden bg-slate-950 shadow-inner max-w-full overflow-x-auto custom-scrollbar">
-              <table className="w-full text-left border-collapse table-auto">
-                <thead>
-                  <tr className="bg-slate-900 border-b border-slate-800 text-[10px] uppercase font-bold text-slate-400 tracking-wider">
-                    <th className="p-3 min-w-[200px] sticky left-0 bg-slate-900 border-r border-slate-800 shadow-[2px_0_5px_rgba(0,0,0,0.5)]">Item & Source</th>
-                    <th className="p-3 text-center">Wowhead ID</th>
-                    <th className="p-3 text-center">Slot</th>
-                    {SPECS.map(spec => (
-                      <th key={spec} className="p-2 text-center text-[9px] whitespace-nowrap min-w-[85px]" style={{ color: CLASS_COLORS[spec] }}>{spec}</th>
-                    ))}
-                    <th className="p-3 text-center">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-800/60 text-xs font-medium">
-                  {dbFilteredItems.map(item => (
-                    <tr key={item.name} className="hover:bg-slate-900/30 group">
-                      <td className="p-3 sticky left-0 bg-slate-950 group-hover:bg-slate-900/90 border-r border-slate-800 transition-colors shadow-[2px_0_5px_rgba(0,0,0,0.3)] min-w-[200px]">
-                        <div className="truncate mb-0.5">{renderItemLink(item, "font-bold text-purple-400")}</div>
-                        <div className="flex gap-2 flex-wrap text-slate-500 uppercase tracking-wide text-[10px] font-semibold">
-                          <span className="truncate">{item.boss} ({item.zone})</span>
-                          {item.drop_chance && (
-                            <span className="text-cyan-400/80 flex-shrink-0">{(item.drop_chance * 100).toFixed(0)}% Drop</span>
-                          )}
-                        </div>
-                      </td>
-                      <td className="p-2 border-r border-slate-900 text-center">
-                        <input 
-                          type="text" 
-                          className="w-16 bg-slate-900 border border-slate-700 text-slate-300 text-[10px] text-center rounded p-1 focus:outline-none"
-                          value={item.itemId || ''}
-                          onChange={(e) => handleUpdateItemId(item.name, e.target.value)}
-                          placeholder="ID"
-                        />
-                      </td>
-                      <td className="p-3 text-slate-400 font-semibold text-center whitespace-nowrap">{item.slot}</td>
-                      {SPECS.map(spec => {
-  const itemKey = `${item.name}|${spec}`;
-  const manualOverride = dbBisPriorities[itemKey];
-  
-  let cellStatus = manualOverride || '';
-  
-  if (!cellStatus) {
-    const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
-    const specKey = SPEC_MAPPING[spec];
-    // Check ALL entries matching this item name and spec
-const match = aggregatedBisLookup[`${item.name}|${specKey}`];
-if (match?.[phaseKey]?.bis === true) {
-      cellStatus = 'BiS';
-    }
-  }
-  
-  return (
-    <td key={spec} onClick={() => handleUpdateItemEligibility(item.name, spec, cellStatus, true)} 
-      className={`p-2 border-r border-slate-900 text-center cursor-pointer select-none font-bold uppercase text-[10px] transition-all duration-150 
-        ${cellStatus === 'BiS' ? 'bg-emerald-950/20 text-emerald-400 border-b border-emerald-900' 
-        : cellStatus === 'Opt' ? 'bg-amber-950/20 text-amber-500 border-b border-amber-900' 
-        : 'text-slate-800 hover:bg-slate-800/30 hover:text-slate-500'}`}>
-      {cellStatus || '-'}
-    </td>
-  );
-})}
-                      <td className="p-3 text-center bg-slate-950 group-hover:bg-slate-900/90 transition-colors">
-                        <button onClick={() => handleDeleteItemFromDb(item.name)} className="text-red-500 hover:text-red-400 font-bold px-2 py-1 transition text-[11px] uppercase tracking-wide">Delete</button>
-                      </td>
-                    </tr>
-                  ))}
-                  {dbFilteredItems.length === 0 && (
-                    <tr><td colSpan={SPECS.length + 4} className="p-8 text-center text-slate-600 italic">No matching items found in the database matrix rows.</td></tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </section>
+          <ItemsDatabaseTab
+            dbNewName={dbNewName}
+            setDbNewName={setDbNewName}
+            dbNewSlot={dbNewSlot}
+            setDbNewSlot={setDbNewSlot}
+            dbNewZone={dbNewZone}
+            setDbNewZone={setDbNewZone}
+            dbNewBoss={dbNewBoss}
+            setDbNewBoss={setDbNewBoss}
+            dbNewItemId={dbNewItemId}
+            setDbNewItemId={setDbNewItemId}
+            handleAddItemToDb={handleAddItemToDb}
+            dbSearch={dbSearch}
+            setDbSearch={setDbSearch}
+            showMissingWowheadFilter={showMissingWowheadFilter}
+            setShowMissingWowheadFilter={setShowMissingWowheadFilter}
+            dbFilteredItems={dbFilteredItems}
+            specsSortedByClass={specsSortedByClass}
+            dbBisPriorities={dbBisPriorities}
+            handleUpdateItemEligibility={handleUpdateItemEligibility}
+            handleUpdateItemId={handleUpdateItemId}
+            handleDeleteItemFromDb={handleDeleteItemFromDb}
+            renderItemLink={renderItemLink}
+            masterItemsDbPhase={masterItemsDbPhase}
+            setMasterItemsDbPhase={setMasterItemsDbPhase}
+            hasUnsavedChanges={dbBisPrioritiesDirty || mutableItemsDirty}
+            onSaveChanges={handleSaveItemsDbChanges}
+            isSaving={isSavingItemsDb}
+          />
         )}
 
       </div>
