@@ -1,0 +1,13 @@
+node_modules
+guild-loot-api/node_modules
+dist
+.git
+.gitignore
+*.md
+*.log
+npm-debug.log*
+.env
+.env.*
+.DS_Store
+src/archive
+public
