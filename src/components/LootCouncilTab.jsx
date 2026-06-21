@@ -27,10 +27,24 @@ export default function LootCouncilTab({
   getRankBadgeStyle,
   renderItemLink,
   handleSetPriority,
-  PlayerNameWithScore
+  PlayerNameWithScore,
+  hasUnsavedChanges,
+  onSaveChanges,
+  isSaving
 }) {
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+      <div className="flex justify-end mb-4">
+        <button
+          type="button"
+          onClick={onSaveChanges}
+          disabled={!hasUnsavedChanges || isSaving}
+          className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${hasUnsavedChanges ? 'bg-amber-600 hover:bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
+        >
+          {isSaving ? 'Saving...' : hasUnsavedChanges ? 'Save Changes' : 'No Changes'}
+        </button>
+      </div>
+
       <div className="bg-slate-950 p-5 rounded-xl border border-slate-800 mb-8 shadow-inner">
         <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Item Database Filters</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">

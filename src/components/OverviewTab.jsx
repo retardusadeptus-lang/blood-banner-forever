@@ -14,12 +14,13 @@ export default function OverviewTab({
   setActiveTab,
   setSearchQuery,
   setSelectedItemName,
-  specsByName
+  specsByName,
+  getDisplayFromId
 }) {
   
   // Inline mini-component to keep player names styled beautifully with their scores
   const PlayerNameWithScore = ({ player }) => {
-    const specDisplay = player.spec_display || '?'; // Fallback if display name missing
+    const specDisplay = getDisplayFromId(player.spec_id) || '?';
     return (
       <div className="flex items-center gap-2">
         <span 

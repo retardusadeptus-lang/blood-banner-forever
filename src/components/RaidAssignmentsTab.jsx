@@ -208,7 +208,8 @@ function BossSelector({ enabledBosses, handleToggleZone, handleToggleBoss }) {
 
 // --- MAIN CONTAINER COMPONENT ---
 export default function RaidAssignmentsTab({
-  isAuthenticated, roster, getSpecById, enabledBosses = [], handleToggleZone, handleToggleBoss, raidAssignmentData, setRaidAssignmentData
+  isAuthenticated, roster, getSpecById, enabledBosses = [], handleToggleZone, handleToggleBoss, raidAssignmentData, setRaidAssignmentData,
+  hasUnsavedChanges, onSaveChanges, isSaving
 }) {
   const activeRaiders = roster.filter(p => p.in_raid);
   const getPlayersByClass = (cls) => activeRaiders.filter(p => getSpecById(p.spec_id)?.class === cls);
@@ -268,6 +269,14 @@ export default function RaidAssignmentsTab({
           <p className="text-sm text-slate-500">Global configurations and customizable phase strategies.</p>
         </div>
         <div className="flex items-center gap-4">
+          <button
+            type="button"
+            onClick={onSaveChanges}
+            disabled={!hasUnsavedChanges || isSaving}
+            className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${hasUnsavedChanges ? 'bg-amber-600 hover:bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
+          >
+            {isSaving ? 'Saving...' : hasUnsavedChanges ? 'Save Changes' : 'No Changes'}
+          </button>
           {isAuthenticated && (
             <button onClick={handleNuclearWipe} className="text-xs font-bold text-red-500 hover:text-white hover:bg-red-600 px-3 py-2 rounded border border-red-900/50 transition">
               WIPE ALL DATA

@@ -14,10 +14,23 @@ export default function ScoringTab({
   updatePlayerStat,
   updatePlayerParse,
   updatePlayerManualAdjustment,
-  PlayerNameWithScore
+  PlayerNameWithScore,
+  hasUnsavedChanges,
+  onSaveChanges,
+  isSaving
 }) {
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+      <div className="flex justify-end mb-4">
+        <button
+          type="button"
+          onClick={onSaveChanges}
+          disabled={!hasUnsavedChanges || isSaving}
+          className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${hasUnsavedChanges ? 'bg-amber-600 hover:bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
+        >
+          {isSaving ? 'Saving...' : hasUnsavedChanges ? 'Save Changes' : 'No Changes'}
+        </button>
+      </div>
       
       {/* Global Modifier Multipliers Form Row */}
       <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner mb-8">

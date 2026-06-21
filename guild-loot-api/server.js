@@ -460,22 +460,21 @@ app.put('/api/scoring-config', (req, res) => {
 // ==========================================
 app.get('/api/mutable-items', (req, res) => {
   try {
-    const row = db.prepare('SELECT data FROM mutable_items WHERE id = 1').get();
-    res.json(row ? JSON.parse(row.data) : []);
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
-
-app.put('/api/mutable-items', (req, res) => {
-  try {
-    const exists = db.prepare('SELECT id FROM mutable_items WHERE id = 1').get();
-    if (exists) {
-      db.prepare('UPDATE mutable_items SET data = ? WHERE id = 1').run(JSON.stringify(req.body));
-    } else {
-      db.prepare('INSERT INTO mutable_items (id, data) VALUES (1, ?)').run(JSON.stringify(req.body));
-    }
-    res.json({ ok: true });
+    const rows = db.prepare(`
+      SELECT
+        id,
+        name,
+        slot,
+        phase,
+        source as zone,
+        source_type as boss,
+        drop_chance,
+        rarity,
+        wowhead_id as itemId
+      FROM items
+      ORDER BY name
+    `).all();
+    res.json(rows);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -556,6 +555,61 @@ app.get('/api/items/:id', (req, res) => {
     `).all(req.params.id);
 
     res.json({ ...item, bis: bisRows });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.post('/api/items', (req, res) => {
+  try {
+    const { name, slot, zone, boss, itemId, drop_chance, rarity } = req.body;
+    if (!name || !name.trim()) return res.status(400).json({ error: 'name is required' });
+
+    const result = db.prepare(`
+      INSERT INTO items (name, slot, source, source_type, wowhead_id, drop_chance, rarity)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      name.trim(),
+      slot || null,
+      zone || null,
+      boss || null,
+      itemId && String(itemId).trim() !== '' ? parseInt(itemId) : null,
+      drop_chance || null,
+      rarity || null
+    );
+
+    const newItem = db.prepare(`
+      SELECT id, name, slot, phase, source as zone, source_type as boss, drop_chance, rarity, wowhead_id as itemId
+      FROM items WHERE id = ?
+    `).get(result.lastInsertRowid);
+
+    res.json(newItem);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.put('/api/items/:id', (req, res) => {
+  try {
+    const { itemId } = req.body;
+    db.prepare('UPDATE items SET wowhead_id = ? WHERE id = ?').run(
+      itemId && String(itemId).trim() !== '' ? parseInt(itemId) : null,
+      req.params.id
+    );
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.delete('/api/items/:id', (req, res) => {
+  try {
+    const deleteAll = db.transaction(() => {
+      db.prepare('DELETE FROM items_bis WHERE item_id = ?').run(req.params.id);
+      db.prepare('DELETE FROM items WHERE id = ?').run(req.params.id);
+    });
+    deleteAll();
+    res.json({ ok: true });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

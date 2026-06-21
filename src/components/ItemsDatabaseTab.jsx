@@ -23,7 +23,12 @@ export default function ItemsDatabaseTab({
   handleUpdateItemEligibility,
   handleUpdateItemId,
   handleDeleteItemFromDb,
-  renderItemLink
+  renderItemLink,
+  masterItemsDbPhase,
+  setMasterItemsDbPhase,
+  hasUnsavedChanges,
+  onSaveChanges,
+  isSaving
 }) {
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
@@ -68,6 +73,14 @@ export default function ItemsDatabaseTab({
           <h3 className="text-xl font-bold text-slate-100">Spreadsheet Matrix Editor</h3>
           <p className="text-xs text-slate-500 mt-0.5">Click any grid cell to toggle its status: <span className="text-purple-400 font-bold">BiS</span> &rarr; <span className="text-amber-500 font-bold">Opt</span> &rarr; <span className="text-slate-700 font-bold">None</span></p>
         </div>
+        <button
+          type="button"
+          onClick={onSaveChanges}
+          disabled={!hasUnsavedChanges || isSaving}
+          className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${hasUnsavedChanges ? 'bg-amber-600 hover:bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
+        >
+          {isSaving ? 'Saving...' : hasUnsavedChanges ? 'Save Changes' : 'No Changes'}
+        </button>
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto items-start sm:items-center">
           <div>
             <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-widest">BiS Phase:</label>
@@ -104,7 +117,7 @@ export default function ItemsDatabaseTab({
           </thead>
           <tbody className="divide-y divide-slate-800/60 text-xs font-medium">
             {dbFilteredItems.map(item => (
-              <tr key={item.name} className="hover:bg-slate-900/30 group">
+              <tr key={item.id || item.name} className="hover:bg-slate-900/30 group">
                 <td className="p-3 sticky left-0 bg-slate-950 group-hover:bg-slate-900/90 border-r border-slate-800 transition-colors shadow-[2px_0_5px_rgba(0,0,0,0.3)] min-w-[200px]">
                   <div className="truncate mb-0.5">{renderItemLink(item, "font-bold text-purple-400")}</div>
                   <div className="flex gap-2 flex-wrap text-slate-500 uppercase tracking-wide text-[10px] font-semibold">
@@ -119,7 +132,7 @@ export default function ItemsDatabaseTab({
                     type="text"
                     className="w-16 bg-slate-900 border border-slate-700 text-slate-300 text-[10px] text-center rounded p-1 focus:outline-none"
                     value={item.itemId || ''}
-                    onChange={(e) => handleUpdateItemId(item.name, e.target.value)}
+                    onChange={(e) => handleUpdateItemId(item.id, e.target.value)}
                     placeholder="ID"
                   />
                 </td>
@@ -143,7 +156,7 @@ export default function ItemsDatabaseTab({
                   );
                 })}
                 <td className="p-3 text-center bg-slate-950 group-hover:bg-slate-900/90 transition-colors">
-                  <button onClick={() => handleDeleteItemFromDb(item.name)} className="text-red-500 hover:text-red-400 font-bold px-2 py-1 transition text-[11px] uppercase tracking-wide">Delete</button>
+                  <button onClick={() => handleDeleteItemFromDb(item.id, item.name)} className="text-red-500 hover:text-red-400 font-bold px-2 py-1 transition text-[11px] uppercase tracking-wide">Delete</button>
                 </td>
               </tr>
             ))}
