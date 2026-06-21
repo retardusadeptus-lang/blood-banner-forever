@@ -99,6 +99,7 @@ export default function App() {
   const [filterBoss, setFilterBoss] = useState('');
   const [filterZone, setFilterZone] = useState('');
   const [filterSlot, setFilterSlot] = useState('');
+  const [filterCategory, setFilterCategory] = useState('');
   const [selectedBisSpec, setSelectedBisSpec] = useState(null); // Will be set to first spec from DB
   const [masterItemsDbPhase, setMasterItemsDbPhase] = useState('T5');
   const [expandedPlayerId, setExpandedPlayerId] = useState(null);
@@ -141,6 +142,7 @@ export default function App() {
   const [raidAssignmentData, setRaidAssignmentDataLocal] = useState({});
   const [enabledBosses, setEnabledBossesLocal] = useState([]);
   const [mutableItemsBaseline, setMutableItemsBaseline] = useState([]);
+  const [tokenRedemptionsByItemId, setTokenRedemptionsByItemId] = useState({});
 
   const [assignmentsDirty, setAssignmentsDirty] = useState(false);
   const [dbBisPrioritiesDirty, setDbBisPrioritiesDirty] = useState(false);
@@ -710,7 +712,12 @@ export default function App() {
     const matchBoss = filterBoss === '' || item.boss === filterBoss;
     const matchZone = filterZone === '' || item.zone === filterZone;
     const matchSlot = filterSlot === '' || item.slot === filterSlot;
-    return matchSearch && matchBoss && matchZone && matchSlot;
+    const isTokenItem = !!item.is_token;
+    const matchCategory =
+      filterCategory === '' ||
+      (filterCategory === 'token' && isTokenItem) ||
+      (filterCategory === 'item' && !isTokenItem);
+    return matchSearch && matchBoss && matchZone && matchSlot && matchCategory;
   });
 
   const dbFilteredItems = useMemo(() => {
@@ -727,6 +734,43 @@ export default function App() {
 
   const selectedItem = mutableItems.find(i => i.name === selectedItemName);
   const activeRaiders = roster.filter(p => p.in_raid);
+
+  useEffect(() => {
+    const loadRedemption = async () => {
+      if (!selectedItem || !selectedItem.is_token) return;
+      if (tokenRedemptionsByItemId[selectedItem.id]) return;
+      try {
+        const data = await fetchData('token-redemptions/' + selectedItem.id);
+        setTokenRedemptionsByItemId(prev => ({ ...prev, [selectedItem.id]: data }));
+      } catch (e) {
+        console.error('Failed to load token redemption mapping:', e);
+      }
+    };
+
+    loadRedemption();
+  }, [selectedItem, tokenRedemptionsByItemId]);
+
+  const getPlayerItemPriorityStatus = (itemObj, specDisplay) => {
+    if (!itemObj) return '';
+
+    if (!itemObj.is_token) {
+      const itemKey = `${itemObj.name}|${specDisplay}`;
+      return bisPriorities[itemKey] || '';
+    }
+
+    const redemption = tokenRedemptionsByItemId[itemObj.id];
+    const rewards = redemption?.redeemableItems || [];
+    if (rewards.length === 0) return '';
+
+    let hasOpt = false;
+    for (const reward of rewards) {
+      const rewardKey = `${reward.name}|${specDisplay}`;
+      const rewardStatus = bisPriorities[rewardKey];
+      if (rewardStatus === 'BiS') return 'BiS';
+      if (rewardStatus === 'Opt') hasOpt = true;
+    }
+    return hasOpt ? 'Opt' : '';
+  };
 
   const sortPlayersByRank = (itemObj, playerList, assignmentData) => {
     return [...playerList].sort((a, b) => {
@@ -746,15 +790,25 @@ export default function App() {
 
   const sortedEligiblePlayers = useMemo(() => {
     if (!selectedItem) return [];
+    const tokenClasses = Array.isArray(selectedItem.token_classes)
+      ? selectedItem.token_classes.map(c => String(c).toLowerCase())
+      : [];
+
     // Eligibility is determined from phase-specific BiS priority docs.
     const eligible = activeRaiders.filter(player => {
       const specDisplay = getDisplayFromId(player.spec_id) || '?';
-      const itemKey = `${selectedItem.name}|${specDisplay}`;
-      const bisStatus = bisPriorities[itemKey];
+      const specObj = getSpecById(player.spec_id);
+      const className = String(specObj?.class || '').toLowerCase();
+
+      if (selectedItem.is_token && tokenClasses.length > 0 && !tokenClasses.includes(className)) {
+        return false;
+      }
+
+      const bisStatus = getPlayerItemPriorityStatus(selectedItem, specDisplay);
       return !!bisStatus && bisStatus !== '';
     });
     return sortPlayersByRank(selectedItem, eligible, assignments);
-  }, [selectedItem, activeRaiders, assignments, playerStats, scoringConfig, raidLogs, bisPriorities, specsByName]);
+  }, [selectedItem, activeRaiders, assignments, playerStats, scoringConfig, raidLogs, bisPriorities, specsByName, getSpecById, tokenRedemptionsByItemId]);
 
   const getRankBadgeStyle = (rank) => {
     if (rank === 1) return "bg-gradient-to-br from-yellow-300 to-yellow-600 text-yellow-950 border border-yellow-200 shadow-[0_0_10px_rgba(253,224,71,0.6)]";
@@ -1199,6 +1253,8 @@ export default function App() {
             uniqueBosses={uniqueBosses}
             filterSlot={filterSlot}
             setFilterSlot={setFilterSlot}
+            filterCategory={filterCategory}
+            setFilterCategory={setFilterCategory}
             uniqueSlots={uniqueSlots}
             selectedItemName={selectedItemName}
             setSelectedItemName={setSelectedItemName}
@@ -1211,6 +1267,7 @@ export default function App() {
             globalPhase={globalPhase}
             assignments={assignments}
             mutableItems={mutableItems}
+            getPlayerItemPriorityStatus={getPlayerItemPriorityStatus}
             getSpecById={getSpecById}
             getRankBadgeStyle={getRankBadgeStyle}
             renderItemLink={renderItemLink}

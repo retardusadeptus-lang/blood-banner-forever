@@ -11,6 +11,8 @@ export default function LootCouncilTab({
   uniqueBosses,
   filterSlot,
   setFilterSlot,
+  filterCategory,
+  setFilterCategory,
   uniqueSlots,
   selectedItemName,
   setSelectedItemName,
@@ -23,6 +25,7 @@ export default function LootCouncilTab({
   globalPhase,
   assignments,
   mutableItems,
+  getPlayerItemPriorityStatus,
   getSpecById,
   getRankBadgeStyle,
   renderItemLink,
@@ -47,7 +50,7 @@ export default function LootCouncilTab({
 
       <div className="bg-slate-950 p-5 rounded-xl border border-slate-800 mb-8 shadow-inner">
         <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Item Database Filters</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-5">
           <div>
             <label className="block text-xs font-semibold text-slate-400 mb-1.5">Search Name</label>
             <input type="text" className="w-full bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-purple-500 focus:outline-none" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
@@ -73,6 +76,14 @@ export default function LootCouncilTab({
               {uniqueSlots.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
           </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-400 mb-1.5">Filter Category</label>
+            <select className="w-full bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-purple-500 focus:outline-none" value={filterCategory} onChange={e => setFilterCategory(e.target.value)}>
+              <option value="">All Categories</option>
+              <option value="token">Tokens / Quest Tokens</option>
+              <option value="item">Regular Items</option>
+            </select>
+          </div>
         </div>
         <div>
           <select className="w-full bg-slate-900 text-purple-400 font-bold border border-slate-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:outline-none cursor-pointer" value={selectedItemName} onChange={e => setSelectedItemName(e.target.value)}>
@@ -91,6 +102,12 @@ export default function LootCouncilTab({
             <div className="flex gap-4 text-sm font-semibold text-slate-300 flex-wrap">
               <span className="bg-slate-800 px-3 py-1 rounded-full border border-slate-700">{selectedItem.slot}</span>
               <span className="bg-slate-800 px-3 py-1 rounded-full border border-slate-700">{selectedItem.zone}</span>
+              {selectedItem.is_token && (
+                <span className="bg-amber-900/40 px-3 py-1 rounded-full border border-amber-700/60 text-amber-300">{selectedItem.is_quest ? 'Quest Token' : 'Tier Token'}</span>
+              )}
+              {selectedItem.is_token && selectedItem.token_group && (
+                <span className="bg-amber-900/20 px-3 py-1 rounded-full border border-amber-700/40 text-amber-400">{selectedItem.token_group}</span>
+              )}
               {selectedItem.drop_chance && (
                 <span className="bg-cyan-900/30 px-3 py-1 rounded-full border border-cyan-700/50 text-cyan-400">{(selectedItem.drop_chance * 100).toFixed(0)}% Drop Chance</span>
               )}
@@ -106,14 +123,12 @@ export default function LootCouncilTab({
                 {sortedEligiblePlayers.map(player => {
                   const specDisplay = getDisplayFromId(player.spec_id) || '?';
                   const specKey = getSlugFromDisplay(specDisplay);
-                  const itemKey = `${selectedItem.name}|${specDisplay}`;
-                  const bisPriorityStatus = bisPriorities[itemKey];
-                  const status = bisPriorityStatus || (selectedItem.spec === specKey ? 'BiS' : '');
+                  const status = getPlayerItemPriorityStatus(selectedItem, specDisplay) || (selectedItem.spec === specKey ? 'BiS' : '');
                   const currentPriority = assignments[selectedItem.name]?.[player.id];
                   const PHASE_ORDER = ["Pre-BiS", "T4", "T5", "T6", "ZA", "SWP"];
                   const currentPhaseIndex = PHASE_ORDER.indexOf(globalPhase);
 
-                  const playerAlts = mutableItems.filter(i => {
+                  const playerAlts = selectedItem.is_token ? [] : mutableItems.filter(i => {
                     if (i.slot !== selectedItem.slot || i.name === selectedItem.name) return false;
                     const altItemKey = `${i.name}|${specDisplay}`;
                     const altBisPriority = bisPriorities[altItemKey];
@@ -144,6 +159,9 @@ export default function LootCouncilTab({
                             <div className="flex items-center gap-2 mt-0.5">
                               <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{specDisplay}</span>
                               <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${status === 'BiS' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-sky-500/20 text-sky-400'}`}>{status}</span>
+                              {selectedItem.is_token && selectedItem.token_classes && selectedItem.token_classes.includes(getSpecById(player.spec_id)?.class) && (
+                                <span className="text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider bg-amber-500/20 text-amber-400">Token Class</span>
+                              )}
                             </div>
                           </div>
                         </div>

@@ -20,6 +20,240 @@ const DB_PATH = DB_PATH_CANDIDATES.find(candidate => fs.existsSync(candidate)) |
 const db = new Database(DB_PATH);
 db.pragma('foreign_keys = ON');
 
+const TIER_TOKEN_SEED_ROWS = [
+  // Tier 4: Fallen
+  { name: 'Helm of the Fallen Champion', phase: 'T4', zone: 'Karazhan', boss: 'Prince Malchezaar', tokenGroup: 'Fallen Champion', tokenSlot: 'head', classes: ['Paladin', 'Rogue', 'Shaman'] },
+  { name: 'Gauntlets of the Fallen Champion', phase: 'T4', zone: 'Karazhan', boss: 'The Curator', tokenGroup: 'Fallen Champion', tokenSlot: 'hands', classes: ['Paladin', 'Rogue', 'Shaman'] },
+  { name: 'Pauldrons of the Fallen Champion', phase: 'T4', zone: "Gruul's Lair", boss: 'High King Maulgar', tokenGroup: 'Fallen Champion', tokenSlot: 'shoulders', classes: ['Paladin', 'Rogue', 'Shaman'] },
+  { name: 'Leggings of the Fallen Champion', phase: 'T4', zone: "Gruul's Lair", boss: 'Gruul the Dragonkiller', tokenGroup: 'Fallen Champion', tokenSlot: 'legs', classes: ['Paladin', 'Rogue', 'Shaman'] },
+  { name: 'Chestguard of the Fallen Champion', phase: 'T4', zone: "Magtheridon's Lair", boss: 'Magtheridon', tokenGroup: 'Fallen Champion', tokenSlot: 'chest', classes: ['Paladin', 'Rogue', 'Shaman'] },
+
+  { name: 'Helm of the Fallen Defender', phase: 'T4', zone: 'Karazhan', boss: 'Prince Malchezaar', tokenGroup: 'Fallen Defender', tokenSlot: 'head', classes: ['Druid', 'Priest', 'Warrior'] },
+  { name: 'Gauntlets of the Fallen Defender', phase: 'T4', zone: 'Karazhan', boss: 'The Curator', tokenGroup: 'Fallen Defender', tokenSlot: 'hands', classes: ['Druid', 'Priest', 'Warrior'] },
+  { name: 'Pauldrons of the Fallen Defender', phase: 'T4', zone: "Gruul's Lair", boss: 'High King Maulgar', tokenGroup: 'Fallen Defender', tokenSlot: 'shoulders', classes: ['Druid', 'Priest', 'Warrior'] },
+  { name: 'Leggings of the Fallen Defender', phase: 'T4', zone: "Gruul's Lair", boss: 'Gruul the Dragonkiller', tokenGroup: 'Fallen Defender', tokenSlot: 'legs', classes: ['Druid', 'Priest', 'Warrior'] },
+  { name: 'Chestguard of the Fallen Defender', phase: 'T4', zone: "Magtheridon's Lair", boss: 'Magtheridon', tokenGroup: 'Fallen Defender', tokenSlot: 'chest', classes: ['Druid', 'Priest', 'Warrior'] },
+
+  { name: 'Helm of the Fallen Hero', phase: 'T4', zone: 'Karazhan', boss: 'Prince Malchezaar', tokenGroup: 'Fallen Hero', tokenSlot: 'head', classes: ['Hunter', 'Mage', 'Warlock'] },
+  { name: 'Gauntlets of the Fallen Hero', phase: 'T4', zone: 'Karazhan', boss: 'The Curator', tokenGroup: 'Fallen Hero', tokenSlot: 'hands', classes: ['Hunter', 'Mage', 'Warlock'] },
+  { name: 'Pauldrons of the Fallen Hero', phase: 'T4', zone: "Gruul's Lair", boss: 'High King Maulgar', tokenGroup: 'Fallen Hero', tokenSlot: 'shoulders', classes: ['Hunter', 'Mage', 'Warlock'] },
+  { name: 'Leggings of the Fallen Hero', phase: 'T4', zone: "Gruul's Lair", boss: 'Gruul the Dragonkiller', tokenGroup: 'Fallen Hero', tokenSlot: 'legs', classes: ['Hunter', 'Mage', 'Warlock'] },
+  { name: 'Chestguard of the Fallen Hero', phase: 'T4', zone: "Magtheridon's Lair", boss: 'Magtheridon', tokenGroup: 'Fallen Hero', tokenSlot: 'chest', classes: ['Hunter', 'Mage', 'Warlock'] },
+
+  // Tier 5: Vanquished
+  { name: 'Helm of the Vanquished Champion', phase: 'T5', zone: 'Serpentshrine Cavern', boss: 'Lady Vashj', tokenGroup: 'Vanquished Champion', tokenSlot: 'head', classes: ['Paladin', 'Rogue', 'Shaman'] },
+  { name: 'Gloves of the Vanquished Champion', phase: 'T5', zone: 'Serpentshrine Cavern', boss: 'Leotheras the Blind', tokenGroup: 'Vanquished Champion', tokenSlot: 'hands', classes: ['Paladin', 'Rogue', 'Shaman'] },
+  { name: 'Leggings of the Vanquished Champion', phase: 'T5', zone: 'Serpentshrine Cavern', boss: 'Fathom-Lord Karathress', tokenGroup: 'Vanquished Champion', tokenSlot: 'legs', classes: ['Paladin', 'Rogue', 'Shaman'] },
+  { name: 'Pauldrons of the Vanquished Champion', phase: 'T5', zone: 'Tempest Keep: The Eye', boss: 'Void Reaver', tokenGroup: 'Vanquished Champion', tokenSlot: 'shoulders', classes: ['Paladin', 'Rogue', 'Shaman'] },
+  { name: 'Chestguard of the Vanquished Champion', phase: 'T5', zone: 'Tempest Keep: The Eye', boss: "Kael'thas Sunstrider", tokenGroup: 'Vanquished Champion', tokenSlot: 'chest', classes: ['Paladin', 'Rogue', 'Shaman'] },
+
+  { name: 'Helm of the Vanquished Defender', phase: 'T5', zone: 'Serpentshrine Cavern', boss: 'Lady Vashj', tokenGroup: 'Vanquished Defender', tokenSlot: 'head', classes: ['Druid', 'Priest', 'Warrior'] },
+  { name: 'Gloves of the Vanquished Defender', phase: 'T5', zone: 'Serpentshrine Cavern', boss: 'Leotheras the Blind', tokenGroup: 'Vanquished Defender', tokenSlot: 'hands', classes: ['Druid', 'Priest', 'Warrior'] },
+  { name: 'Leggings of the Vanquished Defender', phase: 'T5', zone: 'Serpentshrine Cavern', boss: 'Fathom-Lord Karathress', tokenGroup: 'Vanquished Defender', tokenSlot: 'legs', classes: ['Druid', 'Priest', 'Warrior'] },
+  { name: 'Pauldrons of the Vanquished Defender', phase: 'T5', zone: 'Tempest Keep: The Eye', boss: 'Void Reaver', tokenGroup: 'Vanquished Defender', tokenSlot: 'shoulders', classes: ['Druid', 'Priest', 'Warrior'] },
+  { name: 'Chestguard of the Vanquished Defender', phase: 'T5', zone: 'Tempest Keep: The Eye', boss: "Kael'thas Sunstrider", tokenGroup: 'Vanquished Defender', tokenSlot: 'chest', classes: ['Druid', 'Priest', 'Warrior'] },
+
+  { name: 'Helm of the Vanquished Hero', phase: 'T5', zone: 'Serpentshrine Cavern', boss: 'Lady Vashj', tokenGroup: 'Vanquished Hero', tokenSlot: 'head', classes: ['Hunter', 'Mage', 'Warlock'] },
+  { name: 'Gloves of the Vanquished Hero', phase: 'T5', zone: 'Serpentshrine Cavern', boss: 'Leotheras the Blind', tokenGroup: 'Vanquished Hero', tokenSlot: 'hands', classes: ['Hunter', 'Mage', 'Warlock'] },
+  { name: 'Leggings of the Vanquished Hero', phase: 'T5', zone: 'Serpentshrine Cavern', boss: 'Fathom-Lord Karathress', tokenGroup: 'Vanquished Hero', tokenSlot: 'legs', classes: ['Hunter', 'Mage', 'Warlock'] },
+  { name: 'Pauldrons of the Vanquished Hero', phase: 'T5', zone: 'Tempest Keep: The Eye', boss: 'Void Reaver', tokenGroup: 'Vanquished Hero', tokenSlot: 'shoulders', classes: ['Hunter', 'Mage', 'Warlock'] },
+  { name: 'Chestguard of the Vanquished Hero', phase: 'T5', zone: 'Tempest Keep: The Eye', boss: "Kael'thas Sunstrider", tokenGroup: 'Vanquished Hero', tokenSlot: 'chest', classes: ['Hunter', 'Mage', 'Warlock'] },
+
+  // Tier 6: Forgotten core set
+  { name: 'Gloves of the Forgotten Conqueror', phase: 'T6', zone: 'Hyjal Summit', boss: 'Azgalor', tokenGroup: 'Forgotten Conqueror', tokenSlot: 'hands', classes: ['Paladin', 'Priest', 'Warlock'] },
+  { name: 'Helm of the Forgotten Conqueror', phase: 'T6', zone: 'Hyjal Summit', boss: 'Archimonde', tokenGroup: 'Forgotten Conqueror', tokenSlot: 'head', classes: ['Paladin', 'Priest', 'Warlock'] },
+  { name: 'Shoulderpads of the Forgotten Conqueror', phase: 'T6', zone: 'Black Temple', boss: 'Mother Shahraz', tokenGroup: 'Forgotten Conqueror', tokenSlot: 'shoulders', classes: ['Paladin', 'Priest', 'Warlock'] },
+  { name: 'Leggings of the Forgotten Conqueror', phase: 'T6', zone: 'Black Temple', boss: 'Illidari Council', tokenGroup: 'Forgotten Conqueror', tokenSlot: 'legs', classes: ['Paladin', 'Priest', 'Warlock'] },
+  { name: 'Chestguard of the Forgotten Conqueror', phase: 'T6', zone: 'Black Temple', boss: 'Illidan Stormrage', tokenGroup: 'Forgotten Conqueror', tokenSlot: 'chest', classes: ['Paladin', 'Priest', 'Warlock'] },
+
+  { name: 'Gloves of the Forgotten Protector', phase: 'T6', zone: 'Hyjal Summit', boss: 'Azgalor', tokenGroup: 'Forgotten Protector', tokenSlot: 'hands', classes: ['Hunter', 'Shaman', 'Warrior'] },
+  { name: 'Helm of the Forgotten Protector', phase: 'T6', zone: 'Hyjal Summit', boss: 'Archimonde', tokenGroup: 'Forgotten Protector', tokenSlot: 'head', classes: ['Hunter', 'Shaman', 'Warrior'] },
+  { name: 'Shoulderpads of the Forgotten Protector', phase: 'T6', zone: 'Black Temple', boss: 'Mother Shahraz', tokenGroup: 'Forgotten Protector', tokenSlot: 'shoulders', classes: ['Hunter', 'Shaman', 'Warrior'] },
+  { name: 'Leggings of the Forgotten Protector', phase: 'T6', zone: 'Black Temple', boss: 'Illidari Council', tokenGroup: 'Forgotten Protector', tokenSlot: 'legs', classes: ['Hunter', 'Shaman', 'Warrior'] },
+  { name: 'Chestguard of the Forgotten Protector', phase: 'T6', zone: 'Black Temple', boss: 'Illidan Stormrage', tokenGroup: 'Forgotten Protector', tokenSlot: 'chest', classes: ['Hunter', 'Shaman', 'Warrior'] },
+
+  { name: 'Gloves of the Forgotten Vanquisher', phase: 'T6', zone: 'Hyjal Summit', boss: 'Azgalor', tokenGroup: 'Forgotten Vanquisher', tokenSlot: 'hands', classes: ['Druid', 'Mage', 'Rogue'] },
+  { name: 'Helm of the Forgotten Vanquisher', phase: 'T6', zone: 'Hyjal Summit', boss: 'Archimonde', tokenGroup: 'Forgotten Vanquisher', tokenSlot: 'head', classes: ['Druid', 'Mage', 'Rogue'] },
+  { name: 'Shoulderpads of the Forgotten Vanquisher', phase: 'T6', zone: 'Black Temple', boss: 'Mother Shahraz', tokenGroup: 'Forgotten Vanquisher', tokenSlot: 'shoulders', classes: ['Druid', 'Mage', 'Rogue'] },
+  { name: 'Leggings of the Forgotten Vanquisher', phase: 'T6', zone: 'Black Temple', boss: 'Illidari Council', tokenGroup: 'Forgotten Vanquisher', tokenSlot: 'legs', classes: ['Druid', 'Mage', 'Rogue'] },
+  { name: 'Chestguard of the Forgotten Vanquisher', phase: 'T6', zone: 'Black Temple', boss: 'Illidan Stormrage', tokenGroup: 'Forgotten Vanquisher', tokenSlot: 'chest', classes: ['Druid', 'Mage', 'Rogue'] },
+
+  // Tier 6: Sunwell token slots
+  { name: 'Bracers of the Forgotten Conqueror', phase: 'SWP', zone: 'Sunwell Plateau', boss: 'Kalecgos / Sathrovarr', tokenGroup: 'Forgotten Conqueror', tokenSlot: 'wrist', classes: ['Paladin', 'Priest', 'Warlock'] },
+  { name: 'Belt of the Forgotten Conqueror', phase: 'SWP', zone: 'Sunwell Plateau', boss: 'Brutallus', tokenGroup: 'Forgotten Conqueror', tokenSlot: 'waist', classes: ['Paladin', 'Priest', 'Warlock'] },
+  { name: 'Boots of the Forgotten Conqueror', phase: 'SWP', zone: 'Sunwell Plateau', boss: 'Felmyst', tokenGroup: 'Forgotten Conqueror', tokenSlot: 'feet', classes: ['Paladin', 'Priest', 'Warlock'] },
+
+  { name: 'Bracers of the Forgotten Protector', phase: 'SWP', zone: 'Sunwell Plateau', boss: 'Kalecgos / Sathrovarr', tokenGroup: 'Forgotten Protector', tokenSlot: 'wrist', classes: ['Hunter', 'Shaman', 'Warrior'] },
+  { name: 'Belt of the Forgotten Protector', phase: 'SWP', zone: 'Sunwell Plateau', boss: 'Brutallus', tokenGroup: 'Forgotten Protector', tokenSlot: 'waist', classes: ['Hunter', 'Shaman', 'Warrior'] },
+  { name: 'Boots of the Forgotten Protector', phase: 'SWP', zone: 'Sunwell Plateau', boss: 'Felmyst', tokenGroup: 'Forgotten Protector', tokenSlot: 'feet', classes: ['Hunter', 'Shaman', 'Warrior'] },
+
+  { name: 'Bracers of the Forgotten Vanquisher', phase: 'SWP', zone: 'Sunwell Plateau', boss: 'Kalecgos / Sathrovarr', tokenGroup: 'Forgotten Vanquisher', tokenSlot: 'wrist', classes: ['Druid', 'Mage', 'Rogue'] },
+  { name: 'Belt of the Forgotten Vanquisher', phase: 'SWP', zone: 'Sunwell Plateau', boss: 'Brutallus', tokenGroup: 'Forgotten Vanquisher', tokenSlot: 'waist', classes: ['Druid', 'Mage', 'Rogue'] },
+  { name: 'Boots of the Forgotten Vanquisher', phase: 'SWP', zone: 'Sunwell Plateau', boss: 'Felmyst', tokenGroup: 'Forgotten Vanquisher', tokenSlot: 'feet', classes: ['Druid', 'Mage', 'Rogue'] },
+
+  // Quest-like token drops
+  { name: "Magtheridon's Head", phase: 'T4', zone: "Magtheridon's Lair", boss: 'Magtheridon', tokenGroup: 'Quest Token', tokenSlot: 'quest', classes: ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior'], isQuest: 1 },
+  { name: 'The Verdant Sphere', phase: 'T5', zone: 'Tempest Keep: The Eye', boss: "Kael'thas Sunstrider", tokenGroup: 'Quest Token', tokenSlot: 'quest', classes: ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior'], isQuest: 1 }
+];
+
+const QUEST_TOKEN_REWARDS = {
+  "Magtheridon's Head": [
+    { name: 'Ring of the Recalcitrant' },
+    { name: "A'dal's Signet of Defense" },
+    { name: 'Band of the Arcane Alchemist' },
+    { name: 'Signet of the Sun King' }
+  ],
+  'The Verdant Sphere': [
+    { name: "Telonicus's Pendant of Mayhem" },
+    { name: "The Darkener's Grasp" },
+    { name: "The Sun King's Talisman" },
+    { name: "Lord Sanguinar's Claim" }
+  ]
+};
+
+function normalizePhaseForDb(phase) {
+  const value = String(phase || '').toLowerCase();
+  if (value === 't4') return 't4';
+  if (value === 't5') return 't5';
+  if (value === 't6') return 't6';
+  if (value === 'swp') return 'swp';
+  return value;
+}
+
+function ensureTierTokenSupport() {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS tier_token_metadata (
+      token_item_id INTEGER PRIMARY KEY REFERENCES items(id) ON DELETE CASCADE,
+      token_group TEXT NOT NULL,
+      token_slot TEXT NOT NULL,
+      phase_key TEXT NOT NULL,
+      classes_json TEXT NOT NULL,
+      is_quest INTEGER DEFAULT 0
+    )
+  `).run();
+
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS tier_token_reward_items (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      token_item_id INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+      reward_name TEXT NOT NULL,
+      reward_wowhead_id INTEGER
+    )
+  `).run();
+
+  const insertItem = db.prepare(`
+    INSERT INTO items (name, slot, phase, source, source_type)
+    VALUES (?, ?, ?, ?, ?)
+  `);
+  const findItemByName = db.prepare('SELECT id FROM items WHERE lower(name) = lower(?) LIMIT 1');
+
+  const upsertTokenMeta = db.prepare(`
+    INSERT INTO tier_token_metadata (token_item_id, token_group, token_slot, phase_key, classes_json, is_quest)
+    VALUES (?, ?, ?, ?, ?, ?)
+    ON CONFLICT(token_item_id)
+    DO UPDATE SET
+      token_group = excluded.token_group,
+      token_slot = excluded.token_slot,
+      phase_key = excluded.phase_key,
+      classes_json = excluded.classes_json,
+      is_quest = excluded.is_quest
+  `);
+
+  const deleteRewardsByToken = db.prepare('DELETE FROM tier_token_reward_items WHERE token_item_id = ?');
+  const insertReward = db.prepare('INSERT INTO tier_token_reward_items (token_item_id, reward_name, reward_wowhead_id) VALUES (?, ?, ?)');
+
+  const seedAll = db.transaction(() => {
+    for (const token of TIER_TOKEN_SEED_ROWS) {
+      let item = findItemByName.get(token.name);
+      if (!item) {
+        const info = insertItem.run(token.name, 'Token', token.phase, token.zone, token.boss);
+        item = { id: info.lastInsertRowid };
+      }
+
+      upsertTokenMeta.run(
+        item.id,
+        token.tokenGroup,
+        token.tokenSlot,
+        normalizePhaseForDb(token.phase),
+        JSON.stringify(token.classes || []),
+        token.isQuest ? 1 : 0
+      );
+
+      const rewards = QUEST_TOKEN_REWARDS[token.name];
+      if (rewards && rewards.length) {
+        deleteRewardsByToken.run(item.id);
+        rewards.forEach(reward => insertReward.run(item.id, reward.name, reward.wowhead_id || null));
+      }
+    }
+  });
+
+  seedAll();
+}
+
+function getTokenRedemptionByItemId(itemId) {
+  const tokenMeta = db.prepare(`
+    SELECT
+      t.token_item_id,
+      i.name as token_name,
+      t.token_group,
+      t.token_slot,
+      t.phase_key,
+      t.classes_json,
+      t.is_quest
+    FROM tier_token_metadata t
+    JOIN items i ON i.id = t.token_item_id
+    WHERE t.token_item_id = ?
+  `).get(itemId);
+
+  if (!tokenMeta) return null;
+
+  const allowedClasses = JSON.parse(tokenMeta.classes_json || '[]').map(cls => String(cls).toLowerCase());
+  let redeemableItems = [];
+
+  if (tokenMeta.is_quest === 1) {
+    const explicitRewards = db.prepare(`
+      SELECT reward_name as name, reward_wowhead_id as wowhead_id
+      FROM tier_token_reward_items
+      WHERE token_item_id = ?
+      ORDER BY reward_name
+    `).all(itemId);
+
+    redeemableItems = explicitRewards;
+  } else if (allowedClasses.length > 0) {
+    const classPlaceholders = allowedClasses.map(() => '?').join(',');
+    redeemableItems = db.prepare(`
+      SELECT DISTINCT
+        i.id,
+        i.name,
+        i.wowhead_id
+      FROM items i
+      JOIN items_bis ib ON ib.item_id = i.id
+      JOIN specs s ON s.id = ib.spec_id
+      WHERE lower(i.slot) = ?
+        AND lower(i.phase) = ?
+        AND lower(s.class) IN (${classPlaceholders})
+        AND (
+          ib.preraid_bis = 1 OR ib.t4_bis = 1 OR ib.t5_bis = 1 OR ib.t6_bis = 1 OR ib.za_bis = 1 OR ib.swp_bis = 1 OR
+          ib.preraid_opt = 1 OR ib.t4_opt = 1 OR ib.t5_opt = 1 OR ib.t6_opt = 1 OR ib.za_opt = 1 OR ib.swp_opt = 1
+        )
+      ORDER BY i.name
+    `).all(tokenMeta.token_slot, tokenMeta.phase_key, ...allowedClasses);
+  }
+
+  return {
+    tokenItemId: tokenMeta.token_item_id,
+    tokenName: tokenMeta.token_name,
+    tokenGroup: tokenMeta.token_group,
+    tokenSlot: tokenMeta.token_slot,
+    phaseKey: tokenMeta.phase_key,
+    classes: JSON.parse(tokenMeta.classes_json || '[]'),
+    isQuest: tokenMeta.is_quest === 1,
+    redeemableItems
+  };
+}
+
+ensureTierTokenSupport();
+
 // ==========================================
 // DISCORD WEBHOOKS
 // ==========================================
@@ -472,19 +706,44 @@ app.get('/api/mutable-items', (req, res) => {
   try {
     const rows = db.prepare(`
       SELECT
-        id,
-        name,
-        slot,
-        phase,
-        source as zone,
-        source_type as boss,
-        drop_chance,
-        rarity,
-        wowhead_id as itemId
-      FROM items
+        i.id,
+        i.name,
+        i.slot,
+        i.phase,
+        i.source as zone,
+        i.source_type as boss,
+        i.drop_chance,
+        i.rarity,
+        i.wowhead_id as itemId,
+        CASE WHEN t.token_item_id IS NULL THEN 0 ELSE 1 END as is_token,
+        t.token_group,
+        t.token_slot,
+        t.classes_json,
+        t.is_quest
+      FROM items i
+      LEFT JOIN tier_token_metadata t ON t.token_item_id = i.id
       ORDER BY name
     `).all();
-    res.json(rows);
+    const mapped = rows.map(row => ({
+      ...row,
+      is_token: row.is_token === 1,
+      is_quest: row.is_quest === 1,
+      token_classes: row.classes_json ? JSON.parse(row.classes_json) : []
+    }));
+    res.json(mapped);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// ==========================================
+// TOKEN REDEMPTIONS
+// ==========================================
+app.get('/api/token-redemptions/:itemId', (req, res) => {
+  try {
+    const redemption = getTokenRedemptionByItemId(req.params.itemId);
+    if (!redemption) return res.json({ isToken: false });
+    res.json({ isToken: true, ...redemption });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -495,19 +754,25 @@ app.get('/api/mutable-items', (req, res) => {
 // ==========================================
 app.get('/api/items', (req, res) => {
   try {
-    const { phase, spec, slot } = req.query;
+    const { phase, spec, slot, category } = req.query;
 
     let sql = `
       SELECT DISTINCT
         i.id,
         i.name,
         i.slot,
+        CASE WHEN t.token_item_id IS NULL THEN 0 ELSE 1 END as is_token,
+        t.token_group,
+        t.token_slot,
+        t.classes_json,
+        t.is_quest,
         i.source,
         i.source_type,
         i.drop_chance,
         i.rarity,
         i.wowhead_id
       FROM items i
+      LEFT JOIN tier_token_metadata t ON t.token_item_id = i.id
     `;
 
     const params = [];
@@ -534,6 +799,12 @@ app.get('/api/items', (req, res) => {
     if (slot) {
       wheres.push('i.slot = ?');
       params.push(slot);
+    }
+
+    if (category === 'token') {
+      wheres.push('t.token_item_id IS NOT NULL');
+    } else if (category === 'item') {
+      wheres.push('t.token_item_id IS NULL');
     }
 
     if (joins.length) sql += ' ' + joins.join(' ');
