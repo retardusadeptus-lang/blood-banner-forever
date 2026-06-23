@@ -414,11 +414,12 @@ ensureDatabaseIndexes();
 // ==========================================
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
 if (!DISCORD_WEBHOOK_URL) {
-  throw new Error('DISCORD_WEBHOOK_URL is required');
+  console.warn('DISCORD_WEBHOOK_URL is not set — Discord notifications are disabled.');
 }
 const SITE_URL = process.env.SITE_URL || 'https://tbc-loot-dashboard.vercel.app/';
 
 async function postToDiscord(payload) {
+  if (!DISCORD_WEBHOOK_URL) return;
   try {
     await fetch(DISCORD_WEBHOOK_URL, {
       method: 'POST',
@@ -1391,4 +1392,5 @@ app.delete('/api/raid-assignment-images/:id', (req, res) => {
   }
 });
 
-app.listen(3001, () => console.log('Guild Loot API running on http://localhost:3001'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Guild Loot API running on http://localhost:${PORT}`));

@@ -9,6 +9,7 @@
     "build:prod": "vite build --mode production",
     "lint": "eslint .",
     "preview": "vite preview",
+    "dev:api": "node --env-file=.env guild-loot-api/server.js",
     "build:docker": "docker build -t wow-loot-dashboard:latest -f ./Dockerfile ."
   },
   "dependencies": {

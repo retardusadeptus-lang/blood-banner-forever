@@ -1,4 +1,6 @@
-const DEFAULT_API_BASE_URL = 'http://localhost:3001/api';
+// Relative by default so requests are same-origin: nginx (Docker) and the Vite
+// dev proxy both forward /api to the backend, avoiding CORS and port conflicts.
+const DEFAULT_API_BASE_URL = '/api';
 const DEFAULT_ADMIN_API_TOKEN = 'TBCOfficer2026!';
 
 const trimTrailingSlash = (value) => String(value || '').replace(/\/+$/, '');

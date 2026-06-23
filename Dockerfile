@@ -12,16 +12,25 @@ RUN npm run build:prod
 # ---- Stage 2: Production ----
 FROM node:20-alpine AS production
 
-WORKDIR /app
+# Tools needed by node-gyp to compile native modules (better-sqlite3)
+RUN apk add --no-cache python3 make g++
 
-# Install nginx for serving the frontend SPA
-RUN apk add --no-cache nginx
+# Install nginx for serving the frontend SPA (gettext provides envsubst)
+RUN apk add --no-cache nginx gettext \
+    && mkdir -p /run/nginx
+
+WORKDIR /app
 
 # Copy built frontend assets
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Copy nginx SPA config
-COPY nginx.conf /etc/nginx/http.d/default.conf
+# Install the SPA + API reverse-proxy nginx config as a template; the entrypoint
+# renders it at startup so the proxy targets the runtime PORT.
+COPY nginx.conf /etc/nginx/http.d/default.conf.template
+
+# Startup script: render nginx config, start nginx, run the API
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
 # Install API production dependencies
 COPY guild-loot-api/package*.json ./guild-loot-api/
@@ -30,7 +39,9 @@ RUN cd guild-loot-api && npm ci --omit=dev
 # Copy API source
 COPY guild-loot-api/ ./guild-loot-api/
 
-EXPOSE 80 3000
+# API listens on PORT (nginx proxies /api/ to it); nginx serves the SPA on 3000.
+# PORT can be overridden at runtime (e.g. --env-file); nginx follows it.
+ENV PORT=4000
+EXPOSE 3000 4000
 
-# Start nginx (frontend) and the API server
-CMD sh -c "nginx && node guild-loot-api/server.js"
+CMD ["/docker-entrypoint.sh"]

@@ -10,4 +10,4 @@ npm-debug.log*
 .env.*
 .DS_Store
 src/archive
-public
+guild-loot-api/archive
