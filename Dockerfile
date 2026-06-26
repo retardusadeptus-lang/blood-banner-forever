@@ -6,6 +6,11 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 
+# Vite inlines VITE_* vars at build time. Only the API base URL is build-time;
+# the admin secret is NOT shipped to the browser (auth goes via POST /api/login).
+ARG VITE_API_BASE_URL=/api
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+
 COPY . .
 RUN npm run build:prod
 

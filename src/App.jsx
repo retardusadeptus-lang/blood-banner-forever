@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, RIGHT_SLOTS, BOTTOM_SLOTS, P2_BOSSES, CATEGORY_MAP, RAID_ZONES } from './constants';
-import { fetchData, putData, postData, deleteData } from './services/apiService';
-import { ADMIN_API_TOKEN } from './config';
+import { fetchData, putData, postData, deleteData, login } from './services/apiService';
 import { useItemsDatabase } from './hooks/useItemsDatabase';
 import OverviewTab from './components/OverviewTab';
 import GuildBankTab from './components/GuildBankTab';
@@ -336,11 +335,12 @@ export default function App() {
   // ==========================================
   // 6. ACTIONS & LOGIC
   // ==========================================
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     if (e) e.preventDefault();
-    if (passwordInput === ADMIN_API_TOKEN) {
+    const token = await login(passwordInput);
+    if (token) {
       setIsAuthenticated(true);
-      sessionStorage.setItem('ar-auth-token', passwordInput);
+      sessionStorage.setItem('ar-auth-token', token); // session token, not the password
       sessionStorage.setItem('ar-auth', 'true');
       setPasswordInput('');
     } else {

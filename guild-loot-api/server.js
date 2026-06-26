@@ -1,6 +1,7 @@
 const express = require('express');
 const Database = require('better-sqlite3');
 const cors = require('cors');
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path'); // Added for deployment pathway flexibility
 
@@ -21,12 +22,49 @@ const DB_PATH = DB_PATH_CANDIDATES.find(candidate => fs.existsSync(candidate)) |
 const db = new Database(DB_PATH);
 db.pragma('foreign_keys = ON');
 
+// Server-only signing secret. Set SESSION_SECRET in prod so sessions survive
+// restarts; otherwise it's random per boot (everyone re-logs-in on restart).
+const SESSION_SECRET = process.env.SESSION_SECRET || crypto.randomBytes(32).toString('hex');
+const SESSION_TTL_MS = 12 * 60 * 60 * 1000; // 12h
+
+function safeEqual(a, b) {
+  const ba = Buffer.from(String(a)), bb = Buffer.from(String(b));
+  return ba.length === bb.length && crypto.timingSafeEqual(ba, bb);
+}
+
+// Stateless signed token: "<expiry>.<hmac>" — no DB needed.
+function issueSession() {
+  const payload = String(Date.now() + SESSION_TTL_MS);
+  const sig = crypto.createHmac('sha256', SESSION_SECRET).update(payload).digest('hex');
+  return `${payload}.${sig}`;
+}
+
+function verifySession(token) {
+  if (!token) return false;
+  const [payload, sig] = token.split('.');
+  if (!payload || !sig) return false;
+  const expected = crypto.createHmac('sha256', SESSION_SECRET).update(payload).digest('hex');
+  if (!safeEqual(sig, expected)) return false;
+  return Date.now() < Number(payload);
+}
+
+// Exchange the admin password for a session token. The password is verified
+// here and never leaves the server. Registered before the write guard below so
+// the guard doesn't reject this POST.
+app.post('/api/login', (req, res) => {
+  const { password } = req.body || {};
+  if (!password || !safeEqual(password, ADMIN_API_TOKEN)) {
+    return res.status(401).json({ error: 'Invalid password' });
+  }
+  res.json({ token: issueSession() });
+});
+
 app.use((req, res, next) => {
   const isWriteMethod = ['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method);
   if (!isWriteMethod) return next();
 
   const token = req.get('x-admin-token') || req.get('authorization')?.replace(/^Bearer\s+/i, '');
-  if (!token || token !== ADMIN_API_TOKEN) {
+  if (!verifySession(token)) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 

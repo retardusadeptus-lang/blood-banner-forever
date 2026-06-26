@@ -12,6 +12,23 @@ const getAuthHeaders = () => {
 };
 
 /**
+ * Exchange the admin password for a session token. Returns the token string on
+ * success, or null on failure. The password is verified server-side and never
+ * stored in the browser.
+ * @param {string} password
+ */
+export const login = async (password) => {
+  const res = await fetch(apiUrl('login'), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password })
+  });
+  if (!res.ok) return null;
+  const { token } = await res.json();
+  return token;
+};
+
+/**
  * Standard GET request to fetch data from the server
  * @param {string} endpoint - The API endpoint (e.g., 'specs', 'roster')
  */
