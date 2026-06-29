@@ -48,6 +48,13 @@ function verifySession(token) {
   return Date.now() < Number(payload);
 }
 
+function generateRequestGroupId() {
+  if (typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+  return `grp_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+}
+
 // Exchange the admin password for a session token. The password is verified
 // here and never leaves the server. Registered before the write guard below so
 // the guard doesn't reject this POST.
@@ -62,6 +69,11 @@ app.post('/api/login', (req, res) => {
 app.use((req, res, next) => {
   const isWriteMethod = ['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method);
   if (!isWriteMethod) return next();
+
+  // Public endpoint: players can submit bank requests without officer auth.
+  if (req.method === 'POST' && /\/bank-requests$/.test(req.path)) {
+    return next();
+  }
 
   const token = req.get('x-admin-token') || req.get('authorization')?.replace(/^Bearer\s+/i, '');
   if (!verifySession(token)) {
@@ -425,6 +437,34 @@ function ensureNormalizedOperationalTables() {
 
 ensureNormalizedOperationalTables();
 
+function ensureBankRequestSchema() {
+  const columns = db.prepare("PRAGMA table_info('bank_requests')").all();
+  const hasGroupId = columns.some(col => col.name === 'request_group_id');
+  if (!hasGroupId) {
+    db.prepare('ALTER TABLE bank_requests ADD COLUMN request_group_id TEXT').run();
+  }
+
+  const hasRequesterName = columns.some(col => col.name === 'requester_name');
+  if (!hasRequesterName) {
+    db.prepare('ALTER TABLE bank_requests ADD COLUMN requester_name TEXT').run();
+  }
+}
+
+function ensureOfficerRolesTable() {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS officer_roles (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      role_name TEXT UNIQUE NOT NULL,
+      primary_officer_id INTEGER,
+      backup_officer_ids_json TEXT DEFAULT '[]',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+}
+
+ensureBankRequestSchema();
+ensureOfficerRolesTable();
+
 function ensureDatabaseIndexes() {
   const statements = [
     'CREATE INDEX IF NOT EXISTS idx_assignments_phase_item ON assignments (phase, item_name)',
@@ -439,6 +479,7 @@ function ensureDatabaseIndexes() {
     'CREATE INDEX IF NOT EXISTS idx_items_bis_item_spec ON items_bis (item_id, spec_id)',
     'CREATE INDEX IF NOT EXISTS idx_bank_items_category_name ON bank_items (category, name)',
     'CREATE INDEX IF NOT EXISTS idx_bank_requests_status_created ON bank_requests (status, created_at)',
+    'CREATE INDEX IF NOT EXISTS idx_bank_requests_group_id ON bank_requests (request_group_id)',
     'CREATE INDEX IF NOT EXISTS idx_raid_assignment_images_boss_created ON raid_assignment_images (boss_name, created_at)'
   ];
 
@@ -450,7 +491,7 @@ ensureDatabaseIndexes();
 // ==========================================
 // DISCORD WEBHOOKS
 // ==========================================
-const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
+const DISCORD_WEBHOOK_URL = String(process.env.DISCORD_WEBHOOK_URL || '').trim();
 if (!DISCORD_WEBHOOK_URL) {
   console.warn('DISCORD_WEBHOOK_URL is not set — Discord notifications are disabled.');
 }
@@ -459,11 +500,16 @@ const SITE_URL = process.env.SITE_URL || 'https://tbc-loot-dashboard.vercel.app/
 async function postToDiscord(payload) {
   if (!DISCORD_WEBHOOK_URL) return;
   try {
-    await fetch(DISCORD_WEBHOOK_URL, {
+    const response = await fetch(DISCORD_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
+
+    if (!response.ok) {
+      const bodyText = await response.text().catch(() => '');
+      console.error(`Discord webhook returned ${response.status}: ${bodyText}`);
+    }
   } catch (e) {
     console.error('Discord webhook failed:', e.message);
   }
@@ -541,6 +587,19 @@ async function sendBankResolutionWebhook({ player_name, item_name, quantity, sta
   });
 }
 
+async function sendBankBulkResolutionWebhook({ lines, title = '📦 Bank Basket Resolved' }) {
+  await postToDiscord({
+    username: 'Guild Banker',
+    avatar_url: 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_bag_10_green.jpg',
+    embeds: [{
+      title,
+      color: 3447003,
+      description: lines.join('\n') || 'No items in summary.',
+      timestamp: new Date().toISOString()
+    }]
+  });
+}
+
 // ==========================================
 // ROSTER
 // ==========================================
@@ -557,13 +616,24 @@ app.get('/api/roster', (req, res) => {
 app.put('/api/roster', (req, res) => {
   try {
     const players = req.body;
-    db.prepare('DELETE FROM roster').run();
-    const insert = db.prepare('INSERT INTO roster (name, spec_id, in_raid) VALUES (?, ?, ?)');
+    const deleteAll = db.prepare('DELETE FROM roster');
+    const insertWithId = db.prepare('INSERT INTO roster (id, name, spec_id, in_raid) VALUES (?, ?, ?, ?)');
+    const insertNoId = db.prepare('INSERT INTO roster (name, spec_id, in_raid) VALUES (?, ?, ?)');
 
-    const updatedRosters = players.map(p => {
-      const info = insert.run(p.name, p.spec_id, p.in_raid ? 1 : 0);
-      return { id: info.lastInsertRowid, name: p.name, spec_id: p.spec_id, in_raid: p.in_raid };
+    const saveAll = db.transaction(() => {
+      deleteAll.run();
+      return players.map(p => {
+        if (p.id !== undefined && p.id !== null && String(p.id).trim() !== '') {
+          insertWithId.run(Number(p.id), p.name, p.spec_id, p.in_raid ? 1 : 0);
+          return { id: Number(p.id), name: p.name, spec_id: p.spec_id, in_raid: !!p.in_raid };
+        }
+
+        const info = insertNoId.run(p.name, p.spec_id, p.in_raid ? 1 : 0);
+        return { id: info.lastInsertRowid, name: p.name, spec_id: p.spec_id, in_raid: !!p.in_raid };
+      });
     });
+
+    const updatedRosters = saveAll();
 
     res.json(updatedRosters);
   } catch (e) {
@@ -1272,23 +1342,95 @@ app.get('/api/bank-requests', (req, res) => {
 
 app.post('/api/bank-requests', async (req, res) => {
   try {
-    const { player_id, item_wowhead_id, item_name, quantity, reason } = req.body;
+    const { player_id, item_wowhead_id, item_name, quantity, reason, basket_items, request_group_id } = req.body;
 
-    const result = db.prepare(`
-      INSERT INTO bank_requests (player_id, item_wowhead_id, item_name, quantity, reason, status)
-      VALUES (?, ?, ?, ?, ?, 'pending')
-    `).run(player_id, item_wowhead_id, item_name, quantity || 1, reason || '');
+    const insert = db.prepare(`
+      INSERT INTO bank_requests (player_id, item_wowhead_id, item_name, quantity, reason, status, request_group_id, requester_name)
+      VALUES (?, ?, ?, ?, ?, 'pending', ?, ?)
+    `);
 
-    const player = db.prepare('SELECT name FROM roster WHERE id = ?').get(player_id);
+    if (Array.isArray(basket_items) && basket_items.length > 0) {
+      const groupId = request_group_id || generateRequestGroupId();
+      const createdIds = [];
 
-    await sendBankRequestWebhook({
-      player_name: player?.name || 'Unknown',
+      const insertAll = db.transaction(() => {
+        basket_items.forEach(item => {
+          const info = insert.run(
+            item.player_id,
+            item.item_wowhead_id || 0,
+            item.item_name,
+            item.quantity || 1,
+            item.reason || '',
+            groupId,
+            item.player_name || null
+          );
+          createdIds.push(info.lastInsertRowid);
+        });
+      });
+
+      insertAll();
+      return res.json({ ok: true, group_id: groupId, ids: createdIds, count: createdIds.length });
+    }
+
+    const result = insert.run(
+      player_id,
+      item_wowhead_id || 0,
       item_name,
-      quantity: quantity || 1,
-      reason
-    });
+      quantity || 1,
+      reason || '',
+      request_group_id || null,
+      null
+    );
 
     res.json({ ok: true, id: result.lastInsertRowid });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.put('/api/bank-requests/bulk-resolve', async (req, res) => {
+  try {
+    const resolutions = Array.isArray(req.body?.resolutions) ? req.body.resolutions : [];
+    if (resolutions.length === 0) return res.status(400).json({ error: 'No resolutions provided' });
+
+    const update = db.prepare(`
+      UPDATE bank_requests
+      SET status = ?, price = ?, officer_note = ?, approved_quantity = ?, resolved_at = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `);
+    const getRequest = db.prepare('SELECT * FROM bank_requests WHERE id = ?');
+    const getPlayer = db.prepare('SELECT name FROM roster WHERE id = ?');
+
+    const summaryLines = [];
+
+    const applyAll = db.transaction(() => {
+      resolutions.forEach(r => {
+        update.run(r.status, r.price || null, r.note || '', r.quantity || null, r.id);
+        const request = getRequest.get(r.id);
+        if (!request) return;
+        const player = getPlayer.get(request.player_id);
+        const playerName = player?.name || request.requester_name || 'Unknown';
+
+        if (r.status === 'approved') {
+          const isPartial = Number(r.quantity || request.quantity) < Number(request.quantity);
+          const icon = isPartial ? '⚠️' : '✅';
+          const qty = isPartial ? `${r.quantity || request.quantity}/${request.quantity}` : `${r.quantity || request.quantity}`;
+          const priceText = r.price ? ` — ${r.price}g` : '';
+          const noteText = r.note ? ` (${r.note})` : '';
+          summaryLines.push(`${icon} **${request.item_name}** x${qty} for **${playerName}**${priceText}${noteText}`);
+        } else {
+          summaryLines.push(`❌ **${request.item_name}** for **${playerName}** — Denied${r.note ? `: ${r.note}` : ''}`);
+        }
+      });
+    });
+
+    applyAll();
+
+    if (summaryLines.length > 0) {
+      await sendBankBulkResolutionWebhook({ lines: summaryLines });
+    }
+
+    res.json({ ok: true, count: resolutions.length });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -1297,25 +1439,31 @@ app.post('/api/bank-requests', async (req, res) => {
 app.put('/api/bank-requests/:id', async (req, res) => {
   try {
     const { status, price, officer_note, approved_quantity } = req.body;
+    const requestId = req.params.id;
+
+    const getRequest = db.prepare('SELECT * FROM bank_requests WHERE id = ?');
+    const getPlayer = db.prepare('SELECT name FROM roster WHERE id = ?');
 
     db.prepare(`
       UPDATE bank_requests
       SET status = ?, price = ?, officer_note = ?, approved_quantity = ?, resolved_at = CURRENT_TIMESTAMP
       WHERE id = ?
-    `).run(status, price || null, officer_note || '', approved_quantity || null, req.params.id);
+    `).run(status, price || null, officer_note || '', approved_quantity || null, requestId);
 
-    const request = db.prepare('SELECT * FROM bank_requests WHERE id = ?').get(req.params.id);
-    const player = db.prepare('SELECT name FROM roster WHERE id = ?').get(request.player_id);
-
-    await sendBankResolutionWebhook({
-      player_name: player?.name || 'Unknown',
-      item_name: request.item_name,
-      quantity: request.quantity,
-      status,
-      price,
-      officer_note,
-      approved_quantity
-    });
+    const request = getRequest.get(requestId);
+    if (request) {
+      const player = getPlayer.get(request.player_id);
+      const playerName = player?.name || request.requester_name || 'Unknown';
+      await sendBankResolutionWebhook({
+        player_name: playerName,
+        item_name: request.item_name,
+        quantity: request.quantity,
+        status,
+        price,
+        officer_note,
+        approved_quantity
+      });
+    }
 
     res.json({ ok: true });
   } catch (e) {
@@ -1373,6 +1521,52 @@ app.put('/api/raid-assignment-config', (req, res) => {
     });
 
     updateAll();
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// ==========================================
+// OFFICER ROLES
+// ==========================================
+app.get('/api/officer-roles', (req, res) => {
+  try {
+    const rows = db.prepare('SELECT id, role_name, primary_officer_id, backup_officer_ids_json FROM officer_roles ORDER BY role_name').all();
+    const mapped = rows.map(row => ({
+      id: row.id,
+      role_name: row.role_name,
+      primary_officer_id: row.primary_officer_id,
+      backup_officer_ids: JSON.parse(row.backup_officer_ids_json || '[]')
+    }));
+    res.json(mapped);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.put('/api/officer-roles', (req, res) => {
+  try {
+    const roles = Array.isArray(req.body) ? req.body : [];
+    const deleteAll = db.prepare('DELETE FROM officer_roles');
+    const insertRole = db.prepare(`
+      INSERT INTO officer_roles (role_name, primary_officer_id, backup_officer_ids_json)
+      VALUES (?, ?, ?)
+    `);
+
+    const saveAll = db.transaction(() => {
+      deleteAll.run();
+      roles.forEach(role => {
+        if (!role?.role_name) return;
+        insertRole.run(
+          String(role.role_name).trim(),
+          role.primary_officer_id || null,
+          JSON.stringify(Array.isArray(role.backup_officer_ids) ? role.backup_officer_ids : [])
+        );
+      });
+    });
+
+    saveAll();
     res.json({ ok: true });
   } catch (e) {
     res.status(500).json({ error: e.message });

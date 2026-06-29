@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  RAID_ZONES, CURSE_TYPES, JUDGEMENT_TYPES,
+  CURSE_TYPES, JUDGEMENT_TYPES,
   RAID_GROUPS, RAID_WIDE_LABEL, BOSS_TARGET_ID, RAID_MARKERS
 } from '../constants';
 
@@ -166,7 +166,7 @@ function SectionWrapper({ title, isAuthenticated, onAdd, onRemoveSection, hasIte
   );
 }
 
-function BossSelector({ enabledBosses, handleToggleZone, handleToggleBoss }) {
+function BossSelector({ raidZones, enabledBosses, handleToggleZone, handleToggleBoss, isAuthenticated, showManageBosses, onToggleManageBosses }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="relative">
@@ -178,7 +178,18 @@ function BossSelector({ enabledBosses, handleToggleZone, handleToggleBoss }) {
         <>
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
           <div className="absolute right-0 mt-2 z-20 w-80 max-h-96 overflow-y-auto custom-scrollbar bg-slate-950 border border-slate-700 rounded-xl shadow-2xl p-3 space-y-1">
-            {RAID_ZONES.map(zone => {
+            {isAuthenticated && (
+              <button
+                onClick={() => {
+                  onToggleManageBosses(!showManageBosses);
+                  setOpen(false);
+                }}
+                className="w-full text-left bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-700 rounded px-3 py-2 text-xs font-bold uppercase tracking-wider mb-2"
+              >
+                {showManageBosses ? 'Hide Manage Bosses' : 'Manage Bosses'}
+              </button>
+            )}
+            {raidZones.map(zone => {
               const zoneBossesEnabled = zone.bosses.filter(b => enabledBosses.includes(b)).length;
               const allEnabled = zoneBossesEnabled === zone.bosses.length;
               const someEnabled = zoneBossesEnabled > 0 && !allEnabled;
@@ -208,9 +219,12 @@ function BossSelector({ enabledBosses, handleToggleZone, handleToggleBoss }) {
 
 // --- MAIN CONTAINER COMPONENT ---
 export default function RaidAssignmentsTab({
-  isAuthenticated, roster, getSpecById, enabledBosses = [], handleToggleZone, handleToggleBoss, raidAssignmentData, setRaidAssignmentData,
-  hasUnsavedChanges, onSaveChanges, isSaving
+  isAuthenticated, roster, getSpecById, enabledBosses = [], raidZones = [], handleToggleZone, handleToggleBoss, customRaidGroups = [], handleAddCustomRaidBoss, handleRemoveCustomRaidBoss, raidAssignmentData, setRaidAssignmentData,
+  hasUnsavedChanges, onSaveChanges, isSaving, myPlayerName
 }) {
+  const [showManageBosses, setShowManageBosses] = useState(false);
+  const [newCustomZoneName, setNewCustomZoneName] = useState('');
+  const [newCustomBossName, setNewCustomBossName] = useState('');
   const activeRaiders = roster.filter(p => p.in_raid);
   const getPlayersByClass = (cls) => activeRaiders.filter(p => getSpecById(p.spec_id)?.class === cls);
   const getPlayersByClasses = (classes) => activeRaiders.filter(p => classes.includes(getSpecById(p.spec_id)?.class));
@@ -256,10 +270,105 @@ export default function RaidAssignmentsTab({
   };
 
   const generateId = () => Math.random().toString(36).substr(2, 9);
-  const orderedActiveBosses = RAID_ZONES.flatMap(z => z.bosses.filter(b => enabledBosses.includes(b)));
+  const orderedActiveBosses = raidZones.flatMap(z => z.bosses.filter(b => enabledBosses.includes(b)));
 
   // Shared receiver pool for Innervate & PI
   const manaReceivers = getPlayersByClasses(['Mage', 'Shaman', 'Druid', 'Priest', 'Warlock', 'Paladin']);
+
+  const [showMyAssignments, setShowMyAssignments] = useState(false);
+
+  const SECTION_LABELS = {
+    interrupts: 'Interrupt', stuns: 'Stun', fears: 'Fear', banishes: 'Banish',
+    purges: 'Purge', spellsteals: 'Spellsteal', innervates: 'Innervate',
+    powerInfusions: 'Power Infusion', dispels: 'Dispel'
+  };
+
+  const myAssignmentsSummary = React.useMemo(() => {
+    if (!myPlayerName || !raidAssignmentData) return null;
+    const global = raidAssignmentData.global || {};
+    const tankSlots = global.tankSlots || [];
+    const healerSlots = global.healerSlots || [];
+    const soulstones = (Array.isArray(global.soulstones) ? {} : global.soulstones) || {};
+
+    const result = { globalLines: [], bosses: [] };
+
+    // Role
+    const myTankSlot = tankSlots.find(s => s.playerName === myPlayerName);
+    const myHealerSlot = healerSlots.find(s => s.playerName === myPlayerName);
+    if (myTankSlot) result.globalLines.push({ label: 'Role', value: 'Tank' });
+    if (myHealerSlot) result.globalLines.push({ label: 'Role', value: 'Healer' });
+
+    // Soulstone
+    if (soulstones[myPlayerName]) result.globalLines.push({ label: 'Soulstone', value: `→ ${soulstones[myPlayerName]}` });
+    const ssGiver = Object.entries(soulstones).find(([, v]) => v === myPlayerName);
+    if (ssGiver) result.globalLines.push({ label: 'Receiving Soulstone', value: `from ${ssGiver[0]}` });
+
+    // Global CC
+    ['sheep', 'banish'].forEach(cc => {
+      (global[cc] || []).forEach(item => {
+        if (item.casterName === myPlayerName) {
+          const marker = RAID_MARKERS.find(m => m.id === item.markerId);
+          result.globalLines.push({ label: cc === 'sheep' ? 'Sheep' : 'Banish', value: marker ? `${marker.glyph} ${marker.label}` : '(no marker)' });
+        }
+      });
+    });
+
+    // Per boss
+    orderedActiveBosses.forEach(boss => {
+      const bData = raidAssignmentData[boss];
+      if (!bData) return;
+
+      const bossLines = [];
+
+      // Hunter MD
+      if (bData.hunterMDs?.[myPlayerName]) {
+        const slot = tankSlots.find(s => s.id === bData.hunterMDs[myPlayerName]);
+        bossLines.push({ label: 'Misdirect', value: `→ ${slot?.playerName || '?'}` });
+      }
+      // Curse / Judgement
+      if (bData.curses?.[myPlayerName]) bossLines.push({ label: 'Curse', value: bData.curses[myPlayerName] });
+      if (bData.judgements?.[myPlayerName]) bossLines.push({ label: 'Judgement', value: bData.judgements[myPlayerName] });
+
+      // Phases
+      (bData.phases || []).forEach(phase => {
+        const phaseLines = [];
+        const fullTargetList = [{ id: BOSS_TARGET_ID, name: boss }, ...(bData.targets || [])];
+
+        // Tank assignment
+        if (myTankSlot) {
+          const ta = (phase.tankAssignments || []).find(t => t.tankSlotId === myTankSlot.id);
+          if (ta) phaseLines.push({ label: 'Tank', value: `→ ${fullTargetList.find(t => t.id === ta.targetId)?.name || '?'}` });
+        }
+        // Healer assignment
+        if (myHealerSlot) {
+          const ha = (phase.healerAssignments || []).find(h => h.healerSlotId === myHealerSlot.id);
+          if (ha) phaseLines.push({ label: 'Heal', value: `→ ${ha.target || '?'}` });
+        }
+        // Utility sections
+        Object.keys(SECTION_LABELS).forEach(key => {
+          (phase[key] || []).forEach(item => {
+            if (item.playerName === myPlayerName) {
+              phaseLines.push({ label: SECTION_LABELS[key], value: `→ ${item.target || '—'}` });
+            }
+            if ((key === 'innervates' || key === 'powerInfusions') && item.target === myPlayerName) {
+              phaseLines.push({ label: `${SECTION_LABELS[key]} (receiving)`, value: `from ${item.playerName || '?'}` });
+            }
+          });
+        });
+        // Fear wards
+        (phase.fearWards || []).forEach(fw => {
+          if (fw.priestName === myPlayerName) phaseLines.push({ label: 'Fear Ward', value: `→ ${fw.targetName || '—'}` });
+          if (fw.targetName === myPlayerName) phaseLines.push({ label: 'Fear Ward (receiving)', value: `from ${fw.priestName || '—'}` });
+        });
+
+        if (phaseLines.length) bossLines.push({ phase: phase.name, lines: phaseLines });
+      });
+
+      if (bossLines.length) result.bosses.push({ boss, bossLines });
+    });
+
+    return result;
+  }, [myPlayerName, raidAssignmentData, orderedActiveBosses]);
 
   return (
     <div className="w-full space-y-6">
@@ -282,9 +391,161 @@ export default function RaidAssignmentsTab({
               WIPE ALL DATA
             </button>
           )}
-          <BossSelector enabledBosses={enabledBosses} handleToggleZone={handleToggleZone} handleToggleBoss={handleToggleBoss} />
+          <BossSelector
+            raidZones={raidZones}
+            enabledBosses={enabledBosses}
+            handleToggleZone={handleToggleZone}
+            handleToggleBoss={handleToggleBoss}
+            isAuthenticated={isAuthenticated}
+            showManageBosses={showManageBosses}
+            onToggleManageBosses={setShowManageBosses}
+          />
         </div>
       </div>
+
+      {isAuthenticated && showManageBosses && (
+        <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 shadow-inner">
+          <div className="flex flex-col md:flex-row md:items-center gap-3">
+            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Custom Boss Builder</h3>
+            <div className="flex-1 flex flex-col sm:flex-row gap-2">
+              <input
+                type="text"
+                value={newCustomZoneName}
+                onChange={e => setNewCustomZoneName(e.target.value)}
+                placeholder="Raid / Zone (e.g. Black Temple)"
+                className="sm:w-56 bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none focus:border-amber-500"
+              />
+              <input
+                type="text"
+                value={newCustomBossName}
+                onChange={e => setNewCustomBossName(e.target.value)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleAddCustomRaidBoss?.(newCustomZoneName, newCustomBossName);
+                    setNewCustomZoneName('');
+                    setNewCustomBossName('');
+                  }
+                }}
+                placeholder="Add new boss name..."
+                className="flex-1 bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none focus:border-amber-500"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  handleAddCustomRaidBoss?.(newCustomZoneName, newCustomBossName);
+                  setNewCustomZoneName('');
+                  setNewCustomBossName('');
+                }}
+                className="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded text-xs uppercase tracking-wider"
+              >
+                Add Boss
+              </button>
+            </div>
+          </div>
+
+          {customRaidGroups.length > 0 && (
+            <div className="mt-3 space-y-3">
+              {customRaidGroups.map(group => (
+                <div key={group.zone} className="bg-slate-900/70 border border-slate-800 rounded p-2.5">
+                  <p className="text-[10px] uppercase tracking-wider text-amber-400 font-bold mb-2">{group.zone}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {(group.bosses || []).map(boss => (
+                      <span key={`${group.zone}-${boss}`} className="inline-flex items-center gap-2 bg-slate-900 border border-slate-700 rounded px-2.5 py-1 text-xs text-slate-300">
+                        <span>{boss}</span>
+                        <button
+                          onClick={() => handleRemoveCustomRaidBoss?.(group.zone, boss)}
+                          className="text-red-400 hover:text-red-300 font-bold"
+                          title={`Remove ${boss}`}
+                        >
+                          ×
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* MY ASSIGNMENTS SUMMARY PANEL */}
+      {myPlayerName && (
+        <div className="flex items-center justify-between bg-slate-900/40 border border-slate-800 rounded-xl px-5 py-3">
+          <span className="text-sm text-slate-400">
+            Viewing as <span className="font-bold text-amber-400">{myPlayerName}</span>
+          </span>
+          <button
+            onClick={() => setShowMyAssignments(prev => !prev)}
+            className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider border transition ${showMyAssignments ? 'bg-amber-500 border-amber-600 text-slate-950' : 'bg-slate-900 border-slate-700 text-slate-300 hover:border-amber-500 hover:text-amber-400'}`}
+          >
+            {showMyAssignments ? '✕ Hide My Assignments' : '⚔ Show My Assignments'}
+          </button>
+        </div>
+      )}
+
+      {showMyAssignments && myAssignmentsSummary && (
+        <div className="bg-slate-950 border border-amber-700/40 rounded-xl p-5 space-y-5 shadow-2xl">
+          <h3 className="text-sm font-bold text-amber-400 uppercase tracking-widest border-b border-slate-800 pb-2">
+            My Assignments — {myPlayerName}
+          </h3>
+
+          {/* Global */}
+          {myAssignmentsSummary.globalLines.length > 0 && (
+            <div>
+              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Raid-Wide</h4>
+              <div className="flex flex-wrap gap-2">
+                {myAssignmentsSummary.globalLines.map((line, i) => (
+                  <div key={i} className="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs">
+                    <span className="text-slate-500 uppercase font-bold tracking-wider mr-1">{line.label}:</span>
+                    <span className="text-slate-200 font-bold">{line.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Per boss */}
+          {myAssignmentsSummary.bosses.length === 0 && myAssignmentsSummary.globalLines.length === 0 && (
+            <p className="text-sm text-slate-500 italic">No assignments found for {myPlayerName}. Make sure you are added to the roster and assignments have been set.</p>
+          )}
+          {myAssignmentsSummary.bosses.length === 0 && myAssignmentsSummary.globalLines.length > 0 && (
+            <p className="text-sm text-slate-500 italic">No per-boss assignments found.</p>
+          )}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            {myAssignmentsSummary.bosses.map(({ boss, bossLines }) => (
+              <div key={boss} className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
+                <h4 className="text-sm font-bold text-purple-400 font-serif italic">{boss}</h4>
+                <div className="space-y-1.5">
+                  {bossLines.map((entry, i) => {
+                    if (entry.phase) {
+                      return (
+                        <div key={i} className="mt-2">
+                          <p className="text-[10px] font-bold text-amber-500 uppercase tracking-widest mb-1">{entry.phase}</p>
+                          {entry.lines.map((line, j) => (
+                            <div key={j} className="flex items-center gap-2 text-xs pl-2">
+                              <span className="text-slate-500 uppercase font-bold tracking-wider whitespace-nowrap">{line.label}:</span>
+                              <span className="text-slate-200 font-bold">{line.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      );
+                    }
+                    return (
+                      <div key={i} className="flex items-center gap-2 text-xs">
+                        <span className="text-slate-500 uppercase font-bold tracking-wider whitespace-nowrap">{entry.label}:</span>
+                        <span className="text-slate-200 font-bold">{entry.value}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* GLOBAL ROSTER ASSIGNMENTS PANEL */}
       <div className="bg-slate-950 border border-slate-800 rounded-xl shadow-xl p-5 space-y-6">
