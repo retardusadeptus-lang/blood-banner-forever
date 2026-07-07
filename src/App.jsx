@@ -12,6 +12,8 @@ import RosterTab from './components/RosterTab';
 import ScoringTab from './components/ScoringTab';
 import RaidAssignmentsTab from './components/RaidAssignmentsTab';
 import OfficerRolesTab from './components/OfficerRolesTab';
+import DiscordBotConfigTab from './components/DiscordBotConfigTab';
+import RaidSignupsTab from './components/RaidSignupsTab';
 
 const CORE_SYNC_INTERVAL_MS = 15000;
 const BANK_SYNC_INTERVAL_MS = 20000;
@@ -92,7 +94,7 @@ export default function App() {
   const [globalPhase, setGlobalPhase] = useState('T5');
 
   // Default to public overview tab
-  const AUTH_ONLY_TABS = ['bankRequests', 'loot', 'roster', 'scoring', 'itemsdb', 'officerRoles'];
+  const AUTH_ONLY_TABS = ['bankRequests', 'loot', 'roster', 'scoring', 'itemsdb', 'officerRoles', 'discordBotConfig'];
   const [activeTab, setActiveTab] = useState(() => localStorage.getItem('active-tab') || 'overview');
   const [overviewSearch, setOverviewSearch] = useState('');
 
@@ -174,6 +176,11 @@ export default function App() {
   const [approveQuantity, setApproveQuantity] = useState('');
   const [approveNote, setApproveNote] = useState('');
   const [officerRoles, setOfficerRoles] = useState([]);
+  const [discordBotConfig, setDiscordBotConfigLocal] = useState({
+    request_roles: [],
+    signup_roles: [],
+    bench_roles: []
+  });
 
   // Persist current tab so refresh restores where the user left off.
   useEffect(() => {
@@ -207,12 +214,14 @@ export default function App() {
   const [raidAssignmentDataDirty, setRaidAssignmentDataDirty] = useState(false);
   const [enabledBossesDirty, setEnabledBossesDirty] = useState(false);
   const [officerRolesDirty, setOfficerRolesDirty] = useState(false);
+  const [discordBotConfigDirty, setDiscordBotConfigDirty] = useState(false);
 
   const [isSavingLootCouncil, setIsSavingLootCouncil] = useState(false);
   const [isSavingRosterAttendance, setIsSavingRosterAttendance] = useState(false);
   const [isSavingScoring, setIsSavingScoring] = useState(false);
   const [isSavingRaidAssignments, setIsSavingRaidAssignments] = useState(false);
   const [isSavingOfficerRoles, setIsSavingOfficerRoles] = useState(false);
+  const [isSavingDiscordBotConfig, setIsSavingDiscordBotConfig] = useState(false);
 
   const selectedMyPlayerName = useMemo(() => {
     if (!globalMyPlayerId) return null;
@@ -281,7 +290,7 @@ export default function App() {
   const hasRosterUnsavedChanges = rosterDirty || raidLogsDirty || playerStatsDirty;
   const hasScoringUnsavedChanges = scoringConfigDirty || playerStatsDirty;
   const hasRaidAssignmentsUnsavedChanges = raidAssignmentDataDirty || enabledBossesDirty;
-  const hasAnyUnsavedChanges = hasLootUnsavedChanges || hasItemsDbUnsavedChanges || hasRosterUnsavedChanges || hasScoringUnsavedChanges || hasRaidAssignmentsUnsavedChanges || officerRolesDirty;
+  const hasAnyUnsavedChanges = hasLootUnsavedChanges || hasItemsDbUnsavedChanges || hasRosterUnsavedChanges || hasScoringUnsavedChanges || hasRaidAssignmentsUnsavedChanges || officerRolesDirty || discordBotConfigDirty;
 
   // ==========================================
   // HELPER: Initialize default BiS priorities from aggregated data
@@ -391,6 +400,10 @@ export default function App() {
     setOfficerRoles(prev => (typeof newValOrUpdater === 'function' ? newValOrUpdater(prev) : newValOrUpdater));
     setOfficerRolesDirty(true);
   };
+  const setDiscordBotConfig = (newValOrUpdater) => {
+    setDiscordBotConfigLocal(prev => (typeof newValOrUpdater === 'function' ? newValOrUpdater(prev) : newValOrUpdater));
+    setDiscordBotConfigDirty(true);
+  };
   // ==========================================
   // 5. WOWHEAD TOOLTIP ENGINE
   // ==========================================
@@ -448,7 +461,6 @@ export default function App() {
     setIsAuthenticated(false);
     sessionStorage.removeItem('ar-auth');
     sessionStorage.removeItem('ar-auth-token');
-    setActiveTab('overview');
   };
 
   const handleAddPlayer = (e) => {
@@ -522,6 +534,101 @@ export default function App() {
     const month = match[2].padStart(2, '0');
     const year = match[3];
     return `${year}-${month}-${day}`;
+  };
+
+  const parseRaidSignupDate = (value) => {
+    const raw = String(value || '').trim();
+    if (!raw) return new Date().toISOString().split('T')[0];
+
+    const ymd = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (ymd) {
+      return `${ymd[1]}-${ymd[2]}-${ymd[3]}`;
+    }
+
+    const dmy = raw.match(/^(\d{2})-(\d{2})-(\d{4})/);
+    if (dmy) {
+      return `${dmy[3]}-${dmy[2]}-${dmy[1]}`;
+    }
+
+    return new Date().toISOString().split('T')[0];
+  };
+
+  const handleApplyRaidSignupGroupsToAttendance = async (eventId) => {
+    const numericEventId = Number(eventId);
+    if (!numericEventId) {
+      alert('Select a raid signup event first.');
+      return false;
+    }
+
+    try {
+      const event = await fetchData(`raid-signup-events/${numericEventId}`);
+      const groups = Array.isArray(event?.groups) ? event.groups : [];
+      const groupedNames = [...new Set(
+        groups
+          .map(row => String(row?.player_name || '').trim())
+          .filter(Boolean)
+      )];
+
+      if (groupedNames.length === 0) {
+        alert('This signup event has no grouped players assigned yet.');
+        return false;
+      }
+
+      const rosterByToken = new Map();
+      roster.forEach(player => {
+        const token = normalizeRaidHelperToken(player.name);
+        if (!rosterByToken.has(token)) rosterByToken.set(token, []);
+        rosterByToken.get(token).push(player);
+      });
+
+      const attendeeIds = [];
+      const unmatched = [];
+      const ambiguous = [];
+
+      groupedNames.forEach(name => {
+        const token = normalizeRaidHelperToken(name);
+        const matches = rosterByToken.get(token) || [];
+
+        if (matches.length === 0) {
+          unmatched.push(name);
+          return;
+        }
+
+        if (matches.length > 1) {
+          ambiguous.push(name);
+        }
+
+        attendeeIds.push(Number(matches[0].id));
+      });
+
+      const attendeeSet = new Set(attendeeIds);
+      const rosterWithRaidState = roster.map(player => ({
+        ...player,
+        in_raid: attendeeSet.has(Number(player.id))
+      }));
+
+      const raidDate = parseRaidSignupDate(event?.scheduled_for);
+      const raidZone = String(event?.title || newRaidZone || 'Raid Signup Import').trim();
+
+      setRoster(rosterWithRaidState);
+      setRaidLogs([{ id: Date.now(), date: raidDate, zone: raidZone, attendees: [...attendeeSet] }, ...raidLogs]);
+      setNewRaidDate(raidDate);
+      setNewRaidZone(raidZone);
+
+      let msg = `Imported ${attendeeSet.size} grouped attendees from signup #${numericEventId}.`;
+      if (unmatched.length > 0) {
+        msg += `\nUnmatched (${unmatched.length}): ${unmatched.slice(0, 12).join(', ')}${unmatched.length > 12 ? ', ...' : ''}`;
+      }
+      if (ambiguous.length > 0) {
+        msg += `\nAmbiguous name matches (${ambiguous.length}) used first roster match.`;
+      }
+
+      alert(msg);
+      return true;
+    } catch (e) {
+      alert('Failed to import attendees from raid signup event.');
+      return false;
+    }
   };
 
   const resolveSpecIdFromRaidHelper = (signup, preferredClass) => {
@@ -963,6 +1070,20 @@ export default function App() {
       alert('Failed to save officer roles.');
     } finally {
       setIsSavingOfficerRoles(false);
+    }
+  };
+
+  const handleSaveDiscordBotConfig = async () => {
+    if (!discordBotConfigDirty) return;
+    setIsSavingDiscordBotConfig(true);
+    try {
+      await putData('discord-bot-config', discordBotConfig);
+      setDiscordBotConfigDirty(false);
+      alert('Discord bot config saved.');
+    } catch (e) {
+      alert('Failed to save Discord bot config.');
+    } finally {
+      setIsSavingDiscordBotConfig(false);
     }
   };
 
@@ -1530,6 +1651,28 @@ export default function App() {
   }, [activeTab, officerRolesDirty]);
 
   useEffect(() => {
+    if (activeTab !== 'discordBotConfig') return;
+
+    const loadDiscordBotConfig = async () => {
+      if (document.hidden) return;
+      try {
+        const data = await fetchData('discord-bot-config');
+        if (!discordBotConfigDirty) {
+          setDiscordBotConfigLocal({
+            request_roles: Array.isArray(data?.request_roles) ? data.request_roles : [],
+            signup_roles: Array.isArray(data?.signup_roles) ? data.signup_roles : [],
+            bench_roles: Array.isArray(data?.bench_roles) ? data.bench_roles : []
+          });
+        }
+      } catch (e) {
+        console.error('Failed to load Discord bot config:', e);
+      }
+    };
+
+    loadDiscordBotConfig();
+  }, [activeTab, discordBotConfigDirty]);
+
+  useEffect(() => {
     if (!hasAnyUnsavedChanges) return undefined;
 
     const handleBeforeUnload = (event) => {
@@ -1669,6 +1812,7 @@ export default function App() {
               {hasRaidAssignmentsUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
             </span>
           </button>
+          <button onClick={() => setActiveTab('raidSignups')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'raidSignups' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Raid Signups</button>
           {/* Lock down all editing tabs behind authentication */}
           {isAuthenticated && (
             <>
@@ -1701,6 +1845,12 @@ export default function App() {
                 <span className="inline-flex items-center gap-2">
                   <span>Officer Roles</span>
                   {officerRolesDirty && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
+                </span>
+              </button>
+              <button onClick={() => setActiveTab('discordBotConfig')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'discordBotConfig' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
+                <span className="inline-flex items-center gap-2">
+                  <span>Discord Bot Config</span>
+                  {discordBotConfigDirty && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
                 </span>
               </button>
             </>
@@ -1769,6 +1919,17 @@ export default function App() {
             onSaveChanges={handleSaveRaidAssignmentsChanges}
             isSaving={isSavingRaidAssignments}
             myPlayerName={selectedMyPlayerName}
+          />
+        )}
+
+        {activeTab === 'raidSignups' && (
+          <RaidSignupsTab
+            fetchData={fetchData}
+            putData={putData}
+            postData={postData}
+            deleteData={deleteData}
+            isAuthenticated={isAuthenticated}
+            specsFromDb={specsFromDb}
           />
         )}
 
@@ -1848,7 +2009,9 @@ export default function App() {
               ========================================= */}
         {activeTab === 'roster' && isAuthenticated && (
           <RosterTab
+            fetchData={fetchData}
             handleSaveRaidLog={handleSaveRaidLog}
+            handleApplyRaidSignupGroupsToAttendance={handleApplyRaidSignupGroupsToAttendance}
             handleImportRaidHelperJson={handleImportRaidHelperJson}
             newRaidDate={newRaidDate}
             setNewRaidDate={setNewRaidDate}
@@ -1892,6 +2055,16 @@ export default function App() {
             hasUnsavedChanges={officerRolesDirty}
             onSaveChanges={handleSaveOfficerRoles}
             isSaving={isSavingOfficerRoles}
+          />
+        )}
+
+        {activeTab === 'discordBotConfig' && isAuthenticated && (
+          <DiscordBotConfigTab
+            config={discordBotConfig}
+            setConfig={setDiscordBotConfig}
+            hasUnsavedChanges={discordBotConfigDirty}
+            onSaveChanges={handleSaveDiscordBotConfig}
+            isSaving={isSavingDiscordBotConfig}
           />
         )}
 
