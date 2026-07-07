@@ -1,9 +1,158 @@
+require('dotenv').config();
+
 const express = require('express');
 const Database = require('better-sqlite3');
 const cors = require('cors');
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path'); // Added for deployment pathway flexibility
+const { EmbedBuilder } = require('discord.js');
+const { initDiscordBot, getDiscordClient } = require('./bot');
+const {
+  listTemplates,
+  listOpenEvents,
+  listPublicActiveEvents,
+  createEventFromTemplate,
+  getAvailableClassesForEvent,
+  getAllowedSpecsByClass,
+  getEventById,
+  listEntriesForEvent,
+  listGroupsForEvent,
+  formatSignupSummary
+} = require('./discord/utils/raidSignupStore');
+const { resolveRoleEmojiToken, resolveClassEmojiToken } = require('./discord/utils/discordEmojiTokens');
+
+function withEmoji(icon, label) {
+  return icon ? `${icon} ${label}` : label;
+}
+
+function parseRaidSignupDateTime(value) {
+  const raw = String(value || '').trim();
+  if (!raw) return null;
+
+  const ymd = raw.match(/^(\d{4})-(\d{2})-(\d{2})(?:\s+(\d{2}):(\d{2}))?(?:\s*CET)?$/i);
+  if (ymd) {
+    const [, yyyy, mm, dd, hh = '20', min = '00'] = ymd;
+    const parsed = Date.parse(`${yyyy}-${mm}-${dd}T${hh}:${min}:00+01:00`);
+    return Number.isNaN(parsed) ? null : new Date(parsed);
+  }
+
+  const dmy = raw.match(/^(\d{2})-(\d{2})-(\d{4})(?:\s+(\d{2}):(\d{2}))?(?:\s*CET)?$/i);
+  if (dmy) {
+    const [, dd, mm, yyyy, hh = '20', min = '00'] = dmy;
+    const parsed = Date.parse(`${yyyy}-${mm}-${dd}T${hh}:${min}:00+01:00`);
+    return Number.isNaN(parsed) ? null : new Date(parsed);
+  }
+
+  const loose = Date.parse(raw.replace(' ', 'T'));
+  return Number.isNaN(loose) ? null : new Date(loose);
+}
+
+function formatRaidSignupDateTime(dateObj) {
+  const date = new Date(dateObj.getTime() + (60 * 60 * 1000));
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  const hour = String(date.getUTCHours()).padStart(2, '0');
+  const minute = String(date.getUTCMinutes()).padStart(2, '0');
+  return `${year}-${month}-${day} ${hour}:${minute} CET`;
+}
+
+function getNextRecurrenceStart(previousStart, recurrenceDays) {
+  const selectedDays = [...new Set((recurrenceDays || []).map(v => Number(v)).filter(v => Number.isInteger(v) && v >= 0 && v <= 6))];
+  if (selectedDays.length === 0) return null;
+
+  for (let offset = 1; offset <= 14; offset += 1) {
+    const candidate = new Date(previousStart.getTime());
+    candidate.setUTCDate(candidate.getUTCDate() + offset);
+    if (!selectedDays.includes(candidate.getUTCDay())) continue;
+    return candidate;
+  }
+
+  return null;
+}
+
+let recurrenceTickInFlight = false;
+
+async function autoPostRecurringSignupEvents() {
+  if (recurrenceTickInFlight) return;
+  recurrenceTickInFlight = true;
+
+  try {
+    const templates = listTemplates(db).filter(template => template.is_active && template.recurrence_enabled && Array.isArray(template.recurrence_days) && template.recurrence_days.length > 0);
+    if (templates.length === 0) return;
+
+    const client = getDiscordClient();
+    if (!client) return;
+
+    const { buildSignupEmbed, buildMainSignupComponents } = require('./discord/interactions/raidSignupInteractions');
+    const now = Date.now();
+
+    for (const template of templates) {
+      const templateEvents = db.prepare(`
+        SELECT id, template_id, title, description, scheduled_for, recurrence_instance, status, discord_channel_id, discord_message_id, created_at
+        FROM raid_signup_events
+        WHERE template_id = ?
+        ORDER BY id DESC
+      `).all(template.id);
+
+      const parsedCandidates = templateEvents
+        .map(event => ({ event, startedAt: parseRaidSignupDateTime(event.scheduled_for) }))
+        .filter(row => row.startedAt && row.event.discord_channel_id)
+        .sort((a, b) => b.startedAt.getTime() - a.startedAt.getTime());
+
+      const startedCandidates = parsedCandidates.filter(row => row.startedAt.getTime() <= now);
+      if (startedCandidates.length === 0) continue;
+
+      const latest = startedCandidates[0];
+      const delayMs = Math.max(0, Number(template.recurrence_delay_hours || 0)) * 60 * 60 * 1000;
+      if (now < latest.startedAt.getTime() + delayMs) continue;
+
+      const nextStart = getNextRecurrenceStart(latest.startedAt, template.recurrence_days);
+      if (!nextStart) continue;
+
+      const recurrenceInstance = nextStart.toISOString();
+      const alreadyExists = templateEvents.some(event => String(event.recurrence_instance || '') === recurrenceInstance);
+      if (alreadyExists) {
+        console.log(`[RaidSignup] Recurrence skip for template #${template.id}: recurrence instance already exists (${recurrenceInstance}).`);
+        continue;
+      }
+
+      const scheduledFor = formatRaidSignupDateTime(nextStart);
+      const nextEvent = createEventFromTemplate(db, template.id, {
+        title: String(template.name || latest.event.title || 'Raid Signup').trim(),
+        description: String(template.description || latest.event.description || '').trim(),
+        scheduledFor,
+        recurrenceInstance
+      });
+
+      const channel = await client.channels.fetch(latest.event.discord_channel_id).catch(() => null);
+      if (!channel || typeof channel.send !== 'function') {
+        continue;
+      }
+
+      const classes = getAvailableClassesForEvent(db, nextEvent.id);
+      const selectedClass = classes[0] || '';
+      const specs = selectedClass ? getAllowedSpecsByClass(db, nextEvent.id, selectedClass) : [];
+      const message = await channel.send({
+        embeds: [buildSignupEmbed(nextEvent, [], channel.guild || null)],
+        components: buildMainSignupComponents(nextEvent.id, classes, specs, selectedClass, false)
+      });
+
+      db.prepare(`
+        UPDATE raid_signup_events
+        SET discord_channel_id = ?, discord_message_id = ?, updated_at = CURRENT_TIMESTAMP
+        WHERE id = ?
+      `).run(String(channel.id), String(message.id), nextEvent.id);
+
+      console.log(`[RaidSignup] Auto-posted recurring event #${nextEvent.id} from template #${template.id}`);
+    }
+  } catch (e) {
+    console.error('[RaidSignup] Recurrence automation failed:', e.message || e);
+  } finally {
+    recurrenceTickInFlight = false;
+  }
+}
 
 const app = express();
 app.use(cors());
@@ -21,6 +170,7 @@ const DB_PATH = DB_PATH_CANDIDATES.find(candidate => fs.existsSync(candidate)) |
 
 const db = new Database(DB_PATH);
 db.pragma('foreign_keys = ON');
+initDiscordBot({ db });
 
 // Server-only signing secret. Set SESSION_SECRET in prod so sessions survive
 // restarts; otherwise it's random per boot (everyone re-logs-in on restart).
@@ -462,8 +612,189 @@ function ensureOfficerRolesTable() {
   `).run();
 }
 
+function ensureDiscordBotConfigTable() {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS discord_bot_config (
+      id INTEGER PRIMARY KEY CHECK (id = 1),
+      request_roles_json TEXT NOT NULL DEFAULT '[]',
+      signup_roles_json TEXT NOT NULL DEFAULT '[]',
+      bench_roles_json TEXT NOT NULL DEFAULT '[]',
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  const row = db.prepare('SELECT id FROM discord_bot_config WHERE id = 1').get();
+  if (!row) {
+    db.prepare(`
+      INSERT INTO discord_bot_config (id, request_roles_json, signup_roles_json, bench_roles_json)
+      VALUES (1, '[]', '[]', '[]')
+    `).run();
+  }
+}
+
+function ensureRaidSignupTables() {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS raid_signup_templates (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL UNIQUE,
+      description TEXT DEFAULT '',
+      starts_at_text TEXT DEFAULT '',
+      recurrence_rule TEXT DEFAULT '',
+      recurrence_days_json TEXT NOT NULL DEFAULT '[]',
+      recurrence_delay_hours INTEGER NOT NULL DEFAULT 2,
+      recurrence_enabled INTEGER NOT NULL DEFAULT 0,
+      allowed_spec_ids_json TEXT NOT NULL DEFAULT '[]',
+      is_active INTEGER NOT NULL DEFAULT 1,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS raid_signup_events (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      template_id INTEGER REFERENCES raid_signup_templates(id) ON DELETE SET NULL,
+      title TEXT NOT NULL,
+      description TEXT DEFAULT '',
+      scheduled_for TEXT,
+      recurrence_instance TEXT,
+      public_groups INTEGER NOT NULL DEFAULT 0,
+      status TEXT NOT NULL DEFAULT 'open',
+      discord_channel_id TEXT,
+      discord_message_id TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS raid_signup_entries (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      event_id INTEGER NOT NULL REFERENCES raid_signup_events(id) ON DELETE CASCADE,
+      discord_user_id TEXT NOT NULL,
+      discord_username TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'signup',
+      spec_id INTEGER REFERENCES specs(id) ON DELETE SET NULL,
+      role_bucket TEXT,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      UNIQUE(event_id, discord_user_id)
+    )
+  `).run();
+
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS raid_signup_drafts (
+      event_id INTEGER NOT NULL REFERENCES raid_signup_events(id) ON DELETE CASCADE,
+      discord_user_id TEXT NOT NULL,
+      spec_id INTEGER NOT NULL REFERENCES specs(id) ON DELETE CASCADE,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY(event_id, discord_user_id)
+    )
+  `).run();
+
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS raid_signup_user_prefs (
+      discord_user_id TEXT PRIMARY KEY,
+      spec_id INTEGER NOT NULL REFERENCES specs(id) ON DELETE CASCADE,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS raid_signup_event_filters (
+      event_id INTEGER PRIMARY KEY REFERENCES raid_signup_events(id) ON DELETE CASCADE,
+      selected_class TEXT NOT NULL,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS raid_signup_groups (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      event_id INTEGER NOT NULL REFERENCES raid_signup_events(id) ON DELETE CASCADE,
+      group_number INTEGER NOT NULL,
+      group_name TEXT DEFAULT '',
+      slot_index INTEGER NOT NULL,
+      player_name TEXT NOT NULL,
+      spec_id INTEGER REFERENCES specs(id) ON DELETE SET NULL,
+      note TEXT DEFAULT '',
+      UNIQUE(event_id, group_number, slot_index)
+    )
+  `).run();
+
+  const eventColumns = db.prepare("PRAGMA table_info('raid_signup_events')").all();
+  if (!eventColumns.some(col => col.name === 'public_groups')) {
+    db.prepare('ALTER TABLE raid_signup_events ADD COLUMN public_groups INTEGER NOT NULL DEFAULT 0').run();
+  }
+
+  const groupColumns = db.prepare("PRAGMA table_info('raid_signup_groups')").all();
+  if (!groupColumns.some(col => col.name === 'group_name')) {
+    db.prepare('ALTER TABLE raid_signup_groups ADD COLUMN group_name TEXT DEFAULT \"\"').run();
+  }
+
+  const templateColumns = db.prepare("PRAGMA table_info('raid_signup_templates')").all();
+  if (!templateColumns.some(col => col.name === 'recurrence_days_json')) {
+    db.prepare("ALTER TABLE raid_signup_templates ADD COLUMN recurrence_days_json TEXT NOT NULL DEFAULT '[]'").run();
+  }
+  if (!templateColumns.some(col => col.name === 'recurrence_delay_hours')) {
+    db.prepare('ALTER TABLE raid_signup_templates ADD COLUMN recurrence_delay_hours INTEGER NOT NULL DEFAULT 2').run();
+  }
+  if (!templateColumns.some(col => col.name === 'recurrence_enabled')) {
+    db.prepare('ALTER TABLE raid_signup_templates ADD COLUMN recurrence_enabled INTEGER NOT NULL DEFAULT 0').run();
+  }
+}
+
+function normalizeRoleList(value) {
+  if (!Array.isArray(value)) return [];
+  const unique = new Set();
+  const out = [];
+
+  value.forEach(entry => {
+    const role = String(entry || '').trim();
+    if (!role) return;
+    const lowered = role.toLowerCase();
+    if (unique.has(lowered)) return;
+    unique.add(lowered);
+    out.push(role);
+  });
+
+  return out.slice(0, 50);
+}
+
+function getDiscordBotConfigRow() {
+  const row = db.prepare(`
+    SELECT request_roles_json, signup_roles_json, bench_roles_json
+    FROM discord_bot_config
+    WHERE id = 1
+  `).get();
+
+  if (!row) {
+    return {
+      request_roles: [],
+      signup_roles: [],
+      bench_roles: []
+    };
+  }
+
+  const parse = (raw) => {
+    try {
+      const parsed = JSON.parse(raw || '[]');
+      return normalizeRoleList(parsed);
+    } catch (e) {
+      return [];
+    }
+  };
+
+  return {
+    request_roles: parse(row.request_roles_json),
+    signup_roles: parse(row.signup_roles_json),
+    bench_roles: parse(row.bench_roles_json)
+  };
+}
+
 ensureBankRequestSchema();
 ensureOfficerRolesTable();
+ensureDiscordBotConfigTable();
+ensureRaidSignupTables();
 
 function ensureDatabaseIndexes() {
   const statements = [
@@ -1573,6 +1904,360 @@ app.put('/api/officer-roles', (req, res) => {
   }
 });
 
+// ==========================================
+// DISCORD BOT CONFIG
+// ==========================================
+app.get('/api/discord-bot-config', (req, res) => {
+  try {
+    res.json(getDiscordBotConfigRow());
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.put('/api/discord-bot-config', (req, res) => {
+  try {
+    const requestRoles = normalizeRoleList(req.body?.request_roles);
+    const signupRoles = normalizeRoleList(req.body?.signup_roles);
+    const benchRoles = normalizeRoleList(req.body?.bench_roles);
+
+    db.prepare(`
+      UPDATE discord_bot_config
+      SET request_roles_json = ?, signup_roles_json = ?, bench_roles_json = ?, updated_at = CURRENT_TIMESTAMP
+      WHERE id = 1
+    `).run(
+      JSON.stringify(requestRoles),
+      JSON.stringify(signupRoles),
+      JSON.stringify(benchRoles)
+    );
+
+    res.json({
+      ok: true,
+      request_roles: requestRoles,
+      signup_roles: signupRoles,
+      bench_roles: benchRoles
+    });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// ==========================================
+// RAID SIGNUP TEMPLATES / EVENTS
+// ==========================================
+app.get('/api/raid-signup-templates', (req, res) => {
+  try {
+    res.json(listTemplates(db));
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.put('/api/raid-signup-templates', (req, res) => {
+  try {
+    const templates = Array.isArray(req.body) ? req.body : [];
+    const deleteAll = db.prepare('DELETE FROM raid_signup_templates');
+    const insertTemplate = db.prepare(`
+      INSERT INTO raid_signup_templates (name, description, starts_at_text, recurrence_rule, recurrence_days_json, recurrence_delay_hours, recurrence_enabled, allowed_spec_ids_json, is_active, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+    `);
+
+    const saveAll = db.transaction(() => {
+      deleteAll.run();
+      templates.forEach(template => {
+        const name = String(template?.name || '').trim();
+        if (!name) return;
+        const allowed = Array.isArray(template.allowed_spec_ids)
+          ? template.allowed_spec_ids.map(v => Number(v)).filter(Boolean)
+          : [];
+        const recurrenceDays = Array.isArray(template.recurrence_days)
+          ? [...new Set(template.recurrence_days.map(v => Number(v)).filter(v => Number.isInteger(v) && v >= 0 && v <= 6))].sort((a, b) => a - b)
+          : [];
+        const parsedDelayHours = Number(template.recurrence_delay_hours);
+        const recurrenceDelayHours = Number.isFinite(parsedDelayHours) ? Math.max(0, parsedDelayHours) : 2;
+        insertTemplate.run(
+          name,
+          String(template.description || '').trim(),
+          String(template.starts_at_text || '').trim(),
+          String(template.recurrence_rule || '').trim(),
+          JSON.stringify(recurrenceDays),
+          recurrenceDelayHours,
+          template.recurrence_enabled === true ? 1 : 0,
+          JSON.stringify(allowed),
+          template.is_active === false ? 0 : 1
+        );
+      });
+    });
+
+    saveAll();
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/raid-signup-events', (req, res) => {
+  try {
+    const status = String(req.query.status || '').trim().toLowerCase();
+    let rows;
+    if (status) {
+      rows = db.prepare(`
+        SELECT id, template_id, title, description, scheduled_for, recurrence_instance, public_groups, status, discord_channel_id, discord_message_id, created_at
+        FROM raid_signup_events
+        WHERE lower(status) = ?
+        ORDER BY id DESC
+      `).all(status);
+    } else {
+      rows = db.prepare(`
+        SELECT id, template_id, title, description, scheduled_for, recurrence_instance, public_groups, status, discord_channel_id, discord_message_id, created_at
+        FROM raid_signup_events
+        ORDER BY id DESC
+      `).all();
+    }
+    res.json(rows);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/raid-signup-events/:id', (req, res) => {
+  try {
+    const eventId = Number(req.params.id);
+    const event = getEventById(db, eventId);
+    if (!event) return res.status(404).json({ error: 'Event not found' });
+
+    const entries = listEntriesForEvent(db, eventId);
+    const groups = listGroupsForEvent(db, eventId);
+    res.json({ ...event, entries, groups });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.put('/api/raid-signup-events/:id', (req, res) => {
+  try {
+    const eventId = Number(req.params.id);
+    const event = getEventById(db, eventId);
+    if (!event) return res.status(404).json({ error: 'Event not found' });
+
+    const title = req.body?.title;
+    const description = req.body?.description;
+    const scheduledFor = req.body?.scheduled_for;
+    const publicGroups = req.body?.public_groups;
+
+    db.prepare(`
+      UPDATE raid_signup_events
+      SET
+        title = COALESCE(?, title),
+        description = COALESCE(?, description),
+        scheduled_for = COALESCE(?, scheduled_for),
+        public_groups = COALESCE(?, public_groups),
+        updated_at = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(
+      title !== undefined ? String(title || '').trim() : null,
+      description !== undefined ? String(description || '').trim() : null,
+      scheduledFor !== undefined ? String(scheduledFor || '').trim() : null,
+      publicGroups !== undefined ? (publicGroups ? 1 : 0) : null,
+      eventId
+    );
+
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.put('/api/raid-signup-events/:id/status', async (req, res) => {
+  try {
+    const eventId = Number(req.params.id);
+    const event = getEventById(db, eventId);
+    if (!event) return res.status(404).json({ error: 'Event not found' });
+
+    const status = String(req.body?.status || '').trim().toLowerCase();
+    const allowed = new Set(['open', 'locked', 'closed', 'archived']);
+    if (!allowed.has(status)) {
+      return res.status(400).json({ error: 'Invalid status. Use open, locked, closed, or archived.' });
+    }
+
+    db.prepare(`
+      UPDATE raid_signup_events
+      SET status = ?, updated_at = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(status, eventId);
+
+    const client = getDiscordClient();
+    if (client) {
+      const { refreshEventMessage } = require('./discord/interactions/raidSignupInteractions');
+      await refreshEventMessage(db, client, eventId);
+    }
+
+    res.json({ ok: true, status });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.delete('/api/raid-signup-events/:id', async (req, res) => {
+  try {
+    const eventId = Number(req.params.id);
+    const event = getEventById(db, eventId);
+    if (!event) return res.status(404).json({ error: 'Event not found' });
+
+    const client = getDiscordClient();
+    if (client && event.discord_channel_id && event.discord_message_id) {
+      const channel = await client.channels.fetch(event.discord_channel_id).catch(() => null);
+      if (channel && typeof channel.messages?.fetch === 'function') {
+        const message = await channel.messages.fetch(event.discord_message_id).catch(() => null);
+        if (message) {
+          await message.delete().catch(() => null);
+        }
+      }
+    }
+
+    db.prepare('DELETE FROM raid_signup_events WHERE id = ?').run(eventId);
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/public-raid-signups', (req, res) => {
+  try {
+    const activeEvents = listPublicActiveEvents(db);
+    const mapped = activeEvents.map(event => {
+      const entries = listEntriesForEvent(db, event.id);
+      const groups = event.public_groups === 1 ? listGroupsForEvent(db, event.id) : [];
+      return { ...event, public_groups: event.public_groups === 1, entries, groups };
+    });
+    res.json(mapped);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/raid-signup-groups/:eventId', (req, res) => {
+  try {
+    const eventId = Number(req.params.eventId);
+    res.json(listGroupsForEvent(db, eventId));
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.put('/api/raid-signup-groups/:eventId', (req, res) => {
+  try {
+    const eventId = Number(req.params.eventId);
+    const rows = Array.isArray(req.body) ? req.body : [];
+    const deleteExisting = db.prepare('DELETE FROM raid_signup_groups WHERE event_id = ?');
+    const insert = db.prepare(`
+      INSERT INTO raid_signup_groups (event_id, group_number, group_name, slot_index, player_name, spec_id, note)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    const save = db.transaction(() => {
+      deleteExisting.run(eventId);
+      rows.forEach(row => {
+        const playerName = String(row?.player_name || '').trim();
+        if (!playerName) return;
+        insert.run(
+          eventId,
+          Number(row.group_number) || 1,
+          String(row.group_name || '').trim(),
+          Number(row.slot_index) || 1,
+          playerName,
+          row.spec_id ? Number(row.spec_id) : null,
+          String(row.note || '').trim()
+        );
+      });
+    });
+
+    save();
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.post('/api/raid-signup-events/:id/echo', async (req, res) => {
+  try {
+    const eventId = Number(req.params.id);
+    const event = getEventById(db, eventId);
+    if (!event) return res.status(404).json({ error: 'Event not found' });
+    if (!event.discord_channel_id) return res.status(400).json({ error: 'Event has no Discord channel binding yet' });
+
+    const client = getDiscordClient();
+    if (!client) return res.status(503).json({ error: 'Discord client unavailable' });
+
+    const channel = await client.channels.fetch(event.discord_channel_id).catch(() => null);
+    if (!channel || typeof channel.send !== 'function') {
+      return res.status(404).json({ error: 'Could not resolve Discord channel for this event' });
+    }
+
+    const guild = channel.guild || null;
+    const entries = listEntriesForEvent(db, eventId);
+    const groups = listGroupsForEvent(db, eventId);
+    const summary = formatSignupSummary(entries, {
+      classIconResolver: entry => {
+        const token = resolveClassEmojiToken(guild, entry?.spec_class);
+        return token ? `${token} ` : '';
+      }
+    });
+    const tankCount = summary.roleBuckets.tank.length;
+    const healerCount = summary.roleBuckets.healer.length;
+    const meleeCount = summary.roleBuckets.melee.length;
+    const rangedCount = summary.roleBuckets.ranged.length;
+    const available = tankCount + healerCount + meleeCount + rangedCount;
+    const lateOrTentative = summary.statuses.late.length + summary.statuses.tentative.length;
+    const summaryLine = [
+      `Available: ${available}${lateOrTentative > 0 ? `(+${lateOrTentative})` : ''}`,
+      `Bench: ${summary.statuses.bench.length}`,
+      `Late: ${summary.statuses.late.length}`,
+      `Tentative: ${summary.statuses.tentative.length}`,
+      `Absence: ${summary.statuses.absence.length}`
+    ].join(' | ');
+
+    const groupText = (() => {
+      if (!groups.length) return 'No groups assigned yet.';
+      const byGroup = new Map();
+      groups.forEach(row => {
+        if (!byGroup.has(row.group_number)) byGroup.set(row.group_number, []);
+        byGroup.get(row.group_number).push(row);
+      });
+      return [...byGroup.keys()].sort((a, b) => a - b).map(groupNumber => {
+        const rows = byGroup.get(groupNumber).sort((a, b) => a.slot_index - b.slot_index);
+        const groupName = String(rows[0]?.group_name || '').trim() || `Group ${groupNumber}`;
+        const line = rows.map(slot => {
+          const classIcon = resolveClassEmojiToken(guild, slot?.spec_class);
+          const specTag = slot.spec_name ? `[${slot.spec_name}] ` : '';
+          const note = slot.note ? ` - ${slot.note}` : '';
+          return `${slot.slot_index}. ${classIcon ? `${classIcon} ` : ''}${specTag}${slot.player_name}${note}`;
+        }).join('\n');
+        return `${groupName}\n${line}`;
+      }).join('\n\n');
+    })();
+
+    const embed = new EmbedBuilder()
+      .setTitle(`Raid Echo: ${event.title}`)
+      .setDescription(event.description || 'Signup snapshot')
+      .addFields(
+        { name: 'Sign Summary', value: summaryLine, inline: false },
+        { name: withEmoji(resolveRoleEmojiToken(guild, 'tank'), `Tank (${tankCount})`), value: summary.roleBuckets.tank.join('\n') || 'None', inline: true },
+        { name: withEmoji(resolveRoleEmojiToken(guild, 'healer'), `Healer (${healerCount})`), value: summary.roleBuckets.healer.join('\n') || 'None', inline: true },
+        { name: withEmoji(resolveRoleEmojiToken(guild, 'melee'), `DPS (Melee) (${meleeCount})`), value: summary.roleBuckets.melee.join('\n') || 'None', inline: true },
+        { name: withEmoji(resolveRoleEmojiToken(guild, 'ranged'), `DPS (Ranged) (${rangedCount})`), value: summary.roleBuckets.ranged.join('\n') || 'None', inline: true },
+        { name: 'Groups', value: groupText, inline: false }
+      )
+      .setColor(0x8e44ad)
+      .setTimestamp();
+
+    await channel.send({ embeds: [embed] });
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 // Placement screenshots, stored inline as base64 data URLs
 app.get('/api/raid-assignment-images', (req, res) => {
   try {
@@ -1623,6 +2308,14 @@ app.delete('/api/raid-assignment-images/:id', (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
+
+setTimeout(() => {
+  autoPostRecurringSignupEvents().catch(() => {});
+}, 15000);
+
+setInterval(() => {
+  autoPostRecurringSignupEvents().catch(() => {});
+}, 60 * 1000);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Guild Loot API running on http://localhost:${PORT}`));

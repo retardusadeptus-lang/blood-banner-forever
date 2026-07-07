@@ -25,3 +25,46 @@ hosting
 DNS
 
 Refactor mutable items as it still uses JSON - done
+
+
+1. The WeakAura Assignment Exporter
+
+This is highly feasible and one of the most satisfying things you can build for a raid team.
+
+    How it works: You will add an "Export" button to your React site that takes the raidAssignmentData JSON for a specific boss and converts it into a compressed string.
+
+    The Challenge: WeakAuras are written in Lua. You will need to write a custom WeakAura that accepts a text input, decodes it, and translates it into a Lua table.
+
+    The Path Forward: You can actually just export raw JSON from your website. Modern WeakAuras can use a library called json.decode (or similar implementations) to turn that string back into a readable table, which the WA then uses to show text on the screen based on the player's name.
+
+2. The Discord Bot (Raid Events & /request)
+
+This will be the biggest "quality of life" upgrade for your guild, period.
+
+    How it works: You will build a separate Node.js script using the discord.js library. Because your web API is already built on Node and SQLite, the Discord bot can literally just talk to your existing localhost:3001 endpoints, or read the database directly.
+
+    Your Instinct on Autocomplete: Spot on. Discord's API supports Autocomplete Interactions. As the user types /request flas..., the bot queries your items table (which has everything, not just what is currently in stock) and returns a clickable list.
+
+    The Challenge: Discord's UI components (Embeds, Buttons, Select Menus) have strict formatting rules. Handling state in a chat app (like clicking "Sign Up" on an event) requires managing databases accurately to ensure no double-bookings.
+
+3. WarcraftLogs (WCL) Sync & Graphs
+
+This is visually impressive but will introduce you to a new way of fetching data.
+
+    How it works: WCL uses GraphQL, which is different from the REST APIs (fetch('http...')) you've been using. You send a highly specific query asking for exactly what you want (e.g., "Give me the healing parses for player X on boss Y").
+
+    The Path Forward: You will set up a cron job (a scheduled task) on your backend that pings WCL every night, parses the data, and saves it to your player_parses table.
+
+    For the Graphs: You will drop a library like Chart.js or Recharts into your React app. You feed it your database arrays, and it instantly renders beautiful, toggleable line charts.
+
+4. Battle.net Login & Character Claiming
+
+I have great news for you: your instinct is wrong, this is actually much easier than you think!
+
+    The Reality: Blizzard uses standard OAuth2 (the exact same protocol as "Sign in with Google" or "Sign in with Apple").
+
+    How it works: You redirect the user to Blizzard's secure login page. If they log in successfully, Blizzard sends them back to your site with a secure token.
+
+    The Magic: With that token, you can ping Blizzard's API and say, "Who does this token belong to?" Blizzard responds with their BattleTag and a list of all their WoW characters. You just match those characters to the names in your roster table. Libraries like passport-bnet handle 90% of the heavy lifting for you.
+
+All four of these are incredible projects that will teach you widely used industry skills (Lua integration, Chatbot APIs, GraphQL, and OAuth2 Authentication).

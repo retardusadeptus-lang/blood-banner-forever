@@ -1,7 +1,9 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 export default function RosterTab({
+  fetchData,
   handleSaveRaidLog,
+  handleApplyRaidSignupGroupsToAttendance,
   handleImportRaidHelperJson,
   newRaidDate,
   setNewRaidDate,
@@ -36,14 +38,50 @@ export default function RosterTab({
   const [expandedLog, setExpandedLog] = useState(null);
   const [editingPlayer, setEditingPlayer] = useState(null);
   const [raidHelperJsonText, setRaidHelperJsonText] = useState('');
+  const [raidSignupEvents, setRaidSignupEvents] = useState([]);
+  const [selectedSignupEventId, setSelectedSignupEventId] = useState('');
+  const [isApplyingSignupEvent, setIsApplyingSignupEvent] = useState(false);
 
   const importedIds = useMemo(() => new Set((importedRaidHelperPlayerIds || []).map(Number)), [importedRaidHelperPlayerIds]);
   const conflictIds = useMemo(() => new Set((importedRaidHelperSpecConflictIds || []).map(Number)), [importedRaidHelperSpecConflictIds]);
   const specClasses = useMemo(() => [...new Set(specsFromDb.map(spec => spec.class))].sort((a, b) => a.localeCompare(b)), [specsFromDb]);
 
+  useEffect(() => {
+    let mounted = true;
+
+    const loadSignupEvents = async () => {
+      try {
+        const events = await fetchData('raid-signup-events');
+        if (!mounted) return;
+        const filtered = (Array.isArray(events) ? events : []).filter(event => String(event.status || '').toLowerCase() !== 'archived');
+        setRaidSignupEvents(filtered);
+        if (!selectedSignupEventId && filtered.length > 0) {
+          setSelectedSignupEventId(String(filtered[0].id));
+        }
+      } catch (e) {
+        console.error('Failed to load raid signup events for roster attendance import', e);
+      }
+    };
+
+    loadSignupEvents();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   const onImportRaidHelper = () => {
     const ok = handleImportRaidHelperJson(raidHelperJsonText);
     if (ok) setRaidHelperJsonText('');
+  };
+
+  const onApplySignupAttendance = async () => {
+    if (!selectedSignupEventId) return;
+    setIsApplyingSignupEvent(true);
+    try {
+      await handleApplyRaidSignupGroupsToAttendance(selectedSignupEventId);
+    } finally {
+      setIsApplyingSignupEvent(false);
+    }
   };
 
   return (
@@ -94,6 +132,33 @@ export default function RosterTab({
               Import RaidHelper to Roster + Attendance
             </button>
             <p className="text-[10px] text-slate-500 mt-1">You will be prompted to map unknown names and resolve spec mismatches.</p>
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-slate-800">
+            <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Import Attendees From Raid Signup Groups</label>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <select
+                value={selectedSignupEventId}
+                onChange={e => setSelectedSignupEventId(e.target.value)}
+                className="flex-1 bg-slate-900 text-white border border-slate-700 rounded-lg px-3 py-2 text-xs focus:outline-none"
+              >
+                <option value="">Select raid signup event...</option>
+                {raidSignupEvents.map(event => (
+                  <option key={event.id} value={event.id}>
+                    #{event.id} [{event.status}] {event.title}
+                  </option>
+                ))}
+              </select>
+              <button
+                type="button"
+                onClick={onApplySignupAttendance}
+                disabled={!selectedSignupEventId || isApplyingSignupEvent}
+                className="bg-emerald-700 hover:bg-emerald-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-2 px-3 rounded-lg transition text-xs uppercase tracking-wider"
+              >
+                {isApplyingSignupEvent ? 'Applying...' : 'Apply Grouped Attendees'}
+              </button>
+            </div>
+            <p className="text-[10px] text-slate-500 mt-1">Sets In Raid to grouped signup players and logs a raid attendance snapshot.</p>
           </div>
         </div>
 

@@ -208,9 +208,105 @@ export default function BankRequestsTab({
   const pendingRequestGroups = useMemo(() => groupRequests(bankRequests.filter(r => r.status === 'pending')), [bankRequests]);
   const resolvedRequestGroups = useMemo(() => groupRequests(bankRequests.filter(r => r.status !== 'pending')), [bankRequests]);
 
+  const exportRequestsCsv = (mode = 'all') => {
+    const escapeCsv = (value) => {
+      const raw = String(value ?? '');
+      if (/[",\n]/.test(raw)) {
+        return `"${raw.replace(/"/g, '""')}"`;
+      }
+      return raw;
+    };
+
+    const sourceRows = (Array.isArray(bankRequests) ? bankRequests : []).filter(req => {
+      if (mode === 'pending') return String(req.status || '').toLowerCase() === 'pending';
+      if (mode === 'resolved') return String(req.status || '').toLowerCase() !== 'pending';
+      return true;
+    });
+
+    const rows = sourceRows.map(req => {
+      const player = roster.find(p => Number(p.id) === Number(req.player_id));
+      const requesterName = player?.name || req.requester_name || 'Unknown';
+      const specName = player ? getDisplayFromId(player.spec_id) : '';
+
+      return {
+        id: req.id,
+        request_group_id: req.request_group_id || '',
+        created_at: req.created_at || '',
+        status: req.status || '',
+        item_name: req.item_name || '',
+        requested_quantity: req.quantity ?? '',
+        approved_quantity: req.approved_quantity ?? '',
+        price: req.price ?? '',
+        requester_name: requesterName,
+        requester_spec: specName || '',
+        player_id: req.player_id ?? '',
+        reason: req.reason || '',
+        officer_note: req.officer_note || ''
+      };
+    });
+
+    const header = [
+      'id',
+      'request_group_id',
+      'created_at',
+      'status',
+      'item_name',
+      'requested_quantity',
+      'approved_quantity',
+      'price',
+      'requester_name',
+      'requester_spec',
+      'player_id',
+      'reason',
+      'officer_note'
+    ];
+
+    const csvBody = [
+      header.join(','),
+      ...rows.map(row => header.map(key => escapeCsv(row[key])).join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvBody], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const suffix = mode === 'pending' ? 'pending' : mode === 'resolved' ? 'resolved' : 'all';
+    link.href = url;
+    link.download = `bank-requests-${suffix}-${timestamp}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
-      <h2 className="text-xl font-bold text-slate-100 mb-6">Bank Requests</h2>
+      <div className="flex items-center justify-between gap-3 mb-6">
+        <h2 className="text-xl font-bold text-slate-100">Bank Requests</h2>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => exportRequestsCsv('all')}
+            className="text-xs font-bold bg-cyan-700 hover:bg-cyan-600 text-white px-3 py-2 rounded"
+          >
+            Export All CSV
+          </button>
+          <button
+            type="button"
+            onClick={() => exportRequestsCsv('pending')}
+            className="text-xs font-bold bg-amber-700 hover:bg-amber-600 text-white px-3 py-2 rounded"
+          >
+            Export Pending CSV
+          </button>
+          <button
+            type="button"
+            onClick={() => exportRequestsCsv('resolved')}
+            className="text-xs font-bold bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-2 rounded"
+          >
+            Export Resolved CSV
+          </button>
+        </div>
+      </div>
 
       {basket.length > 0 && (
         <div className="sticky top-0 z-20 bg-amber-900/20 border border-amber-700 p-4 rounded-xl mb-6 flex items-center justify-between shadow-lg">
