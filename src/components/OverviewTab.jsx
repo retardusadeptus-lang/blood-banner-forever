@@ -15,7 +15,10 @@ export default function OverviewTab({
   setSearchQuery,
   setSelectedItemName,
   specsByName,
-  getDisplayFromId
+  getDisplayFromId,
+  myPlayerName,
+  onClearItemPriorities,
+  onEditItemId
 }) {
   
   // Inline mini-component to keep player names styled beautifully with their scores
@@ -46,13 +49,26 @@ export default function OverviewTab({
           <h2 className="text-xl font-bold text-slate-100 mb-1">Master Priority Ledger</h2>
           <p className="text-sm text-slate-500">A bird's-eye view of every item that currently has an assigned Loot Council priority.</p>
         </div>
-        <input
-          type="text"
-          placeholder="Search by item or player name..."
-          className="w-full md:w-96 bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-inner"
-          value={overviewSearch}
-          onChange={e => setOverviewSearch(e.target.value)}
-        />
+        <div className="w-full md:w-auto flex flex-col sm:flex-row gap-2">
+          <input
+            type="text"
+            placeholder="Search by item or player name..."
+            className="w-full md:w-96 bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-inner"
+            value={overviewSearch}
+            onChange={e => setOverviewSearch(e.target.value)}
+          />
+          <button
+            type="button"
+            onClick={() => {
+              if (!myPlayerName) return;
+              setOverviewSearch(myPlayerName);
+            }}
+            disabled={!myPlayerName}
+            className="whitespace-nowrap bg-slate-900 border border-slate-700 text-amber-400 hover:text-amber-300 hover:border-amber-500 disabled:text-slate-600 disabled:border-slate-800 disabled:cursor-not-allowed rounded-lg px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition"
+          >
+            Show My Priorities
+          </button>
+        </div>
       </div>
 
       {filteredOverviewItems.length === 0 ? (
@@ -90,9 +106,21 @@ export default function OverviewTab({
                         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent" />
                       )}
                     </div>
-                    <h3 className="text-lg font-bold text-purple-400 truncate drop-shadow-sm">
-                      {renderItemLink(item)}
-                    </h3>
+                    <div className="flex items-center justify-between gap-2 min-w-0 w-full">
+                      <h3 className="text-lg font-bold text-purple-400 truncate drop-shadow-sm">
+                        {renderItemLink(item)}
+                      </h3>
+                      {isAuthenticated && (
+                        <button
+                          type="button"
+                          onClick={() => onEditItemId?.(item.name)}
+                          className="w-6 h-6 flex items-center justify-center rounded-full bg-amber-600 hover:bg-amber-500 text-slate-950 text-xs font-black shadow"
+                          title={item.itemId ? 'Edit Wowhead ID in Master Items DB' : 'Set Wowhead ID in Master Items DB'}
+                        >
+                          ✎
+                        </button>
+                      )}
+                    </div>
                   </div>
                   <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-500 tracking-wider flex-wrap">
                     <span>{item.slot}</span>
@@ -128,6 +156,12 @@ export default function OverviewTab({
 
                 {isAuthenticated && (
                   <div className="bg-slate-900/30 p-2 border-t border-slate-800/50 text-right">
+                    <button
+                      onClick={() => onClearItemPriorities?.(item.name)}
+                      className="text-xs font-bold text-red-400 hover:text-red-300 uppercase tracking-wider px-2 py-1 mr-2"
+                    >
+                      Remove from Priority View
+                    </button>
                     <button 
                       onClick={() => { 
                         setActiveTab('loot'); 

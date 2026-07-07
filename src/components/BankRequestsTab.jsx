@@ -41,6 +41,25 @@ export default function BankRequestsTab({
   ];
 
   const toggleToBasket = (req) => {
+    if (req.request_group_id) {
+      const grouped = bankRequests.filter(r => r.status === 'pending' && r.request_group_id === req.request_group_id);
+      const groupedIds = new Set(grouped.map(r => r.id));
+      const allInBasket = grouped.every(r => basket.some(b => b.id === r.id));
+
+      setBasket(prev => {
+        if (allInBasket) {
+          return prev.filter(b => !groupedIds.has(b.id));
+        }
+
+        const merged = [...prev];
+        grouped.forEach(gr => {
+          if (!merged.some(item => item.id === gr.id)) merged.push(gr);
+        });
+        return merged;
+      });
+      return;
+    }
+
     setBasket(prev =>
       prev.find(b => b.id === req.id)
         ? prev.filter(b => b.id !== req.id)
@@ -55,7 +74,7 @@ export default function BankRequestsTab({
         id: req.id,
         item_name: req.item_name,
         requested_quantity: req.quantity,
-        requester: player?.name || 'Unknown',
+        requester: player?.name || req.requester_name || 'Unknown',
         action: 'approve',       // 'approve' | 'deny'
         quantity: req.quantity,  // editable approved quantity
         price: '',
@@ -63,6 +82,26 @@ export default function BankRequestsTab({
         customReason: ''
       };
     });
+    setBulkItems(initial);
+    setBulkModalOpen(true);
+  };
+
+  const openBulkModalForRequests = (requests) => {
+    const initial = requests.map(req => {
+      const player = roster.find(p => p.id === req.player_id);
+      return {
+        id: req.id,
+        item_name: req.item_name,
+        requested_quantity: req.quantity,
+        requester: player?.name || req.requester_name || 'Unknown',
+        action: 'approve',
+        quantity: req.quantity,
+        price: '',
+        reason: '',
+        customReason: ''
+      };
+    });
+    setBasket(requests);
     setBulkItems(initial);
     setBulkModalOpen(true);
   };
@@ -144,6 +183,30 @@ export default function BankRequestsTab({
       return it.reason && (it.reason !== 'custom' || it.customReason.trim());
     });
   }, [bulkItems]);
+
+  const groupRequests = (requests) => {
+    const grouped = requests.reduce((acc, req) => {
+      const key = req.request_group_id || `single-${req.id}`;
+      if (!acc[key]) {
+        acc[key] = {
+          key,
+          request_group_id: req.request_group_id || null,
+          created_at: req.created_at,
+          requests: []
+        };
+      }
+      acc[key].requests.push(req);
+      if (new Date(req.created_at) > new Date(acc[key].created_at)) {
+        acc[key].created_at = req.created_at;
+      }
+      return acc;
+    }, {});
+
+    return Object.values(grouped).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  };
+
+  const pendingRequestGroups = useMemo(() => groupRequests(bankRequests.filter(r => r.status === 'pending')), [bankRequests]);
+  const resolvedRequestGroups = useMemo(() => groupRequests(bankRequests.filter(r => r.status !== 'pending')), [bankRequests]);
 
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
@@ -272,6 +335,14 @@ export default function BankRequestsTab({
       <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner mb-8">
         <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Update Bank Inventory</h3>
         <p className="text-xs text-slate-500 mb-4">Upload the <code className="text-amber-500">TBCBankLogger.lua</code> SavedVariables file after scanning the bank in-game.</p>
+        <div className="mb-4 bg-slate-900 border border-slate-800 rounded-lg p-4 text-xs text-slate-300 space-y-2">
+          <p className="font-bold text-amber-400 uppercase tracking-wider">Guild Bank Addon Setup</p>
+          <p>1. Download the addon package and extract it into your WoW AddOns folder.</p>
+          <p>2. In-game, open the guild bank and run <span className="text-amber-400 font-bold">/gbscan</span>.</p>
+          <p>3. Reload UI or log out, then upload the generated <span className="text-amber-400 font-bold">TBCBankLogger.lua</span> file below.</p>
+          <p className="text-slate-500">SavedVariables path example: C:\Program Files (x86)\World of Warcraft\_anniversary_\WTF\Account\ACCOUNT_NAME\SavedVariables</p>
+          <a href="/addon/TBCBankLogger.zip" className="inline-block bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold px-3 py-2 rounded border border-slate-700 transition">Download Addon (.zip)</a>
+        </div>
         <div className="flex items-center gap-3 flex-wrap">
           <label className="bg-amber-600 hover:bg-amber-500 text-white font-bold px-4 py-2.5 rounded-lg transition cursor-pointer text-sm">
             📂 Select Lua File
@@ -287,48 +358,68 @@ export default function BankRequestsTab({
       </div>
 
       <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Pending Requests</h3>
-      {bankRequests.filter(r => r.status === 'pending').length === 0 ? (
+      {pendingRequestGroups.length === 0 ? (
         <p className="text-slate-600 italic py-4 mb-8">No pending requests.</p>
       ) : (
         <div className="flex flex-col gap-3 mb-8">
-          {bankRequests.filter(r => r.status === 'pending').map(req => {
-            const player = roster.find(p => p.id === req.player_id);
-            const isResponding = respondingRequestId === req.id;
-            const inBasket = basket.find(b => b.id === req.id);
+          {pendingRequestGroups.map(group => {
+            const requesters = [...new Set(group.requests.map(req => {
+              const player = roster.find(p => p.id === req.player_id);
+              return player?.name || req.requester_name || 'Unknown';
+            }))];
+            const hasMultiple = group.requests.length > 1;
+            const singleReq = !hasMultiple ? group.requests[0] : null;
+            const isResponding = singleReq && respondingRequestId === singleReq.id;
 
             return (
-              <div key={req.id} className={`border rounded-xl p-4 transition ${inBasket ? 'bg-amber-950/20 border-amber-700' : 'bg-slate-950 border-slate-800'}`}>
+              <div key={group.key} className="border rounded-xl p-4 transition bg-slate-950 border-slate-800">
                 <div className="flex items-center justify-between gap-4 flex-wrap mb-2">
                   <div className="flex items-center gap-3">
-                    <input
-                      type="checkbox"
-                      className="w-5 h-5 rounded border-slate-700 bg-slate-900 text-amber-600 cursor-pointer"
-                      checked={!!inBasket}
-                      onChange={() => toggleToBasket(req)}
-                    />
                     <div>
-                      <span className="font-bold text-purple-400">{req.item_name}</span>
-                      <span className="text-slate-500 text-sm"> x{req.quantity}</span>
-                      <p className="text-xs text-slate-500 mt-1">Requested by <span className="font-bold" style={{ color: player ? specsByName[getDisplayFromId(player.spec_id)]?.color : undefined }}>{player?.name || 'Unknown'}</span></p>
+                      <span className="font-bold text-purple-400">{hasMultiple ? `Basket (${group.requests.length} items)` : singleReq.item_name}</span>
+                      {!hasMultiple && <span className="text-slate-500 text-sm"> x{singleReq.quantity}</span>}
+                      <p className="text-xs text-slate-500 mt-1">Requested by <span className="font-bold">{requesters.join(', ')}</span></p>
+                      {group.request_group_id && <p className="text-[10px] text-slate-600 mt-0.5">Basket: {group.request_group_id.slice(0, 8)}</p>}
                     </div>
                   </div>
-                  <span className="text-[10px] text-slate-500 font-bold uppercase">{new Date(req.created_at).toLocaleString()}</span>
+                  <span className="text-[10px] text-slate-500 font-bold uppercase">{new Date(group.created_at).toLocaleString()}</span>
                 </div>
-                {req.reason && <p className="text-sm text-slate-300 bg-slate-900 p-2 rounded mb-3">{req.reason}</p>}
 
-                {!isResponding ? (
+                <div className="space-y-2 mb-3">
+                  {group.requests.map(req => {
+                    const player = roster.find(p => p.id === req.player_id);
+                    const requesterName = player?.name || req.requester_name || 'Unknown';
+                    return (
+                      <div key={req.id} className="text-sm text-slate-300 bg-slate-900 p-2 rounded border border-slate-800">
+                        <span className="font-bold text-purple-400">{req.item_name}</span>
+                        <span className="text-slate-500 text-xs"> x{req.quantity}</span>
+                        <span className="text-slate-500 text-xs"> — {requesterName}</span>
+                        {req.reason && <p className="text-xs text-slate-400 mt-1">{req.reason}</p>}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {hasMultiple ? (
                   <div className="flex gap-2">
-                    <button onClick={() => setRespondingRequestId(req.id)} className="text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded transition">Approve</button>
-                    <button onClick={() => setRespondingRequestId(`deny-${req.id}`)} className="text-xs font-bold bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded transition">Deny</button>
+                    <button onClick={() => openBulkModalForRequests(group.requests)} className="text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded transition">Process Basket</button>
                   </div>
-                ) : null}
+                ) : (
+                  <>
+                    {!isResponding ? (
+                      <div className="flex gap-2">
+                        <button onClick={() => setRespondingRequestId(singleReq.id)} className="text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded transition">Approve</button>
+                        <button onClick={() => setRespondingRequestId(`deny-${singleReq.id}`)} className="text-xs font-bold bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded transition">Deny</button>
+                        <button onClick={() => { setBasket(group.requests); openBulkModalForRequests(group.requests); }} className="text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded transition">Process as Basket</button>
+                      </div>
+                    ) : null}
 
-                {respondingRequestId === req.id && (
+                    {respondingRequestId === singleReq.id && (
                   <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-slate-800">
                     <div className="flex gap-2 items-end">
                       <div className="flex-1">
-                        <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Quantity (requested: {req.quantity})</label>
-                        <input type="number" min="1" max={req.quantity} className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none" value={approveQuantity} onChange={e => setApproveQuantity(e.target.value)} placeholder={String(req.quantity)} />
+                        <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Quantity (requested: {singleReq.quantity})</label>
+                        <input type="number" min="1" max={singleReq.quantity} className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none" value={approveQuantity} onChange={e => setApproveQuantity(e.target.value)} placeholder={String(singleReq.quantity)} />
                       </div>
                       <div className="flex-1">
                         <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Price (gold)</label>
@@ -340,13 +431,13 @@ export default function BankRequestsTab({
                       <input type="text" className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none" value={approveNote} onChange={e => setApproveNote(e.target.value)} placeholder="e.g. Only 3 in stock, rest on order" />
                     </div>
                     <div className="flex gap-2">
-                      <button onClick={() => handleResolveBankRequest(req.id, 'approved', parseInt(approvePrice) || 0, approveNote, parseInt(approveQuantity) || req.quantity)} className="text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded transition">Confirm Approval</button>
+                      <button onClick={() => handleResolveBankRequest(singleReq.id, 'approved', parseInt(approvePrice) || 0, approveNote, parseInt(approveQuantity) || singleReq.quantity)} className="text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded transition">Confirm Approval</button>
                       <button onClick={() => setRespondingRequestId(null)} className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded transition">Cancel</button>
                     </div>
                   </div>
                 )}
 
-                {respondingRequestId === `deny-${req.id}` && (
+                {respondingRequestId === `deny-${singleReq.id}` && (
                   <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-slate-800">
                     <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Reason for denial</label>
                     <select className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none mb-2" value={denyReason} onChange={e => setDenyReason(e.target.value)}>
@@ -360,10 +451,12 @@ export default function BankRequestsTab({
                       <input type="text" className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none mb-2" placeholder="Enter custom reason..." value={denyCustomReason} onChange={e => setDenyCustomReason(e.target.value)} />
                     )}
                     <div className="flex gap-2">
-                      <button onClick={() => handleResolveBankRequest(req.id, 'denied', null, denyReason === 'custom' ? denyCustomReason : denyReason)} className="text-xs font-bold bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded transition">Confirm Denial</button>
+                      <button onClick={() => handleResolveBankRequest(singleReq.id, 'denied', null, denyReason === 'custom' ? denyCustomReason : denyReason)} className="text-xs font-bold bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded transition">Confirm Denial</button>
                       <button onClick={() => setRespondingRequestId(null)} className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded transition">Cancel</button>
                     </div>
                   </div>
+                )}
+                  </>
                 )}
               </div>
             );
@@ -372,26 +465,40 @@ export default function BankRequestsTab({
       )}
 
       <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Resolved Requests</h3>
-      {bankRequests.filter(r => r.status !== 'pending').length === 0 ? (
+      {resolvedRequestGroups.length === 0 ? (
         <p className="text-slate-600 italic py-4">No resolved requests yet.</p>
       ) : (
         <div className="flex flex-col gap-2">
-          {bankRequests.filter(r => r.status !== 'pending').map(req => {
-            const player = roster.find(p => p.id === req.player_id);
+          {resolvedRequestGroups.map(group => {
+            const hasMultiple = group.requests.length > 1;
             return (
-              <div key={req.id} className={`flex items-center justify-between gap-4 p-3 rounded border ${req.status === 'approved' ? 'bg-emerald-950/20 border-emerald-900' : 'bg-red-950/20 border-red-900'}`}>
-                <div className="flex-1 min-w-0">
-                  <span className="font-bold text-sm text-slate-200">{req.item_name}</span>
-                  <span className="text-slate-500 text-xs"> x{req.quantity}</span>
-                  <span className="text-xs text-slate-500"> — {player?.name || 'Unknown'}</span>
+              <div key={group.key} className="p-3 rounded border bg-slate-950 border-slate-800">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-bold text-slate-300">{hasMultiple ? `Basket (${group.requests.length} items)` : 'Single Request'}</span>
+                  <span className="text-[10px] text-slate-500 font-bold uppercase">{new Date(group.created_at).toLocaleString()}</span>
                 </div>
-                {req.status === 'approved' ? (
-                  <span className="text-xs font-bold text-emerald-400" title={req.officer_note}>
-                    Approved {req.approved_quantity && req.approved_quantity < req.quantity ? `(${req.approved_quantity}/${req.quantity})` : ''}{req.price ? ` — ${req.price}g` : ''}
-                  </span>
-                ) : (
-                  <span className="text-xs font-bold text-red-400" title={req.officer_note}>Denied{req.officer_note ? `: ${req.officer_note}` : ''}</span>
-                )}
+                <div className="space-y-2">
+                  {group.requests.map(req => {
+                    const player = roster.find(p => p.id === req.player_id);
+                    const requesterName = player?.name || req.requester_name || 'Unknown';
+                    return (
+                      <div key={req.id} className={`flex items-center justify-between gap-4 p-2.5 rounded border ${req.status === 'approved' ? 'bg-emerald-950/20 border-emerald-900' : 'bg-red-950/20 border-red-900'}`}>
+                        <div className="flex-1 min-w-0">
+                          <span className="font-bold text-sm text-slate-200">{req.item_name}</span>
+                          <span className="text-slate-500 text-xs"> x{req.quantity}</span>
+                          <span className="text-xs text-slate-500"> — {requesterName}</span>
+                        </div>
+                        {req.status === 'approved' ? (
+                          <span className="text-xs font-bold text-emerald-400" title={req.officer_note}>
+                            Approved {req.approved_quantity && req.approved_quantity < req.quantity ? `(${req.approved_quantity}/${req.quantity})` : ''}{req.price ? ` — ${req.price}g` : ''}
+                          </span>
+                        ) : (
+                          <span className="text-xs font-bold text-red-400" title={req.officer_note}>Denied{req.officer_note ? `: ${req.officer_note}` : ''}</span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             );
           })}

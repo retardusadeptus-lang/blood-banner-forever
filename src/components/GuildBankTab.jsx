@@ -6,15 +6,20 @@ export default function GuildBankTab({
   bankSearch,
   setBankSearch,
   isAuthenticated,
-  roster
+  roster,
+  myPlayerId
 }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedSubCategory, setSelectedSubCategory] = useState('All');
   const [requestItem, setRequestItem] = useState(null);
   const [requestQty, setRequestQty] = useState(1);
   const [requestReason, setRequestReason] = useState('');
-  const [selectedPlayerId, setSelectedPlayerId] = useState(roster.length > 0 ? roster[0].id : '');
+  const [selectedPlayerId, setSelectedPlayerId] = useState(myPlayerId || (roster.length > 0 ? roster[0].id : ''));
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  React.useEffect(() => {
+    if (myPlayerId) setSelectedPlayerId(myPlayerId);
+  }, [myPlayerId]);
   
   // Shopping Basket State
   const [basket, setBasket] = useState([]);
@@ -45,9 +50,11 @@ export default function GuildBankTab({
 
   const addToBasket = (e) => {
     e.preventDefault();
+    const player = roster.find(p => p.id === parseInt(selectedPlayerId));
     const newRequest = {
       id: generateId(),
       player_id: parseInt(selectedPlayerId),
+      player_name: player?.name || 'Unknown',
       item_wowhead_id: requestItem.item_wowhead_id,
       item_name: requestItem.name,
       quantity: parseInt(requestQty),
@@ -57,11 +64,15 @@ export default function GuildBankTab({
     setRequestItem(null);
   };
 
+  const removeFromBasket = (requestId) => {
+    setBasket(prev => prev.filter(item => item.id !== requestId));
+  };
+
   const submitBasket = async () => {
     setIsSubmitting(true);
     try {
-      await Promise.all(basket.map(req => postData('bank-requests', req)));
-      alert(`🎉 Successfully submitted ${basket.length} requests!`);
+      await postData('bank-requests', { basket_items: basket });
+      alert(`Request submitted to officers (${basket.length} item${basket.length === 1 ? '' : 's'}).`);
       setBasket([]);
     } catch (err) {
       console.error(err);
@@ -78,16 +89,30 @@ export default function GuildBankTab({
       
       {/* 🛒 Shopping Basket Header */}
       {basket.length > 0 && (
-        <div className="bg-amber-950/30 border border-amber-700 p-4 rounded-xl flex items-center justify-between mb-6">
-          <div className="flex items-center gap-4">
+        <div className="bg-amber-950/30 border border-amber-700 p-4 rounded-xl mb-6 space-y-3">
+          <div className="flex items-center justify-between gap-3">
             <span className="text-amber-500 font-bold text-sm">🛒 {basket.length} Items in Basket</span>
-            <div className="flex gap-2 max-w-lg overflow-x-auto text-xs text-slate-300">
-              {basket.map(b => <span key={b.id} className="bg-slate-900 px-2 py-1 rounded border border-slate-800">{b.quantity}x {b.item_name}</span>)}
-            </div>
+            <button onClick={submitBasket} disabled={isSubmitting} className="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-lg transition">
+              {isSubmitting ? 'Sending...' : 'Submit Basket'}
+            </button>
           </div>
-          <button onClick={submitBasket} disabled={isSubmitting} className="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-lg transition">
-            {isSubmitting ? 'Sending...' : 'Submit All Requests'}
-          </button>
+          <div className="flex flex-col gap-2 max-h-56 overflow-y-auto text-xs text-slate-300 pr-1 custom-scrollbar">
+              {basket.map(b => (
+                <span key={b.id} className="bg-slate-900 px-2 py-1.5 rounded border border-slate-800 inline-flex items-center gap-2">
+                  <span className="text-amber-400 font-bold">{b.quantity}x</span>
+                  <span className="flex-1 min-w-0 truncate">{b.item_name}</span>
+                  <span className="text-slate-500 truncate">({b.player_name})</span>
+                  <button
+                    onClick={() => removeFromBasket(b.id)}
+                    className="text-slate-400 hover:text-red-400 font-bold leading-none"
+                    aria-label={`Remove ${b.item_name} from basket`}
+                    title="Remove from basket"
+                  >
+                    ×
+                  </button>
+                </span>
+              ))}
+          </div>
         </div>
       )}
 
@@ -103,28 +128,57 @@ export default function GuildBankTab({
           </div>
           <input type="text" placeholder="Search vault inventory..." className="w-full xl:w-80 bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none" value={bankSearch} onChange={e => setBankSearch(e.target.value)} />
         </div>
+        {uniqueSubCategories.length > 1 && (
+          <div className="flex flex-wrap items-center gap-2">
+            {uniqueSubCategories.map(sub => (
+              <button
+                key={sub}
+                onClick={() => setSelectedSubCategory(sub)}
+                className={`px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider border transition-all ${
+                  selectedSubCategory === sub
+                    ? 'bg-amber-500 border-amber-600 text-slate-950 shadow-sm'
+                    : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                {sub}
+              </button>
+            ))}
+            <span className="text-xs text-slate-500 ml-auto">{filteredBankItems.length} items</span>
+          </div>
+        )}
       </div>
 
       {/* 📦 Items List */}
-      <div className="flex flex-wrap gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         {filteredBankItems.map((item, idx) => (
-          <div key={idx} className="flex items-center gap-3 bg-slate-950 border border-slate-800/80 px-3 py-1.5 rounded-xl transition-all h-10">
-            <span className="text-xs font-black text-amber-400 font-mono bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800">{item.count || item.quantity || 0}x</span>
-            
-            {/* Wowhead Linked Item Name */}
-            <a
-              href={item.item_wowhead_id ? `https://www.wowhead.com/tbc/item=${item.item_wowhead_id}` : `https://www.wowhead.com/tbc/search?q=${encodeURIComponent(item.name)}`}
-              target="_blank"
-              rel="noreferrer"
-              className="text-sm font-bold text-slate-200 hover:text-purple-400 hover:underline truncate block max-w-[220px]"
-            >
-              {item.name}
-            </a>
+          <div key={idx} className="w-full bg-slate-950 border border-slate-800/80 px-3 py-2.5 rounded-xl transition-all hover:border-amber-700/60 hover:bg-slate-900/90">
+            <div className="flex items-center justify-between gap-1.5">
+              <a
+                href={item.item_wowhead_id ? `https://www.wowhead.com/tbc/item=${item.item_wowhead_id}` : `https://www.wowhead.com/tbc/search?q=${encodeURIComponent(item.name)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="min-w-0 text-sm font-bold text-slate-200 hover:text-purple-400 hover:underline truncate block"
+                title={item.name}
+              >
+                {item.name}
+              </a>
+              <span className="shrink-0 text-xs font-black text-amber-400 font-mono bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800">{item.count || item.quantity || 0}x</span>
+            </div>
 
-            <button onClick={() => { setRequestItem(item); setRequestQty(1); setRequestReason(''); }} className="bg-slate-900 hover:bg-amber-600 hover:text-slate-950 border border-slate-800 font-bold px-2 py-0.5 rounded text-[10px] uppercase tracking-wider transition-all">Add to Basket</button>
+            <div className="mt-1 h-4 text-[10px] uppercase tracking-wider text-slate-500 truncate" title={item.sub_type || 'No sub-category'}>
+              {item.sub_type || 'No sub-category'}
+            </div>
+
+            <button onClick={() => { setRequestItem(item); setRequestQty(1); setRequestReason(''); }} className="mt-3 w-full bg-slate-900 hover:bg-amber-600 hover:text-slate-950 border border-slate-800 font-bold px-3 py-1.5 rounded text-[10px] uppercase tracking-wider transition-all">Add to Basket</button>
           </div>
         ))}
       </div>
+
+      {filteredBankItems.length === 0 && (
+        <div className="text-center text-sm text-slate-500 border border-slate-800 rounded-xl bg-slate-950/60 py-6">
+          No items match your current filters.
+        </div>
+      )}
 
       {/* Request Modal */}
       {requestItem && (

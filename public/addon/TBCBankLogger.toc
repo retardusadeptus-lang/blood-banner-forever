@@ -1,0 +1,7 @@
+## Interface: 20504
+## Title: TBC Bank Logger
+## Notes: Exports bank inventory to SavedVariables
+## Author: GuildMaster
+## SavedVariables: TBCBankDB
+
+TBCBankLogger.lua

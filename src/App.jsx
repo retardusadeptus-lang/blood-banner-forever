@@ -11,10 +11,12 @@ import LootCouncilTab from './components/LootCouncilTab';
 import RosterTab from './components/RosterTab';
 import ScoringTab from './components/ScoringTab';
 import RaidAssignmentsTab from './components/RaidAssignmentsTab';
+import OfficerRolesTab from './components/OfficerRolesTab';
 
 const CORE_SYNC_INTERVAL_MS = 15000;
 const BANK_SYNC_INTERVAL_MS = 20000;
 const RAID_ASSIGNMENTS_SYNC_INTERVAL_MS = 15000;
+const RAIDHELPER_ALIAS_MAP_KEY = 'raidhelper-name-map-v1';
 
 export default function App() {
 
@@ -84,12 +86,14 @@ export default function App() {
   // ==========================================
   const [isAuthenticated, setIsAuthenticated] = useState(() => sessionStorage.getItem('ar-auth') === 'true');
   const [passwordInput, setPasswordInput] = useState('');
+  const [globalMyPlayerId, setGlobalMyPlayerId] = useState(() => localStorage.getItem('my-player-id') || '');
 
   // Global phase selector (controls which phase's assignments are shown)
   const [globalPhase, setGlobalPhase] = useState('T5');
 
   // Default to public overview tab
-  const [activeTab, setActiveTab] = useState('overview');
+  const AUTH_ONLY_TABS = ['bankRequests', 'loot', 'roster', 'scoring', 'itemsdb', 'officerRoles'];
+  const [activeTab, setActiveTab] = useState(() => localStorage.getItem('active-tab') || 'overview');
   const [overviewSearch, setOverviewSearch] = useState('');
 
   const [isDbConnected, setIsDbConnected] = useState(false);
@@ -105,6 +109,10 @@ export default function App() {
   const [expandedPlayerId, setExpandedPlayerId] = useState(null);
   const [newRaidDate, setNewRaidDate] = useState(new Date().toISOString().split('T')[0]);
   const [newRaidZone, setNewRaidZone] = useState('SSC / TK');
+  const [recentRaidHelperImportedIds, setRecentRaidHelperImportedIds] = useState([]);
+  const [recentRaidHelperSpecConflictIds, setRecentRaidHelperSpecConflictIds] = useState([]);
+  const [raidHelperImportSession, setRaidHelperImportSession] = useState(null);
+  const [itemIdEditor, setItemIdEditor] = useState(null);
 
   const {
     mutableItems,
@@ -165,6 +173,19 @@ export default function App() {
   const [denyCustomReason, setDenyCustomReason] = useState('');
   const [approveQuantity, setApproveQuantity] = useState('');
   const [approveNote, setApproveNote] = useState('');
+  const [officerRoles, setOfficerRoles] = useState([]);
+
+  // Persist current tab so refresh restores where the user left off.
+  useEffect(() => {
+    localStorage.setItem('active-tab', activeTab);
+  }, [activeTab]);
+
+  // If a saved tab requires auth and the session is locked, fall back safely.
+  useEffect(() => {
+    if (!isAuthenticated && AUTH_ONLY_TABS.includes(activeTab)) {
+      setActiveTab('overview');
+    }
+  }, [isAuthenticated, activeTab]);
 
   // ==========================================
   // 2. CLOUD SYNCHRONIZATION STATES
@@ -185,18 +206,82 @@ export default function App() {
   const [raidLogsDirty, setRaidLogsDirty] = useState(false);
   const [raidAssignmentDataDirty, setRaidAssignmentDataDirty] = useState(false);
   const [enabledBossesDirty, setEnabledBossesDirty] = useState(false);
+  const [officerRolesDirty, setOfficerRolesDirty] = useState(false);
 
   const [isSavingLootCouncil, setIsSavingLootCouncil] = useState(false);
   const [isSavingRosterAttendance, setIsSavingRosterAttendance] = useState(false);
   const [isSavingScoring, setIsSavingScoring] = useState(false);
   const [isSavingRaidAssignments, setIsSavingRaidAssignments] = useState(false);
+  const [isSavingOfficerRoles, setIsSavingOfficerRoles] = useState(false);
+
+  const selectedMyPlayerName = useMemo(() => {
+    if (!globalMyPlayerId) return null;
+    return roster.find(p => p.id === parseInt(globalMyPlayerId))?.name || null;
+  }, [globalMyPlayerId, roster]);
+
+  const selectedMyPlayerBisSpec = useMemo(() => {
+    if (!globalMyPlayerId) return null;
+    const player = roster.find(p => p.id === parseInt(globalMyPlayerId, 10));
+    if (!player) return null;
+    return getDisplayFromId(player.spec_id);
+  }, [globalMyPlayerId, roster, specsFromDb]);
+
+  // When opening BiS Config, default the spec selector to the selected character.
+  useEffect(() => {
+    if (activeTab !== 'bis') return;
+    if (!selectedMyPlayerBisSpec) return;
+    if (selectedBisSpec !== selectedMyPlayerBisSpec) {
+      setSelectedBisSpec(selectedMyPlayerBisSpec);
+    }
+  }, [activeTab, selectedMyPlayerBisSpec]);
+
+  const customRaidGroups = useMemo(() => {
+    const grouped = raidAssignmentData?.__customBossGroups;
+    if (Array.isArray(grouped)) return grouped;
+
+    // Backward compatibility for older single-list custom boss storage.
+    const legacy = Array.isArray(raidAssignmentData?.__customBosses) ? raidAssignmentData.__customBosses : [];
+    if (legacy.length === 0) return [];
+    return [{ zone: 'Custom', bosses: legacy }];
+  }, [raidAssignmentData]);
+
+  const raidZones = useMemo(() => {
+    const mergedByZone = new Map();
+
+    RAID_ZONES.forEach(zone => {
+      mergedByZone.set(zone.name.toLowerCase(), {
+        name: zone.name,
+        bosses: [...zone.bosses]
+      });
+    });
+
+    customRaidGroups
+      .filter(group => group && group.zone)
+      .forEach(group => {
+        const key = String(group.zone).toLowerCase();
+        const incomingBosses = Array.isArray(group.bosses) ? group.bosses : [];
+        if (!incomingBosses.length) return;
+
+        const existing = mergedByZone.get(key);
+        if (existing) {
+          existing.bosses = [...new Set([...existing.bosses, ...incomingBosses])];
+        } else {
+          mergedByZone.set(key, {
+            name: group.zone,
+            bosses: [...new Set(incomingBosses)]
+          });
+        }
+      });
+
+    return Array.from(mergedByZone.values());
+  }, [customRaidGroups]);
 
   const hasLootUnsavedChanges = assignmentsDirty;
   const hasItemsDbUnsavedChanges = dbBisPrioritiesDirty || mutableItemsDirty;
   const hasRosterUnsavedChanges = rosterDirty || raidLogsDirty || playerStatsDirty;
   const hasScoringUnsavedChanges = scoringConfigDirty || playerStatsDirty;
   const hasRaidAssignmentsUnsavedChanges = raidAssignmentDataDirty || enabledBossesDirty;
-  const hasAnyUnsavedChanges = hasLootUnsavedChanges || hasItemsDbUnsavedChanges || hasRosterUnsavedChanges || hasScoringUnsavedChanges || hasRaidAssignmentsUnsavedChanges;
+  const hasAnyUnsavedChanges = hasLootUnsavedChanges || hasItemsDbUnsavedChanges || hasRosterUnsavedChanges || hasScoringUnsavedChanges || hasRaidAssignmentsUnsavedChanges || officerRolesDirty;
 
   // ==========================================
   // HELPER: Initialize default BiS priorities from aggregated data
@@ -294,8 +379,18 @@ export default function App() {
   const setScoringConfig = (newVal) => { setScoringConfigLocal(newVal); setScoringConfigDirty(true); };
   const setPlayerStats = (newVal) => { setPlayerStatsLocal(newVal); setPlayerStatsDirty(true); };
   const setRaidLogs = (newVal) => { setRaidLogsLocal(newVal); setRaidLogsDirty(true); };
-  const setRaidAssignmentData = (newVal) => { setRaidAssignmentDataLocal(newVal); setRaidAssignmentDataDirty(true); };
-  const setEnabledBosses = (newVal) => { setEnabledBossesLocal(newVal); setEnabledBossesDirty(true); };
+  const setRaidAssignmentData = (newValOrUpdater) => {
+    setRaidAssignmentDataLocal(prev => (typeof newValOrUpdater === 'function' ? newValOrUpdater(prev) : newValOrUpdater));
+    setRaidAssignmentDataDirty(true);
+  };
+  const setEnabledBosses = (newValOrUpdater) => {
+    setEnabledBossesLocal(prev => (typeof newValOrUpdater === 'function' ? newValOrUpdater(prev) : newValOrUpdater));
+    setEnabledBossesDirty(true);
+  };
+  const setOfficerRolesData = (newValOrUpdater) => {
+    setOfficerRoles(prev => (typeof newValOrUpdater === 'function' ? newValOrUpdater(prev) : newValOrUpdater));
+    setOfficerRolesDirty(true);
+  };
   // ==========================================
   // 5. WOWHEAD TOOLTIP ENGINE
   // ==========================================
@@ -365,6 +460,10 @@ export default function App() {
     setNewName('');
   };
 
+  const handleUpdatePlayer = (id, updates) => {
+    setRoster(roster.map(p => (p.id === id ? { ...p, ...updates } : p)));
+  };
+
   const handleRemovePlayer = (id) => {
     if (window.confirm("Are you sure you want to permanently delete this player?")) {
       setRoster(roster.filter(p => p.id !== id));
@@ -379,7 +478,7 @@ export default function App() {
 
   const calculateAttendance = (playerId) => {
     if (raidLogs.length === 0) return 100;
-    const attendedCount = raidLogs.filter(log => log.attendees.includes(playerId)).length;
+    const attendedCount = raidLogs.filter(log => (log.attendees || []).map(Number).includes(Number(playerId))).length;
     return Math.round((attendedCount / raidLogs.length) * 100);
   };
 
@@ -402,9 +501,345 @@ export default function App() {
 
   const handleSaveRaidLog = (e) => {
     e.preventDefault();
-    const activeRaiderIds = roster.filter(p => p.in_raid).map(p => p.id);
+    const activeRaiderIds = roster.filter(p => p.in_raid).map(p => Number(p.id));
     setRaidLogs([{ id: Date.now(), date: newRaidDate, zone: newRaidZone, attendees: activeRaiderIds }, ...raidLogs]);
     alert(`Saved raid log for ${activeRaiderIds.length} players!`);
+  };
+
+  const normalizeRaidHelperToken = (value) => {
+    return String(value || '')
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, ' ')
+      .replace(/[0-9]+$/g, '');
+  };
+
+  const parseRaidHelperDate = (value) => {
+    const raw = String(value || '').trim();
+    const match = raw.match(/^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})$/);
+    if (!match) return new Date().toISOString().split('T')[0];
+    const day = match[1].padStart(2, '0');
+    const month = match[2].padStart(2, '0');
+    const year = match[3];
+    return `${year}-${month}-${day}`;
+  };
+
+  const resolveSpecIdFromRaidHelper = (signup, preferredClass) => {
+    const classCandidates = [signup?.className, signup?.cClassName]
+      .map(v => String(v || '').trim())
+      .filter(Boolean)
+      .filter(v => !['Absence', 'Tentative', 'Bench', 'Late', 'Tank'].includes(v));
+
+    const preferredClassToken = normalizeRaidHelperToken(preferredClass);
+    const classTokens = [...new Set(classCandidates.map(normalizeRaidHelperToken))];
+    const specTokens = [...new Set([signup?.specName, signup?.cSpecName].map(normalizeRaidHelperToken).filter(Boolean))];
+    if (specTokens.length === 0) return null;
+
+    const specMatches = specsFromDb.filter(spec => specTokens.includes(normalizeRaidHelperToken(spec.spec)));
+    if (specMatches.length === 0) return null;
+
+    if (preferredClassToken) {
+      const preferred = specMatches.find(spec => normalizeRaidHelperToken(spec.class) === preferredClassToken);
+      if (preferred) return preferred.id;
+    }
+
+    if (classTokens.length > 0) {
+      const classFiltered = specMatches.filter(spec => classTokens.includes(normalizeRaidHelperToken(spec.class)));
+      if (classFiltered.length === 1) return classFiltered[0].id;
+      if (classFiltered.length > 1) return classFiltered[0].id;
+    }
+
+    if (specMatches.length === 1) return specMatches[0].id;
+    return specMatches[0].id;
+  };
+
+  const handleImportRaidHelperJson = (rawJson) => {
+    const raw = String(rawJson || '').trim();
+    if (!raw) {
+      alert('Paste RaidHelper JSON first.');
+      return false;
+    }
+
+    let parsed;
+    try {
+      parsed = JSON.parse(raw);
+    } catch (e) {
+      alert('Invalid JSON. Please paste the full RaidHelper payload.');
+      return false;
+    }
+
+    const signUps = Array.isArray(parsed?.signUps) ? parsed.signUps : [];
+    if (signUps.length === 0) {
+      alert('No signUps found in this payload.');
+      return false;
+    }
+
+    const skipClasses = new Set(['absence', 'tentative', 'bench', 'late']);
+    const raidSignUps = signUps.filter(signup => {
+      const classToken = normalizeRaidHelperToken(signup?.className || signup?.cClassName);
+      const statusToken = normalizeRaidHelperToken(signup?.status || 'primary');
+      if (!signup?.name) return false;
+      if (skipClasses.has(classToken)) return false;
+      return statusToken === 'primary' || statusToken === '';
+    });
+
+    if (raidSignUps.length === 0) {
+      alert('No eligible primary raid signups found after filtering Absence/Tentative/Bench/Late.');
+      return false;
+    }
+
+    let aliasMap = {};
+    try {
+      aliasMap = JSON.parse(localStorage.getItem(RAIDHELPER_ALIAS_MAP_KEY) || '{}') || {};
+    } catch (e) {
+      aliasMap = {};
+    }
+
+    const nextRoster = [...roster];
+    const pending = [];
+    const autoActions = [];
+
+    const findRosterByName = (name) => {
+      const target = normalizeRaidHelperToken(name);
+      return nextRoster.find(player => normalizeRaidHelperToken(player.name) === target);
+    };
+
+    raidSignUps.forEach(signup => {
+      const importedName = String(signup.name || '').trim();
+      if (!importedName) return;
+
+      let matchedPlayer = findRosterByName(importedName);
+      const importedNameToken = normalizeRaidHelperToken(importedName);
+
+      if (!matchedPlayer && aliasMap[importedNameToken]) {
+        matchedPlayer = findRosterByName(aliasMap[importedNameToken]);
+      }
+
+      const matchedSpec = matchedPlayer ? getSpecById(matchedPlayer.spec_id) : null;
+      const resolvedSpecId = resolveSpecIdFromRaidHelper(signup, matchedSpec?.class);
+      const resolvedSpec = resolvedSpecId ? getSpecById(resolvedSpecId) : null;
+      const classFromJson = [signup?.className, signup?.cClassName]
+        .map(v => String(v || '').trim())
+        .find(v => v && !['Absence', 'Tentative', 'Bench', 'Late', 'Tank'].includes(v));
+      const selectedClass = resolvedSpec?.class || classFromJson || '';
+
+      if (!matchedPlayer) {
+        pending.push({
+          id: `${importedNameToken}-${signup.id || Date.now()}-${pending.length}`,
+          source: 'unmatched',
+          imported_name: importedName,
+          imported_token: importedNameToken,
+          incoming_spec_name: signup?.specName || signup?.cSpecName || '',
+          resolution: 'add',
+          mapped_player_id: '',
+          selected_class: selectedClass,
+          selected_spec_id: resolvedSpecId || ''
+        });
+        return;
+      }
+
+      if (resolvedSpecId && Number(matchedPlayer.spec_id) !== Number(resolvedSpecId)) {
+        pending.push({
+          id: `${importedNameToken}-${signup.id || Date.now()}-${pending.length}`,
+          source: 'specMismatch',
+          imported_name: importedName,
+          imported_token: importedNameToken,
+          incoming_spec_name: signup?.specName || signup?.cSpecName || '',
+          resolution: 'leave',
+          mapped_player_id: matchedPlayer.id,
+          selected_class: selectedClass,
+          selected_spec_id: resolvedSpecId || ''
+        });
+        return;
+      }
+
+      autoActions.push({
+        imported_name: importedName,
+        imported_token: importedNameToken,
+        mapped_player_id: matchedPlayer.id
+      });
+    });
+
+    const raidDate = parseRaidHelperDate(parsed?.date);
+    const raidZone = String(parsed?.displayTitle || parsed?.title || parsed?.channelName || newRaidZone || 'Imported Raid').trim();
+
+    if (pending.length > 0) {
+      setRaidHelperImportSession({
+        raidDate,
+        raidZone,
+        aliasMap,
+        autoActions,
+        pending
+      });
+      return true;
+    }
+
+    const attendeeIds = autoActions.map(action => Number(action.mapped_player_id)).filter(Boolean);
+    if (attendeeIds.length === 0) {
+      alert('No attendees could be mapped from this import.');
+      return false;
+    }
+
+    localStorage.setItem(RAIDHELPER_ALIAS_MAP_KEY, JSON.stringify(aliasMap));
+
+    const attendeeSet = new Set(attendeeIds.map(Number));
+    const rosterWithRaidState = roster.map(player => ({
+      ...player,
+      in_raid: attendeeSet.has(Number(player.id))
+    }));
+
+    setRoster(rosterWithRaidState);
+    setPlayerStats(playerStats);
+    setRaidLogs([{ id: Date.now(), date: raidDate, zone: raidZone, attendees: attendeeIds }, ...raidLogs]);
+    setNewRaidDate(raidDate);
+    setNewRaidZone(raidZone);
+    setRecentRaidHelperImportedIds(attendeeIds);
+    setRecentRaidHelperSpecConflictIds([]);
+
+    alert(`RaidHelper import complete: ${attendeeIds.length} attendees imported.`);
+    return true;
+  };
+
+  const handleUpdateRaidHelperImportEntry = (entryId, patch) => {
+    setRaidHelperImportSession(prev => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        pending: prev.pending.map(entry => {
+          if (entry.id !== entryId) return entry;
+          const merged = { ...entry, ...patch };
+
+          if (Object.prototype.hasOwnProperty.call(patch, 'selected_class')) {
+            const selectedClass = String(patch.selected_class || '').trim();
+            const classSpecs = specsFromDb.filter(spec => spec.class === selectedClass);
+            if (classSpecs.length > 0 && !classSpecs.some(spec => Number(spec.id) === Number(merged.selected_spec_id))) {
+              merged.selected_spec_id = classSpecs[0].id;
+            }
+          }
+
+          return merged;
+        })
+      };
+    });
+  };
+
+  const handleCancelRaidHelperImport = () => {
+    setRaidHelperImportSession(null);
+  };
+
+  const handleApplyRaidHelperImport = () => {
+    const session = raidHelperImportSession;
+    if (!session) return;
+
+    const invalidEntries = (session.pending || []).filter(entry => {
+      const resolution = String(entry.resolution || '').toLowerCase();
+      if (resolution === 'add') {
+        return !entry.selected_spec_id;
+      }
+      return !entry.mapped_player_id;
+    });
+
+    if (invalidEntries.length > 0) {
+      alert('Please complete all required dropdown selections before applying import.');
+      return;
+    }
+
+    let nextRoster = [...roster];
+    const nextPlayerStats = { ...playerStats };
+    const attendeeIds = new Set();
+    const conflictIds = new Set();
+    const aliasMap = { ...(session.aliasMap || {}) };
+    let createdCount = 0;
+    let mappedCount = 0;
+    let amendedCount = 0;
+    let nextIdSeed = Date.now();
+
+    const ensurePlayerStats = (id) => {
+      if (!nextPlayerStats[id]) {
+        nextPlayerStats[id] = { cons: true, enchants: true, gems: true, afks: 0, parses: {}, manualAdjustment: { value: 0, note: '' } };
+      }
+    };
+
+    (session.autoActions || []).forEach(action => {
+      if (action?.mapped_player_id) attendeeIds.add(Number(action.mapped_player_id));
+    });
+
+    (session.pending || []).forEach(entry => {
+      const resolution = String(entry.resolution || '').toLowerCase();
+      const selectedSpecId = Number(entry.selected_spec_id || 0) || null;
+
+      if (resolution === 'add') {
+        const fallbackSpecId = selectedSpecId || (specsFromDb[0]?.id || null);
+        if (!fallbackSpecId) return;
+        const newPlayer = {
+          id: ++nextIdSeed,
+          name: entry.imported_name,
+          spec_id: fallbackSpecId,
+          in_raid: true
+        };
+        nextRoster.push(newPlayer);
+        ensurePlayerStats(newPlayer.id);
+        attendeeIds.add(Number(newPlayer.id));
+        createdCount++;
+        return;
+      }
+
+      const mappedPlayerId = Number(entry.mapped_player_id || 0);
+      if (!mappedPlayerId) return;
+      const mappedPlayer = nextRoster.find(player => Number(player.id) === mappedPlayerId);
+      if (!mappedPlayer) return;
+
+      attendeeIds.add(Number(mappedPlayer.id));
+
+      if (entry.source === 'unmatched') {
+        aliasMap[entry.imported_token] = mappedPlayer.name;
+        mappedCount++;
+      }
+
+      if (resolution === 'amend' && selectedSpecId && Number(mappedPlayer.spec_id) !== selectedSpecId) {
+        nextRoster = nextRoster.map(player => Number(player.id) === Number(mappedPlayer.id) ? { ...player, spec_id: selectedSpecId } : player);
+        amendedCount++;
+        conflictIds.add(Number(mappedPlayer.id));
+      }
+
+      if (resolution === 'leave') {
+        conflictIds.add(Number(mappedPlayer.id));
+      }
+    });
+
+    const finalAttendeeIds = [...attendeeIds];
+    if (finalAttendeeIds.length === 0) {
+      alert('No attendees could be resolved from this import.');
+      return;
+    }
+
+    localStorage.setItem(RAIDHELPER_ALIAS_MAP_KEY, JSON.stringify(aliasMap));
+
+    const attendeeSet = new Set(finalAttendeeIds.map(Number));
+    const rosterWithRaidState = nextRoster.map(player => ({
+      ...player,
+      in_raid: attendeeSet.has(Number(player.id))
+    }));
+
+    setRoster(rosterWithRaidState);
+    setPlayerStats(nextPlayerStats);
+    setRaidLogs([{ id: Date.now(), date: session.raidDate, zone: session.raidZone, attendees: finalAttendeeIds }, ...raidLogs]);
+    setNewRaidDate(session.raidDate);
+    setNewRaidZone(session.raidZone);
+    setRecentRaidHelperImportedIds(finalAttendeeIds);
+    setRecentRaidHelperSpecConflictIds([...conflictIds]);
+    setRaidHelperImportSession(null);
+
+    alert(`RaidHelper import complete: ${finalAttendeeIds.length} attendees, ${createdCount} new players, ${mappedCount} alias mappings, ${amendedCount} specs amended.`);
+  };
+
+  const handleClearOverviewItemPriorities = (itemName) => {
+    if (!itemName) return;
+    if (!window.confirm(`Clear all assigned priorities for ${itemName}? This will remove it from Priority Overview until reassigned.`)) return;
+
+    const next = { ...assignments };
+    delete next[itemName];
+    setAssignments(next);
   };
 
   const handleDeleteRaidLog = (logId) => {
@@ -449,34 +884,41 @@ export default function App() {
     try {
       let updatedRoster = roster;
       let updatedStats = playerStats;
+      let updatedRaidLogs = raidLogs;
+      let idMap = {};
 
       if (rosterDirty) {
-        const rosterWithoutIds = roster.map(({ id, ...rest }) => rest);
-        updatedRoster = await putData('roster', rosterWithoutIds);
+        updatedRoster = await putData('roster', roster);
 
-        const idMap = {};
-        updatedRoster.forEach((newPlayer, index) => {
-          if (roster[index]) {
-            idMap[roster[index].id] = newPlayer.id;
+        updatedRoster.forEach(newPlayer => {
+          const oldPlayer = roster.find(p => p.name === newPlayer.name);
+          if (oldPlayer) {
+            idMap[oldPlayer.id] = newPlayer.id;
           }
         });
 
         updatedStats = {};
         Object.entries(playerStats).forEach(([oldId, stats]) => {
-          const newId = idMap[oldId] || oldId;
+          const newId = idMap[oldId] || Number(oldId);
           updatedStats[newId] = stats;
         });
 
+        updatedRaidLogs = raidLogs.map(log => ({
+          ...log,
+          attendees: (log.attendees || []).map(attendeeId => idMap[attendeeId] || Number(attendeeId))
+        }));
+
         setRosterLocal(updatedRoster);
         setPlayerStatsLocal(updatedStats);
+        setRaidLogsLocal(updatedRaidLogs);
       }
 
       if (playerStatsDirty || rosterDirty) {
         await putData('player-stats', updatedStats);
       }
 
-      if (raidLogsDirty) {
-        await putData('raid-logs', raidLogs);
+      if (raidLogsDirty || rosterDirty) {
+        await putData('raid-logs', updatedRaidLogs);
       }
 
       setRosterDirty(false);
@@ -507,6 +949,20 @@ export default function App() {
       alert('Failed to save scoring changes.');
     } finally {
       setIsSavingScoring(false);
+    }
+  };
+
+  const handleSaveOfficerRoles = async () => {
+    if (!officerRolesDirty) return;
+    setIsSavingOfficerRoles(true);
+    try {
+      await putData('officer-roles', officerRoles);
+      setOfficerRolesDirty(false);
+      alert('Officer roles saved.');
+    } catch (e) {
+      alert('Failed to save officer roles.');
+    } finally {
+      setIsSavingOfficerRoles(false);
     }
   };
 
@@ -543,6 +999,22 @@ export default function App() {
       setDenyCustomReason('');
     } catch (e) {
       alert('Failed to resolve request.');
+    }
+  };
+
+  const handleBulkResolveBankRequests = async (resolutions) => {
+    try {
+      await putData('bank-requests/bulk-resolve', { resolutions });
+      const requests = await fetchData('bank-requests');
+      setBankRequests(requests);
+      setRespondingRequestId(null);
+      setApprovePrice('');
+      setApproveQuantity('');
+      setApproveNote('');
+      setDenyReason('');
+      setDenyCustomReason('');
+    } catch (e) {
+      alert('Failed to resolve basket requests.');
     }
   };
 
@@ -612,7 +1084,7 @@ export default function App() {
   };
 
   const handleToggleZone = (zoneName, checked) => {
-    const zone = RAID_ZONES.find(z => z.name === zoneName);
+    const zone = raidZones.find(z => z.name === zoneName);
     if (!zone) return;
     const set = new Set(enabledBosses);
     zone.bosses.forEach(b => checked ? set.add(b) : set.delete(b));
@@ -622,6 +1094,61 @@ export default function App() {
     const set = new Set(enabledBosses);
     if (checked) set.add(bossName); else set.delete(bossName);
     setEnabledBosses([...set]);
+  };
+
+  const handleAddCustomRaidBoss = (zoneName, bossName) => {
+    const zone = String(zoneName || '').trim();
+    const boss = String(bossName || '').trim();
+    if (!zone || !boss) return;
+
+    const allKnownBosses = new Set(raidZones.flatMap(z => z.bosses.map(b => b.toLowerCase())));
+    if (allKnownBosses.has(boss.toLowerCase())) {
+      alert('Boss already exists in the selector.');
+      return;
+    }
+
+    setRaidAssignmentData(prev => {
+      const next = { ...(prev || {}) };
+      const existingGroups = Array.isArray(next.__customBossGroups) ? next.__customBossGroups : [];
+      const clone = existingGroups.map(group => ({ zone: group.zone, bosses: [...(group.bosses || [])] }));
+      const found = clone.find(group => String(group.zone).toLowerCase() === zone.toLowerCase());
+
+      if (found) {
+        found.bosses = [...new Set([...(found.bosses || []), boss])].sort((a, b) => a.localeCompare(b));
+      } else {
+        clone.push({ zone, bosses: [boss] });
+      }
+
+      next.__customBossGroups = clone.sort((a, b) => String(a.zone).localeCompare(String(b.zone)));
+      delete next.__customBosses;
+      return next;
+    });
+
+    setEnabledBosses(prev => [...new Set([...(prev || []), boss])]);
+  };
+
+  const handleRemoveCustomRaidBoss = (zoneName, bossName) => {
+    const zone = String(zoneName || '').trim();
+    const boss = String(bossName || '').trim();
+    if (!zone || !boss) return;
+
+    setRaidAssignmentData(prev => {
+      const next = { ...(prev || {}) };
+      const existingGroups = Array.isArray(next.__customBossGroups) ? next.__customBossGroups : [];
+      const updatedGroups = existingGroups
+        .map(group => {
+          if (String(group.zone).toLowerCase() !== zone.toLowerCase()) return { zone: group.zone, bosses: [...(group.bosses || [])] };
+          return { zone: group.zone, bosses: (group.bosses || []).filter(b => b !== boss) };
+        })
+        .filter(group => (group.bosses || []).length > 0);
+
+      next.__customBossGroups = updatedGroups;
+      delete next[boss];
+      delete next.__customBosses;
+      return next;
+    });
+
+    setEnabledBosses(prev => (prev || []).filter(b => b !== boss));
   };
 
   // --- FILTERS ---
@@ -778,6 +1305,35 @@ export default function App() {
     return { bis, opt };
   };
 
+  const jumpToMasterItemsDbForItem = (itemName) => {
+    const targetName = String(itemName || '').trim().toLowerCase();
+    if (!targetName) return;
+
+    const item = mutableItems.find(entry => String(entry.name || '').trim().toLowerCase() === targetName);
+    if (!item) {
+      alert(`Item not found in Master Items DB: ${itemName}`);
+      return;
+    }
+
+    setItemIdEditor({
+      itemId: item.id,
+      itemName: item.name,
+      wowheadIdInput: String(item.itemId || '')
+    });
+  };
+
+  const handleSaveItemIdFromModal = () => {
+    if (!itemIdEditor) return;
+    const trimmed = String(itemIdEditor.wowheadIdInput || '').trim();
+    if (trimmed && !/^\d+$/.test(trimmed)) {
+      alert('Wowhead ID must be numeric (or blank to clear).');
+      return;
+    }
+
+    handleUpdateItemId(itemIdEditor.itemId, trimmed);
+    setItemIdEditor(null);
+  };
+
   const renderItemSlot = (slotName) => {
     const { bis, opt } = getItemsForSlotAndSpec(slotName, selectedBisSpec);
     const isBottomSlot = BOTTOM_SLOTS.includes(slotName);
@@ -825,7 +1381,19 @@ export default function App() {
           {bis.length > 0 ? (
             bis.map(i => (
               <div key={i.name} className="flex flex-col">
-                {renderItemLink(i, "text-sm font-bold text-purple-400 drop-shadow-sm leading-tight")}
+                <div className="flex items-center justify-between gap-2">
+                  {renderItemLink(i, "text-sm font-bold text-purple-400 drop-shadow-sm leading-tight")}
+                  {isAuthenticated && (
+                    <button
+                      type="button"
+                      onClick={() => jumpToMasterItemsDbForItem(i?.name || '')}
+                      className="w-5 h-5 flex-shrink-0 flex items-center justify-center rounded-full bg-amber-600 hover:bg-amber-500 text-slate-950 text-[10px] font-black leading-none shadow"
+                      title={i?.itemId ? 'Edit Wowhead ID in Master Items DB' : 'Set Wowhead ID in Master Items DB'}
+                    >
+                      ✎
+                    </button>
+                  )}
+                </div>
                 <div className="flex gap-2 flex-wrap">
                   <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
                   {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
@@ -839,7 +1407,19 @@ export default function App() {
                 <div key={i.name} className="flex flex-col">
                   <div className="flex items-baseline gap-2">
                     <span className="text-[10px] text-amber-500/70 font-semibold uppercase flex-shrink-0">Alt:</span>
-                    {renderItemLink(i, "text-[10px] text-slate-400 truncate max-w-[150px]")}
+                    <div className="flex items-center justify-between gap-2 w-full min-w-0">
+                      {renderItemLink(i, "text-[10px] text-slate-400 truncate max-w-[150px]")}
+                      {isAuthenticated && (
+                        <button
+                          type="button"
+                          onClick={() => jumpToMasterItemsDbForItem(i?.name || '')}
+                          className="w-4 h-4 flex-shrink-0 flex items-center justify-center rounded-full bg-amber-600 hover:bg-amber-500 text-slate-950 text-[9px] font-black leading-none shadow"
+                          title={i?.itemId ? 'Edit Wowhead ID in Master Items DB' : 'Set Wowhead ID in Master Items DB'}
+                        >
+                          ✎
+                        </button>
+                      )}
+                    </div>
                     {!isBottomSlot && <span className="text-[10px] text-amber-500/70 font-semibold whitespace-nowrap">{i.boss}</span>}
                   </div>
                   {isBottomSlot && (
@@ -934,6 +1514,22 @@ export default function App() {
   }, [activeTab, raidAssignmentDataDirty, enabledBossesDirty]);
 
   useEffect(() => {
+    if (activeTab !== 'officerRoles') return;
+
+    const loadOfficerRoles = async () => {
+      if (document.hidden) return;
+      try {
+        const data = await fetchData('officer-roles');
+        if (!officerRolesDirty) setOfficerRoles(data);
+      } catch (e) {
+        console.error('Failed to load officer roles:', e);
+      }
+    };
+
+    loadOfficerRoles();
+  }, [activeTab, officerRolesDirty]);
+
+  useEffect(() => {
     if (!hasAnyUnsavedChanges) return undefined;
 
     const handleBeforeUnload = (event) => {
@@ -1003,7 +1599,32 @@ export default function App() {
             </p>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3">
+            {roster.length > 0 && (
+              <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 p-2 rounded-lg min-h-[44px]">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">My Character:</span>
+                <select
+                  value={globalMyPlayerId}
+                  onChange={e => {
+                    const id = e.target.value;
+                    setGlobalMyPlayerId(id);
+                    localStorage.setItem('my-player-id', id || '');
+                    if (id) {
+                      const player = roster.find(p => p.id === parseInt(id));
+                      if (player) {
+                        const specName = getDisplayFromId(player.spec_id);
+                        if (specName) setSelectedBisSpec(specName);
+                      }
+                    }
+                  }}
+                  className="bg-slate-950 text-amber-400 font-bold border border-slate-700 rounded px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                >
+                  <option value="">— Select Character —</option>
+                  {roster.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                </select>
+              </div>
+            )}
+
             {isAuthenticated && (
               <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 p-2.5 rounded-lg">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Current Phase:</span>
@@ -1017,19 +1638,19 @@ export default function App() {
               </div>
             )}
             {isAuthenticated ? (
-              <button onClick={handleLogout} className="text-xs font-bold text-slate-500 hover:text-red-400 transition uppercase tracking-widest">
+              <button onClick={handleLogout} className="text-xs font-bold text-slate-500 hover:text-red-400 transition uppercase tracking-widest shrink-0">
                 Lock App (Log Out)
               </button>
             ) : (
-              <form onSubmit={handleLogin} className="flex gap-2 items-center bg-slate-900 border border-slate-800 p-1.5 rounded-lg shadow-inner">
+              <form onSubmit={handleLogin} className="flex gap-2 items-center bg-slate-900 border border-slate-800 p-2 rounded-lg shadow-inner min-h-[44px]">
                 <input
                   type="password"
                   value={passwordInput}
                   onChange={(e) => setPasswordInput(e.target.value)}
-                  className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 tracking-widest w-40"
+                  className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 tracking-widest w-40"
                   placeholder="Officer Password"
                 />
-                <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-1.5 px-3 rounded transition shadow-lg tracking-wider uppercase text-[10px]">
+                <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-2 px-3 rounded transition shadow-lg tracking-wider uppercase text-[10px]">
                   Unlock
                 </button>
               </form>
@@ -1076,6 +1697,12 @@ export default function App() {
                   {hasItemsDbUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
                 </span>
               </button>
+              <button onClick={() => setActiveTab('officerRoles')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'officerRoles' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
+                <span className="inline-flex items-center gap-2">
+                  <span>Officer Roles</span>
+                  {officerRolesDirty && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
+                </span>
+              </button>
             </>
           )}
         </div>
@@ -1100,6 +1727,9 @@ export default function App() {
             setSelectedItemName={setSelectedItemName}
             specsByName={specsByName}
             getDisplayFromId={getDisplayFromId}
+            myPlayerName={selectedMyPlayerName}
+            onClearItemPriorities={handleClearOverviewItemPriorities}
+            onEditItemId={jumpToMasterItemsDbForItem}
           />
         )}
 
@@ -1114,6 +1744,7 @@ export default function App() {
             setBankSearch={setBankSearch}
             isAuthenticated={isAuthenticated}
             roster={roster}
+            myPlayerId={globalMyPlayerId ? parseInt(globalMyPlayerId) : null}
           />
         )}
 
@@ -1126,13 +1757,18 @@ export default function App() {
             roster={roster}
             getSpecById={getSpecById}
             enabledBosses={enabledBosses}
+            raidZones={raidZones}
             handleToggleZone={handleToggleZone}
             handleToggleBoss={handleToggleBoss}
+            customRaidGroups={customRaidGroups}
+            handleAddCustomRaidBoss={handleAddCustomRaidBoss}
+            handleRemoveCustomRaidBoss={handleRemoveCustomRaidBoss}
             raidAssignmentData={raidAssignmentData}
             setRaidAssignmentData={setRaidAssignmentData}
             hasUnsavedChanges={raidAssignmentDataDirty || enabledBossesDirty}
             onSaveChanges={handleSaveRaidAssignmentsChanges}
             isSaving={isSavingRaidAssignments}
+            myPlayerName={selectedMyPlayerName}
           />
         )}
 
@@ -1158,6 +1794,7 @@ export default function App() {
             denyCustomReason={denyCustomReason}
             setDenyCustomReason={setDenyCustomReason}
             handleResolveBankRequest={handleResolveBankRequest}
+            handleBulkResolveBankRequests={handleBulkResolveBankRequests}
             handleBankFileUpload={handleBankFileUpload}
             bankUploadParsed={bankUploadParsed}
             handleSaveBankUpload={handleSaveBankUpload}
@@ -1212,6 +1849,7 @@ export default function App() {
         {activeTab === 'roster' && isAuthenticated && (
           <RosterTab
             handleSaveRaidLog={handleSaveRaidLog}
+            handleImportRaidHelperJson={handleImportRaidHelperJson}
             newRaidDate={newRaidDate}
             setNewRaidDate={setNewRaidDate}
             newRaidZone={newRaidZone}
@@ -1228,12 +1866,32 @@ export default function App() {
             roster={roster}
             getSpecById={getSpecById}
             toggleRaidStatus={toggleRaidStatus}
+            handleUpdatePlayer={handleUpdatePlayer}
             handleRemovePlayer={handleRemovePlayer}
+            importedRaidHelperPlayerIds={recentRaidHelperImportedIds}
+            importedRaidHelperSpecConflictIds={recentRaidHelperSpecConflictIds}
+            raidHelperImportSession={raidHelperImportSession}
+            onUpdateRaidHelperImportEntry={handleUpdateRaidHelperImportEntry}
+            onApplyRaidHelperImport={handleApplyRaidHelperImport}
+            onCancelRaidHelperImport={handleCancelRaidHelperImport}
             specsByName={specsByName}
             PlayerNameWithScore={PlayerNameWithScore}
             hasUnsavedChanges={rosterDirty || raidLogsDirty || playerStatsDirty}
             onSaveChanges={handleSaveRosterAttendanceChanges}
             isSaving={isSavingRosterAttendance}
+          />
+        )}
+
+        {activeTab === 'officerRoles' && isAuthenticated && (
+          <OfficerRolesTab
+            roster={roster}
+            getSpecById={getSpecById}
+            officerRoles={officerRoles}
+            setOfficerRoles={setOfficerRolesData}
+            myPlayerId={globalMyPlayerId}
+            hasUnsavedChanges={officerRolesDirty}
+            onSaveChanges={handleSaveOfficerRoles}
+            isSaving={isSavingOfficerRoles}
           />
         )}
 
@@ -1309,6 +1967,41 @@ export default function App() {
             onSaveChanges={handleSaveItemsDbChanges}
             isSaving={isSavingItemsDb}
           />
+        )}
+
+        {itemIdEditor && (
+          <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+            <div className="bg-slate-900 border border-slate-700 rounded-xl p-6 w-full max-w-md">
+              <h3 className="text-lg font-bold text-slate-100 mb-2">Edit Wowhead ID</h3>
+              <p className="text-xs text-slate-500 mb-4">{itemIdEditor.itemName}</p>
+
+              <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Wowhead Item ID</label>
+              <input
+                type="text"
+                value={itemIdEditor.wowheadIdInput}
+                onChange={e => setItemIdEditor(prev => ({ ...prev, wowheadIdInput: e.target.value }))}
+                placeholder="e.g. 32505"
+                className="w-full bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
+              />
+
+              <div className="flex gap-2 mt-5 justify-end">
+                <button
+                  type="button"
+                  onClick={() => setItemIdEditor(null)}
+                  className="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-2 px-4 rounded"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={handleSaveItemIdFromModal}
+                  className="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2 px-4 rounded"
+                >
+                  Save ID
+                </button>
+              </div>
+            </div>
+          </div>
         )}
 
       </div>
