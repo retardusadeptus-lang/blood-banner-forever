@@ -1,4 +1,4 @@
-﻿#!/bin/sh
+#!/bin/sh
 export API_PORT=4000
 
 # Write to the file that Nginx will actually read
