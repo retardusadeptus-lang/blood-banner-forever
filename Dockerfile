@@ -45,9 +45,9 @@ RUN cd guild-loot-api && npm ci --omit=dev
 # Copy API source
 COPY guild-loot-api/ ./guild-loot-api/
 
-# API listens on PORT (nginx proxies /api/ to it); nginx serves the SPA on 3000.
-# PORT can be overridden at runtime (e.g. --env-file); nginx follows it.
-ENV PORT=4000
+# API listens on API_PORT (nginx proxies /api/ to it); nginx serves the SPA on 3000.
+# API_PORT can be overridden at runtime (e.g. --env-file); nginx follows it.
+ENV API_PORT=4000
 EXPOSE 3000 4000
 
 CMD ["/docker-entrypoint.sh"]
