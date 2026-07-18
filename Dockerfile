@@ -4,6 +4,7 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
+COPY guild-loot-api/package*.json ./guild-loot-api/
 RUN npm ci
 
 # Vite inlines VITE_* vars at build time. Only the API base URL is build-time;
