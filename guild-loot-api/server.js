@@ -1012,6 +1012,19 @@ app.put('/api/assignments/:phase', (req, res) => {
     `);
 
     const updateAll = db.transaction(() => {
+      const submittedItems = Object.keys(assignments || {});
+
+      // If no items submitted, remove all assignments for this phase
+      if (submittedItems.length === 0) {
+        db.prepare(`DELETE FROM assignments WHERE phase = ?`).run(phase);
+        return;
+      }
+
+      // Remove any assignments for items that were not included in the submission
+      const placeholders = submittedItems.map(() => '?').join(',');
+      const deleteStmt = db.prepare(`DELETE FROM assignments WHERE phase = ? AND item_name NOT IN (${placeholders})`);
+      deleteStmt.run(phase, ...submittedItems);
+
       for (const [itemName, players] of Object.entries(assignments)) {
         for (const [playerId, value] of Object.entries(players)) {
           if (value === null || value === undefined) {

@@ -33,11 +33,20 @@ export default function LootCouncilTab({
   PlayerNameWithScore,
   hasUnsavedChanges,
   onSaveChanges,
+  onClearItemAssignments,
   isSaving
 }) {
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
-      <div className="flex justify-end mb-4">
+      <div className="flex justify-end mb-4 gap-2">
+        <button
+          type="button"
+          onClick={() => onClearItemAssignments?.(selectedItemName)}
+          disabled={!selectedItemName}
+          className="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition bg-red-900/60 hover:bg-red-800 text-red-300"
+        >
+          Clear All Assignments
+        </button>
         <button
           type="button"
           onClick={onSaveChanges}
@@ -155,7 +164,12 @@ export default function LootCouncilTab({
                           </div>
                           <img src={getSpecById(player.spec_id)?.icon_large || 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover flex-shrink-0" />
                           <div>
-                            <PlayerNameWithScore player={player} />
+                            <div className="flex items-center gap-2">
+                              <PlayerNameWithScore player={player} />
+                              {player.in_raid && (
+                                <span className="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-bold uppercase tracking-wider">In Raid</span>
+                              )}
+                            </div>
                             <div className="flex items-center gap-2 mt-0.5">
                               <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{specDisplay}</span>
                               <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${status === 'BiS' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-sky-500/20 text-sky-400'}`}>{status}</span>

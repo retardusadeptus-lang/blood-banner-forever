@@ -486,6 +486,7 @@ export default function App() {
   const setAllRaidStatus = (status) => setRoster(roster.map(p => ({ ...p, in_raid: status })));
   const handleSetPriority = (playerId, priority) => {
     setAssignments({ ...assignments, [selectedItemName]: { ...(assignments[selectedItemName] || {}), [playerId]: priority } });
+    setAssignmentsDirty(true);
   };
 
   const calculateAttendance = (playerId) => {
@@ -947,6 +948,7 @@ export default function App() {
     const next = { ...assignments };
     delete next[itemName];
     setAssignments(next);
+    setAssignmentsDirty(true);
   };
 
   const handleDeleteRaidLog = (logId) => {
@@ -976,6 +978,12 @@ export default function App() {
     try {
       const phaseKey = PHASE_JSON_KEYS[globalPhase];
       await putData('assignments/' + phaseKey, assignments);
+      try {
+        const latest = await fetchData('assignments/' + phaseKey);
+        setAssignments(latest);
+      } catch (e) {
+        console.warn('Failed to re-fetch assignments after save:', e);
+      }
       setAssignmentsDirty(false);
       alert('Loot council assignments saved.');
     } catch (e) {
@@ -1369,19 +1377,38 @@ export default function App() {
       ? selectedItem.token_classes.map(c => String(c).toLowerCase())
       : [];
 
-    // Eligibility is determined from phase-specific BiS priority docs.
-    const eligible = activeRaiders.filter(player => {
+    // Build a list of players to show:
+    // - all roster players
+    // - plus any player ids explicitly assigned to this item even if not in roster
+    const rosterPlayers = roster.slice();
+
+    // gather assigned player IDs from DB state
+    const assignedMap = assignments[selectedItem.name] || {};
+    const assignedIds = Object.keys(assignedMap).map(id => Number(id));
+
+    // create placeholder player objects for assigned players not in roster
+    const rosterIds = new Set(rosterPlayers.map(p => Number(p.id)));
+    for (const pid of assignedIds) {
+      if (!rosterIds.has(pid)) {
+        rosterPlayers.push({ id: pid, name: `Player ${pid}`, spec_id: null, in_raid: false });
+      }
+    }
+
+    // Filter rosterPlayers to those that are eligible by BiS/Opt OR are assigned to this item
+    const eligible = rosterPlayers.filter(player => {
       const specDisplay = getDisplayFromId(player.spec_id) || '?';
       const specObj = getSpecById(player.spec_id);
       const className = String(specObj?.class || '').toLowerCase();
 
       if (selectedItem.is_token && tokenClasses.length > 0 && !tokenClasses.includes(className)) {
-        return false;
+        // still include if player is explicitly assigned
+        return assignedIds.includes(Number(player.id));
       }
 
       const bisStatus = getPlayerItemPriorityStatus(selectedItem, specDisplay);
-      return !!bisStatus && bisStatus !== '';
+      return (bisStatus && bisStatus !== '') || assignedIds.includes(Number(player.id));
     });
+
     return sortPlayersByRank(selectedItem, eligible, assignments);
   }, [selectedItem, activeRaiders, assignments, playerStats, scoringConfig, raidLogs, bisPriorities, specsByName, getSpecById, tokenRedemptionsByItemId]);
 
@@ -1879,6 +1906,8 @@ export default function App() {
             getDisplayFromId={getDisplayFromId}
             myPlayerName={selectedMyPlayerName}
             onClearItemPriorities={handleClearOverviewItemPriorities}
+            hasLootUnsavedChanges={hasLootUnsavedChanges}
+            onSaveAssignments={handleSaveLootCouncilChanges}
             onEditItemId={jumpToMasterItemsDbForItem}
           />
         )}
@@ -2000,6 +2029,7 @@ export default function App() {
             PlayerNameWithScore={PlayerNameWithScore}
             hasUnsavedChanges={assignmentsDirty}
             onSaveChanges={handleSaveLootCouncilChanges}
+            onClearItemAssignments={handleClearOverviewItemPriorities}
             isSaving={isSavingLootCouncil}
           />
         )}

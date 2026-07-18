@@ -18,7 +18,9 @@ export default function OverviewTab({
   getDisplayFromId,
   myPlayerName,
   onClearItemPriorities,
-  onEditItemId
+  onEditItemId,
+  hasLootUnsavedChanges,
+  onSaveAssignments
 }) {
   
   // Inline mini-component to keep player names styled beautifully with their scores
@@ -49,7 +51,7 @@ export default function OverviewTab({
           <h2 className="text-xl font-bold text-slate-100 mb-1">Master Priority Ledger</h2>
           <p className="text-sm text-slate-500">A bird's-eye view of every item that currently has an assigned Loot Council priority.</p>
         </div>
-        <div className="w-full md:w-auto flex flex-col sm:flex-row gap-2">
+        <div className="w-full md:w-auto flex flex-col sm:flex-row gap-2 items-center">
           <input
             type="text"
             placeholder="Search by item or player name..."
@@ -57,17 +59,30 @@ export default function OverviewTab({
             value={overviewSearch}
             onChange={e => setOverviewSearch(e.target.value)}
           />
-          <button
-            type="button"
-            onClick={() => {
-              if (!myPlayerName) return;
-              setOverviewSearch(myPlayerName);
-            }}
-            disabled={!myPlayerName}
-            className="whitespace-nowrap bg-slate-900 border border-slate-700 text-amber-400 hover:text-amber-300 hover:border-amber-500 disabled:text-slate-600 disabled:border-slate-800 disabled:cursor-not-allowed rounded-lg px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition"
-          >
-            Show My Priorities
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                if (!myPlayerName) return;
+                setOverviewSearch(myPlayerName);
+              }}
+              disabled={!myPlayerName}
+              className="whitespace-nowrap bg-slate-900 border border-slate-700 text-amber-400 hover:text-amber-300 hover:border-amber-500 disabled:text-slate-600 disabled:border-slate-800 disabled:cursor-not-allowed rounded-lg px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition"
+            >
+              Show My Priorities
+            </button>
+
+            {isAuthenticated && (
+              <button
+                type="button"
+                onClick={() => onSaveAssignments?.()}
+                disabled={!hasLootUnsavedChanges}
+                className="whitespace-nowrap bg-amber-600 text-slate-950 font-bold rounded-lg px-3 py-2.5 text-xs uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Save Priorities
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -78,11 +93,15 @@ export default function OverviewTab({
       ) : (
         <div className="columns-1 lg:columns-2 xl:columns-3 gap-6 space-y-0">
           {filteredOverviewItems.map(item => {
-            const assignedPlayers = roster.filter(p => typeof assignments[item.name]?.[p.id] === 'number');
+            const itemAssignments = assignments[item.name] || {};
+            const assignedPlayerIds = Object.keys(itemAssignments).map(id => Number(id));
+            const assignedPlayers = assignedPlayerIds.map(pid => roster.find(p => Number(p.id) === pid) || { id: pid, name: `Player ${pid}`, spec_id: null });
             const sortedAssignedPlayers = assignedPlayers.sort((a, b) => {
-              const rankA = assignments[item.name][a.id];
-              const rankB = assignments[item.name][b.id];
-              if (rankA !== rankB) return rankA - rankB;
+              const rankA = itemAssignments[a.id];
+              const rankB = itemAssignments[b.id];
+              const numA = (typeof rankA === 'number') ? rankA : Number.POSITIVE_INFINITY;
+              const numB = (typeof rankB === 'number') ? rankB : Number.POSITIVE_INFINITY;
+              if (numA !== numB) return numA - numB;
               return Number(calculateScore(b.id)) - Number(calculateScore(a.id));
             });
 
