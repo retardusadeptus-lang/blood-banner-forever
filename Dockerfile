@@ -18,12 +18,14 @@ RUN npm run build:prod
 # ---- Stage 2: Production ----
 FROM node:20-alpine AS production
 
-# Tools needed by node-gyp to compile native modules (better-sqlite3)
-RUN apk add --no-cache python3 make g++
+# Tools needed
+RUN apk add --no-cache python3 make g++ nginx gettext
 
-# Install nginx for serving the frontend SPA (gettext provides envsubst)
-RUN apk add --no-cache nginx gettext \
-    && mkdir -p /run/nginx
+# Verify nginx installation
+RUN nginx -v
+
+# Add this line right before you copy your nginx.conf
+RUN mkdir -p /etc/nginx/http.d/
 
 WORKDIR /app
 
