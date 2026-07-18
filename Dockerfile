@@ -49,4 +49,4 @@ COPY guild-loot-api/ ./guild-loot-api/
 ENV PORT=4000
 EXPOSE 3000 4000
 
-CMD ["/docker-entrypoint.sh"]
+CMD ["serve", "-s", ".", "-l", "3000"]
