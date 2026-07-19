@@ -862,14 +862,14 @@ async function sendBankInventoryWebhook(items) {
     username: 'Guild Banker',
     avatar_url: 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_bag_10_green.jpg',
     embeds: [{
-      title: 'ðŸ¦ Guild Bank Inventory Report',
+      title: '📦 Guild Bank Inventory Report',
       description: `[**Click here to view full inventory**](${SITE_URL})`,
       color: 3066993,
       fields: [
-        { name: 'ðŸ§ª Consumables', value: getCategoryBlock('Consumable'), inline: true },
-        { name: 'ðŸ’Ž Materials', value: getCategoryBlock('Materials'), inline: true },
-        { name: 'âš”ï¸ Gear', value: getCategoryBlock('Gear'), inline: true },
-        { name: 'ðŸ“œ Patterns', value: getCategoryBlock('Recipe'), inline: true }
+        { name: '🧪 Consumables', value: getCategoryBlock('Consumable'), inline: true },
+        { name: '💎 Materials', value: getCategoryBlock('Materials'), inline: true },
+        { name: '✔️ Gear', value: getCategoryBlock('Gear'), inline: true },
+        { name: '📜 Patterns', value: getCategoryBlock('Recipe'), inline: true }
       ],
       footer: { text: 'Updated just now' },
       timestamp: new Date().toISOString()
@@ -882,7 +882,7 @@ async function sendBankRequestWebhook({ player_name, item_name, quantity, reason
     username: 'Guild Banker',
     avatar_url: 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_bag_10_green.jpg',
     embeds: [{
-      title: 'ðŸ“¥ New Bank Request',
+      title: '📥 New Bank Request',
       color: 15844367,
       fields: [
         { name: 'Player', value: player_name, inline: true },
@@ -903,7 +903,7 @@ async function sendBankResolutionWebhook({ player_name, item_name, quantity, sta
     username: 'Guild Banker',
     avatar_url: 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_bag_10_green.jpg',
     embeds: [{
-      title: isApproved ? (isPartial ? 'âš ï¸ Bank Request Partially Approved' : 'âœ… Bank Request Approved') : 'âŒ Bank Request Denied',
+      title: isApproved ? (isPartial ? '✔️ Bank Request Partially Approved' : '✅ Bank Request Approved') : '❌ Bank Request Denied',
       color: isApproved ? 3066993 : 15158332,
       fields: [
         { name: 'Player', value: player_name, inline: true },
@@ -918,7 +918,7 @@ async function sendBankResolutionWebhook({ player_name, item_name, quantity, sta
   });
 }
 
-async function sendBankBulkResolutionWebhook({ lines, title = 'ðŸ“¦ Bank Basket Resolved' }) {
+async function sendBankBulkResolutionWebhook({ lines, title = '📦 Bank Basket Resolved' }) {
   await postToDiscord({
     username: 'Guild Banker',
     avatar_url: 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_bag_10_green.jpg',
@@ -1757,13 +1757,13 @@ app.put('/api/bank-requests/bulk-resolve', async (req, res) => {
 
         if (r.status === 'approved') {
           const isPartial = Number(r.quantity || request.quantity) < Number(request.quantity);
-          const icon = isPartial ? 'âš ï¸' : 'âœ…';
+          const icon = isPartial ? '⚠️' : '✅';
           const qty = isPartial ? `${r.quantity || request.quantity}/${request.quantity}` : `${r.quantity || request.quantity}`;
-          const priceText = r.price ? ` â€” ${r.price}g` : '';
+          const priceText = r.price ? ` — ${r.price}g` : '';
           const noteText = r.note ? ` (${r.note})` : '';
           summaryLines.push(`${icon} **${request.item_name}** x${qty} for **${playerName}**${priceText}${noteText}`);
         } else {
-          summaryLines.push(`âŒ **${request.item_name}** for **${playerName}** â€” Denied${r.note ? `: ${r.note}` : ''}`);
+          summaryLines.push(`❌ **${request.item_name}** for **${playerName}** — Denied${r.note ? `: ${r.note}` : ''}`);
         }
       });
     });
