@@ -239,7 +239,6 @@ module.exports = {
         { name: 'Character', value: player.name, inline: true },
         { name: 'Items', value: itemLines, inline: false },
         { name: 'Reason', value: reason || 'No reason provided', inline: false },
-        { name: 'Created Request IDs', value: createdIds.map(String).join(', '), inline: false },
         ...(requestGroupId ? [{ name: 'Request Group ID', value: requestGroupId, inline: false }] : [])
       )
       .setTimestamp();
