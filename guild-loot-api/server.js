@@ -1,11 +1,13 @@
-﻿require('dotenv').config();
+﻿const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
+console.log('Loaded ADMIN_API_TOKEN?', Boolean(process.env.ADMIN_API_TOKEN), 'length=', String(process.env.ADMIN_API_TOKEN || '').length);
 
 const express = require('express');
 const Database = require('better-sqlite3');
 const cors = require('cors');
 const crypto = require('crypto');
 const fs = require('fs');
-const path = require('path'); // Added for deployment pathway flexibility
+// const path = require('path'); // Added for deployment pathway flexibility
 const { EmbedBuilder } = require('discord.js');
 const { initDiscordBot, getDiscordClient } = require('./bot');
 const {
@@ -158,7 +160,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const ADMIN_API_TOKEN = process.env.ADMIN_API_TOKEN || 'TBCOfficer2026!';
+const ADMIN_API_TOKEN = String(process.env.ADMIN_API_TOKEN || '').trim();
+if (!ADMIN_API_TOKEN) {
+  console.warn('ADMIN_API_TOKEN is not set; officer login will not work until this environment variable is configured.');
+}
 const HARD_CODED_DB_PATH = 'C:/Users/Steve/Projects/wow-loot-dashboard/guild-loot-api/mydb.db';
 const LOCAL_DB_PATH = path.join(__dirname, 'mydb.db');
 const DB_PATH_CANDIDATES = [
@@ -824,9 +829,9 @@ ensureDatabaseIndexes();
 // ==========================================
 const DISCORD_WEBHOOK_URL = String(process.env.DISCORD_WEBHOOK_URL || '').trim();
 if (!DISCORD_WEBHOOK_URL) {
-  console.warn('DISCORD_WEBHOOK_URL is not set â€” Discord notifications are disabled.');
+  console.warn('DISCORD_WEBHOOK_URL is not set — Discord notifications are disabled.');
 }
-const SITE_URL = process.env.SITE_URL || 'https://tbc-loot-dashboard.vercel.app/';
+const SITE_URL = String(process.env.SITE_URL || process.env.APP_URL || 'https://guild-name-tbc.top/').trim();
 
 async function postToDiscord(payload) {
   if (!DISCORD_WEBHOOK_URL) return;
@@ -871,7 +876,6 @@ async function sendBankInventoryWebhook(items) {
         { name: '✔️ Gear', value: getCategoryBlock('Gear'), inline: true },
         { name: '📜 Patterns', value: getCategoryBlock('Recipe'), inline: true }
       ],
-      footer: { text: 'Updated just now' },
       timestamp: new Date().toISOString()
     }]
   });
@@ -2343,4 +2347,4 @@ setInterval(() => {
 }, 60 * 1000);
 
 const PORT = process.env.API_PORT || process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`Guild Loot API running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Guild Loot API running on port ${PORT}`));
