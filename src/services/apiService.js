@@ -88,3 +88,113 @@ export const deleteData = async (endpoint) => {
   }
   return res.json();
 };
+
+const getSessionFetchOptions = (method = 'GET', data) => {
+  const opts = {
+    method,
+    credentials: 'include'
+  };
+
+  if (data !== undefined) {
+    opts.headers = { 'Content-Type': 'application/json' };
+    opts.body = JSON.stringify(data);
+  }
+
+  return opts;
+};
+
+export const getBattleNetAuthMe = async () => {
+  const res = await fetch(apiUrl('auth/me'), getSessionFetchOptions('GET'));
+  if (!res.ok) {
+    throw new Error('Failed to fetch authenticated Battle.net user.');
+  }
+  return res.json();
+};
+
+export const startBattleNetLogin = () => {
+  window.location.href = apiUrl('auth/bnet');
+};
+
+export const logoutBattleNet = async () => {
+  const res = await fetch(apiUrl('auth/logout'), getSessionFetchOptions('POST', {}));
+  if (!res.ok) {
+    throw new Error('Failed to log out from Battle.net session.');
+  }
+  return res.json();
+};
+
+export const getBattleNetCharacters = async () => {
+  const res = await fetch(apiUrl('profile/characters'), getSessionFetchOptions('GET'));
+  if (!res.ok) {
+    throw new Error('Failed to fetch Battle.net characters.');
+  }
+  return res.json();
+};
+
+export const getBattleNetCharactersDebug = async () => {
+  const res = await fetch(apiUrl('profile/characters-debug'), getSessionFetchOptions('GET'));
+  if (!res.ok) {
+    throw new Error('Failed to fetch Battle.net character diagnostics.');
+  }
+  return res.json();
+};
+
+export const claimRosterCharacter = async (payload) => {
+  const res = await fetch(apiUrl('roster/claim'), getSessionFetchOptions('POST', payload));
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(data.error || 'Failed to claim roster character.');
+  }
+  return data;
+};
+
+export const claimRosterCharacterManual = async (payload) => {
+  const res = await fetch(apiUrl('roster/claim-manual'), {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+    body: JSON.stringify(payload || {})
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(data.error || 'Failed to claim roster character from fallback list.');
+  }
+  return data;
+};
+
+export const getRosterClaimsAdmin = async () => {
+  const res = await fetch(apiUrl('roster/claims'), {
+    method: 'GET',
+    headers: { ...getAuthHeaders() }
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(data.error || 'Failed to fetch claimed roster links.');
+  }
+  return data;
+};
+
+export const unclaimRosterCharacterAdmin = async (payload) => {
+  const res = await fetch(apiUrl('roster/unclaim'), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+    body: JSON.stringify(payload)
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(data.error || 'Failed to unclaim roster character.');
+  }
+  return data;
+};
+
+export const getRosterClaimAuditAdmin = async (limit = 50) => {
+  const res = await fetch(apiUrl(`roster/claim-audit?limit=${encodeURIComponent(limit)}`), {
+    method: 'GET',
+    headers: { ...getAuthHeaders() }
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(data.error || 'Failed to fetch claim audit log.');
+  }
+  return data;
+};

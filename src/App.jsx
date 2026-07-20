@@ -1,8 +1,9 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, RIGHT_SLOTS, BOTTOM_SLOTS, P2_BOSSES, CATEGORY_MAP, RAID_ZONES } from './constants';
-import { fetchData, putData, postData, deleteData, login } from './services/apiService';
+import { fetchData, putData, postData, deleteData, login, getBattleNetAuthMe, startBattleNetLogin, logoutBattleNet, claimRosterCharacter, claimRosterCharacterManual, getRosterClaimsAdmin, unclaimRosterCharacterAdmin } from './services/apiService';
 import { useItemsDatabase } from './hooks/useItemsDatabase';
 import OverviewTab from './components/OverviewTab';
+import BnetClaimModal from './components/BnetClaimModal';
 import GuildBankTab from './components/GuildBankTab';
 import BisConfigTab from './components/BisConfigTab';
 import ItemsDatabaseTab from './components/ItemsDatabaseTab';
@@ -89,6 +90,10 @@ export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => sessionStorage.getItem('ar-auth') === 'true');
   const [passwordInput, setPasswordInput] = useState('');
   const [globalMyPlayerId, setGlobalMyPlayerId] = useState(() => localStorage.getItem('my-player-id') || '');
+  const [showBnetClaimModal, setShowBnetClaimModal] = useState(false);
+  const [bnetAuthState, setBnetAuthState] = useState({ loading: true, authenticated: false, user: null, claimedCharacters: [], error: '', characters: [], diagnostics: [], showBnetCharacterLookup: false });
+  const [bnetClaimBusy, setBnetClaimBusy] = useState(false);
+  const [rosterClaims, setRosterClaims] = useState([]);
 
   // Global phase selector (controls which phase's assignments are shown)
   const [globalPhase, setGlobalPhase] = useState('T5');
@@ -227,6 +232,24 @@ export default function App() {
     if (!globalMyPlayerId) return null;
     return roster.find(p => p.id === parseInt(globalMyPlayerId))?.name || null;
   }, [globalMyPlayerId, roster]);
+
+  const sortedRosterForSelector = useMemo(() => {
+    return [...roster].sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')));
+  }, [roster]);
+
+  const currentUserClaimedRosterIds = useMemo(() => {
+    if (!bnetAuthState.authenticated) return new Set();
+    return new Set((bnetAuthState.claimedCharacters || []).map(claim => Number(claim.rosterId)).filter(Boolean));
+  }, [bnetAuthState.authenticated, bnetAuthState.claimedCharacters]);
+
+  const selectedGlobalPlayer = useMemo(() => {
+    return roster.find(player => String(player.id) === String(globalMyPlayerId)) || null;
+  }, [globalMyPlayerId, roster]);
+
+  const selectedGlobalPlayerIsClaimed = useMemo(() => {
+    if (!selectedGlobalPlayer) return false;
+    return Boolean(selectedGlobalPlayer.user_id);
+  }, [selectedGlobalPlayer]);
 
   const selectedMyPlayerBisSpec = useMemo(() => {
     if (!globalMyPlayerId) return null;
@@ -457,10 +480,123 @@ export default function App() {
     }
   };
 
+  const refreshBattleNetAuth = async () => {
+    setBnetAuthState(prev => ({ ...prev, loading: true, error: '' }));
+    try {
+      const me = await getBattleNetAuthMe();
+      const authenticated = Boolean(me?.authenticated);
+      setBnetAuthState({
+        loading: false,
+        authenticated,
+        user: me?.user || null,
+        claimedCharacters: me?.claimedCharacters || [],
+        error: '',
+        characters: [],
+        diagnostics: [],
+        showBnetCharacterLookup: authenticated
+      });
+    } catch (error) {
+      setBnetAuthState({
+        loading: false,
+        authenticated: false,
+        user: null,
+        claimedCharacters: [],
+        error: error.message || 'Battle.net session unavailable.',
+        characters: [],
+        diagnostics: [],
+        showBnetCharacterLookup: false
+      });
+    }
+  };
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const authState = params.get('auth');
+    if (authState === 'success' || authState === 'failed') {
+      const nextUrl = `${window.location.pathname}${window.location.hash}`;
+      window.history.replaceState({}, '', nextUrl);
+    }
+    refreshBattleNetAuth();
+  }, []);
+
   const handleLogout = () => {
     setIsAuthenticated(false);
     sessionStorage.removeItem('ar-auth');
     sessionStorage.removeItem('ar-auth-token');
+  };
+
+  const handleBattleNetLogin = () => {
+    startBattleNetLogin();
+  };
+
+  const handleBattleNetLogout = async () => {
+    try {
+      await logoutBattleNet();
+    } catch (error) {
+      console.error('Failed to log out from Battle.net:', error);
+    } finally {
+      await refreshBattleNetAuth();
+    }
+  };
+
+  const handleBattleNetClaim = async (character) => {
+    setBnetClaimBusy(true);
+    setBnetAuthState(prev => ({ ...prev, error: '' }));
+    try {
+      await claimRosterCharacter({ characterName: character.name, realmSlug: character.realmSlug });
+      const rosterData = await fetchData('roster');
+      setRosterLocal(rosterData);
+      setRosterDirty(false);
+      await refreshBattleNetAuth();
+      setShowBnetClaimModal(false);
+    } catch (error) {
+      setBnetAuthState(prev => ({ ...prev, error: error.message || 'Failed to claim roster character.' }));
+    } finally {
+      setBnetClaimBusy(false);
+    }
+  };
+
+  const refreshRosterClaims = async () => {
+    if (!isAuthenticated) {
+      setRosterClaims([]);
+      return;
+    }
+    try {
+      const data = await getRosterClaimsAdmin();
+      setRosterClaims(data.claims || []);
+    } catch (error) {
+      setRosterClaims([]);
+    }
+  };
+
+  const handleUnclaimClaim = async (claim) => {
+    try {
+      await unclaimRosterCharacterAdmin({ rosterId: claim.rosterId });
+      const rosterData = await fetchData('roster');
+      setRosterLocal(rosterData);
+      setRosterDirty(false);
+      await refreshBattleNetAuth();
+      await refreshRosterClaims();
+    } catch (error) {
+      setBnetAuthState(prev => ({ ...prev, error: error.message || 'Failed to clear the claim.' }));
+    }
+  };
+
+  const handleBattleNetManualClaim = async (player) => {
+    setBnetClaimBusy(true);
+    setBnetAuthState(prev => ({ ...prev, error: '' }));
+    try {
+      await claimRosterCharacterManual({ rosterId: player.id, battletag: bnetAuthState.user?.battletag || '' });
+      const rosterData = await fetchData('roster');
+      setRosterLocal(rosterData);
+      setRosterDirty(false);
+      await refreshBattleNetAuth();
+      setShowBnetClaimModal(false);
+    } catch (error) {
+      setBnetAuthState(prev => ({ ...prev, error: error.message || 'Failed to claim roster character.' }));
+    } finally {
+      setBnetClaimBusy(false);
+    }
   };
 
   const handleAddPlayer = (e) => {
@@ -1697,6 +1833,7 @@ export default function App() {
     };
 
     loadDiscordBotConfig();
+    refreshRosterClaims();
   }, [activeTab, discordBotConfigDirty]);
 
   useEffect(() => {
@@ -1758,21 +1895,30 @@ export default function App() {
         `}</style>
       <div className="max-w-10/12 mx-auto px-4 sm:px-6 lg:px-0 py-10 space-y-6">
 
-        <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
+<header className="flex flex-col md:flex-row md:items-stretch justify-between gap-4">
+          <div className="flex flex-col justify-center">
             <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600 tracking-tight font-serif italic drop-shadow-sm">
               &lt;Guild Name TBC&gt;
             </h1>
-            <p className="text-slate-400 mt-2 font-medium uppercase tracking-widest text-sm flex items-center gap-2">
-              TBC Priority Assignment Dashboard
-              <span className="bg-emerald-500/20 text-emerald-400 text-[10px] px-2 py-0.5 rounded border border-emerald-500/30 font-bold shadow-inner">CLOUD SYNC LIVE</span>
+            <p className="text-slate-400 mt-2 font-medium uppercase tracking-widest text-sm">
+              Guild management dashboard
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            {roster.length > 0 && (
-              <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 p-2 rounded-lg min-h-[44px]">
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">My Character:</span>
+          <div className="flex items-stretch justify-end gap-4 flex-nowrap">
+            <div className="w-64 flex flex-col justify-between bg-slate-900 border border-slate-800 rounded-lg p-2">
+              <div className="flex justify-center items-center mb-2">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Current Phase:</span>
+                <select
+                  value={globalPhase}
+                  onChange={e => setGlobalPhase(e.target.value)}
+                  className="ml-3 bg-slate-950 text-amber-400 font-bold border border-slate-700 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                >
+                  {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
+                </select>
+              </div>
+
+              <div className="flex items-center gap-2">
                 <select
                   value={globalMyPlayerId}
                   onChange={e => {
@@ -1787,44 +1933,65 @@ export default function App() {
                       }
                     }
                   }}
-                  className="bg-slate-950 text-amber-400 font-bold border border-slate-700 rounded px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                  className="flex-1 bg-slate-950 text-amber-400 font-bold border border-slate-700 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                 >
                   <option value="">— Select Character —</option>
-                  {roster.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                  {sortedRosterForSelector.map(player => {
+                    const isCurrentUserClaim = currentUserClaimedRosterIds.has(Number(player.id));
+                    const isClaimedElsewhere = Boolean(player.user_id && !isCurrentUserClaim);
+                    const icon = isCurrentUserClaim ? '✓' : isClaimedElsewhere ? '●' : '○';
+                    const specDisplay = getDisplayFromId(player.spec_id);
+                    const styleColor = isCurrentUserClaim
+                      ? '#34d399'
+                      : isClaimedElsewhere
+                        ? '#64748b'
+                        : (specsByName[specDisplay]?.color || '#e2e8f0');
+                    return (
+                      <option key={player.id} value={player.id} style={{ color: styleColor }}>
+                        {icon} {player.name}
+                      </option>
+                    );
+                  })}
                 </select>
-              </div>
-            )}
-
-            {isAuthenticated && (
-              <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 p-2.5 rounded-lg">
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Current Phase:</span>
-                <select
-                  value={globalPhase}
-                  onChange={e => setGlobalPhase(e.target.value)}
-                  className="bg-slate-950 text-amber-400 font-bold border border-slate-700 rounded px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                <button
+                  type="button"
+                  onClick={() => setShowBnetClaimModal(true)}
+                  disabled={!bnetAuthState.authenticated || selectedGlobalPlayerIsClaimed}
+                  className={`text-[10px] font-bold uppercase tracking-wider ${!bnetAuthState.authenticated || selectedGlobalPlayerIsClaimed ? 'text-slate-500 cursor-not-allowed' : 'text-cyan-400 hover:text-cyan-300'}`}
                 >
-                  {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
-                </select>
-              </div>
-            )}
-            {isAuthenticated ? (
-              <button onClick={handleLogout} className="text-xs font-bold text-slate-500 hover:text-red-400 transition uppercase tracking-widest shrink-0">
-                Lock App (Log Out)
-              </button>
-            ) : (
-              <form onSubmit={handleLogin} className="flex gap-2 items-center bg-slate-900 border border-slate-800 p-2 rounded-lg shadow-inner min-h-[44px]">
-                <input
-                  type="password"
-                  value={passwordInput}
-                  onChange={(e) => setPasswordInput(e.target.value)}
-                  className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 tracking-widest w-40"
-                  placeholder="Officer Password"
-                />
-                <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-2 px-3 rounded transition shadow-lg tracking-wider uppercase text-[10px]">
-                  Unlock
+                  Claim
                 </button>
-              </form>
-            )}
+              </div>
+            </div>
+
+            <div className={`flex flex-col justify-between bg-slate-900 border border-slate-800 rounded-lg w-64 p-2`}>
+              <div className="flex justify-end items-center px-3 h-6">
+                {bnetAuthState.authenticated ? (
+                  <>
+                    {bnetAuthState.user?.battletag && (
+                      <span className="text-[11px] font-semibold text-cyan-300 whitespace-nowrap">Logged in as {bnetAuthState.user.battletag}</span>
+                    )}
+                    <button onClick={handleBattleNetLogout} className="ml-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-slate-200 h-6 flex items-center">Logout</button>
+                  </>
+                ) : (
+                  <button onClick={handleBattleNetLogin} className="bg-cyan-700 hover:bg-cyan-600 text-white font-bold py-1 px-3 rounded text-[11px] uppercase tracking-wider h-6 flex items-center justify-center">Log in with Battle.net</button>
+                )}
+              </div>
+
+              <div className="flex justify-end items-center px-3 h-6">
+                {isAuthenticated ? (
+                  <>
+                    <span className="text-[11px] font-semibold text-amber-300">Logged in as Officer</span>
+                    <button onClick={handleLogout} className="ml-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-slate-200 h-6 flex items-center">Logout</button>
+                  </>
+                ) : (
+                  <form onSubmit={handleLogin} className="flex items-center gap-2">
+                    <input type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} className="bg-slate-950 text-white border border-slate-700 rounded px-2 py-1.5 text-[11px] leading-none focus:outline-none focus:ring-1 focus:ring-amber-500 tracking-widest h-6 w-36" placeholder="Officer Password" />
+                    <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-1 px-3 rounded transition shadow-lg tracking-wider uppercase text-[11px] h-6 flex items-center justify-center">Unlock</button>
+                  </form>
+                )}
+              </div>
+            </div>
           </div>
         </header>
 
@@ -1876,7 +2043,7 @@ export default function App() {
               </button>
               <button onClick={() => setActiveTab('discordBotConfig')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'discordBotConfig' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
                 <span className="inline-flex items-center gap-2">
-                  <span>Discord Bot Config</span>
+                  <span>Config</span>
                   {discordBotConfigDirty && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
                 </span>
               </button>
@@ -2095,6 +2262,11 @@ export default function App() {
             hasUnsavedChanges={discordBotConfigDirty}
             onSaveChanges={handleSaveDiscordBotConfig}
             isSaving={isSavingDiscordBotConfig}
+            claims={rosterClaims}
+            onUnclaimClaim={handleUnclaimClaim}
+            roster={roster}
+            specsByName={specsByName}
+            getDisplayFromId={getDisplayFromId}
           />
         )}
 
@@ -2171,6 +2343,23 @@ export default function App() {
             isSaving={isSavingItemsDb}
           />
         )}
+
+        <BnetClaimModal
+          open={showBnetClaimModal}
+          onClose={() => setShowBnetClaimModal(false)}
+          isAuthenticated={bnetAuthState.authenticated}
+          showBnetCharacterLookup={bnetAuthState.showBnetCharacterLookup}
+          isLoading={bnetAuthState.loading || bnetClaimBusy}
+          error={bnetAuthState.error}
+          characters={bnetAuthState.characters}
+          diagnostics={bnetAuthState.diagnostics}
+          roster={roster}
+          onClaim={handleBattleNetClaim}
+          onManualClaim={handleBattleNetManualClaim}
+          onLogin={handleBattleNetLogin}
+          onLogout={handleBattleNetLogout}
+          claimedRosterNames={new Set((roster || []).filter(player => player.user_id).map(player => String(player.name || '').trim().toLowerCase()))}
+        />
 
         {itemIdEditor && (
           <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">

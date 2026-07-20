@@ -1,23 +1,6 @@
-icons in bis config tab - done
-Phase dropdown in bis config tab - done
-change master items db to use new json - done
-find missing items from new json - done
-icons on priority overview - done
-change priority to take score into account - done
-Add manual score adjustment option - done
-put bis config in public view - done
-page crashes if trying to assign an item with no id - done
-
 Fix wrong or missing item IDs - pending
 Add optional items back in - pending
-add save button to put request to api rather than sending on every change - done
-change bis_priorities table to not include JSON - done
-change spec id mapping so roster uses id - done
-add tokens and map tier pieces to tokens & quest items (KT ring, Maggy head) - add one-to-many table, autoincrement, one to reference base item, one to reference buy item - done
-Map specs to spec IDs in DB to show spec in the roster addition dropdown - done
-refactor into smaller files (app & node) - done
 front-end - figure out a way around the short delay before wowhead icons load. Implemented because icons were going stale when changing view but it's annoying - Pending
-Refactor mutable items as it still uses JSON - done
 
 
 1. The WeakAura Assignment Exporter
@@ -37,7 +20,6 @@ Set up a cron job on backend that pings WCL every night, parses the data, and sa
     For the Graphs: drop a library like Chart.js or Recharts into React app. feed it database arrays, and it instantly renders beautiful, toggleable line charts.
 
 
-Tidy up login area boxes
 add guild member login if bnet auth fails - gbank baskets to require login, page can be viewed read-only without login. Priority overview to be hidden until guild password entered.
 Add tag for 'claimed' characters, star icon or something on roster. 
 check fallback url settings for bnet - is this what's causing the unauthorized error when trying to claim a character?
@@ -47,20 +29,14 @@ Admin view to have toggles, discord bot config, tab switch on/off
 Build cheat sheet based on spreadsheet from paladin discord
 
 look into monorepo approach - Patnja said the setup of this repo is sub-optimal
-Consider vercel again or learn to host so I stop annoying Patnja
 
 Change addon output to be JSON in WoW to upload in gbank tab on site
 
 Build JSON export from assignments page to feed into assignments weakaura
 or build output to angry assignments or both
 
-Look at dockerise for updated items (is that even a concern or is it one and done?)
-
-Review change in ports - discord bot was using same port as site before
-
 integrate wowaudit (?)
 integrate rclc (?)
-DNS
 
 Saving changes to db either saves bis/opt or IDs, not both
 'weapon' slot doesn't map to bis config

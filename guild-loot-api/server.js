@@ -157,8 +157,22 @@ async function autoPostRecurringSignupEvents() {
 }
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
+
+const BNET_SESSION_COOKIE_NAME = 'wow_loot_bnet_sid';
+const BNET_SESSION_TTL_MS = 12 * 60 * 60 * 1000;
+const BNET_AUTH_SESSIONS = new Map();
+const BNET_CLIENT_ID = String(process.env.BNET_CLIENT_ID || '').trim();
+const BNET_CLIENT_SECRET = String(process.env.BNET_CLIENT_SECRET || '').trim();
+const BNET_REGION = String(process.env.BNET_REGION || 'eu').trim().toLowerCase();
+const BNET_REDIRECT_URI = String(process.env.REDIRECT_URI || '').trim();
+const BNET_LOCALE = String(process.env.BNET_LOCALE || 'en_US').trim();
+const BNET_AUTHORIZE_URL = `https://${BNET_REGION}.battle.net/oauth/authorize`;
+const BNET_TOKEN_URL = `https://${BNET_REGION}.battle.net/oauth/token`;
+const BNET_USERINFO_URL = `https://${BNET_REGION}.battle.net/oauth/userinfo`;
+const BNET_API_BASE_URL = `https://${BNET_REGION}.api.blizzard.com`;
+const SITE_URL = String(process.env.SITE_URL || process.env.APP_URL || 'https://guild-name-tbc.top/').trim();
 
 const ADMIN_API_TOKEN = String(process.env.ADMIN_API_TOKEN || '').trim();
 if (!ADMIN_API_TOKEN) {
@@ -210,6 +224,230 @@ function generateRequestGroupId() {
   return `grp_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
 }
 
+function parseCookies(cookieHeader = '') {
+  const output = {};
+  if (!cookieHeader) return output;
+  cookieHeader.split(';').map(part => part.trim()).filter(Boolean).forEach(part => {
+    const divider = part.indexOf('=');
+    if (divider === -1) return;
+    const key = part.slice(0, divider);
+    const value = decodeURIComponent(part.slice(divider + 1));
+    output[key] = value;
+  });
+  return output;
+}
+
+function getBattleNetSessionFromRequest(req) {
+  const cookies = parseCookies(req.headers.cookie || '');
+  const token = cookies[BNET_SESSION_COOKIE_NAME];
+  if (!token) return null;
+  const session = BNET_AUTH_SESSIONS.get(token);
+  if (!session) return null;
+  if (Date.now() > Number(session.expiresAt || 0)) {
+    BNET_AUTH_SESSIONS.delete(token);
+    return null;
+  }
+  return session;
+}
+
+function setBattleNetSessionCookie(res, token) {
+  const cookieValue = `${BNET_SESSION_COOKIE_NAME}=${encodeURIComponent(token)}; Path=/; HttpOnly; SameSite=Lax`;
+  res.setHeader('Set-Cookie', process.env.NODE_ENV === 'production' ? `${cookieValue}; Secure` : cookieValue);
+}
+
+function createBattleNetSession(sessionData) {
+  const token = crypto.randomBytes(24).toString('hex');
+  const session = { ...sessionData, expiresAt: Date.now() + BNET_SESSION_TTL_MS };
+  BNET_AUTH_SESSIONS.set(token, session);
+  return { token, session };
+}
+
+function clearBattleNetSession(req, res) {
+  const cookies = parseCookies(req.headers.cookie || '');
+  const token = cookies[BNET_SESSION_COOKIE_NAME];
+  if (token) {
+    BNET_AUTH_SESSIONS.delete(token);
+  }
+  res.setHeader('Set-Cookie', `${BNET_SESSION_COOKIE_NAME}=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax`);
+}
+
+function resolveAuthRedirectTarget(req, outcome = 'success') {
+  const redirectUriCandidates = [BNET_REDIRECT_URI, process.env.REDIRECT_URI].filter(Boolean);
+  for (const redirectUri of redirectUriCandidates) {
+    try {
+      const parsed = new URL(redirectUri);
+      const hostname = String(parsed.hostname || '').toLowerCase();
+      if (['localhost', '127.0.0.1', '::1'].includes(hostname)) {
+        return `${parsed.origin}/?auth=${outcome}`;
+      }
+    } catch (error) {
+      // Ignore malformed redirect URIs and fall back to the request host.
+    }
+  }
+
+  const forwardedHost = String(req.headers['x-forwarded-host'] || req.headers.host || '').trim();
+  const forwardedProto = String(req.headers['x-forwarded-proto'] || 'http').trim();
+  if (forwardedHost) {
+    const normalizedHost = forwardedHost.split(',')[0].trim();
+    const requestOrigin = `${forwardedProto}://${normalizedHost}`;
+    return `${requestOrigin.replace(/\/+$/, '')}/?auth=${outcome}`;
+  }
+
+  const siteUrl = String(SITE_URL || '').trim();
+  if (siteUrl) {
+    return `${siteUrl.replace(/\/+$/, '')}/?auth=${outcome}`;
+  }
+
+  return `/?auth=${outcome}`;
+}
+
+function isBattleNetAuthConfigured() {
+  return Boolean(BNET_CLIENT_ID && BNET_CLIENT_SECRET && BNET_REDIRECT_URI);
+}
+
+function ensureBattleNetAuthSchema() {
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      battletag TEXT NOT NULL UNIQUE,
+      blizzard_id TEXT NOT NULL UNIQUE,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS roster_claim_audit (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      action TEXT NOT NULL,
+      roster_id INTEGER NOT NULL,
+      roster_name TEXT NOT NULL,
+      user_id INTEGER,
+      battletag TEXT,
+      actor_type TEXT NOT NULL,
+      actor_user_id INTEGER,
+      actor_label TEXT,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP
+    );
+  `);
+
+  const rosterColumns = db.prepare('PRAGMA table_info(roster)').all();
+  const hasUserId = rosterColumns.some(column => column.name === 'user_id');
+  if (!hasUserId) {
+    db.exec('ALTER TABLE roster ADD COLUMN user_id INTEGER');
+  }
+}
+
+function upsertBattleNetUser({ battletag, blizzardId }) {
+  const existing = db.prepare('SELECT id, battletag, blizzard_id FROM users WHERE lower(battletag) = lower(?) OR blizzard_id = ? LIMIT 1').get(battletag, blizzardId);
+  if (existing) {
+    db.prepare('UPDATE users SET battletag = ?, blizzard_id = ? WHERE id = ?').run(battletag, blizzardId, existing.id);
+    return db.prepare('SELECT id, battletag, blizzard_id FROM users WHERE id = ?').get(existing.id);
+  }
+
+  const info = db.prepare('INSERT INTO users (battletag, blizzard_id) VALUES (?, ?)').run(battletag, blizzardId);
+  return db.prepare('SELECT id, battletag, blizzard_id FROM users WHERE id = ?').get(info.lastInsertRowid);
+}
+
+function getClaimedCharactersForUser(userId) {
+  const rows = db.prepare('SELECT id, name FROM roster WHERE user_id = ? ORDER BY name COLLATE NOCASE').all(userId);
+  return rows.map(row => ({ rosterId: row.id, rosterName: row.name }));
+}
+
+function logRosterClaimAudit(payload) {
+  db.prepare(`
+    INSERT INTO roster_claim_audit (action, roster_id, roster_name, user_id, battletag, actor_type, actor_user_id, actor_label)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(
+    String(payload.action || ''),
+    Number(payload.rosterId || 0),
+    String(payload.rosterName || ''),
+    payload.userId === null || payload.userId === undefined ? null : Number(payload.userId),
+    payload.battletag ? String(payload.battletag) : null,
+    String(payload.actorType || 'unknown'),
+    payload.actorUserId === null || payload.actorUserId === undefined ? null : Number(payload.actorUserId),
+    payload.actorLabel ? String(payload.actorLabel) : null
+  );
+}
+
+function extractAdminToken(req) {
+  const header = req.get('x-admin-token') || req.get('authorization')?.replace(/^Bearer\s+/i, '');
+  return header || null;
+}
+
+function requireBattleNetAuth(req, res, next) {
+  const session = getBattleNetSessionFromRequest(req);
+  if (!session?.userId) {
+    return res.status(401).json({ error: 'Battle.net authentication required' });
+  }
+  req.bnetSession = session;
+  return next();
+}
+
+function requireOfficerAuth(req, res, next) {
+  const token = extractAdminToken(req);
+  if (!verifySession(token)) {
+    return res.status(401).json({ error: 'Officer authentication required' });
+  }
+  return next();
+}
+
+async function exchangeBattleNetToken(params) {
+  const basicToken = Buffer.from(`${BNET_CLIENT_ID}:${BNET_CLIENT_SECRET}`).toString('base64');
+  const response = await fetch(BNET_TOKEN_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${basicToken}`,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams(params)
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(`Battle.net token exchange failed (${response.status}): ${data.error_description || data.error || 'unknown error'}`);
+  }
+  return data;
+}
+
+async function fetchBattleNetUserInfo(accessToken) {
+  const response = await fetch(BNET_USERINFO_URL, {
+    headers: { Authorization: `Bearer ${accessToken}` }
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(`Battle.net userinfo fetch failed (${response.status}): ${data.error || 'unknown error'}`);
+  }
+  return data;
+}
+
+async function fetchBattleNetCharacters(req) {
+  const session = getBattleNetSessionFromRequest(req);
+  if (!session?.accessToken) {
+    throw new Error('No active Battle.net session');
+  }
+
+  const response = await fetch(`${BNET_API_BASE_URL}/profile/user/wow/characters?namespace=profile-${BNET_REGION}&locale=${BNET_LOCALE}`, {
+    headers: { Authorization: `Bearer ${session.accessToken}` }
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(`Battle.net character fetch failed (${response.status}): ${data.error || 'unknown error'}`);
+  }
+
+  const accountCharacters = Array.isArray(data.wow_accounts) ? data.wow_accounts : [];
+  const characters = accountCharacters.flatMap(account => (Array.isArray(account?.characters) ? account.characters : []).map(item => {
+    const character = item?.character || item || {};
+    const realm = character.realm || item?.realm || {};
+    return {
+      name: String(character.name || '').trim(),
+      realmName: String(realm.name || '').trim(),
+      realmSlug: String(realm.slug || '').trim(),
+      gameType: 'wow',
+      level: character.level || item?.level || null,
+      namespace: 'profile'
+    };
+  }));
+
+  return { characters, diagnostics: [] };
+}
+
 // Exchange the admin password for a session token. The password is verified
 // here and never leaves the server. Registered before the write guard below so
 // the guard doesn't reject this POST.
@@ -224,6 +462,14 @@ app.post('/api/login', (req, res) => {
 app.use((req, res, next) => {
   const isWriteMethod = ['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method);
   if (!isWriteMethod) return next();
+
+  if (/^\/api\/auth\//.test(req.path)) {
+    return next();
+  }
+
+  if (req.path === '/api/roster/claim' || req.path === '/api/roster/claim-manual') {
+    return next();
+  }
 
   // Public endpoint: players can submit bank requests without officer auth.
   if (req.method === 'POST' && /\/bank-requests$/.test(req.path)) {
@@ -831,7 +1077,7 @@ const DISCORD_WEBHOOK_URL = String(process.env.DISCORD_WEBHOOK_URL || '').trim()
 if (!DISCORD_WEBHOOK_URL) {
   console.warn('DISCORD_WEBHOOK_URL is not set — Discord notifications are disabled.');
 }
-const SITE_URL = String(process.env.SITE_URL || process.env.APP_URL || 'https://guild-name-tbc.top/').trim();
+// SITE_URL declared above.
 
 async function postToDiscord(payload) {
   if (!DISCORD_WEBHOOK_URL) return;
@@ -936,11 +1182,371 @@ async function sendBankBulkResolutionWebhook({ lines, title = '📦 Bank Basket 
 }
 
 // ==========================================
+// BATTLE.NET AUTH / CLAIMS
+// ==========================================
+ensureBattleNetAuthSchema();
+
+app.get('/api/auth/bnet', (req, res) => {
+  if (!isBattleNetAuthConfigured()) {
+    return res.status(500).json({ error: 'Battle.net OAuth is not configured on this server.' });
+  }
+
+  const state = crypto.randomBytes(24).toString('hex');
+  const { token } = createBattleNetSession({ state, pendingLogin: true });
+  setBattleNetSessionCookie(res, token);
+
+  const query = new URLSearchParams({
+    response_type: 'code',
+    client_id: BNET_CLIENT_ID,
+    redirect_uri: BNET_REDIRECT_URI,
+    scope: 'openid wow.profile',
+    state
+  });
+
+  return res.redirect(`${BNET_AUTHORIZE_URL}?${query.toString()}`);
+});
+
+app.get('/api/auth/bnet/callback', async (req, res) => {
+  try {
+    if (!isBattleNetAuthConfigured()) {
+      return res.redirect(resolveAuthRedirectTarget(req, 'failed'));
+    }
+
+    const code = String(req.query.code || '').trim();
+    const state = String(req.query.state || '').trim();
+    const session = getBattleNetSessionFromRequest(req);
+    if (!code || !state || !session?.state || state !== session.state) {
+      return res.redirect(resolveAuthRedirectTarget(req, 'failed'));
+    }
+
+    const tokenData = await exchangeBattleNetToken({
+      grant_type: 'authorization_code',
+      code,
+      redirect_uri: BNET_REDIRECT_URI
+    });
+
+    const userInfo = await fetchBattleNetUserInfo(tokenData.access_token);
+    const battletag = String(userInfo?.battletag || userInfo?.battle_tag || '').trim();
+    const blizzardId = String(userInfo?.sub || userInfo?.id || '').trim();
+
+    if (!battletag || !blizzardId) {
+      throw new Error('Battle.net user profile is missing battletag or id');
+    }
+
+    const user = upsertBattleNetUser({ battletag, blizzardId });
+    const { token } = createBattleNetSession({
+      userId: user.id,
+      battletag: user.battletag,
+      blizzardId: user.blizzard_id,
+      accessToken: tokenData.access_token,
+      refreshToken: tokenData.refresh_token || null,
+      expiresAt: Date.now() + (Number(tokenData.expires_in || 0) * 1000)
+    });
+    setBattleNetSessionCookie(res, token);
+
+    return res.redirect(resolveAuthRedirectTarget(req, 'success'));
+  } catch (error) {
+    console.error('Battle.net OAuth callback failed:', error.message || error);
+    return res.redirect(resolveAuthRedirectTarget(req, 'failed'));
+  }
+});
+
+app.post('/api/auth/logout', (req, res) => {
+  clearBattleNetSession(req, res);
+  return res.json({ ok: true });
+});
+
+app.get('/api/auth/me', (req, res) => {
+  const session = getBattleNetSessionFromRequest(req);
+  if (!session?.userId) {
+    return res.json({ authenticated: false });
+  }
+
+  const user = db.prepare('SELECT id, battletag, blizzard_id, created_at FROM users WHERE id = ?').get(session.userId);
+  if (!user) {
+    clearBattleNetSession(req, res);
+    return res.json({ authenticated: false });
+  }
+
+  return res.json({
+    authenticated: true,
+    user: {
+      id: user.id,
+      battletag: user.battletag,
+      blizzardId: user.blizzard_id,
+      createdAt: user.created_at
+    },
+    claimedCharacters: getClaimedCharactersForUser(user.id)
+  });
+});
+
+app.get('/api/profile/characters', requireBattleNetAuth, async (req, res) => {
+  try {
+    const result = await fetchBattleNetCharacters(req);
+    return res.json({ characters: result.characters });
+  } catch (error) {
+    return res.status(500).json({ error: error.message || 'Failed to fetch Battle.net characters' });
+  }
+});
+
+app.get('/api/profile/characters-debug', requireBattleNetAuth, async (req, res) => {
+  try {
+    const result = await fetchBattleNetCharacters(req);
+    return res.json(result);
+  } catch (error) {
+    return res.status(500).json({ error: error.message || 'Failed to fetch Battle.net character diagnostics' });
+  }
+});
+
+app.post('/api/roster/claim', requireBattleNetAuth, async (req, res) => {
+  const characterName = String(req.body?.characterName || '').trim();
+  const realmSlug = String(req.body?.realmSlug || '').trim();
+
+  if (!characterName) {
+    return res.status(400).json({ error: 'characterName is required' });
+  }
+
+  try {
+    const characterResult = await fetchBattleNetCharacters(req);
+    const matchedCharacter = characterResult.characters.find(character => {
+      if (character.name.toLowerCase() !== characterName.toLowerCase()) {
+        return false;
+      }
+      if (!realmSlug) return true;
+      return String(character.realmSlug || '').toLowerCase() === realmSlug.toLowerCase();
+    });
+
+    if (!matchedCharacter) {
+      return res.status(400).json({ error: 'Selected character was not found in your Battle.net profile.' });
+    }
+
+    const userId = Number(req.bnetSession.userId);
+    const targetRoster = db.prepare(`
+      SELECT id, name, spec_id, in_raid, user_id
+      FROM roster
+      WHERE lower(name) = lower(?) AND user_id IS NULL
+      ORDER BY id ASC
+      LIMIT 1
+    `).get(matchedCharacter.name);
+
+    if (!targetRoster) {
+      return res.status(409).json({ error: 'No unclaimed roster slot exists for that character name.' });
+    }
+
+    db.prepare(`
+      UPDATE roster
+      SET user_id = ?
+      WHERE id = ? AND (user_id IS NULL OR user_id = ?)
+    `).run(userId, targetRoster.id, userId);
+
+    logRosterClaimAudit({
+      action: 'claim',
+      rosterId: targetRoster.id,
+      rosterName: targetRoster.name,
+      userId,
+      battletag: req.bnetSession?.battletag || null,
+      actorType: 'bnet_user',
+      actorUserId: userId,
+      actorLabel: req.bnetSession?.battletag || null
+    });
+
+    return res.json({
+      ok: true,
+      claimed: {
+        rosterId: targetRoster.id,
+        rosterName: targetRoster.name,
+        specId: targetRoster.spec_id,
+        inRaid: targetRoster.in_raid === 1,
+        characterName: matchedCharacter.name,
+        realmSlug: matchedCharacter.realmSlug,
+        gameType: matchedCharacter.gameType
+      }
+    });
+  } catch (error) {
+    return res.status(500).json({ error: error.message || 'Failed to claim roster character' });
+  }
+});
+
+app.post('/api/roster/claim-manual', (req, res) => {
+  const rosterId = Number(req.body?.rosterId || 0);
+  if (!rosterId) {
+    return res.status(400).json({ error: 'rosterId is required' });
+  }
+
+  try {
+    let userId = Number(req.body?.userId || 0);
+    let battletag = String(req.body?.battletag || '').trim();
+
+    if (!userId) {
+      const session = getBattleNetSessionFromRequest(req);
+      userId = Number(session?.userId || 0);
+      battletag = battletag || String(session?.battletag || '');
+    }
+
+    if (!userId) {
+      const token = extractAdminToken(req);
+      if (!verifySession(token)) {
+        return res.status(401).json({ error: 'Battle.net or officer authentication required' });
+      }
+
+      battletag = String(req.body?.battletag || '').trim();
+      if (!battletag) {
+        return res.status(400).json({ error: 'battletag is required when Battle.net session is unavailable' });
+      }
+
+      const user = db.prepare('SELECT id, battletag FROM users WHERE lower(battletag) = lower(?) LIMIT 1').get(battletag);
+      if (!user) {
+        return res.status(404).json({ error: 'No Battle.net user found for that battletag. Log in with Battle.net once, then retry.' });
+      }
+
+      userId = Number(user.id);
+      battletag = user.battletag;
+    }
+
+    const targetRoster = db.prepare('SELECT id, name, spec_id, in_raid, user_id FROM roster WHERE id = ? LIMIT 1').get(rosterId);
+
+    if (!targetRoster) {
+      return res.status(404).json({ error: 'Roster character was not found.' });
+    }
+
+    if (targetRoster.user_id && Number(targetRoster.user_id) !== userId) {
+      return res.status(409).json({ error: 'Roster character is already claimed by another user.' });
+    }
+
+    db.prepare(`
+      UPDATE roster
+      SET user_id = ?
+      WHERE id = ? AND (user_id IS NULL OR user_id = ?)
+    `).run(userId, targetRoster.id, userId);
+
+    logRosterClaimAudit({
+      action: 'claim_manual',
+      rosterId: targetRoster.id,
+      rosterName: targetRoster.name,
+      userId,
+      battletag,
+      actorType: 'bnet_user',
+      actorUserId: userId,
+      actorLabel: battletag
+    });
+
+    return res.json({
+      ok: true,
+      claimed: {
+        rosterId: targetRoster.id,
+        rosterName: targetRoster.name,
+        specId: targetRoster.spec_id,
+        inRaid: targetRoster.in_raid === 1,
+        source: 'manual_roster_fallback'
+      }
+    });
+  } catch (error) {
+    return res.status(500).json({ error: error.message || 'Failed to claim roster character manually' });
+  }
+});
+
+app.get('/api/roster/claims', requireOfficerAuth, (req, res) => {
+  try {
+    const claims = db.prepare(`
+      SELECT
+        r.id as roster_id,
+        r.name as roster_name,
+        r.spec_id,
+        r.in_raid,
+        u.id as user_id,
+        u.battletag,
+        u.blizzard_id,
+        u.created_at as linked_at
+      FROM roster r
+      JOIN users u ON u.id = r.user_id
+      ORDER BY r.name COLLATE NOCASE
+    `).all();
+
+    return res.json({ claims: claims.map(row => ({
+      rosterId: row.roster_id,
+      rosterName: row.roster_name,
+      specId: row.spec_id,
+      inRaid: row.in_raid === 1,
+      userId: row.user_id,
+      battletag: row.battletag,
+      blizzardId: row.blizzard_id,
+      linkedAt: row.linked_at
+    })) });
+  } catch (error) {
+    return res.status(500).json({ error: error.message || 'Failed to load roster claims.' });
+  }
+});
+
+app.post('/api/roster/unclaim', requireOfficerAuth, (req, res) => {
+  const rosterId = Number(req.body?.rosterId || req.body?.id || 0);
+  if (!rosterId) {
+    return res.status(400).json({ error: 'rosterId is required' });
+  }
+
+  try {
+    const existing = db.prepare('SELECT id, name, user_id FROM roster WHERE id = ?').get(rosterId);
+    if (!existing) {
+      return res.status(404).json({ error: 'Roster character not found.' });
+    }
+
+    if (!existing.user_id) {
+      return res.status(409).json({ error: 'Roster character is already unclaimed.' });
+    }
+
+    const linkedUser = db.prepare('SELECT id, battletag FROM users WHERE id = ?').get(existing.user_id);
+    db.prepare('UPDATE roster SET user_id = NULL WHERE id = ?').run(rosterId);
+
+    logRosterClaimAudit({
+      action: 'unclaim',
+      rosterId,
+      rosterName: existing.name,
+      userId: linkedUser?.id || existing.user_id,
+      battletag: linkedUser?.battletag || null,
+      actorType: 'officer',
+      actorUserId: null,
+      actorLabel: 'Officer Session'
+    });
+
+    return res.json({ ok: true, rosterId, rosterName: existing.name });
+  } catch (error) {
+    return res.status(500).json({ error: error.message || 'Failed to unclaim roster character.' });
+  }
+});
+
+
+app.get('/api/roster/claim-audit', requireOfficerAuth, (req, res) => {
+  try {
+    const limit = Math.min(200, Math.max(10, Number(req.query?.limit || 50)));
+    const rows = db.prepare(`
+      SELECT id, action, roster_id, roster_name, user_id, battletag, actor_type, actor_user_id, actor_label, created_at
+      FROM roster_claim_audit
+      ORDER BY id DESC
+      LIMIT ?
+    `).all(limit);
+
+    return res.json({ entries: rows.map(row => ({
+      id: row.id,
+      action: row.action,
+      rosterId: row.roster_id,
+      rosterName: row.roster_name,
+      userId: row.user_id,
+      battletag: row.battletag,
+      actorType: row.actor_type,
+      actorUserId: row.actor_user_id,
+      actorLabel: row.actor_label,
+      createdAt: row.created_at
+    })) });
+  } catch (error) {
+    return res.status(500).json({ error: error.message || 'Failed to load claim audit log.' });
+  }
+});
+
+// ==========================================
 // ROSTER
 // ==========================================
 app.get('/api/roster', (req, res) => {
   try {
-    const rows = db.prepare('SELECT id, name, spec_id, in_raid FROM roster').all();
+    const rows = db.prepare('SELECT id, name, spec_id, in_raid, user_id FROM roster').all();
     const roster = rows.map(r => ({ ...r, in_raid: r.in_raid === 1 }));
     res.json(roster);
   } catch (e) {
@@ -952,19 +1558,20 @@ app.put('/api/roster', (req, res) => {
   try {
     const players = req.body;
     const deleteAll = db.prepare('DELETE FROM roster');
-    const insertWithId = db.prepare('INSERT INTO roster (id, name, spec_id, in_raid) VALUES (?, ?, ?, ?)');
-    const insertNoId = db.prepare('INSERT INTO roster (name, spec_id, in_raid) VALUES (?, ?, ?)');
+    const insertWithId = db.prepare('INSERT INTO roster (id, name, spec_id, in_raid, user_id) VALUES (?, ?, ?, ?, ?)');
+    const insertNoId = db.prepare('INSERT INTO roster (name, spec_id, in_raid, user_id) VALUES (?, ?, ?, ?)');
 
     const saveAll = db.transaction(() => {
       deleteAll.run();
       return players.map(p => {
+        const nextUserId = p.user_id === undefined || p.user_id === null ? null : Number(p.user_id);
         if (p.id !== undefined && p.id !== null && String(p.id).trim() !== '') {
-          insertWithId.run(Number(p.id), p.name, p.spec_id, p.in_raid ? 1 : 0);
-          return { id: Number(p.id), name: p.name, spec_id: p.spec_id, in_raid: !!p.in_raid };
+          insertWithId.run(Number(p.id), p.name, p.spec_id, p.in_raid ? 1 : 0, nextUserId);
+          return { id: Number(p.id), name: p.name, spec_id: p.spec_id, in_raid: !!p.in_raid, user_id: nextUserId };
         }
 
-        const info = insertNoId.run(p.name, p.spec_id, p.in_raid ? 1 : 0);
-        return { id: info.lastInsertRowid, name: p.name, spec_id: p.spec_id, in_raid: !!p.in_raid };
+        const info = insertNoId.run(p.name, p.spec_id, p.in_raid ? 1 : 0, nextUserId);
+        return { id: info.lastInsertRowid, name: p.name, spec_id: p.spec_id, in_raid: !!p.in_raid, user_id: nextUserId };
       });
     });
 
