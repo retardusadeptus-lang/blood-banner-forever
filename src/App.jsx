@@ -1986,6 +1986,7 @@ export default function App() {
             handleResolveBankRequest={handleResolveBankRequest}
             handleBulkResolveBankRequests={handleBulkResolveBankRequests}
             handleBankFileUpload={handleBankFileUpload}
+            setBankUploadParsed={setBankUploadParsed}
             bankUploadParsed={bankUploadParsed}
             handleSaveBankUpload={handleSaveBankUpload}
             bankUploadStatus={bankUploadStatus}
