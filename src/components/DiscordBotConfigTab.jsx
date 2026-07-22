@@ -1,4 +1,3 @@
-import React from 'react';
 
 function normalizeList(rawText) {
   return Array.from(
@@ -22,7 +21,12 @@ export default function DiscordBotConfigTab({
   setConfig,
   hasUnsavedChanges,
   onSaveChanges,
-  isSaving
+  isSaving,
+  claims,
+  onUnclaimClaim,
+  roster,
+  specsByName,
+  getDisplayFromId
 }) {
   const updateRoleList = (field, rawText) => {
     setConfig(prev => ({
@@ -39,8 +43,8 @@ export default function DiscordBotConfigTab({
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-slate-100 mb-1">Discord Bot Config</h2>
-          <p className="text-sm text-slate-500">Set which Discord roles can run each slash command. Enter role IDs or exact role names, one per line.</p>
+          <h2 className="text-xl font-bold text-slate-100 mb-1">Config</h2>
+          <p className="text-sm text-slate-500">Set which Discord roles can run each slash command and manage Battle.net roster claims.</p>
         </div>
         <button
           type="button"
@@ -85,6 +89,36 @@ export default function DiscordBotConfigTab({
           />
           <p className="text-[11px] text-slate-500 mt-2">Controls access to /raid bench. Empty list means unrestricted.</p>
         </div>
+      </div>
+
+      <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+        <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Claimed Characters</h3>
+        {(!Array.isArray(claims) || claims.length === 0) ? (
+          <p className="text-sm text-slate-500">No Battle.net claims have been made yet.</p>
+        ) : (
+          <div className="space-y-2">
+            {claims.map(claim => {
+              const rosterEntry = Array.isArray(roster) ? roster.find(player => Number(player.id) === Number(claim.rosterId)) : null;
+              const specDisplay = rosterEntry ? getDisplayFromId?.(rosterEntry.spec_id) : null;
+              const color = specsByName?.[specDisplay]?.color || '#e2e8f0';
+              return (
+                <div key={`${claim.rosterId}-${claim.userId}`} className="flex items-center justify-between gap-3 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
+                  <div>
+                    <p className="text-sm font-semibold text-slate-100" style={{ color }}>{claim.rosterName}</p>
+                    <p className="text-xs text-slate-500">{claim.battletag || 'Battle.net account'}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => onUnclaimClaim?.(claim)}
+                    className="text-[10px] font-bold uppercase tracking-wider text-amber-400 hover:text-amber-300"
+                  >
+                    Clear Claim
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
 
       <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
