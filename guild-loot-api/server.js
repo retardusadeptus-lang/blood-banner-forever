@@ -9,6 +9,23 @@ const crypto = require('crypto');
 const fs = require('fs');
 // const path = require('path'); // Added for deployment pathway flexibility
 const { EmbedBuilder } = require('discord.js');
+
+function getGitCommitSha() {
+  if (process.env.GIT_COMMIT) return String(process.env.GIT_COMMIT).trim();
+
+  const gitHeadPath = path.join(__dirname, '..', '.git', 'HEAD');
+  try {
+    const head = fs.readFileSync(gitHeadPath, 'utf8').trim();
+    if (head.startsWith('ref: ')) {
+      const refPath = path.join(__dirname, '..', '.git', head.slice(5).trim());
+      return fs.readFileSync(refPath, 'utf8').trim();
+    }
+    return head;
+  } catch (e) {
+    return 'unknown';
+  }
+}
+
 const { initDiscordBot, getDiscordClient } = require('./bot');
 const {
   listTemplates,
@@ -163,6 +180,7 @@ app.use(express.json());
 app.get('/api/version', (req, res) => {
   return res.json({
     routeRegistered: Boolean(app._router.stack.find(layer => layer.route && layer.route.path === '/api/auth/bnet')),
+    commit: getGitCommitSha(),
     env: {
       BNET_CLIENT_ID: Boolean(process.env.BNET_CLIENT_ID),
       BNET_REDIRECT_URI: Boolean(process.env.REDIRECT_URI),
