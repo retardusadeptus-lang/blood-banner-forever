@@ -160,6 +160,19 @@ const app = express();
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 
+app.get('/api/version', (req, res) => {
+  return res.json({
+    routeRegistered: Boolean(app._router.stack.find(layer => layer.route && layer.route.path === '/api/auth/bnet')),
+    env: {
+      BNET_CLIENT_ID: Boolean(process.env.BNET_CLIENT_ID),
+      BNET_REDIRECT_URI: Boolean(process.env.REDIRECT_URI),
+      SITE_URL: Boolean(process.env.SITE_URL || process.env.APP_URL),
+      PORT: Boolean(process.env.PORT),
+      API_PORT: Boolean(process.env.API_PORT)
+    }
+  });
+});
+
 const BNET_SESSION_COOKIE_NAME = 'wow_loot_bnet_sid';
 const BNET_SESSION_TTL_MS = 12 * 60 * 60 * 1000;
 const BNET_AUTH_SESSIONS = new Map();
