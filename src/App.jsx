@@ -1233,6 +1233,10 @@ export default function App() {
 
   const handleSaveRaidAssignmentsChanges = async () => {
     if (!raidAssignmentDataDirty && !enabledBossesDirty) return;
+    if (!isAuthenticated) {
+      alert('Officer login required to save raid assignments.');
+      return;
+    }
     setIsSavingRaidAssignments(true);
     try {
       if (raidAssignmentDataDirty) {
