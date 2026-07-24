@@ -225,6 +225,64 @@ export default function RaidAssignmentsTab({
   const [showManageBosses, setShowManageBosses] = useState(false);
   const [newCustomZoneName, setNewCustomZoneName] = useState('');
   const [newCustomBossName, setNewCustomBossName] = useState('');
+  const [exportStatus, setExportStatus] = useState('');
+
+  const buildRaidAssignmentsExport = () => {
+    return {
+      exported_at: new Date().toISOString(),
+      enabled_bosses: enabledBosses,
+      raid_assignment_data: raidAssignmentData || {},
+      roster: roster.map(player => ({
+        id: player.id,
+        name: player.name,
+        spec_id: player.spec_id,
+        in_raid: player.in_raid,
+        class: getSpecById(player.spec_id)?.class || null
+      }))
+    };
+  };
+
+  const downloadRaidAssignmentsJson = () => {
+    const payload = buildRaidAssignmentsExport();
+    const text = JSON.stringify(payload, null, 2);
+    const blob = new Blob([text], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `raid-assignments-${new Date().toISOString().replace(/[:.]/g, '-')}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    setExportStatus('Downloaded JSON file.');
+  };
+
+  const copyRaidAssignmentsJson = async () => {
+    const payload = buildRaidAssignmentsExport();
+    const text = JSON.stringify(payload, null, 2);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        setExportStatus('Copied JSON to clipboard.');
+        return;
+      } catch (error) {
+        // fall back to manual copy below
+      }
+    }
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    setExportStatus('Copied JSON to clipboard.');
+  };
+
+  React.useEffect(() => {
+    if (!exportStatus) return;
+    const timer = setTimeout(() => setExportStatus(''), 3000);
+    return () => clearTimeout(timer);
+  }, [exportStatus]);
   const activeRaiders = roster.filter(p => p.in_raid);
   const getPlayersByClass = (cls) => activeRaiders.filter(p => getSpecById(p.spec_id)?.class === cls);
   const getPlayersByClasses = (classes) => activeRaiders.filter(p => classes.includes(getSpecById(p.spec_id)?.class));
@@ -391,6 +449,21 @@ export default function RaidAssignmentsTab({
               WIPE ALL DATA
             </button>
           )}
+          <button
+            type="button"
+            onClick={downloadRaidAssignmentsJson}
+            className="text-xs font-bold bg-cyan-700 hover:bg-cyan-600 text-white px-3 py-2 rounded transition"
+          >
+            Export JSON
+          </button>
+          <button
+            type="button"
+            onClick={copyRaidAssignmentsJson}
+            className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white px-3 py-2 rounded transition"
+          >
+            Copy JSON
+          </button>
+          {exportStatus && <span className="text-xs text-slate-400">{exportStatus}</span>}
           <BossSelector
             raidZones={raidZones}
             enabledBosses={enabledBosses}

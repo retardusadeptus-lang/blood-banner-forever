@@ -27,12 +27,15 @@ export default function BankRequestsTab({
   handleBulkResolveBankRequests,
   handleBankFileUpload,
   bankUploadParsed,
+  setBankUploadParsed,
   handleSaveBankUpload,
   bankUploadStatus
 }) {
   const [basket, setBasket] = useState([]);
   const [bulkModalOpen, setBulkModalOpen] = useState(false);
   const [bulkItems, setBulkItems] = useState([]);
+  const [bankJsonText, setBankJsonText] = useState('');
+  const [showBankJsonImport, setShowBankJsonImport] = useState(false);
 
   const denyReasonOptions = [
     'Item reserved for raid use',
@@ -113,6 +116,39 @@ export default function BankRequestsTab({
   const closeBulkModal = () => {
     setBulkModalOpen(false);
     setBulkItems([]);
+  };
+
+  const handleParseBankJson = () => {
+    try {
+      const parsedData = JSON.parse(bankJsonText || '{}');
+      const items = Array.isArray(parsedData.bankItems)
+        ? parsedData.bankItems
+        : Array.isArray(parsedData.items)
+          ? parsedData.items
+          : Array.isArray(parsedData.data)
+            ? parsedData.data
+            : [];
+
+      const normalized = items.map(item => ({
+        item_wowhead_id: Number(item.item_wowhead_id ?? item.id ?? item.itemId) || 0,
+        count: Number(item.count ?? item.quantity ?? 0) || 0,
+        name: item.name || item.item_name || '',
+        category: item.category || item.cat || '',
+        sub_type: item.sub_type || item.subtype || item.subType || ''
+      })).filter(i => i.item_wowhead_id > 0);
+
+      if (normalized.length === 0) {
+        setBankUploadStatus('⚠️ No valid bank items found in JSON.');
+        setBankUploadParsed(null);
+        return;
+      }
+
+      setBankUploadParsed(normalized);
+      setBankUploadStatus(`✅ Loaded ${normalized.length} items from JSON.`);
+    } catch (error) {
+      setBankUploadStatus('❌ Invalid JSON. Please paste the exported blob from the addon.');
+      setBankUploadParsed(null);
+    }
   };
 
   const buildSummaryMessage = (resolved) => {
@@ -444,6 +480,13 @@ export default function BankRequestsTab({
             📂 Select Lua File
             <input type="file" accept=".lua" className="hidden" onChange={handleBankFileUpload} />
           </label>
+          <button
+            type="button"
+            onClick={() => setShowBankJsonImport(prev => !prev)}
+            className="bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold px-4 py-2.5 rounded-lg transition text-sm"
+          >
+            {showBankJsonImport ? 'Hide JSON Import' : 'Paste Bank JSON'}
+          </button>
           {bankUploadParsed && (
             <button onClick={handleSaveBankUpload} className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2.5 rounded-lg transition text-sm">
               💾 Save & Notify Discord
@@ -452,6 +495,39 @@ export default function BankRequestsTab({
           {bankUploadStatus && <span className="text-sm font-semibold text-slate-300">{bankUploadStatus}</span>}
         </div>
       </div>
+      {showBankJsonImport && (
+        <div className="mt-4 bg-slate-900 border border-slate-800 rounded-xl p-4">
+          <label className="block text-[10px] text-slate-500 uppercase font-bold mb-2">Paste Addon Bank JSON</label>
+          <textarea
+            value={bankJsonText}
+            onChange={e => setBankJsonText(e.target.value)}
+            placeholder="Paste the JSON exported by the addon here..."
+            className="w-full min-h-[140px] bg-slate-900 text-white border border-slate-700 rounded-lg px-3 py-2 text-xs focus:outline-none"
+          />
+          <div className="flex flex-wrap items-center gap-2 mt-3">
+            <button
+              type="button"
+              onClick={handleParseBankJson}
+              className="bg-cyan-700 hover:bg-cyan-600 text-white font-bold px-4 py-2 rounded-lg text-sm transition"
+            >
+              Import JSON
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setBankJsonText('');
+                setBankUploadParsed(null);
+                setShowBankJsonImport(false);
+                setBankUploadStatus('');
+              }}
+              className="bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold px-4 py-2 rounded-lg text-sm transition"
+            >
+              Cancel
+            </button>
+            <span className="text-[10px] text-slate-500">Paste the addon-exported JSON blob from in-game and import it directly into Bank Requests.</span>
+          </div>
+        </div>
+      )}
 
       <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Pending Requests</h3>
       {pendingRequestGroups.length === 0 ? (

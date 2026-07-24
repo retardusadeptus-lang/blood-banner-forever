@@ -178,3 +178,130 @@ SLASH_GBSCAN1 = "/gbscan"
 SlashCmdList["GBSCAN"] = function()
     startScan()
 end
+
+SLASH_GBEXPORT1 = "/gbexport"
+SlashCmdList["GBEXPORT"] = function()
+    if not TBCBankDB or next(TBCBankDB) == nil then
+        print("|cff00ff00[TBC Bank]|r: No bank data available. Scan the bank first with /gbscan.")
+        return
+    end
+    showExportPopup()
+end
+
+local function escapeJsonString(value)
+    local s = tostring(value or "")
+    s = s:gsub("\\", "\\\\")
+    s = s:gsub('"', '\\"')
+    s = s:gsub("\n", "\\n")
+    s = s:gsub("\r", "\\r")
+    s = s:gsub("\t", "\\t")
+    return s
+end
+
+local function isArray(tbl)
+    if type(tbl) ~= "table" then
+        return false
+    end
+    local count = 0
+    for k in pairs(tbl) do
+        if type(k) ~= "number" then
+            return false
+        end
+        count = count + 1
+    end
+    for i = 1, count do
+        if tbl[i] == nil then
+            return false
+        end
+    end
+    return true
+end
+
+local function encodeJson(value)
+    local t = type(value)
+    if t == "string" then
+        return '"' .. escapeJsonString(value) .. '"'
+    elseif t == "number" or t == "boolean" then
+        return tostring(value)
+    elseif t == "table" then
+        if isArray(value) then
+            local items = {}
+            for i = 1, #value do
+                items[#items + 1] = encodeJson(value[i])
+            end
+            return "[" .. table.concat(items, ",") .. "]"
+        else
+            local entries = {}
+            for k, v in pairs(value) do
+                if type(k) == "string" then
+                    entries[#entries + 1] = '"' .. escapeJsonString(k) .. '":' .. encodeJson(v)
+                end
+            end
+            table.sort(entries)
+            return "{" .. table.concat(entries, ",") .. "}"
+        end
+    end
+    return "null"
+end
+
+local function buildExportPayload()
+    local payload = {
+        exported_at = date("!%Y-%m-%dT%H:%M:%SZ"),
+        guild = GetGuildInfo("player") or "",
+        items = {}
+    }
+
+    if TBCBankDB then
+        for itemId, item in pairs(TBCBankDB) do
+            payload.items[#payload.items + 1] = {
+                itemId = tonumber(itemId) or 0,
+                count = tonumber(item.count) or 0,
+                name = item.name or "",
+                category = item.category or "",
+                subType = item.subtype or item.subType or ""
+            }
+        end
+    end
+
+    return payload
+end
+
+local function showExportPopup()
+    local payload = buildExportPayload()
+    if not payload.items or #payload.items == 0 then
+        print("|cff00ff00[TBC Bank]|r: No bank data available to export. Scan first with /gbscan.")
+        return
+    end
+    local jsonText = encodeJson(payload)
+
+    if not StaticPopupDialogs["TBCBANKLOGGER_EXPORT_JSON"] then
+        StaticPopupDialogs["TBCBANKLOGGER_EXPORT_JSON"] = {
+            text = "Copy the exported JSON below:",
+            button1 = "Close",
+            hasEditBox = true,
+            maxLetters = 32768,
+            whileDead = true,
+            hideOnEscape = true,
+            timeout = 0,
+            preferredIndex = 3,
+            OnShow = function(self)
+                self.editBox:SetText(self.jsonText or "")
+                self.editBox:HighlightText()
+                self.editBox:SetAutoFocus(true)
+            end,
+            OnAccept = function(self)
+                self:Hide()
+            end,
+            EditBoxOnEscapePressed = function(self)
+                self:GetParent():Hide()
+            end
+        }
+    end
+
+    local dialog = StaticPopup_Show("TBCBANKLOGGER_EXPORT_JSON")
+    if dialog then
+        dialog.jsonText = jsonText
+        dialog.editBox:SetText(jsonText)
+        dialog.editBox:HighlightText()
+    end
+end
