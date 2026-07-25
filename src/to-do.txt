@@ -1,0 +1,117 @@
+🏗️ Architecture & Core Refactoring
+
+    [ ] Refactor Monolithic server.js: Break down the 1,500+ line backend file into a modular Express Router structure (routes/, middleware/, config/, and services/) to improve maintainability and debugging.
+
+    [ ] Evaluate monorepo project structure and optimize folder setup based on feedback.
+
+🏛️ UI Navigation & Layout (Tabs & Views)
+
+    [ ] Implement Secondary Tabs Layout:
+
+        Guild Bank: Main tab, requests, addon, update, history.
+
+        Raid Signups: Templates, events, group config, history.
+
+        Raid Assignments: Roster, history (saved JSON blobs of historic assignments to recall as a baseline for future runs).
+
+        Loot Council: Priority overview, scoring (move config to config tab), assigned loot (RCLC integration?).
+
+        Admin: Officer roles, config, master items DB, to-do list.
+
+        Resources: BiS, cheat sheets.
+
+    [ ] Add option to the config tab to move/toggle tabs between Public, Officer, or Admin views.
+
+    [ ] Create an admin "lounge" and a unified admin password system (e.g., single box yielding different view permissions depending on credentials).
+
+    [ ] Add a button to collapse/expand raid templates.
+
+⚔️ Raid Assignments & Weakaura Integration
+
+    [ ] Add BoPs to assignments.
+
+    [ ] Add the ability to re-order bosses in raid assignments.
+
+    [ ] Fix read-only behavior on raid assignments: remove the save button for read-only users, reverting changes via cookie or officer filter.
+
+    [ ] Prevent updated raid assignments from disappearing on new production pushes (investigate JSON blob persistence).
+
+    [ ] WeakAura / Addon Exporter:
+
+        Build a JSON export / WeakAura assignment exporter from the assignments page (or Angry Assignments output) for in-game rendering.
+
+        Write a companion Lua WeakAura using a JSON decoder library to parse text input and display text on screen dynamically based on player names.
+
+    [ ] Fix "Weapon" slot not mapping correctly to the BiS config.
+
+    [ ] Add optional 2H vs. 1H & OH as secondary sub-rows under weapon slots.
+
+📦 Guild Bank & Items
+
+    [ ] Re-design the guild bank page to visually resemble an in-game guild bank tab.
+
+    [ ] Fix slow refreshes on guild bank item icons.
+
+    [ ] Fix missing sub-types on guild bank uploads (check addon version consistency between PC and laptop).
+
+    [ ] Purge old bank request history.
+
+    [ ] Fix wrong or missing item IDs (pending).
+
+    [ ] Add optional items back in (pending).
+
+    [ ] Work out a mass update script for item IDs with Ghab (checking Wowhead name matching against background data).
+
+    [ ] Evaluate using scraped text from Wowhead pages to populate BiS lists.
+
+    [ ] Change BiS config to display an armor mannequin layout (similar to in-game/Wowhead).
+
+🔐 Auth, Roster, & Discord Integration
+
+    [ ] Add guild member login fallback if Battle.net auth fails:
+
+        Guild bank baskets require login; pages viewable read-only without login.
+
+        Priority overview hidden until guild password is entered.
+
+    [ ] Check fallback URL settings for Battle.net to resolve character-claiming authorization errors.
+
+    [ ] Add a 'Claimed' tag/star icon to characters on the roster.
+
+    [ ] Handle alt sign-ups: request character names / allow renaming during sign-ups, and tie attendance to Battle.net IDs.
+
+    [ ] Add a way to tag specific characters as officers.
+
+    [ ] Highlight names or boxes properly when clicking "Show mine" in officer roles.
+
+    [ ] Change Discord server settings to a community server and enforce nickname selection.
+
+    [ ] Automatically add users to the roster when they join Discord via bot integration.
+
+    [ ] Update the Discord bot to use custom class icons uploaded to the developer portal.
+
+    [ ] Fix bug where the last person selecting their class leaves the top box selected for everyone.
+
+📊 Integrations & Analytics (WarcraftLogs, RCLC, etc.)
+
+    [ ] WarcraftLogs (WCL) Integration:
+
+        Set up GraphQL queries to pull parsing and healing data.
+
+        Create a backend cron job to sync WCL data nightly into the player_parses table.
+
+        Integrate a charting library (Chart.js or Recharts) into the React frontend to display toggleable performance line charts.
+
+    [ ] Explore integration options for WowAudit and RCLootCouncil (RCLC).
+
+🛠️ Performance, Frontend, & Miscellaneous Fixes
+
+    [ ] Fix front-end icon load delay: find an alternative to the short delay currently implemented to stop icons from going stale on view changes (pending).
+
+    [ ] Investigate potential browser stability issues (Firefox tab crash check — monitor if related to site rendering or isolated).
+
+    [ ] Fix bug where removing an item from the priority view does not work.
+
+    [ ] Fix saving logic so it doesn't conflict between saving raw IDs vs. BiS/Opt flags.
+
+    [ ] Build a cheat sheet based on the Paladin Discord spreadsheet.

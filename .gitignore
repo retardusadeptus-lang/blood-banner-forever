@@ -31,3 +31,4 @@ Prompt2
 battlenet_server_ref.js
 guild-loot-api/mydb.db
 guild-loot-api/sessions.sqlite3
+server.js.bak
