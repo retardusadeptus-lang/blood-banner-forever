@@ -6,6 +6,7 @@ const {
   listTemplates,
   listOpenEvents,
   listManageableEvents,
+  listArchivedEvents,
   createEventFromTemplate,
   getEventById,
   getAvailableClassesForEvent,
@@ -201,12 +202,17 @@ module.exports = {
     }
 
     if (subcommand === 'unlock' && focused.name === 'event') {
-      const archived = listArchivedEvents(db)
+      const candidates = [
+        ...listManageableEvents(db),
+        ...listArchivedEvents(db)
+      ].filter(e => String(e.status || '').toLowerCase() !== 'open');
+
+      const events = candidates
         .filter(e => `${e.id} ${e.title}`.toLowerCase().includes(String(focused.value || '').toLowerCase()))
         .slice(0, 25)
         .map(e => ({ name: `#${e.id} [${e.status}] ${e.title}`, value: String(e.id) }));
 
-      await interaction.respond(archived);
+      await interaction.respond(events);
       return;
     }
 
