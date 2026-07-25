@@ -104,6 +104,18 @@ module.exports = {
     )
     .addSubcommand(subcommand =>
       subcommand
+        .setName('unlock')
+        .setDescription('Unlock or restore a raid signup event so signups are accepted again')
+        .addStringOption(option =>
+          option
+            .setName('event')
+            .setDescription('Event id')
+            .setRequired(true)
+            .setAutocomplete(true)
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
         .setName('delete')
         .setDescription('Delete an event from site and Discord')
         .addStringOption(option =>
@@ -185,6 +197,16 @@ module.exports = {
         .map(e => ({ name: `#${e.id} [${e.status}] ${e.title}`, value: String(e.id) }));
 
       await interaction.respond(events);
+      return;
+    }
+
+    if (subcommand === 'unlock' && focused.name === 'event') {
+      const archived = listArchivedEvents(db)
+        .filter(e => `${e.id} ${e.title}`.toLowerCase().includes(String(focused.value || '').toLowerCase()))
+        .slice(0, 25)
+        .map(e => ({ name: `#${e.id} [${e.status}] ${e.title}`, value: String(e.id) }));
+
+      await interaction.respond(archived);
       return;
     }
 
@@ -313,6 +335,29 @@ module.exports = {
 
       await interaction.reply({
         content: `Archived event #${eventId}.`,
+        ephemeral: true
+      });
+      return;
+    }
+
+    if (subcommand === 'unlock') {
+      const eventId = Number(interaction.options.getString('event', true));
+      const event = getEventById(db, eventId);
+      if (!event) {
+        await interaction.reply({ content: 'Event not found.', ephemeral: true });
+        return;
+      }
+
+      db.prepare(`
+        UPDATE raid_signup_events
+        SET status = 'open', updated_at = CURRENT_TIMESTAMP
+        WHERE id = ?
+      `).run(eventId);
+
+      await refreshEventMessage(db, interaction.client, eventId);
+
+      await interaction.reply({
+        content: `Unlocked event #${eventId}. Signups are enabled again.`,
         ephemeral: true
       });
       return;
