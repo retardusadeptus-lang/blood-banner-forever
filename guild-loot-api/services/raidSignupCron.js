@@ -1,0 +1,141 @@
+const { getDiscordClient } = require('../bot');
+const {
+  listTemplates,
+  createEventFromTemplate,
+  getAvailableClassesForEvent,
+  getAllowedSpecsByClass
+} = require('../discord/utils/raidSignupStore');
+const { resolveClassEmojiToken } = require('../discord/utils/discordEmojiTokens');
+
+function parseRaidSignupDateTime(value) {
+  const raw = String(value || '').trim();
+  if (!raw) return null;
+
+  const ymd = raw.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})(?:\s+([0-9]{2}):([0-9]{2}))?(?:\s*CET)?$/i);
+  if (ymd) {
+    const [, yyyy, mm, dd, hh = '20', min = '00'] = ymd;
+    const parsed = Date.parse(`${yyyy}-${mm}-${dd}T${hh}:${min}:00+01:00`);
+    return Number.isNaN(parsed) ? null : new Date(parsed);
+  }
+
+  const dmy = raw.match(/^([0-9]{2})-([0-9]{2})-([0-9]{4})(?:\s+([0-9]{2}):([0-9]{2}))?(?:\s*CET)?$/i);
+  if (dmy) {
+    const [, dd, mm, yyyy, hh = '20', min = '00'] = dmy;
+    const parsed = Date.parse(`${yyyy}-${mm}-${dd}T${hh}:${min}:00+01:00`);
+    return Number.isNaN(parsed) ? null : new Date(parsed);
+  }
+
+  const loose = Date.parse(raw.replace(' ', 'T'));
+  return Number.isNaN(loose) ? null : new Date(loose);
+}
+
+function formatRaidSignupDateTime(dateObj) {
+  const date = new Date(dateObj.getTime() + 60 * 60 * 1000);
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  const hour = String(date.getUTCHours()).padStart(2, '0');
+  const minute = String(date.getUTCMinutes()).padStart(2, '0');
+  return `${year}-${month}-${day} ${hour}:${minute} CET`;
+}
+
+function getNextRecurrenceStart(previousStart, recurrenceDays) {
+  const selectedDays = [...new Set((recurrenceDays || []).map(v => Number(v)).filter(v => Number.isInteger(v) && v >= 0 && v <= 6))];
+  if (selectedDays.length === 0) return null;
+
+  for (let offset = 1; offset <= 14; offset += 1) {
+    const candidate = new Date(previousStart.getTime());
+    candidate.setUTCDate(candidate.getUTCDate() + offset);
+    if (selectedDays.includes(candidate.getUTCDay())) return candidate;
+  }
+
+  return null;
+}
+
+function createRaidSignupCron({ db }) {
+  let recurrenceTickInFlight = false;
+
+  async function run() {
+    if (recurrenceTickInFlight) return;
+    recurrenceTickInFlight = true;
+
+    try {
+      const templates = listTemplates(db).filter(template => template.is_active && template.recurrence_enabled && Array.isArray(template.recurrence_days) && template.recurrence_days.length > 0);
+      if (templates.length === 0) return;
+
+      const client = getDiscordClient();
+      if (!client) return;
+
+      const { buildSignupEmbed, buildMainSignupComponents } = require('../discord/interactions/raidSignupInteractions');
+      const now = Date.now();
+
+      for (const template of templates) {
+        const templateEvents = db.prepare(`
+          SELECT id, template_id, title, description, scheduled_for, recurrence_instance, status, discord_channel_id, discord_message_id, created_at
+          FROM raid_signup_events
+          WHERE template_id = ?
+          ORDER BY id DESC
+        `).all(template.id);
+
+        const parsedCandidates = templateEvents
+          .map(event => ({ event, startedAt: parseRaidSignupDateTime(event.scheduled_for) }))
+          .filter(row => row.startedAt && row.event.discord_channel_id)
+          .sort((a, b) => b.startedAt.getTime() - a.startedAt.getTime());
+
+        const startedCandidates = parsedCandidates.filter(row => row.startedAt.getTime() <= now);
+        if (startedCandidates.length === 0) continue;
+
+        const latest = startedCandidates[0];
+        const delayMs = Math.max(0, Number(template.recurrence_delay_hours || 0)) * 60 * 60 * 1000;
+        if (now < latest.startedAt.getTime() + delayMs) continue;
+
+        const nextStart = getNextRecurrenceStart(latest.startedAt, template.recurrence_days);
+        if (!nextStart) continue;
+
+        const recurrenceInstance = nextStart.toISOString();
+        const alreadyExists = templateEvents.some(event => String(event.recurrence_instance || '') === recurrenceInstance);
+        if (alreadyExists) {
+          console.log(`[RaidSignup] Recurrence skip for template #${template.id}: recurrence instance already exists (${recurrenceInstance}).`);
+          continue;
+        }
+
+        const scheduledFor = formatRaidSignupDateTime(nextStart);
+        const nextEvent = createEventFromTemplate(db, template.id, {
+          title: String(template.name || latest.event.title || 'Raid Signup').trim(),
+          description: String(template.description || latest.event.description || '').trim(),
+          scheduledFor,
+          recurrenceInstance
+        });
+
+        const channel = await client.channels.fetch(latest.event.discord_channel_id).catch(() => null);
+        if (!channel || typeof channel.send !== 'function') continue;
+
+        const classes = getAvailableClassesForEvent(db, nextEvent.id);
+        const selectedClass = classes[0] || '';
+        const specs = selectedClass ? getAllowedSpecsByClass(db, nextEvent.id, selectedClass) : [];
+        const message = await channel.send({
+          embeds: [buildSignupEmbed(nextEvent, [], channel.guild || null)],
+          components: buildMainSignupComponents(nextEvent.id, classes, specs, selectedClass, false)
+        });
+
+        db.prepare(`
+          UPDATE raid_signup_events
+          SET discord_channel_id = ?, discord_message_id = ?, updated_at = CURRENT_TIMESTAMP
+          WHERE id = ?
+        `).run(String(channel.id), String(message.id), nextEvent.id);
+
+        console.log(`[RaidSignup] Auto-posted recurring event #${nextEvent.id} from template #${template.id}`);
+      }
+    } catch (e) {
+      console.error('[RaidSignup] Recurrence automation failed:', e.message || e);
+    } finally {
+      recurrenceTickInFlight = false;
+    }
+  }
+
+  return { run };
+}
+
+module.exports = {
+  createRaidSignupCron
+};
