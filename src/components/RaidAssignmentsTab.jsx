@@ -439,10 +439,10 @@ export default function RaidAssignmentsTab({
           <button
             type="button"
             onClick={onSaveChanges}
-            disabled={!hasUnsavedChanges || isSaving}
-            className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${hasUnsavedChanges ? 'bg-amber-600 hover:bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
+            disabled={!hasUnsavedChanges || isSaving || !isAuthenticated}
+            className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${hasUnsavedChanges && isAuthenticated ? 'bg-amber-600 hover:bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
           >
-            {isSaving ? 'Saving...' : hasUnsavedChanges ? 'Save Changes' : 'No Changes'}
+            {isSaving ? 'Saving...' : !isAuthenticated ? 'Login to save' : hasUnsavedChanges ? 'Save Changes' : 'No Changes'}
           </button>
           {isAuthenticated && (
             <button onClick={handleNuclearWipe} className="text-xs font-bold text-red-500 hover:text-white hover:bg-red-600 px-3 py-2 rounded border border-red-900/50 transition">
