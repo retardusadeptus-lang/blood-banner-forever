@@ -159,6 +159,7 @@ export default function RaidSignupsTab({
   const [isChangingStatus, setIsChangingStatus] = useState(false);
   const [isDeletingEvent, setIsDeletingEvent] = useState(false);
   const [clockNow, setClockNow] = useState(Date.now());
+  const [activeRaidSection, setActiveRaidSection] = useState('overview');
 
   const loadPublic = async () => {
     const data = await fetchData('public-raid-signups');
@@ -449,98 +450,126 @@ export default function RaidSignupsTab({
         <p className="text-sm text-slate-500">Public live signup board sourced from Discord interactions.</p>
       </div>
 
-      {groupedPublic.length === 0 ? (
-        <div className="text-center py-8 border border-dashed border-slate-700 rounded-xl text-slate-500">
-          No open raid signup events yet. Officers can create templates and post via /raidsignup post.
-        </div>
-      ) : (
-        <div className="space-y-4">
-          {groupedPublic.map(({ event, byRole }) => (
-            <div key={event.id} className="bg-slate-950 border border-slate-800 rounded-xl p-4">
-              <div className="flex items-start justify-between gap-3 mb-4">
-                <div>
-                  <h3 className="text-lg font-bold text-amber-400">{event.title}</h3>
-                  <p className="text-xs text-slate-400 uppercase tracking-wider">Event #{event.id} {event.scheduled_for ? `• ${event.scheduled_for}` : ''}</p>
-                  <p className="text-[11px] text-cyan-400 mt-1">{formatRelativeUntil(parseScheduledUnix(event.scheduled_for), clockNow)}</p>
-                  {event.description && <p className="text-sm text-slate-300 mt-1">{event.description}</p>}
-                </div>
-                <span className="text-[10px] uppercase font-bold px-2 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">{event.status}</span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
-                {['tank', 'healer', 'melee', 'ranged'].map(role => (
-                  <div key={role} className="bg-slate-900 border border-slate-800 rounded-lg p-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">{roleGlyph(role)} {role}</h4>
-                    {byRole[role].length === 0 ? (
-                      <p className="text-xs text-slate-600 italic">None</p>
-                    ) : (
-                      <ul className="space-y-1.5">
-                        {byRole[role].map(entry => (
-                          <li key={`${event.id}-${entry.discord_user_id}`} className="text-sm text-slate-200 flex items-center gap-2">
-                            {entry.icon_small || entry.icon_medium || entry.icon_large ? (
-                              <img src={entry.icon_small || entry.icon_medium || entry.icon_large} alt="" className="w-4 h-4 rounded border border-slate-700" />
-                            ) : (
-                              <span className="w-4 h-4 rounded border border-slate-700 bg-slate-800 inline-block" />
-                            )}
-                            <span
-                              className="truncate"
-                              style={{
-                                color: specColorByKey.get(`${String(entry.spec_class || '').toLowerCase()}|${String(entry.spec_name || '').toLowerCase()}`) || '#e2e8f0'
-                              }}
-                            >
-                              {entry.discord_username}
-                            </span>
-                            {entry.spec_name && <span className="text-[10px] text-slate-500">({entry.spec_name})</span>}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              {event.public_groups && Array.isArray(event.groups) && event.groups.length > 0 && (
-                <div className="mt-4 border-t border-slate-800 pt-4">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Groups</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
-                    {Array.from(new Set(event.groups.map(g => Number(g.group_number)).filter(Boolean))).sort((a, b) => a - b).map(groupNumber => {
-                      const rows = event.groups
-                        .filter(g => Number(g.group_number) === groupNumber)
-                        .sort((a, b) => Number(a.slot_index) - Number(b.slot_index));
-                      const groupName = rows[0]?.group_name || `Group ${groupNumber}`;
-                      return (
-                        <div key={`${event.id}-pub-${groupNumber}`} className="bg-slate-900 border border-slate-800 rounded-lg p-3">
-                          <h5 className="text-xs font-bold text-amber-300 mb-2">{groupName}</h5>
-                          <ul className="space-y-1.5">
-                            {rows.map(row => {
-                              const rowColor = specColorByKey.get(`${String(row.spec_class || '').toLowerCase()}|${String(row.spec_name || '').toLowerCase()}`) || '#e2e8f0';
-                              return (
-                                <li key={`${row.id}-${row.slot_index}`} className="text-xs text-slate-200 flex items-center gap-2">
-                                  {row.icon_small || row.icon_medium || row.icon_large ? (
-                                    <img src={row.icon_small || row.icon_medium || row.icon_large} alt="" className="w-3.5 h-3.5 rounded border border-slate-700" />
-                                  ) : (
-                                    <span className="w-3.5 h-3.5 rounded border border-slate-700 bg-slate-800 inline-block" />
-                                  )}
-                                  <span className="truncate" style={{ color: rowColor }}>{row.player_name}</span>
-                                  {row.note ? <span className="text-slate-500">- {row.note}</span> : null}
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
+      {activeRaidSection === 'overview' && (
+        <>
+          {groupedPublic.length === 0 ? (
+            <div className="text-center py-8 border border-dashed border-slate-700 rounded-xl text-slate-500">
+              No open raid signup events yet. Officers can create templates and post via /raidsignup post.
             </div>
-          ))}
-        </div>
+          ) : (
+            <div className="space-y-4">
+              {groupedPublic.map(({ event, byRole }) => (
+                <div key={event.id} className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                  <div className="flex items-start justify-between gap-3 mb-4">
+                    <div>
+                      <h3 className="text-lg font-bold text-amber-400">{event.title}</h3>
+                      <p className="text-xs text-slate-400 uppercase tracking-wider">Event #{event.id} {event.scheduled_for ? `• ${event.scheduled_for}` : ''}</p>
+                      <p className="text-[11px] text-cyan-400 mt-1">{formatRelativeUntil(parseScheduledUnix(event.scheduled_for), clockNow)}</p>
+                      {event.description && <p className="text-sm text-slate-300 mt-1">{event.description}</p>}
+                    </div>
+                    <span className="text-[10px] uppercase font-bold px-2 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">{event.status}</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
+                    {['tank', 'healer', 'melee', 'ranged'].map(role => (
+                      <div key={role} className="bg-slate-900 border border-slate-800 rounded-lg p-3">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">{roleGlyph(role)} {role}</h4>
+                        {byRole[role].length === 0 ? (
+                          <p className="text-xs text-slate-600 italic">None</p>
+                        ) : (
+                          <ul className="space-y-1.5">
+                            {byRole[role].map(entry => (
+                              <li key={`${event.id}-${entry.discord_user_id}`} className="text-sm text-slate-200 flex items-center gap-2">
+                                {entry.icon_small || entry.icon_medium || entry.icon_large ? (
+                                  <img src={entry.icon_small || entry.icon_medium || entry.icon_large} alt="" className="w-4 h-4 rounded border border-slate-700" />
+                                ) : (
+                                  <span className="w-4 h-4 rounded border border-slate-700 bg-slate-800 inline-block" />
+                                )}
+                                <span
+                                  className="truncate"
+                                  style={{
+                                    color: specColorByKey.get(`${String(entry.spec_class || '').toLowerCase()}|${String(entry.spec_name || '').toLowerCase()}`) || '#e2e8f0'
+                                  }}
+                                >
+                                  {entry.discord_username}
+                                </span>
+                                {entry.spec_name && <span className="text-[10px] text-slate-500">({entry.spec_name})</span>}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  {event.public_groups && Array.isArray(event.groups) && event.groups.length > 0 && (
+                    <div className="mt-4 border-t border-slate-800 pt-4">
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Groups</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
+                        {Array.from(new Set(event.groups.map(g => Number(g.group_number)).filter(Boolean))).sort((a, b) => a - b).map(groupNumber => {
+                          const rows = event.groups
+                            .filter(g => Number(g.group_number) === groupNumber)
+                            .sort((a, b) => Number(a.slot_index) - Number(b.slot_index));
+                          const groupName = rows[0]?.group_name || `Group ${groupNumber}`;
+                          return (
+                            <div key={`${event.id}-pub-${groupNumber}`} className="bg-slate-900 border border-slate-800 rounded-lg p-3">
+                              <h5 className="text-xs font-bold text-amber-300 mb-2">{groupName}</h5>
+                              <ul className="space-y-1.5">
+                                {rows.map(row => {
+                                  const rowColor = specColorByKey.get(`${String(row.spec_class || '').toLowerCase()}|${String(row.spec_name || '').toLowerCase()}`) || '#e2e8f0';
+                                  return (
+                                    <li key={`${row.id}-${row.slot_index}`} className="text-xs text-slate-200 flex items-center gap-2">
+                                      {row.icon_small || row.icon_medium || row.icon_large ? (
+                                        <img src={row.icon_small || row.icon_medium || row.icon_large} alt="" className="w-3.5 h-3.5 rounded border border-slate-700" />
+                                      ) : (
+                                        <span className="w-3.5 h-3.5 rounded border border-slate-700 bg-slate-800 inline-block" />
+                                      )}
+                                      <span className="truncate" style={{ color: rowColor }}>{row.player_name}</span>
+                                      {row.note ? <span className="text-slate-500">- {row.note}</span> : null}
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </>
       )}
 
-      {isAuthenticated && (
-        <>
-          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+      <>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {['overview', 'templates', 'events', 'group-config', 'history'].map(section => {
+              const labelMap = {
+                overview: 'Overview',
+                templates: 'Templates',
+                events: 'Events',
+                'group-config': 'Group Config',
+                history: 'History'
+              };
+              const isActive = activeRaidSection === section;
+              return (
+                <button
+                  key={section}
+                  type="button"
+                  onClick={() => setActiveRaidSection(section)}
+                  className={`px-3 py-2 rounded text-sm font-bold transition ${isActive ? 'bg-amber-600 text-slate-950' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
+                >
+                  {labelMap[section]}
+                </button>
+              );
+            })}
+          </div>
+
+          {activeRaidSection === 'templates' && (
+            isAuthenticated ? (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Raid Templates (Bot Source)</h3>
               <div className="flex items-center gap-2">
@@ -656,8 +685,252 @@ export default function RaidSignupsTab({
               ))}
             </div>
           </div>
+            ) : (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                <p className="text-sm text-slate-300">Officer login required to manage raid templates.</p>
+              </div>
+            )
+          )}
 
-          <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+          {activeRaidSection === 'events' && (
+            isAuthenticated ? (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Events & Status</h3>
+                <div className="flex items-center gap-2">
+                  <select
+                    value={selectedEventId}
+                    onChange={e => setSelectedEventId(e.target.value)}
+                    className="bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm"
+                  >
+                    <option value="">Select event...</option>
+                    {events.length > 0 && (
+                      <optgroup label="Active events">
+                        {events.map(event => (
+                          <option key={`active-${event.id}`} value={event.id}>#{event.id} [{event.status}] {event.title}</option>
+                        ))}
+                      </optgroup>
+                    )}
+                    {archivedEvents.length > 0 && (
+                      <optgroup label="Archived events">
+                        {archivedEvents.map(event => (
+                          <option key={`archived-${event.id}`} value={event.id}>#{event.id} [{event.status}] {event.title}</option>
+                        ))}
+                      </optgroup>
+                    )}
+                  </select>
+                  {selectedEvent && String(selectedEvent.status || '').toLowerCase() !== 'open' ? (
+                    <button
+                      type="button"
+                      onClick={() => setEventStatus('open', `Reopen this raid? Signups will be enabled.`)}
+                      disabled={!selectedEventId || isChangingStatus || isDeletingEvent}
+                      className="text-xs font-bold bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-2 rounded"
+                    >
+                      {isChangingStatus ? 'Working...' : (String(selectedEvent.status || '').toLowerCase() === 'archived' ? 'Restore Raid' : 'Unlock Raid')}
+                    </button>
+                  ) : null}
+                  <button
+                    type="button"
+                    onClick={() => setEventStatus('locked', 'Lock this raid? Signups will be disabled but it stays visible.')}
+                    disabled={!selectedEventId || isChangingStatus || isDeletingEvent}
+                    className="text-xs font-bold bg-orange-700 hover:bg-orange-600 text-white px-3 py-2 rounded"
+                  >
+                    {isChangingStatus ? 'Working...' : 'Lock Raid'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setEventStatus('archived', 'Archive this raid? It will be removed from the active board.')}
+                    disabled={!selectedEventId || isChangingStatus || isDeletingEvent}
+                    className="text-xs font-bold bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded"
+                  >
+                    {isChangingStatus ? 'Working...' : 'Archive Raid'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={deleteEvent}
+                    disabled={!selectedEventId || isDeletingEvent || isChangingStatus}
+                    className="text-xs font-bold bg-red-700 hover:bg-red-600 text-white px-3 py-2 rounded"
+                  >
+                    {isDeletingEvent ? 'Deleting...' : 'Delete Raid'}
+                  </button>
+                </div>
+              </div>
+
+              {!selectedEventId ? (
+                <p className="text-xs text-slate-500">Choose an event to edit details or manage its status.</p>
+              ) : (
+                <div className="space-y-4">
+                  <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 grid grid-cols-1 md:grid-cols-3 gap-2">
+                    <input
+                      type="text"
+                      value={eventEditDraft.title}
+                      onChange={e => setEventEditDraft(prev => ({ ...prev, title: e.target.value }))}
+                      placeholder="Event title"
+                      className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm"
+                    />
+                    <input
+                      type="text"
+                      value={eventEditDraft.scheduled_date}
+                      onChange={e => setEventEditDraft(prev => ({ ...prev, scheduled_date: e.target.value }))}
+                      placeholder="DD-MM-YYYY"
+                      className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm"
+                    />
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        value={eventEditDraft.scheduled_time}
+                        onChange={e => setEventEditDraft(prev => ({ ...prev, scheduled_time: e.target.value }))}
+                        placeholder="HH:mm"
+                        className="flex-1 bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm"
+                      />
+                      <span className="text-xs font-bold text-cyan-300">CET</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={saveEventDetails}
+                      disabled={isSavingEventEdit}
+                      className="bg-cyan-700 hover:bg-cyan-600 text-white rounded px-3 py-2 text-xs font-bold uppercase tracking-wider"
+                    >
+                      {isSavingEventEdit ? 'Saving...' : 'Save Event Details'}
+                    </button>
+                    <textarea
+                      value={eventEditDraft.description}
+                      onChange={e => setEventEditDraft(prev => ({ ...prev, description: e.target.value }))}
+                      placeholder="Event description"
+                      className="md:col-span-3 bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm min-h-[70px]"
+                    />
+                    <label className="md:col-span-3 inline-flex items-center gap-2 text-xs text-slate-300">
+                      <input
+                        type="checkbox"
+                        checked={!!eventEditDraft.public_groups}
+                        onChange={e => setEventEditDraft(prev => ({ ...prev, public_groups: e.target.checked }))}
+                      />
+                      Public groups: show group assignments in read-only public view
+                    </label>
+                  </div>
+                </div>
+              )}
+            </div>
+            ) : (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                <p className="text-sm text-slate-300">Officer login required to manage raid events.</p>
+              </div>
+            )
+          )}
+
+          {activeRaidSection === 'group-config' && (
+            isAuthenticated ? (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Group Config</h3>
+                <div className="flex items-center gap-2">
+                  <select
+                    value={selectedEventId}
+                    onChange={e => setSelectedEventId(e.target.value)}
+                    className="bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm"
+                  >
+                    <option value="">Select event...</option>
+                    {events.length > 0 && (
+                      <optgroup label="Active events">
+                        {events.map(event => (
+                          <option key={`active-${event.id}`} value={event.id}>#{event.id} [{event.status}] {event.title}</option>
+                        ))}
+                      </optgroup>
+                    )}
+                    {archivedEvents.length > 0 && (
+                      <optgroup label="Archived events">
+                        {archivedEvents.map(event => (
+                          <option key={`archived-${event.id}`} value={event.id}>#{event.id} [{event.status}] {event.title}</option>
+                        ))}
+                      </optgroup>
+                    )}
+                  </select>
+                  <button
+                    type="button"
+                    onClick={saveGroups}
+                    disabled={!selectedEventId || isSavingGroups}
+                    className="text-xs font-bold bg-amber-600 hover:bg-amber-500 text-slate-950 px-3 py-2 rounded"
+                  >
+                    {isSavingGroups ? 'Saving...' : 'Save Groups'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={echoGroups}
+                    disabled={!selectedEventId || isEchoing}
+                    className="text-xs font-bold bg-purple-700 hover:bg-purple-600 text-white px-3 py-2 rounded"
+                  >
+                    {isEchoing ? 'Echoing...' : 'Echo To Discord'}
+                  </button>
+                </div>
+              </div>
+
+              {!selectedEventId ? (
+                <p className="text-xs text-slate-500">Choose an event to configure groups and echo them to Discord.</p>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
+                  {Array.from({ length: 8 }, (_, idx) => idx + 1).map(groupNumber => {
+                    const rows = groupRows.filter(row => row.group_number === groupNumber).sort((a, b) => a.slot_index - b.slot_index);
+                    const activeRows = rows.filter(row => String(row.player_name || '').trim());
+                    return (
+                      <div key={groupNumber} className="bg-slate-900 border border-slate-800 rounded-lg p-3">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-amber-300 mb-2">Group {groupNumber}</h4>
+                        {activeRows.length === 0 ? (
+                          <p className="text-xs text-slate-600 italic">No players assigned</p>
+                        ) : (
+                          <ul className="space-y-1.5">
+                            {activeRows.map(row => (
+                              <li key={row.localKey} className="text-sm text-slate-200">{row.player_name}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+            ) : (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                <p className="text-sm text-slate-300">Officer login required to configure raid groups.</p>
+              </div>
+            )
+          )}
+
+          {activeRaidSection === 'history' && (
+            isAuthenticated ? (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+              <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Raid History</h3>
+              {archivedEvents.length === 0 ? (
+                <p className="text-xs text-slate-500">No archived raid events yet.</p>
+              ) : (
+                <div className="space-y-2">
+                  {archivedEvents.map(event => (
+                    <div key={event.id} className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/70 px-3 py-2">
+                      <div>
+                        <div className="text-sm font-semibold text-slate-100">{event.title || `Event #${event.id}`}</div>
+                        <div className="text-xs text-slate-500">{event.scheduled_for || 'No schedule'}</div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedEventId(String(event.id))}
+                        className="text-xs font-bold bg-cyan-700 hover:bg-cyan-600 text-white px-3 py-1.5 rounded"
+                      >
+                        View
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            ) : (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                <p className="text-sm text-slate-300">Officer login required to view raid history.</p>
+              </div>
+            )
+          )}
+
+          {isAuthenticated ? (
+            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
               <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Group Creator + Echo</h3>
               <div className="flex items-center gap-2">
@@ -920,8 +1193,12 @@ export default function RaidSignupsTab({
               </div>
             )}
           </div>
+          ) : (
+            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+              <p className="text-sm text-slate-300">Officer login required to create and manage raid groups.</p>
+            </div>
+          )}
         </>
-      )}
     </section>
   );
 }

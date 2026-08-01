@@ -102,6 +102,13 @@ export default function App() {
   const AUTH_ONLY_TABS = ['bankRequests', 'loot', 'roster', 'scoring', 'itemsdb', 'officerRoles', 'discordBotConfig'];
   const [activeTab, setActiveTab] = useState(() => localStorage.getItem('active-tab') || 'overview');
   const [overviewSearch, setOverviewSearch] = useState('');
+  const [hoveredNavTab, setHoveredNavTab] = useState(null);
+  const [bankSubTab, setBankSubTab] = useState('main');
+  const [raidAssignmentsSubTab, setRaidAssignmentsSubTab] = useState('roster');
+  const [raidSignupsSubTab, setRaidSignupsSubTab] = useState('overview');
+  const [lootSubTab, setLootSubTab] = useState('priority');
+  const [adminSubTab, setAdminSubTab] = useState('officerRoles');
+  const [resourcesSubTab, setResourcesSubTab] = useState('bis');
 
   const [isDbConnected, setIsDbConnected] = useState(false);
   const [newName, setNewName] = useState('');
@@ -186,6 +193,176 @@ export default function App() {
     signup_roles: [],
     bench_roles: []
   });
+
+  const handleMainNavSelect = (mainTab, subTab = null) => {
+    setHoveredNavTab(null);
+
+    if (mainTab === 'bank') {
+      if (subTab === 'requests') {
+        setActiveTab('bankRequests');
+      } else {
+        setActiveTab('bank');
+        setBankSubTab(subTab || 'main');
+      }
+    } else if (mainTab === 'raidAssignments') {
+      setActiveTab('raidAssignments');
+      setRaidAssignmentsSubTab(subTab || 'roster');
+    } else if (mainTab === 'raidSignups') {
+      setActiveTab('raidSignups');
+      setRaidSignupsSubTab(subTab || 'overview');
+    } else if (mainTab === 'loot') {
+      if (subTab === 'scoring') {
+        setActiveTab('scoring');
+      } else {
+        setActiveTab('loot');
+        setLootSubTab(subTab || 'priority');
+      }
+    } else if (mainTab === 'admin') {
+      if (subTab === 'config') {
+        setActiveTab('discordBotConfig');
+      } else if (subTab === 'itemsdb') {
+        setActiveTab('itemsdb');
+      } else if (subTab === 'todo') {
+        setActiveTab('officerRoles');
+        setAdminSubTab('todo');
+      } else {
+        setActiveTab('officerRoles');
+        setAdminSubTab(subTab || 'officerRoles');
+      }
+    } else if (mainTab === 'resources') {
+      setActiveTab('bis');
+      setResourcesSubTab(subTab || 'bis');
+    } else {
+      setActiveTab(mainTab);
+    }
+  };
+
+  const getDropdownItemActiveState = (groupKey, subTab) => {
+    if (groupKey === 'bank') {
+      if (subTab === 'requests') return activeTab === 'bankRequests';
+      return activeTab === 'bank' && bankSubTab === subTab;
+    }
+
+    if (groupKey === 'raidAssignments') {
+      return activeTab === 'raidAssignments' && raidAssignmentsSubTab === subTab;
+    }
+
+    if (groupKey === 'raidSignups') {
+      return activeTab === 'raidSignups' && raidSignupsSubTab === subTab;
+    }
+
+    if (groupKey === 'loot') {
+      if (subTab === 'scoring') return activeTab === 'scoring';
+      return activeTab === 'loot' && lootSubTab === subTab;
+    }
+
+    if (groupKey === 'admin') {
+      if (subTab === 'officerRoles') return activeTab === 'officerRoles' && adminSubTab === 'officerRoles';
+      if (subTab === 'config') return activeTab === 'discordBotConfig';
+      if (subTab === 'itemsdb') return activeTab === 'itemsdb';
+      if (subTab === 'todo') return activeTab === 'officerRoles' && adminSubTab === 'todo';
+      return false;
+    }
+
+    if (groupKey === 'resources') {
+      return activeTab === 'bis' && resourcesSubTab === subTab;
+    }
+
+    return activeTab === groupKey;
+  };
+
+  const renderDropdownNavButton = (keyName, label, mainTab, subTabs, activeSubTab, isAuthOnly = false) => {
+    const isActive = keyName === 'bank'
+      ? (activeTab === 'bank' || activeTab === 'bankRequests')
+      : keyName === 'loot'
+        ? (activeTab === 'loot' || activeTab === 'scoring')
+        : keyName === 'admin'
+          ? (activeTab === 'officerRoles' || activeTab === 'discordBotConfig' || activeTab === 'itemsdb')
+          : keyName === 'resources'
+            ? activeTab === 'bis'
+            : activeTab === mainTab;
+    const isHovered = hoveredNavTab === keyName;
+
+    return (
+      <div
+        key={keyName}
+        className="relative inline-flex items-start"
+        onMouseEnter={() => setHoveredNavTab(keyName)}
+        onMouseLeave={() => setHoveredNavTab(null)}
+      >
+        <button
+          type="button"
+          onClick={() => handleMainNavSelect(mainTab, subTabs?.[0]?.value)}
+          className={`relative z-20 whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${isActive
+            ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800 -mb-px'
+            : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}
+        >
+          {label}
+        </button>
+        {isHovered && (
+          <div
+            className="absolute left-1/2 top-full z-[60] flex flex-nowrap justify-center gap-1 border-l border-r border-b border-slate-800 rounded-b-lg bg-slate-950/95 px-2 py-2 shadow-[0_14px_40px_rgba(0,0,0,0.35)] overflow-x-auto custom-scrollbar"
+            style={{ minWidth: '240px', width: 'auto', maxWidth: 'min(92vw, 520px)', transform: 'translateX(-50%)' }}
+          >
+            {subTabs.map(tab => {
+              const isLocked = Boolean(tab.authOnly && !isAuthenticated);
+              const isSubActive = getDropdownItemActiveState(keyName, tab.value);
+              return (
+                <button
+                  key={tab.value}
+                  type="button"
+                  onClick={() => {
+                    if (isLocked) return;
+                    handleMainNavSelect(mainTab, tab.value);
+                  }}
+                  disabled={isLocked}
+                  className={`flex-1 min-w-[80px] px-2 py-2 font-semibold text-xs uppercase tracking-wider transition-colors rounded-lg text-center ${isLocked ? 'opacity-50 cursor-not-allowed' : ''} ${isSubActive ? 'bg-slate-900 border border-slate-800 text-cyan-400' : 'text-amber-300 hover:text-slate-300 hover:bg-slate-900/50'}`}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const bankSubTabs = [
+    { value: 'main', label: 'Main' },
+    { value: 'requests', label: 'Requests', authOnly: true },
+    { value: 'addon', label: 'Addon' },
+    { value: 'update', label: 'Update', authOnly: true },
+    { value: 'history', label: 'History' }
+  ];
+
+  const raidAssignmentsSubTabs = [
+    { value: 'roster', label: 'Roster' },
+    { value: 'history', label: 'History' }
+  ];
+
+  const raidSignupsSubTabs = [
+    { value: 'overview', label: 'Overview' },
+    { value: 'history', label: 'History' }
+  ];
+
+  const lootSubTabs = [
+    { value: 'priority', label: 'Priority Overview' },
+    { value: 'scoring', label: 'Scoring', authOnly: true },
+    { value: 'assigned', label: 'Assigned Loot', authOnly: true }
+  ];
+
+  const adminSubTabs = [
+    { value: 'officerRoles', label: 'Officer Roles', authOnly: true },
+    { value: 'config', label: 'Config', authOnly: true },
+    { value: 'itemsdb', label: 'Master Items DB', authOnly: true },
+    { value: 'todo', label: 'To-do List', authOnly: true }
+  ];
+
+  const resourcesSubTabs = [
+    { value: 'bis', label: 'BiS' },
+    { value: 'cheatsheets', label: 'Cheat Sheets' }
+  ];
 
   // Persist current tab so refresh restores where the user left off.
   useEffect(() => {
@@ -2000,60 +2177,20 @@ export default function App() {
         </header>
 
         {/* --- NAVIGATION TABS --- */}
-        <div className="flex overflow-x-auto gap-2 border-b border-slate-800 pb-px custom-scrollbar">
-          <button onClick={() => setActiveTab('overview')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'overview' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Priority Overview</button>
-          <button onClick={() => setActiveTab('bis')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bis' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>BiS Config</button>
-          <button onClick={() => setActiveTab('bank')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bank' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Guild Bank</button>
-          <button onClick={() => setActiveTab('raidAssignments')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'raidAssignments' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-            <span className="inline-flex items-center gap-2">
-              <span>Raid Assignments</span>
-              {hasRaidAssignmentsUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-            </span>
-          </button>
-          <button onClick={() => setActiveTab('raidSignups')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'raidSignups' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Raid Signups</button>
-          {/* Lock down all editing tabs behind authentication */}
+        <div className="relative z-30 flex w-full flex-wrap items-start gap-2 overflow-visible pt-0 pb-0 mb-0">
+          <button onClick={() => handleMainNavSelect('overview')} className={`relative z-10 whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'overview' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800 -mb-px' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Priority Overview</button>
+          {renderDropdownNavButton('bank', 'Guild Bank', 'bank', bankSubTabs, bankSubTab)}
+          {renderDropdownNavButton('raidAssignments', 'Raid Assignments', 'raidAssignments', raidAssignmentsSubTabs, raidAssignmentsSubTab)}
+          {renderDropdownNavButton('raidSignups', 'Raid Signups', 'raidSignups', raidSignupsSubTabs, raidSignupsSubTab)}
+          {renderDropdownNavButton('resources', 'Resources', 'resources', resourcesSubTabs, resourcesSubTab)}
           {isAuthenticated && (
             <>
-              <button onClick={() => setActiveTab('bankRequests')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bankRequests' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Bank Requests</button>
-              <button onClick={() => setActiveTab('loot')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'loot' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-                <span className="inline-flex items-center gap-2">
-                  <span>Loot Council</span>
-                  {hasLootUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-                </span>
-              </button>
-              <button onClick={() => setActiveTab('roster')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'roster' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-                <span className="inline-flex items-center gap-2">
-                  <span>Roster & Attendance</span>
-                  {hasRosterUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-                </span>
-              </button>
-              <button onClick={() => setActiveTab('scoring')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'scoring' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-                <span className="inline-flex items-center gap-2">
-                  <span>Scoring & Config</span>
-                  {hasScoringUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-                </span>
-              </button>
-              <button onClick={() => setActiveTab('itemsdb')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'itemsdb' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-                <span className="inline-flex items-center gap-2">
-                  <span>Master Items DB</span>
-                  {hasItemsDbUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-                </span>
-              </button>
-              <button onClick={() => setActiveTab('officerRoles')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'officerRoles' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-                <span className="inline-flex items-center gap-2">
-                  <span>Officer Roles</span>
-                  {officerRolesDirty && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-                </span>
-              </button>
-              <button onClick={() => setActiveTab('discordBotConfig')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'discordBotConfig' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-                <span className="inline-flex items-center gap-2">
-                  <span>Config</span>
-                  {discordBotConfigDirty && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-                </span>
-              </button>
+              {renderDropdownNavButton('loot', 'Loot Council', 'loot', lootSubTabs, lootSubTab, true)}
+              {renderDropdownNavButton('admin', 'Admin', 'admin', adminSubTabs, adminSubTab, true)}
             </>
           )}
         </div>
+        <div className="h-px bg-slate-800 w-screen -ml-[calc(50vw-50%)] -mt0" />
 
         {/* =========================================
               TAB: PRIORITY OVERVIEW (MASTER LEDGER - PUBLIC)
@@ -2088,38 +2225,145 @@ export default function App() {
       TAB: GUILD BANK (PUBLIC)
       ========================================= */}
         {activeTab === 'bank' && (
-          <GuildBankTab
-            bankItems={bankItems}
-            bankSearch={bankSearch}
-            setBankSearch={setBankSearch}
-            isAuthenticated={isAuthenticated}
-            roster={roster}
-            myPlayerId={globalMyPlayerId ? parseInt(globalMyPlayerId) : null}
-          />
+          <div className="space-y-4">
+            {bankSubTab === 'main' && (
+              <GuildBankTab
+                bankItems={bankItems}
+                bankSearch={bankSearch}
+                setBankSearch={setBankSearch}
+                isAuthenticated={isAuthenticated}
+                roster={roster}
+                myPlayerId={globalMyPlayerId ? parseInt(globalMyPlayerId) : null}
+              />
+            )}
+            {bankSubTab === 'requests' && (
+              isAuthenticated ? (
+                <BankRequestsTab
+                  bankRequests={bankRequests}
+                  roster={roster}
+                  specsByName={specsByName}
+                  getDisplayFromId={getDisplayFromId}
+                  respondingRequestId={respondingRequestId}
+                  setRespondingRequestId={setRespondingRequestId}
+                  approveQuantity={approveQuantity}
+                  setApproveQuantity={setApproveQuantity}
+                  approvePrice={approvePrice}
+                  setApprovePrice={setApprovePrice}
+                  approveNote={approveNote}
+                  setApproveNote={setApproveNote}
+                  denyReason={denyReason}
+                  setDenyReason={setDenyReason}
+                  denyCustomReason={denyCustomReason}
+                  setDenyCustomReason={setDenyCustomReason}
+                  handleResolveBankRequest={handleResolveBankRequest}
+                  handleBulkResolveBankRequests={handleBulkResolveBankRequests}
+                  handleBankFileUpload={handleBankFileUpload}
+                  setBankUploadParsed={setBankUploadParsed}
+                  bankUploadParsed={bankUploadParsed}
+                  handleSaveBankUpload={handleSaveBankUpload}
+                  bankUploadStatus={bankUploadStatus}
+                />
+              ) : (
+                <div className="bg-slate-950 border border-slate-800 rounded-xl p-8 text-center text-slate-400">
+                  <h3 className="text-lg font-bold text-slate-200 mb-2">Officer login required</h3>
+                  <p className="text-sm">Use the officer unlock bar above to manage bank requests and inventory updates.</p>
+                </div>
+              )
+            )}
+            {bankSubTab === 'addon' && (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+                <h3 className="text-lg font-bold text-amber-400">Guild Bank Addon</h3>
+                <p className="text-sm text-slate-400">Install the TBC Bank Logger addon to stream live bank snapshots into the dashboard.</p>
+                <a href="/addon/TBCBankLogger.zip" className="inline-flex items-center rounded-lg border border-amber-600/40 bg-amber-600/10 px-4 py-2 text-sm font-bold text-amber-400 transition hover:bg-amber-600/20">Download Addon (.zip)</a>
+                <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-300 space-y-2">
+                  <p>1. Extract the addon into your WoW Interface folder.</p>
+                  <p>2. Reload the UI and log in with your guild character.</p>
+                  <p>3. Use the Update sub-tab to sync new bank snapshots when the vault changes.</p>
+                </div>
+              </div>
+            )}
+            {bankSubTab === 'update' && (
+              isAuthenticated ? (
+                <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+                  <h3 className="text-lg font-bold text-slate-100">Bank Inventory Update</h3>
+                  <p className="text-sm text-slate-400">Upload the latest bank export or parsed snapshot to refresh the vault list.</p>
+                  <input type="file" onChange={handleBankFileUpload} className="block w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-300" />
+                  <div className="flex flex-wrap items-center gap-3">
+                    <button type="button" onClick={handleSaveBankUpload} className="rounded-lg bg-amber-600 px-4 py-2 text-sm font-bold text-slate-950 transition hover:bg-amber-500">Save Upload</button>
+                    <span className="text-xs text-slate-500">{bankUploadStatus}</span>
+                  </div>
+                  {bankUploadParsed && (
+                    <pre className="max-h-64 overflow-auto rounded-lg border border-slate-800 bg-slate-900 p-4 text-[11px] leading-5 text-slate-300 whitespace-pre-wrap">
+                      {JSON.stringify(bankUploadParsed, null, 2)}
+                    </pre>
+                  )}
+                </div>
+              ) : (
+                <div className="bg-slate-950 border border-slate-800 rounded-xl p-8 text-center text-slate-400">
+                  <h3 className="text-lg font-bold text-slate-200 mb-2">Officer login required</h3>
+                  <p className="text-sm">This section is reserved for officer inventory updates.</p>
+                </div>
+              )
+            )}
+            {bankSubTab === 'history' && (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+                <h3 className="text-lg font-bold text-slate-100">Recent Request History</h3>
+                <p className="text-sm text-slate-400">Resolved requests remain visible here so officers can review what was approved or denied.</p>
+                {bankRequests.filter(request => request.status !== 'pending').length === 0 ? (
+                  <div className="rounded-lg border border-dashed border-slate-800 bg-slate-900/60 p-6 text-center text-sm text-slate-500">No resolved requests yet.</div>
+                ) : (
+                  <div className="space-y-2">
+                    {bankRequests.filter(request => request.status !== 'pending').slice(0, 10).map(request => (
+                      <div key={request.id} className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm">
+                        <div>
+                          <div className="font-semibold text-slate-200">{request.item_name || 'Bank request'}</div>
+                          <div className="text-xs text-slate-500">{request.player_name || 'Unknown player'} • {request.status}</div>
+                        </div>
+                        <span className="rounded-full border border-slate-700 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">{request.status}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         )}
 
         {/* =========================================
       TAB: RAID ASSIGNMENTS (PUBLIC, EDIT GATED)
       ========================================= */}
         {activeTab === 'raidAssignments' && (
-          <RaidAssignmentsTab
-            isAuthenticated={isAuthenticated}
-            roster={roster}
-            getSpecById={getSpecById}
-            enabledBosses={enabledBosses}
-            raidZones={raidZones}
-            handleToggleZone={handleToggleZone}
-            handleToggleBoss={handleToggleBoss}
-            customRaidGroups={customRaidGroups}
-            handleAddCustomRaidBoss={handleAddCustomRaidBoss}
-            handleRemoveCustomRaidBoss={handleRemoveCustomRaidBoss}
-            raidAssignmentData={raidAssignmentData}
-            setRaidAssignmentData={setRaidAssignmentData}
-            hasUnsavedChanges={raidAssignmentDataDirty || enabledBossesDirty}
-            onSaveChanges={handleSaveRaidAssignmentsChanges}
-            isSaving={isSavingRaidAssignments}
-            myPlayerName={selectedMyPlayerName}
-          />
+          <div className="space-y-4">
+            {raidAssignmentsSubTab === 'roster' && (
+              <RaidAssignmentsTab
+                isAuthenticated={isAuthenticated}
+                roster={roster}
+                getSpecById={getSpecById}
+                enabledBosses={enabledBosses}
+                raidZones={raidZones}
+                handleToggleZone={handleToggleZone}
+                handleToggleBoss={handleToggleBoss}
+                customRaidGroups={customRaidGroups}
+                handleAddCustomRaidBoss={handleAddCustomRaidBoss}
+                handleRemoveCustomRaidBoss={handleRemoveCustomRaidBoss}
+                raidAssignmentData={raidAssignmentData}
+                setRaidAssignmentData={setRaidAssignmentData}
+                hasUnsavedChanges={raidAssignmentDataDirty || enabledBossesDirty}
+                onSaveChanges={handleSaveRaidAssignmentsChanges}
+                isSaving={isSavingRaidAssignments}
+                myPlayerName={selectedMyPlayerName}
+              />
+            )}
+            {raidAssignmentsSubTab === 'history' && (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+                <h3 className="text-lg font-bold text-slate-100">Raid Assignment History</h3>
+                <p className="text-sm text-slate-400">Saved assignment snapshots remain visible here so officers can review the latest raid planning state.</p>
+                <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-300">
+                  {Object.keys(raidAssignmentData || {}).length === 0 ? 'No saved assignment data yet.' : `The current assignment data contains ${Object.keys(raidAssignmentData).length} tracked section${Object.keys(raidAssignmentData).length === 1 ? '' : 's'}.`}
+                </div>
+              </div>
+            )}
+          </div>
         )}
 
         {activeTab === 'raidSignups' && (
@@ -2168,42 +2412,88 @@ export default function App() {
               TAB: LOOT COUNCIL ASSIGNMENT
               ========================================= */}
         {activeTab === 'loot' && isAuthenticated && (
-          <LootCouncilTab
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-            filterZone={filterZone}
-            setFilterZone={setFilterZone}
-            uniqueZones={uniqueZones}
-            filterBoss={filterBoss}
-            setFilterBoss={setFilterBoss}
-            uniqueBosses={uniqueBosses}
-            filterSlot={filterSlot}
-            setFilterSlot={setFilterSlot}
-            filterCategory={filterCategory}
-            setFilterCategory={setFilterCategory}
-            uniqueSlots={uniqueSlots}
-            selectedItemName={selectedItemName}
-            setSelectedItemName={setSelectedItemName}
-            filteredItems={filteredItems}
-            selectedItem={selectedItem}
-            sortedEligiblePlayers={sortedEligiblePlayers}
-            getDisplayFromId={getDisplayFromId}
-            getSlugFromDisplay={getSlugFromDisplay}
-            bisPriorities={bisPriorities}
-            globalPhase={globalPhase}
-            assignments={assignments}
-            mutableItems={mutableItems}
-            getPlayerItemPriorityStatus={getPlayerItemPriorityStatus}
-            getSpecById={getSpecById}
-            getRankBadgeStyle={getRankBadgeStyle}
-            renderItemLink={renderItemLink}
-            handleSetPriority={handleSetPriority}
-            PlayerNameWithScore={PlayerNameWithScore}
-            hasUnsavedChanges={assignmentsDirty}
-            onSaveChanges={handleSaveLootCouncilChanges}
-            onClearItemAssignments={handleClearOverviewItemPriorities}
-            isSaving={isSavingLootCouncil}
-          />
+          <div className="space-y-4">
+            {lootSubTab === 'priority' && (
+              <LootCouncilTab
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+                filterZone={filterZone}
+                setFilterZone={setFilterZone}
+                uniqueZones={uniqueZones}
+                filterBoss={filterBoss}
+                setFilterBoss={setFilterBoss}
+                uniqueBosses={uniqueBosses}
+                filterSlot={filterSlot}
+                setFilterSlot={setFilterSlot}
+                filterCategory={filterCategory}
+                setFilterCategory={setFilterCategory}
+                uniqueSlots={uniqueSlots}
+                selectedItemName={selectedItemName}
+                setSelectedItemName={setSelectedItemName}
+                filteredItems={filteredItems}
+                selectedItem={selectedItem}
+                sortedEligiblePlayers={sortedEligiblePlayers}
+                getDisplayFromId={getDisplayFromId}
+                getSlugFromDisplay={getSlugFromDisplay}
+                bisPriorities={bisPriorities}
+                globalPhase={globalPhase}
+                assignments={assignments}
+                mutableItems={mutableItems}
+                getPlayerItemPriorityStatus={getPlayerItemPriorityStatus}
+                getSpecById={getSpecById}
+                getRankBadgeStyle={getRankBadgeStyle}
+                renderItemLink={renderItemLink}
+                handleSetPriority={handleSetPriority}
+                PlayerNameWithScore={PlayerNameWithScore}
+                hasUnsavedChanges={assignmentsDirty}
+                onSaveChanges={handleSaveLootCouncilChanges}
+                onClearItemAssignments={handleClearOverviewItemPriorities}
+                isSaving={isSavingLootCouncil}
+              />
+            )}
+            {lootSubTab === 'scoring' && (
+              <ScoringTab
+                scoringConfig={scoringConfig}
+                setScoringConfig={setScoringConfig}
+                roster={roster}
+                playerStats={playerStats}
+                expandedPlayerId={expandedPlayerId}
+                setExpandedPlayerId={setExpandedPlayerId}
+                getSpecById={getSpecById}
+                getDisplayFromId={getDisplayFromId}
+                calculateAttendance={calculateAttendance}
+                updatePlayerStat={updatePlayerStat}
+                updatePlayerParse={updatePlayerParse}
+                updatePlayerManualAdjustment={updatePlayerManualAdjustment}
+                PlayerNameWithScore={PlayerNameWithScore}
+                hasUnsavedChanges={scoringConfigDirty || playerStatsDirty}
+                onSaveChanges={handleSaveScoringChanges}
+                isSaving={isSavingScoring}
+              />
+            )}
+            {lootSubTab === 'assigned' && (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+                <h3 className="text-lg font-bold text-slate-100">Assigned Loot Overview</h3>
+                <p className="text-sm text-slate-400">The current loot council priorities are grouped here for a quick review.</p>
+                {Object.entries(assignments || {}).length === 0 ? (
+                  <div className="rounded-lg border border-dashed border-slate-800 bg-slate-900/60 p-6 text-center text-sm text-slate-500">No gear assignments yet.</div>
+                ) : (
+                  <div className="space-y-2">
+                    {Object.entries(assignments).slice(0, 12).map(([itemName, playerMap]) => (
+                      <div key={itemName} className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
+                        <div className="text-sm font-semibold text-slate-200">{itemName}</div>
+                        <div className="mt-1 flex flex-wrap gap-2 text-xs text-slate-400">
+                          {Object.entries(playerMap || {}).map(([playerId, rank]) => (
+                            <span key={`${itemName}-${playerId}`} className="rounded-full border border-slate-700 px-2 py-1">{roster.find(p => String(p.id) === String(playerId))?.name || playerId}: {rank}</span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         )}
 
         {/* =========================================
@@ -2248,16 +2538,76 @@ export default function App() {
         )}
 
         {activeTab === 'officerRoles' && isAuthenticated && (
-          <OfficerRolesTab
-            roster={roster}
-            getSpecById={getSpecById}
-            officerRoles={officerRoles}
-            setOfficerRoles={setOfficerRolesData}
-            myPlayerId={globalMyPlayerId}
-            hasUnsavedChanges={officerRolesDirty}
-            onSaveChanges={handleSaveOfficerRoles}
-            isSaving={isSavingOfficerRoles}
-          />
+          <div className="space-y-4">
+            {adminSubTab === 'officerRoles' && (
+              <OfficerRolesTab
+                roster={roster}
+                getSpecById={getSpecById}
+                officerRoles={officerRoles}
+                setOfficerRoles={setOfficerRolesData}
+                myPlayerId={globalMyPlayerId}
+                hasUnsavedChanges={officerRolesDirty}
+                onSaveChanges={handleSaveOfficerRoles}
+                isSaving={isSavingOfficerRoles}
+              />
+            )}
+            {adminSubTab === 'config' && (
+              <DiscordBotConfigTab
+                config={discordBotConfig}
+                setConfig={setDiscordBotConfig}
+                hasUnsavedChanges={discordBotConfigDirty}
+                onSaveChanges={handleSaveDiscordBotConfig}
+                isSaving={isSavingDiscordBotConfig}
+                claims={rosterClaims}
+                onUnclaimClaim={handleUnclaimClaim}
+                roster={roster}
+                specsByName={specsByName}
+                getDisplayFromId={getDisplayFromId}
+              />
+            )}
+            {adminSubTab === 'itemsdb' && (
+              <ItemsDatabaseTab
+                dbNewName={dbNewName}
+                setDbNewName={setDbNewName}
+                dbNewSlot={dbNewSlot}
+                setDbNewSlot={setDbNewSlot}
+                dbNewZone={dbNewZone}
+                setDbNewZone={setDbNewZone}
+                dbNewBoss={dbNewBoss}
+                setDbNewBoss={setDbNewBoss}
+                dbNewItemId={dbNewItemId}
+                setDbNewItemId={setDbNewItemId}
+                handleAddItemToDb={handleAddItemToDb}
+                dbSearch={dbSearch}
+                setDbSearch={setDbSearch}
+                showMissingWowheadFilter={showMissingWowheadFilter}
+                setShowMissingWowheadFilter={setShowMissingWowheadFilter}
+                dbFilteredItems={dbFilteredItems}
+                specsSortedByClass={specsSortedByClass}
+                dbBisPriorities={dbBisPriorities}
+                handleUpdateItemEligibility={handleUpdateItemEligibility}
+                handleUpdateItemId={handleUpdateItemId}
+                handleDeleteItemFromDb={handleDeleteItemFromDb}
+                renderItemLink={renderItemLink}
+                masterItemsDbPhase={masterItemsDbPhase}
+                setMasterItemsDbPhase={setMasterItemsDbPhase}
+                hasUnsavedChanges={dbBisPrioritiesDirty || mutableItemsDirty}
+                onSaveChanges={handleSaveItemsDbChanges}
+                isSaving={isSavingItemsDb}
+              />
+            )}
+            {adminSubTab === 'todo' && (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+                <h3 className="text-lg font-bold text-slate-100">Officer To-do List</h3>
+                <p className="text-sm text-slate-400">A lightweight planning area for the next raid week and guild upkeep.</p>
+                <div className="space-y-2 rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-300">
+                  <div className="rounded border border-slate-800 px-3 py-2">• Review pending bank requests and resolve baskets.</div>
+                  <div className="rounded border border-slate-800 px-3 py-2">• Confirm the next raid signup template and post it in Discord.</div>
+                  <div className="rounded border border-slate-800 px-3 py-2">• Sync the newest bank inventory snapshot after the vault changes.</div>
+                </div>
+              </div>
+            )}
+          </div>
         )}
 
         {activeTab === 'discordBotConfig' && isAuthenticated && (
@@ -2303,15 +2653,35 @@ export default function App() {
               TAB: BiS & ALTERNATIVES (CHARACTER SHEET)
               ========================================= */}
         {activeTab === 'bis' && (
-          <BisConfigTab
-            selectedBisSpec={selectedBisSpec}
-            setSelectedBisSpec={setSelectedBisSpec}
-            masterItemsDbPhase={masterItemsDbPhase}
-            setMasterItemsDbPhase={setMasterItemsDbPhase}
-            specsFromDb={specsFromDb}
-            renderItemSlot={renderItemSlot}
-            specsByName={specsByName}
-          />
+          <div className="space-y-4">
+            {resourcesSubTab === 'bis' && (
+              <BisConfigTab
+                selectedBisSpec={selectedBisSpec}
+                setSelectedBisSpec={setSelectedBisSpec}
+                masterItemsDbPhase={masterItemsDbPhase}
+                setMasterItemsDbPhase={setMasterItemsDbPhase}
+                specsFromDb={specsFromDb}
+                renderItemSlot={renderItemSlot}
+                specsByName={specsByName}
+              />
+            )}
+            {resourcesSubTab === 'cheatsheets' && (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+                <h3 className="text-lg font-bold text-slate-100">Cheat Sheets</h3>
+                <p className="text-sm text-slate-400">These quick-reference cards are kept alongside the BiS planner for fast raid prep.</p>
+                <div className="grid gap-3 md:grid-cols-2">
+                  <div className="rounded-lg border border-slate-800 bg-slate-900 p-4">
+                    <div className="text-sm font-semibold text-amber-400">Raid prep</div>
+                    <div className="mt-2 text-sm text-slate-400">Check open signup events, verify roster attendance, and use the active phase planner before each raid.</div>
+                  </div>
+                  <div className="rounded-lg border border-slate-800 bg-slate-900 p-4">
+                    <div className="text-sm font-semibold text-amber-400">Bank workflow</div>
+                    <div className="mt-2 text-sm text-slate-400">Use the main bank tab for browsing the vault, then switch to Requests or Update to manage officer workflows.</div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         )}
 
         {/* =========================================
