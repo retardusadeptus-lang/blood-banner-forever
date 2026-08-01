@@ -322,6 +322,16 @@ function ensureBankRequestSchema(db) {
   if (!hasRequesterName) {
     db.prepare('ALTER TABLE bank_requests ADD COLUMN requester_name TEXT').run();
   }
+
+  const hasRequesterDiscordUserId = columns.some(col => col.name === 'requester_discord_user_id');
+  if (!hasRequesterDiscordUserId) {
+    db.prepare('ALTER TABLE bank_requests ADD COLUMN requester_discord_user_id TEXT').run();
+  }
+
+  const hasRequesterDiscordUsername = columns.some(col => col.name === 'requester_discord_username');
+  if (!hasRequesterDiscordUsername) {
+    db.prepare('ALTER TABLE bank_requests ADD COLUMN requester_discord_username TEXT').run();
+  }
 }
 
 function ensureOfficerRolesTable(db) {

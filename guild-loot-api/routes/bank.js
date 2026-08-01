@@ -65,10 +65,31 @@ function buildBankRoutes({ db, discordService }) {
 
   router.post('/bank-requests', async (req, res) => {
     try {
-      const { player_id, item_wowhead_id, item_name, quantity, reason, basket_items, request_group_id } = req.body;
+      const {
+        player_id,
+        item_wowhead_id,
+        item_name,
+        quantity,
+        reason,
+        basket_items,
+        request_group_id,
+        requester_discord_user_id,
+        requester_discord_username
+      } = req.body;
       const insert = db.prepare(`
-        INSERT INTO bank_requests (player_id, item_wowhead_id, item_name, quantity, reason, status, request_group_id, requester_name)
-        VALUES (?, ?, ?, ?, ?, 'pending', ?, ?)
+        INSERT INTO bank_requests (
+          player_id,
+          item_wowhead_id,
+          item_name,
+          quantity,
+          reason,
+          status,
+          request_group_id,
+          requester_name,
+          requester_discord_user_id,
+          requester_discord_username
+        )
+        VALUES (?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?)
       `);
 
       if (Array.isArray(basket_items) && basket_items.length > 0) {
@@ -84,7 +105,9 @@ function buildBankRoutes({ db, discordService }) {
               item.quantity || 1,
               item.reason || '',
               groupId,
-              item.player_name || null
+              item.player_name || null,
+              item.requester_discord_user_id || requester_discord_user_id || null,
+              item.requester_discord_username || requester_discord_username || null
             );
             createdIds.push(info.lastInsertRowid);
           });
@@ -101,7 +124,9 @@ function buildBankRoutes({ db, discordService }) {
         quantity || 1,
         reason || '',
         request_group_id || null,
-        null
+        null,
+        requester_discord_user_id || null,
+        requester_discord_username || null
       );
 
       res.json({ ok: true, id: result.lastInsertRowid });
@@ -122,32 +147,48 @@ function buildBankRoutes({ db, discordService }) {
       `);
       const getRequest = db.prepare('SELECT * FROM bank_requests WHERE id = ?');
       const getPlayer = db.prepare('SELECT name FROM roster WHERE id = ?');
-      const summaryLines = [];
+      const groupsByPlayer = new Map();
+      const mentions = [];
 
       const applyAll = db.transaction(() => {
         resolutions.forEach(r => {
           update.run(r.status, r.price || null, r.note || '', r.quantity || null, r.id);
           const request = getRequest.get(r.id);
           if (!request) return;
+
+          if (request.requester_discord_user_id) {
+            mentions.push(String(request.requester_discord_user_id));
+          }
+
           const player = getPlayer.get(request.player_id);
           const playerName = player?.name || request.requester_name || 'Unknown';
-
-          if (r.status === 'approved') {
-            const isPartial = Number(r.quantity || request.quantity) < Number(request.quantity);
-            const icon = isPartial ? '⚠️' : '✅';
-            const qty = isPartial ? `${r.quantity || request.quantity}/${request.quantity}` : `${r.quantity || request.quantity}`;
-            const priceText = r.price ? ` — ${r.price}g` : '';
-            const noteText = r.note ? ` (${r.note})` : '';
-            summaryLines.push(`${icon} **${request.item_name}** x${qty} for **${playerName}**${priceText}${noteText}`);
-          } else {
-            summaryLines.push(`❌ **${request.item_name}** for **${playerName}** — Denied${r.note ? `: ${r.note}` : ''}`);
+          if (!groupsByPlayer.has(playerName)) {
+            groupsByPlayer.set(playerName, { playerName, entries: [] });
           }
+
+          const group = groupsByPlayer.get(playerName);
+          const isApproved = String(r.status || '').toLowerCase() === 'approved';
+          const approvedQuantity = isApproved ? Number(r.quantity || request.quantity || 0) : 0;
+          const requestedQuantity = Number(request.quantity || 0);
+          const statusIcon = isApproved ? (approvedQuantity < requestedQuantity ? '⚠️' : '✅') : '❌';
+          const priceText = isApproved && r.price ? `${r.price}g` : '';
+          const noteText = r.note ? String(r.note) : '';
+
+          group.entries.push({
+            statusIcon,
+            itemName: request.item_name,
+            approvedQuantity,
+            requestedQuantity,
+            priceText,
+            noteText
+          });
         });
       });
 
       applyAll();
-      if (summaryLines.length > 0) {
-        await sendBankBulkResolutionWebhook({ lines: summaryLines });
+      const groups = Array.from(groupsByPlayer.values());
+      if (groups.length > 0) {
+        await sendBankBulkResolutionWebhook({ groups, mentions });
       }
 
       res.json({ ok: true, count: resolutions.length });
@@ -180,7 +221,8 @@ function buildBankRoutes({ db, discordService }) {
           status,
           price,
           officer_note,
-          approved_quantity
+          approved_quantity,
+          requester_discord_user_id: request.requester_discord_user_id
         });
       }
 
