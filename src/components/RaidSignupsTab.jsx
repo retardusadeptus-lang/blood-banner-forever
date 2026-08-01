@@ -148,6 +148,7 @@ export default function RaidSignupsTab({
 }) {
   const [events, setEvents] = useState([]);
   const [templates, setTemplates] = useState([]);
+  const [archivedEvents, setArchivedEvents] = useState([]);
   const [isSavingTemplates, setIsSavingTemplates] = useState(false);
   const [selectedEventId, setSelectedEventId] = useState('');
   const [eventEditDraft, setEventEditDraft] = useState({ title: '', description: '', scheduled_date: '', scheduled_time: '20:00', public_groups: false });
@@ -168,6 +169,20 @@ export default function RaidSignupsTab({
     if (!isAuthenticated) return;
     const data = await fetchData('raid-signup-templates');
     setTemplates(Array.isArray(data) ? data : []);
+  };
+
+  const loadArchivedEvents = async () => {
+    if (!isAuthenticated) {
+      setArchivedEvents([]);
+      return;
+    }
+    try {
+      const data = await fetchData('raid-signup-events?status=archived');
+      setArchivedEvents(Array.isArray(data) ? data : []);
+    } catch (e) {
+      console.error('Failed to load archived raid signups', e);
+      setArchivedEvents([]);
+    }
   };
 
   useEffect(() => {
@@ -193,6 +208,7 @@ export default function RaidSignupsTab({
 
   useEffect(() => {
     loadTemplates().catch(e => console.error('Failed to load raid signup templates', e));
+    loadArchivedEvents().catch(e => console.error('Failed to load archived raid signup events', e));
   }, [isAuthenticated]);
 
   useEffect(() => {
@@ -228,8 +244,8 @@ export default function RaidSignupsTab({
   }, [selectedEventId]);
 
   const selectedEvent = useMemo(
-    () => events.find(event => String(event.id) === String(selectedEventId)) || null,
-    [events, selectedEventId]
+    () => [...events, ...archivedEvents].find(event => String(event.id) === String(selectedEventId)) || null,
+    [events, archivedEvents, selectedEventId]
   );
 
   useEffect(() => {
@@ -400,6 +416,7 @@ export default function RaidSignupsTab({
     try {
       await putData(`raid-signup-events/${selectedEventId}/status`, { status });
       await loadPublic();
+      await loadArchivedEvents();
       alert(`Event updated: ${status}.`);
     } catch (e) {
       alert(`Failed to set event status to ${status}.`);
@@ -650,9 +667,20 @@ export default function RaidSignupsTab({
                   className="bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm"
                 >
                   <option value="">Select event...</option>
-                  {events.map(event => (
-                    <option key={event.id} value={event.id}>#{event.id} [{event.status}] {event.title}</option>
-                  ))}
+                  {events.length > 0 && (
+                    <optgroup label="Active events">
+                      {events.map(event => (
+                        <option key={`active-${event.id}`} value={event.id}>#{event.id} [{event.status}] {event.title}</option>
+                      ))}
+                    </optgroup>
+                  )}
+                  {archivedEvents.length > 0 && (
+                    <optgroup label="Archived events">
+                      {archivedEvents.map(event => (
+                        <option key={`archived-${event.id}`} value={event.id}>#{event.id} [{event.status}] {event.title}</option>
+                      ))}
+                    </optgroup>
+                  )}
                 </select>
                 <button
                   type="button"
@@ -680,6 +708,16 @@ export default function RaidSignupsTab({
                 >
                   Clear Groups
                 </button>
+                {selectedEvent && String(selectedEvent.status || '').toLowerCase() !== 'open' ? (
+                  <button
+                    type="button"
+                    onClick={() => setEventStatus('open', `Reopen this raid? Signups will be enabled.`)}
+                    disabled={!selectedEventId || isChangingStatus || isDeletingEvent}
+                    className="text-xs font-bold bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-2 rounded"
+                  >
+                    {isChangingStatus ? 'Working...' : (String(selectedEvent.status || '').toLowerCase() === 'archived' ? 'Restore Raid' : 'Unlock Raid')}
+                  </button>
+                ) : null}
                 <button
                   type="button"
                   onClick={() => setEventStatus('locked', 'Lock this raid? Signups will be disabled but it stays visible.')}

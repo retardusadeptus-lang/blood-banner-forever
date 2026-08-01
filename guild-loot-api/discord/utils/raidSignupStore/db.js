@@ -126,6 +126,15 @@ function listManageableEvents(db) {
   `).all();
 }
 
+function listArchivedEvents(db) {
+  return db.prepare(`
+    SELECT id, template_id, title, description, scheduled_for, recurrence_instance, public_groups, status, discord_channel_id, discord_message_id, created_at
+    FROM raid_signup_events
+    WHERE status = 'archived'
+    ORDER BY id DESC
+  `).all();
+}
+
 function listPublicActiveEvents(db) {
   return db.prepare(`
     SELECT id, template_id, title, description, scheduled_for, recurrence_instance, public_groups, status, discord_channel_id, discord_message_id, created_at
@@ -315,6 +324,7 @@ module.exports = {
   getTemplateById,
   listOpenEvents,
   listManageableEvents,
+  listArchivedEvents,
   listPublicActiveEvents,
   getEventById,
   createEventFromTemplate,

@@ -121,6 +121,24 @@ async function archiveEvent(interaction, db) {
   await interaction.reply({ content: `Archived event #${eventId}.`, ephemeral: true });
 }
 
+async function unlockEvent(interaction, db) {
+  const eventId = Number(interaction.options.getString('event', true));
+  const event = getEventById(db, eventId);
+  if (!event) {
+    await interaction.reply({ content: 'Event not found.', ephemeral: true });
+    return;
+  }
+
+  db.prepare(`
+    UPDATE raid_signup_events
+    SET status = 'open', updated_at = CURRENT_TIMESTAMP
+    WHERE id = ?
+  `).run(eventId);
+
+  await refreshEventMessage(db, interaction.client, eventId);
+  await interaction.reply({ content: `Unlocked event #${eventId}. Signups are enabled again.`, ephemeral: true });
+}
+
 async function deleteEvent(interaction, db) {
   const eventId = Number(interaction.options.getString('event', true));
   const event = getEventById(db, eventId);
@@ -164,6 +182,7 @@ module.exports = {
   editEvent,
   lockEvent,
   archiveEvent,
+  unlockEvent,
   deleteEvent,
   echoEvent
 };

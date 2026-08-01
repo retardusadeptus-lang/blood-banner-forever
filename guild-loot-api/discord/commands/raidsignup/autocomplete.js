@@ -1,4 +1,4 @@
-const { listTemplates, listManageableEvents } = require('../../utils/raidSignupStore');
+const { listTemplates, listManageableEvents, listArchivedEvents } = require('../../utils/raidSignupStore');
 
 async function autocomplete(interaction, db) {
   const focused = interaction.options.getFocused(true);
@@ -17,6 +17,21 @@ async function autocomplete(interaction, db) {
 
   if (['lock', 'archive', 'delete', 'echo', 'edit'].includes(subcommand) && focused.name === 'event') {
     const events = listManageableEvents(db)
+      .filter(e => `${e.id} ${e.title}`.toLowerCase().includes(String(focused.value || '').toLowerCase()))
+      .slice(0, 25)
+      .map(e => ({ name: `#${e.id} [${e.status}] ${e.title}`, value: String(e.id) }));
+
+    await interaction.respond(events);
+    return;
+  }
+
+  if (subcommand === 'unlock' && focused.name === 'event') {
+    const candidates = [
+      ...listManageableEvents(db),
+      ...listArchivedEvents(db)
+    ].filter(e => String(e.status || '').toLowerCase() !== 'open');
+
+    const events = candidates
       .filter(e => `${e.id} ${e.title}`.toLowerCase().includes(String(focused.value || '').toLowerCase()))
       .slice(0, 25)
       .map(e => ({ name: `#${e.id} [${e.status}] ${e.title}`, value: String(e.id) }));

@@ -6,6 +6,7 @@ const {
   editEvent,
   lockEvent,
   archiveEvent,
+  unlockEvent,
   deleteEvent,
   echoEvent
 } = require('./raidsignup/actions');
@@ -40,6 +41,11 @@ module.exports = {
 
     if (subcommand === 'archive') {
       await archiveEvent(interaction, db);
+      return;
+    }
+
+    if (subcommand === 'unlock') {
+      await unlockEvent(interaction, db);
       return;
     }
 
