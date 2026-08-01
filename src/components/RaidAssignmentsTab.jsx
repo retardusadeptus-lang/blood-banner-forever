@@ -3,6 +3,7 @@ import {
   CURSE_TYPES, JUDGEMENT_TYPES,
   RAID_GROUPS, RAID_WIDE_LABEL, BOSS_TARGET_ID, RAID_MARKERS
 } from '../constants';
+import { buildRaidAssignmentsExport, serializeRaidAssignmentsExport } from '../services/raidAssignmentsExport.js';
 
 // --- HELPER COMPONENTS ---
 
@@ -227,24 +228,18 @@ export default function RaidAssignmentsTab({
   const [newCustomBossName, setNewCustomBossName] = useState('');
   const [exportStatus, setExportStatus] = useState('');
 
-  const buildRaidAssignmentsExport = () => {
-    return {
-      exported_at: new Date().toISOString(),
-      enabled_bosses: enabledBosses,
-      raid_assignment_data: raidAssignmentData || {},
-      roster: roster.map(player => ({
-        id: player.id,
-        name: player.name,
-        spec_id: player.spec_id,
-        in_raid: player.in_raid,
-        class: getSpecById(player.spec_id)?.class || null
-      }))
-    };
-  };
+  const buildCurrentRaidAssignmentExport = () => buildRaidAssignmentsExport({
+    raidAssignmentData,
+    roster,
+    enabledBosses,
+    raidZones,
+    getSpecById,
+    exportTimestamp: new Date().toISOString()
+  });
 
   const downloadRaidAssignmentsJson = () => {
-    const payload = buildRaidAssignmentsExport();
-    const text = JSON.stringify(payload, null, 2);
+    const payload = buildCurrentRaidAssignmentExport();
+    const text = serializeRaidAssignmentsExport(payload);
     const blob = new Blob([text], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -258,8 +253,8 @@ export default function RaidAssignmentsTab({
   };
 
   const copyRaidAssignmentsJson = async () => {
-    const payload = buildRaidAssignmentsExport();
-    const text = JSON.stringify(payload, null, 2);
+    const payload = buildCurrentRaidAssignmentExport();
+    const text = serializeRaidAssignmentsExport(payload);
     if (navigator.clipboard && navigator.clipboard.writeText) {
       try {
         await navigator.clipboard.writeText(text);
@@ -768,11 +763,19 @@ export default function RaidAssignmentsTab({
                       </button>
                     )}
                   </div>
-                  <div className="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Bloodlust:</span>
-                    {isAuthenticated ? (
-                      <input type="text" className="bg-slate-950 border border-slate-700 text-xs rounded px-2 py-1 text-red-400 font-bold focus:outline-none w-48" placeholder="Pull, 20% phase 3..." value={bData.bloodlustAt || ''} onChange={e => updateBoss(boss, b => b.bloodlustAt = e.target.value)} />
-                    ) : <span className="text-xs text-red-400 font-bold">{bData.bloodlustAt || '—'}</span>}
+                  <div className="flex items-center gap-2 flex-wrap bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Export Order:</span>
+                      {isAuthenticated ? (
+                        <input type="number" min="0" className="bg-slate-950 border border-slate-700 text-xs rounded px-2 py-1 text-amber-400 font-bold focus:outline-none w-20" value={bData.order ?? ''} onChange={e => updateBoss(boss, b => { const next = e.target.value === '' ? null : Number(e.target.value); b.order = next; })} />
+                      ) : <span className="text-xs text-amber-400 font-bold">{bData.order ?? '—'}</span>}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Bloodlust:</span>
+                      {isAuthenticated ? (
+                        <input type="text" className="bg-slate-950 border border-slate-700 text-xs rounded px-2 py-1 text-red-400 font-bold focus:outline-none w-48" placeholder="Pull, 20% phase 3..." value={bData.bloodlustAt || ''} onChange={e => updateBoss(boss, b => b.bloodlustAt = e.target.value)} />
+                      ) : <span className="text-xs text-red-400 font-bold">{bData.bloodlustAt || '—'}</span>}
+                    </div>
                   </div>
                 </div>
 
