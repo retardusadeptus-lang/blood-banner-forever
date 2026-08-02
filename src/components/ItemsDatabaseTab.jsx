@@ -17,6 +17,8 @@ export default function ItemsDatabaseTab({
   setDbSearch,
   showMissingWowheadFilter,
   setShowMissingWowheadFilter,
+  showWowheadNameMismatchFilter,
+  setShowWowheadNameMismatchFilter,
   dbFilteredItems,
   specsSortedByClass,
   dbBisPriorities,
@@ -98,6 +100,15 @@ export default function ItemsDatabaseTab({
             />
             Missing Wowhead ID
           </label>
+          <label className="flex items-center gap-2 cursor-pointer bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm font-semibold text-slate-300 hover:bg-slate-900 transition whitespace-nowrap">
+            <input
+              type="checkbox"
+              checked={showWowheadNameMismatchFilter}
+              onChange={e => setShowWowheadNameMismatchFilter(e.target.checked)}
+              className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4 cursor-pointer"
+            />
+            Wowhead Name Mismatch
+          </label>
         </div>
       </div>
 
@@ -120,6 +131,9 @@ export default function ItemsDatabaseTab({
               <tr key={item.id || item.name} className="hover:bg-slate-900/30 group">
                 <td className="p-3 sticky left-0 bg-slate-950 group-hover:bg-slate-900/90 border-r border-slate-800 transition-colors shadow-[2px_0_5px_rgba(0,0,0,0.3)] min-w-[200px]">
                   <div className="truncate mb-0.5">{renderItemLink(item, "font-bold text-purple-400")}</div>
+                  <div className="mt-1 text-[10px] text-slate-500 font-medium italic">
+                    Stored name: <span className="text-slate-400">{item.name}</span>
+                  </div>
                   <div className="flex gap-2 flex-wrap text-slate-500 uppercase tracking-wide text-[10px] font-semibold">
                     <span className="truncate">{item.boss} ({item.zone})</span>
                     {item.drop_chance && (

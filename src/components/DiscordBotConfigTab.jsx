@@ -26,7 +26,9 @@ export default function DiscordBotConfigTab({
   onUnclaimClaim,
   roster,
   specsByName,
-  getDisplayFromId
+  getDisplayFromId,
+  scoringConfig,
+  setScoringConfig
 }) {
   const updateRoleList = (field, rawText) => {
     setConfig(prev => ({
@@ -38,6 +40,10 @@ export default function DiscordBotConfigTab({
   const requestText = toEditorText(config?.request_roles);
   const signupText = toEditorText(config?.signup_roles);
   const benchText = toEditorText(config?.bench_roles);
+
+  const updateScoringField = (field, value) => {
+    setScoringConfig?.({ ...(scoringConfig || {}), [field]: value });
+  };
 
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
@@ -54,6 +60,40 @@ export default function DiscordBotConfigTab({
         >
           {isSaving ? 'Saving...' : hasUnsavedChanges ? 'Save Config' : 'No Changes'}
         </button>
+      </div>
+
+      <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+        <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider mb-4">Global Score Weighting Weights</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 mb-1">Parse Multiplier</label>
+            <input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig?.parseWeight ?? ''} onChange={e => updateScoringField('parseWeight', e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 mb-1">Support Multiplier</label>
+            <input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig?.supportMulti ?? ''} onChange={e => updateScoringField('supportMulti', e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 mb-1">Consumables (+)</label>
+            <input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig?.consBonus ?? ''} onChange={e => updateScoringField('consBonus', e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 mb-1">Enchants (+)</label>
+            <input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig?.enchantBonus ?? ''} onChange={e => updateScoringField('enchantBonus', e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 mb-1">Gems (+)</label>
+            <input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig?.gemBonus ?? ''} onChange={e => updateScoringField('gemBonus', e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 mb-1">Attendance Multiplier</label>
+            <input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig?.attWeight ?? ''} onChange={e => updateScoringField('attWeight', e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-red-500 mb-1">AFK Penalty (-)</label>
+            <input type="number" step="0.1" className="w-full bg-slate-900 text-red-400 font-bold border border-red-900 rounded p-2 focus:outline-none" value={scoringConfig?.afkPenalty ?? ''} onChange={e => updateScoringField('afkPenalty', e.target.value)} />
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">

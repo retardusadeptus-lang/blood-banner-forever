@@ -92,6 +92,7 @@ export default function App() {
   const [globalMyPlayerId, setGlobalMyPlayerId] = useState(() => localStorage.getItem('my-player-id') || '');
   const [showBnetClaimModal, setShowBnetClaimModal] = useState(false);
   const [bnetAuthState, setBnetAuthState] = useState({ loading: true, authenticated: false, user: null, claimedCharacters: [], error: '', characters: [], diagnostics: [], showBnetCharacterLookup: false });
+  const [wowheadNameCache, setWowheadNameCache] = useState({});
   const [bnetClaimBusy, setBnetClaimBusy] = useState(false);
   const [rosterClaims, setRosterClaims] = useState([]);
 
@@ -100,15 +101,57 @@ export default function App() {
 
   // Default to public overview tab
   const AUTH_ONLY_TABS = ['bankRequests', 'loot', 'roster', 'scoring', 'itemsdb', 'officerRoles', 'discordBotConfig'];
-  const [activeTab, setActiveTab] = useState(() => localStorage.getItem('active-tab') || 'overview');
+  const [activeTab, setActiveTab] = useState(() => localStorage.getItem('active-tab') || 'loot');
   const [overviewSearch, setOverviewSearch] = useState('');
   const [hoveredNavTab, setHoveredNavTab] = useState(null);
-  const [bankSubTab, setBankSubTab] = useState('main');
-  const [raidAssignmentsSubTab, setRaidAssignmentsSubTab] = useState('roster');
-  const [raidSignupsSubTab, setRaidSignupsSubTab] = useState('overview');
-  const [lootSubTab, setLootSubTab] = useState('priority');
+  const [bankSubTab, setBankSubTab] = useState('contents');
+  const [raidAssignmentsSubTab, setRaidAssignmentsSubTab] = useState('overview');
+  const [raidSignupsSubTab, setRaidSignupsSubTab] = useState('templates');
+  const [lootSubTab, setLootSubTab] = useState('overview');
   const [adminSubTab, setAdminSubTab] = useState('officerRoles');
   const [resourcesSubTab, setResourcesSubTab] = useState('bis');
+  const [bankArchivedRequestIds, setBankArchivedRequestIds] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('bank-archived-request-ids') || '[]');
+    } catch {
+      return [];
+    }
+  });
+  const [selectedArchivedRequestIds, setSelectedArchivedRequestIds] = useState([]);
+  const [adminTodoItems, setAdminTodoItems] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('admin-todo-items') || '[]');
+    } catch {
+      return [];
+    }
+  });
+  const [todoDraftItems, setTodoDraftItems] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('admin-todo-items') || '[]');
+    } catch {
+      return [];
+    }
+  });
+  const [todoFilterMine, setTodoFilterMine] = useState(false);
+  const [todoDirty, setTodoDirty] = useState(false);
+  const [bankUpdateJsonText, setBankUpdateJsonText] = useState('');
+  const [bankUploadMeta, setBankUploadMeta] = useState({ gold: null });
+  const [raidAssignmentArchives, setRaidAssignmentArchives] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('raid-assignment-archives') || '[]');
+    } catch {
+      return [];
+    }
+  });
+  const [bankContentsHistory, setBankContentsHistory] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('bank-contents-history') || '[]');
+    } catch {
+      return [];
+    }
+  });
+  const [selectedRaidAssignmentArchiveId, setSelectedRaidAssignmentArchiveId] = useState(null);
+  const [selectedRaidRestoreBosses, setSelectedRaidRestoreBosses] = useState([]);
 
   const [isDbConnected, setIsDbConnected] = useState(false);
   const [newName, setNewName] = useState('');
@@ -153,6 +196,8 @@ export default function App() {
     setDbSearch,
     showMissingWowheadFilter,
     setShowMissingWowheadFilter,
+    showWowheadNameMismatchFilter,
+    setShowWowheadNameMismatchFilter,
     dbBisPrioritiesDirty,
     setDbBisPrioritiesDirty,
     mutableItemsDirty,
@@ -197,25 +242,31 @@ export default function App() {
   const handleMainNavSelect = (mainTab, subTab = null) => {
     setHoveredNavTab(null);
 
+    if (mainTab === 'overview') {
+      setActiveTab('loot');
+      setLootSubTab('overview');
+      return;
+    }
+
     if (mainTab === 'bank') {
       if (subTab === 'requests') {
         setActiveTab('bankRequests');
       } else {
         setActiveTab('bank');
-        setBankSubTab(subTab || 'main');
+        setBankSubTab(subTab || 'contents');
       }
     } else if (mainTab === 'raidAssignments') {
       setActiveTab('raidAssignments');
-      setRaidAssignmentsSubTab(subTab || 'roster');
+      setRaidAssignmentsSubTab(subTab || 'overview');
     } else if (mainTab === 'raidSignups') {
       setActiveTab('raidSignups');
-      setRaidSignupsSubTab(subTab || 'overview');
+      setRaidSignupsSubTab(subTab || 'templates');
     } else if (mainTab === 'loot') {
       if (subTab === 'scoring') {
         setActiveTab('scoring');
       } else {
         setActiveTab('loot');
-        setLootSubTab(subTab || 'priority');
+        setLootSubTab(subTab || 'overview');
       }
     } else if (mainTab === 'admin') {
       if (subTab === 'config') {
@@ -301,8 +352,8 @@ export default function App() {
         </button>
         {isHovered && (
           <div
-            className="absolute left-1/2 top-full z-[60] flex flex-nowrap justify-center gap-1 border-l border-r border-b border-slate-800 rounded-b-lg bg-slate-950/95 px-2 py-2 shadow-[0_14px_40px_rgba(0,0,0,0.35)] overflow-x-auto custom-scrollbar"
-            style={{ minWidth: '240px', width: 'auto', maxWidth: 'min(92vw, 520px)', transform: 'translateX(-50%)' }}
+            className={`absolute top-full z-[60] flex flex-wrap gap-1 border-l border-r border-b border-slate-800 rounded-b-lg bg-slate-950/95 px-2 py-2 shadow-[0_14px_40px_rgba(0,0,0,0.35)] overflow-visible ${keyName === 'bank' ? 'left-0 justify-start' : 'left-1/2 -translate-x-1/2 justify-center'}`}
+            style={{ minWidth: '240px', width: 'max-content', maxWidth: 'min(95vw, 760px)' }}
           >
             {subTabs.map(tab => {
               const isLocked = Boolean(tab.authOnly && !isAuthenticated);
@@ -316,7 +367,7 @@ export default function App() {
                     handleMainNavSelect(mainTab, tab.value);
                   }}
                   disabled={isLocked}
-                  className={`flex-1 min-w-[80px] px-2 py-2 font-semibold text-xs uppercase tracking-wider transition-colors rounded-lg text-center ${isLocked ? 'opacity-50 cursor-not-allowed' : ''} ${isSubActive ? 'bg-slate-900 border border-slate-800 text-cyan-400' : 'text-amber-300 hover:text-slate-300 hover:bg-slate-900/50'}`}
+                  className={`flex-none whitespace-nowrap px-3 py-2 font-semibold text-xs uppercase tracking-wider transition-colors rounded-lg text-center ${isLocked ? 'opacity-50 cursor-not-allowed' : ''} ${isSubActive ? 'bg-slate-900 border border-slate-800 text-cyan-400' : 'text-amber-300 hover:text-slate-300 hover:bg-slate-900/50'}`}
                 >
                   {tab.label}
                 </button>
@@ -329,7 +380,7 @@ export default function App() {
   };
 
   const bankSubTabs = [
-    { value: 'main', label: 'Main' },
+    { value: 'contents', label: 'Contents' },
     { value: 'requests', label: 'Requests', authOnly: true },
     { value: 'addon', label: 'Addon' },
     { value: 'update', label: 'Update', authOnly: true },
@@ -337,17 +388,20 @@ export default function App() {
   ];
 
   const raidAssignmentsSubTabs = [
-    { value: 'roster', label: 'Roster' },
-    { value: 'history', label: 'History' }
-  ];
-
-  const raidSignupsSubTabs = [
     { value: 'overview', label: 'Overview' },
     { value: 'history', label: 'History' }
   ];
 
+  const raidSignupsSubTabs = [
+    { value: 'templates', label: 'Templates' },
+    { value: 'events', label: 'Events' },
+    { value: 'group-config', label: 'Group Config' },
+    { value: 'history', label: 'History' }
+  ];
+
   const lootSubTabs = [
-    { value: 'priority', label: 'Priority Overview' },
+    { value: 'overview', label: 'Priority Overview' },
+    { value: 'assignment', label: 'Priority Assignment', authOnly: true },
     { value: 'scoring', label: 'Scoring', authOnly: true },
     { value: 'assigned', label: 'Assigned Loot', authOnly: true }
   ];
@@ -360,8 +414,14 @@ export default function App() {
   ];
 
   const resourcesSubTabs = [
-    { value: 'bis', label: 'BiS' },
-    { value: 'cheatsheets', label: 'Cheat Sheets' }
+    { value: 'bis', label: 'BiS Lists' },
+    { value: 'tactics', label: 'Tactics' },
+    { value: 'weakauras', label: 'Weakauras' },
+    { value: 'cheatsheets', label: 'Cheat Sheets' },
+    { value: 'instructions', label: 'Site Instructions' },
+    { value: 'raidlogs', label: 'Raid Logs' },
+    { value: 'wowaudit', label: 'WoWAudit' },
+    { value: 'wipefest', label: 'Wipefest' }
   ];
 
   // Persist current tab so refresh restores where the user left off.
@@ -369,10 +429,27 @@ export default function App() {
     localStorage.setItem('active-tab', activeTab);
   }, [activeTab]);
 
+  useEffect(() => {
+    localStorage.setItem('bank-archived-request-ids', JSON.stringify(bankArchivedRequestIds));
+  }, [bankArchivedRequestIds]);
+
+  useEffect(() => {
+    localStorage.setItem('admin-todo-items', JSON.stringify(adminTodoItems));
+  }, [adminTodoItems]);
+
+  useEffect(() => {
+    localStorage.setItem('raid-assignment-archives', JSON.stringify(raidAssignmentArchives));
+  }, [raidAssignmentArchives]);
+
+  useEffect(() => {
+    localStorage.setItem('bank-contents-history', JSON.stringify(bankContentsHistory));
+  }, [bankContentsHistory]);
+
   // If a saved tab requires auth and the session is locked, fall back safely.
   useEffect(() => {
     if (!isAuthenticated && AUTH_ONLY_TABS.includes(activeTab)) {
-      setActiveTab('overview');
+      setActiveTab('loot');
+      setLootSubTab('overview');
     }
   }, [isAuthenticated, activeTab]);
 
@@ -409,6 +486,82 @@ export default function App() {
     if (!globalMyPlayerId) return null;
     return roster.find(p => p.id === parseInt(globalMyPlayerId))?.name || null;
   }, [globalMyPlayerId, roster]);
+
+  const visibleBankRequests = useMemo(() => {
+    return (Array.isArray(bankRequests) ? bankRequests : []).filter(request => !bankArchivedRequestIds.includes(request.id));
+  }, [bankRequests, bankArchivedRequestIds]);
+
+  const archivedBankRequests = useMemo(() => {
+    return (Array.isArray(bankRequests) ? bankRequests : []).filter(request => bankArchivedRequestIds.includes(request.id));
+  }, [bankRequests, bankArchivedRequestIds]);
+  const archivedRequestIds = useMemo(() => archivedBankRequests.map(request => request.id), [archivedBankRequests]);
+
+  const isArchivedRequestSelected = (requestId) => selectedArchivedRequestIds.some(id => String(id) === String(requestId));
+
+  const toggleArchivedRequestSelection = (requestId) => {
+    const normalizedId = String(requestId);
+    setSelectedArchivedRequestIds(prev => prev.some(id => String(id) === normalizedId)
+      ? prev.filter(id => String(id) !== normalizedId)
+      : [...prev, requestId]);
+  };
+
+  const toggleAllArchivedRequestsSelection = () => {
+    const allSelected = archivedRequestIds.length > 0 && archivedRequestIds.every(id => isArchivedRequestSelected(id));
+
+    if (allSelected) {
+      setSelectedArchivedRequestIds(prev => prev.filter(id => !archivedRequestIds.some(archivedId => String(archivedId) === String(id))));
+      return;
+    }
+
+    setSelectedArchivedRequestIds(prev => {
+      const next = [...prev];
+      archivedRequestIds.forEach(id => {
+        const normalizedId = String(id);
+        if (!next.some(existingId => String(existingId) === normalizedId)) {
+          next.push(id);
+        }
+      });
+      return next;
+    });
+  };
+
+  const handleArchiveBankRequests = (requestIds = []) => {
+    const normalized = [...new Set([...bankArchivedRequestIds, ...requestIds.filter(Boolean)])];
+    setBankArchivedRequestIds(normalized);
+  };
+
+  const handleRestoreArchivedBankRequests = (requestIds = []) => {
+    const normalized = new Set(requestIds.filter(Boolean));
+    setBankArchivedRequestIds(prev => prev.filter(id => !normalized.has(id)));
+  };
+
+  const restoreSelectedArchivedRequests = () => {
+    if (selectedArchivedRequestIds.length === 0) return;
+    const requestIds = selectedArchivedRequestIds.filter(id => archivedRequestIds.some(archivedId => String(archivedId) === String(id)));
+    if (requestIds.length === 0) return;
+    handleRestoreArchivedBankRequests(requestIds);
+    setSelectedArchivedRequestIds([]);
+  };
+
+  const handleAddTodoItem = () => {
+    setTodoDraftItems(prev => [...prev, { id: Date.now(), item: '', owner: selectedMyPlayerName || '', comments: '', status: 'Open' }]);
+    setTodoDirty(true);
+  };
+
+  const handleUpdateTodoItem = (id, field, value) => {
+    setTodoDraftItems(prev => prev.map(item => item.id === id ? { ...item, [field]: value } : item));
+    setTodoDirty(true);
+  };
+
+  const handleRemoveTodoItem = (id) => {
+    setTodoDraftItems(prev => prev.filter(item => item.id !== id));
+    setTodoDirty(true);
+  };
+
+  const handleSaveTodoItems = () => {
+    setAdminTodoItems(todoDraftItems);
+    setTodoDirty(false);
+  };
 
   const sortedRosterForSelector = useMemo(() => {
     return [...roster].sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')));
@@ -490,7 +643,17 @@ export default function App() {
   const hasRosterUnsavedChanges = rosterDirty || raidLogsDirty || playerStatsDirty;
   const hasScoringUnsavedChanges = scoringConfigDirty || playerStatsDirty;
   const hasRaidAssignmentsUnsavedChanges = raidAssignmentDataDirty || enabledBossesDirty;
-  const hasAnyUnsavedChanges = hasLootUnsavedChanges || hasItemsDbUnsavedChanges || hasRosterUnsavedChanges || hasScoringUnsavedChanges || hasRaidAssignmentsUnsavedChanges || officerRolesDirty || discordBotConfigDirty;
+  const hasAnyUnsavedChanges = hasLootUnsavedChanges || hasItemsDbUnsavedChanges || hasRosterUnsavedChanges || hasScoringUnsavedChanges || hasRaidAssignmentsUnsavedChanges || officerRolesDirty || discordBotConfigDirty || todoDirty;
+  const unsavedSections = [
+    hasLootUnsavedChanges ? 'Loot Council' : null,
+    hasRaidAssignmentsUnsavedChanges ? 'Raid Assignments' : null,
+    hasRosterUnsavedChanges ? 'Roster' : null,
+    hasScoringUnsavedChanges ? 'Scoring' : null,
+    hasItemsDbUnsavedChanges ? 'Items DB' : null,
+    officerRolesDirty ? 'Officer Roles' : null,
+    discordBotConfigDirty ? 'Discord Config' : null,
+    todoDirty ? 'To-do List' : null
+  ].filter(Boolean);
 
   // ==========================================
   // HELPER: Initialize default BiS priorities from aggregated data
@@ -797,8 +960,50 @@ export default function App() {
 
   const toggleRaidStatus = (id) => setRoster(roster.map(p => p.id === id ? { ...p, in_raid: !p.in_raid } : p));
   const setAllRaidStatus = (status) => setRoster(roster.map(p => ({ ...p, in_raid: status })));
+  const normalizeAwardedPlayerIds = (assignmentData = {}) => {
+    if (Array.isArray(assignmentData.awardedPlayerIds)) {
+      return assignmentData.awardedPlayerIds.map(id => String(id)).filter(Boolean);
+    }
+    if (assignmentData.awardedPlayerId !== undefined && assignmentData.awardedPlayerId !== null && assignmentData.awardedPlayerId !== '') {
+      return [String(assignmentData.awardedPlayerId)];
+    }
+    return [];
+  };
+
   const handleSetPriority = (playerId, priority) => {
-    setAssignments({ ...assignments, [selectedItemName]: { ...(assignments[selectedItemName] || {}), [playerId]: priority } });
+    setAssignments(prev => {
+      const currentItemAssignments = { ...(prev[selectedItemName] || {}) };
+      if (priority === null || priority === undefined) {
+        delete currentItemAssignments[playerId];
+      } else {
+        currentItemAssignments[playerId] = priority;
+        const awardedPlayerIds = normalizeAwardedPlayerIds(currentItemAssignments);
+        if (awardedPlayerIds.includes(String(playerId))) {
+          currentItemAssignments.awardedPlayerIds = awardedPlayerIds.filter(id => String(id) !== String(playerId));
+        }
+      }
+      currentItemAssignments.assignedAt = new Date().toISOString();
+      return { ...prev, [selectedItemName]: currentItemAssignments };
+    });
+    setAssignmentsDirty(true);
+  };
+
+  const handleToggleAwardedPriority = (itemName, playerId) => {
+    setAssignments(prev => {
+      const currentItemAssignments = { ...(prev[itemName] || {}) };
+      const normalizedPlayerId = String(playerId);
+      const currentAwardedPlayerIds = normalizeAwardedPlayerIds(currentItemAssignments);
+      const isCurrentlyAwarded = currentAwardedPlayerIds.includes(normalizedPlayerId);
+
+      if (isCurrentlyAwarded) {
+        currentItemAssignments.awardedPlayerIds = currentAwardedPlayerIds.filter(id => id !== normalizedPlayerId);
+      } else {
+        delete currentItemAssignments[playerId];
+        currentItemAssignments.awardedPlayerIds = [...currentAwardedPlayerIds, normalizedPlayerId];
+      }
+      currentItemAssignments.assignedAt = new Date().toISOString();
+      return { ...prev, [itemName]: currentItemAssignments };
+    });
     setAssignmentsDirty(true);
   };
 
@@ -1264,6 +1469,14 @@ export default function App() {
     setAssignmentsDirty(true);
   };
 
+  const handleOpenItemForLootAssignment = (itemName) => {
+    if (!itemName) return;
+    setActiveTab('loot');
+    setLootSubTab('assignment');
+    setSearchQuery(itemName);
+    setSelectedItemName(itemName);
+  };
+
   const handleDeleteRaidLog = (logId) => {
     if (window.confirm("Delete this raid log?")) setRaidLogs(raidLogs.filter(log => log.id !== logId));
   };
@@ -1285,7 +1498,7 @@ export default function App() {
     setPlayerStats({ ...playerStats, [playerId]: { ...currentStats, manualAdjustment: { ...currentStats.manualAdjustment, [field]: value } } });
   };
 
-  const handleSaveLootCouncilChanges = async () => {
+  const handleSaveLootCouncilChanges = async ({ silent = false } = {}) => {
     if (!assignmentsDirty) return;
     setIsSavingLootCouncil(true);
     try {
@@ -1298,15 +1511,21 @@ export default function App() {
         console.warn('Failed to re-fetch assignments after save:', e);
       }
       setAssignmentsDirty(false);
-      alert('Loot council assignments saved.');
+      if (!silent) alert('Loot council assignments saved.');
     } catch (e) {
-      alert('Failed to save loot council assignments.');
+      if (e?.status === 401 || /unauthorized|officer authentication required/i.test(String(e?.message || ''))) {
+        handleLogout();
+        if (!silent) alert('Officer session expired. Please log in again to save loot council assignments.');
+      } else if (!silent) {
+        alert(`Failed to save loot council assignments.\n${e?.message || ''}`.trim());
+      }
+      throw e;
     } finally {
       setIsSavingLootCouncil(false);
     }
   };
 
-  const handleSaveRosterAttendanceChanges = async () => {
+  const handleSaveRosterAttendanceChanges = async ({ silent = false } = {}) => {
     if (!rosterDirty && !playerStatsDirty && !raidLogsDirty) return;
     setIsSavingRosterAttendance(true);
     try {
@@ -1352,15 +1571,16 @@ export default function App() {
       setRosterDirty(false);
       setPlayerStatsDirty(false);
       setRaidLogsDirty(false);
-      alert('Roster and attendance changes saved.');
+      if (!silent) alert('Roster and attendance changes saved.');
     } catch (e) {
-      alert('Failed to save roster/attendance changes.');
+      if (!silent) alert('Failed to save roster/attendance changes.');
+      throw e;
     } finally {
       setIsSavingRosterAttendance(false);
     }
   };
 
-  const handleSaveScoringChanges = async () => {
+  const handleSaveScoringChanges = async ({ silent = false } = {}) => {
     if (!scoringConfigDirty && !playerStatsDirty) return;
     setIsSavingScoring(true);
     try {
@@ -1372,46 +1592,56 @@ export default function App() {
       }
       setScoringConfigDirty(false);
       setPlayerStatsDirty(false);
-      alert('Scoring configuration saved.');
+      if (!silent) alert('Scoring configuration saved.');
     } catch (e) {
-      alert('Failed to save scoring changes.');
+      if (!silent) alert('Failed to save scoring changes.');
+      throw e;
     } finally {
       setIsSavingScoring(false);
     }
   };
 
-  const handleSaveOfficerRoles = async () => {
+  const handleSaveOfficerRoles = async ({ silent = false } = {}) => {
     if (!officerRolesDirty) return;
     setIsSavingOfficerRoles(true);
     try {
       await putData('officer-roles', officerRoles);
       setOfficerRolesDirty(false);
-      alert('Officer roles saved.');
+      if (!silent) alert('Officer roles saved.');
     } catch (e) {
-      alert('Failed to save officer roles.');
+      if (!silent) alert('Failed to save officer roles.');
+      throw e;
     } finally {
       setIsSavingOfficerRoles(false);
     }
   };
 
-  const handleSaveDiscordBotConfig = async () => {
-    if (!discordBotConfigDirty) return;
+  const handleSaveDiscordBotConfig = async ({ silent = false } = {}) => {
+    if (!discordBotConfigDirty && !scoringConfigDirty) return;
     setIsSavingDiscordBotConfig(true);
     try {
-      await putData('discord-bot-config', discordBotConfig);
+      if (discordBotConfigDirty) {
+        await putData('discord-bot-config', discordBotConfig);
+      }
+      if (scoringConfigDirty) {
+        await putData('scoring-config', scoringConfig);
+      }
       setDiscordBotConfigDirty(false);
-      alert('Discord bot config saved.');
+      setScoringConfigDirty(false);
+      if (!silent) alert('Config changes saved.');
     } catch (e) {
-      alert('Failed to save Discord bot config.');
+      if (!silent) alert('Failed to save config changes.');
+      throw e;
     } finally {
       setIsSavingDiscordBotConfig(false);
     }
   };
 
-  const handleSaveRaidAssignmentsChanges = async () => {
+  const handleSaveRaidAssignmentsChanges = async ({ silent = false } = {}) => {
     if (!raidAssignmentDataDirty && !enabledBossesDirty) return;
     if (!isAuthenticated) {
-      alert('Officer login required to save raid assignments.');
+      if (!silent) alert('Officer login required to save raid assignments.');
+      throw new Error('Officer login required to save raid assignments.');
       return;
     }
     setIsSavingRaidAssignments(true);
@@ -1424,9 +1654,10 @@ export default function App() {
       }
       setRaidAssignmentDataDirty(false);
       setEnabledBossesDirty(false);
-      alert('Raid assignments saved.');
+      if (!silent) alert('Raid assignments saved.');
     } catch (e) {
-      alert('Failed to save raid assignments.');
+      if (!silent) alert('Failed to save raid assignments.');
+      throw e;
     } finally {
       setIsSavingRaidAssignments(false);
     }
@@ -1504,6 +1735,10 @@ export default function App() {
         });
       }
 
+      const goldMatch = text.match(/\["(?:gold|guildGold|bankGold)"\]\s*=\s*(\d+)/);
+      const parsedGold = goldMatch ? parseInt(goldMatch[1], 10) : null;
+      setBankUploadMeta({ gold: parsedGold });
+
       if (parsed.length === 0) {
         setBankUploadStatus('⚠️ Found 0 items. Check your Lua file.');
         setBankUploadParsed(null);
@@ -1515,17 +1750,215 @@ export default function App() {
     reader.readAsText(file);
   };
 
+  const handleParseBankUpdateJson = () => {
+    try {
+      const parsedData = JSON.parse(bankUpdateJsonText || '{}');
+      const items = Array.isArray(parsedData.bankItems)
+        ? parsedData.bankItems
+        : Array.isArray(parsedData.items)
+          ? parsedData.items
+          : Array.isArray(parsedData.data)
+            ? parsedData.data
+            : [];
+
+      const normalized = items.map(item => ({
+        item_wowhead_id: Number(item.item_wowhead_id ?? item.id ?? item.itemId) || 0,
+        count: Number(item.count ?? item.quantity ?? 0) || 0,
+        name: item.name || item.item_name || '',
+        category: item.category || item.cat || '',
+        sub_type: item.sub_type || item.subtype || item.subType || ''
+      })).filter(item => item.item_wowhead_id > 0);
+
+      if (normalized.length === 0) {
+        setBankUploadStatus('⚠️ No valid bank items found in JSON.');
+        setBankUploadParsed(null);
+        return;
+      }
+
+      const parsedGold = Number(parsedData.gold ?? parsedData.guildGold ?? parsedData.bankGold ?? parsedData.guild_gold ?? parsedData.guildGoldCopper ?? 0);
+      setBankUploadMeta({ gold: Number.isFinite(parsedGold) ? parsedGold : null });
+      setBankUploadParsed(normalized);
+      setBankUploadStatus(`✅ Loaded ${normalized.length} items from JSON. Click Save to update the bank.`);
+    } catch (error) {
+      setBankUploadStatus('❌ Invalid JSON. Please paste the exported blob from the addon.');
+      setBankUploadParsed(null);
+    }
+  };
+
   const handleSaveBankUpload = async () => {
     if (!bankUploadParsed) return;
     setBankUploadStatus('Uploading...');
     try {
-      const data = await putData('bank-items', bankUploadParsed);
+      const payload = Array.isArray(bankUploadParsed) ? bankUploadParsed : (bankUploadParsed.items || []);
+      const data = await putData('bank-items', payload);
+      const snapshot = {
+        id: Date.now(),
+        timestamp: new Date().toISOString(),
+        itemCount: Array.isArray(payload) ? payload.length : 0,
+        gold: bankUploadMeta?.gold ?? null,
+        items: payload
+      };
+      setBankContentsHistory(prev => [snapshot, ...prev].slice(0, 12));
       setBankUploadStatus(`✅ Bank updated with ${data.count} items! Discord notified.`);
       setBankUploadParsed(null);
+      setBankUploadMeta({ gold: null });
       const items = await fetchData('bank-items');
       setBankItems(items);
     } catch (e) {
       setBankUploadStatus('❌ Error uploading.');
+    }
+  };
+
+  const handleCopyRaidAssignmentsToArchive = (archiveEntry) => {
+    setRaidAssignmentArchives(prev => {
+      const next = [archiveEntry, ...prev].slice(0, 12);
+      setSelectedRaidAssignmentArchiveId(archiveEntry.id);
+      setSelectedRaidRestoreBosses(Array.isArray(archiveEntry.selectedBosses) ? archiveEntry.selectedBosses : []);
+      return next;
+    });
+  };
+
+  const handleViewRaidAssignmentArchive = (archiveEntry) => {
+    setSelectedRaidAssignmentArchiveId(archiveEntry.id);
+    setSelectedRaidRestoreBosses(Array.isArray(archiveEntry.selectedBosses) ? archiveEntry.selectedBosses : []);
+  };
+
+  const handleToggleRaidRestoreBoss = (bossName) => {
+    setSelectedRaidRestoreBosses(prev => (
+      prev.includes(bossName)
+        ? prev.filter(name => name !== bossName)
+        : [...prev, bossName]
+    ));
+  };
+
+  const handleRestoreRaidAssignmentArchive = (archiveEntry, bossesToRestore = null) => {
+    const snapshot = archiveEntry?.liveSnapshot;
+    if (!snapshot || typeof snapshot !== 'object') {
+      alert('This archived snapshot was saved before restore support was added. Copy it again to create a restorable version.');
+      return;
+    }
+
+    const availableBosses = Array.isArray(archiveEntry.selectedBosses) && archiveEntry.selectedBosses.length > 0
+      ? archiveEntry.selectedBosses
+      : (archiveEntry.payload?.enabled_bosses || []);
+    const requestedBosses = Array.isArray(bossesToRestore) && bossesToRestore.length > 0
+      ? bossesToRestore.filter(boss => availableBosses.includes(boss))
+      : availableBosses;
+
+    if (requestedBosses.length === 0) {
+      alert('Select at least one boss to restore.');
+      return;
+    }
+
+    setRaidAssignmentData(prev => {
+      const next = JSON.parse(JSON.stringify(prev || {}));
+
+      if (requestedBosses.length === availableBosses.length) {
+        if (snapshot.global) next.global = JSON.parse(JSON.stringify(snapshot.global));
+        if (snapshot.__customBossGroups) next.__customBossGroups = JSON.parse(JSON.stringify(snapshot.__customBossGroups));
+      }
+
+      if (snapshot.__bossOrder) {
+        next.__bossOrder = { ...(next.__bossOrder || {}) };
+        requestedBosses.forEach(bossName => {
+          if (Object.prototype.hasOwnProperty.call(snapshot.__bossOrder, bossName)) {
+            next.__bossOrder[bossName] = snapshot.__bossOrder[bossName];
+          }
+        });
+      }
+
+      requestedBosses.forEach(bossName => {
+        if (snapshot[bossName]) {
+          next[bossName] = JSON.parse(JSON.stringify(snapshot[bossName]));
+        }
+      });
+
+      return next;
+    });
+    setEnabledBosses(prev => [...new Set([...(Array.isArray(prev) ? prev : []), ...requestedBosses])]);
+    setSelectedRaidAssignmentArchiveId(archiveEntry.id);
+    setSelectedRaidRestoreBosses(requestedBosses);
+    setRaidAssignmentsSubTab('overview');
+    setActiveTab('raidAssignments');
+  };
+
+  const exportArchivedRequestsCsv = () => {
+    const header = ['id', 'created_at', 'status', 'item_name', 'quantity', 'approved_quantity', 'price', 'requester_name', 'reason', 'officer_note'];
+    const escapeCsv = (value) => {
+      const raw = String(value ?? '');
+      return /[",\n]/.test(raw) ? `"${raw.replace(/"/g, '""')}"` : raw;
+    };
+    const rows = archivedBankRequests.map(request => {
+      const rosterPlayer = roster.find(player => Number(player.id) === Number(request.player_id));
+      return [
+        request.id,
+        request.created_at,
+        request.status,
+        request.item_name,
+        request.quantity,
+        request.approved_quantity,
+        request.price,
+        rosterPlayer?.name || request.player_name || request.requester_name || '',
+        request.reason,
+        request.officer_note
+      ].map(escapeCsv).join(',');
+    });
+    const blob = new Blob([[header.join(','), ...rows].join('\n')], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `bank-request-history-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const exportBankContentsHistoryCsv = () => {
+    const header = ['snapshot_id', 'timestamp', 'gold', 'item_wowhead_id', 'name', 'count', 'category', 'sub_type'];
+    const escapeCsv = (value) => {
+      const raw = String(value ?? '');
+      return /[",\n]/.test(raw) ? `"${raw.replace(/"/g, '""')}"` : raw;
+    };
+    const rows = bankContentsHistory.flatMap(snapshot => (
+      Array.isArray(snapshot.items) && snapshot.items.length > 0
+        ? snapshot.items.map(item => [
+            snapshot.id,
+            snapshot.timestamp,
+            snapshot.gold,
+            item.item_wowhead_id,
+            item.name,
+            item.count ?? item.quantity,
+            item.category,
+            item.sub_type
+          ].map(escapeCsv).join(','))
+        : [[snapshot.id, snapshot.timestamp, snapshot.gold, '', '', '', '', ''].map(escapeCsv).join(',')]
+    ));
+    const blob = new Blob([[header.join(','), ...rows].join('\n')], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `bank-contents-history-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleSaveAllChanges = async () => {
+    if (!hasAnyUnsavedChanges) return;
+    try {
+      if (todoDirty) handleSaveTodoItems();
+      if (hasLootUnsavedChanges) await handleSaveLootCouncilChanges({ silent: true });
+      if (hasRaidAssignmentsUnsavedChanges) await handleSaveRaidAssignmentsChanges({ silent: true });
+      if (hasRosterUnsavedChanges) await handleSaveRosterAttendanceChanges({ silent: true });
+      if (hasScoringUnsavedChanges) await handleSaveScoringChanges({ silent: true });
+      if (hasItemsDbUnsavedChanges) await handleSaveItemsDbChanges();
+      if (officerRolesDirty) await handleSaveOfficerRoles({ silent: true });
+      if (discordBotConfigDirty) await handleSaveDiscordBotConfig({ silent: true });
+      alert('All pending changes saved.');
+    } catch (error) {
+      alert(error?.message || 'Failed to save all changes.');
     }
   };
 
@@ -1620,13 +2053,71 @@ export default function App() {
     return matchSearch && matchBoss && matchZone && matchSlot && matchCategory;
   });
 
+  const normalizeWowheadName = (value) => String(value || '').trim().replace(/\s+/g, ' ').toLowerCase();
+
+  const getWowheadTitleFromHtml = (html) => {
+    const titleMatch = html.match(/<title>(.*?)<\/title>/i);
+    if (!titleMatch?.[1]) return null;
+
+    return titleMatch[1]
+      .replace(/\s*-\s*Item\s*-\s*TBC(?: Classic)?$/i, '')
+      .replace(/\s*-\s*Item$/i, '')
+      .trim();
+  };
+
   const dbFilteredItems = useMemo(() => {
     let items = mutableItems.filter(item => item && item.name && item.name.toLowerCase().includes(dbSearch.toLowerCase()));
     if (showMissingWowheadFilter) {
       items = items.filter(item => !item.itemId || String(item.itemId).trim() === '');
     }
+    if (showWowheadNameMismatchFilter) {
+      items = items.filter(item => {
+        const itemId = String(item.itemId || '').trim();
+        if (!itemId) return false;
+        const wowheadName = wowheadNameCache[itemId];
+        if (!wowheadName) return false;
+        return normalizeWowheadName(wowheadName) !== normalizeWowheadName(item.name);
+      });
+    }
     return items.sort((a, b) => a.name.localeCompare(b.name));
-  }, [mutableItems, dbSearch, showMissingWowheadFilter]);
+  }, [mutableItems, dbSearch, showMissingWowheadFilter, showWowheadNameMismatchFilter, wowheadNameCache]);
+
+  useEffect(() => {
+    if (!showWowheadNameMismatchFilter) return;
+
+    const pendingItems = mutableItems
+      .filter(item => item?.itemId && String(item.itemId).trim() && item?.name && !wowheadNameCache[String(item.itemId).trim()])
+      .slice(0, 80);
+
+    if (pendingItems.length === 0) return;
+
+    let isCancelled = false;
+    const loadWowheadNames = async () => {
+      const results = await Promise.allSettled(pendingItems.map(async item => {
+        const itemId = String(item.itemId).trim();
+        const response = await fetch(`https://www.wowhead.com/tbc/item=${encodeURIComponent(itemId)}`);
+        if (!response.ok) throw new Error(`Failed to load wowhead item ${itemId}`);
+        const html = await response.text();
+        const title = getWowheadTitleFromHtml(html);
+        return { itemId, title };
+      }));
+
+      if (isCancelled) return;
+
+      setWowheadNameCache(prev => {
+        const next = { ...prev };
+        results.forEach(result => {
+          if (result.status === 'fulfilled' && result.value?.title) {
+            next[result.value.itemId] = result.value.title;
+          }
+        });
+        return next;
+      });
+    };
+
+    loadWowheadNames();
+    return () => { isCancelled = true; };
+  }, [mutableItems, showWowheadNameMismatchFilter, wowheadNameCache]);
 
   useEffect(() => {
     if (filterZone && filterBoss && !mutableItems.some(i => i.zone === filterZone && i.boss === filterBoss)) setFilterBoss('');
@@ -1701,7 +2192,11 @@ export default function App() {
 
     // gather assigned player IDs from DB state
     const assignedMap = assignments[selectedItem.name] || {};
-    const assignedIds = Object.keys(assignedMap).map(id => Number(id));
+    const awardedPlayerIds = normalizeAwardedPlayerIds(assignedMap);
+    const assignedIds = Object.keys(assignedMap)
+      .filter(id => !['awardedPlayerIds', 'awardedPlayerId', 'assignedAt'].includes(id))
+      .map(id => Number(id))
+      .filter(id => !Number.isNaN(id));
 
     // create placeholder player objects for assigned players not in roster
     const rosterIds = new Set(rosterPlayers.map(p => Number(p.id)));
@@ -1716,14 +2211,15 @@ export default function App() {
       const specDisplay = getDisplayFromId(player.spec_id) || '?';
       const specObj = getSpecById(player.spec_id);
       const className = String(specObj?.class || '').toLowerCase();
+      const playerId = String(player.id);
 
       if (selectedItem.is_token && tokenClasses.length > 0 && !tokenClasses.includes(className)) {
-        // still include if player is explicitly assigned
-        return assignedIds.includes(Number(player.id));
+        // still include if player is explicitly assigned or already awarded
+        return assignedIds.includes(Number(player.id)) || awardedPlayerIds.includes(playerId);
       }
 
       const bisStatus = getPlayerItemPriorityStatus(selectedItem, specDisplay);
-      return (bisStatus && bisStatus !== '') || assignedIds.includes(Number(player.id));
+      return (bisStatus && bisStatus !== '') || assignedIds.includes(Number(player.id)) || awardedPlayerIds.includes(playerId);
     });
 
     return sortPlayersByRank(selectedItem, eligible, assignments);
@@ -1739,15 +2235,20 @@ export default function App() {
   };
 
   const getItemsForSlotAndSpec = (slot, spec) => {
+    const normalizedSlot = String(slot || '').toLowerCase();
     const dataSlot = slot === "Ring 1" || slot === "Ring 2" ? "ring"
       : slot === "Trinket 1" || slot === "Trinket 2" ? "trinket"
-        : slot.toLowerCase();
+        : normalizedSlot;
     const slotIndex = slot === "Ring 2" || slot === "Trinket 2" ? 1 : 0;
     const isDualSlot = slot.endsWith(" 1") || slot.endsWith(" 2");
 
-    const itemsInSlot = mutableItems.filter(i =>
-      i.slot && i.slot.toLowerCase() === dataSlot
-    );
+    const itemsInSlot = mutableItems.filter(i => {
+      const itemSlot = String(i?.slot || '').toLowerCase();
+      if (!itemSlot) return false;
+      if (itemSlot === dataSlot) return true;
+      if (slot === 'Weapon' && itemSlot === 'weapon') return true;
+      return false;
+    });
 
     const bis = itemsInSlot.filter(item => {
       const itemKey = `${item.name}|${spec}`;
@@ -2042,6 +2543,8 @@ export default function App() {
     );
   };
 
+  const selectedRaidAssignmentArchive = raidAssignmentArchives.find(entry => entry.id === selectedRaidAssignmentArchiveId) || null;
+
   // ==========================================
   // 7. RENDER SCREENS
   // ==========================================
@@ -2087,6 +2590,33 @@ export default function App() {
           </div>
 
           <div className="flex items-stretch justify-end gap-4 flex-nowrap">
+            <div className="w-80 flex flex-col justify-between bg-slate-900 border border-slate-800 rounded-lg p-2.5">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Unsaved Changes</span>
+                <button
+                  type="button"
+                  onClick={handleSaveAllChanges}
+                  disabled={!hasAnyUnsavedChanges}
+                  className={`rounded px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider transition ${hasAnyUnsavedChanges ? 'bg-emerald-600 text-white hover:bg-emerald-500' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
+                >
+                  Save All
+                </button>
+              </div>
+              <div className="mt-2">
+                {unsavedSections.length === 0 ? (
+                  <div className="text-[11px] text-slate-500">All tracked sections are saved.</div>
+                ) : (
+                  <div className="flex flex-wrap gap-1.5">
+                    {unsavedSections.map(section => (
+                      <span key={section} className="rounded-full border border-amber-600/40 bg-amber-900/20 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-amber-300">
+                        {section}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
             <div className="w-64 flex flex-col justify-between bg-slate-900 border border-slate-800 rounded-lg p-2">
               <div className="flex justify-center items-center mb-2">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Current Phase:</span>
@@ -2178,7 +2708,6 @@ export default function App() {
 
         {/* --- NAVIGATION TABS --- */}
         <div className="relative z-30 flex w-full flex-wrap items-start gap-2 overflow-visible pt-0 pb-0 mb-0">
-          <button onClick={() => handleMainNavSelect('overview')} className={`relative z-10 whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'overview' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800 -mb-px' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Priority Overview</button>
           {renderDropdownNavButton('bank', 'Guild Bank', 'bank', bankSubTabs, bankSubTab)}
           {renderDropdownNavButton('raidAssignments', 'Raid Assignments', 'raidAssignments', raidAssignmentsSubTabs, raidAssignmentsSubTab)}
           {renderDropdownNavButton('raidSignups', 'Raid Signups', 'raidSignups', raidSignupsSubTabs, raidSignupsSubTab)}
@@ -2195,7 +2724,7 @@ export default function App() {
         {/* =========================================
               TAB: PRIORITY OVERVIEW (MASTER LEDGER - PUBLIC)
               ========================================= */}
-        {activeTab === 'overview' && (
+        {activeTab === 'loot' && lootSubTab === 'overview' && (
           <OverviewTab
             filteredOverviewItems={filteredOverviewItems}
             overviewSearch={overviewSearch}
@@ -2210,6 +2739,7 @@ export default function App() {
             setActiveTab={setActiveTab}
             setSearchQuery={setSearchQuery}
             setSelectedItemName={setSelectedItemName}
+            onOpenItemAssignment={handleOpenItemForLootAssignment}
             specsByName={specsByName}
             getDisplayFromId={getDisplayFromId}
             myPlayerName={selectedMyPlayerName}
@@ -2226,7 +2756,7 @@ export default function App() {
       ========================================= */}
         {activeTab === 'bank' && (
           <div className="space-y-4">
-            {bankSubTab === 'main' && (
+            {bankSubTab === 'contents' && (
               <GuildBankTab
                 bankItems={bankItems}
                 bankSearch={bankSearch}
@@ -2239,7 +2769,7 @@ export default function App() {
             {bankSubTab === 'requests' && (
               isAuthenticated ? (
                 <BankRequestsTab
-                  bankRequests={bankRequests}
+                  bankRequests={visibleBankRequests}
                   roster={roster}
                   specsByName={specsByName}
                   getDisplayFromId={getDisplayFromId}
@@ -2257,11 +2787,9 @@ export default function App() {
                   setDenyCustomReason={setDenyCustomReason}
                   handleResolveBankRequest={handleResolveBankRequest}
                   handleBulkResolveBankRequests={handleBulkResolveBankRequests}
-                  handleBankFileUpload={handleBankFileUpload}
-                  setBankUploadParsed={setBankUploadParsed}
-                  bankUploadParsed={bankUploadParsed}
-                  handleSaveBankUpload={handleSaveBankUpload}
-                  bankUploadStatus={bankUploadStatus}
+                  archivedBankRequests={archivedBankRequests}
+                  onArchiveBankRequests={handleArchiveBankRequests}
+                  onRestoreArchivedBankRequests={handleRestoreArchivedBankRequests}
                 />
               ) : (
                 <div className="bg-slate-950 border border-slate-800 rounded-xl p-8 text-center text-slate-400">
@@ -2288,10 +2816,40 @@ export default function App() {
                   <h3 className="text-lg font-bold text-slate-100">Bank Inventory Update</h3>
                   <p className="text-sm text-slate-400">Upload the latest bank export or parsed snapshot to refresh the vault list.</p>
                   <input type="file" onChange={handleBankFileUpload} className="block w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-300" />
+                  <div className="rounded-xl border border-slate-800 bg-slate-900 p-4 space-y-3">
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2">Paste Bank JSON</label>
+                      <textarea
+                        value={bankUpdateJsonText}
+                        onChange={e => setBankUpdateJsonText(e.target.value)}
+                        placeholder="Paste the addon-exported JSON here..."
+                        rows={6}
+                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:outline-none"
+                      />
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <button type="button" onClick={handleParseBankUpdateJson} className="rounded-lg bg-cyan-700 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-cyan-600">Import JSON</button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setBankUpdateJsonText('');
+                          setBankUploadParsed(null);
+                          setBankUploadMeta({ gold: null });
+                          setBankUploadStatus('');
+                        }}
+                        className="rounded-lg border border-slate-700 bg-slate-950 px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-300 transition hover:bg-slate-900"
+                      >
+                        Clear
+                      </button>
+                    </div>
+                  </div>
                   <div className="flex flex-wrap items-center gap-3">
                     <button type="button" onClick={handleSaveBankUpload} className="rounded-lg bg-amber-600 px-4 py-2 text-sm font-bold text-slate-950 transition hover:bg-amber-500">Save Upload</button>
                     <span className="text-xs text-slate-500">{bankUploadStatus}</span>
                   </div>
+                  {bankUploadMeta?.gold !== null && bankUploadMeta?.gold !== undefined && (
+                    <div className="text-xs font-semibold text-amber-400">Detected guild gold: {bankUploadMeta.gold}</div>
+                  )}
                   {bankUploadParsed && (
                     <pre className="max-h-64 overflow-auto rounded-lg border border-slate-800 bg-slate-900 p-4 text-[11px] leading-5 text-slate-300 whitespace-pre-wrap">
                       {JSON.stringify(bankUploadParsed, null, 2)}
@@ -2306,24 +2864,93 @@ export default function App() {
               )
             )}
             {bankSubTab === 'history' && (
-              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
-                <h3 className="text-lg font-bold text-slate-100">Recent Request History</h3>
-                <p className="text-sm text-slate-400">Resolved requests remain visible here so officers can review what was approved or denied.</p>
-                {bankRequests.filter(request => request.status !== 'pending').length === 0 ? (
-                  <div className="rounded-lg border border-dashed border-slate-800 bg-slate-900/60 p-6 text-center text-sm text-slate-500">No resolved requests yet.</div>
-                ) : (
-                  <div className="space-y-2">
-                    {bankRequests.filter(request => request.status !== 'pending').slice(0, 10).map(request => (
-                      <div key={request.id} className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm">
-                        <div>
-                          <div className="font-semibold text-slate-200">{request.item_name || 'Bank request'}</div>
-                          <div className="text-xs text-slate-500">{request.player_name || 'Unknown player'} • {request.status}</div>
-                        </div>
-                        <span className="rounded-full border border-slate-700 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">{request.status}</span>
-                      </div>
-                    ))}
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-6">
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-100">Request History</h3>
+                      <p className="text-sm text-slate-400">Archived requests stay here until an officer restores them for review or follow-up.</p>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {archivedBankRequests.length > 0 && (
+                        <label className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                          <input
+                            type="checkbox"
+                            checked={archivedRequestIds.length > 0 && archivedRequestIds.every(id => isArchivedRequestSelected(id))}
+                            onChange={toggleAllArchivedRequestsSelection}
+                            className="rounded border-slate-700 bg-slate-950"
+                          />
+                          Select all
+                        </label>
+                      )}
+                      <button
+                        type="button"
+                        onClick={restoreSelectedArchivedRequests}
+                        disabled={selectedArchivedRequestIds.length === 0}
+                        className="rounded-lg border border-emerald-700/40 bg-emerald-900/20 px-3 py-2 text-xs font-bold uppercase tracking-wider text-emerald-400 transition hover:bg-emerald-900/40 disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        Restore Selected{selectedArchivedRequestIds.length > 0 ? ` (${selectedArchivedRequestIds.length})` : ''}
+                      </button>
+                      <button type="button" onClick={exportArchivedRequestsCsv} className="rounded-lg border border-cyan-700/40 bg-cyan-900/20 px-3 py-2 text-xs font-bold uppercase tracking-wider text-cyan-300 transition hover:bg-cyan-900/40">Export Requests CSV</button>
+                    </div>
                   </div>
-                )}
+                  {archivedBankRequests.length === 0 ? (
+                    <div className="rounded-lg border border-dashed border-slate-800 bg-slate-900/60 p-6 text-center text-sm text-slate-500">No archived requests yet.</div>
+                  ) : (
+                    <div className="space-y-2">
+                      {archivedBankRequests.map(request => (
+                        <div key={request.id} className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm gap-3">
+                          <div className="flex items-center gap-3 flex-1 min-w-0">
+                            <input
+                              type="checkbox"
+                              checked={isArchivedRequestSelected(request.id)}
+                              onChange={() => toggleArchivedRequestSelection(request.id)}
+                              className="rounded border-slate-700 bg-slate-950 shrink-0"
+                            />
+                            <div className="min-w-0">
+                              <div className="font-semibold text-slate-200">{request.item_name || 'Bank request'}</div>
+                              <div className="text-xs text-slate-500">{request.player_name || 'Unknown player'} • {request.status || 'unknown'}</div>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => handleRestoreArchivedBankRequests([request.id])}
+                            className="rounded-lg border border-emerald-700/40 bg-emerald-900/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-emerald-400 transition hover:bg-emerald-900/40"
+                          >
+                            Restore
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-100">Contents History</h3>
+                      <p className="text-sm text-slate-400">Recent bank inventory snapshots are kept here so the guild can compare previous vault states.</p>
+                    </div>
+                    <button type="button" onClick={exportBankContentsHistoryCsv} className="rounded-lg border border-cyan-700/40 bg-cyan-900/20 px-3 py-2 text-xs font-bold uppercase tracking-wider text-cyan-300 transition hover:bg-cyan-900/40">Export Contents CSV</button>
+                  </div>
+                  {bankContentsHistory.length === 0 ? (
+                    <div className="rounded-lg border border-dashed border-slate-800 bg-slate-900/60 p-6 text-center text-sm text-slate-500">No saved contents snapshots yet.</div>
+                  ) : (
+                    <div className="space-y-2">
+                      {bankContentsHistory.map(snapshot => (
+                        <div key={snapshot.id} className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm">
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="font-semibold text-slate-200">{snapshot.itemCount || 0} items</div>
+                            <div className="text-[11px] text-slate-500">{new Date(snapshot.timestamp).toLocaleString()}</div>
+                          </div>
+                          {snapshot.gold !== null && snapshot.gold !== undefined && (
+                            <div className="mt-1 text-xs text-amber-400">Gold: {snapshot.gold}g</div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>
@@ -2334,7 +2961,7 @@ export default function App() {
       ========================================= */}
         {activeTab === 'raidAssignments' && (
           <div className="space-y-4">
-            {raidAssignmentsSubTab === 'roster' && (
+            {raidAssignmentsSubTab === 'overview' && (
               <RaidAssignmentsTab
                 isAuthenticated={isAuthenticated}
                 roster={roster}
@@ -2352,6 +2979,8 @@ export default function App() {
                 onSaveChanges={handleSaveRaidAssignmentsChanges}
                 isSaving={isSavingRaidAssignments}
                 myPlayerName={selectedMyPlayerName}
+                actorBattleTag={bnetAuthState.user?.battletag || ''}
+                onCopyToArchive={handleCopyRaidAssignmentsToArchive}
               />
             )}
             {raidAssignmentsSubTab === 'history' && (
@@ -2361,6 +2990,63 @@ export default function App() {
                 <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-300">
                   {Object.keys(raidAssignmentData || {}).length === 0 ? 'No saved assignment data yet.' : `The current assignment data contains ${Object.keys(raidAssignmentData).length} tracked section${Object.keys(raidAssignmentData).length === 1 ? '' : 's'}.`}
                 </div>
+                {raidAssignmentArchives.length === 0 ? (
+                  <div className="rounded-lg border border-dashed border-slate-800 bg-slate-900/60 p-6 text-center text-sm text-slate-500">No archived assignment snapshots yet.</div>
+                ) : (
+                  <div className="space-y-2">
+                    {raidAssignmentArchives.map(entry => (
+                      <div key={entry.id} className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm">
+                        <div className="flex items-center justify-between gap-3">
+                          <div>
+                            <div className="font-semibold text-slate-200">{entry.boss || 'Active bosses'}</div>
+                            <div className="text-[11px] text-slate-500">{entry.bossCount || entry.selectedBosses?.length || 0} boss snapshot</div>
+                          </div>
+                          <div className="text-[11px] text-slate-500">{new Date(entry.timestamp).toLocaleString()}</div>
+                        </div>
+                        {entry.actorBattleTag && <div className="mt-1 text-xs text-amber-400">By {entry.actorBattleTag}</div>}
+                        {Array.isArray(entry.selectedBosses) && entry.selectedBosses.length > 0 && (
+                          <div className="mt-2 text-xs text-slate-400 break-words">{entry.selectedBosses.join(', ')}</div>
+                        )}
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          <button type="button" onClick={() => handleViewRaidAssignmentArchive(entry)} className="rounded-lg border border-cyan-700/40 bg-cyan-900/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-cyan-300 transition hover:bg-cyan-900/40">View</button>
+                          <button type="button" onClick={() => handleRestoreRaidAssignmentArchive(entry)} className="rounded-lg border border-emerald-700/40 bg-emerald-900/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-emerald-300 transition hover:bg-emerald-900/40">Restore to Live</button>
+                        </div>
+                        {selectedRaidAssignmentArchiveId === entry.id && (
+                          <div className="mt-3 rounded-xl border border-slate-800 bg-slate-950 p-4 space-y-3">
+                            <div className="flex items-center justify-between gap-3">
+                              <h4 className="text-sm font-bold uppercase tracking-wider text-slate-200">Archive Preview</h4>
+                              <span className="text-[11px] text-slate-500">{entry.boss || 'All selected bosses'}</span>
+                            </div>
+                            {Array.isArray(entry.selectedBosses) && entry.selectedBosses.length > 1 && (
+                              <div className="space-y-2">
+                                <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Restore Bosses</div>
+                                <div className="flex flex-wrap gap-2">
+                                  {entry.selectedBosses.map(bossName => {
+                                    const isSelected = selectedRaidRestoreBosses.includes(bossName);
+                                    return (
+                                      <label key={`${entry.id}-${bossName}`} className={`inline-flex items-center gap-2 rounded-lg border px-2.5 py-1.5 text-xs font-semibold ${isSelected ? 'border-emerald-600/40 bg-emerald-900/20 text-emerald-300' : 'border-slate-700 bg-slate-900 text-slate-300'}`}>
+                                        <input type="checkbox" checked={isSelected} onChange={() => handleToggleRaidRestoreBoss(bossName)} className="rounded border-slate-600 bg-slate-950" />
+                                        {bossName}
+                                      </label>
+                                    );
+                                  })}
+                                </div>
+                                <div className="flex flex-wrap gap-2">
+                                  <button type="button" onClick={() => setSelectedRaidRestoreBosses(entry.selectedBosses)} className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-300">Select All</button>
+                                  <button type="button" onClick={() => setSelectedRaidRestoreBosses([])} className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-300">Clear</button>
+                                  <button type="button" onClick={() => handleRestoreRaidAssignmentArchive(entry, selectedRaidRestoreBosses)} className="rounded-lg border border-emerald-700/40 bg-emerald-900/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-emerald-300 transition hover:bg-emerald-900/40">Restore Selected</button>
+                                </div>
+                              </div>
+                            )}
+                            <pre className="max-h-80 overflow-auto rounded-lg border border-slate-800 bg-slate-900 p-3 text-[11px] leading-5 text-slate-300 whitespace-pre-wrap">
+                              {JSON.stringify(entry.payload, null, 2)}
+                            </pre>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -2374,6 +3060,8 @@ export default function App() {
             deleteData={deleteData}
             isAuthenticated={isAuthenticated}
             specsFromDb={specsFromDb}
+            activeSection={raidSignupsSubTab}
+            onSectionChange={setRaidSignupsSubTab}
           />
         )}
 
@@ -2382,7 +3070,7 @@ export default function App() {
       ========================================= */}
         {activeTab === 'bankRequests' && isAuthenticated && (
           <BankRequestsTab
-            bankRequests={bankRequests}
+            bankRequests={visibleBankRequests}
             roster={roster}
             specsByName={specsByName}
             getDisplayFromId={getDisplayFromId}
@@ -2400,11 +3088,9 @@ export default function App() {
             setDenyCustomReason={setDenyCustomReason}
             handleResolveBankRequest={handleResolveBankRequest}
             handleBulkResolveBankRequests={handleBulkResolveBankRequests}
-            handleBankFileUpload={handleBankFileUpload}
-            setBankUploadParsed={setBankUploadParsed}
-            bankUploadParsed={bankUploadParsed}
-            handleSaveBankUpload={handleSaveBankUpload}
-            bankUploadStatus={bankUploadStatus}
+            archivedBankRequests={archivedBankRequests}
+            onArchiveBankRequests={handleArchiveBankRequests}
+            onRestoreArchivedBankRequests={handleRestoreArchivedBankRequests}
           />
         )}
 
@@ -2413,7 +3099,7 @@ export default function App() {
               ========================================= */}
         {activeTab === 'loot' && isAuthenticated && (
           <div className="space-y-4">
-            {lootSubTab === 'priority' && (
+            {lootSubTab === 'assignment' && (
               <LootCouncilTab
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
@@ -2448,6 +3134,7 @@ export default function App() {
                 hasUnsavedChanges={assignmentsDirty}
                 onSaveChanges={handleSaveLootCouncilChanges}
                 onClearItemAssignments={handleClearOverviewItemPriorities}
+                onToggleAwardedPriority={handleToggleAwardedPriority}
                 isSaving={isSavingLootCouncil}
               />
             )}
@@ -2475,20 +3162,38 @@ export default function App() {
               <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
                 <h3 className="text-lg font-bold text-slate-100">Assigned Loot Overview</h3>
                 <p className="text-sm text-slate-400">The current loot council priorities are grouped here for a quick review.</p>
-                {Object.entries(assignments || {}).length === 0 ? (
+                {Object.entries(assignments || {}).filter(([itemName, playerMap]) => {
+                  const rankedEntries = Object.entries(playerMap || {}).filter(([key]) => !['awardedPlayerIds', 'awardedPlayerId', 'assignedAt'].includes(key));
+                  return rankedEntries.length > 0 || normalizeAwardedPlayerIds(playerMap).length > 0;
+                }).length === 0 ? (
                   <div className="rounded-lg border border-dashed border-slate-800 bg-slate-900/60 p-6 text-center text-sm text-slate-500">No gear assignments yet.</div>
                 ) : (
                   <div className="space-y-2">
-                    {Object.entries(assignments).slice(0, 12).map(([itemName, playerMap]) => (
-                      <div key={itemName} className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
-                        <div className="text-sm font-semibold text-slate-200">{itemName}</div>
-                        <div className="mt-1 flex flex-wrap gap-2 text-xs text-slate-400">
-                          {Object.entries(playerMap || {}).map(([playerId, rank]) => (
-                            <span key={`${itemName}-${playerId}`} className="rounded-full border border-slate-700 px-2 py-1">{roster.find(p => String(p.id) === String(playerId))?.name || playerId}: {rank}</span>
-                          ))}
+                    {Object.entries(assignments).filter(([itemName, playerMap]) => {
+                      const rankedEntries = Object.entries(playerMap || {}).filter(([key]) => !['awardedPlayerIds', 'awardedPlayerId', 'assignedAt'].includes(key));
+                      return rankedEntries.length > 0 || normalizeAwardedPlayerIds(playerMap).length > 0;
+                    }).slice(0, 12).map(([itemName, playerMap]) => {
+                      const rankedEntries = Object.entries(playerMap || {}).filter(([key]) => !['awardedPlayerIds', 'awardedPlayerId', 'assignedAt'].includes(key));
+                      const awardedPlayerIds = normalizeAwardedPlayerIds(playerMap);
+                      const assignedAt = playerMap?.assignedAt;
+                      const itemRecord = mutableItems.find(item => item.name === itemName) || { name: itemName };
+                      return (
+                        <div key={itemName} className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
+                          <div className="text-sm font-semibold text-slate-200">{renderItemLink(itemRecord)}</div>
+                          {assignedAt && (
+                            <div className="mt-1 text-[11px] text-slate-500">Updated {new Date(assignedAt).toLocaleString()}</div>
+                          )}
+                          {awardedPlayerIds.length > 0 && (
+                            <div className="mt-1 text-xs text-amber-400">Awarded to {awardedPlayerIds.map(id => roster.find(p => String(p.id) === String(id))?.name || id).join(', ')}</div>
+                          )}
+                          <div className="mt-1 flex flex-wrap gap-2 text-xs text-slate-400">
+                            {rankedEntries.map(([playerId, rank]) => (
+                              <span key={`${itemName}-${playerId}`} className="rounded-full border border-slate-700 px-2 py-1">{roster.find(p => String(p.id) === String(playerId))?.name || playerId}: {rank}</span>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </div>
@@ -2555,7 +3260,7 @@ export default function App() {
               <DiscordBotConfigTab
                 config={discordBotConfig}
                 setConfig={setDiscordBotConfig}
-                hasUnsavedChanges={discordBotConfigDirty}
+                hasUnsavedChanges={discordBotConfigDirty || scoringConfigDirty}
                 onSaveChanges={handleSaveDiscordBotConfig}
                 isSaving={isSavingDiscordBotConfig}
                 claims={rosterClaims}
@@ -2563,6 +3268,8 @@ export default function App() {
                 roster={roster}
                 specsByName={specsByName}
                 getDisplayFromId={getDisplayFromId}
+                scoringConfig={scoringConfig}
+                setScoringConfig={setScoringConfig}
               />
             )}
             {adminSubTab === 'itemsdb' && (
@@ -2598,12 +3305,65 @@ export default function App() {
             )}
             {adminSubTab === 'todo' && (
               <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
-                <h3 className="text-lg font-bold text-slate-100">Officer To-do List</h3>
-                <p className="text-sm text-slate-400">A lightweight planning area for the next raid week and guild upkeep.</p>
+                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-100">Officer To-do List</h3>
+                    <p className="text-sm text-slate-400">A lightweight planning area for the next raid week and guild upkeep.</p>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <button type="button" onClick={() => setTodoFilterMine(prev => !prev)} className={`rounded-lg border px-3 py-2 text-xs font-bold uppercase tracking-wider transition ${todoFilterMine ? 'border-amber-600 bg-amber-900/30 text-amber-400' : 'border-slate-700 bg-slate-900 text-slate-300'}`}>
+                      {todoFilterMine ? 'Showing Mine' : 'Filter to Mine'}
+                    </button>
+                    <button type="button" onClick={handleAddTodoItem} className="rounded-lg border border-amber-700/40 bg-amber-900/20 px-3 py-2 text-xs font-bold uppercase tracking-wider text-amber-400 transition hover:bg-amber-900/40">Add Item</button>
+                    <button type="button" onClick={handleSaveTodoItems} disabled={!todoDirty} className={`rounded-lg px-3 py-2 text-xs font-bold uppercase tracking-wider transition ${todoDirty ? 'bg-emerald-600 text-white hover:bg-emerald-500' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}>Save Changes</button>
+                  </div>
+                </div>
                 <div className="space-y-2 rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-300">
-                  <div className="rounded border border-slate-800 px-3 py-2">• Review pending bank requests and resolve baskets.</div>
-                  <div className="rounded border border-slate-800 px-3 py-2">• Confirm the next raid signup template and post it in Discord.</div>
-                  <div className="rounded border border-slate-800 px-3 py-2">• Sync the newest bank inventory snapshot after the vault changes.</div>
+                  <div className="hidden md:grid md:grid-cols-[minmax(0,1fr)_180px_160px_96px] gap-3 px-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-800">
+                    <span>Task</span>
+                    <span>Owner</span>
+                    <span>Status</span>
+                    <span>Action</span>
+                  </div>
+                  {todoDraftItems.filter(item => !todoFilterMine || String(item.owner || '').trim() === String(selectedMyPlayerName || '')).length === 0 ? (
+                    <div className="rounded border border-dashed border-slate-800 px-3 py-4 text-center text-slate-500">No to-do items yet.</div>
+                  ) : (
+                    todoDraftItems.filter(item => !todoFilterMine || String(item.owner || '').trim() === String(selectedMyPlayerName || '')).map(item => (
+                      <div key={item.id} className="rounded border border-slate-800 bg-slate-950/80 p-3 space-y-2">
+                        <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_180px_160px_96px] md:items-start">
+                          <div>
+                            <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1 md:hidden">Task</label>
+                            <input type="text" value={item.item} onChange={e => handleUpdateTodoItem(item.id, 'item', e.target.value)} placeholder="Task" className="w-full rounded border border-slate-700 bg-slate-900 px-2 py-1.5 text-sm text-white" />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1 md:hidden">Owner</label>
+                            <select value={item.owner || ''} onChange={e => handleUpdateTodoItem(item.id, 'owner', e.target.value)} className="w-full rounded border border-slate-700 bg-slate-900 px-2 py-1.5 text-sm text-white">
+                            <option value="">Unassigned</option>
+                            {[...new Set([selectedMyPlayerName, ...roster.map(player => player.name)].filter(Boolean))].filter(Boolean).sort().map(name => (
+                              <option key={name} value={name}>{name}</option>
+                            ))}
+                          </select>
+                          </div>
+                          <div>
+                            <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1 md:hidden">Status</label>
+                            <select value={item.status || 'Open'} onChange={e => handleUpdateTodoItem(item.id, 'status', e.target.value)} className="w-full rounded border border-slate-700 bg-slate-900 px-2 py-1.5 text-sm text-white">
+                              <option value="Open">Open</option>
+                              <option value="In Progress">In Progress</option>
+                              <option value="Done">Done</option>
+                            </select>
+                          </div>
+                          <div>
+                            <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1 md:hidden">Action</label>
+                            <button type="button" onClick={() => handleRemoveTodoItem(item.id)} className="w-full rounded border border-red-800/40 px-2 py-1.5 text-xs font-bold uppercase tracking-wider text-red-400">Remove</button>
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Comments</label>
+                          <textarea value={item.comments || ''} onChange={e => handleUpdateTodoItem(item.id, 'comments', e.target.value)} placeholder="Comments" rows={3} className="w-full min-h-[88px] rounded border border-slate-700 bg-slate-900 px-2 py-1.5 text-sm text-white" />
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
             )}
@@ -2614,7 +3374,7 @@ export default function App() {
           <DiscordBotConfigTab
             config={discordBotConfig}
             setConfig={setDiscordBotConfig}
-            hasUnsavedChanges={discordBotConfigDirty}
+            hasUnsavedChanges={discordBotConfigDirty || scoringConfigDirty}
             onSaveChanges={handleSaveDiscordBotConfig}
             isSaving={isSavingDiscordBotConfig}
             claims={rosterClaims}
@@ -2622,6 +3382,8 @@ export default function App() {
             roster={roster}
             specsByName={specsByName}
             getDisplayFromId={getDisplayFromId}
+            scoringConfig={scoringConfig}
+            setScoringConfig={setScoringConfig}
           />
         )}
 
@@ -2665,20 +3427,59 @@ export default function App() {
                 specsByName={specsByName}
               />
             )}
+            {resourcesSubTab === 'tactics' && (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+                <h3 className="text-lg font-bold text-slate-100">Raid Tactics</h3>
+                <p className="text-sm text-slate-400">Quick reminders for the upcoming raid plan, boss mechanics, and role-specific priorities.</p>
+                <div className="grid gap-3 md:grid-cols-2">
+                  <div className="rounded-lg border border-slate-800 bg-slate-900 p-4"><div className="text-sm font-semibold text-amber-400">Tank/healer calls</div><div className="mt-2 text-sm text-slate-400">Use the raid assignment view to confirm who is covering each role and where to position them.</div></div>
+                  <div className="rounded-lg border border-slate-800 bg-slate-900 p-4"><div className="text-sm font-semibold text-amber-400">Encounter prep</div><div className="mt-2 text-sm text-slate-400">Review the latest signup events and group config before the pull so everyone knows their lane.</div></div>
+                </div>
+              </div>
+            )}
+            {resourcesSubTab === 'weakauras' && (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+                <h3 className="text-lg font-bold text-slate-100">Weakauras</h3>
+                <p className="text-sm text-slate-400">A place to keep the relevant aura packs, alert setups, and role-specific reminders handy.</p>
+                <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-400">Add links and notes here when your raid team wants a shared aura library for each encounter.</div>
+              </div>
+            )}
             {resourcesSubTab === 'cheatsheets' && (
               <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
                 <h3 className="text-lg font-bold text-slate-100">Cheat Sheets</h3>
                 <p className="text-sm text-slate-400">These quick-reference cards are kept alongside the BiS planner for fast raid prep.</p>
                 <div className="grid gap-3 md:grid-cols-2">
-                  <div className="rounded-lg border border-slate-800 bg-slate-900 p-4">
-                    <div className="text-sm font-semibold text-amber-400">Raid prep</div>
-                    <div className="mt-2 text-sm text-slate-400">Check open signup events, verify roster attendance, and use the active phase planner before each raid.</div>
-                  </div>
-                  <div className="rounded-lg border border-slate-800 bg-slate-900 p-4">
-                    <div className="text-sm font-semibold text-amber-400">Bank workflow</div>
-                    <div className="mt-2 text-sm text-slate-400">Use the main bank tab for browsing the vault, then switch to Requests or Update to manage officer workflows.</div>
-                  </div>
+                  <div className="rounded-lg border border-slate-800 bg-slate-900 p-4"><div className="text-sm font-semibold text-amber-400">Raid prep</div><div className="mt-2 text-sm text-slate-400">Check open signup events, verify roster attendance, and use the active phase planner before each raid.</div></div>
+                  <div className="rounded-lg border border-slate-800 bg-slate-900 p-4"><div className="text-sm font-semibold text-amber-400">Bank workflow</div><div className="mt-2 text-sm text-slate-400">Use the main bank tab for browsing the vault, then switch to Requests or Update to manage officer workflows.</div></div>
                 </div>
+              </div>
+            )}
+            {resourcesSubTab === 'instructions' && (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+                <h3 className="text-lg font-bold text-slate-100">Site Instructions</h3>
+                <p className="text-sm text-slate-400">A quick guide for how to use the dashboard sections, from bank uploads to raid signup publishing.</p>
+                <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-400 break-words">Start in the bank contents page, move to requests when you are reviewing approvals, then use raid signups and assignments for operation prep.</div>
+              </div>
+            )}
+            {resourcesSubTab === 'raidlogs' && (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+                <h3 className="text-lg font-bold text-slate-100">Raid Logs</h3>
+                <p className="text-sm text-slate-400">Links and notes for the most recent raid logs, parses, and attendance reviews.</p>
+                <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-400">Use the roster and scoring pages to review attendance and compare recent raid performance.</div>
+              </div>
+            )}
+            {resourcesSubTab === 'wowaudit' && (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+                <h3 className="text-lg font-bold text-slate-100">WoWAudit</h3>
+                <p className="text-sm text-slate-400">Keep a short list of important WoWAudit links, profiles, or notes for known raid goals and progress.</p>
+                <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-400">Add the relevant audit links here whenever you want them close at hand during planning.</div>
+              </div>
+            )}
+            {resourcesSubTab === 'wipefest' && (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+                <h3 className="text-lg font-bold text-slate-100">Wipefest</h3>
+                <p className="text-sm text-slate-400">Store the latest wipefest links or notes for encounter discussion and post-raid review.</p>
+                <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-400">Link the relevant threads or summaries so they are available during the next planning session.</div>
               </div>
             )}
           </div>

@@ -11,6 +11,21 @@ const getAuthHeaders = () => {
   return token ? { 'x-admin-token': token } : {};
 };
 
+const buildApiError = async (res, fallbackMessage) => {
+  let payload = {};
+  try {
+    payload = await res.json();
+  } catch (_) {
+    payload = {};
+  }
+
+  const message = payload.error || fallbackMessage;
+  const error = new Error(message);
+  error.status = res.status;
+  error.payload = payload;
+  return error;
+};
+
 /**
  * Exchange the admin password for a session token. Returns the token string on
  * success, or null on failure. The password is verified server-side and never
@@ -35,7 +50,7 @@ export const login = async (password) => {
 export const fetchData = async (endpoint) => {
   const res = await fetch(apiUrl(endpoint));
   if (!res.ok) {
-    throw new Error(`Network response was not ok for endpoint: ${endpoint}`);
+    throw await buildApiError(res, `Network response was not ok for endpoint: ${endpoint}`);
   }
   return res.json();
 };
@@ -52,7 +67,7 @@ export const putData = async (endpoint, data) => {
     body: JSON.stringify(data)
   });
   if (!res.ok) {
-    throw new Error(`Network response was not ok for update on endpoint: ${endpoint}`);
+    throw await buildApiError(res, `Network response was not ok for update on endpoint: ${endpoint}`);
   }
   return res.json();
 };
@@ -69,7 +84,7 @@ export const postData = async (endpoint, data) => {
     body: JSON.stringify(data)
   });
   if (!res.ok) {
-    throw new Error(`Network response was not ok for create on endpoint: ${endpoint}`);
+    throw await buildApiError(res, `Network response was not ok for create on endpoint: ${endpoint}`);
   }
   return res.json();
 };
@@ -84,7 +99,7 @@ export const deleteData = async (endpoint) => {
     headers: { ...getAuthHeaders() }
   });
   if (!res.ok) {
-    throw new Error(`Network response was not ok for delete on endpoint: ${endpoint}`);
+    throw await buildApiError(res, `Network response was not ok for delete on endpoint: ${endpoint}`);
   }
   return res.json();
 };

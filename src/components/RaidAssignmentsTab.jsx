@@ -221,12 +221,13 @@ function BossSelector({ raidZones, enabledBosses, handleToggleZone, handleToggle
 // --- MAIN CONTAINER COMPONENT ---
 export default function RaidAssignmentsTab({
   isAuthenticated, roster, getSpecById, enabledBosses = [], raidZones = [], handleToggleZone, handleToggleBoss, customRaidGroups = [], handleAddCustomRaidBoss, handleRemoveCustomRaidBoss, raidAssignmentData, setRaidAssignmentData,
-  hasUnsavedChanges, onSaveChanges, isSaving, myPlayerName
+  hasUnsavedChanges, onSaveChanges, isSaving, myPlayerName, actorBattleTag = '', onCopyToArchive
 }) {
   const [showManageBosses, setShowManageBosses] = useState(false);
   const [newCustomZoneName, setNewCustomZoneName] = useState('');
   const [newCustomBossName, setNewCustomBossName] = useState('');
   const [exportStatus, setExportStatus] = useState('');
+  const [archiveBossSelection, setArchiveBossSelection] = useState('');
 
   const buildCurrentRaidAssignmentExport = () => buildRaidAssignmentsExport({
     raidAssignmentData,
@@ -237,6 +238,49 @@ export default function RaidAssignmentsTab({
     exportTimestamp: new Date().toISOString()
   });
 
+  const selectedArchiveBosses = archiveBossSelection
+    ? enabledBosses.filter(boss => boss === archiveBossSelection)
+    : enabledBosses;
+
+  const buildArchiveLiveSnapshot = () => {
+    const nextData = {};
+
+    if (raidAssignmentData?.global) {
+      nextData.global = JSON.parse(JSON.stringify(raidAssignmentData.global));
+    }
+
+    if (raidAssignmentData?.__bossOrder) {
+      const filteredOrder = Object.fromEntries(
+        Object.entries(raidAssignmentData.__bossOrder).filter(([bossName]) => selectedArchiveBosses.includes(bossName))
+      );
+      if (Object.keys(filteredOrder).length > 0) {
+        nextData.__bossOrder = filteredOrder;
+      }
+    }
+
+    if (raidAssignmentData?.__customBossGroups) {
+      nextData.__customBossGroups = JSON.parse(JSON.stringify(raidAssignmentData.__customBossGroups));
+    }
+
+    selectedArchiveBosses.forEach(bossName => {
+      if (raidAssignmentData?.[bossName]) {
+        nextData[bossName] = JSON.parse(JSON.stringify(raidAssignmentData[bossName]));
+      }
+    });
+
+    return nextData;
+  };
+
+  const buildArchiveExport = () => buildRaidAssignmentsExport({
+    raidAssignmentData,
+    roster,
+    enabledBosses: selectedArchiveBosses,
+    raidZones,
+    getSpecById,
+    exportTimestamp: new Date().toISOString()
+  });
+
+  /*
   const downloadRaidAssignmentsJson = () => {
     const payload = buildCurrentRaidAssignmentExport();
     const text = serializeRaidAssignmentsExport(payload);
@@ -251,6 +295,7 @@ export default function RaidAssignmentsTab({
     URL.revokeObjectURL(url);
     setExportStatus('Downloaded JSON file.');
   };
+  */
 
   const copyRaidAssignmentsJson = async () => {
     const payload = buildCurrentRaidAssignmentExport();
@@ -271,6 +316,22 @@ export default function RaidAssignmentsTab({
     document.execCommand('copy');
     document.body.removeChild(textarea);
     setExportStatus('Copied JSON to clipboard.');
+  };
+
+  const copyRaidAssignmentsToArchive = () => {
+    const payload = buildArchiveExport();
+    const bossLabel = archiveBossSelection || 'All selected bosses';
+    onCopyToArchive?.({
+      id: Date.now(),
+      timestamp: new Date().toISOString(),
+      boss: bossLabel,
+      actorBattleTag: actorBattleTag || 'Unknown',
+      bossCount: selectedArchiveBosses.length,
+      selectedBosses: [...selectedArchiveBosses],
+      payload,
+      liveSnapshot: buildArchiveLiveSnapshot()
+    });
+    setExportStatus('Copied current assignment sheet to archive.');
   };
 
   React.useEffect(() => {
@@ -444,6 +505,7 @@ export default function RaidAssignmentsTab({
               WIPE ALL DATA
             </button>
           )}
+          {/*
           <button
             type="button"
             onClick={downloadRaidAssignmentsJson}
@@ -451,6 +513,7 @@ export default function RaidAssignmentsTab({
           >
             Export JSON
           </button>
+          */}
           <button
             type="button"
             onClick={copyRaidAssignmentsJson}
@@ -458,6 +521,15 @@ export default function RaidAssignmentsTab({
           >
             Copy JSON
           </button>
+          <div className="flex items-center gap-2 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
+            <select value={archiveBossSelection} onChange={e => setArchiveBossSelection(e.target.value)} className="bg-slate-950 text-white border border-slate-700 rounded px-2 py-1 text-xs">
+              <option value="">All Selected Bosses</option>
+              {enabledBosses.map(boss => <option key={boss} value={boss}>{boss}</option>)}
+            </select>
+            <button type="button" onClick={copyRaidAssignmentsToArchive} className="text-xs font-bold bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-2 rounded transition">
+              Copy to Archive
+            </button>
+          </div>
           {exportStatus && <span className="text-xs text-slate-400">{exportStatus}</span>}
           <BossSelector
             raidZones={raidZones}

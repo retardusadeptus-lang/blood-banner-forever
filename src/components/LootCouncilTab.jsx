@@ -34,8 +34,11 @@ export default function LootCouncilTab({
   hasUnsavedChanges,
   onSaveChanges,
   onClearItemAssignments,
+  onToggleAwardedPriority,
   isSaving
 }) {
+  const currentItemAssignments = selectedItem ? (assignments[selectedItem.name] || {}) : {};
+
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
       <div className="flex justify-end mb-4 gap-2">
@@ -133,7 +136,11 @@ export default function LootCouncilTab({
                   const specDisplay = getDisplayFromId(player.spec_id) || '?';
                   const specKey = getSlugFromDisplay(specDisplay);
                   const status = getPlayerItemPriorityStatus(selectedItem, specDisplay) || (selectedItem.spec === specKey ? 'BiS' : '');
-                  const currentPriority = assignments[selectedItem.name]?.[player.id];
+                  const currentPriority = currentItemAssignments[player.id];
+                  const awardedPlayerIds = Array.isArray(currentItemAssignments.awardedPlayerIds)
+                    ? currentItemAssignments.awardedPlayerIds.map(id => String(id))
+                    : (currentItemAssignments.awardedPlayerId ? [String(currentItemAssignments.awardedPlayerId)] : []);
+                  const isAwardedPlayer = awardedPlayerIds.includes(String(player.id));
                   const PHASE_ORDER = ["Pre-BiS", "T4", "T5", "T6", "ZA", "SWP"];
                   const currentPhaseIndex = PHASE_ORDER.indexOf(globalPhase);
 
@@ -156,11 +163,11 @@ export default function LootCouncilTab({
                   }).map(i => ({ ...i, eligible: i.eligible || {} }));
 
                   return (
-                    <div key={player.id} className={`flex flex-col p-4 rounded-xl shadow-sm border transition-all duration-300 ${currentPriority === 1 ? 'bg-slate-800/80 border-amber-500/50' : currentPriority === 'Pass' ? 'bg-slate-950/50 border-slate-900 opacity-60' : 'bg-slate-900 border-slate-700'}`}>
+                    <div key={player.id} className={`flex flex-col p-4 rounded-xl shadow-sm border transition-all duration-300 ${isAwardedPlayer ? 'bg-emerald-950/30 border-emerald-600/40' : currentPriority === 1 ? 'bg-slate-800/80 border-amber-500/50' : currentPriority === 'Pass' ? 'bg-slate-950/50 border-slate-900 opacity-60' : 'bg-slate-900 border-slate-700'}`}>
                       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div className="flex items-center gap-4">
-                          <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shadow-inner flex-shrink-0 ${getRankBadgeStyle(currentPriority)}`}>
-                            {typeof currentPriority === 'number' ? currentPriority : (currentPriority === 'Pass' ? '✕' : '-')}
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shadow-inner flex-shrink-0 ${isAwardedPlayer ? 'bg-emerald-600 text-white border border-emerald-300 shadow-[0_0_10px_rgba(16,185,129,0.45)]' : getRankBadgeStyle(currentPriority)}`}>
+                            {isAwardedPlayer ? 'A' : (typeof currentPriority === 'number' ? currentPriority : (currentPriority === 'Pass' ? '✕' : '-'))}
                           </div>
                           <img src={getSpecById(player.spec_id)?.icon_large || 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover flex-shrink-0" />
                           <div>
@@ -186,6 +193,9 @@ export default function LootCouncilTab({
                           ))}
                           <div className="w-px h-6 bg-slate-800 mx-1 flex-shrink-0"></div>
                           <button onClick={() => handleSetPriority(player.id, currentPriority === 'Pass' ? null : 'Pass')} className={`px-3 h-8 flex-shrink-0 rounded font-bold text-xs uppercase transition-all ${currentPriority === 'Pass' ? 'bg-red-900/60 text-red-400 border border-red-800' : 'bg-slate-900 text-slate-500 hover:bg-red-950 hover:text-red-400'}`}>Pass</button>
+                          <button onClick={() => onToggleAwardedPriority?.(selectedItem.name, player.id)} className={`px-3 h-8 flex-shrink-0 rounded font-bold text-xs uppercase transition-all ${isAwardedPlayer ? 'bg-emerald-600 text-white' : 'bg-slate-900 text-slate-400 hover:bg-slate-800 hover:text-white'}`}>
+                            {isAwardedPlayer ? 'Awarded' : 'Mark Awarded'}
+                          </button>
                         </div>
                       </div>
 

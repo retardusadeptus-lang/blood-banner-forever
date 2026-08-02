@@ -25,17 +25,14 @@ export default function BankRequestsTab({
   //   handleBulkResolveBankRequests(resolutions, summaryMessage)
   //   resolutions: [{ id, status: 'approved'|'denied', price, note, quantity, item_name, requester }]
   handleBulkResolveBankRequests,
-  handleBankFileUpload,
-  bankUploadParsed,
-  setBankUploadParsed,
-  handleSaveBankUpload,
-  bankUploadStatus
+  archivedBankRequests = [],
+  onArchiveBankRequests,
+  onRestoreArchivedBankRequests
 }) {
   const [basket, setBasket] = useState([]);
   const [bulkModalOpen, setBulkModalOpen] = useState(false);
   const [bulkItems, setBulkItems] = useState([]);
-  const [bankJsonText, setBankJsonText] = useState('');
-  const [showBankJsonImport, setShowBankJsonImport] = useState(false);
+  const [selectedArchiveRequestIds, setSelectedArchiveRequestIds] = useState([]);
 
   const denyReasonOptions = [
     'Item reserved for raid use',
@@ -116,39 +113,6 @@ export default function BankRequestsTab({
   const closeBulkModal = () => {
     setBulkModalOpen(false);
     setBulkItems([]);
-  };
-
-  const handleParseBankJson = () => {
-    try {
-      const parsedData = JSON.parse(bankJsonText || '{}');
-      const items = Array.isArray(parsedData.bankItems)
-        ? parsedData.bankItems
-        : Array.isArray(parsedData.items)
-          ? parsedData.items
-          : Array.isArray(parsedData.data)
-            ? parsedData.data
-            : [];
-
-      const normalized = items.map(item => ({
-        item_wowhead_id: Number(item.item_wowhead_id ?? item.id ?? item.itemId) || 0,
-        count: Number(item.count ?? item.quantity ?? 0) || 0,
-        name: item.name || item.item_name || '',
-        category: item.category || item.cat || '',
-        sub_type: item.sub_type || item.subtype || item.subType || ''
-      })).filter(i => i.item_wowhead_id > 0);
-
-      if (normalized.length === 0) {
-        setBankUploadStatus('⚠️ No valid bank items found in JSON.');
-        setBankUploadParsed(null);
-        return;
-      }
-
-      setBankUploadParsed(normalized);
-      setBankUploadStatus(`✅ Loaded ${normalized.length} items from JSON.`);
-    } catch (error) {
-      setBankUploadStatus('❌ Invalid JSON. Please paste the exported blob from the addon.');
-      setBankUploadParsed(null);
-    }
   };
 
   const buildSummaryMessage = (resolved) => {
@@ -243,7 +207,11 @@ export default function BankRequestsTab({
 
   const pendingRequestGroups = useMemo(() => groupRequests(bankRequests.filter(r => r.status === 'pending')), [bankRequests]);
   const resolvedRequestGroups = useMemo(() => groupRequests(bankRequests.filter(r => r.status !== 'pending')), [bankRequests]);
+  const resolvedRequestIds = useMemo(() => resolvedRequestGroups.flatMap(group => group.requests.map(req => req.id)), [resolvedRequestGroups]);
+  const normalizeRequestId = (requestId) => String(requestId);
+  const isArchiveRequestSelected = (requestId) => selectedArchiveRequestIds.some(id => normalizeRequestId(id) === normalizeRequestId(requestId));
 
+  /*
   const exportRequestsCsv = (mode = 'all') => {
     const escapeCsv = (value) => {
       const raw = String(value ?? '');
@@ -314,12 +282,81 @@ export default function BankRequestsTab({
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   };
+  */
+
+  const exportVisibleApprovedRequestsJson = () => {
+    const sourceRows = (Array.isArray(bankRequests) ? bankRequests : []).filter(req => String(req.status || '').toLowerCase() === 'approved');
+    const payload = {
+      exported_at: new Date().toISOString(),
+      request_count: sourceRows.length,
+      requests: sourceRows.map(req => {
+        const player = roster.find(p => Number(p.id) === Number(req.player_id));
+        return {
+          id: req.id,
+          item_name: req.item_name || '',
+          quantity: req.quantity ?? req.approved_quantity ?? 0,
+          approved_quantity: req.approved_quantity ?? req.quantity ?? 0,
+          price: req.price ?? 0,
+          requester_name: player?.name || req.requester_name || 'Unknown',
+          requester_id: req.player_id ?? null,
+          reason: req.reason || '',
+          officer_note: req.officer_note || ''
+        };
+      })
+    };
+
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    link.href = url;
+    link.download = `approved-bank-requests-${timestamp}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const archiveSelectedResolvedRequests = () => {
+    const requestIds = selectedArchiveRequestIds.filter(id => (Array.isArray(bankRequests) ? bankRequests : []).some(req => String(req.id) === String(id)));
+    if (requestIds.length === 0) return;
+    onArchiveBankRequests?.(requestIds);
+    setSelectedArchiveRequestIds([]);
+  };
+
+  const toggleArchiveSelection = (requestId) => {
+    const normalizedId = normalizeRequestId(requestId);
+    setSelectedArchiveRequestIds(prev => prev.some(id => normalizeRequestId(id) === normalizedId)
+      ? prev.filter(id => normalizeRequestId(id) !== normalizedId)
+      : [...prev, requestId]);
+  };
+
+  const toggleAllResolvedArchiveSelection = () => {
+    const allResolvedAreSelected = resolvedRequestIds.length > 0 && resolvedRequestIds.every(id => isArchiveRequestSelected(id));
+
+    if (allResolvedAreSelected) {
+      setSelectedArchiveRequestIds(prev => prev.filter(id => !resolvedRequestIds.some(resolvedId => normalizeRequestId(resolvedId) === normalizeRequestId(id))));
+      return;
+    }
+
+    setSelectedArchiveRequestIds(prev => {
+      const next = [...prev];
+      resolvedRequestIds.forEach(id => {
+        const normalizedId = normalizeRequestId(id);
+        if (!next.some(existingId => normalizeRequestId(existingId) === normalizedId)) {
+          next.push(id);
+        }
+      });
+      return next;
+    });
+  };
 
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
       <div className="flex items-center justify-between gap-3 mb-6">
         <h2 className="text-xl font-bold text-slate-100">Bank Requests</h2>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
+          {/*
           <button
             type="button"
             onClick={() => exportRequestsCsv('all')}
@@ -340,6 +377,22 @@ export default function BankRequestsTab({
             className="text-xs font-bold bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-2 rounded"
           >
             Export Resolved CSV
+          </button>
+          */}
+          <button
+            type="button"
+            onClick={exportVisibleApprovedRequestsJson}
+            className="text-xs font-bold bg-purple-700 hover:bg-purple-600 text-white px-3 py-2 rounded"
+          >
+            Export Approved JSON
+          </button>
+          <button
+            type="button"
+            onClick={archiveSelectedResolvedRequests}
+            disabled={selectedArchiveRequestIds.length === 0}
+            className="text-xs font-bold bg-slate-700 hover:bg-slate-600 text-slate-100 px-3 py-2 rounded"
+          >
+            Archive Selected Resolved{selectedArchiveRequestIds.length > 0 ? ` (${selectedArchiveRequestIds.length})` : ''}
           </button>
         </div>
       </div>
@@ -463,72 +516,6 @@ export default function BankRequestsTab({
           </div>
         </div>
       )}
-
-      <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner mb-8">
-        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Update Bank Inventory</h3>
-        <p className="text-xs text-slate-500 mb-4">Upload the <code className="text-amber-500">TBCBankLogger.lua</code> SavedVariables file after scanning the bank in-game.</p>
-        <div className="mb-4 bg-slate-900 border border-slate-800 rounded-lg p-4 text-xs text-slate-300 space-y-2">
-          <p className="font-bold text-amber-400 uppercase tracking-wider">Guild Bank Addon Setup</p>
-          <p>1. Download the addon package and extract it into your WoW AddOns folder.</p>
-          <p>2. In-game, open the guild bank and run <span className="text-amber-400 font-bold">/gbscan</span>.</p>
-          <p>3. Reload UI or log out, then upload the generated <span className="text-amber-400 font-bold">TBCBankLogger.lua</span> file below.</p>
-          <p className="text-slate-500">SavedVariables path example: C:\Program Files (x86)\World of Warcraft\_anniversary_\WTF\Account\ACCOUNT_NAME\SavedVariables</p>
-          <a href="/addon/TBCBankLogger.zip" className="inline-block bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold px-3 py-2 rounded border border-slate-700 transition">Download Addon (.zip)</a>
-        </div>
-        <div className="flex items-center gap-3 flex-wrap">
-          <label className="bg-amber-600 hover:bg-amber-500 text-white font-bold px-4 py-2.5 rounded-lg transition cursor-pointer text-sm">
-            📂 Select Lua File
-            <input type="file" accept=".lua" className="hidden" onChange={handleBankFileUpload} />
-          </label>
-          <button
-            type="button"
-            onClick={() => setShowBankJsonImport(prev => !prev)}
-            className="bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold px-4 py-2.5 rounded-lg transition text-sm"
-          >
-            {showBankJsonImport ? 'Hide JSON Import' : 'Paste Bank JSON'}
-          </button>
-          {bankUploadParsed && (
-            <button onClick={handleSaveBankUpload} className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2.5 rounded-lg transition text-sm">
-              💾 Save & Notify Discord
-            </button>
-          )}
-          {bankUploadStatus && <span className="text-sm font-semibold text-slate-300">{bankUploadStatus}</span>}
-        </div>
-      </div>
-      {showBankJsonImport && (
-        <div className="mt-4 bg-slate-900 border border-slate-800 rounded-xl p-4">
-          <label className="block text-[10px] text-slate-500 uppercase font-bold mb-2">Paste Addon Bank JSON</label>
-          <textarea
-            value={bankJsonText}
-            onChange={e => setBankJsonText(e.target.value)}
-            placeholder="Paste the JSON exported by the addon here..."
-            className="w-full min-h-[140px] bg-slate-900 text-white border border-slate-700 rounded-lg px-3 py-2 text-xs focus:outline-none"
-          />
-          <div className="flex flex-wrap items-center gap-2 mt-3">
-            <button
-              type="button"
-              onClick={handleParseBankJson}
-              className="bg-cyan-700 hover:bg-cyan-600 text-white font-bold px-4 py-2 rounded-lg text-sm transition"
-            >
-              Import JSON
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setBankJsonText('');
-                setBankUploadParsed(null);
-                setShowBankJsonImport(false);
-                setBankUploadStatus('');
-              }}
-              className="bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold px-4 py-2 rounded-lg text-sm transition"
-            >
-              Cancel
-            </button>
-            <span className="text-[10px] text-slate-500">Paste the addon-exported JSON blob from in-game and import it directly into Bank Requests.</span>
-          </div>
-        </div>
-      )}
-
       <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Pending Requests</h3>
       {pendingRequestGroups.length === 0 ? (
         <p className="text-slate-600 italic py-4 mb-8">No pending requests.</p>
@@ -563,9 +550,13 @@ export default function BankRequestsTab({
                     const requesterName = player?.name || req.requester_name || 'Unknown';
                     return (
                       <div key={req.id} className="text-sm text-slate-300 bg-slate-900 p-2 rounded border border-slate-800">
-                        <span className="font-bold text-purple-400">{req.item_name}</span>
-                        <span className="text-slate-500 text-xs"> x{req.quantity}</span>
-                        <span className="text-slate-500 text-xs"> — {requesterName}</span>
+                        <div className="flex items-center justify-between gap-2">
+                          <div>
+                            <span className="font-bold text-purple-400">{req.item_name}</span>
+                            <span className="text-slate-500 text-xs"> x{req.quantity}</span>
+                            <span className="text-slate-500 text-xs"> — {requesterName}</span>
+                          </div>
+                        </div>
                         {req.reason && <p className="text-xs text-slate-400 mt-1">{req.reason}</p>}
                       </div>
                     );
@@ -636,7 +627,20 @@ export default function BankRequestsTab({
         </div>
       )}
 
-      <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Resolved Requests</h3>
+      <div className="flex items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-2">
+        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Resolved Requests</h3>
+        {resolvedRequestGroups.length > 0 && (
+          <label className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+            <input
+              type="checkbox"
+              checked={resolvedRequestIds.length > 0 && resolvedRequestIds.every(id => isArchiveRequestSelected(id))}
+              onChange={toggleAllResolvedArchiveSelection}
+              className="rounded border-slate-700 bg-slate-950"
+            />
+            Select all
+          </label>
+        )}
+      </div>
       {resolvedRequestGroups.length === 0 ? (
         <p className="text-slate-600 italic py-4">No resolved requests yet.</p>
       ) : (
@@ -660,13 +664,19 @@ export default function BankRequestsTab({
                           <span className="text-slate-500 text-xs"> x{req.quantity}</span>
                           <span className="text-xs text-slate-500"> — {requesterName}</span>
                         </div>
-                        {req.status === 'approved' ? (
-                          <span className="text-xs font-bold text-emerald-400" title={req.officer_note}>
-                            Approved {req.approved_quantity && req.approved_quantity < req.quantity ? `(${req.approved_quantity}/${req.quantity})` : ''}{req.price ? ` — ${req.price}g` : ''}
-                          </span>
-                        ) : (
-                          <span className="text-xs font-bold text-red-400" title={req.officer_note}>Denied{req.officer_note ? `: ${req.officer_note}` : ''}</span>
-                        )}
+                        <div className="flex items-center gap-3">
+                          <label className="text-[11px] text-slate-400 flex items-center gap-2 whitespace-nowrap">
+                            <input type="checkbox" checked={isArchiveRequestSelected(req.id)} onChange={() => toggleArchiveSelection(req.id)} className="rounded border-slate-700 bg-slate-950" />
+                            Archive
+                          </label>
+                          {req.status === 'approved' ? (
+                            <span className="text-xs font-bold text-emerald-400 text-right" title={req.officer_note}>
+                              Approved {req.approved_quantity && req.approved_quantity < req.quantity ? `(${req.approved_quantity}/${req.quantity})` : ''}{req.price ? ` — ${req.price}g` : ''}
+                            </span>
+                          ) : (
+                            <span className="text-xs font-bold text-red-400 text-right" title={req.officer_note}>Denied{req.officer_note ? `: ${req.officer_note}` : ''}</span>
+                          )}
+                        </div>
                       </div>
                     );
                   })}

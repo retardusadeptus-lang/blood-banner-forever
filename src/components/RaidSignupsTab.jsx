@@ -144,7 +144,8 @@ export default function RaidSignupsTab({
   postData,
   deleteData,
   isAuthenticated,
-  specsFromDb
+  specsFromDb,
+  activeSection
 }) {
   const [events, setEvents] = useState([]);
   const [templates, setTemplates] = useState([]);
@@ -159,7 +160,7 @@ export default function RaidSignupsTab({
   const [isChangingStatus, setIsChangingStatus] = useState(false);
   const [isDeletingEvent, setIsDeletingEvent] = useState(false);
   const [clockNow, setClockNow] = useState(Date.now());
-  const [activeRaidSection, setActiveRaidSection] = useState('overview');
+  const activeRaidSection = activeSection || 'templates';
 
   const loadPublic = async () => {
     const data = await fetchData('public-raid-signups');
@@ -445,9 +446,11 @@ export default function RaidSignupsTab({
 
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
-      <div>
-        <h2 className="text-xl font-bold text-slate-100 mb-1">Raid Signups</h2>
-        <p className="text-sm text-slate-500">Public live signup board sourced from Discord interactions.</p>
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <h2 className="text-xl font-bold text-slate-100 mb-1">Raid Signups</h2>
+          <p className="text-sm text-slate-500">Public live signup board sourced from Discord interactions.</p>
+        </div>
       </div>
 
       {activeRaidSection === 'overview' && (
@@ -544,29 +547,6 @@ export default function RaidSignupsTab({
       )}
 
       <>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {['overview', 'templates', 'events', 'group-config', 'history'].map(section => {
-              const labelMap = {
-                overview: 'Overview',
-                templates: 'Templates',
-                events: 'Events',
-                'group-config': 'Group Config',
-                history: 'History'
-              };
-              const isActive = activeRaidSection === section;
-              return (
-                <button
-                  key={section}
-                  type="button"
-                  onClick={() => setActiveRaidSection(section)}
-                  className={`px-3 py-2 rounded text-sm font-bold transition ${isActive ? 'bg-amber-600 text-slate-950' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
-                >
-                  {labelMap[section]}
-                </button>
-              );
-            })}
-          </div>
-
           {activeRaidSection === 'templates' && (
             isAuthenticated ? (
               <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
@@ -929,275 +909,6 @@ export default function RaidSignupsTab({
             )
           )}
 
-          {isAuthenticated ? (
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
-              <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Group Creator + Echo</h3>
-              <div className="flex items-center gap-2">
-                <select
-                  value={selectedEventId}
-                  onChange={e => setSelectedEventId(e.target.value)}
-                  className="bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm"
-                >
-                  <option value="">Select event...</option>
-                  {events.length > 0 && (
-                    <optgroup label="Active events">
-                      {events.map(event => (
-                        <option key={`active-${event.id}`} value={event.id}>#{event.id} [{event.status}] {event.title}</option>
-                      ))}
-                    </optgroup>
-                  )}
-                  {archivedEvents.length > 0 && (
-                    <optgroup label="Archived events">
-                      {archivedEvents.map(event => (
-                        <option key={`archived-${event.id}`} value={event.id}>#{event.id} [{event.status}] {event.title}</option>
-                      ))}
-                    </optgroup>
-                  )}
-                </select>
-                <button
-                  type="button"
-                  onClick={saveGroups}
-                  disabled={!selectedEventId || isSavingGroups}
-                  className="text-xs font-bold bg-amber-600 hover:bg-amber-500 text-slate-950 px-3 py-2 rounded"
-                >
-                  {isSavingGroups ? 'Saving...' : 'Save Groups'}
-                </button>
-                <button
-                  type="button"
-                  onClick={echoGroups}
-                  disabled={!selectedEventId || isEchoing}
-                  className="text-xs font-bold bg-purple-700 hover:bg-purple-600 text-white px-3 py-2 rounded"
-                >
-                  {isEchoing ? 'Echoing...' : 'Echo To Discord'}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setGroupRows(prev => prev.map(row => ({ ...row, player_name: '', spec_id: null, note: '' })));
-                  }}
-                  disabled={!selectedEventId}
-                  className="text-xs font-bold bg-rose-700 hover:bg-rose-600 text-white px-3 py-2 rounded"
-                >
-                  Clear Groups
-                </button>
-                {selectedEvent && String(selectedEvent.status || '').toLowerCase() !== 'open' ? (
-                  <button
-                    type="button"
-                    onClick={() => setEventStatus('open', `Reopen this raid? Signups will be enabled.`)}
-                    disabled={!selectedEventId || isChangingStatus || isDeletingEvent}
-                    className="text-xs font-bold bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-2 rounded"
-                  >
-                    {isChangingStatus ? 'Working...' : (String(selectedEvent.status || '').toLowerCase() === 'archived' ? 'Restore Raid' : 'Unlock Raid')}
-                  </button>
-                ) : null}
-                <button
-                  type="button"
-                  onClick={() => setEventStatus('locked', 'Lock this raid? Signups will be disabled but it stays visible.')}
-                  disabled={!selectedEventId || isChangingStatus || isDeletingEvent}
-                  className="text-xs font-bold bg-orange-700 hover:bg-orange-600 text-white px-3 py-2 rounded"
-                >
-                  {isChangingStatus ? 'Working...' : 'Lock Raid'}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setEventStatus('archived', 'Archive this raid? It will be removed from the active board.')}
-                  disabled={!selectedEventId || isChangingStatus || isDeletingEvent}
-                  className="text-xs font-bold bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded"
-                >
-                  {isChangingStatus ? 'Working...' : 'Archive Raid'}
-                </button>
-                <button
-                  type="button"
-                  onClick={deleteEvent}
-                  disabled={!selectedEventId || isDeletingEvent || isChangingStatus}
-                  className="text-xs font-bold bg-red-700 hover:bg-red-600 text-white px-3 py-2 rounded"
-                >
-                  {isDeletingEvent ? 'Deleting...' : 'Delete Raid'}
-                </button>
-              </div>
-            </div>
-
-            {!selectedEventId ? (
-              <p className="text-xs text-slate-500">Choose an open event to assign raid groups.</p>
-            ) : (
-              <div className="space-y-4">
-                <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 grid grid-cols-1 md:grid-cols-3 gap-2">
-                  <input
-                    type="text"
-                    value={eventEditDraft.title}
-                    onChange={e => setEventEditDraft(prev => ({ ...prev, title: e.target.value }))}
-                    placeholder="Event title"
-                    className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm"
-                  />
-                  <input
-                    type="text"
-                    value={eventEditDraft.scheduled_date}
-                    onChange={e => setEventEditDraft(prev => ({ ...prev, scheduled_date: e.target.value }))}
-                    placeholder="DD-MM-YYYY"
-                    className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm"
-                  />
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="text"
-                      value={eventEditDraft.scheduled_time}
-                      onChange={e => setEventEditDraft(prev => ({ ...prev, scheduled_time: e.target.value }))}
-                      placeholder="HH:mm"
-                      className="flex-1 bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm"
-                    />
-                    <span className="text-xs font-bold text-cyan-300">CET</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={saveEventDetails}
-                    disabled={isSavingEventEdit}
-                    className="bg-cyan-700 hover:bg-cyan-600 text-white rounded px-3 py-2 text-xs font-bold uppercase tracking-wider"
-                  >
-                    {isSavingEventEdit ? 'Saving...' : 'Save Event Details'}
-                  </button>
-                  <textarea
-                    value={eventEditDraft.description}
-                    onChange={e => setEventEditDraft(prev => ({ ...prev, description: e.target.value }))}
-                    placeholder="Event description"
-                    className="md:col-span-3 bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm min-h-[70px]"
-                  />
-                  <label className="md:col-span-3 inline-flex items-center gap-2 text-xs text-slate-300">
-                    <input
-                      type="checkbox"
-                      checked={!!eventEditDraft.public_groups}
-                      onChange={e => setEventEditDraft(prev => ({ ...prev, public_groups: e.target.checked }))}
-                    />
-                    Public groups: show group assignments in read-only public view
-                  </label>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
-                  {Array.from({ length: 8 }, (_, idx) => idx + 1).map(groupNumber => {
-                    const rows = groupRows
-                      .filter(row => row.group_number === groupNumber)
-                      .sort((a, b) => a.slot_index - b.slot_index);
-                    const groupName = rows[0]?.group_name || `Group ${groupNumber}`;
-
-                    return (
-                      <div key={groupNumber} className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
-                        <input
-                          type="text"
-                          value={groupName}
-                          onChange={e => updateGroupName(groupNumber, e.target.value)}
-                          className="w-full bg-slate-950 text-amber-300 border border-slate-700 rounded px-2 py-1.5 text-xs font-bold"
-                          placeholder={`Group ${groupNumber}`}
-                        />
-
-                        {rows.map(row => {
-                          const candidate = signupCandidates.find(c => c.discord_username === row.player_name && Number(c.spec_id || 0) === Number(row.spec_id || 0))
-                            || signupCandidates.find(c => c.discord_username === row.player_name);
-                          const classColor = candidate
-                            ? (specColorByKey.get(`${String(candidate.spec_class || '').toLowerCase()}|${String(candidate.spec_name || '').toLowerCase()}`) || '#e2e8f0')
-                            : '#e2e8f0';
-                          const allocatedNames = new Set(
-                            groupRows
-                              .filter(other => other.localKey !== row.localKey && String(other.player_name || '').trim())
-                              .map(other => String(other.player_name || '').trim().toLowerCase())
-                          );
-                          const availableCandidates = signupCandidates.filter(candidateEntry => {
-                            const candidateName = String(candidateEntry.discord_username || '').trim();
-                            if (!candidateName) return false;
-                            if (row.player_name && candidateName.toLowerCase() === String(row.player_name).trim().toLowerCase()) return true;
-                            return !allocatedNames.has(candidateName.toLowerCase());
-                          });
-
-                          return (
-                            <div key={row.localKey} className="bg-slate-950 border border-slate-800 rounded p-2">
-                              <div className="flex items-center gap-2">
-                                <details className="relative flex-1 group">
-                                  <summary
-                                    className="list-none cursor-pointer bg-slate-900 border border-slate-700 rounded px-2 py-1.5 text-xs flex items-center gap-2 select-none"
-                                    style={{ color: row.player_name ? classColor : '#ffffff' }}
-                                  >
-                                    {candidate?.icon_small || candidate?.icon_medium || candidate?.icon_large ? (
-                                      <img src={candidate.icon_small || candidate.icon_medium || candidate.icon_large} alt="" className="w-3.5 h-3.5 rounded border border-slate-700" />
-                                    ) : (
-                                      <span className="w-3.5 h-3.5 rounded border border-slate-700 bg-slate-800 inline-block" />
-                                    )}
-                                    <span className="truncate">{row.player_name || '-- empty --'}</span>
-                                  </summary>
-                                  <div className="absolute z-40 mt-1 w-full max-h-56 overflow-auto bg-slate-900 border border-slate-700 rounded shadow-xl p-1 hidden group-open:block">
-                                    <button
-                                      type="button"
-                                      onClick={e => {
-                                        updateGroupRow(row.localKey, { player_name: '', spec_id: null });
-                                        const details = e.currentTarget.closest('details');
-                                        if (details) details.removeAttribute('open');
-                                      }}
-                                      className="w-full text-left text-xs px-2 py-1.5 rounded hover:bg-slate-800 text-slate-300"
-                                    >
-                                      -- empty --
-                                    </button>
-                                    {availableCandidates.map(candidateEntry => {
-                                      const entryColor = specColorByKey.get(`${String(candidateEntry.spec_class || '').toLowerCase()}|${String(candidateEntry.spec_name || '').toLowerCase()}`) || '#e2e8f0';
-                                      return (
-                                        <button
-                                          key={`${candidateEntry.discord_user_id}-${candidateEntry.signup_order || 'x'}-${candidateEntry.spec_id || 'none'}`}
-                                          type="button"
-                                          onClick={e => {
-                                            updateGroupRow(row.localKey, {
-                                              player_name: candidateEntry.discord_username,
-                                              spec_id: candidateEntry.spec_id || null
-                                            });
-                                            const details = e.currentTarget.closest('details');
-                                            if (details) details.removeAttribute('open');
-                                          }}
-                                          className="w-full text-left text-xs px-2 py-1.5 rounded hover:bg-slate-800 flex items-center gap-2"
-                                        >
-                                          {candidateEntry.icon_small || candidateEntry.icon_medium || candidateEntry.icon_large ? (
-                                            <img src={candidateEntry.icon_small || candidateEntry.icon_medium || candidateEntry.icon_large} alt="" className="w-3.5 h-3.5 rounded border border-slate-700" />
-                                          ) : (
-                                            <span className="w-3.5 h-3.5 rounded border border-slate-700 bg-slate-800 inline-block" />
-                                          )}
-                                          <span className="truncate" style={{ color: entryColor }}>{candidateEntry.discord_username}</span>
-                                        </button>
-                                      );
-                                    })}
-                                  </div>
-                                </details>
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    const next = window.prompt('Edit note for this slot:', row.note || '');
-                                    if (next === null) return;
-                                    updateGroupRow(row.localKey, { note: next.trim() });
-                                  }}
-                                  className="w-7 h-7 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs"
-                                  title="Edit note"
-                                >
-                                  ✎
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => updateGroupRow(row.localKey, { player_name: '', spec_id: null, note: '' })}
-                                  className="w-7 h-7 rounded bg-rose-800 hover:bg-rose-700 text-rose-100 text-xs"
-                                  title="Clear slot"
-                                >
-                                  ×
-                                </button>
-                              </div>
-
-                              {row.note ? <div className="mt-1 text-[11px] text-slate-400 truncate">{row.note}</div> : null}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-          ) : (
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
-              <p className="text-sm text-slate-300">Officer login required to create and manage raid groups.</p>
-            </div>
-          )}
         </>
     </section>
   );

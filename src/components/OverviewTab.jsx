@@ -14,6 +14,7 @@ export default function OverviewTab({
   setActiveTab,
   setSearchQuery,
   setSelectedItemName,
+  onOpenItemAssignment,
   specsByName,
   getDisplayFromId,
   myPlayerName,
@@ -94,8 +95,15 @@ export default function OverviewTab({
         <div className="columns-1 lg:columns-2 xl:columns-3 gap-6 space-y-0">
           {filteredOverviewItems.map(item => {
             const itemAssignments = assignments[item.name] || {};
-            const assignedPlayerIds = Object.keys(itemAssignments).map(id => Number(id));
+            const assignedPlayerIds = Object.keys(itemAssignments)
+              .filter(id => !['awardedPlayerIds', 'awardedPlayerId', 'assignedAt'].includes(id))
+              .map(id => Number(id))
+              .filter(id => !Number.isNaN(id));
+            const awardedPlayerIds = Array.isArray(itemAssignments.awardedPlayerIds)
+              ? itemAssignments.awardedPlayerIds.map(id => String(id))
+              : (itemAssignments.awardedPlayerId ? [String(itemAssignments.awardedPlayerId)] : []);
             const assignedPlayers = assignedPlayerIds.map(pid => roster.find(p => Number(p.id) === pid) || { id: pid, name: `Player ${pid}`, spec_id: null });
+            const awardedPlayers = awardedPlayerIds.map(pid => roster.find(p => String(p.id) === String(pid)) || { id: pid, name: `Player ${pid}`, spec_id: null });
             const sortedAssignedPlayers = assignedPlayers.sort((a, b) => {
               const rankA = itemAssignments[a.id];
               const rankB = itemAssignments[b.id];
@@ -155,21 +163,41 @@ export default function OverviewTab({
                 </div>
 
                 <div className="p-3 flex-1">
+                  {awardedPlayers.length > 0 && (
+                    <div className="mb-3">
+                      <div className="text-[10px] uppercase tracking-wider font-bold text-amber-400 mb-2">Awarded</div>
+                      <ul className="space-y-2">
+                        {awardedPlayers.map(player => (
+                          <li key={player.id} className="flex items-center gap-3 bg-emerald-950/30 p-2 rounded border border-emerald-800/40">
+                            <div className="w-6 h-6 flex-shrink-0 rounded-full flex items-center justify-center font-bold text-xs shadow-inner bg-emerald-600 text-white">
+                              A
+                            </div>
+                            <div className="flex-1 min-w-0 flex items-center justify-between">
+                              <PlayerNameWithScore player={player} />
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                   {sortedAssignedPlayers.length === 0 ? (
                     <p className="text-xs text-slate-600 italic py-2">Only Passes recorded.</p>
                   ) : (
-                    <ul className="space-y-2">
-                      {sortedAssignedPlayers.map(player => (
-                        <li key={player.id} className="flex items-center gap-3 bg-slate-900/50 p-2 rounded border border-slate-800/50">
-                          <div className={`w-6 h-6 flex-shrink-0 rounded-full flex items-center justify-center font-bold text-xs shadow-inner ${getRankBadgeStyle(assignments[item.name][player.id])}`}>
-                            {assignments[item.name][player.id]}
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <PlayerNameWithScore player={player} />
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
+                    <>
+                      <div className="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-2">Priority Queue</div>
+                      <ul className="space-y-2">
+                        {sortedAssignedPlayers.map(player => (
+                          <li key={player.id} className="flex items-center gap-3 bg-slate-900/50 p-2 rounded border border-slate-800/50">
+                            <div className={`w-6 h-6 flex-shrink-0 rounded-full flex items-center justify-center font-bold text-xs shadow-inner ${getRankBadgeStyle(assignments[item.name][player.id])}`}>
+                              {assignments[item.name][player.id]}
+                            </div>
+                            <div className="flex-1 min-w-0 flex items-center justify-between">
+                              <PlayerNameWithScore player={player} />
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
                   )}
                 </div>
 
@@ -182,11 +210,7 @@ export default function OverviewTab({
                       Remove from Priority View
                     </button>
                     <button 
-                      onClick={() => { 
-                        setActiveTab('loot'); 
-                        setSearchQuery(item.name); 
-                        setSelectedItemName(item.name); 
-                      }} 
+                      onClick={() => onOpenItemAssignment?.(item.name)}
                       className="text-xs font-bold text-amber-500 hover:text-amber-400 uppercase tracking-wider px-2 py-1"
                     >
                       Edit Priorities &rarr;

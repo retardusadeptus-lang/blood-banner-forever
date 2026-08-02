@@ -23,6 +23,7 @@ export function useItemsDatabase({
   const [dbNewItemId, setDbNewItemId] = useState('');
   const [dbSearch, setDbSearch] = useState('');
   const [showMissingWowheadFilter, setShowMissingWowheadFilter] = useState(false);
+  const [showWowheadNameMismatchFilter, setShowWowheadNameMismatchFilter] = useState(false);
   const [dbBisPrioritiesDirty, setDbBisPrioritiesDirty] = useState(false);
   const [mutableItemsDirty, setMutableItemsDirty] = useState(false);
   const [isSavingItemsDb, setIsSavingItemsDb] = useState(false);
@@ -159,6 +160,8 @@ export function useItemsDatabase({
     setDbSearch,
     showMissingWowheadFilter,
     setShowMissingWowheadFilter,
+    showWowheadNameMismatchFilter,
+    setShowWowheadNameMismatchFilter,
     dbBisPrioritiesDirty,
     setDbBisPrioritiesDirty,
     mutableItemsDirty,
