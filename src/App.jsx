@@ -403,7 +403,8 @@ export default function App() {
     { value: 'overview', label: 'Priority Overview' },
     { value: 'assignment', label: 'Priority Assignment', authOnly: true },
     { value: 'scoring', label: 'Scoring', authOnly: true },
-    { value: 'assigned', label: 'Assigned Loot', authOnly: true }
+    { value: 'assigned', label: 'Assigned Loot', authOnly: true },
+    { value: 'roster', label: 'Roster', authOnly: true }
   ];
 
   const adminSubTabs = [
@@ -2030,20 +2031,29 @@ export default function App() {
     setEnabledBosses(prev => (prev || []).filter(b => b !== boss));
   };
 
+  const getItemSourceDetails = (item) => {
+    const zone = String(item?.zone || item?.source || '').trim();
+    const boss = String(item?.boss || item?.source_type || '').trim();
+    return { zone, boss };
+  };
+
   // --- FILTERS ---
-  const uniqueZones = useMemo(() => [...new Set(mutableItems.map(i => i.zone))].sort(), [mutableItems]);
+  const uniqueZones = useMemo(() => {
+    return [...new Set(mutableItems.map(item => getItemSourceDetails(item).zone).filter(Boolean))].sort();
+  }, [mutableItems]);
   const uniqueBosses = useMemo(() => {
     let filtered = mutableItems;
-    if (filterZone) filtered = filtered.filter(i => i.zone === filterZone);
-    return [...new Set(filtered.map(i => i.boss))].sort();
+    if (filterZone) filtered = filtered.filter(item => getItemSourceDetails(item).zone === filterZone);
+    return [...new Set(filtered.map(item => getItemSourceDetails(item).boss).filter(Boolean))].sort();
   }, [mutableItems, filterZone]);
   const uniqueSlots = useMemo(() => [...new Set(mutableItems.map(i => i.slot))].sort(), [mutableItems]);
 
   const filteredItems = mutableItems.filter(item => {
     if (!item || !item.name) return false;
+    const sourceDetails = getItemSourceDetails(item);
     const matchSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchBoss = filterBoss === '' || item.boss === filterBoss;
-    const matchZone = filterZone === '' || item.zone === filterZone;
+    const matchBoss = filterBoss === '' || sourceDetails.boss === filterBoss;
+    const matchZone = filterZone === '' || sourceDetails.zone === filterZone;
     const matchSlot = filterSlot === '' || item.slot === filterSlot;
     const isTokenItem = !!item.is_token;
     const matchCategory =
@@ -2234,19 +2244,30 @@ export default function App() {
     return "bg-slate-900 text-slate-500 border border-slate-800 border-dashed";
   };
 
+  const normalizeSlotKey = (slotName) => {
+    const normalized = String(slotName || '').trim().toLowerCase();
+    if (['rings', 'ring', 'ring 1', 'ring 2', 'ring 1/2', 'finger', 'fingers', 'finger 1', 'finger 2'].includes(normalized)) return 'ring';
+    if (['trinkets', 'trinket', 'trinket 1', 'trinket 2', 'trinket 1/2'].includes(normalized)) return 'trinket';
+    return normalized;
+  };
+
+  const isGroupedSlot = (slotName) => {
+    const normalized = String(slotName || '').trim().toLowerCase();
+    return normalized === 'rings' || normalized === 'trinkets' || normalized === 'ring' || normalized === 'trinket' || normalized === 'finger' || normalized === 'fingers';
+  };
+
   const getItemsForSlotAndSpec = (slot, spec) => {
-    const normalizedSlot = String(slot || '').toLowerCase();
-    const dataSlot = slot === "Ring 1" || slot === "Ring 2" ? "ring"
-      : slot === "Trinket 1" || slot === "Trinket 2" ? "trinket"
-        : normalizedSlot;
+    const normalizedSlot = normalizeSlotKey(slot);
+    const isGrouped = isGroupedSlot(slot);
     const slotIndex = slot === "Ring 2" || slot === "Trinket 2" ? 1 : 0;
     const isDualSlot = slot.endsWith(" 1") || slot.endsWith(" 2");
 
     const itemsInSlot = mutableItems.filter(i => {
-      const itemSlot = String(i?.slot || '').toLowerCase();
+      const itemSlot = normalizeSlotKey(i?.slot);
       if (!itemSlot) return false;
-      if (itemSlot === dataSlot) return true;
-      if (slot === 'Weapon' && itemSlot === 'weapon') return true;
+      if (isGrouped) return itemSlot === normalizedSlot;
+      if (itemSlot === normalizedSlot) return true;
+      if (normalizedSlot === 'weapon' && itemSlot === 'weapon') return true;
       return false;
     });
 
@@ -2259,7 +2280,7 @@ export default function App() {
       return dbBisPriorities[itemKey] === 'Opt';
     });
 
-    if (isDualSlot) {
+    if (!isGrouped && isDualSlot) {
       const bisForThisSlot = bis[slotIndex] ? [bis[slotIndex]] : [];
       const optForThisSlot = slotIndex === 0 && bis.length <= 1 ? opt
         : slotIndex === 1 && bis.length >= 2 ? opt
@@ -2303,6 +2324,7 @@ export default function App() {
   const renderItemSlot = (slotName) => {
     const { bis, opt } = getItemsForSlotAndSpec(slotName, selectedBisSpec);
     const isBottomSlot = BOTTOM_SLOTS.includes(slotName);
+    const isGroupedDisplaySlot = ['Rings', 'Trinkets'].includes(slotName);
 
     // For dual slots, hide the second slot entirely if there's no second item
     const isDualSecond = slotName === "Ring 2" || slotName === "Trinket 2";
@@ -2321,34 +2343,73 @@ export default function App() {
     }
     if (bis.length === 0 && opt.length === 0) return null;
 
+    const primaryBis = isGroupedDisplaySlot ? bis.slice(0, 2) : bis;
+    const extraItems = isGroupedDisplaySlot
+      ? [
+          ...bis.slice(2).map(item => ({ item, kind: 'bis' })),
+          ...opt.map(item => ({ item, kind: 'opt' }))
+        ]
+      : opt.map(item => ({ item, kind: 'opt' }));
+    const iconItems = isGroupedDisplaySlot ? primaryBis : bis.slice(0, 1);
+
+    const renderItemSource = (item) => {
+      const bossName = String(item?.boss || '').trim();
+      if (bossName) {
+        return <span className="text-[10px] text-slate-500 font-medium">Boss: {bossName}</span>;
+      }
+
+      const source = String(item?.source || '').trim();
+      const sourceType = String(item?.source_type || '').trim();
+      const normalizedSource = source.toLowerCase();
+      const normalizedSourceType = sourceType.toLowerCase();
+      const genericArmorValues = ['armor', 'cloth armor', 'leather armor', 'mail armor', 'plate armor', 'cloak', 'ring', 'trinket'];
+
+      const fallbackValue = source && !genericArmorValues.includes(normalizedSource) ? source : (sourceType && !genericArmorValues.includes(normalizedSourceType) ? sourceType : '');
+      if (!fallbackValue) return null;
+
+      return <span className="text-[10px] text-slate-500 font-medium">Source: {fallbackValue}</span>;
+    };
+
     return (
       <div key={slotName} className="flex gap-3 bg-slate-900 border border-slate-700 hover:border-slate-500 p-2.5 rounded-lg transition-colors shadow-sm">
-        <div key={`${slotName}-${selectedBisSpec}`} className="w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex-shrink-0 flex items-center justify-center relative shadow-inner overflow-hidden character-slot-icon">
-          {bis.length > 0 && bis[0].itemId ? (
-            <a
-              href={`https://tbc.wowhead.com/item=${bis[0].itemId}`}
-              data-wh-rename-link="false"
-              data-wh-icon-size="large"
-              className="item-link"
-              target="_blank"
-              rel="noreferrer"
-              onMouseLeave={hideWowheadTooltip}
-            />
+        <div key={`${slotName}-${selectedBisSpec}`} className="flex flex-col gap-2 flex-shrink-0">
+          {iconItems.length > 0 ? (
+            iconItems.map((item, index) => (
+              <div key={`${item.name}-${index}`} className="w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex items-center justify-center relative shadow-inner overflow-hidden character-slot-icon">
+                {item.itemId ? (
+                  <a
+                    href={`https://tbc.wowhead.com/item=${item.itemId}`}
+                    data-wh-rename-link="false"
+                    data-wh-icon-size="large"
+                    className="item-link"
+                    target="_blank"
+                    rel="noreferrer"
+                    onMouseLeave={hideWowheadTooltip}
+                  />
+                ) : (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent"></div>
+                    <span className="text-[9px] font-bold text-slate-500 uppercase z-10 rotate-45 opacity-30">{slotName}</span>
+                  </>
+                )}
+              </div>
+            ))
           ) : (
-            <>
+            <div className="w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex items-center justify-center relative shadow-inner overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent"></div>
               <span className="text-[9px] font-bold text-slate-500 uppercase z-10 rotate-45 opacity-30">{slotName}</span>
-            </>
+            </div>
           )}
         </div>
 
         <div className="flex flex-col min-w-0 justify-center">
           <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">{slotName}</span>
-          {bis.length > 0 ? (
-            bis.map(i => (
+          {primaryBis.length > 0 ? (
+            primaryBis.map(i => (
               <div key={i.name} className="flex flex-col">
                 <div className="flex items-center justify-between gap-2">
                   {renderItemLink(i, "text-sm font-bold text-purple-400 drop-shadow-sm leading-tight")}
+                  {/* Edit pencil disabled for now.
                   {isAuthenticated && (
                     <button
                       type="button"
@@ -2359,22 +2420,27 @@ export default function App() {
                       ✎
                     </button>
                   )}
+                  */}
                 </div>
-                <div className="flex gap-2 flex-wrap">
-                  <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
-                  {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex gap-2 flex-wrap">
+                    <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
+                    {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
+                  </div>
+                  {renderItemSource(i)}
                 </div>
               </div>
             ))
           ) : (<span className="text-sm font-bold text-slate-500 italic leading-tight">No primary BiS</span>)}
-          {opt.length > 0 && (
-            <div className="mt-1 flex flex-col gap-y-1">
-              {opt.map(i => (
-                <div key={i.name} className="flex flex-col">
+          {extraItems.length > 0 && (
+            <div className="mt-1 flex flex-col gap-y-1 border-t border-slate-800/70 pt-2">
+              {extraItems.map(({ item: i, kind }) => (
+                <div key={`${i.name}-${kind}`} className="flex flex-col">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-[10px] text-amber-500/70 font-semibold uppercase flex-shrink-0">Alt:</span>
+                    <span className="text-[10px] text-amber-500/70 font-semibold uppercase flex-shrink-0">{kind === 'bis' ? 'More BiS:' : 'Alt:'}</span>
                     <div className="flex items-center justify-between gap-2 w-full min-w-0">
                       {renderItemLink(i, "text-[10px] text-slate-400 truncate max-w-[150px]")}
+                      {/* Edit pencil disabled for now.
                       {isAuthenticated && (
                         <button
                           type="button"
@@ -2385,13 +2451,17 @@ export default function App() {
                           ✎
                         </button>
                       )}
+                      */}
                     </div>
                     {!isBottomSlot && <span className="text-[10px] text-amber-500/70 font-semibold whitespace-nowrap">{i.boss}</span>}
                   </div>
                   {isBottomSlot && (
-                    <div className="flex gap-2 pl-6">
-                      <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
-                      {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
+                    <div className="flex flex-col gap-0.5 pl-6">
+                      <div className="flex gap-2">
+                        <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
+                        {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
+                      </div>
+                      {renderItemSource(i)}
                     </div>
                   )}
                 </div>
@@ -3156,6 +3226,43 @@ export default function App() {
                 hasUnsavedChanges={scoringConfigDirty || playerStatsDirty}
                 onSaveChanges={handleSaveScoringChanges}
                 isSaving={isSavingScoring}
+              />
+            )}
+            {lootSubTab === 'roster' && (
+              <RosterTab
+                fetchData={fetchData}
+                handleSaveRaidLog={handleSaveRaidLog}
+                handleApplyRaidSignupGroupsToAttendance={handleApplyRaidSignupGroupsToAttendance}
+                handleImportRaidHelperJson={handleImportRaidHelperJson}
+                newRaidDate={newRaidDate}
+                setNewRaidDate={setNewRaidDate}
+                newRaidZone={newRaidZone}
+                setNewRaidZone={setNewRaidZone}
+                raidLogs={raidLogs}
+                handleDeleteRaidLog={handleDeleteRaidLog}
+                handleAddPlayer={handleAddPlayer}
+                newName={newName}
+                setNewName={setNewName}
+                newSpec={newSpec}
+                setNewSpec={setNewSpec}
+                specsFromDb={specsFromDb}
+                setAllRaidStatus={setAllRaidStatus}
+                roster={roster}
+                getSpecById={getSpecById}
+                toggleRaidStatus={toggleRaidStatus}
+                handleUpdatePlayer={handleUpdatePlayer}
+                handleRemovePlayer={handleRemovePlayer}
+                importedRaidHelperPlayerIds={recentRaidHelperImportedIds}
+                importedRaidHelperSpecConflictIds={recentRaidHelperSpecConflictIds}
+                raidHelperImportSession={raidHelperImportSession}
+                onUpdateRaidHelperImportEntry={handleUpdateRaidHelperImportEntry}
+                onApplyRaidHelperImport={handleApplyRaidHelperImport}
+                onCancelRaidHelperImport={handleCancelRaidHelperImport}
+                specsByName={specsByName}
+                PlayerNameWithScore={PlayerNameWithScore}
+                hasUnsavedChanges={rosterDirty || raidLogsDirty || playerStatsDirty}
+                onSaveChanges={handleSaveRosterAttendanceChanges}
+                isSaving={isSavingRosterAttendance}
               />
             )}
             {lootSubTab === 'assigned' && (

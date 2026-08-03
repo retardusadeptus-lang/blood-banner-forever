@@ -76,11 +76,31 @@ export const RAID_ZONES = [
     bosses: ["Al'ar", "Void Reaver", "High Astromancer Solarian", "Kael'thas Sunstrider"] 
   },
   { 
-    name: "SSC", 
+    name: "Serpentshrine Cavern", 
     bosses: ["Hydross the Unstable", "The Lurker Below", "Leotheras the Blind", "Fathom-Lord Karathress", "Morogrim Tidewalker", "Lady Vashj"] 
   },
   { 
-    name: "Gruul / Mag", 
-    bosses: ["High King Maulgar", "Gruul the Dragonkiller", "Magtheridon"] 
+    name: "Gruul's Lair", 
+    bosses: ["High King Maulgar", "Gruul the Dragonkiller"] 
+  },
+  { 
+    name: "Magtheridon's Lair", 
+    bosses: ["Magtheridon"] 
+  },
+  { 
+    name: "Battle for Mount Hyjal", 
+    bosses: ["Rage Winterchill", "Anetheron", "Kaz'rogal", "Azgalor", "Archimonde"] 
+  },
+  { 
+    name: "Black Temple", 
+    bosses: ["High Warlord Naj'entus", "Supremus", "Shade of Akama", "Teron Gorefiend", "Gurtogg Bloodboil", "Reliquary of Souls", "Mother Shahraz", "Illidari Council", "Illidan Stormrage"] 
+  },
+  { 
+    name: "Zul'Aman", 
+    bosses: ["Akil'zon", "Nalorakk", "Jan'alai", "Halazzi", "Hexxlord Jin'zakk", "Zul'jin"] 
+  },
+  { 
+    name: "Sunwell Plateau", 
+    bosses: ["Kalecgos", "Sathrovarr", "Brutallus", "Felmyst", "Alythess", "Sacrolash", "M'uru", "Entropius", "Kil'jaeden"] 
   }
 ];

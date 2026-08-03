@@ -1,5 +1,5 @@
 import React from 'react';
-import { LEFT_SLOTS, RIGHT_SLOTS, BOTTOM_SLOTS, PHASES } from '../constants';
+import { LEFT_SLOTS, BOTTOM_SLOTS, PHASES } from '../constants';
 
 export default function BisConfigTab({
   selectedBisSpec,
@@ -11,6 +11,8 @@ export default function BisConfigTab({
   specsByName
 }) {
   
+  const rightLayoutSlots = ['Hands', 'Waist', 'Legs', 'Feet', 'Rings', 'Trinkets'];
+
   // Quick lookup helper to grab the large icon profile for the spec background art
   const currentSpecObj = specsFromDb.find(s => s.spec === selectedBisSpec);
 
@@ -75,7 +77,7 @@ export default function BisConfigTab({
             {LEFT_SLOTS.map(slot => renderItemSlot(slot))}
           </div>
           <div className="flex flex-col gap-4">
-            {RIGHT_SLOTS.map(slot => renderItemSlot(slot))}
+            {rightLayoutSlots.map(slot => renderItemSlot(slot))}
           </div>
           <div className="lg:col-span-2 pt-6 mt-2 border-t border-slate-800/80">
             <div className="flex flex-wrap gap-4">

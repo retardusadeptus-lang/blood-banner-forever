@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function LootCouncilTab({
   searchQuery,
@@ -37,7 +37,13 @@ export default function LootCouncilTab({
   onToggleAwardedPriority,
   isSaving
 }) {
+  const [limitBosses, setLimitBosses] = useState(true);
+  const [maxBossOptions, setMaxBossOptions] = useState(50);
+  
   const currentItemAssignments = selectedItem ? (assignments[selectedItem.name] || {}) : {};
+  
+  // Limit boss options if toggle is enabled
+  const displayedBosses = limitBosses ? uniqueBosses.slice(0, maxBossOptions) : uniqueBosses;
 
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
@@ -75,10 +81,10 @@ export default function LootCouncilTab({
             </select>
           </div>
           <div>
-            <label className="block text-xs font-semibold text-slate-400 mb-1.5">Filter Boss</label>
+            <label className="block text-xs font-semibold text-slate-400 mb-1.5">Filter Boss ({displayedBosses.length}/{uniqueBosses.length})</label>
             <select className="w-full bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-purple-500 focus:outline-none truncate" value={filterBoss} onChange={e => setFilterBoss(e.target.value)}>
               <option value="">All Bosses</option>
-              {uniqueBosses.map(b => <option key={b} value={b}>{b}</option>)}
+              {displayedBosses.map(b => <option key={b} value={b}>{b}</option>)}
             </select>
           </div>
           <div>
@@ -96,6 +102,32 @@ export default function LootCouncilTab({
               <option value="item">Regular Items</option>
             </select>
           </div>
+        </div>
+        
+        <div className="flex items-center gap-4 mb-5 p-3 bg-slate-900 rounded-lg border border-slate-700">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={limitBosses}
+              onChange={e => setLimitBosses(e.target.checked)}
+              className="w-4 h-4 rounded border-slate-600 bg-slate-800 cursor-pointer accent-purple-500"
+            />
+            <span className="text-xs font-semibold text-slate-300">Limit Boss Options</span>
+          </label>
+          {limitBosses && (
+            <div className="flex items-center gap-2">
+              <label className="text-xs font-semibold text-slate-400">Max Options:</label>
+              <input
+                type="number"
+                min="5"
+                max={uniqueBosses.length}
+                value={maxBossOptions}
+                onChange={e => setMaxBossOptions(Math.min(Math.max(5, parseInt(e.target.value) || 50), uniqueBosses.length))}
+                className="w-16 bg-slate-800 text-white border border-slate-600 rounded px-2 py-1 text-xs focus:ring-2 focus:ring-purple-500 focus:outline-none"
+              />
+            </div>
+          )}
+          <span className="text-xs text-slate-500 ml-auto">Total items in database: {mutableItems.length}</span>
         </div>
         <div>
           <select className="w-full bg-slate-900 text-purple-400 font-bold border border-slate-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:outline-none cursor-pointer" value={selectedItemName} onChange={e => setSelectedItemName(e.target.value)}>

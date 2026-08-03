@@ -137,16 +137,7 @@ export default function OverviewTab({
                       <h3 className="text-lg font-bold text-purple-400 truncate drop-shadow-sm">
                         {renderItemLink(item)}
                       </h3>
-                      {isAuthenticated && (
-                        <button
-                          type="button"
-                          onClick={() => onEditItemId?.(item.name)}
-                          className="w-6 h-6 flex items-center justify-center rounded-full bg-amber-600 hover:bg-amber-500 text-slate-950 text-xs font-black shadow"
-                          title={item.itemId ? 'Edit Wowhead ID in Master Items DB' : 'Set Wowhead ID in Master Items DB'}
-                        >
-                          ✎
-                        </button>
-                      )}
+                      {/** Pencil temporarily disabled on the Priority Overview tab. */}
                     </div>
                   </div>
                   <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-slate-500 tracking-wider flex-wrap">
