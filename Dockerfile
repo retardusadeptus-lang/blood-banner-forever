@@ -47,6 +47,10 @@ RUN cd guild-loot-api && npm ci --omit=dev
 # Copy API source
 COPY guild-loot-api/ ./guild-loot-api/
 
+# Keep importer input available in production container.
+# guild-loot-api/scripts/import-wowhead-item-list.js reads /app/src/wowheaditemlist.csv.
+COPY --from=builder /app/src/wowheaditemlist.csv /app/src/wowheaditemlist.csv
+
 # API listens on API_PORT (nginx proxies /api/ to it); nginx serves the SPA on 3000.
 # API_PORT can be overridden at runtime (e.g. --env-file); nginx follows it.
 ENV API_PORT=4000
