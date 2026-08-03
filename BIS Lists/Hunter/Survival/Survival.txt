@@ -1,0 +1,3386 @@
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase TwoClassesLevelingBest in SlotTier ListsRaidsAttunementsDungeonsReputationsProfessions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Hunter Guide
+
+    Overview
+    Pets
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+                Best In Slot Gear in Pre-Raid
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrist
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Weapons
+                    Quivers / Ammo Pouches
+                    Ammunition
+        Phase 1 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 2 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 3 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 4 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 5 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Survival Hunter DPS Pre-Raid Best in Slot (BiS) - TBC Classic
+By Veramos
+Updated: 2026/08/01
+In this Pre-Raid Best-in-Slot Gear List for Survival Hunter DPS in The Burning Crusade Classic, we will list the recommended gear for Survival Hunter DPS to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Survival Hunter DPS Best in Slot Hub
+Pre-Raid Best In Slot Gear for Survival Hunter DPS in Phase 3
+From Phase 1 to Phase 3, nothing really changes in terms of what your best pre-raid setup is. Some new options do pop up, such as engineering goggles, but the Beastlord set is just too strong and will still dominate. Phase 2 crafted belts and Season 2 PvP gear will take over previous slots, but outside of that, not too much is different for the Survival Hunter. In a TLDR: Agility and Critical Strike Rating are king.
+
+During pre-raid, Hunters have quite a few options for gear sets, depending on how hardcore or casual you want to play. For Survival Hunters, there is a lot less hit rating you need to worry about due to the talent Surefooted.
+
+Survival Hunters looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Hunter DPS Gems & Enchants
+
+
+
+Beast Lord Helm
+Jagged Bark Pendant
+Beast Lord Mantle
+Blood Knight War Cloak
+Beast Lord Cuirass
+Felstalker Bracers
+Beast Lord Handguards
+Belt of Deep Shadow
+Emerald-Scale Greaves
+Silent-Strider Kneeboots
+Pathfinder's Band
+Ravenclaw Band
+Abacus of Violent Odds
+Bloodlust Brooch
+Stellaris
+Stellaris
+Merciless Gladiator's Crossbow of the Phoenix
+Ancient Sinew Wrapped Lamina
+Link
+Level70
+Should Survival Hunter DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 3?
+For hunters, deciding between either The Aldor or The Scryers is not that big of a deal at the end of the day. However, The Aldor should be the faction you choose to truly min-max your character. The shoulder enchant Greater Inscription of Vengeance Greater Inscription of Vengeance is ever so slightly better than Greater Inscription of the Blade Greater Inscription of the Blade from The Scryers. This difference is so minor and only a few dps difference between the few, so for the average player, you really won't ever notice the dps difference in raids.
+
+Besides the shoulder enchants, there is nothing else of relevance for hunters in terms of raid gear or enchants that we "must" have.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Survival Hunters, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Pre-Raid Best in Slot Head Armor for Survival Hunter in TBC Classic Phase 3
+Beast Lord Helm is BiS and one of the pieces of the Beast Lord set that you will never change, regardless of what gear set you go with. Optional items are presented below, but should only be used until you can obtain your Beast Lord Helm.
+
+The Engineering Goggles, Surestrike Goggles v2.0, are powerful in their own right, but unfortunately, the leather option that we cannot wear: Deathblow X11 Goggles Deathblow X11 Goggles, is better. SInce we opt into Beastlord however, the goggles do not get a high priority as something you should craft.
+Rank	Item	Source
+Best	Beast Lord Helm Beast Lord Helm	Drop: Pathaleon the Calculator (The Mechanar)
+Great - Crafting
+(Engineering Only)	Surestrike Goggles v2.0 Surestrike Goggles v2.0	Profession: Engineering (BoP)
+Classic Option	Cryptstalker Headpiece Cryptstalker Headpiece	Quest:Cryptstalker Headpiece Cryptstalker Headpiece (Naxxramas)
+Optional	Stealther's Helmet of Second Sight Stealther's Helmet of Second Sight
+Stalker's Helmet of Second Sight Stalker's Helmet of Second Sight	Quest:Teron Gorefiend, I am... Teron Gorefiend, I am.../Teron Gorefiend, I am... Teron Gorefiend, I am... - Karazhan
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+These will be placeholders until you can obtain the recommended piece above, as it is a required slot for the Beast Lord set.
+
+Rank	Item	Source
+Optional	Mask of Veiled Death Mask of Veiled Death	World Drop: The Outland
+Optional	Mok'Nathal Beast-Mask Mok'Nathal Beast-Mask	Drop: Exarch Maladaar (Auchenai Crypts)
+
+Pre-Raid Best in Slot Shoulder Armor for Survival Hunter in TBC Classic Phase 3
+Beast Lord Mantle is another piece of the beast lord set and one that will never change regardless of what gearset you go with. Optional items are presented below, but should only be used until you can obtain your Beast Lord Mantle. You'll want to match colors appropriately with the gem socket options here.
+Rank	Item	Source
+Best	Beast Lord Mantle Beast Lord Mantle	Drop: Warlord Kalithresh (The Steamvault)
+Optional	Expedition Scout's Epaulets Expedition Scout's Epaulets	Quest:Fel Embers Fel Embers
+Classic Option	Cryptstalker Spaulders Cryptstalker Spaulders	Quest:Cryptstalker Spaulders Cryptstalker Spaulders (Naxxramas)[/color]
+Optional	Wastewalker Shoulderpads Wastewalker Shoulderpads	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+These will be placeholders until you are able to get the recommended piece above, as it is a required slot for the Beast Lord set.
+
+Rank	Item	Source
+Optional	Mantle of Perenolde Mantle of Perenolde	Drop: Epoch Hunter (Hold Hillsbrad Foothills)
+
+Pre-Raid Best in Slot Back Armor for Survival Hunter in TBC Classic Phase 3
+Blood Knight War Cloak is BiS for Survival Hunters due to the high Agility, compared to no Agility on Vengeance Wrap.
+Rank	Item	Source
+Best	Blood Knight War Cloak Blood Knight War Cloak	Vendor: G'eras (25 Badges of Justice)
+Strong	Vengeance Wrap Vengeance Wrap	Profession: Tailoring (BoE)
+Optional	Cloak of the Craft Cloak of the Craft	Drop: Durnholde Tracking Hound (Old Hillsbrad Foothills)
+Optional	Auchenai Death Shroud Auchenai Death Shroud	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Cloak of the Inciter Cloak of the Inciter	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Pre-Raid Best in Slot Chest Armor for Survival Hunter in TBC Classic Phase 3
+Beast Lord Cuirass is the third piece used for the 4 set bonus. Unlike Beast Mastery, the chest will be a permanent piece used in the Beast Lord set regardless of your other gearing choices.
+Rank	Item	Source
+Best	Beast Lord Cuirass Beast Lord Cuirass	Drop: Warp Splinter (The Botanica)
+Optional	Primalstrike Vest Primalstrike Vest	Profession: Elemental Leatherworking (Bind on Creation)
+Optional	Hauberk of Karabor Hauberk of Karabor	Quest:Varedis Must Be Stopped Varedis Must Be Stopped
+Classic Option	Cryptstalker Tunic Cryptstalker Tunic	Quest:Cryptstalker Tunic Cryptstalker Tunic (Naxxramas)
+Pre-Raid Best in Slot Wrist Armor for Survival Hunter in TBC Classic Phase 3
+Felstalker Bracers and Nightfall Wristguards are pretty much equal to each other. The former will be "easier" in that it's a crafted piece of gear, but it may be expensive on your server. The latter may be "free", but it may also be contested in your party!
+Rank	Item	Source
+Best	Felstalker Bracers Felstalker Bracers	Profession: Leatherworking
+Best	Nightfall Wristguards Nightfall Wristguards	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Optional	Primalstrike Bracers Primalstrike Bracers	Profession: Elemental Leatherworking (Bind on Creation)
+Optional	Cryptstalker Wristguards Cryptstalker Wristguards	Quest:Cryptstalker Wristguards Cryptstalker Wristguards (Naxxramas)
+Pre-Raid Best in Slot Hand Armor for Survival Hunter in TBC Classic Phase 3
+Beast Lord Handguards are the final and fourth piece of the Beast Lord set that hunters will wear and are not replaced by any different gear sets.
+Rank	Item	Source
+Best	Beast Lord Handguards Beast Lord Handguards	Warchief Kargath Bladefist - The Shattered Halls
+Optional	Ar'tor's Mainstay Ar'tor's Mainstay	The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+Classic PvP Option	Marshal's Chain Grips Marshal's Chain Grips
+General's Chain Gloves General's Chain Gloves	Vendor: Captain Dirgehammer
+Vendor: Lady Palanseer
+Classic Option	Cryptstalker Handguards Cryptstalker Handguards	Quest:Cryptstalker Handguards Cryptstalker Handguards (Naxxramas)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Gloves of the Nether-Stalker Gloves of the Nether-Stalker	Quest:Dealing with the Overmaster Dealing with the Overmaster
+
+Pre-Raid Best in Slot Waist Armor for Survival Hunter in TBC Classic Phase 3
+A new crafted item enters our Pre-Raid BiS, being the Phase 2 crafted Belt of Deep Shadow. This will be a great option that you'll wear until you get raid gear. Outside of that, you can rock Dunewind Sash for the high base Agility and 2 sockets. In a very close third will be Girdle of the Deathdealer, only off by a few DPS.
+Rank	Item	Source
+Best	Primalstrike Belt Primalstrike Belt	Profession: Elemental Leatherworking (Bind on Creation)
+Great	Dunewind Sash Dunewind Sash	Drop: Ghaz'an (Heroic The Underbog)
+Great	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus (Heroic The Black Morass)
+Optional	Primalstrike Belt Primalstrike Belt	Profession: Elemental Leatherworking (Bind on Creation)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Felstalker Belt Felstalker Belt	Profession: Leatherworking
+Classic Option	Cryptstalker Girdle Cryptstalker Girdle	Quest:Cryptstalker Girdle Cryptstalker Girdle (Naxxramas)
+
+Pre-Raid Best in Slot Leg Armor for Survival Hunter in TBC Classic Phase 3
+Wastewalker Leggings have the highest base Agility in addition to 3 sockets, making it the best option for maximizing Agility.
+Rank	Item	Source
+Best	Wastewalker Leggings Wastewalker Leggings	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Optional	Beast Lord Leggings Beast Lord Leggings	Drop: Warlord Kalithresh (The Steamvault)
+Optional	Emerald-Scale Greaves Emerald-Scale Greaves	Drop: Captain Skarloc (Heroic Old Hillsbrad Foothills)
+Optional	Scaled Greaves of Patience Scaled Greaves of Patience	Drop: Captain Skarloc (Old Hillsbrad Foothills)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+Rank	Item	Source
+Classic Option	Cryptstalker Legguards Cryptstalker Legguards	Quest: Cryptstalker Legguards Cryptstalker Legguards (Naxxramas)
+Optional	Midnight Legguards Midnight Legguards	Drop: Quagmirran (Heroic The Slave Pens)
+
+Pre-Raid Best in Slot Feet Armor for Survival Hunter in TBC Classic Phase 3
+Boots of the Endless Hunt will be our best boots for Pre-Raid, although ever so slightly, due to their base agility compared to The Master's Treads.
+Rank	Item	Source
+Best	Boots of the Endless Hunt Boots of the Endless Hunt	Drop: Warp Splinter (Heroic The Botanica)
+Optional	The Master's Treads The Master's Treads	World Drop: The Outland
+Optional	Cryptstalker Boots Cryptstalker Boots	Quest:Cryptstalker Boots Cryptstalker Boots (Naxxramas)
+Optional	Fel Leather Boots Fel Leather Boots	Profession: Leatherworking
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+Rank	Item	Source
+Optional	Farahlite Studded Boots Farahlite Studded Boots	Quest:A Fate Worse Than Death A Fate Worse Than Death
+
+Pre-Raid Best in Slot Neck Jewelry for Survival Hunter in TBC Classic Phase 3
+Jagged Bark Pendant is not only Pre-Raid BiS, but also overall Phase 1 BiS due to its high Agility and Attack Power.
+Rank	Item	Source
+Best	Jagged Bark Pendant Jagged Bark Pendant	Drop: Warp Splinter (The Botanica)
+Classic Option	Prestor's Talisman of Connivery Prestor's Talisman of Connivery	Drop: Nefarian (Blackwing Lair)
+Optional	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+Optional	Earthen Mark of Razing Earthen Mark of Razing	Quest:Gurok the Usurper Gurok the Usurper
+Pre-Raid Best in Slot Ring Jewelry for Survival Hunter in TBC Classic Phase 3
+Truestrike Ring and Band of Reanimation are technically BiS, however, the former is a world drop and will be extremely expensive early on compared to how small of an upgrade it is and how long it would last you, and the latter is a raid drop from Naxxramas, a Classic raid. Therefore, those who did not acquire this ring or are playing fresh will not have access to this ring. Realistically, Band of Reanimation and Pathfinder's Band are BiS. These two rings combined provide a much higher agility value compared to any other combination or ring possibility.
+Rank	Item	Source
+Best	Truestrike Ring Truestrike Ring	World Drop: The Outland
+Best	Band of Reanimation Band of Reanimation	Drop: Patchwerk (Naxxramas)
+Best	Ravenclaw Band Ravenclaw Band	Drop: Talon King Ikiss (Sethekk Halls)
+Best	Pathfinder's Band Pathfinder's Band	World Drop: The Outland
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+Rank	Item	Source
+Optional	Kaylaan's Signet Kaylaan's Signet	Quest:Deathblow to the Legion Deathblow to the Legion
+Optional	Slayer's Mark of the Redemption Slayer's Mark of the Redemption	Quest: Dissension Amongst the Ranks... Dissension Amongst the Ranks...
+Optional	Band of Anguish Band of Anguish	Quest: News of Victory News of Victory
+Classic Option	Band of Unnatural Forces Band of Unnatural Forces	Drop: Loatheb (Naxxramas)
+
+Pre-Raid Best in Slot Trinkets for Survival Hunter in TBC Classic Phase 3
+Bloodlust Brooch and Hourglass of the Unraveller will be your best options for Pre-Raid, with the former carrying over to somthing you'll till use in Phase 3. The latter, you should make sure to get along with Abacus of Violent Odds, as your other BiS will be heavily contested and may take some time to get!
+
+Phase 3 on the Anniversary servers will line up with the Brewfest event, meaning you can get Empty Mug of Direbrew, which is the exact same thing as Brooch. You can wear both of these together for a very powerful combination.
+Rank	Item	Source
+Best	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Best	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+Best - Seasonal	Empty Mug of Direbrew Empty Mug of Direbrew	Drop: Coren Direbrew (Blackrock Depths - Brewfest Event)
+Very Good	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+
+Rank	Item	Source
+Optional	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Sartura (Ahn'Qiraj)
+Optional	Bladefist's Breadth Bladefist's Breadth	Quest: Overlord Overlord /Cruel's Intentions Cruel's Intentions
+
+Weapons for Survival Hunter DPS in TBC Classic Phase 3
+Hunters can opt into either using Duel Wield Weapons or a Two-Hand Weapon for additional stats outside of their ranged weapon. Opting into the latter means you'll want to do additional damage with "Melee Weaving", where you will deal melee damage from our Two-Hand Weapon in between your auto-shots. We'll be going over all the available options for the Survival Hunter below.
+Duel Wield Weapons
+Stellaris will be the best main-hand and off-hand weapon for Survival Hunters for its high Agility. Should you choose to use fist weapons and take advantage of Adamantite Weightstone Adamantite Weightstone, then you'll use Claw of the Watcher instead. You will also pair this with Void-Talon.
+Rank	Item	Source
+Best MH / OH	Stellaris Stellaris	Drop: Nethermancer Sepethrea (The Mechanar)
+Best MH Fist	Claw of the Watcher Claw of the Watcher	Drop: Shirrak the Dead Watcher (Auchenai Crypts)
+Best OH Fist	Void-Talon Void-Talon	Vendor: Dealer Jadyan
+Optional MH / OH	Guile of Khoraazi Guile of Khoraazi	Vendor: Paulsta'ats - Requires Exalted with The Consortium
+
+
+Other Duel Wield Weapon Recommendations
+
+These options are solid and will be considerably easier to obtain, as many are uncontested or simply require reputations to obtain. Note that Guile of Khoraazi is great for both Main-Hand and Off-Hand, but is UNIQUE-EQUIPPED, meaning you can't duel-wield two of them!
+Main Hand Options
+Rank	Item	Source
+Optional	Ripfang Paw Ripfang Paw	Quest:Declawing Doomclaw Declawing Doomclaw
+Offhand Options
+Rank	Item	Source
+Optional	Talon of Anzu Talon of Anzu	Drop: Anzu (Heroic Sethekk Halls)
+Optional	Stormreaver Warblades Stormreaver Warblades	Drop: High Botanist Freywinn (The Botanica)
+Optional MH / OH	Guile of Khoraazi Guile of Khoraazi	Vendor: Paulsta'ats - Requires Exalted with The Consortium
+Classic Optionl	Claw of the Frost Wyrm Claw of the Frost Wyrm	Drop: Sapphiron (Naxxramas)
+
+Two-Handed
+Mooncleaver is technically the best Melee Weaving option available during pre-raid, however, it will be incredibly expensive, and being completely honest, unnecessary as one of your best Two-Hand weapons is virtually uncontested in Karazhan. It is recommended that you dual-wield until you acquire Legacy Legacy. If you want to melee weave as Survival in pre-patch, you should use Sonic Spear.
+Rank	Item	Source
+Best	Mooncleaver Mooncleaver	Profession: Master Axesmith Blacksmithing (Bind on Creation)
+Best - Non Crafted	Sonic Spear Sonic Spear	Drop: Murmur (Shadow Labyrinth)
+Optional	Quantum Blade Quantum Blade	Drop: Aeonus (Heroic The Black Morass)
+Classic Option	The Eye of Nerub The Eye of Nerub	Drop: Loatheb (Naxxramas)
+
+
+Other Two-Hand Weapon Recommendations
+Rank	Item	Source
+Optional	Terokk's Quill Terokk's Quill	Quest: Terokk's Legacy Terokk's Legacy
+
+Ranged Weapon
+Merciless Gladiator's Crossbow of the Phoenix, the Season 2 ranged weapon, will be the best pre-raid weapon to get in terms of time and power. The Season 3 weapon, Vengeful Gladiator's Heavy Crossbow Vengeful Gladiator's Heavy Crossbow, will obviously be better, but is locked behind a rating and costs way more Arena Points. In terms of accessibility, this is why we put Season 2 over Season 3 on the list, but we still wanted to note the S3 variant.
+
+Wrathtide Longbow is your other pre-raid BiS option if you don't want to get the very-easy-to-obtain PvP weapon for some reason, and it is recommended that you stick with this bow until you can acquire a better raid bow.
+Rank	Item	Source
+Best	Merciless Gladiator's Crossbow of the Phoenix Merciless Gladiator's Crossbow of the Phoenix	Arena Points Arena Points - Arena Vendor
+Best	Wrathtide Longbow Wrathtide Longbow	Drop: Warlord Kalithresh (Heroic The Steamvault)
+Optional	Veteran's Musket Veteran's Musket
+Marksman's Bow Marksman's Bow	Vendor: Logistics Officer Ulrike Requires Exalted with Honor Hold
+Vendor: Quartermaster Urgronn Requires Exalted with Thrallmar
+Classic Option	Nerubian Slavemaker Nerubian Slavemaker	Drop: Kel'Thuzad (Naxxramas)
+Optional	Don Santos' Famous Hunting Rifle Don Santos' Famous Hunting Rifle	World Drop: The Outland
+
+
+Other Ranged Weapon Recommendations
+Rank	Item	Source
+Optional	Valanos' Longbow Valanos' Longbow	World Drop: Outland
+
+Quivers / Ammo Pouches for Survival Hunter DPS in TBC Classic Phase 3
+Hunters are unique in that they have to use one of their bag slots specifically for their ammunition. If you use a Bow / Crossbow, then you will use a Quiver. If using a Gun, then you'll use an Ammo Pouch. Below, you can use the togglers to see which specific ones you need and can obtain in TBC Classic.
+
+In Phase 3, we finally get a new quiver; the long-awaited Quiver of a Thousand Feathers will now be available, providing an additional 6 ammo slots.
+
+All quiver stats share the same 15% ranged attack speed; the only difference is the slot size.
+Rank	Item	Source
+Best	Quiver of a Thousand Feathers Quiver of a Thousand Feathers	Profession: Leatherworking
+Great	Ancient Sinew Wrapped Lamina Ancient Sinew Wrapped Lamina	Ancient Petrified Leaf Ancient Petrified Leaf from Majordomo Executus (Molten Core)
+Great	Clefthoof Hide Quiver Clefthoof Hide Quiver
+Worg Hide Quiver Worg Hide Quiver	Vendor: Provisioner Nasela - Requires Honored with The Mag'har
+Vendor: Trader Narasu - Requires Honored with Kurenai
+Optional	Harpy Hide Quiver Harpy Hide Quiver	Vendor:Jekyll Flandring
+Vendor: Thanthaldis Snowgleam
+
+
+Alongside a new quiver, the newest ammo pouch Netherscale Ammo Pouch is also now available. All ammo pouches share the same 15% ranged attack speed; the only difference is the slot size.
+Rank	Item	Source
+Best	Netherscale Ammo Pouch Netherscale Ammo Pouch	Profession: Leatherworking
+Great	Smuggler's Ammo Pouch Smuggler's Ammo Pouch	Vendor: Karaaz - Requires Honored with The Consortium
+Optional	Gnoll Skin Bandolier Gnoll Skin Bandolier	Vendor: Jekyll Flandring
+Vendor: Thanthaldis Snowgleam
+Ammunition for Survival Hunter DPS in TBC Classic Phase 3
+Hunters will also need to use specific ammunition for their weapons, and not only that, certain ammunition will be stronger than others, so it's best to know which one is the best for your specific weapon. Bow / Crossbow users will need Arrows, and Gun users will need Bullets. Below, you can use the togglers to see which specific ones you need and can obtain in TBC Classic.
+
+In Phase 3, Timeless Arrow becomes the new best-in-slot arrows available for Hunters. These arrows are locked behind Honored rep with The Scale of the Sands.
+
+Mysterious Arrow also becomes available in Phase 3 and is locked behind Revered rep with The Violet Eye.
+Rank	Item	Source
+Best	Timeless Arrow Timeless Arrow	Vendor: Marksman Bova - Aldor
+Vendor: Archer Delvinar - Scryer
+Optional	Mysterious Arrow Mysterious Arrow	Marksman Bova - Aldor
+Archer Delvinar - Scryer
+Optional	Warden's Arrow Warden's Arrow	Vendor: Fedryen Swiftspear - Requires Revered with Cenarion Expedition
+Optional	Halaani Razorshaft Halaani Razorshaft	Vendor: Tasaldan
+Vendor: Banro
+
+
+In Phase 3, Timeless Shell becomes the new best-in-slot bullets available for Hunters. These bullets are locked behind Honored rep with The Scale of the Sands.
+
+Mysterious Shell also becomes available in Phase 3 and is locked behind Revered rep with The Violet Eye.
+Rank	Item	Source
+Best	Timeless Shell Timeless Shell	Vendor: Marksman Bova - Aldor
+Vendor: Archer Delvinar - Scryer
+Optional	Mysterious Shell Mysterious Shell	Vendor: Marksman Bova - Aldor
+Vendor: Archer Delvinar - Scryer
+Optional	Hellfire Shot Hellfire Shot
+Felbane Slugs Felbane Slugs	Vendor: Logistics Officer Ulrike Requires Revered with Honor Hold
+Vendor: Quartermaster Urgronn Requires Revered with Thrallmar
+Optional	Halaani Grimshot Halaani Grimshot	Vendor: Tasaldan
+Vendor: Banro
+Veramos
+Classic Hunter Class Writer
+Veramos wrote Hunter guides for Wowhead in Classic through Wrath of the Lich King covering all three major specializations. In addition, he creates content for Classic Hunter (including Season of Discovery) through his YouTube and Twitch channels, as well as through his personal Discord, sharing in-depth analysis on Hunter optimization and advanced techniques.
+1 - 1 of 1
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By Jaimaster (2,957 – 6·13) on 2021/06/04 (Burning Crusade)	
+	
+Can I suggest updating this guide to reflect the fact that Agi > everything for a survival raid buffer?
+
+The 2h weapon bis vs first optional ranking, for example, is eye-wateringly wrong :(
+1 - 1 of 1
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Hunter Guide
+
+    Overview
+    Pets
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 1 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+                Best In Slot Gear in Phase 1
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrist
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Weapons
+                    Quivers / Ammo Pouches
+                    Ammunition
+        Phase 2 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 3 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 4 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 5 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Survival Hunter DPS Phase 1 Best in Slot (BiS) - TBC Classic
+By Veramos
+Updated: 2026/02/01
+Welcome to Wowhead's Best in Slot Gear list from Karazhan, Gruul's Lair, and Magtheridon's Lair for Survival Hunter DPS in The Burning Crusade Classic. This guide will list the recommended gear for Survival Hunter DPS to acquire while they progress on the first few raids in The Burning Crusade Classic, and contains gear sourced from Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best-in-slot lists, including a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Survival Hunter DPS Best in Slot Guides
+Best In Slot Gear for Survival Hunter DPS in Phase 1
+During Phase 1, Hunters have quite a few options for gear sets, depending on how hardcore or casual you want to play. For survival hunters, there is a lot less hit rating you need to worry about due to the talent Surefooted. 3 specific items drop from the Karazhan basement random boss, which have an extremely low drop chance of rolling the "of Agility" attribute and therefore are extremely difficult to obtain. If your guild agrees to spend the time each week going for the belt/bracers/boots for you, then by all means, try and get them.
+
+One major difference compared to beast mastery hunters is that you want Legacy over Mooncleaver. Even without melee weaving, Legacy will provide your raid with a small benefit over using fist weapons Claw of the Watcher Claw of the Watcher and Stormreaver Warblades Stormreaver Warblades with Adamantite Weightstone Adamantite Weightstone on both.
+
+Survival Hunters looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Hunter DPS Gems & Enchants
+
+Should Survival Hunter DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 1?
+For hunters, deciding between either The Aldor or The Scryers is not that big of a deal at the end of the day. However, the Aldor should be the faction you choose to truly min-max your character. The shoulder enchant Greater Inscription of Vengeance Greater Inscription of Vengeance is ever so slightly better than Greater Inscription of the Blade Greater Inscription of the Blade from The Scryers. This difference is so minor and only a few DPS difference between the two, so for the average player, you really won't notice the DPS difference in raids.
+
+Besides the shoulder enchants, there is nothing else of relevance for hunters in terms of raid gear or enchants that we "must" have.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Survival Hunters, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+
+Best in Slot Head Armor for Survival Hunter in TBC Classic Phase 1
+Beast Lord Helm is BiS and one of the pieces of the Beast Lord set that you will never change, regardless of what gear set you go with. Optional items are presented below, but should only be used until you can obtain your Beast Lord Helm.
+Rank	Item	Source
+Best	Beast Lord Helm Beast Lord Helm	Drop: Pathaleon the Calculator (The Mechanar)
+Optional	Demon Stalker Greathelm Demon Stalker Greathelm	Drop: Tier Token from Prince Malchezaar (Karazhan)
+Optional	Stealther's Helmet of Second Sight Stealther's Helmet of Second Sight
+Stalker's Helmet of Second Sight Stalker's Helmet of Second Sight	Quest:Teron Gorefiend, I am... Teron Gorefiend, I am.../Teron Gorefiend, I am... Teron Gorefiend, I am... - Karazhan
+Optional	Mask of Veiled Death Mask of Veiled Death	World Drop - The Outland
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+These will be placeholders until you can obtain the recommended piece above, as it is a required slot for the Beast Lord set.
+
+Rank	Item	Source
+Optional	Mok'Nathal Beast-Mask Mok'Nathal Beast-Mask	Drop: Exarch Maladaar (Auchenai Crypts)
+
+Best in Slot Shoulder Armor for Survival Hunter in TBC Classic Phase 1
+Beast Lord Mantle is another piece of the beast lord set and one that will never change regardless of what gearset you go with. Optional items are presented below, but should only be used until you can obtain your Beast Lord Mantle. You'll want to match colors appropriately with the gem socket options here.
+Rank	Item	Source
+Best	Beast Lord Mantle Beast Lord Mantle	Drop: Warlord Kalithresh (The Steamvault)
+Optional	Expedition Scout's Epaulets Expedition Scout's Epaulets	Quest:Fel Embers Fel Embers
+Optional	Wastewalker Shoulderpads Wastewalker Shoulderpads	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+Optional	Mantle of Perenolde Mantle of Perenolde	Drop: Epoch Hunter (Hold Hillsbrad Foothills)
+Best in Slot Back Armor for Survival Hunter in TBC Classic Phase 1
+Drape of the Dark Reavers is the BiS cloak until phase 2; however is an extremely small upgrade over Blood Knight War Cloak. Either cloak will serve you well in Phase 1.
+Rank	Item	Source
+Best	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+Best	Blood Knight War Cloak Blood Knight War Cloak	Vendor: G'eras (25 Badges of Justice)
+Strong	Vengeance Wrap Vengeance Wrap	Profession: Tailoring (BoE)
+Optional	Cloak of the Pit Stalker Cloak of the Pit Stalker	Drop: Magtheridon (Magtheridon's Lair)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Should you not have the gold or time to farm the materials to craft the recommended cloak, you can look into these options as well. It should be noted that Drape of the Dark Reavers is a required item for 9% gearsets.
+
+Rank	Item	Source
+Optional	Auchenai Death Shroud Auchenai Death Shroud	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+Optional	Cloak of the Inciter Cloak of the Inciter	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Best in Slot Chest Armor for Survival Hunter in TBC Classic Phase 1
+Beast Lord Cuirass is another piece used for the 4 set bonus; however, it is one of the pieces that will be changed out based on the rest of your gearset. You'll want to match colors appropriately with the gem socket options here.
+Rank	Item	Source
+Best	Beast Lord Cuirass Beast Lord Cuirass	Drop: Warp Splinter (The Botanica)
+Best	Primalstrike Vest Primalstrike Vest	Profession: Elemental Leatherworking (Bind on Creation)
+Optional	Ebon Netherscale Breastplate Ebon Netherscale Breastplate	Profession: Dragonscale Leatherworking (Bind on Creation)
+Optional	Hauberk of Karabor Hauberk of Karabor	Quest:Varedis Must Be Stopped Varedis Must Be Stopped
+Best in Slot Wrist Armor for Survival Hunter in TBC Classic Phase 1
+Our best bracers are unfortunately Ravager's Bands of the Agility. The reason this is unfortunate is that the boss that drops this is one of three random bosses that can spawn in Karazhan, and the bracers will give a random stat that isn't always Agility. Nightfall Wristguards are much easier to get with significantly less RNG.
+Rank	Item	Source
+Best	Ravager's Bands Ravager's Bands of Agility	Rokad the Ravager - Karazhan
+Best	Nightfall Wristguards Nightfall Wristguards	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Very Strong	Primalstrike Bracers Primalstrike Bracers	Profession: Elemental Leatherworking (Bind on Creation)
+Optional	Felstalker Bracers Felstalker Bracers	Profession: Leatherworking - Pattern Requires Honored with Honor Hold / Thrallmar (BoE)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Both of these will require Leatherworking, but one requires Dragonscale Leatherworking, while the other requires Elemental.
+
+Rank	Item	Source
+Optional	Ebon Netherscale Bracers Ebon Netherscale Bracers	Profession: Dragonscale Leatherworking (Bind on Creation)
+
+Best in Slot Hand Armor for Survival Hunter in TBC Classic Phase 1
+Beast Lord Handguards are the final and fourth piece of the Beast Lord set that hunters will wear and are not replaced by any different gear sets.
+Rank	Item	Source
+Best	Beast Lord Handguards Beast Lord Handguards	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Optional	Gloves of Dexterous Manipulation Gloves of Dexterous Manipulation	Drop: Attumen the Huntsman (Karazhan)
+Optional	Gauntlets of the Dragonslayer Gauntlets of the Dragonslayer	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Optional	Fel Leather Gloves Fel Leather Gloves	Profession: Leatherworking - Pattern Requires Friendly with The Consortium
+Best in Slot Waist Armor for Survival Hunter in TBC Classic Phase 1
+Just like our best wrists, our belt also shares the same unfortunate RNG situation with Lurker's Belt of Agility, requiring the right boss of three to spawn, and hopefully the right stat of
+twenty-eight to drop as well.
+Rank	Item	Source
+Best	Lurker's Belt Lurker's Belt of Agility	Hyakiss the Lurker - Karazhan
+Best	Girdle of Treachery Girdle of Treachery	Drop: Echo of Medivh (Karazhan)
+Optional	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus (Heroic The Black Morass)
+Optional	Primalstrike Belt Primalstrike Belt	Profession: Elemental Leatherworking (Bind on Creation)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+While you are waiting to get the best mentioned above, you can look at these options as well. Note that Primalstrike Belt used with the other two pieces for the set bonus is the next best option.
+
+Rank	Item	Source
+Optional	Dunewind Sash Dunewind Sash	Drop: Ghaz'an (Heroic The Underbog)
+Optional	Ebon Netherscale Belt Ebon Netherscale Belt	Profession: Dragonscale Leatherworking (Bind on Creation)
+Optional	Girdle of the Prowler Girdle of the Prowler	Drop: Terestian Illhoof (Karazhan)
+Optional	Gronn-Stitched Girdle Gronn-Stitched Girdle	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+Best in Slot Leg Armor for Survival Hunter in TBC Classic Phase 1
+Scaled Greaves of the Marksman are BiS for how much Agility it offers, and the fact that all gem sockets are red with the bonus also gives an additional +4 Agility! However, obtaining them unfortunately will either be extremely difficult or expensive early on, so your next best option will be Skulker's Greaves.
+Rank	Item	Source
+Best	Scaled Greaves of the Marksman Scaled Greaves of the Marksman	Drop: Doom Lord Kazzak (World Boss in Hellfire Peninsula)
+Best	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+Optional	Beast Lord Leggings Beast Lord Leggings	Drop: Warlord Kalithresh (The Steamvault)
+Optional	Midnight Legguards Midnight Legguards	Drop: Quagmirran (Heroic The Slave Pens)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Outside of Skulker's Greaves, you can get Beast Lord Leggings, as they are another piece of the set used to achieve the set bonus and are potentially used based on the gearset you decide to use.
+
+Rank	Item	Source
+Optional	Wastewalker Leggings Wastewalker Leggings	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+
+Best in Slot Feet Armor for Survival Hunter in TBC Classic Phase 1
+Glider's Sabatons of Agility is the final piece of RNG boss loot from Karazhan's "basement event" that is our BiS. Just like our waist and wrists, you should look for the next best option, being Edgewalker Longboots, as you have to hope the right boss spawns, the right item drops, AND the right stat is put on said item!
+Rank	Item	Source
+Best	Glider's Sabatons Glider's Sabatons of Agility	Shadikith the Glider - Karazhan
+Best	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+Optional	Fiend Slayer Boots Fiend Slayer Boots	Drop: Echo of Medivh (Karazhan)
+Optional	Rapscallion Boots Rapscallion Boots	Drop: Shade of Aran (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+These next three options will all be easier to obtain, as two are from dungeons and one is relatively uncontested.
+
+Rank	Item	Source
+Optional	Shadowstep Striders Shadowstep Striders	Drop: Harbinger Skyriss (The Arcatraz)
+Optional	Fel Leather Boots Fel Leather Boots	Profession: Leatherworking - Pattern Requires Honored with The Consortium
+
+Best in Slot Neck Jewelry for Survival Hunter in TBC Classic Phase 1
+Jagged Bark Pendant , although it might not look strong simply for being a Rare item, will carry over from our Pre-Raid BiS simply due to its high base Agility.
+Rank	Item	Source
+Best	Jagged Bark Pendant Jagged Bark Pendant	Drop: Warp Splinter (The Botanica)
+Optional	Saberclaw Talisman Saberclaw Talisman	Drop: Shade of Aran (Karazhan)
+High Agility	Prestor's Talisman of Connivery Prestor's Talisman of Connivery	Drop: Nefarian (Blackwing Lair)
+Great	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+
+Rank	Item	Source
+Great	Worgen Claw Necklace Worgen Claw Necklace	Drop: Attumen the Huntsman (Karazhan)
+Optional	Earthen Mark of Razing Earthen Mark of Razing	Quest:Gurok the Usurper Gurok the Usurper
+
+Best in Slot Ring Jewelry for Survival Hunter in TBC Classic Phase 1
+Ring of the Recalcitrant and Pathfinder's Band will be our BiS rings to pair. The former will be very contested, however, so you may want to look into our alternatives below.
+Rank	Item	Source
+Best	Ring of the Recalcitrant Ring of the Recalcitrant	Quest reward from Magtheridon's Head Magtheridon's Head: Drops from Magtheridon (Magtheridon's Lair)
+Best	Pathfinder's Band Pathfinder's Band	World Drop: The Outland
+2nd Best	Garona's Signet Ring Garona's Signet Ring	Drop: The Curator (Karazhan)
+Optional	Ravenclaw Band Ravenclaw Band	Drop: Talon King Ikiss (Sethekk Halls)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Garona's Signet Ring will be the next best ring against Ring of the Recalcitrant. Other than that, you have some other options as well, with a couple being very obtainable from Quests!
+
+Rank	Item	Source
+Optional	Shaffar's Band of Brutality Shaffar's Band of Brutality	Drop: Yor (Heroic Mana-Tombs)
+Optional	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+Optional	Kaylaan's Signet Kaylaan's Signet	Quest:Deathblow to the Legion Deathblow to the Legion
+Optional	Slayer's Mark of the Redemption Slayer's Mark of the Redemption	Quest: Dissension Amongst the Ranks... Dissension Amongst the Ranks...
+Optional	Band of Unnatural Forces Band of Unnatural Forces	Drop: Loatheb (Naxxramas)
+Optional	Band of Anguish Band of Anguish	Quest: News of Victory News of Victory
+
+Best in Slot Trinkets for Survival Hunter in TBC Classic Phase 1
+Dragonspine Trophy and Bloodlust Brooch are our two BiS trinkets. The former is incredibly contested, however, and will not be replaced until the final raid tier, so you should definitely look into obtaining one of the alternates until then.
+Rank	Item	Source
+Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Optional	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+Optional	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar)
+
+
+Other Trinket Recommendations
+
+These options will still be contested as everyone will be looking to farm their 2nd BiS while waiting for the Dragonspine Trophy.
+
+Rank	Item	Source
+Optional	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Sartura (Ahn'Qiraj)
+Optional	Bladefist's Breadth Bladefist's Breadth	Quest: Overlord Overlord /Cruel's Intentions Cruel's Intentions
+
+Weapons for Survival Hunter DPS in TBC Classic Phase 1
+Hunters can opt into either using Duel Wield Weapons or a Two-Hand Weapon for additional stats outside of their ranged weapon. Opting into the latter means you'll want to do additional damage with "Melee Weaving", where you will deal melee damage from our Two-Hand Weapon in between your auto-shots. We'll be going over all the available options for the Survival Hunter below.
+Duel Wield Weapons
+Stellaris is the best main hand for Survival Hunters for its high agility. Should you choose to use fist weapons and take advantage of Adamantite Weightstone Adamantite Weightstone, then you'll use Claw of the Watcher instead. You will also pair this with Blade of the Unrequited due to the 3 sockets giving the highest available Agility
+Rank	Item	Source
+Best MH	Stellaris Stellaris	Drop: Nethermancer Sepethrea (The Mechanar)
+Best MH	Claw of the Watcher Claw of the Watcher	Drop: Shirrak the Dead Watcher (Auchenai Crypts)
+Best OH	Blade of the Unrequited Blade of the Unrequited	Drop: Julianne (Karazhan)
+Optional MH / OH	Guile of Khoraazi Guile of Khoraazi	Vendor: Paulsta'ats - Requires Exalted with The Consortium
+
+
+Other Duel Wield Weapon Recommendations
+
+These options are solid and will be considerably easier to obtain, as many are uncontested or simply require reputations to obtain. Note that Guile of Khoraazi is great for both Main-Hand and Off-Hand.
+Main Hand
+The rest of these on the list will be optional. Main-Hand weapons should you not be able to obtain the recommended above.
+Rank	Item	Source
+Optional	Emerald Ripper Emerald Ripper	Drop: Moroes (Karazhan)
+Optional	Big Bad Wolf's Paw Big Bad Wolf's Paw	Drop: The Big Bad Wolf (Karazhan)
+Optional	Silithid Claw Silithid Claw	Drop: Battleguard Sartura (Ahn'Qiraj)
+Optional	Ripfang Paw Ripfang Paw	Quest:Declawing Doomclaw Declawing Doomclaw
+Offhand
+Void-Talon is a very easily obtainable Off-Hand Fist Weapon purchased from a vendor in Netherstorm
+Rank	Item	Source
+Optional	Void-Talon Void-Talon	Vendor: Dealer Jadyan
+Optional	Stormreaver Warblades Stormreaver Warblades	Drop: High Botanist Freywinn (The Botanica)
+Optional MH / OH	Guile of Khoraazi Guile of Khoraazi	Vendor: Paulsta'ats - Requires Exalted with The Consortium
+Optional	Claw of the Frost Wyrm Claw of the Frost Wyrm	Drop: Sapphiron (Naxxramas)
+
+Two-Hand Weapons
+Survival Hunters will have it much easier than Marksmanship for their best Two-Hand weapon, as Legacy will be our best option due to its high amount of Agility and coming from a relatively easy encounter in Karazhan, whereas Survival's best, Mooncleaver, has no Agility.
+Rank	Item	Source
+Best	Legacy Legacy	Drop: The Big Bad Wolf (Karazhan)
+Optional	Mooncleaver Mooncleaver	Profession: Master Axesmith Blacksmithing (Bind on Creation)
+Optional	Sonic Spear Sonic Spear	Drop: Murmur (Shadow Labyrinth)
+Optional	Quantum Blade Quantum Blade	Drop: Aeonus (Heroic The Black Morass)
+
+
+Other Two-Hand Weapon Recommendations
+Rank	Item	Source
+Optional	The Eye of Nerub The Eye of Nerub	Drop: Loatheb (Naxxramas)
+Optional	Terokk's Quill Terokk's Quill	Quest: Terokk's Legacy Terokk's Legacy
+
+Ranged Weapons
+Sunfury Bow of the Phoenix is technically 2nd in Phase 1 BiS since Barrel-Blade Longrifle exists. However, the latter comes from a World Boss, so unless you are actually in contention for these bosses, your likelihood of even having a chance at this weapon is almost nonexistent.
+Rank	Item	Source
+Best	Sunfury Bow of the Phoenix Sunfury Bow of the Phoenix	Drop: Prince Malchezaar (Karazhan)
+Best	Barrel-Blade Longrifle Barrel-Blade Longrifle	Drop: Doomwalker (Shadowmoon Valley World Boss)
+Optional	Wolfslayer Sniper Rifle Wolfslayer Sniper Rifle	Drop: The Big Bad Wolf (Karazhan)
+Optional	Wrathtide Longbow Wrathtide Longbow	Drop: Warlord Kalithresh (Heroic The Steamvault)
+
+
+Other Ranged Weapon Recommendations
+Rank	Item	Source
+Optional	Don Santos' Famous Hunting Rifle Don Santos' Famous Hunting Rifle	World Drop - Outland
+Optional	Veteran's Musket Veteran's Musket
+Marksman's Bow Marksman's Bow	Vendor: Logistics Officer Ulrike Requires Exalted with Honor Hold
+Vendor: Quartermaster Urgronn Requires Exalted with Thrallmar
+Optional	Steelhawk Crossbow Steelhawk Crossbow	Drop: Attumen the Huntsman (Karazhan)
+Optional	Nerubian Slavemaker Nerubian Slavemaker	Drop: Kel'Thuzad (Naxxramas)
+Optional	Valanos' Longbow Valanos' Longbow	World Drop - Outland
+
+Quivers / Ammo Pouches for Survival Hunter DPS in TBC Classic Phase 1
+Hunters are unique in that they have to use one of their bag slots specifically for their ammunition. If you use a Bow / Crossbow, then you will use a Quiver. If using a Gun, then you'll use an Ammo Pouch. Below, you can use the togglers to see which specific ones you need and can obtain in TBC Classic.
+
+Quivers
+
+Quivers in TBCC are limited in phase 1. If you obtained Ancient Sinew Wrapped Lamina in Classic, then you will continue to use it until later phases when larger quantity quivers are released. If you did not obtain this, then you can purchase Clefthoof Hide Quiver or Worg Hide Quiver depending on your faction.
+
+All quiver stats share the same 15% ranged attack speed; the only difference is the slot size.
+Rank	Item	Source
+BiS	Ancient Sinew Wrapped Lamina Ancient Sinew Wrapped Lamina	Ancient Petrified Leaf Ancient Petrified Leaf from Majordomo Executus (Molten Core)
+BiS	Clefthoof Hide Quiver Clefthoof Hide Quiver
+Worg Hide Quiver Worg Hide Quiver	Vendor: Provisioner Nasela - Requires Honored with The Mag'har
+Vendor: Trader Narasu - Requires Honored with Kurenai
+Optional	Harpy Hide Quiver Harpy Hide Quiver	Vendor:Jekyll Flandring
+Vendor: Thanthaldis Snowgleam
+
+
+Ammo Pouches
+
+Ammo Pouches in TBCC are quite limited currently in Phase 1. Your best option is Smuggler's Ammo Pouch if you did not obtain Gnoll Skin Bandolier in Classic. Both ammo pouches share the same 15% ranged attack speed; the only difference is the slot size.
+Rank	Item	Source
+BiS	Smuggler's Ammo Pouch Smuggler's Ammo Pouch	Vendor: Karaaz - Requires Honored with The Consortium
+Optional	Gnoll Skin Bandolier Gnoll Skin Bandolier	Vendor: Jekyll Flandring
+Vendor: Thanthaldis Snowgleam
+
+Ammunition for Survival Hunter DPS in TBC Classic Phase 1
+Hunters will also need to use specific ammunition for their weapons, and not only that, certain ammunition will be stronger than others, so it's best to know which one is the best for your specific weapon. Bow / Crossbow users will need Arrows, and Gun users will need Bullets. Below, you can use the togglers to see which specific ones you need and can obtain in TBC Classic.
+
+Arrows
+
+In Phase 1 Warden's Arrow is the best option for Hunters and should be easily obtainable by everyone, only requiring a reputation grind to obtain them. Halaani Razorshaft are the next best option but are only obtainable when your faction controls Halaa in Nagrand.
+Rank	Item	Source
+BiS	Warden's Arrow Warden's Arrow	Vendor: Fedryen Swiftspear - Requires Revered with Cenarion Expedition
+Optional	Halaani Razorshaft Halaani Razorshaft	Vendor: Tasaldan
+Vendor: Banro
+Optional	Blackflight Arrow Blackflight Arrow	Various vendors in Outland
+
+
+Bullets
+
+In Phase 1 Hellfire Shot / Felbane Slugs is the best option for Hunters and should be easily obtainable by everyone, as it only requires a reputation grind to obtain them. Halaani Grimshot are the next best option but are only obtainable when your faction controls Halaa in Nagrand.
+Rank	Item	Source
+BiS	Hellfire Shot Hellfire Shot
+Felbane Slugs Felbane Slugs	Vendor: Logistics Officer Ulrike Requires Revered with Honor Hold
+Vendor: Quartermaster Urgronn Requires Revered with Thrallmar
+Optional	Halaani Grimshot Halaani Grimshot	Vendor: Tasaldan
+Vendor: Banro
+Optional	Ironbite Shell Ironbite Shell	Various vendors in Outland
+
+Veramos
+Classic Hunter Class Writer
+Veramos wrote Hunter guides for Wowhead in Classic through Wrath of the Lich King covering all three major specializations. In addition, he creates content for Classic Hunter (including Season of Discovery) through his YouTube and Twitch channels, as well as through his personal Discord, sharing in-depth analysis on Hunter optimization and advanced techniques.
+1 - 3 of 3
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+4
+
+	
+By Jakobud (11,497 – 2·26·58) on 2021/08/03 (Burning Crusade)	
+	
+You aren't even using your meta gem.......
+
+1
+
+	
+By privatemanos (4,616 – 19·28) on 2021/06/10 (Burning Crusade)	
+	
+My thoughts on SV BiS
+
+After some quick math, Deamon Stalker gives 110 ap and 100 intelect more than beast lord. You have 2% crit less but having to play with 5.6k mana instead of 7.1k mana is kinda sad.
+
+Secondly as Sv hunter if your pet dies the option of revive for 3k mana and 10 sec cast doesn't look viable. With that comes the problem that you can't use kill command anymore to get the armor ignore bonus.
+
+Third problem that comes to mind is that different bosses have different armor values. Also the armor reduction debuffs might expire for various reasons (for example Nightbane Air phase, target switching at the Ogre bosses at Grul) so the armor ignore becomes less valuable.
+
+Here is a link for a fast BiS list i used for SV https://tbc.wowhead.com/gear-set/demon-bis-133285
+Last edited by privatemanos on 2021/06/10
+
+1
+
+	
+By Schullemand (421 – 1·5) on 2021/08/17 (Burning Crusade)	
+	
+Demon Stalker Greaves are better than Midnight Legs for Surv, I would say. Max agi on the Midnight is 24 and it has lower AP bonus.
+1 - 3 of 3
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Hunter Guide
+
+    Overview
+    Pets
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 1 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 2 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+                Best In Slot Gear in Phase 2
+                    Aldor vs. Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Melee Weapons
+                    Ranged Weapons
+                    Quivers / Ammo Pouches
+                    Ammunition
+        Phase 3 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 4 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 5 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Survival Hunter DPS Best in Slot (BiS) Phase 2 Gear Guide - TBC Classic
+By Veramos
+Updated: 2026/05/12
+Welcome to Wowhead's Best in Slot Gear list from Tempest Keep and Serpentshrine Cavern for Survival Hunter DPS in The Burning Crusade Classic. This guide will list the recommended gear for Survival Hunter DPS to acquire while they progress during the second phase of The Burning Crusade Classic, and contains gear sourced from Tempest Keep and Serpentshrine Cavern, plus other pieces from previous phases like Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best in slot lists, including a TBCC pre-patch list and a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Survival Hunter DPS Best in Slot HubSurvival Hunter DPS Pre-Raid Best in Slot
+Best In Slot Gear for Survival Hunter DPS in Phase 2
+In Phase 2, you will notice that the Survival gearset is almost completely identical to Beast Mastery. This is because the gear in Phase 2 that Beast Mastery Hunters also use just naturally has a high amount of Agility. The biggest difference in gearing for Survival is that you will use Netherbane instead of Talon of the Phoenix for your main hand, and your T5 offset piece is also different, as well as your gems will primarily center around all Agility gems.
+
+For melee weaving in Phase 2 as Survival, you want Twinblade of the Phoenix over Bloodmoon for the additional 24 Agility that it would provide.
+
+Survival Hunters looking to gem and enchant their BiS gear should refer to our guide below:
+
+Survival Hunter DPS Gems & Enchants
+
+Aldor vs. Scryer for Survival Hunter DPS in Phase 2
+In Phase 2, The Aldor is still the best faction choice for Hunters; choosing The Scryers is not the end of the world, as the difference is very minor. There are no new key items that we benefit from in Phase 2. The only relevant item is still the shoulder enchant Greater Inscription of Vengeance Greater Inscription of Vengeance or Greater Inscription of the Blade Greater Inscription of the Blade.
+
+Besides the shoulder enchants, there is nothing else of relevance for hunters in terms of raid gear or enchants that we "must" have.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Survival Hunters, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Survival Hunter in TBC Classic Phase 2
+Rift Stalker Helm is BiS, and one of the pieces of the Rift Stalker set that you will never change regardless of what gearset you go with. Tier 5 gear is relatively quick to acquire as more tier tokens drop. Beast Lord Helm will remain best until you obtain your 4/5 pieces of Rift Stalker Armor
+
+With the introduction of Phase 2, we now have the option to craft Surestrike Goggles v2.0. Hunters CAN NOT craft Deathblow X11 Goggles Deathblow X11 Goggles. Even though Surestrike Goggles v2.0 may seem like a great option, using Beast Lord Helm for the 4-piece set bonus is still a dps gain; therefore, it is recommended that you do not craft the engineering goggles.
+Rank	Item	Source
+Best	Rift Stalker Helm Rift Stalker Helm	Helm of the Vanquished Hero Helm of the Vanquished Hero - Lady Vashj
+Best Until Tier 5	Beast Lord Helm Beast Lord Helm	Drop: Pathaleon the Calculator (The Mechanar)
+Optional	Surestrike Goggles v2.0 Surestrike Goggles v2.0	Profession: Engineering (BoP)
+Optional	Demon Stalker Greathelm Demon Stalker Greathelm	Drop: Helm of the Fallen Hero, Prince Malchezaar (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Stealther's Helmet of Second Sight Stealther's Helmet of Second Sight	Teron Gorefiend, I am... Teron Gorefiend, I am.../Teron Gorefiend, I am... Teron Gorefiend, I am...
+Optional	Mok'Nathal Beast-Mask Mok'Nathal Beast-Mask	Drop: Exarch Maladaar (Auchenai Crypts)
+
+Best in Slot Shoulder Armor for Survival Hunter in TBC Classic Phase 2
+Rift Stalker Mantle is another piece of the Rift Stalker set and another one that will never change, regardless of what gearset you go with. Optional items are presented below, but should only be used until you can obtain your Rift Stalker Mantle.
+Rank	Item	Source
+Best	Rift Stalker Mantle Rift Stalker Mantle	Drop: Pauldrons of the Vanquished Hero: Void Reaver (Tempest Keep)
+Best Until Tier 5	Beast Lord Mantle Beast Lord Mantle	Drop: Warlord Kalithresh (The Steamvault)
+Optional	Shoulderpads of the Stranger Shoulderpads of the Stranger	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Optional	Wastewalker Shoulderpads Wastewalker Shoulderpads	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Mantle of the Tireless Tracker Mantle of the Tireless Tracker	Drop: Morogrim Tidewalker( Serpentshrine Cavern)
+Optional	Expedition Scout's Epaulets Expedition Scout's Epaulets	Quest:Fel Embers Fel Embers
+Optional	Mantle of Perenolde Mantle of Perenolde	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+
+Best in Slot Back Armor for Survival Hunter in TBC Classic Phase 2
+Thalassian Wildercloak is the new BiS cloak for Phase 2. The small increase in Agility and large chunk of Attack Power are a decent upgrade, and you can now afford to lose the hit rating from Drape of the Dark Reavers.
+Rank	Item	Source
+Best	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep)
+Optional	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+Optional	Blood Knight War Cloak Blood Knight War Cloak	Vendor: G'eras, Shattrath City - 25 Badges of Justice
+Optional	Auchenai Death Shroud Auchenai Death Shroud	Avatar of the Martyred (Heroic Auchenai Crypts)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Vengeance Wrap Vengeance Wrap	Profession: Tailoring
+Optional	Cloak of the Pit Stalker Cloak of the Pit Stalker	Drop: Magtheridon (Magtheridon's Lair)
+Optional	Cloak of the Inciter Cloak of the Inciter	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Best in Slot Chest Armor for Survival Hunter in TBC Classic Phase 2
+Rift Stalker Hauberk is another piece used for the 4 set bonus. Like other Tier pieces, Beast Lord will continue to be used until you obtain your 4 pieces of Rift Stalker.
+Rank	Item	Source
+Best	Rift Stalker Hauberk Rift Stalker Hauberk	Drop: Chestguard of the Vanquished Hero: Kael'thas Sunstrider (Tempest Keep)
+Best Until Tier 5	Beast Lord Cuirass Beast Lord Cuirass	Drop: Warp Splinter (The Botanica)
+Optional	Primalstrike Vest Primalstrike Vest	Profession: Elemental Leatherworking (BoP)
+Optional	Hauberk of Karabor Hauberk of Karabor	Quest:Varedis Must Be Stopped Varedis Must Be Stopped
+Best in Slot Wrist Armor for Survival Hunter in TBC Classic Phase 2
+Vambraces of Ending are BiS in regards to balancing both personal DPS as well as raid wide dps increase, however Ravager's Bands of Agility will still provide the best overall raid-wide increase at a loss of personal DPS. Remember, the odds of getting these, however, are extremely low.
+Rank	Item	Source
+Best	Vambraces of Ending Vambraces of Ending	Drop: High Astromancer Solarian (Tempest Keep)
+Best Raid Wide Increase	Ravager's Bands Ravager's Bands of Agility	Drop: Rokad the Ravager (Karazhan)
+Optional	Felstalker Bracers Felstalker Bracers	Profession: Leatherworking (BoE)
+Optional	Bands of the Celestial Archer Bands of the Celestial Archer	Drop: Tempest Keep Trash Mobs
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Primalstrike Bracers Primalstrike Bracers	Profession: Elemental Leatherworking (BoP)
+Optional	Nightfall Wristguards Nightfall Wristguards	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+
+Best in Slot Hand Armor for Survival Hunter in TBC Classic Phase 2
+Gloves of Dexterous Manipulation are the BiS off-set piece to T5 for Survival Hunters and are the major variance to Beast Mastery. With 2 sockets available and the high raw Agility, these are hands down the best option to use.
+Rank	Item	Source
+Best	Gloves of Dexterous Manipulation Gloves of Dexterous Manipulation	Drop: Attumen the Huntsman (Karazhan)
+Optional	Beast Lord Handguards Beast Lord Handguards	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Optional	Gauntlets of the Dragonslayer Gauntlets of the Dragonslayer	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Optional	Fel Leather Gloves Fel Leather Gloves	Profession: Leatherworking (BoE)
+Best in Slot Waist Armor for Survival Hunter in TBC Classic Phase 2
+Belt of Deep Shadow Is now the new absolute BiS belt. If, for any reason, this is changed on live, then the next best option is Belt of One-Hundred Deaths, however this will be highly prioritized and sought after by melee due to the expertise rating, so Hunters will be low on the priority. Lurker's Belt of Agility will still provide the best overall raid-wide dps increase at a loss of personal dps. Remember, just like the bracers, the odds of getting these, however, are extremely low.
+Rank	Item	Source
+Best	Belt of Deep Shadow Belt of Deep Shadow	Profession: Leatherworking
+Best Raid Wide Increase	Lurker's Belt Lurker's Belt of Agility	Drop: Hyakiss the Lurker (Karazhan)
+Optional	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentsrhine Cavern)
+Optional	Belt of the Black Eagle Belt of the Black Eagle	Profession: Leatherworking
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Girdle of Treachery Girdle of Treachery	Echo of Medivh (Karazhan)
+Optional	Dunewind Sash Dunewind Sash	Drop: Ghaz'an (Heroic The Underbog)
+Optional	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus (Heroic Black Morass)
+Optional	Girdle of the Prowler Girdle of the Prowler	Drop: Terestian Illhoof (Karazhan)
+Optional	Primalstrike Belt Primalstrike Belt	Profession: Elemental Leatherworking (BoP)
+Optional	Gronn-Stitched Girdle Gronn-Stitched Girdle	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+Best in Slot Leg Armor for Survival Hunter in TBC Classic Phase 2
+Rift Stalker Leggings are BiS for Survival Hunters, unlike Beast Mastery, and are used as one of the pieces for the 4 set bonus.
+Rank	Item	Source
+Best	Rift Stalker Leggings Rift Stalker Leggings	Drop: Leggings of the Vanquished Hero: Fathom-Lord Karathress (Serpentshrine Cavern)
+Optional	Scaled Greaves of the Marksman Scaled Greaves of the Marksman	Drop: Doom Lord Kazzak (World Boss)
+Optional	Void Reaver Greaves Void Reaver Greaves	Drop: Void Reaver (Tempest Keep)
+Optional	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Wastewalker Leggings Wastewalker Leggings	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Optional	Midnight Legguards Midnight Legguards	Drop: Quagmirran (Heroic Slave Pens)
+
+Best in Slot Feet Armor for Survival Hunter in TBC Classic Phase 2
+Cobra-Lash Boots or Star-Strider Boots are completely identical in dps stats, with the former giving slightly more Intellect, making it the absolute BiS option. This again makes gearing slightly easier as you are not dependent on a single item for BiS. Glider's Sabatons of Agility are still the best raid-wide increase at a personal dps loss. These are also a part of the RNG boss/loot bosses in Karazhan, unfortunately.
+Rank	Item	Source
+Best	Cobra-Lash Boots Cobra-Lash Boots	Drop: Lady Vashj (Serpentshrine Cavern)
+Best	Star-Strider Boots Star-Strider Boots	Drop: High Astromancer Solarian (Tempest Keep)
+Best Raid Wide Increase	Glider's Sabatons Glider's Sabatons of Agility	Drop: Shadikith the Glider (Karazhan)
+Optional	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Fiend Slayer Boots Fiend Slayer Boots	Drop: Echo of Medivh (Karazhan)
+Optional	Shadowstep Striders Shadowstep Striders	Drop: Harbinger Skyriss (Heroic The Arcatraz)
+Optional	Fel Leather Boots Fel Leather Boots	Profession: Leatherworking
+Optional	Rapscallion Boots Rapscallion Boots	Drop: Shade of Aran (Karazhan)
+
+Best in Slot Neck Jewelry for Survival Hunter in TBC Classic Phase 2
+Telonicus's Pendant of Mayhem is BiS; however is the quest reward from Verdant Sphere Verdant Sphere that drops from Kael'thas Sunstrider. This will be highly contested for many classes, so you may have to wait a while depending on how your guild's loot system is set up.
+
+A good alternative that is relatively cheap to craft and extremely easy to acquire is Necklace of the Deep. This will be your best option to aim for until you get your true BiS necklace.
+Rank	Item	Source
+Best	Telonicus's Pendant of Mayhem Telonicus's Pendant of Mayhem	Drop: Quest Reward from Verdant Sphere Verdant Sphere - Kael'thas Sunstrider (Tempest Keep)
+Optional	Necklace of the Deep Necklace of the Deep	Profession: Jewelcrafting
+Optional	Jagged Bark Pendant Jagged Bark Pendant	Drop: Warp Splinter (The Botanica)
+Optional	Prestor's Talisman of Connivery Prestor's Talisman of Connivery	Drop: Nefarian (Blackwing Lair)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+
+Rank	Item	Source
+Optional	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+Optional	Worgen Claw Necklace Worgen Claw Necklace	Drop: Attumen the Huntsman (Karazhan)
+Optional	Saberclaw Talisman Saberclaw Talisman	Drop: Shade of Aran (Karazhan)
+Optional	Earthen Mark of Razing Earthen Mark of Razing	Quest:Gurok the Usurper Gurok the Usurper
+
+Best in Slot Ring Jewelry for Survival Hunter in TBC Classic Phase 2
+Ring of the Recalcitrant remains BiS for the first ring slot. Band of Eternity becomes the new second BiS ring due to the high Agility. This should eliminate the competition with fighting over rings with Beast Mastery Hunters, as they prefer Band of the Ranger-General
+Rank	Item	Source
+Best	Ring of the Recalcitrant Ring of the Recalcitrant	Quest: The Fall of Magtheridon The Fall of Magtheridon/The Fall of Magtheridon The Fall of Magtheridon (Magtheridon's Lair)
+Optional	Band of Eternity Band of Eternity	Quest:Champion's Pledge Champion's Pledge (Caverns of Time)
+Optional	Ring of Lethality Ring of Lethality	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Optional	Pathfinder's Band Pathfinder's Band	World Drop: The Outland
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+
+Rank	Item	Source
+Optional	Garona's Signet Ring Garona's Signet Ring	Drop: The Curator (Karazhan)
+Optional	Ravenclaw Band Ravenclaw Band	Drop: Talon King Ikiss (Sethekk Halls)
+Optional	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+Optional	Shaffar's Band of Brutality Shaffar's Band of Brutality	Drop: Yor (Heroic Mana-Tombs)
+Optional (Aldor)	Kaylaan's Signet Kaylaan's Signet	Quest:Deathblow to the Legion Deathblow to the Legion
+Optional	Slayer's Mark of the Redemption Slayer's Mark of the Redemption	Quest:Dissension Amongst the Ranks... Dissension Amongst the Ranks... /Dissension Amongst the Ranks... Dissension Amongst the Ranks...
+Optional	Band of Unnatural Forces Band of Unnatural Forces	Drop: Loatheb (Naxxramas)
+Optional	Band of Anguish Band of Anguish	Quest:News of Victory News of Victory
+
+Best in Slot Trinkets for Survival Hunter in TBC Classic Phase 2
+Dragonspine Trophy and Bloodlust Brooch remain BiS in Phase 2. Tsunami Talisman is an upgraded version of Hourglass of the Unraveller and heavily reliant on a low proc chance which is only really beneficial on very short boss fights which will not be the case in Phase 2.
+Rank	Item	Source
+Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Optional	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar)
+Optional	Tsunami Talisman Tsunami Talisman	Drop: Leotheras the Blind (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+
+Rank	Item	Source
+Optional	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+Optional	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Satura - Ahn'Qiraj
+Optional	Bladefist's Breadth Bladefist's Breadth	Quest:Overlord Overlord/Cruel's Intentions Cruel's Intentions
+
+Best in Slot Melee Weapons for Survival Hunter in TBC Classic Phase 2
+Dual-Wield Weapons
+Netherbane is the best main hand for Survival Hunters due to the high Agility. This axe is essentially an upgraded Stellaris. For the overall highest Agility option, you'd wear two of these. However, for the best personal DPS, you'd pair Netherbane in the main-hand with Claw of the Phoenix in the offhand, using an Adamantite Weightstone Adamantite Weightstone to make it better than using two Netherbanes.
+Rank	Item	Source
+Best MH/OH	Netherbane Netherbane	Drop: Al'ar (Tempest Keep)
+Best OH - Personal DPS	Claw of the Phoenix Claw of the Phoenix	Drop: Al'ar (Tempest Keep)
+Optional MH/OH	Stellaris Stellaris	Drop: Nethermancer Sepethrea (The Mechanar)
+Optional MH	Claw of the Watcher Claw of the Watcher	Drop: Shirrak the Dead Watcher (Heroic Auchenai Crypts)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Duel Wield Weapon Recommendations
+Rank	Item	Source
+Optional MH/OH	Guile of Khoraazi Guile of Khoraazi	Reputation: Exalted The Consortium (Nagrand)
+Optional MH	Emerald Ripper Emerald Ripper	Drop: Moroes (Karazhan)
+Optional MH	Big Bad Wolf's Paw Big Bad Wolf's Paw	Drop: The Big Bad Wolf (Karazhan)
+Optional MH/OH	Blade of the Unrequited Blade of the Unrequited	Drop: Julianne (Karazhan)
+Optional OH	Void-Talon Void-Talon	Vendor: Dealer Jadyan
+Optional OH	Stormreaver Warblades Stormreaver Warblades	Drop: High Botanist Freywinn (The Botanica)
+Optional	Claw of the Frost Wyrm Claw of the Frost Wyrm	Drop: Sapphiron (Naxxramas)
+
+Two-Handed
+Twinblade of the Phoenix and Bloodmoon are the two viable and extremely close options for BiS; however, as Survival, you would want to prioritize the former to take advantage of the 3 sockets for an extra 24 Agility.
+Rank	Item	Source
+Best	Twinblade of the Phoenix Twinblade of the Phoenix	Drop: Kael'thas Sunstrider (Tempest Keep)
+Best	Bloodmoon Bloodmoon	Profession: Master Axesmith Blacksmith (BoP)
+Optional	Legacy Legacy	Drop: The Crone (Karazhan)
+Optional	Mooncleaver Mooncleaver	Profession: Master Axesmith Blacksmith (BoP)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Two-Hand Weapon Recommendations
+Rank	Item	Source
+Optional	Sonic Spear Sonic Spear	Drop: Murmur (The Black Morass)
+Optional	Quantum Blade Quantum Blade	Drop: Aeonus (Heroic The Black Morass)
+Optional	The Eye of Nerub The Eye of Nerub	Drop: Loatheb (Naxxramas)
+Optional	Terokk's Quill Terokk's Quill	Quest:Terokk's Legacy Terokk's Legacy
+
+Best in Slot Ranged Weapons for Survival in TBC Classic Phase 2
+Serpent Spine Longbow is Phase 2 BiS for Survival Hunters. While you would benefit from the Agility that Arcanite Steam-Pistol, Barrel-Blade Longrifle, or Sunfury Bow of the Phoenix provide, the overall dps increase you gain outweighs the bonus you would otherwise provide with Expose Weakness.
+Rank	Item	Source
+Best	Serpent Spine Longbow Serpent Spine Longbow	Drop: Lady Vashj (Serpentshrine Cavern)
+Optional	Arcanite Steam-Pistol Arcanite Steam-Pistol	Drop: Al'ar (Tempest Keep)
+Optional	Barrel-Blade Longrifle Barrel-Blade Longrifle	Drop: Doomwalker (World Boss)
+Optional	Sunfury Bow of the Phoenix Sunfury Bow of the Phoenix	Drop: Prince Malchezaar (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ranged Weapon Recommendations
+Rank	Item	Source
+Optional	Wrathtide Longbow Wrathtide Longbow	Drop: Warlord Kalithresh (The Steamvault)
+Optional	Wolfslayer Sniper Rifle Wolfslayer Sniper Rifle	Drop: The Big Bad Wolf (Karazhan)
+Optional	Steelhawk Crossbow Steelhawk Crossbow	Drop: Attumen the Huntsman (Karazhan)
+Optional	Nerubian Slavemaker Nerubian Slavemaker	Drop: Kel'Thuzad (Naxxramas)
+Optional	Veteran's Musket Veteran's Musket
+Marksman's Bow Marksman's Bow	Reputation: Exalted Honor Hold (Hellfire Peninsula)
+Reputation: Exalted Thrallmar (Hellfire Peninsula)
+Optional	Don Santos' Famous Hunting Rifle Don Santos' Famous Hunting Rifle	World Drop: The Outland
+Optional	Valanos' Longbow Valanos' Longbow	World Drop: The Outland
+
+Quivers / Ammo Pouches for Survival Hunter DPS in TBC Classic Phase 2
+Hunters are unique in that they have to use one of their bag slots specifically for their ammunition. If you use a Bow / Crossbow, then you will use a Quiver. If using a Gun, then you'll use an Ammo Pouch. Below, you can use the togglers to see which specific ones you need and can obtain in TBC Classic.
+
+Quivers
+
+Quivers in TBCC are limited in Phase 2. If you obtained Ancient Sinew Wrapped Lamina in Classic, then you will continue to use it until later phases when larger quantity quivers are released. If you did not obtain this, then you can purchase Clefthoof Hide Quiver or Worg Hide Quiver depending on your faction.
+
+All quiver stats share the same 15% ranged attack speed; the only difference is the slot size.
+Rank	Item	Source
+BiS	Ancient Sinew Wrapped Lamina Ancient Sinew Wrapped Lamina	Ancient Petrified Leaf Ancient Petrified Leaf from Majordomo Executus (Molten Core)
+BiS	Clefthoof Hide Quiver Clefthoof Hide Quiver
+Worg Hide Quiver Worg Hide Quiver	Vendor: Provisioner Nasela - Requires Honored with The Mag'har
+Vendor: Trader Narasu - Requires Honored with Kurenai
+Optional	Harpy Hide Quiver Harpy Hide Quiver	Vendor:Jekyll Flandring
+Vendor: Thanthaldis Snowgleam
+
+
+
+Ammo Pouches
+
+Ammo Pouches in TBCC are quite limited currently in Phase 2. Your best option is Smuggler's Ammo Pouch if you did not obtain Gnoll Skin Bandolier in Classic. Both ammo pouches share the same 15% ranged attack speed; the only difference is the slot size.
+Rank	Item	Source
+BiS	Smuggler's Ammo Pouch Smuggler's Ammo Pouch	Vendor: Karaaz - Requires Honored with The Consortium
+Optional	Gnoll Skin Bandolier Gnoll Skin Bandolier	Vendor: Jekyll Flandring
+Vendor: Thanthaldis Snowgleam
+
+Ammunition for Survival Hunter DPS in TBC Classic Phase 2
+Hunters will also need to use specific ammunition for their weapons, and not only that, certain ammunition will be stronger than others, so it's best to know which one is the best for your specific weapon. Bow / Crossbow users will need Arrows, and Gun users will need Bullets. Below, you can use the togglers to see which specific ones you need and can obtain in TBC Classic.
+
+Arrows
+
+In Phase 2 Adamantite Stinger becomes the new best-in-slot arrows available for Hunters. With Adamantite Arrow Maker Adamantite Arrow Maker being available, you can now also carry a lot more ammo with you and create it as you need.
+Rank	Item	Source
+Best	Adamantite Stinger Adamantite Stinger	Dropped by Sunfury Archer - Profession: Engineering
+Optional	Warden's Arrow Warden's Arrow	Vendor: Fedryen Swiftspear - Requires Revered with Cenarion Expedition
+Optional	Halaani Razorshaft Halaani Razorshaft	Vendor: Tasaldan
+Vendor: Banro
+Optional	Blackflight Arrow Blackflight Arrow	Various vendors in Outland
+
+
+
+Bullets
+
+In Phase 2, Adamantite Shells become the new best-in-slot bullets available for Hunters. With Adamantite Shell Machine Adamantite Shell Machine being available, you can now also carry a lot more ammo with you and create it as you need.
+Rank	Item	Source
+Best	Adamantite Shells Adamantite Shells	Vendor: Wind Trader Lathrai - Profession: Engineering
+Optional	Hellfire Shot Hellfire Shot
+Felbane Slugs Felbane Slugs	Vendor: Logistics Officer Ulrike Requires Revered with Honor Hold
+Vendor: Quartermaster Urgronn Requires Revered with Thrallmar
+Optional	Halaani Grimshot Halaani Grimshot	Vendor: Tasaldan
+Vendor: Banro
+Optional	Ironbite Shell Ironbite Shell	Various vendors in Outland
+
+Veramos
+Classic Hunter Class Writer
+Veramos wrote Hunter guides for Wowhead in Classic through Wrath of the Lich King covering all three major specializations. In addition, he creates content for Classic Hunter (including Season of Discovery) through his YouTube and Twitch channels, as well as through his personal Discord, sharing in-depth analysis on Hunter optimization and advanced techniques.
+1 - 1 of 1
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By Frostbaal (2,587 – 8·7) on 2026/03/09 (Burning Crusade)	
+	
+The difference between gloves of dexterious manipulation + 4 pc T5 and any of the optional top 2 legs + 4 pc T5 is neglible and a bit of a personal preference. Strange to omit the T5 gloves from the entire list for that reason. Just pick whatever you get your hands on first of the 2 options imo.
+
+2
+
+	
+
+Ocisly on 2026/03/17 (Burning Crusade)
+As survival you dont need to go for 4p T5. Just get helm + shoulders, chest is rangers generals & legs is void reavers greaves + gloves of dext. manipulation => SAME personal dps, but +24 more agility over the 4p T5 with dext. gloves. = reduced loot competition + early break of D3 (get ranger generals + dext. gloves + either T4 helm or badge helm). Technically bis (+20 dps) is wearing ring of lethality instead t6 rep ring and getting shoulderpads of the stranger (your rets and enhancers will hate you :D ) - so only T5 helm needed.
+1 - 1 of 1
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Hunter Guide
+
+    Overview
+    Pets
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 1 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 2 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 3 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+                Best In Slot Gear in Phase 3
+                    Aldor vs. Scryer for Survival Hunter DPS in Phase 3
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Weapons
+                    Ranged Weapons
+                    Quivers
+                    Ammunition
+        Phase 4 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 5 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Survival Hunter DPS Best in Slot (BiS) Phase 3 Gear Guide
+By Veramos
+Updated: 2026/07/27
+Welcome to Wowhead's Best in Slot Gear list from Phase 3 Black Temple and Mount Hyjal for Survival Hunter DPS in The Burning Crusade Classic. This guide will list the recommended gear for Survival Hunter DPS to acquire while they progress during the third phase of The Burning Crusade Classic, and contains gear sourced from Black Temple and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+Best In Slot Gear for Survival Hunter DPS in Phase 3
+In Phase 3, Survival Hunters have it quite a bit easier than Beast Mastery for a few main reasons. The biggest being that you will not need or want two of the highest contested items: Cursed Vision of Sargeras and Stormrage Signet Ring. The second advantage is that only requiring 3% hit makes gearing up and transitioning into Tier 6 gear much easier.
+
+Halberd of Desolation by itself can cover over half of the required Hit Rating early on. This is a very good early option to pick up while you work on acquiring two Blade of Infamy. Madness of the Betrayer is a significant gain for Survival Hunters to acquire early on, as it will be the item that allows you to drop Halberd of Desolation.
+
+Unlike Beast Mastery Hunters, you won't need to look to PvP for weapons, as taking double Blades of Infamy will award the most Agility. However, should you want to be able to swap to Beast Mastery easier, you can look to get the weapons so you don't have to compete for Boundless Agony . As with Beast Mastery Hunters, your best option for breaking 4p Tier 5 early is using the Gronnstalker's Gloves and Gronnstalker's Spaulders.
+
+Survival Hunters looking to gem and enchant their gear should refer to our guide below. Survival Hunters looking to gem and enchant their BiS gear should refer to our guide below:
+
+Survival Hunter DPS Gems & Enchants
+Below is a Best-in-Slot gearset for Survival Hunters in Phase 3. As noted earlier, this gear should be much easier and more realistic than their Beast Mastery counterpart.
+
+
+Gronnstalker's Helmet
+Telonicus's Pendant of Mayhem
+Gronnstalker's Spaulders
+Thalassian Wildercloak
+Gronnstalker's Chestguard
+Insidious Bands
+Gronnstalker's Gloves
+Don Alejandro's Money Belt
+Bow-stitched Leggings
+Shadowmaster's Boots
+Ring of the Recalcitrant
+Band of the Eternal Champion
+Dragonspine Trophy
+Madness of the Betrayer
+Blade of Infamy
+Blade of Infamy
+Bristleblitz Striker
+Quiver of a Thousand Feathers
+Link
+Level70
+Aldor vs. Scryer for Survival Hunter DPS in Phase 3
+In Phase 3, The Aldor is still the best faction choice for Hunters; choosing The Scryers is not the end of the world, as the difference is very minor. There are no new key items that we benefit from in Phase 3. The only relevant item is still the shoulder enchant Greater Inscription of Vengeance Greater Inscription of Vengeance or Greater Inscription of the Blade Greater Inscription of the Blade.
+
+Besides the shoulder enchants, there is nothing else of relevance for hunters in terms of raid gear or enchants that we "must" have.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Survival Hunters, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Survival Hunter in TBC Classic Phase 3
+Unlike Beast Mastery Hunters, Survival luckily uses Gronnstalker's Helmet instead of their tier leg options to complete 4p Tier 6. This eliminates the need to fight with all other classes for Cursed Vision of Sargeras. There are no other options or alternatives you should be concerned about, so continue to use Rift Stalker Helm until you acquire your new tier.
+Rank	Item	Source
+Best	Gronnstalker's Helmet Gronnstalker's Helmet	Drop: Helm of the Forgotten Protector - Archimonde (Hyjal Summit)
+Great	Rift Stalker Helm Rift Stalker Helm	Drop: Helm of the Vanquished Hero - Lady Vashj (Serpentshrine Cavern)
+Great (4 Set)	Beast Lord Helm Beast Lord Helm	Drop: Pathaleon the Calculator (The Mechanar)
+Optional	Demon Stalker Greathelm Demon Stalker Greathelm	Drop: Helm of the Fallen Hero, Prince Malchezaar (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Surestrike Goggles v2.0 Surestrike Goggles v2.0	Profession: Engineering (BoP)
+
+Best in Slot Shoulder Armor for Survival Hunter in TBC Classic Phase 3
+Gronnstalker's Spaulders is one of the better individual pieces of Tier 6 for Hunters. Paired with the gloves, they are the best two pieces of Tier 6 to break 4p Tier 5 early with and provide a decent dps gain. Now that Hunters share the tier token with Warriors and Shamans, this token will be contested early on, and Warriors can use it immediately, while Hunters have to wait until obtaining at least 2 pieces.
+Rank	Item	Source
+Best	Gronnstalker's Spaulders Gronnstalker's Spaulders	Drop: Pauldrons of the Forgotten Protector - Mother Shahraz (Black Temple)
+Great	Rift Stalker Mantle Rift Stalker Mantle	Drop: Pauldrons of the Vanquished Hero: Void Reaver (Tempest Keep)
+Great (4 Set)	Beast Lord Mantle Beast Lord Mantle	Drop: Warlord Kalithresh (The Steamvault)
+Optional	Shoulderpads of the Stranger Shoulderpads of the Stranger	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+
+Rank	Item	Source
+Optional - Agility	Wastewalker Shoulderpads Wastewalker Shoulderpads	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+Optional	Mantle of the Tireless Tracker Mantle of the Tireless Tracker	Drop: Morogrim Tidewalker( Serpentshrine Cavern)
+
+Best in Slot Back Armor for Survival Hunter in TBC Classic Phase 3
+Unlike Beast Mastery Hunters, Thalassian Wildercloak remains absolute BiS for Survival in all situations, and you should never be in a position where you need to drop it for Hit Rating on another cloak.
+Rank	Item	Source
+Best	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep)
+Great	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+Optional	Blood Knight War Cloak Blood Knight War Cloak	Vendor: G'eras, Shattrath City - 25 Badges of Justice
+Optional - Agility	Auchenai Death Shroud Auchenai Death Shroud	Avatar of the Martyred (Heroic Auchenai Crypts)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Vengeance Wrap Vengeance Wrap	Profession: Tailoring
+Optional	Cloak of the Pit Stalker Cloak of the Pit Stalker	Drop: Magtheridon (Magtheridon's Lair)
+
+Best in Slot Chest Armor for Survival Hunter in TBC Classic Phase 3
+Gronnstalker's Chestguard is another piece used for the 4 set bonus. By itself, this piece of Tier 6 is not the best to aim for immediately, and you can't use it without the rest of the set. Doing so would result in a dps loss as you would have to break the 4p Tier 5 set bonus.
+This tier token should be passed to the Warriors first, as they can see an immediate use and upgrade with it. Only after obtaining the Tier 6 Shoulders and Gloves should you aim for the chest.
+
+Rift Stalker Hauberk will remain your best option until the time you replace it with Gronnstalker's Chestguard, and no other alternatives should be used or picked up.
+Rank	Item	Source
+Best	Gronnstalker's Chestguard Gronnstalker's Chestguard	Drop: Chestguard of the Forgotten Protector - Illidan Stormrage (Black Temple)
+Best Until Tier 6	Rift Stalker Hauberk Rift Stalker Hauberk	Drop: Chestguard of the Vanquished Hero: Kael'thas Sunstrider (Tempest Keep)
+Best Until Tier 5	Beast Lord Cuirass Beast Lord Cuirass	Drop: Warp Splinter (The Botanica)
+Optional	Primalstrike Vest Primalstrike Vest	Profession: Elemental Leatherworking (BoP)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+
+Rank	Item	Source
+Optional - Agility	Hauberk of Karabor Hauberk of Karabor	Quest:Varedis Must Be Stopped Varedis Must Be Stopped
+
+Best in Slot Wrist Armor for Survival Hunter in TBC Classic Phase 3
+Insidious Bands are the new BiS bracers for Phase 3 and an important piece to pick up sooner rather than later due to the Hit Rating on them helping with all situations. This is one of the few pieces of gear Survival uses to reach hit cap, so I would prioritize them over Beast Mastery.
+
+Vambraces of Ending will remain your BiS until you acquire Bindings of Lightning Reflexes and Swiftstrike Bracers are NOT worth worrying about as Survival, as you actually lose a fair amount of Agility and Attack Power.
+Rank	Item	Source
+Best	Insidious Bands Insidious Bands	Drop: Teron Gorefiend (Black Temple)
+Optional	Vambraces of Ending Vambraces of Ending	Drop: High Astromancer Solarian (Tempest Keep)
+Best Raid Wide Increase	Ravager's Bands Ravager's Bands of Agility	Drop: Rokad the Ravager (Karazhan)
+Optional	Felstalker Bracers Felstalker Bracers	Profession: Leatherworking (BoE)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Bands of the Celestial Archer Bands of the Celestial Archer	Drop: Tempest Keep Trash Mobs
+Optional	Primalstrike Bracers Primalstrike Bracers	Profession: Elemental Leatherworking (BoP)
+Optional	Nightfall Wristguards Nightfall Wristguards	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+
+Best in Slot Hand Armor for Survival Hunter in TBC Classic Phase 3
+Gronnstalker's Gloves are the second biggest piece of Tier 6 for Survival Hunters, which, when paired with the Shoulders or Helm, will allow you to break 4p Tier 5 early.
+There are no alternatives that you should directly aim for, as Gronnstalker's Gloves should be one of your highest priorities in Phase 3.
+
+Gloves of Dexterous Manipulation are still a great option to aim for if you do not already have them while you are waiting to acquire Gronnstalker's Gloves.
+Rank	Item	Source
+Best	Gronnstalker's Gloves Gronnstalker's Gloves	Drop: Gloves of the Forgotten Protector - Azgalor
+Great	Gloves of Dexterous Manipulation Gloves of Dexterous Manipulation	Drop: Attumen the Huntsman (Karazhan)
+Great	Rift Stalker Gauntlets Rift Stalker Gauntlets	Drop: Gloves of the Vanquished Hero: Leotheras the Blind (Serpentshrine Cavern)
+Great (4 Set)	Beast Lord Handguards Beast Lord Handguards	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Gauntlets of the Dragonslayer Gauntlets of the Dragonslayer	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Optional	Fel Leather Gloves Fel Leather Gloves	Profession: Leatherworking (BoE)
+
+Best in Slot Waist Armor for Survival Hunter in TBC Classic Phase 3
+Don Alejandro's Money Belt is a very nice upgrade from Belt of Deep Shadow and is another item that should be prioritized over Beast Mastery Hunters. Boneweave Girdle is not the worst option for Survival, but by no means worth taking, as the hit will not be required and is an overall downgrade, whereas Beast Mastery will be able to take full advantage of the hit.
+Rank	Item	Source
+Best	Don Alejandro's Money Belt Don Alejandro's Money Belt	Drop: Anetheron (Hyjal Summit)
+Optional	Belt of the Black Eagle Belt of the Black Eagle	Profession: Leatherworking
+Optional	Lurker's Belt Lurker's Belt of Agility	Drop: Hyakiss the Lurker (Karazhan)
+Optional	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentsrhine Cavern)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Belt of the Black Eagle Belt of the Black Eagle	Profession: Leatherworking
+Optional	Girdle of Treachery Girdle of Treachery	Echo of Medivh (Karazhan)
+Optional	Dunewind Sash Dunewind Sash	Drop: Ghaz'an (Heroic The Underbog)
+Optional	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus (Heroic Black Morass)
+Optional	Girdle of the Prowler Girdle of the Prowler	Drop: Terestian Illhoof (Karazhan)
+Optional	Primalstrike Belt Primalstrike Belt	Profession: Elemental Leatherworking (BoP)
+Optional	Gronn-Stitched Girdle Gronn-Stitched Girdle	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+Best in Slot Leg Armor for Survival Hunter in TBC Classic Phase 3
+For Survival Hunters, Bow-stitched Leggings is the off-piece from Tier, and one is the single biggest upgrade of the Phase. Providing an incredible amount of raw Agility and Critical Strike Rating, these legs boost both personal DPS as well as the raid-wide benefit of Expose Weakness.
+
+These legs will be sought after by Enhancement Shamans and Retribution Paladins, but you still should have higher priority over both classes.
+Rank	Item	Source
+Best	Bow-stitched Leggings Bow-stitched Leggings	Azgalor (Hyjal Summit)
+Optional	Gronnstalker's Leggings Gronnstalker's Leggings	Drop: Leggings of the Forgotten Protector - The Illidari Council (Black Temple)
+Optional	Rift Stalker Leggings Rift Stalker Leggings	Drop: Leggings of the Vanquished Hero - Fathom-Lord Karathress (Serpentshrine Cavern)
+Optional	Shady Dealer's Pantaloons Shady Dealer's Pantaloons	Drop: Azgalor (Hyjal Summit)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Scaled Greaves of the Marksman Scaled Greaves of the Marksman	Drop: Doom Lord Kazzak (World Boss)
+Optional	Void Reaver Greaves Void Reaver Greaves	Drop: Void Reaver (Tempest Keep)
+Optional	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+Optional - Agility	Wastewalker Leggings Wastewalker Leggings	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Optional	Midnight Legguards Midnight Legguards	Drop: Quagmirran (Heroic Slave Pens)
+
+Best in Slot Feet Armor for Survival Hunter in TBC Classic Phase 3
+Shadowmaster's Boots are the absolute best option for Survival Hunters in Phase 3. This will be one of the smaller upgrades from Phase 2; however, it is not highly contested, so you shouldn't have any issues obtaining these within a reasonable time.
+
+Softstep Boots of Tracking and Quickstrider Moccasins should NOT be picked up as Survival, as these alternatives are actually worse than Cobra-Lash Boots. If you did not acquire these, or Star-Strider Boots in Phase 2, or are a returning player, then you could temporarily opt for Quickstrider Moccasins. I would not take these over any Enhancement Shaman that may want them.
+Rank	Item	Source
+Best	Shadowmaster's Boots Shadowmaster's Boots	Drop: Mother Shahraz (Black Temple)
+Optional	Cobra-Lash Boots Cobra-Lash Boots	Drop: Lady Vashj (Serpentshrine Cavern)
+Optional	Star-Strider Boots Star-Strider Boots	Drop: High Astromancer Solarian (Tempest Keep)
+Optional	Glider's Sabatons Glider's Sabatons of Agility	Drop: Shadikith the Glider (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+Optional	Fiend Slayer Boots Fiend Slayer Boots	Drop: Echo of Medivh (Karazhan)
+Optional	Shadowstep Striders Shadowstep Striders	Drop: Harbinger Skyriss (Heroic The Arcatraz)
+
+Best in Slot Neck Jewelry for Survival Hunter in TBC Classic Phase 3
+Telonicus's Pendant of Mayhem remains absolute BiS for Survival in Phase 3, and there are no new alternatives that you will want to use.
+
+A good alternative that is relatively cheap to craft and extremely easy to acquire is Necklace of the Deep. This will be your best option to aim for until you get your true BiS necklace.
+Rank	Item	Source
+Best	Telonicus's Pendant of Mayhem Telonicus's Pendant of Mayhem	Drop: Quest Reward from Verdant Sphere Verdant Sphere - Kael'thas Sunstrider (Tempest Keep)
+Optional - Agility	Necklace of the Deep Necklace of the Deep	Profession: Jewelcrafting
+Optional - Agility	Jagged Bark Pendant Jagged Bark Pendant	Drop: Warp Splinter (The Botanica)
+Optional - Agility	Prestor's Talisman of Connivery Prestor's Talisman of Connivery	Drop: Nefarian (Blackwing Lair)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+
+Rank	Item	Source
+Optional	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+Optional	Worgen Claw Necklace Worgen Claw Necklace	Drop: Attumen the Huntsman (Karazhan)
+Optional	Saberclaw Talisman Saberclaw Talisman	Drop: Shade of Aran (Karazhan)
+Optional	Earthen Mark of Razing Earthen Mark of Razing	Quest:Gurok the Usurper Gurok the Usurper
+
+Best in Slot Ring Jewelry for Survival Hunter in TBC Classic Phase 3
+Rings are another easy gear slot for Survival Hunters in Phase 3. Luckily, Stormrage Signet Ring is not wanted as Survival, and instead Ring of the Recalcitrant and Band of the Eternal Champion are BiS for both 6% and 9% sets.
+Rank	Item	Source
+Best	Ring of the Recalcitrant Ring of the Recalcitrant	Quest: The Fall of Magtheridon The Fall of Magtheridon/The Fall of Magtheridon The Fall of Magtheridon (Magtheridon's Lair)
+Best 6% and 9%	Band of the Eternal Champion Band of the Eternal Champion	Quest: Champion's Covenant Champion's Covenant - Requires Exalted with The Scale of the Sands
+Optional	Ring of Lethality Ring of Lethality	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Optional	Pathfinder's Band Pathfinder's Band	World Drop: The Outland
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+
+Rank	Item	Source
+Optional	Garona's Signet Ring Garona's Signet Ring	Drop: The Curator (Karazhan)
+Optional	Ravenclaw Band Ravenclaw Band	Drop: Talon King Ikiss (Sethekk Halls)
+Optional	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+Optional	Shaffar's Band of Brutality Shaffar's Band of Brutality	Drop: Yor (Heroic Mana-Tombs)
+
+Best in Slot Trinkets for Survival Hunter in TBC Classic Phase 3
+Dragonspine Trophy remains the first BiS trinket in Phase 3, and Bloodlust Brooch is finally replaced with Madness of the Betrayer.
+
+Madness of the Betrayer will be highly contested by nearly every single physical dps and even Feral Druid Tanks, depending on their current trinket situation. This is one item I would put near the very top of your list, as the hit from this trinket will account for nearly half of your Hit Rating in Phase 3 and will allow you to transition from Halberd of Desolation Halberd of Desolation into your Blade of Infamy Blade of Infamy nicely.
+
+Ashtongue Talisman of Swiftness is another good alternative to Bloodlust Brooch; however, both trinkets are extremely close to each other in terms of dps output.
+Rank	Item	Source
+Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best	Madness of the Betrayer Madness of the Betrayer	Drop: The Illidari Council (Black Temple)
+Great	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Good	Ashtongue Talisman of Swiftness Ashtongue Talisman of Swiftness	Vendor: Okuno - Requires Exalted with Ashtongue Deathsworn
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+
+Rank	Item	Source
+Optional	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar)
+Optional	Tsunami Talisman Tsunami Talisman	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Optional	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+Optional	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Satura - Ahn'Qiraj
+Optional	Bladefist's Breadth Bladefist's Breadth	Quest:Overlord Overlord/Cruel's Intentions Cruel's Intentions
+
+Weapons for Survival Hunter DPS in Phase 3
+Dual-Wield Weapons
+Blade of Infamy is the BiS mainhand AND offhand weapon for Survival Hunters. If you play Alliance, then Human Fury Warriors may be contesting you for these.
+Rank	Item	Source
+Best x2	Blade of Infamy Blade of Infamy	Drop: Anetheron (Hyjal Summit)
+Optional	Netherbane Netherbane	Drop: Al'ar (Tempest Keep)
+Optional MH/OH	Stellaris Stellaris	Drop: Nethermancer Sepethrea (The Mechanar)
+Optional MH	Claw of the Watcher Claw of the Watcher	Drop: Shirrak the Dead Watcher (Heroic Auchenai Crypts)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Dual Wield Weapon Recommendations
+Rank	Item	Source
+Optional OH	Claw of the Phoenix Claw of the Phoenix	Drop: Al'ar (Tempest Keep)
+Optional	Guile of Khoraazi Guile of Khoraazi	Reputation: Exalted The Consortium (Nagrand)
+Optional MH	Emerald Ripper Emerald Ripper	Drop: Moroes (Karazhan)
+Optional MH	Big Bad Wolf's Paw Big Bad Wolf's Paw	Drop: The Big Bad Wolf (Karazhan)
+Optional MH/OH	Blade of the Unrequited Blade of the Unrequited	Drop: Julianne (Karazhan)
+
+Two-Handed
+In Phase 3, Survival Hunters will favor Halberd of Desolation over Twinblade of the Phoenix for all situations due to the high amount of Agility, as well as being an excellent early weapon to aid with Hit Rating.
+
+I suggest you grab one of these as soon as possible. Beast Mastery Hunters get just as much use as Survival does early on, so you will have to determine who will get the most use out of it immediately based on other gearing factors.
+Rank	Item	Source
+Best - Weaving	Twinblade of the Phoenix Twinblade of the Phoenix	Drop: Kael'thas Sunstrider (Tempest Keep)
+Best - Hit	Halberd of Desolation Halberd of Desolation	High Warlord Naj'entus (Black Temple)
+Optional	Bloodmoon Bloodmoon	Profession: Master Axesmith Blacksmith (BoP)
+Optional	Legacy Legacy	Drop: The Crone (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Two-Hand Weapon Recommendations
+Rank	Item	Source
+Optional	Mooncleaver Mooncleaver	Profession: Master Axesmith Blacksmith (BoP)
+Optional	Sonic Spear Sonic Spear	Drop: Murmur (Shadow Labyrinth)
+
+Best in Slot Ranged Weapons for Survival Hunter in TBC Classic Phase 3
+Bristleblitz Striker and Black Bow of the Betrayer are the new two options available for Phase 3. From a pure DPS standpoint, the former is the better option to go for. The latter would be better suited for those who really struggle with mana or for those who speedrun and don't have a lot of downtime to drink fully between pulls.
+
+For Dwarf Hunters, it is recommended you do arena games every week for points and then push for 1850 rating so that you can obtain Vengeful Gladiator's Rifle. While it will take quite some time to gather 3750 points, it will be your best option available to you.
+Rank	Item	Source
+Best	Bristleblitz Striker Bristleblitz Striker	Drop: Archimonde (Hyjal Summit)
+Best - Dwarf	Vengeful Gladiator's Rifle Vengeful Gladiator's Rifle	Arena Points Arena Points - Arena Vendor
+Second Best	Black Bow of the Betrayer Black Bow of the Betrayer	Drop: Illidan Stormrage (Black Temple)
+Optional	Serpent Spine Longbow Serpent Spine Longbow	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ranged Weapon Recommendations
+Rank	Item	Source
+Optional	Merciless Gladiator's Crossbow of the Phoenix Merciless Gladiator's Crossbow of the Phoenix	Arena Points Arena Points - Arena Vendor
+Optional	Sunfury Bow of the Phoenix Sunfury Bow of the Phoenix	Drop: Prince Malchezaar (Karazhan)
+Optional	Barrel-Blade Longrifle Barrel-Blade Longrifle	Drop: Doomwalker (World Boss)
+Optional	Arcanite Steam-Pistol Arcanite Steam-Pistol	Drop: Al'ar (Tempest Keep)
+Optional	Wolfslayer Sniper Rifle Wolfslayer Sniper Rifle	Drop: The Big Bad Wolf (Karazhan)
+Optional	Wrathtide Longbow Wrathtide Longbow	Drop: Warlord Kalithresh (The Steamvault)
+Optional	Don Santos' Famous Hunting Rifle Don Santos' Famous Hunting Rifle	World Drop: The Outland
+Optional	Veteran's Musket Veteran's Musket
+Marksman's Bow Marksman's Bow	Reputation: Exalted Honor Hold (Hellfire Peninsula)
+Reputation: Exalted Thrallmar (Hellfire Peninsula)
+
+Quivers for Survival Hunter DPS in Phase 3
+Hunters are unique in that they have to use one of their bag slots specifically for their ammunition. If you use a Bow / Crossbow, then you will use a Quiver. If using a Gun, then you'll use an Ammo Pouch. Below, you can use the togglers to see which specific ones you need and can obtain in TBC Classic.
+
+Quivers
+
+In Phase 3, we finally get a new quiver, the long-awaited Quiver of a Thousand Feathers will now be available, providing an additional 6 ammo slots.
+
+All quiver stats share the same 15% ranged attack speed; the only difference is the slot size.
+Rank	Item	Source
+Best	Quiver of a Thousand Feathers Quiver of a Thousand Feathers	Profession: Leatherworking
+Optional	Ancient Sinew Wrapped Lamina Ancient Sinew Wrapped Lamina	Ancient Petrified Leaf Ancient Petrified Leaf from Majordomo Executus (Molten Core)
+BiS	Clefthoof Hide Quiver Clefthoof Hide Quiver
+Worg Hide Quiver Worg Hide Quiver	Vendor: Provisioner Nasela - Requires Honored with The Mag'har
+Vendor: Trader Narasu - Requires Honored with Kurenai
+Optional	Harpy Hide Quiver Harpy Hide Quiver	Vendor:Jekyll Flandring
+Vendor: Thanthaldis Snowgleam
+
+
+
+Ammo Pouches
+
+Alongside a new quiver, the newest ammo pouch Netherscale Ammo Pouch is also now available.
+
+All ammo pouches share the same 15% ranged attack speed; the only difference is the slot size.
+Rank	Item	Source
+Best	Netherscale Ammo Pouch Netherscale Ammo Pouch	Profession: Leatherworking
+Optional	Smuggler's Ammo Pouch Smuggler's Ammo Pouch	Vendor: Karaaz - Requires Honored with The Consortium
+Optional	Gnoll Skin Bandolier Gnoll Skin Bandolier	Vendor: Jekyll Flandring
+Vendor: Thanthaldis Snowgleam
+
+Ammunition for Survival Hunter DPS in TBC Classic Phase 3
+Hunters will also need to use specific ammunition for their weapons, and not only that, certain ammunition will be stronger than others, so it's best to know which one is the best for your specific weapon. Bow / Crossbow users will need Arrows, and Gun users will need Bullets. Below, you can use the togglers to see which specific ones you need and can obtain in TBC Classic.
+
+Arrows
+
+
+In Phase 3, Timeless Arrow becomes the new best in slot arrows available for Hunters. These arrows are locked behind Honored rep with The Scale of the Sands.
+
+Mysterious Arrow also becomes available in Phase 3 and is locked behind Revered rep with The Violet Eye.
+Rank	Item	Source
+Best	Timeless Arrow Timeless Arrow	Vendor: Marksman Bova - Aldor
+Vendor: Archer Delvinar - Scryer	Shattrath City
+Optional	Mysterious Arrow Mysterious Arrow	Marksman Bova - Aldor
+Archer Delvinar - Scryer	Shattrath City
+Optional	Adamantite Stinger Adamantite Stinger	Dropped by Sunfury Archer - Profession: Engineering
+Optional	Warden's Arrow Warden's Arrow	Vendor: Fedryen Swiftspear - Requires Revered with Cenarion Expedition
+Optional	Halaani Razorshaft Halaani Razorshaft	Vendor: Tasaldan
+Vendor: Banro
+Optional	Blackflight Arrow Blackflight Arrow	Various vendors in Outland
+
+
+
+Bullets
+
+In Phase 3, Timeless Shell becomes the new best-in-slot bullets available for Hunters. These bullets are locked behind Honored rep with The Scale of the Sands.
+
+Mysterious Shell also becomes available in Phase 3 and is locked behind Revered rep with The Violet Eye.
+Rank	Item	Source
+Best	Timeless Shell Timeless Shell	Vendor: Marksman Bova - Aldor
+Vendor: Archer Delvinar - Scryer
+Optional	Mysterious Shell Mysterious Shell	Vendor: Marksman Bova - Aldor
+Vendor: Archer Delvinar - Scryer
+Optional	Adamantite Shells Adamantite Shells	Vendor: Wind Trader Lathrai - Profession: Engineering
+Optional	Hellfire Shot Hellfire Shot
+Felbane Slugs Felbane Slugs	Vendor: Logistics Officer Ulrike Requires Revered with Honor Hold
+Vendor: Quartermaster Urgronn Requires Revered with Thrallmar
+Optional	Halaani Grimshot Halaani Grimshot	Vendor: Tasaldan
+Vendor: Banro
+Optional	Ironbite Shell Ironbite Shell	Various vendors in Outland
+
+Veramos
+Classic Hunter Class Writer
+Veramos wrote Hunter guides for Wowhead in Classic through Wrath of the Lich King covering all three major specializations. In addition, he creates content for Classic Hunter (including Season of Discovery) through his YouTube and Twitch channels, as well as through his personal Discord, sharing in-depth analysis on Hunter optimization and advanced techniques.
+1 - 5 of 5
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By Summersisles (15,563 – 2·8·12) on 2022/01/26 (Burning Crusade)	
+	
+What about Legionkiller?
+
+3
+
+	
+By spycowarrior (1,202 – 8·10) on 2022/02/15 (Burning Crusade)	
+	
+Why readiniess? can you explain where that is supposed to be used?
+
+2
+
+	
+By Saberrius (423 – 1) on 2022/02/25 (Burning Crusade)	
+	
+Can you explain why in this phase you spec into Readiness and leave off BM talents? Is Readiness that much better than the auto 2% you get from Focused Fire?
+
+1
+
+	
+By axerbt (199 – 4) on 2022/01/19 (Burning Crusade)	
+	
+Why survival hunter only require 3% hit rather than 6% hit in Phase 3?
+
+1
+
+	
+
+Veramos <Guide Author> on 2022/01/20 (Burning Crusade)
+Has nothing to do with the phase. Survival hunters have only ever needed 3% hit due to the Surefooted talent. This also assumes you have a Boomkin or Dreamstate Druid though which 99% guilds have.
+
+-1
+
+	
+
+Vwlpe on 2022/01/21 (Burning Crusade)
+Always gear for 9% regardless if you have a moonkin or not.
+
+0
+
+	
+
+Peprdw on 2022/01/24 (Burning Crusade)
+how about checking the #$%^in talent tree &*!@# OP
+
+0
+
+	
+
+Saberrius on 2022/01/28 (Burning Crusade)
+Not sure why you have to be so toxic just because someone asked a valid question. The guide only has a total of 6% hit even with Surefooted. This leaves you 3% short of the cap which cannot be obtained with Heroic Presence and Spicy Hot Talbuk combined, so it should be addressed by the person who put together this guide.
+
+0
+
+	
+By Dunkindonutz (4,060 – 15·11) on 2022/01/24 (Burning Crusade)	
+	
+Nice to be able to put in all RED Gems into every slot, negating the Relentless EarthStone Diamond, where it requires 2 blue, 2 red, and 2 yellow. Going to be very hard getting to that minimum. I noticed that the Gronn chest piece has two Jagged Seaspray Emeralds, now does that count towards the 2 blue and 2 yellow, cause if it does then this list is very nice.
+
+Thank you.
+
+4
+
+	
+
+Veramos <Guide Author> on 2022/01/25 (Burning Crusade)
+Yes that is how green gems work. The meta gem is activated due to green gems counting as both the blue and yellow.
+1 - 5 of 5
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Hunter Guide
+
+    Overview
+    Pets
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 1 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 2 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 3 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 4 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 5 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Survival Hunter DPS Best in Slot (BiS) Phase 4 Gear Guide
+By Veramos
+Updated: 2026/02/13
+Welcome to Wowhead's Best in Slot Gear list from Phase 4 Zul'Aman for Survival Hunter DPS in The Burning Crusade Classic. This guide will list the recommended gear for Survival Hunter DPS to acquire while they progress during the fourth phase of The Burning Crusade Classic, and contains gear sourced from Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+Best In Slot Gear for Survival Hunter DPS in Phase 4
+In Phase 4, Survival Hunters have it quite a bit easier than Beast Mastery again. The lower requirement for hit cap makes gearing much simpler. You do, however, have two ways of going about gearing, and both will be shown below in the gear planner. The first and recommended gearset balances both personal dps and raid-wide dps gain through Expose Weakness while the second setup focuses primarily on personal dps.
+
+Halberd of Desolation Halberd of Desolation by itself can cover over half of the required hit rating early on. This is a very good early option to pick up while you work on acquiring two Dagger of Bad Mojo Dagger of Bad Mojo. Madness of the Betrayer Madness of the Betrayer is a significant gain for Survival Hunters to acquire early on, as it will be the item that allows you to drop Halberd of Desolation Halberd of Desolation. It will also be a big ticket item, still depending on which gearing route you choose to go.
+
+As with Beast Mastery Hunters, your best option for breaking 4p Tier 5 early is using the Gronnstalker's Gloves Gronnstalker's Gloves and Gronnstalker's Spaulders Gronnstalker's Spaulders.
+
+Survival Hunters looking to gem and enchant their BiS gear should refer to our guide below:
+
+Survival Hunter DPS Gems & Enchants
+
+Aldor vs. Scryer for Hunter DPS in Phase 4
+In Phase 4, The Aldor is still the best faction choice for Hunters; choosing The Scryers is not the end of the world, as the difference is very minor. There are no new key items that we benefit from in Phase 4. The only relevant item is still the shoulder enchant Greater Inscription of Vengeance Greater Inscription of Vengeance or Greater Inscription of the Blade Greater Inscription of the Blade.
+
+Besides the shoulder enchants, there is nothing else of relevance for hunters in terms of raid gear or enchants that we "must" have.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Survival Hunters, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Survival Hunter in TBC Classic Phase 4
+For Phase 4, as Survival, you have two options here. Gronnstalker's Helmet or Cursed Vision of Sargeras. I personally recommend you go the raid-wide benefit route and stick to Gronnstalker's Helmet as your raid as a whole will benefit, and Cursed Vision of Sargeras is heavily contested as it is, so you would have to wait your turn for a good amount of time.
+Rank	Item	Source
+Best	Gronnstalker's Helmet Gronnstalker's Helmet	Drop: Helm of the Forgotten Protector - Archimonde (Hyjal Summit)
+Best Personal	Cursed Vision of Sargeras Cursed Vision of Sargeras	Drop: Illidan Stormrage (Black Temple)
+Best Until Tier 6	Rift Stalker Helm Rift Stalker Helm	Drop: Helm of the Vanquished Hero - Lady Vashj (Serpentshrine Cavern)
+Best Until Tier 5	Beast Lord Helm Beast Lord Helm	Drop: Pathaleon the Calculator (The Mechanar)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Demon Stalker Greathelm Demon Stalker Greathelm	Drop: Helm of the Fallen Hero, Prince Malchezaar (Karazhan)
+Optional	Surestrike Goggles v2.0 Surestrike Goggles v2.0	Profession: Engineering (BoP)
+Optional	Stealther's Helmet of Second Sight Stealther's Helmet of Second Sight	Teron Gorefiend, I am... Teron Gorefiend, I am.../Teron Gorefiend, I am... Teron Gorefiend, I am...
+Optional	Mok'Nathal Beast-Mask Mok'Nathal Beast-Mask	Drop: Exarch Maladaar (Auchenai Crypts)
+
+Best in Slot Shoulder Armor for Survival Hunter in TBC Classic Phase 4
+Gronnstalker's Spaulders is one of the better individual pieces of Tier 6 for Hunters. Paired with the gloves, they are the best two pieces of Tier 6 to break 4p Tier 5 early with and provide a decent dps gain. Now that Hunters share the tier token with Warriors and Shamans, this token will be contested early on, and Warriors can use it immediately, while Hunters have to wait until obtaining at least 2 pieces.
+Rank	Item	Source
+Best	Gronnstalker's Spaulders Gronnstalker's Spaulders	Drop: Pauldrons of the Forgotten Protector - Mother Shahraz (Black Temple)
+Best Until T6	Rift Stalker Mantle Rift Stalker Mantle	Drop: Pauldrons of the Vanquished Hero: Void Reaver (Tempest Keep)
+Best Until Tier 5	Beast Lord Mantle Beast Lord Mantle	Drop: Warlord Kalithresh (The Steamvault)
+Optional	Shoulderpads of the Stranger Shoulderpads of the Stranger	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Wastewalker Shoulderpads Wastewalker Shoulderpads	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+Optional	Mantle of the Tireless Tracker Mantle of the Tireless Tracker	Drop: Morogrim Tidewalker( Serpentshrine Cavern)
+Optional	Expedition Scout's Epaulets Expedition Scout's Epaulets	Quest:Fel Embers Fel Embers
+Optional	Mantle of Perenolde Mantle of Perenolde	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+
+Best in Slot Back Armor for Survival Hunter in TBC Classic Phase 4
+Unlike Beast Mastery Hunters, Thalassian Wildercloak remains absolute BiS for Survival in all situations, and you should never be in a position where you need to drop it for Hit Rating on another cloak.
+Rank	Item	Source
+Best	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep)
+Optional	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+Optional	Blood Knight War Cloak Blood Knight War Cloak	Vendor: G'eras, Shattrath City - 25 Badges of Justice
+Optional	Auchenai Death Shroud Auchenai Death Shroud	Avatar of the Martyred (Heroic Auchenai Crypts)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Vengeance Wrap Vengeance Wrap	Profession: Tailoring
+Optional	Cloak of the Pit Stalker Cloak of the Pit Stalker	Drop: Magtheridon (Magtheridon's Lair)
+Optional	Cloak of the Inciter Cloak of the Inciter	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Best in Slot Chest Armor for Survival Hunter in TBC Classic Phase 4
+Gronnstalker's Chestguard is another piece used for the 4 set bonus. By itself, this piece of Tier 6 is not the best to aim for immediately, and you can't use it without the rest of the set. Doing so would result in a dps loss as you would have to break the 4p Tier 5 set bonus.
+This tier token should be passed to the Warriors first, as they can see an immediate use for it and an upgrade with it. Only after obtaining the Tier 6 Shoulders and Gloves should you aim for the chest.
+
+Rift Stalker Hauberk will remain your best option until the time you replace it with Gronnstalker's Chestguard, and no other alternatives should be used or picked up.
+Rank	Item	Source
+Best	Gronnstalker's Chestguard Gronnstalker's Chestguard	Drop: Chestguard of the Forgotten Protector - Illidan Stormrage (Black Temple)
+Best Until Tier 6	Rift Stalker Hauberk Rift Stalker Hauberk	Drop: Chestguard of the Vanquished Hero: Kael'thas Sunstrider (Tempest Keep)
+Best Until Tier 5	Beast Lord Cuirass Beast Lord Cuirass	Drop: Warp Splinter (The Botanica)
+Optional	Primalstrike Vest Primalstrike Vest	Profession: Elemental Leatherworking (BoP)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Hauberk of Karabor Hauberk of Karabor	Quest:Varedis Must Be Stopped Varedis Must Be Stopped
+
+Best in Slot Wrist Armor for Survival Hunter in TBC Classic Phase 4
+Insidious Bands are the new BiS bracers for Phase 3 and an important piece to pick up sooner rather than later due to the Hit Rating on them helping with all situations. This is one of the few pieces of gear Survival uses to reach hit cap, so I would prioritize them over Beast Mastery.
+
+Vambraces of Ending will remain your BiS until you acquire Bindings of Lightning Reflexes and Swiftstrike Bracers are NOT worth worrying about as Survival, as you actually lose a fair amount of Agility and Attack Power.
+Rank	Item	Source
+Best	Insidious Bands Insidious Bands	Drop: Teron Gorefiend (Black Temple)
+Optional	Vambraces of Ending Vambraces of Ending	Drop: High Astromancer Solarian (Tempest Keep)
+Best Raid Wide Increase	Ravager's Bands Ravager's Bands of Agility	Drop: Rokad the Ravager (Karazhan)
+Optional	Felstalker Bracers Felstalker Bracers	Profession: Leatherworking (BoE)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Bands of the Celestial Archer Bands of the Celestial Archer	Drop: Tempest Keep Trash Mobs
+Optional	Primalstrike Bracers Primalstrike Bracers	Profession: Elemental Leatherworking (BoP)
+Optional	Nightfall Wristguards Nightfall Wristguards	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+
+Best in Slot Hand Armor for Survival Hunter in TBC Classic Phase 4
+Gronnstalker's Gloves are the second biggest piece of Tier 6 for Survival Hunters, which, when paired with the Shoulders or Helm, will allow you to break 4p Tier 5 early.
+There are no alternatives that you should directly aim for, as Gronnstalker's Gloves should be one of your highest priorities in Phase 3.
+
+Gloves of Dexterous Manipulation are still a great option to aim for if you do not already have them while you are waiting to acquire Gronnstalker's Gloves.
+Rank	Item	Source
+Best	Gronnstalker's Gloves Gronnstalker's Gloves	Drop: Gloves of the Forgotten Protector - Azgalor
+Optional	Gloves of Dexterous Manipulation Gloves of Dexterous Manipulation	Drop: Attumen the Huntsman (Karazhan)
+Great	Rift Stalker Gauntlets Rift Stalker Gauntlets	Drop: Gloves of the Vanquished Hero: Leotheras the Blind (Serpentshrine Cavern)
+Great	Beast Lord Handguards Beast Lord Handguards	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Gauntlets of the Dragonslayer Gauntlets of the Dragonslayer	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Optional	Fel Leather Gloves Fel Leather Gloves	Profession: Leatherworking (BoE)
+
+Best in Slot Waist Armor for Survival Hunter in TBC Classic Phase 4
+Don Alejandro's Money Belt is a very nice upgrade from Belt of Deep Shadow and is another item that should be prioritized over Beast Mastery Hunters. Boneweave Girdle is not the worst option for Survival, but by no means worth taking, as the hit will not be required and is an overall downgrade, whereas Beast Mastery will be able to take full advantage of the hit.
+Rank	Item	Source
+Best	Don Alejandro's Money Belt Don Alejandro's Money Belt	Drop: Anetheron (Hyjal Summit)
+Optional	Belt of the Black Eagle Belt of the Black Eagle	Profession: Leatherworking
+Optional	Lurker's Belt Lurker's Belt of Agility	Drop: Hyakiss the Lurker (Karazhan)
+Optional	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentsrhine Cavern)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Belt of the Black Eagle Belt of the Black Eagle	Profession: Leatherworking
+Optional	Girdle of Treachery Girdle of Treachery	Echo of Medivh (Karazhan)
+Optional	Dunewind Sash Dunewind Sash	Drop: Ghaz'an (Heroic The Underbog)
+Optional	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus (Heroic Black Morass)
+Optional	Girdle of the Prowler Girdle of the Prowler	Drop: Terestian Illhoof (Karazhan)
+Optional	Primalstrike Belt Primalstrike Belt	Profession: Elemental Leatherworking (BoP)
+Optional	Gronn-Stitched Girdle Gronn-Stitched Girdle	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+Best in Slot Leg Armor for Survival Hunter in TBC Classic Phase 4
+For Phase 4, this is another gear slot that Survival Hunters will change depending on their gearing choice. For raid-wide benefit, Bow-stitched Leggings is the off-piece from Tier you will continue to use, and it is one of the single biggest upgrades of the Phase, providing an incredible amount of Agility and Critical Strike Rating. From a personal DPS standpoint, you would instead use Gronnstalker's Leggings as your 4th piece of Tier 6.
+
+Bow-stitched Leggings will be sought after by Enhancement Shamans and Retribution Paladins, but you still should have higher priority over both classes.
+Rank	Item	Source
+Best	Bow-stitched Leggings Bow-stitched Leggings	Azgalor (Hyjal Summit)
+Optional	Gronnstalker's Leggings Gronnstalker's Leggings	Drop: Leggings of the Forgotten Protector - The Illidari Council (Black Temple)
+Optional	Rift Stalker Leggings Rift Stalker Leggings	Drop: Leggings of the Vanquished Hero - Fathom-Lord Karathress (Serpentshrine Cavern)
+Optional	Shady Dealer's Pantaloons Shady Dealer's Pantaloons	Drop: Azgalor (Hyjal Summit)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Scaled Greaves of the Marksman Scaled Greaves of the Marksman	Drop: Doom Lord Kazzak (World Boss)
+Optional	Void Reaver Greaves Void Reaver Greaves	Drop: Void Reaver (Tempest Keep)
+Optional	Skulker's Greaves Skulker's Greaves	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+Optional	Wastewalker Leggings Wastewalker Leggings	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Optional	Midnight Legguards Midnight Legguards	Drop: Quagmirran (Heroic Slave Pens)
+
+Best in Slot Feet Armor for Survival Hunter in TBC Classic Phase 4
+Shadowmaster's Boots are the absolute best option for Survival Hunters in Phase 3. This will be one of the smaller upgrades from Phase 2; however, it is not highly contested, so you shouldn't have any issues obtaining these within a reasonable time.
+
+Softstep Boots of Tracking and Quickstrider Moccasins should NOT be picked up as Survival, as these alternatives are actually worse than Cobra-Lash Boots. If you did not acquire these, or Star-Strider Boots in Phase 2, or are a returning player, then you could temporarily opt for Quickstrider Moccasins. I would not take these over any Enhancement Shaman that may want them.
+
+Nyn'jah's Tabi Boots are a decent new option as well for this gear slot, especially if you are struggling with hit rating.
+Rank	Item	Source
+Best	Shadowmaster's Boots Shadowmaster's Boots	Drop: Mother Shahraz (Black Temple)
+Optional	Cobra-Lash Boots Cobra-Lash Boots	Drop: Lady Vashj (Serpentshrine Cavern)
+Optional	Star-Strider Boots Star-Strider Boots	Drop: High Astromancer Solarian (Tempest Keep)
+Optional	Glider's Sabatons Glider's Sabatons of Agility	Drop: Shadikith the Glider (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+
+Rank	Item	Source
+Temporary Hit Option	Nyn'jah's Tabi Boots Nyn'jah's Tabi Boots	60xBadge of Justice Badge of Justice
+Optional	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+Optional	Fiend Slayer Boots Fiend Slayer Boots	Drop: Echo of Medivh (Karazhan)
+Optional	Shadowstep Striders Shadowstep Striders	Drop: Harbinger Skyriss (Heroic The Arcatraz)
+Optional	Fel Leather Boots Fel Leather Boots	Profession: Leatherworking
+Optional	Rapscallion Boots Rapscallion Boots	Drop: Shade of Aran (Karazhan)
+
+Best in Slot Neck Jewelry for Survival Hunter in TBC Classic Phase 4
+Telonicus's Pendant of Mayhem remains absolute BiS for Survival in Phase 3, and there are no new alternatives that you will want to use.
+
+However, a good alternative that is relatively cheap to craft and extremely easy to acquire is Necklace of the Deep. This will be your best option to aim for until you get your BiS. If you still have not obtained it in Phase 4 and you have a lot of gold, you could opt to put two Delicate Crimson Spinel Delicate Crimson Spinel in your Necklace of the Deep.
+Rank	Item	Source
+Best	Telonicus's Pendant of Mayhem Telonicus's Pendant of Mayhem	Drop: Quest Reward from Verdant Sphere Verdant Sphere - Kael'thas Sunstrider (Tempest Keep)
+Optional	Necklace of the Deep Necklace of the Deep	Profession: Jewelcrafting
+Optional	Jagged Bark Pendant Jagged Bark Pendant	Drop: Warp Splinter (The Botanica)
+Optional	Prestor's Talisman of Connivery Prestor's Talisman of Connivery	Drop: Nefarian (Blackwing Lair)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+
+Rank	Item	Source
+Optional	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+Optional	Worgen Claw Necklace Worgen Claw Necklace	Drop: Attumen the Huntsman (Karazhan)
+Optional	Saberclaw Talisman Saberclaw Talisman	Drop: Shade of Aran (Karazhan)
+Optional	Earthen Mark of Razing Earthen Mark of Razing	Quest:Gurok the Usurper Gurok the Usurper
+
+Best in Slot Ring Jewelry for Survival Hunter in TBC Classic Phase 4
+Rings are another easy gear slot for Survival Hunters in Phase 4. Signet of Primal Wrath and Band of the Eternal Champion are BiS for both 6% and 9% sets.
+Rank	Item	Source
+Best 6% and 9%	Signet of Primal Wrath Signet of Primal Wrath	Drop: Zul'Aman Timed Event
+Best 6% and 9%	Band of the Eternal Champion Band of the Eternal Champion	Quest: Champion's Covenant Champion's Covenant - Requires Exalted with The Scale of the Sands
+Optional	Ring of the Recalcitrant Ring of the Recalcitrant	Quest: The Fall of Magtheridon The Fall of Magtheridon/The Fall of Magtheridon The Fall of Magtheridon (Magtheridon's Lair)
+Optional	Ring of Lethality Ring of Lethality	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+
+Rank	Item	Source
+Optional	Pathfinder's Band Pathfinder's Band	World Drop: The Outland
+Optional	Garona's Signet Ring Garona's Signet Ring	Drop: The Curator (Karazhan)
+Optional	Ravenclaw Band Ravenclaw Band	Drop: Talon King Ikiss (Sethekk Halls)
+Optional	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+Optional	Shaffar's Band of Brutality Shaffar's Band of Brutality	Drop: Yor (Heroic Mana-Tombs)
+Optional (Aldor)	Kaylaan's Signet Kaylaan's Signet	Quest:Deathblow to the Legion Deathblow to the Legion
+Optional	Slayer's Mark of the Redemption Slayer's Mark of the Redemption	Quest:Dissension Amongst the Ranks... Dissension Amongst the Ranks... /Dissension Amongst the Ranks... Dissension Amongst the Ranks...
+Optional	Band of Unnatural Forces Band of Unnatural Forces	Drop: Loatheb (Naxxramas)
+Optional	Band of Anguish Band of Anguish	Quest:News of Victory News of Victory
+
+Best in Slot Trinkets for Survival Hunter in TBC Classic Phase 4
+Dragonspine Trophy remains the first BiS trinket in Phase 4.
+
+Your second trinket is the final piece of gear that will change depending on whether you aim for raid-wide dps or personal dps.Madness of the Betrayer will remain your best option from a raid-wide standpoint, while Berserker's Call will be better for personal dps.
+
+Madness of the Betrayer will be highly contested by nearly every single physical dps and even Feral Druid Tanks, depending on their current trinket situation. This is one item I would put near the very top of your list, as the hit from this trinket will account for nearly half of your Hit Rating in Phase 3 and will allow you to transition from Halberd of Desolation Halberd of Desolation into your Blade of Infamy Blade of Infamy nicely.
+Rank	Item	Source
+Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best	Madness of the Betrayer Madness of the Betrayer	Drop: The Illidari Council (Black Temple)
+Great	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Good	Ashtongue Talisman of Swiftness Ashtongue Talisman of Swiftness	Vendor: Okuno - Requires Exalted with Ashtongue Deathsworn
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+
+Rank	Item	Source
+Optional	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar)
+Optional	Tsunami Talisman Tsunami Talisman	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Optional	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+Optional	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Satura - Ahn'Qiraj
+Optional	Bladefist's Breadth Bladefist's Breadth	Quest:Overlord Overlord/Cruel's Intentions Cruel's Intentions
+
+Weapons for Survival Hunter DPS in Phase 4
+Dual-Wield Weapons
+Dagger of Bad Mojo becomes the new best option over Blade of Infamy. While you do lose a slight bit of Agility and Attack Power, the gain in armor penetration makes up for it overall.
+
+Unlike Beast Mastery Hunters. Aiming for an 1850 arena rating for the mainhand fist weapon is not recommended due to the large hit in Agility.
+Rank	Item	Source
+Best x2	Dagger of Bad Mojo Dagger of Bad Mojo	Drop: Hex Lord Malacrass (Zul'Aman)
+Optional	Blade of Infamy Blade of Infamy	Drop: Anetheron (Hyjal Summit)
+Optional	Netherbane Netherbane	Drop: Al'ar (Tempest Keep)
+Optional MH/OH	Stellaris Stellaris	Drop: Nethermancer Sepethrea (The Mechanar)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Dual Wield Weapon Recommendations
+Rank	Item	Source
+Optional MH	Claw of the Watcher Claw of the Watcher	Drop: Shirrak the Dead Watcher (Heroic Auchenai Crypts)
+Optional OH	Claw of the Phoenix Claw of the Phoenix	Drop: Al'ar (Tempest Keep)
+Optional	Guile of Khoraazi Guile of Khoraazi	Reputation: Exalted The Consortium (Nagrand)
+Optional MH	Emerald Ripper Emerald Ripper	Drop: Moroes (Karazhan)
+Optional MH	Big Bad Wolf's Paw Big Bad Wolf's Paw	Drop: The Big Bad Wolf (Karazhan)
+Optional MH/OH	Blade of the Unrequited Blade of the Unrequited	Drop: Julianne (Karazhan)
+Optional OH	Void-Talon Void-Talon	Vendor: Dealer Jadyan
+
+Two-Handed
+In Phase 4, Survival Hunters will still favor Halberd of Desolation over Twinblade of the Phoenix for all situations due to the high amount of Agility, as well as being an excellent early weapon to aid with Hit Rating.
+
+Trollbane, however, can be a better option for Survival Hunters for weaving if you do not require the hit from Halberd.
+
+I suggest you grab it, however, as soon as possible. Beast Mastery Hunters get just as much use as Survival does early on, so you will have to determine who will get the most use out of it immediately based on other gearing factors.
+Rank	Item	Source
+Best	Halberd of Desolation Halberd of Desolation	High Warlord Naj'entus (Black Temple)
+Optional	Trollbane Trollbane	Drop: Zul'Aman Timed Event
+Optional	Twinblade of the Phoenix Twinblade of the Phoenix	Drop: Kael'thas Sunstrider (Tempest Keep)
+Optional	Bloodmoon Bloodmoon	Profession: Master Axesmith Blacksmith (BoP)
+Optional	Legacy Legacy	Drop: The Crone (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Two-Hand Weapon Recommendations
+Rank	Item	Source
+Optional	Mooncleaver Mooncleaver	Profession: Master Axesmith Blacksmith (BoP)
+Optional	Sonic Spear Sonic Spear	Drop: Murmur (Shadow Labyrinth)
+Optional	Quantum Blade Quantum Blade	Drop: Aeonus (Heroic Black Morass)
+Optional	The Eye of Nerub The Eye of Nerub	Drop: Loatheb (Naxxramas)
+Optional	Terokk's Quill Terokk's Quill	Quest:Terokk's Legacy Terokk's Legacy
+
+Best in Slot Ranged Weapons for Survival Hunter in TBC Classic Phase 4
+Bristleblitz Striker and Black Bow of the Betrayer are still the best options for Phase 4. From a pure DPS standpoint, the former is the better option to go for. The latter would be better suited for those who really struggle with mana due to low uptime on Judgement of Wisdom or for those who speedrun and don't have a lot of downtime to drink fully between pulls.
+
+For Dwarf Hunters, it is recommended you do arena games every week for points and reach 1850 rating when ready so that you can obtain Vengeful Gladiator's Rifle. While it will take quite some time to gather 3750 points, it will be your best option available to you.
+
+If you were unlucky early on in Phase 3 with either option and Ancient Amani Longbow drops, then by all means take it and use it temporarily.
+Rank	Item	Source
+Best	Bristleblitz Striker Bristleblitz Striker	Drop: Archimonde (Hyjal Summit)
+Best - Dwarf	Vengeful Gladiator's Rifle Vengeful Gladiator's Rifle	Arena Points Arena Points - Arena Vendor
+Second Best	Black Bow of the Betrayer Black Bow of the Betrayer	Drop: Illidan Stormrage (Black Temple)
+Optional	Ancient Amani Longbow Ancient Amani Longbow	Drop: Zul'jin (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ranged Weapon Recommendations
+Rank	Item	Source
+Optional	Serpent Spine Longbow Serpent Spine Longbow	Drop: Lady Vashj (Serpentshrine Cavern)
+Optional	Merciless Gladiator's Crossbow of the Phoenix Merciless Gladiator's Crossbow of the Phoenix	Arena Points Arena Points - Arena Vendor
+Optional	Sunfury Bow of the Phoenix Sunfury Bow of the Phoenix	Drop: Prince Malchezaar (Karazhan)
+Optional	Tuskbreaker Tuskbreaker	Drop: Zul'Aman Timed Event
+Optional	Barrel-Blade Longrifle Barrel-Blade Longrifle	Drop: Doomwalker (World Boss)
+Optional	Arcanite Steam-Pistol Arcanite Steam-Pistol	Drop: Al'ar (Tempest Keep)
+Optional	Wolfslayer Sniper Rifle Wolfslayer Sniper Rifle	Drop: The Big Bad Wolf (Karazhan)
+Optional	Wrathtide Longbow Wrathtide Longbow	Drop: Warlord Kalithresh (The Steamvault)
+Optional	Don Santos' Famous Hunting Rifle Don Santos' Famous Hunting Rifle	World Drop: The Outland
+Optional	Veteran's Musket Veteran's Musket
+Marksman's Bow Marksman's Bow	Reputation: Exalted Honor Hold (Hellfire Peninsula)
+Reputation: Exalted Thrallmar (Hellfire Peninsula)
+Optional	Steelhawk Crossbow Steelhawk Crossbow	Drop: Attumen the Huntsman (Karazhan)
+Optional	Nerubian Slavemaker Nerubian Slavemaker	Drop: Kel'Thuzad (Naxxramas)
+Optional	Valanos' Longbow Valanos' Longbow	World Drop: The Outland
+
+Quivers for Survival Hunter DPS in Phase 4
+Hunters are unique in that they have to use one of their bag slots specifically for their ammunition. If you use a Bow / Crossbow, then you will use a Quiver. If using a Gun, then you'll use an Ammo Pouch. Below, you can use the togglers to see which specific ones you need and can obtain in TBC Classic.
+
+Quivers
+
+In Phase 3, we finally got a new quiver, the long-awaited Quiver of a Thousand Feathers will now be available, providing an additional 6 ammo slots.
+
+All quiver stats share the same 15% ranged attack speed; the only difference is the slot size.
+Rank	Item	Source
+Best	Quiver of a Thousand Feathers Quiver of a Thousand Feathers	Profession: Leatherworking
+Optional	Ancient Sinew Wrapped Lamina Ancient Sinew Wrapped Lamina	Ancient Petrified Leaf Ancient Petrified Leaf from Majordomo Executus (Molten Core)
+BiS	Clefthoof Hide Quiver Clefthoof Hide Quiver
+Worg Hide Quiver Worg Hide Quiver	Vendor: Provisioner Nasela - Requires Honored with The Mag'har
+Vendor: Trader Narasu - Requires Honored with Kurenai
+Optional	Harpy Hide Quiver Harpy Hide Quiver	Vendor:Jekyll Flandring
+Vendor: Thanthaldis Snowgleam
+
+
+
+Ammo Pouches
+
+Alongside a new quiver, the newest ammo pouch Netherscale Ammo Pouch is also now available.
+
+All ammo pouches share the same 15% ranged attack speed; the only difference is the slot size.
+Rank	Item	Source
+Best	Netherscale Ammo Pouch Netherscale Ammo Pouch	Profession: Leatherworking
+Optional	Smuggler's Ammo Pouch Smuggler's Ammo Pouch	Vendor: Karaaz - Requires Honored with The Consortium
+Optional	Gnoll Skin Bandolier Gnoll Skin Bandolier	Vendor: Jekyll Flandring
+Vendor: Thanthaldis Snowgleam
+
+Ammunition for Survival Hunter DPS in TBC Classic Phase 4
+Hunters will also need to use specific ammunition for their weapons, and not only that, certain ammunition will be stronger than others, so it's best to know which one is the best for your specific weapon. Bow / Crossbow users will need Arrows, and Gun users will need Bullets. Below, you can use the togglers to see which specific ones you need and can obtain in TBC Classic.
+
+Arrows
+
+
+Timeless Arrow is still the best in-slot arrow available for Hunters. These arrows are locked behind Honored rep with The Scale of the Sands.
+
+Mysterious Arrow also became available in Phase 3 and is locked behind Revered rep with The Violet Eye.
+Rank	Item	Source
+Best	Timeless Arrow Timeless Arrow	Vendor: Marksman Bova - Aldor
+Vendor: Archer Delvinar - Scryer	Shattrath City
+Optional	Mysterious Arrow Mysterious Arrow	Marksman Bova - Aldor
+Archer Delvinar - Scryer	Shattrath City
+Optional	Adamantite Stinger Adamantite Stinger	Dropped by Sunfury Archer - Profession: Engineering
+Optional	Warden's Arrow Warden's Arrow	Vendor: Fedryen Swiftspear - Requires Revered with Cenarion Expedition
+Optional	Halaani Razorshaft Halaani Razorshaft	Vendor: Tasaldan
+Vendor: Banro
+Optional	Blackflight Arrow Blackflight Arrow	Various vendors in Outland
+
+
+
+Bullets
+
+Timeless Shell is still the best in-slot bullets available for Hunters. These bullets are locked behind Honored rep with The Scale of the Sands.
+
+Mysterious Shell also became available in Phase 3 and is locked behind Revered rep with The Violet Eye.
+Rank	Item	Source
+Best	Timeless Shell Timeless Shell	Vendor: Marksman Bova - Aldor
+Vendor: Archer Delvinar - Scryer
+Optional	Mysterious Shell Mysterious Shell	Vendor: Marksman Bova - Aldor
+Vendor: Archer Delvinar - Scryer
+Optional	Adamantite Shells Adamantite Shells	Vendor: Wind Trader Lathrai - Profession: Engineering
+Optional	Hellfire Shot Hellfire Shot
+Felbane Slugs Felbane Slugs	Vendor: Logistics Officer Ulrike Requires Revered with Honor Hold
+Vendor: Quartermaster Urgronn Requires Revered with Thrallmar
+Optional	Halaani Grimshot Halaani Grimshot	Vendor: Tasaldan
+Vendor: Banro
+Optional	Ironbite Shell Ironbite Shell	Various vendors in Outland
+
+Veramos
+Classic Hunter Class Writer
+Veramos wrote Hunter guides for Wowhead in Classic through Wrath of the Lich King covering all three major specializations. In addition, he creates content for Classic Hunter (including Season of Discovery) through his YouTube and Twitch channels, as well as through his personal Discord, sharing in-depth analysis on Hunter optimization and advanced techniques.
+1 - 5 of 5
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+5
+
+	
+By naughtynildo (1,824 – 1·15·9) on 2022/03/23 (Burning Crusade)	
+	
+Thanks for your work.
+
+I noticed that Legionkiller doesn’t feature on the list of weapons, but surely it’s a better option than most on the list. Was it omitted as it can also be used as a tank weapon? If an SV hunter has had no luck past Kara and Sunfury, where does the Supremus bow sit in the weapon stack?
+
+I’m assuming it’s better than Amani, Arcanite (non-dwarf) and t4 options but less good than Serpent Spine and the two T6 final boss options.
+
+0
+
+	
+
+Veramos <Guide Author> on 2022/03/31 (Burning Crusade)
+Hello Naughtynildo, I will be adding Legionkiller to the list. However unless you have any other bow from SSC/ZA then you're already better off. It's a small upgrade from Sunfury but that's all.
+
+3
+
+	
+By Lightingfist (19,553 – 1·20·43) on 2022/03/21 (Burning Crusade)	
+	
+Is it possible to consider future upgrades when you make BiS lists? This is the second time that my guild has given our BiS items to other classes only for them to no longer be BiS. Now we have 2 BM hunters with madness of betrayer that should have went to our SV hunter and warrior because it was there "BiS". If we had known that it would no longer be BiS when ZA came out then we could have given these to our warrior/SV instead of the BM hunters. This doesnt just go for your guides but all of them, its extremely narrow-minded to post BiS guides by phase and only show upgrades a week before it goes live. If we had bis guides for every phase we could plan out the best upgrades for everyone much more efficiently. Please consider doing a Sunwell bis list soon as well.
+
+2
+
+	
+
+Veramos <Guide Author> on 2022/03/22 (Burning Crusade)
+I am very active in the hunter discord and you can always find me there discussing topics such as this one. Madness on a BM hunter going into P4 is not a waste by any means and doesn't just suddenly become useless once P4 drops. In order to actually move away from it and into Berserkers Call anyways requires a few other gear pickups first. And even then it's arguably close enough to never notice the difference in-game. Also, Fury Warriors and SV Hunters are in the same boat. Both of them will replace Madness as well in the ideal situation but it doesn't just happen instantly. As for Sunwell BiS lists on WoWhead I have no control over when they decide to post them or require the work to be done. I write assignments as they are asked. By all means feel free to reach out on discord though.
+
+3
+
+	
+By Burlyman (201 – 3·0) on 2022/03/27 (Burning Crusade)	
+	
+Why is Rage, the main hand fist from ZA not an optional for main hand? with a 10 agi gem you get a total of 30 ap, about 1.5% crit, and it has the highest agi count for expose. seems like a solid optional to me. DEFINITELY better than things like claw of the frost worm, void talon, etc etc
+Last edited by Burlyman on 2022/03/27
+
+0
+
+	
+
+Veramos <Guide Author> on 2022/03/31 (Burning Crusade)
+Hello Burlyman, just a slight oversight. I will add it in.
+
+1
+
+	
+By GhettyDots (5,898 – 1·10·21) on 2022/03/28 (Burning Crusade)	
+	
+The optional / non-BIS lists are missing quite a few.
+Shoulders (if you can't get tier bc you are a junky alt) - Swiftstrike Shoulders Leatherworking
+Wrist (these might be BIS) - Bindings of Lightning Reflexes Leatherworking
+2H - 1000 Arena pts for the Hunter Specific 2h Axe (Vengeful Waraxe) OR Jin'Rokh from ZA.
+Back - Crystalweave Cape
+
+1
+
+	
+
+Veramos <Guide Author> on 2022/03/31 (Burning Crusade)
+Hello GhettyDots. These items were not added because as Survival there is never a world where you would use any of these optionally. MAYBE Lightning Reflexes but again they are not BiS or even second BiS as Survival. As for the 2h Vengeful Waraxe that is absolutely horrible for SV and you should never ever use it.
+
+1
+
+	
+By Zajih (238 – 1·1) on 2022/04/11 (Burning Crusade)	
+	
+I noticed Master Assassin Wristwraps aren’t listed as an option under bracers. They seem like a decent choice given the decent amount of agi/socket for more agi plus crit rating for expose weakness uptime. Are they not as great as they seem?
+1 - 5 of 5
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Hunter Guide
+
+    Overview
+    Pets
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 1 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 2 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 3 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 4 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+        Phase 5 BiS
+            Beast Mastery
+            Marksmanship
+            Survival
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Survival Hunter DPS Best in Slot (BiS) Phase 5 Gear Guide
+By Veramos
+Updated: 2026/02/22
+Welcome to Wowhead's Best in Slot Gear list from Phase 5 Sunwell Plateau for Survival Hunter DPS in The Burning Crusade Classic. This guide will list the recommended gear for Survival Hunter DPS to acquire while they progress during the fifth and final phase of The Burning Crusade Classic, which contains gear sourced from Sunwell Plateau, Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+Best In Slot Gear for Survival Hunter DPS in Phase 5
+Phase 5 is finally here, and with that, it brings the legendary and infamous Thori'dal, the Stars' Fury Thori'dal, the Stars' Fury. While it was previously thought to be worse than Golden Bow of Quel'Thalas Golden Bow of Quel'Thalas, that couldn't be further from the truth. Thori'dal, the Stars' Fury is actually the single biggest item upgrade you can receive as a hunter in TBC, and the dps gain ranges anywhere from 200-285dps depending on your current gear.
+
+Moving onto the rest of the gear in Phase 5, nearly every piece of gear from Phase 4 will be replaced, except Gronnstalker's Spaulders Gronnstalker's Spaulders and Dragonspine Trophy Dragonspine Trophy. One thing you will notice for Phase 5 is that Survival Hunters will gear almost the same as Beast Mastery, with the only exceptions being that some alternatives are based purely around personal DPS gain instead of boosting your Expose Weakness as much as possible.
+
+Unfortunately, a lot of the best-in-slot pieces come from Kil'jaeden, and there will be a lot of competition for gear from other classes, so you will have to do your best to work with alternatives where possible.
+
+Beast Mastery Hunters looking to gem and enchant their gear should refer to our guide below:
+
+Beast Mastery Hunter DPS Gems & Enchants
+Aldor vs. Scryer for Hunter DPS in Phase 5
+In Phase 5, The Aldor is still the best faction choice for Hunters; choosing The Scryers is not the end of the world, as the difference is very minor. There are no new key items that we benefit from in Phase 5. The only relevant item is still the shoulder enchant Greater Inscription of Vengeance Greater Inscription of Vengeance or Greater Inscription of the Blade Greater Inscription of the Blade.
+
+Besides the shoulder enchants, there is nothing else of relevance for hunters in terms of raid gear or enchants that we "must" have.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Survival Hunter in TBC Classic Phase 5
+Coif of Alleria is the new absolute BiS option for Survival Hunters in Phase 5. The stats on this helm are simply unmatched by anything else, and this should be one of your highest priority items to obtain.
+
+Duplicitous Guise is another very good helm that will be your absolute BiS assuming your raid has no Boomkin, and you need 9%. This helm, however, will also be contested by other classes such as Retribution Paladins.
+Rank	Item	Source
+Best 6%	Coif of Alleria Coif of Alleria	Drop: Kil'jaeden (Sunwell Plateau)
+Best 9%	Duplicitous Guise Duplicitous Guise	Drop: Kil'jaeden (Sunwell Plateau)
+Best Previous Phase Option	Cursed Vision of Sargeras Cursed Vision of Sargeras	Drop: Illidan Stormrage (Black Temple)
+Optional	Gronnstalker's Helmet Gronnstalker's Helmet	Drop: Helm of the Forgotten Protector - Archimonde (Hyjal Summit)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Vengeful Gladiator's Chain Helm Vengeful Gladiator's Chain Helm	Arena Points Arena Points - Arena Vendor
+
+Best in Slot Shoulder Armor for Survival Hunter in TBC Classic Phase 5
+Gronnstalker's Spaulders continue to be the best option for Survival Hunters in Phase 5 and will never be replaced. If you are a returning player for Phase 5 and have not yet obtained a pair yet, and Mantle of the Golden Forest happens to drop, then you could use them temporarily.
+Rank	Item	Source
+Best	Gronnstalker's Spaulders Gronnstalker's Spaulders	Drop: Pauldrons of the Forgotten Protector - Mother Shahraz (Black Temple)
+Optional	Mantle of the Golden Forest Mantle of the Golden Forest	Drop: Lady Sacrolash (Sunwell Plataeu)
+Optional	Shoulderpads of Vehemence Shoulderpads of Vehemence	Drop: Lady Sacrolash (Sunwell Plataeu)
+Optional	Rift Stalker Mantle Rift Stalker Mantle	Drop: Pauldrons of the Vanquished Hero: Void Reaver (Tempest Keep)
+Best in Slot Back Armor for Survival in TBC Classic Phase 5
+Cloak of Unforgivable Sin is the new best-in-slot cloak. This cloak will be heavily contested by nearly all other physical dps and is not one of the biggest upgrades to worry about, so don't feel rushed into getting it first or putting it high on your priority list. Thalassian Wildercloak is still perfectly fine for a while into Phase 5.
+Rank	Item	Source
+Best	Cloak of Unforgivable Sin Cloak of Unforgivable Sin	Drop: Kil'jaeden (Sunwell Plataeu)
+Optional	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep)
+Optional	Dory's Embrace Dory's Embrace	Vendor: G'eras (60 Badges of Justice)
+Optional	Cloak of Fiends Cloak of Fiends	Drop: Zul'Aman Timed Event
+Best in Slot Chest Armor for Survival Hunter in TBC Classic Phase 5
+Bladed Chaos Tunic is the new best-in-slot chest piece for Survival Hunters, and is a significant gain over all the alternatives available in Phase 5. This piece is a huge upgrade for every single physical dps class, so you will have to fight for it. However, Hunters gain more from it than nearly every other class.
+
+Vicious Hawkstrider Hauberk should be completely uncontested, and if it drops, do not pass this up as a Survival Hunter. It's a great alternative to use while you wait your turn for a Bladed Chaos Tunic.
+
+If you are not all that worried about completely minmaxing, would like an easier route for gearing in this slot, and are also a leatherworker, you can opt for Embrace of the Phoenix, or Carapace of Sun and Shadow. While the former is slightly better, if you need the hit rating, then the latter is a great option instead.
+Rank	Item	Source
+Best	Bladed Chaos Tunic Bladed Chaos Tunic	Drop: M'uru, transferred from Harness of Carnal Instinct Harness of Carnal Instinct + Sunmote Sunmote (Sunwell Plateau)
+Best Alternative	Vicious Hawkstrider Hauberk Vicious Hawkstrider Hauberk	Drop: M'uru (Sunwell Plateau)
+Leatherworking Alternative	Embrace of the Phoenix Embrace of the Phoenix	Profession; Leatherworking: Drop: M'uru (Sunwell Plateau - BoP)
+Leatherworking Hit Alternative	Carapace of Sun and Shadow Carapace of Sun and Shadow	Profession; Leatherworking: Drop: M'uru (Sunwell Plateau - BoP)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+
+Rank	Item	Source
+Best	Gronnstalker's Chestguard Gronnstalker's Chestguard	Drop: Chestguard of the Forgotten Protector - Illidan Stormrage (Black Temple)
+Best Until Tier 6	Rift Stalker Hauberk Rift Stalker Hauberk	Drop: Chestguard of the Vanquished Hero: Kael'thas Sunstrider (Tempest Keep)
+Best Until Tier 5	Beast Lord Cuirass Beast Lord Cuirass	Drop: Warp Splinter (The Botanica)
+
+Best in Slot Wrist Armor for Survival Hunter in TBC Classic Phase 5
+Gronnstalker's Bracers are the new best-in-slot wrist piece, and there are no other alternatives you should consider using, as this is one of the main pieces used to maintain 4-piece Tier 6.
+Rank	Item	Source
+Best	Gronnstalker's Bracers Gronnstalker's Bracers	Drop: Bracers of the Forgotten Protector - Kalecgos (Sunwell Plateau)
+Best Until Tier 6	Insidious Bands Insidious Bands	Drop: Teron Gorefiend (Black Temple)
+Optional	Master Assassin Wristwraps Master Assassin Wristwraps	Vendor: G'eras (35 Badges of Justice)
+Optional	Vambraces of Ending Vambraces of Ending	Drop: High Astromancer Solarian (Tempest Keep)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Steadying Bracers Steadying Bracers	Vendor: G'eras (35 Badges of Justice)
+Optional	Wraps of Precise Flight Wraps of Precise Flight	Drop: Supremus (Black Temple)
+
+Best in Slot Hand Armor for Survival Hunter in TBC Classic Phase 5
+Thalassian Ranger Gauntlets are the absolute best for Survival Hunters and should be prioritized over Beast Mastery. They are better in every sense, and Beast Mastery can aim for Gloves of Immortal Dusk and be just as well off.
+
+Gloves of Immortal Dusk are by no means a horrible option for Survival, but your Beast Mastery Hunters should ideally be crafting them and pass Thalassian Ranger Gauntlets Thalassian Ranger Gauntlets to you.
+Rank	Item	Source
+Best	Thalassian Ranger Gauntlets Thalassian Ranger Gauntlets	Drop: Kil'jaeden (Sunwell Plateau)
+Best Alternative	Gloves of Immortal Dusk Gloves of Immortal Dusk	Profession: Leatherworking (Sunwell Plateau) Pattern: Gloves of Immortal Dusk Pattern: Gloves of Immortal Dusk
+Alternative	Gronnstalker's Gloves Gronnstalker's Gloves	Drop: Gloves of the Forgotten Protector - Azgalor
+Best Until Tier 6	Rift Stalker Gauntlets Rift Stalker Gauntlets	Drop: Gloves of the Vanquished Hero: Leotheras the Blind (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+
+Rank	Item	Source
+Best Until Tier 5	Beast Lord Handguards Beast Lord Handguards	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+
+Best in Slot Waist Armor for Survival Hunter in TBC Classic Phase 5
+Gronnstalker's Belt is another piece that is used to maintain 4 piece Tier 6 and is also a great piece to pick up early on, as it provides a large portion of Hit Rating. Similar to the bracers, there are absolutely no new alternatives that you should ever consider using.
+Rank	Item	Source
+Best	Gronnstalker's Belt Gronnstalker's Belt	Drop: Belt of the Forgotten Protector - Brutallus(Sunwell Plateau)
+Best Alternative	Don Alejandro's Money Belt Don Alejandro's Money Belt	Drop: Anetheron (Hyjal Summit)
+Optional	Boneweave Girdle Boneweave Girdle	Drop: Essence of Anger (Black Temple)
+Optional	Bladeangel's Money Belt Bladeangel's Money Belt	Drop: Nalorakk (Zul'Aman)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Belt of Deep Shadow Belt of Deep Shadow	Profession: Leatherworking
+Optional	Belt of the Black Eagle Belt of the Black Eagle	Profession: Leatherworking
+
+Best in Slot Leg Armor for Survival Hunter in TBC Classic Phase 5
+Leggings of the Immortal Night are a huge upgrade for Survival, but it is highly unlikely you will see the first pair or two, as there are better classes that gain more.
+
+Starstalker Legguards actually provide the most raw agility and are a very decent alternative to pick up while you wait your turn for Leggings of the Immortal Night. No one else in your raid should want these legs, so it will be a free pickup.
+Rank	Item	Source
+Best	Leggings of the Immortal Night Leggings of the Immortal Night	Drop: Felmyst (Sunwell Plateau)
+Best Alternative	Starstalker Legguards Starstalker Legguards	Drop: Kalecgos (Sunwell Plateau)
+Alternative	Trousers of the Scryers' Retainer Trousers of the Scryers' Retainer	Vendor: G'eras (100 Badges of Justice)
+Alternative	Bow-stitched Leggings Bow-stitched Leggings	Azgalor (Hyjal Summit)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+
+Rank	Item	Source
+Alternative	Gronnstalker's Leggings Gronnstalker's Leggings	Drop: Leggings of the Forgotten Protector - The Illidari Council (Black Temple)
+Best Until Bow-Stitched	Rift Stalker Leggings Rift Stalker Leggings	Drop: Leggings of the Vanquished Hero - Fathom-Lord Karathress (Serpentshrine Cavern)
+
+Best in Slot Feet Armor for Survival Hunter in TBC Classic Phase 5
+Gronnstalker's Boots are the third and final piece of Tier that you will pick up in Sunwell to maintain 4-piece Tier 6. As with the belt and bracers, the stats are simply unmatched and also provide a decent amount of Hit Rating.
+Rank	Item	Source
+Best	Gronnstalker's Boots Gronnstalker's Boots	Drop: Boots of the Forgotten Protector - Felmyst (Sunwell Plateau)
+Best Until Tier 6	Shadowmaster's Boots Shadowmaster's Boots	Drop: Mother Shahraz (Black Temple)
+Temporary Hit Option	Nyn'jah's Tabi Boots Nyn'jah's Tabi Boots	Vendor: G'eras (60 Badges of Justice)
+Temporary Hit Option	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+
+Rank	Item	Source
+Temporary Hit Option	Softstep Boots of Tracking Softstep Boots of Tracking	Drop: Teron Gorefiend (Black Temple)
+Temporary Hit Option	Quickstrider Moccasins Quickstrider Moccasins	Drop: Anetheron (Hyjal Summit)
+
+Best in Slot Neck Jewelry for Survival Hunter in TBC Classic Phase 5
+For Phase 5, you ideally want to aim for Clutch of Demise as a Survival Hunter. While Hard Khorium Choker will provide slightly more personal dps. You will lose out on a decent amount of Agility and also be stuck fighting everyone else for the pattern.
+Rank	Item	Source
+Best Overall	Clutch of Demise Clutch of Demise	Drop: Brutallus (Sunwell Plataeu)
+Best Personal	Hard Khorium Choker Hard Khorium Choker	Profession: Jewelcrafting (BoP)
+Optional	Choker of Endless Nightmares Choker of Endless Nightmares	Drop: Supremus (Black Temple)
+Optional	Choker of Serrated Blades Choker of Serrated Blades	Drop: Trash Mobs in Black Temple/Hyjal Summit
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+
+Rank	Item	Source
+Optional	Telonicus's Pendant of Mayhem Telonicus's Pendant of Mayhem	Drop: Quest Reward from Verdant Sphere Verdant Sphere - Kael'thas Sunstrider (Tempest Keep)
+
+Best in Slot Ring Jewelry for Survival Hunter in TBC Classic Phase 5
+Rings are a little simpler for Survival compared to Beast Mastery. For the absolute best in slot, you will want Hard Khorium Band and Angelista's Revenge. If the former is too expensive early on, you can easily just use Signet of Primal Wrath instead. I personally do not recommend asking for a Band of Ruinous Delight as Survival unless absolutely everyone else has one and it would otherwise be disenchanted.
+Rank	Item	Source
+Best	Hard Khorium Band Hard Khorium Band	Profession: Jewelcrafting
+Best	Angelista's Revenge Angelista's Revenge	Vendor: G'eras (60 Badges of Justice)
+Best Alternative	Signet of Primal Wrath Signet of Primal Wrath	Drop: Zul'Aman Timed Event
+Alternative	Band of the Eternal Champion Band of the Eternal Champion	Quest: Champion's Covenant Champion's Covenant - Requires Exalted with The Scale of the Sands
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+
+Rank	Item	Source
+Alternative	Band of Ruinous Delight Band of Ruinous Delight	Drop: Grand Warlock Alythess (Sunwell Plateau)
+Alternative	Stormrage Signet Ring Stormrage Signet Ring	Drop: Illidan Stormrage (Black Temple)
+Good Hit Option	Band of the Ranger-General Band of the Ranger-General	Drop: Kael'thas Sunstrider (Tempest Keep)
+Good Hit Option	Ring of Deceitful Intent Ring of Deceitful Intent	Drop: Shade of Akama (Black Temple)
+
+Best in Slot Trinkets for Survival Hunter in TBC Classic Phase 5
+For Phase 5, Dragonspine Trophy will always remain best in slot for Survival regardless of whether or not you have Thori'dal, the Stars' Fury Thori'dal, the Stars' Fury. Blackened Naaru Sliver will become your new best second trinket.
+
+Madness of the Betrayer and Berserker's Call will be decent options to maintain for a while in Phase 5 until you can obtain Blackened Naaru Sliver.
+Rank	Item	Source
+Best	Blackened Naaru Sliver Blackened Naaru Sliver	Drop: M'uru (Sunwell Plateau)
+Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Alternative	Berserker's Call Berserker's Call	Drop: Zul'jin (Zul'Aman)
+Good Hit Alternative	Madness of the Betrayer Madness of the Betrayer	Drop: The Illidari Council (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+
+Rank	Item	Source
+Optional	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Optional	Ashtongue Talisman of Swiftness Ashtongue Talisman of Swiftness	Vendor: Okuno - Requires Exalted with Ashtongue Deathsworn
+
+Best in Slot Melee Weapons for Survival Hunter in TBC Classic Phase 5
+Dual-Wield Weapons
+Hand of the Deceiver is the new absolute best main hand available to Survival Hunters. This fist weapon, however, will be sought after by Fury Warriors, Enhance Shamans, and Rogues, so taking this from them or asking for it is not ideal, and you should never expect it over them.
+
+Crux of the Apocalypse will be the best off-hand to pair this with, and should be a relatively free pick up, and using this in both the mainhand and offhand is fairly close overall.
+
+As Survival, I would highly recommend just aiming for Shiv of Exsanguination. This will help you greatly in reaching your ArP cap and still provide nearly the same overall agility.
+Rank	Item	Source
+Best	Hand of the Deceiver Hand of the Deceiver	Drop: Kil'jaeden (Sunwell Plateau)
+Best Alternative	Vanir's Right Fist of Brutality Vanir's Right Fist of Brutality	Vendor: Smith Hauthaa (105 Badges of Justice)
+Good Alternative	Crux of the Apocalypse Crux of the Apocalypse	Drop: Kil'jaeden (Sunwell Plateau)
+Good Alternative	Shiv of Exsanguination Shiv of Exsanguination	Drop: Grand Warlock Alythess (Sunwell Plateau)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Duel Wield Weapon Recommendations
+Rank	Item	Source
+Good 9% Alternative	Vanir's Left Fist of Brutality Vanir's Left Fist of Brutality	Vendor: Anwehu (45 Badges of Justice)
+Good Alternative	Shiv of Exsanguination Shiv of Exsanguination	Drop: Grand Warlock Alythess (Sunwell Plateau)
+Great MH	Vengeful Gladiator's Right Ripper Vengeful Gladiator's Right Ripper	Arena Points Arena Points - Arena Vendor
+Great OH	Vengeful Gladiator's Left Ripper Vengeful Gladiator's Left Ripper	Arena Points Arena Points - Arena Vendor
+Good	Tracker's Blade Tracker's Blade	Drop: Rage Winterchill (Hyjal Summit)
+Optional	Messenger of Fate Messenger of Fate	Drop: Gurtogg Bloodboil (Black Temple)
+Good MH	Talon of the Phoenix Talon of the Phoenix	Drop: Al'ar (Tempest Keep)
+Good OH	Claw of the Phoenix Claw of the Phoenix	Drop: Al'ar (Tempest Keep)
+
+Two-Handed
+Shivering Felspine is the best option available for Survival Hunters and drops off of trash mobs in Sunwell Plateau. If you are melee weaving as Survival, then this is your go-to always.
+
+While Apolyon, the Soul-Render is an alright option as Survival. I highly suggest you don't take it over other classes that may want it. Stick to Shivering Felspine.
+Rank	Item	Source
+Best	Shivering Felspine Shivering Felspine	Drop: Sunwell Plateau Trash Mobs
+Best Survivability	Apolyon, the Soul-Render Apolyon, the Soul-Render	Drop: Kil'jaeden (Sunwell Plateau)
+Optional	Twinblade of the Phoenix Twinblade of the Phoenix	Drop: Kael'thas Sunstrider (Tempest Keep)
+Optional	Trollbane Trollbane	Drop: Zul'Aman Timed Event
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Two-Hand Weapon Recommendations
+Rank	Item	Source
+Best for hit rating	Halberd of Desolation Halberd of Desolation	High Warlord Naj'entus (Black Temple)
+
+Best in Slot Ranged Weapons for Survival Hunter in TBC Classic Phase 5
+Thori'dal, the Stars' Fury is our long-awaited absolute best bow. Contrary to popular belief from misinformation dating back to 2007-2008, and private servers. This bow IS our absolute best in slot and is actually extremely overpowered for what it is. You can expect gains of anywhere up to 250dps as Survival.
+
+Golden Bow of Quel'Thalas will be what the majority of the hunter playerbase will have to settle for, however. It is still a fairly decent upgrade over the Phase 3/4 bows.
+Rank	Item	Source
+Best	Thori'dal, the Stars' Fury Thori'dal, the Stars' Fury	Drop: Kil'jaeden (Sunwell Plateau)
+Best Alternative	Golden Bow of Quel'Thalas Golden Bow of Quel'Thalas	Drop: Grand Warlock Alythess (Sunwell Plateau)
+Optional	Bristleblitz Striker Bristleblitz Striker	Drop: Archimonde (Hyjal Summit)
+Optional	Vengeful Gladiator's Rifle Vengeful Gladiator's Rifle	Arena Points Arena Points - Arena Vendor
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ranged Weapon Recommendations
+Rank	Item	Source
+Optional	Black Bow of the Betrayer Black Bow of the Betrayer	Drop: Illidan Stormrage (Black Temple)
+
+Quivers for Beast Mastery Hunter DPS in Phase 5
+Hunters are unique in that they have to use one of their bag slots specifically for their ammunition. If you use a Bow / Crossbow, then you will use a Quiver. If using a Gun, then you'll use an Ammo Pouch. Below, you can use the togglers to see which specific ones you need and can obtain in TBC Classic.
+
+Quivers
+
+Quiver of a Thousand Feathers is still BiS in Phase 5.
+
+All quiver stats share the same 15% ranged attack speed; the only difference is the slot size.
+Rank	Item	Source
+Best	Quiver of a Thousand Feathers Quiver of a Thousand Feathers	Profession: Leatherworking
+Optional	Ancient Sinew Wrapped Lamina Ancient Sinew Wrapped Lamina	Ancient Petrified Leaf Ancient Petrified Leaf from Majordomo Executus (Molten Core)
+BiS	Clefthoof Hide Quiver Clefthoof Hide Quiver
+Worg Hide Quiver Worg Hide Quiver	Vendor: Provisioner Nasela - Requires Honored with The Mag'har
+Vendor: Trader Narasu - Requires Honored with Kurenai
+Optional	Harpy Hide Quiver Harpy Hide Quiver	Vendor:Jekyll Flandring
+Vendor: Thanthaldis Snowgleam
+
+
+
+Ammo Pouches
+
+Alongside a new quiver, the newest ammo pouch Netherscale Ammo Pouch is available for gun users.
+
+All ammo pouches share the same 15% ranged attack speed; the only difference is the slot size.
+Rank	Item	Source
+Best	Netherscale Ammo Pouch Netherscale Ammo Pouch	Profession: Leatherworking
+Optional	Smuggler's Ammo Pouch Smuggler's Ammo Pouch	Vendor: Karaaz - Requires Honored with The Consortium
+Optional	Gnoll Skin Bandolier Gnoll Skin Bandolier	Vendor: Jekyll Flandring
+Vendor: Thanthaldis Snowgleam
+
+Ammunition for Survival Hunter DPS in TBC Classic Phase 5
+Hunters will also need to use specific ammunition for their weapons, and not only that, certain ammunition will be stronger than others, so it's best to know which one is the best for your specific weapon. Bow / Crossbow users will need Arrows, and Gun users will need Bullets. Below, you can use the togglers to see which specific ones you need and can obtain in TBC Classic.
+
+Arrows
+
+
+Timeless Arrow is still the best in-slot arrow available for Hunters. These arrows are locked behind Honored rep with The Scale of the Sands.
+
+Mysterious Arrow also became available in Phase 3 and is locked behind Revered rep with The Violet Eye.
+Rank	Item	Source
+Best	Timeless Arrow Timeless Arrow	Vendor: Marksman Bova - Aldor
+Vendor: Archer Delvinar - Scryer	Shattrath City
+Optional	Mysterious Arrow Mysterious Arrow	Marksman Bova - Aldor
+Archer Delvinar - Scryer	Shattrath City
+Optional	Adamantite Stinger Adamantite Stinger	Dropped by Sunfury Archer - Profession: Engineering
+Optional	Warden's Arrow Warden's Arrow	Vendor: Fedryen Swiftspear - Requires Revered with Cenarion Expedition
+Optional	Halaani Razorshaft Halaani Razorshaft	Vendor: Tasaldan
+Vendor: Banro
+Optional	Blackflight Arrow Blackflight Arrow	Various vendors in Outland
+
+
+
+Bullets
+
+Timeless Shell is still the best in-slot bullets available for Hunters. These bullets are locked behind Honored rep with The Scale of the Sands.
+
+Mysterious Shell also became available in Phase 3 and is locked behind Revered rep with The Violet Eye.
+Rank	Item	Source
+Best	Timeless Shell Timeless Shell	Vendor: Marksman Bova - Aldor
+Vendor: Archer Delvinar - Scryer
+Optional	Mysterious Shell Mysterious Shell	Vendor: Marksman Bova - Aldor
+Vendor: Archer Delvinar - Scryer
+Optional	Adamantite Shells Adamantite Shells	Vendor: Wind Trader Lathrai - Profession: Engineering
+Optional	Hellfire Shot Hellfire Shot
+Felbane Slugs Felbane Slugs	Vendor: Logistics Officer Ulrike Requires Revered with Honor Hold
+Vendor: Quartermaster Urgronn Requires Revered with Thrallmar
+Optional	Halaani Grimshot Halaani Grimshot	Vendor: Tasaldan
+Vendor: Banro
+Optional	Ironbite Shell Ironbite Shell	Various vendors in Outland
+
+Veramos
+Classic Hunter Class Writer
+Veramos wrote Hunter guides for Wowhead in Classic through Wrath of the Lich King covering all three major specializations. In addition, he creates content for Classic Hunter (including Season of Discovery) through his YouTube and Twitch channels, as well as through his personal Discord, sharing in-depth analysis on Hunter optimization and advanced techniques.
+1 - 3 of 3
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+1
+
+	
+By ArtakuX (1,420 – 1·7) on 2022/05/08 (Burning Crusade)	
+	
+Why aren't Bracers of the Pathfinder Bracers of the Pathfinder mentioned in any of these BiS lists? I equipped them over Vambraces of Ending Vambraces of Ending until I get something better and have not regretted it. A little more Intellect and survivability are useful.
+Last edited by ArtakuX on 2022/05/08
+
+1
+
+	
+By Leggolem (4,640 – 6·24) on 2022/05/09 (Burning Crusade)	
+	
+Why would Survival gem Hard Khorium Choker Hard Khorium Choker with Smooth Lionseye Smooth Lionseye instead of Crimson Spinel Crimson Spinel? Is 10 agility not better than 10 critical strike rating + 4 attack power?
+
+1
+
+	
+
+Dunkindonutz on 2022/05/09 (Burning Crusade)
+Survival hunter is all about stacking AGI. My surv hunter is over 1k agi with no buffs.
+
+0
+
+	
+
+3vil6oat on 2022/06/30 (Burning Crusade)
+you need to activate your meta gem
+
+1
+
+	
+By blichner (4,526 – 10·11) on 2022/06/11 (Burning Crusade)	
+	
+Why would the shiv be better than the crux in one hand but not the other?
+
+0
+
+	
+
+3vil6oat on 2022/06/30 (Burning Crusade)
+I assume they reached arp cap with one weapon having it and decided to go for the second weapon with haste
+1 - 3 of 3
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+

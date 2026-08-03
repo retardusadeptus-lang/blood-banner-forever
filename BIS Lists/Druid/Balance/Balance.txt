@@ -1,0 +1,2921 @@
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase TwoClassesLevelingBest in SlotTier ListsRaidsAttunementsDungeonsReputationsProfessions
+Guides...
+Guide Contents
+Patch 2.5.6
+3.7/5 (7 Votes)
+TBCC Balance Druid Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Best In Slot Gear in Phase 1
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Idols
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Balance Druid DPS Pre-Raid Best in Slot (BiS) - TBC Classic
+By Kyxie
+Updated: 2026/01/29
+In this Pre-Raid Best-in-Slot Gear List for Balance Druid DPS in The Burning Crusade Classic, we will list the recommended gear for Balance Druid DPS to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Balance Druid DPS Best in Slot Hub
+
+Best In Slot Gear for Balance Druid DPS in Pre-Raid
+Phase 1 gear sets are highly dependent on whether you choose Tailoring as a Profession or not. The Spellfire set is extremely good, but requires Tailoring. Balance Druids who are not Tailors will need to select alternate pieces from the recommended lists below. A lot of this set remains BiS even through Phase 1 raids.
+
+Balance Druids looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Balance Druid Gems & Enchants
+Should Balance Druid DPS Choose Aldor or Scryer for BiS in TBC Classic Pre-Raid?
+Choosing either Aldor or Scryer for Balance is fine and really comes down to a few options that can sway you in one direction. Regarding Phase 1 BiS gear, choosing The Scryers gives access to Scryer's Bloodgem Scryer's Bloodgem, which can help reach the cap for hit rating. If you are Aldor, you can swap out this trinket, but you will have to make up for the hit rating elsewhere, such as with gems. You want to aim for 12% hit rating since you can get 4% from talents in the Balance tree. You can potentially get away with less depending on your party setup, but it's generally a good idea to have a set of gear that reaches 12% on your own.
+
+The Aldor offer a better shoulder enchant with Greater Inscription of Discipline Greater Inscription of Discipline, slightly edging out Greater Inscription of the Orb Greater Inscription of the Orb. On the other hand, Scryer Tailors are also able to pick up and make their own Runic Spellthread Runic Spellthread, although the finished product can be bought and sold on the Auction House. In the long run, taking future phases into account, the Shattered Sun Offensive trinket proc off of Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen is better if you are aligned with The Aldor.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Balance Druids, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Balance Druid in TBC Classic Pre-Raid
+Spellstrike Hood is generally best but does lack a considerable amount of Intellect, which can lead to issues with mana early on.
+Rank	Item	Source
+BiS	Spellstrike Hood Spellstrike Hood	Profession: Tailoring – can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+If you have Gnomish Engineering, Gnomish Power Goggles is a decent choice.
+Rank	Item	Source
+Option	Druidic Helmet of Second Sight Druidic Helmet of Second Sight	Quest: Teron Gorefiend, I am... Teron Gorefiend, I am...
+Option	Mag'hari Ritualist's Horns Mag'hari Ritualist's Horns	Quest: Hero of the Mag'har Hero of the Mag'har
+Option	Mana-Binders Cowl Mana-Binders Cowl	Vendor: Badges of Justice
+PvP	Gladiator's Wyrmhide Helm Gladiator's Wyrmhide Helm	Vendor: Arena Points (Season 1)
+Option	Incanter's Cowl Incanter's Cowl	Drop: Pathaleon the Calculator (The Mechanar)
+Option	Hood of Oblivion Hood of Oblivion	Drop: Zereketh the Unbound and Harbinger Skyriss (The Arcatraz)
+
+Best in Slot Shoulder Armor for Balance Druid in TBC Classic Pre-Raid
+Mana-Etched Spaulders are a very good pre-raid option before you pick up tier items.
+Rank	Item	Source
+BiS	Mana-Etched Spaulders Mana-Etched Spaulders	Drop: Quagmirran (Heroic The Slave Pens)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Spaulders of Oblivion Spaulders of Oblivion	Drop: Murmur (Shadow Labyrinth)
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest: The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+Option	Mantle of Three Terrors Mantle of Three Terrors	Drop: Chrono Lord Deja (The Black Morass)
+Option	Rime Covered Mantle Rime Covered Mantle	Drop: Gluth (Classic - Naxxramas)
+PvP	Gladiator's Wyrmhide Spaulders Gladiator's Wyrmhide Spaulders	Vendor: Arena Points (Season 1)
+Option	Incanter's Pauldrons Incanter's Pauldrons	Drop: Warlord Kalithresh (The Steamvault)
+Option	Elekk Hide Spaulders Elekk Hide Spaulders	Quest: The Fallen Exarch The Fallen Exarch
+
+Best in Slot Back Armor for Balance Druid in TBC Classic Pre-Raid
+While a lot of these cloaks can be considered relatively similar in power, Sethekk Oracle Cloak comes with the highest Hit rating and is easy to get from a Normal dungeon.
+Rank	Item	Source
+BiS	Sethekk Oracle Cloak Sethekk Oracle Cloak	Drop: Talon King Ikiss (Sethekk Halls)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Cloak of Entropy Cloak of Entropy	Drop: World Drop
+Option	Cloak of the Necropolis Cloak of the Necropolis	Drop: Sapphiron (Classic - Naxxramas)
+Option	Cloak of the Devoured Cloak of the Devoured	Drop: C'Thun (Classic - Ahn’Qiraj)
+Option	Shawl of Shifting Probabilities Shawl of Shifting Probabilities	Vendor: G'eras (Badges of Justice)
+Option	Cloak of the Black Void Cloak of the Black Void	Profession: Tailoring - can be purchased on the Auction House
+Option	Ogre Slayer's Cover Ogre Slayer's Cover	Quest: Cho'war the Pillager Cho'war the Pillager
+
+Best in Slot Chest Armor for Balance Druid in TBC Classic Pre-Raid
+If you're able to have Tailoring, Spellfire Robe is just so good and hard to beat.
+
+Rank	Item	Source
+BiS	Spellfire Robe Spellfire Robe	Profession: Tailoring (Spellfire Tailoring) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+If you have Tribal Leatherworking, Windhawk Hauberk is fairly good. Otherwise, you're looking to pick up something like Robe of the Crimson Order or Auchenai Anchorite's Robe.
+Rank	Item	Source
+Option	Windhawk Hauberk Windhawk Hauberk	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Robe of the Crimson Order Robe of the Crimson Order	Drop: World Drop
+Option	Auchenai Anchorite's Robe Auchenai Anchorite's Robe	Quest: Everything Will Be Alright Everything Will Be Alright
+Option	Will of Edward the Odd Will of Edward the Odd	Drop: World Drop
+Option	Warp Infused Drape Warp Infused Drape	Drop: Warp Splinter (The Botanica)
+PvP	Gladiator's Wyrmhide Tunic Gladiator's Wyrmhide Tunic	Vendor: Arena Points (Season 1)
+Option	Anchorite's Robes Anchorite's Robes	Vendor: Quartermaster Endarin (The Aldor Honored)
+Option	Incanter's Robe Incanter's Robe	Drop: Warp Splinter (The Botanica)
+
+Best in Slot Wrist Armor for Balance Druid in TBC Classic Pre-Raid
+If you have Tribal Leatherworking, Windhawk Bracers are the way to go. Otherwise, pick up Bracers of Havoc.
+Rank	Item	Source
+BiS	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+BiS	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Crimson Bracers of Gloom are noteworthy for having Hit Rating.
+
+Rank	Item	Source
+Option	Crimson Bracers of Gloom Crimson Bracers of Gloom	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+PvP	General's Silk Cuffs General's Silk Cuffs	Vendor: 11100 Honor Points + 20 Warsong Gulch Mark of Honor Warsong Gulch Mark of Honor (PvP)
+Option	Bands of Negation Bands of Negation	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Rockfury Bracers Rockfury Bracers	Vendor: Vargus (Classic - Cenarion Circle Revered)
+Option	Shattrath Wraps Shattrath Wraps	Quest: The Soul Devices The Soul Devices
+Option	Bands of Rarefied Magic Bands of Rarefied Magic	Drop: Warchief Kargath Bladefist (Heroic The Shattered Halls)
+
+Best in Slot Hand Armor for Balance Druid in TBC Classic Pre-Raid
+Spellfire Gloves have great spell power but lack Intellect and Hit rating.
+Rank	Item	Source
+BiS	Spellfire Gloves Spellfire Gloves	Profession: Tailoring (Spellfire Tailoring) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Gloves of the Deadwatcher Gloves of the Deadwatcher	Drop: Shirrak the Dead Watcher (Heroic Auchenai Crypts)
+Option	Gloves of Oblivion Gloves of Oblivion	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Option	Manaspark Gloves Manaspark Gloves	Drop: Hungarfen (The Underbog)
+Option	Gloves of Pandemonium Gloves of Pandemonium	Drop: World Drop
+Option	Mana-Etched Gloves Mana-Etched Gloves	Drop: Omor the Unscarred (Hellfire Ramparts)
+Option	Tempest's Touch Tempest's Touch	Quest: Return to Andormu Return to Andormu
+Option	Starlight Gauntlets Starlight Gauntlets	Drop: Hungarfen (The Underbog)
+
+Best in Slot Waist Armor for Balance Druid in TBC Classic Pre-Raid
+All the Spellfire set items are fantastic, and Spellfire Belt is no exception. The set bonus is worth it if you have Tailoring.
+Rank	Item	Source
+BiS	Spellfire Belt Spellfire Belt	Profession: Tailoring (Spellfire Tailoring) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+Option	Windhawk Belt Windhawk Belt	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Belt of Depravity Belt of Depravity	Drop: Harbinger Skyriss (Heroic The Arcatraz)
+Option	Glyph-Lined Sash Glyph-Lined Sash	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	A'dal's Gift A'dal's Gift	Quest: How to Break Into the Arcatraz How to Break Into the Arcatraz
+Option	Mindfire Waistband Mindfire Waistband	Drop: Keli'dan the Breaker (The Blood Furnace)
+
+Best in Slot Leg Armor for Balance Druid in TBC Classic Pre-Raid
+Spellstrike Pants is the best option.
+Rank	Item	Source
+BiS	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Tempest Leggings Tempest Leggings
+Kurenai Kilt Kurenai Kilt	Vendor: Provisioner Nasela / Trader Narasu (The Mag'har / Kurenai Revered)
+Option	Breeches of the Occultist Breeches of the Occultist	Drop: Aeonus (Heroic The Black Morass)
+Option	Haramad's Leggings of the Third Coin Haramad's Leggings of the Third Coin	Quest: Undercutting the Competition Undercutting the Competition
+Option	Kirin Tor Master's Trousers Kirin Tor Master's Trousers	Drop: Murmur (Heroic Shadow Labyrinth)
+Option	Aran's Sorcerous Slacks Aran's Sorcerous Slacks	Drop: Lieutenant Drake (Heroic Old Hillsbrad Foothills)
+Option	Moonchild Leggings Moonchild Leggings	Drop: Broggok (Heroic The Blood Furnace)
+Option	Khadgar's Kilt of Abjuration Khadgar's Kilt of Abjuration	Drop: Temporus (The Black Morass)
+
+Best in Slot Feet Armor for Balance Druid in TBC Classic Pre-Raid
+Each of the best items here offers slight differences. Sigil-Laced Boots can be stronger in terms of Spell Power depending on how you choose to socket it. Extravagant Boots of Malice have more raw Intellect and organic Hit rating, but lack the option of the sockets.
+Rank	Item	Source
+BiS	Extravagant Boots of Malice Extravagant Boots of Malice	Drop: Tavarok (Heroic Mana-Tombs)
+BiS	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Shattrath Jumpers Shattrath Jumpers	Quest: Into the Heart of the Labyrinth Into the Heart of the Labyrinth
+PvP	General's Silk Footguards General's Silk Footguards	Vendor: 16800 Honor Points + 40 Eye of the Storm Mark of Honor Eye of the Storm Mark of Honor (PvP)
+Option	Shimmering Azure Boots Shimmering Azure Boots	Quest: Securing the Celestial Ridge Securing the Celestial Ridge
+Option	Boots of the Nexus Warden Boots of the Nexus Warden	Quest: The Flesh Lies... The Flesh Lies...
+Option	Boots of Ethereal Manipulation Boots of Ethereal Manipulation	Drop: Warp Splinter (Heroic The Botanica)
+Option	Embroidered Spellpyre Boots Embroidered Spellpyre Boots	Drop: Broggok (Heroic The Blood Furnace)
+Option	Moonstrider Boots Moonstrider Boots	Drop: Darkweaver Syth (Sethekk Halls)
+Option	Boots of Blasphemy Boots of Blasphemy	Drop: Quagmirran (Heroic The Slave Pens)
+
+Best in Slot Neck Jewelry for Balance Druid in TBC Classic Pre-Raid
+Brooch of Heightened Potential is generally the best option, having a nice balance of stats and being quite easy to obtain.
+Rank	Item	Source
+BiS	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Hydra-fang Necklace Hydra-fang Necklace	Drop: Ghaz'an (Heroic The Underbog)
+Option	Natasha's Ember Necklace Natasha's Ember Necklace	Quest: The Hound-Master The Hound-Master
+PvP	Pendant of Dominance Pendant of Dominance	Vendor: 1800 Honor Points + 10 Eye of the Storm Mark of Honor Eye of the Storm Mark of Honor (PvP)
+Option	Torc of the Sethekk Prophet Torc of the Sethekk Prophet	Quest: Brother Against Brother Brother Against Brother
+Option	Luminous Pearls of Insight Luminous Pearls of Insight	Drop: Ghaz'an (The Underbog)
+
+Best in Slot Ring Jewelry for Balance Druid in TBC Classic Pre-Raid
+Ashyen's Gift and Sparking Arcanite Ring are great since they both offer a good amount of Hit rating paired with a decent level of Spell Power.
+Rank	Item	Source
+BiS	Ashyen's Gift Ashyen's Gift	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+BiS	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Ring of the Fallen God and Band of the Inevitable are still competitive options that you might already have from Classic.
+Rank	Item	Source
+Option	Ring of the Fallen God Ring of the Fallen God	Drop: C'Thun (Classic - Ahn’Qiraj)
+Option	Band of the Inevitable Band of the Inevitable	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+Option	Seal of the Exorcist Seal of the Exorcist	Vendor: Spirit Sage Gartok / Spirit Sage Zran (50 Spirit Shard Spirit Shard)
+Option	Cobalt Band of Tyrigosa Cobalt Band of Tyrigosa	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Ring of Cryptic Dreams Ring of Cryptic Dreams	Vendor: G'eras (Badges of Justice)
+Option	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+Option	Evoker's Mark of the Redemption Evoker's Mark of the Redemption	Quest: Dissension Amongst the Ranks... Dissension Amongst the Ranks...
+Option	Manastorm Band Manastorm Band	Quest: Shutting Down Manaforge Ara Shutting Down Manaforge Ara
+Option	Band of Dominion Band of Dominion	Drop: World Drop
+Option	Ryngo's Band of Ingenuity Ryngo's Band of Ingenuity	Drop: Wrath-Scryer Soccothrates (The Arcatraz)
+
+Best in Slot Trinkets for Balance Druid in TBC Classic Pre-Raid
+Icon of the Silver Crescent is the best option for a trinket. The Hit rating from Scryer's Bloodgem and Neltharion's Tear is quite good, as well as the haste proc from Quagmirran's Eye.
+Rank	Item	Source
+BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+BiS	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Some of these other options are fairly close, while others towards the end of the list are more easily obtainable options that have some value.
+Rank	Item	Source
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+Option	Arcanist's Stone Arcanist's Stone	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Oculus of the Hidden Eye Oculus of the Hidden Eye	Drop: Shirrak the Dead Watcher (Auchenai Crypts)
+Option	Starkiller's Bauble Starkiller's Bauble	Quest: The Horrors of Pollution The Horrors of Pollution
+Option	Briarwood Reed Briarwood Reed	Drop: Jed Runewatcher (Classic - Upper Blackrock Spire)
+Option	Terokkar Tablet of Vim Terokkar Tablet of Vim	Quest: Torgos! Torgos!
+Option	Ancient Crystal Talisman Ancient Crystal Talisman	Quest: A Spirit Ally? A Spirit Ally?
+Option	Glowing Crystal Insignia Glowing Crystal Insignia	Quest: Overlord Gorefist Overlord Gorefist
+
+Best in Slot Weapons for Balance Druid in TBC Classic Pre-Raid
+Eternium Runed Blade is a BoE option from Blacksmithing. If you don't want to put up the gold, Gavel of Unearthed Secrets is another great option you can get through reputation. It is generally better to use a 1-Handed Weapon paired with an Offhand instead of a 2-Handed Weapon.
+Rank	Item	Source
+BiS	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+BiS	Gavel of Unearthed Secrets Gavel of Unearthed Secrets	Vendor: Nakodu (Lower City Exalted)
+
+If you don't have access to the recommendations above, or prefer a two-handed weapon, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Option	Starlight Dagger Starlight Dagger	Drop: Mennu the Betrayer (Heroic The Slave Pens)
+Option	High Warlord's Spellblade High Warlord's Spellblade	Vendor: 9000 Honor Points + 20 Eye of the Storm Mark of Honor Eye of the Storm Mark of Honor (PvP)
+Option	Sky Breaker Sky Breaker	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+Option	Bleeding Hollow Warhammer Bleeding Hollow Warhammer	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Runesong Dagger Runesong Dagger	Drop: Warbringer O'mrogg (The Shattered Halls)
+
+
+For two-handed weapons, Gladiator's War Staff is quite good, but does require a fair amount of PvP. Terokk's Shadowstaff is still pretty close and easier to obtain. Keep in mind that it is generally better to use a 1-Handed Weapon paired with an Offhand.
+Rank	Item	Source
+PvP	Gladiator's War Staff Gladiator's War Staff	Vendor: Arena Points (Season 1)
+Option	Terokk's Shadowstaff Terokk's Shadowstaff	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+Option	Grand Scepter of the Nexus-Kings Grand Scepter of the Nexus-Kings	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Auchenai Staff Auchenai Staff	Vendor: Quartermaster Endarin (The Aldor Revered)
+PvP	High Warlord's War Staff High Warlord's War Staff	Vendor: 27000 Honor Points + 20 Alterac Valley Mark of Honor Alterac Valley Mark of Honor (PvP)
+Option	Warpstaff of Arcanum Warpstaff of Arcanum	Drop: Warp Splinter (The Botanica)
+Option	The Bringer of Death The Bringer of Death	Drop: World Drop
+Option	Bloodfire Greatstaff Bloodfire Greatstaff	Drop: Aeonus (The Black Morass)
+
+Best in Slot Offhands for Balance Druid in TBC Classic Pre-Raid
+Talisman of Kalecgos offers significant Arcane Damage along with a good amount of intellect.
+Rank	Item	Source
+BiS	Talisman of Kalecgos Talisman of Kalecgos	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Khadgar's Knapsack provides a lot of Spell Power but no additional stats. Lamp of Peaceful Radiance and Sapphiron's Left Eye offer a good amount of Hit rating.
+Rank	Item	Source
+Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Option	Lamp of Peaceful Radiance Lamp of Peaceful Radiance	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Sapphiron's Left Eye Sapphiron's Left Eye	Drop: Sapphiron (Classic - Naxxramas)
+Option	Star-Heart Lamp Star-Heart Lamp	Drop: Temporus (The Black Morass)
+Option	Manual of the Nethermancer Manual of the Nethermancer	Drop: Nethermancer Sepethrea (The Mechanar)
+Option	The Saga of Terokk The Saga of Terokk	Quest: Terokk's Legacy Terokk's Legacy
+
+Best in Slot Idols for Balance Druid in TBC Classic Pre-Raid
+Ivory Idol of the Moongoddess is what you'll want to grab for an idol.
+Rank	Item	Source
+BiS	Ivory Idol of the Moongoddess Ivory Idol of the Moongoddess	Drop: Grand Warlock Nethekurse (The Shattered Halls)
+Option	Idol of the Moon Idol of the Moon	Drop: World Drop
+Option	Idol of the Raven Goddess Idol of the Raven Goddess	Quest: Vanquish the Raven God Vanquish the Raven God
+Kyxie
+WoW Classic Druid Writer
+Starting in 2019, SixPacKyx wrote comprehensive Druid class guides for Classic and Burning Crusade Classic content. The author created detailed guides covering Restoration healing and Balance DPS specializations, including advanced strategies, talent builds, gear recommendations, rotations, consumables, addons, and macros for PvE content.
+1 - 5 of 5
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+13
+
+	
+By WTFBBQAPPLESAUCE (3,211 – 17·13) on 2026/02/14 (Burning Crusade)	
+	
+I really enjoy clicking 14 drop downs every time I open this page.
+
+1
+
+	
+By Cochana (778 – 3·16) on 2021/06/01 (Burning Crusade)	
+	
+For trinkets, I'm absolutely sure Darkmoon Card: Crusade Darkmoon Card: Crusade was a really nice trinket back in TBC for moonkins.
+
+2
+
+	
+
+TheHornOfWinter on 2021/06/14 (Burning Crusade)
+With the private server community's extensive experience and play through I think this trinket is not optimal. Viable, but not optimal.
+
+1
+
+	
+By Najanah (5,903 – 1·11·18) on 2021/12/02 (Burning Crusade)	
+	
+Quick reminder that for cloaks, the Cloak of the Frigid Winds Cloak of the Frigid Winds and Shawl of Shifting Probabilities Shawl of Shifting Probabilities have the same stats, but one is a drop from Ahune free, while the other costs badges
+Both are under bis, but it looks like one is ranked higher than the other
+
+-1
+
+	
+By maramoon (4,551 – 15·11) <Rare Premium User> on 2021/06/02 (Burning Crusade)	
+	
+I'm confused. Cloth gear for a balance druid?
+
+2
+
+	
+
+agentrock <Rare Premium User> on 2021/06/05 (Burning Crusade)
+In the earlier days of WoW, druids often worse cloth instead of leather because the stats were better.
+
+2
+
+	
+
+TheHornOfWinter on 2021/06/14 (Burning Crusade)
+It's not about the type of armour. It's the stats that count.
+By benedekf (17,002 – 4·14·39) on 2021/08/02 (Burning Crusade)	
+	
+1 - 5 of 5
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase TwoClassesLevelingBest in SlotTier ListsRaidsAttunementsDungeonsReputationsProfessions
+Guides...
+Guide Contents
+Patch 2.5.6
+3.1/5 (7 Votes)
+TBCC Balance Druid Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+            Best In Slot Gear in Phase 1
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Idols
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Balance Druid DPS Phase 1 Best in Slot (BiS) - TBC Classic
+By Kyxie
+Updated: 2026/02/01
+Welcome to Wowhead's Best in Slot Gear list from Karazhan, Gruul's Lair, and Magtheridon's Lair for Balance Druid DPS in The Burning Crusade Classic. This guide will list the recommended gear for Balance Druid DPS to acquire while they progress on the first few raids in The Burning Crusade Classic, and contains gear sourced from Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best-in-slot lists, including a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Balance Druid DPS Best in Slot Guides
+
+Best In Slot Gear for Balance Druid DPS in Phase 1
+Phase 1 gear sets are highly dependent on whether you choose Tailoring as a Profession or not. The Spellfire set is extremely good, but requires Tailoring. Balance Druids who are not Tailors will need to select alternate pieces from the recommended lists below.
+
+Balance Druids looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Balance Druid Gems & Enchants
+Should Balance Druid DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 1?
+Choosing either Aldor or Scryer for Balance is fine and really comes down to a few options that can sway you in one direction. Regarding Phase 1 BiS gear, choosing The Scryers gives access to Scryer's Bloodgem Scryer's Bloodgem, which can help reach the cap for hit rating. If you are Aldor, you can swap out this trinket, but you will have to make up for the hit rating elsewhere, such as with gems. You want to aim for 12% hit rating since you can get 4% from talents in the Balance tree. You can potentially get away with less depending on your party setup, but it's generally a good idea to have a set of gear that reaches 12% on your own.
+
+The Aldor offer a better shoulder enchant with Greater Inscription of Discipline Greater Inscription of Discipline, slightly edging out Greater Inscription of the Orb Greater Inscription of the Orb. On the other hand, Scryer Tailors are also able to pick up and make their own Runic Spellthread Runic Spellthread, although the finished product can be bought and sold on the Auction House. In the long run, taking future phases into account, the Shattered Sun Offensive trinket proc off of Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen is better if you are aligned with The Aldor.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Balance Druids, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Balance Druid in TBC Classic Phase 1
+Antlers of Malorne is generally best but can be difficult to obtain due to its rarity and shared loot table.
+Rank	Item	Source
+BiS	Antlers of Malorne Antlers of Malorne	Drop: Prince Malchezaar (Karazhan)
+Option	Uni-Mind Headdress Uni-Mind Headdress	Drop: Netherspite (Karazhan)
+Option	Gnomish Power Goggles Gnomish Power Goggles	Profession: Engineering - BoP only
+Option	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+
+Rank	Item	Source
+Option	Druidic Helmet of Second Sight Druidic Helmet of Second Sight	Quest: Teron Gorefiend, I am... Teron Gorefiend, I am...
+Option	Collar of Cho'gall Collar of Cho'gall	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Mag'hari Ritualist's Horns Mag'hari Ritualist's Horns	Quest: Hero of the Mag'har Hero of the Mag'har
+Option	Mana-Binders Cowl Mana-Binders Cowl	Vendor: G'eras (Badges of Justice)
+PvP	Gladiator's Wyrmhide Helm Gladiator's Wyrmhide Helm	Vendor: Arena Points (Season 1)
+Option	Incanter's Cowl Incanter's Cowl	Drop: Pathaleon the Calculator (The Mechanar)
+Option	Hood of Oblivion Hood of Oblivion	Drop: Zereketh the Unbound and Harbinger Skyriss (The Arcatraz)
+
+Best in Slot Shoulder Armor for Balance Druid in TBC Classic Phase 1
+This is a slot where you also want to pick up some tier, with Pauldrons of Malorne being better than the other options.
+Rank	Item	Source
+BiS	Pauldrons of Malorne Pauldrons of Malorne	Drop: High King Maulgar (Gruul's Lair)
+Option	Mana-Etched Spaulders Mana-Etched Spaulders	Drop: Quagmirran (Heroic Slave Pens)
+Option	Spaulders of Oblivion Spaulders of Oblivion	Drop: Murmur (Shadow Labyrinth)
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest: The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Many of the options below are significantly easier to farm, given that they are Dungeon or quest drops.
+
+Rank	Item	Source
+Option	Mantle of Three Terrors Mantle of Three Terrors	Drop: Chrono Lord Deja (The Black Morass)
+PvP	Gladiator's Wyrmhide Spaulders Gladiator's Wyrmhide Spaulders	Vendor: Arena Points (Season 1)
+Option	Incanter's Pauldrons Incanter's Pauldrons	Drop: Warlord Kalithresh (The Steamvault)
+Option	Elekk Hide Spaulders Elekk Hide Spaulders	Quest: The Fallen Exarch The Fallen Exarch
+
+Best in Slot Back Armor for Balance Druid in TBC Classic Phase 1
+Ruby Drape of the Mysticant is all around best for this slot due to the high Spell Power and Intellect combined with the addition of Hit Rating, making this cloak a spicy pick-up if you're able to get your hands on it.
+Rank	Item	Source
+BiS	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+Option	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+Option	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+Option	Sethekk Oracle Cloak Sethekk Oracle Cloak	Drop: Talon King Ikiss (Sethekk Halls)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+If you have the gold, several options can be purchased on the Auction House - for those with bad luck, this may be easier than farming Dungeons or Raids.
+
+Rank	Item	Source
+Option	Shadow-Cloak of Dalaran Shadow-Cloak of Dalaran	Drop: Moroes (Karazhan)
+Option	Cloak of Entropy Cloak of Entropy	Drop: World Drop
+Option	Shawl of Shifting Probabilities Shawl of Shifting Probabilities	Vendor: G'eras (Badges of Justice)
+Option	Cloak of the Black Void Cloak of the Black Void	Profession: Tailoring - can be purchased on the Auction House
+Option	Ogre Slayer's Cover Ogre Slayer's Cover	Quest: Cho'war the Pillager Cho'war the Pillager
+
+Best in Slot Chest Armor for Balance Druid in TBC Classic Phase 1
+Spellfire Robe has way more Spell Power (not to mention the set bonus) and crit rating, but lacks Hit Rating and Intellect, while Chestpiece of Malorne lacks the same amount of Spell Power but makes up for it with adding Hit Rating and more balanced stats.
+Rank	Item	Source
+BiS	Spellfire Robe Spellfire Robe	Profession: Tailoring (Spellfire Tailoring) - BoP only
+BiS	Chestpiece of Malorne Chestpiece of Malorne	Drop: Magtheridon (Magtheridon's Lair)
+Option	Windhawk Hauberk Windhawk Hauberk	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Robe of the Crimson Order Robe of the Crimson Order	Drop: World Drop
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Option	Auchenai Anchorite's Robe Auchenai Anchorite's Robe	Quest: Everything Will Be Alright Everything Will Be Alright
+Option	Will of Edward the Odd Will of Edward the Odd	Drop: World Drop
+Option	Warp Infused Drape Warp Infused Drape	Drop: Warp Splinter (The Botanica)
+PvP	Gladiator's Wyrmhide Tunic Gladiator's Wyrmhide Tunic	Vendor: Arena Points (Season 1)
+Option	Anchorite's Robes Anchorite's Robes	Vendor: Quartermaster Endarin (The Aldor Honored)
+Option	Incanter's Robe Incanter's Robe	Drop: Warp Splinter (The Botanica)
+
+Best in Slot Wrist Armor for Balance Druid in TBC Classic Phase 1
+If you have Tribal Leatherworking, Windhawk Bracers are the way to go. Otherwise, pick up Bracers of Havoc. Both are pretty close to one another, but both are better than the other options.
+Rank	Item	Source
+BiS	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking (Tribal Leatherworking) - BoP Only
+BiS	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+Option	Crimson Bracers of Gloom Crimson Bracers of Gloom	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	Bands of Nefarious Deeds Bands of Nefarious Deeds	Drop: Maiden of Virtue (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Crimson Bracers of Gloom are noteworthy for having Hit Rating.
+
+Rank	Item	Source
+Option	Bands of Negation Bands of Negation	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Bracers of the White Stag Bracers of the White Stag	Drop: Attumen the Huntsman (Karazhan)
+Option	Shattrath Wraps Shattrath Wraps	Quest: The Soul Devices The Soul Devices
+Option	Bands of Rarefied Magic Bands of Rarefied Magic	Drop: Warchief Kargath Bladefist (Heroic Shattered Halls)
+
+Best in Slot Hand Armor for Balance Druid in TBC Classic Phase 1
+Spellfire Gloves have great Spell Power, but lack the Intellect and Hit Rating offered by Handwraps of Flowing Thought. Both are solid options depending on what stats you need, but the Spellfire set is only available if you have Tailoring. The Spellfire set bonus from having all three is quite powerful. Anger-Spark Gloves have great stats (outside of having no Intellect), but come from the World Boss and will be quite hard to obtain.
+Rank	Item	Source
+BiS	Spellfire Gloves Spellfire Gloves	Profession: Tailoring (Spellfire Tailoring) - BoP only
+BiS	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss)
+BiS	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Gloves of the Deadwatcher Gloves of the Deadwatcher	Drop: Shirrak the Dead Watcher (Heroic Auchenai Crypts)
+Option	Gloves of Oblivion Gloves of Oblivion	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Option	Manaspark Gloves Manaspark Gloves	Drop: Hungarfen (The Underbog)
+Option	Gloves of Pandemonium Gloves of Pandemonium	Drop: World Drop
+Option	Mana-Etched Gloves Mana-Etched Gloves	Drop: Omor the Unscarred (Hellfire Ramparts)
+Option	Gloves of Malorne Gloves of Malorne	Drop: The Curator (Karazhan)
+Option	Tempest's Touch Tempest's Touch	Quest: Return to Andormu Return to Andormu
+Option	Starlight Gauntlets Starlight Gauntlets	Drop: Hungarfen (The Underbog)
+
+Best in Slot Waist Armor for Balance Druid in TBC Classic Phase 1
+Again, the Spellfire set proves Tailoring worthy with Spellfire Belt. Otherwise, Girdle of Ruination is also quite good but could be expensive.
+Rank	Item	Source
+BiS	Spellfire Belt Spellfire Belt	Profession: Tailoring (Spellfire Tailor) - BoP only
+BiS	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+Option	Belt of Divine Inspiration Belt of Divine Inspiration	Drop: High King Maulgar (Gruul's Lair)
+Option	Windhawk Belt Windhawk Belt	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Belt of Depravity Belt of Depravity	Drop: Harbinger Skyriss (Heroic Arcatraz)
+Option	Glyph-Lined Sash Glyph-Lined Sash	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	A'dal's Gift A'dal's Gift	Quest: How to Break Into the Arcatraz How to Break Into the Arcatraz
+Option	Malefic Girdle Malefic Girdle	Drop: Terestian Illhoof (Karazhan)
+Option	Mindfire Waistband Mindfire Waistband	Drop: Keli'dan the Breaker (The Blood Furnace)
+
+Best in Slot Leg Armor for Balance Druid in TBC Classic Phase 1
+Spellstrike Pants and Leggings of the Seventh Circle are the best options here, with Spellstrike offering less Intellect but adding a bonus if you have Tailoring. Leggings of the Seventh Circle is a BOE from the World Boss, which means it will be very hard or expensive to obtain.
+Rank	Item	Source
+BiS	Spellstrike Pants Spellstrike Pants	Profession: Tailoring (Spellstrike Tailor) - BoP only
+BiS	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+Option	Trial-Fire Trousers Trial-Fire Trousers	Drop: Barnes (Karazhan)
+Option	Tempest Leggings Tempest Leggings
+Kurenai Kilt Kurenai Kilt	Vendor: Provisioner Nasela / Trader Narasu (The Mag'har / Kurenai Revered)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Breeches of the Occultist Breeches of the Occultist	Drop: Aeonus (Heroic Black Morass)
+Option	Haramad's Leggings of the Third Coin Haramad's Leggings of the Third Coin	Quest: Undercutting the Competition Undercutting the Competition
+Option	Kirin Tor Master's Trousers Kirin Tor Master's Trousers	Drop: Murmur (Heroic Shadow Labyrinth)
+Option	Aran's Sorcerous Slacks Aran's Sorcerous Slacks	Drop: Lieutenant Drake (Heroic Old Hillsbrad Foothills)
+Option	Moonchild Leggings Moonchild Leggings	Drop: Broggok (Heroic Blood Furnace)
+Option	Khadgar's Kilt of Abjuration Khadgar's Kilt of Abjuration	Drop: Temporus (The Black Morass)
+
+Best in Slot Feet Armor for Balance Druid in TBC Classic Phase 1
+Both "Best" items here are quite strong and offer slight differences. Boots of Foretelling can be stronger in terms of Spell Power depending on how you choose to socket it. Ruby Slippers have more raw Intellect and organic Hit Rating, but lack the options of the sockets.
+Rank	Item	Source
+BiS	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+BiS	Ruby Slippers Ruby Slippers	Drop: Barnes (Karazhan)
+Option	Extravagant Boots of Malice Extravagant Boots of Malice	Drop: Tavarok (Heroic Mana-Tombs)
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Gold-Leaf Wildboots Gold-Leaf Wildboots	Drop: Doom Lord Kazzak (World Boss)
+Option	Shattrath Jumpers Shattrath Jumpers	Quest: Into the Heart of the Labyrinth Into the Heart of the Labyrinth
+Option	Shimmering Azure Boots Shimmering Azure Boots	Quest: Securing the Celestial Ridge Securing the Celestial Ridge
+Option	Boots of the Nexus Warden Boots of the Nexus Warden	Quest: The Flesh Lies... The Flesh Lies...
+Option	Boots of Ethereal Manipulation Boots of Ethereal Manipulation	Drop: Warp Splinter (Heroic Botanica)
+Option	Embroidered Spellpyre Boots Embroidered Spellpyre Boots	Drop: Broggok (Heroic Blood Furnace)
+Option	Moonstrider Boots Moonstrider Boots	Drop: Darkweaver Syth (Sethekk Halls)
+Option	Boots of Blasphemy Boots of Blasphemy	Drop: Quagmirran (Heroic Slave Pens)
+
+Best in Slot Neck Jewelry for Balance Druid in TBC Classic Phase 1
+You'll likely want to go for Brooch of Unquenchable Fury early due to the Hit Rating. Otherwise, you can use Adornment of Stolen Souls if you do not need the Hit.
+Rank	Item	Source
+BiS	Brooch of Unquenchable Fury Brooch of Unquenchable Fury	Drop: Moroes (Karazhan)
+BiS	Adornment of Stolen Souls Adornment of Stolen Souls	Drop: Prince Malchezaar (Karazhan)
+Option	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+Option	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (shadow Labyrinth)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+You can use the Jewelcrafting necklace Eye of the Night for a nice party-wide buff.
+
+Rank	Item	Source
+Option	Hydra-fang Necklace Hydra-fang Necklace	Drop: Ghaz'an (Heroic Underbog)
+Option	Natasha's Ember Necklace Natasha's Ember Necklace	Quest: The Hound-Master The Hound-Master
+PvP	Pendant of Dominance Pendant of Dominance	Vendor: 1800 Honor Points + 10 Eye of the Storm Mark of Honor Eye of the Storm Mark of Honor (PvP)
+Option	Torc of the Sethekk Prophet Torc of the Sethekk Prophet	Quest: Brother Against Brother Brother Against Brother
+Option	Luminous Pearls of Insight Luminous Pearls of Insight	Drop: Ghaz'an (The Underbog)
+
+Best in Slot Ring Jewelry for Balance Druid in TBC Classic Phase 1
+Band of Crimson Fury and Ring of Recurrence are the best options for rings, giving a solid balance of stats between the two while both maintaining high Spell Power.
+Rank	Item	Source
+BiS	Band of Crimson Fury Band of Crimson Fury	Quest: The Fall of Magtheridon The Fall of Magtheridon
+BiS	Ring of Recurrence Ring of Recurrence	Drop: Echo of Medivh (Karazhan)
+Option	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Eminence Among the Violet Eye Eminence Among the Violet Eye
+Option	Ashyen's Gift Ashyen's Gift	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Violet Signet of the Archmage offers similar stats with more Intellect, and Ashyen's Gift can be substituted in for more Hit Rating.
+Rank	Item	Source
+Option	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Seal of the Exorcist Seal of the Exorcist	Vendor: Spirit Sage Gartok / Spirit Sage Zran (50 Spirit Shard Spirit Shard)
+Option	Cobalt Band of Tyrigosa Cobalt Band of Tyrigosa	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Ring of Cryptic Dreams Ring of Cryptic Dreams	Vendor: G'eras (Badges of Justice)
+Option	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+Option	Evoker's Mark of the Redemption Evoker's Mark of the Redemption	Quest: Dissension Amongst the Ranks... Dissension Amongst the Ranks...
+Option	Manastorm Band Manastorm Band	Quest: Shutting Down Manaforge Ara Shutting Down Manaforge Ara
+Option	Band of Dominion Band of Dominion	Drop: World Drop
+Option	Ryngo's Band of Ingenuity Ryngo's Band of Ingenuity	Drop: Wrath-Scryer Soccothrates (The Arcatraz)
+
+Best in Slot Trinkets for Balance Druid in TBC Classic Phase 1
+Icon of the Silver Crescent is the best option for a trinket. The Hit Rating from Scryer's Bloodgem and Neltharion's Tear are quite good, as well as the haste proc from Quagmirran's Eye.
+Rank	Item	Source
+BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+BiS	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic Slave Pens)
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Eye of Magtheridon Eye of Magtheridon	Drop: Magtheridon (Magtheridon's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Some of these other options are fairly close, while others, towards the end of the list, are more easily obtainable options that have some value.
+Rank	Item	Source
+Option	Arcanist's Stone Arcanist's Stone	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Oculus of the Hidden Eye Oculus of the Hidden Eye	Drop: Shirrak the Dead Watcher (Auchenai Crypts)
+Option	Starkiller's Bauble Starkiller's Bauble	Quest: The Horrors of Pollution The Horrors of Pollution
+Option	Terokkar Tablet of Vim Terokkar Tablet of Vim	Quest: Torgos! Torgos!
+Option	Ancient Crystal Talisman Ancient Crystal Talisman	Quest: A Spirit Ally? A Spirit Ally?
+Option	Glowing Crystal Insignia Glowing Crystal Insignia	Quest: Overlord Gorefist Overlord Gorefist
+
+Best in Slot Weapons for Balance Druid in TBC Classic Phase 1
+While Talon of the Tempest is arguably best, it is off a World boss, making it extremely hard to get. Nathrezim Mindblade is quite close and easier to obtain. It is generally better to use a 1-Handed Weapon paired with an Offhand instead of a 2-Handed Weapon.
+Rank	Item	Source
+BiS	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+BiS	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+Option	Gavel of Unearthed Secrets Gavel of Unearthed Secrets	Vendor: Nakodu (Lower City Exalted)
+PvP	Gladiator's Spellblade Gladiator's Spellblade
+Gladiator's Gavel Gladiator's Gavel	Vendor: Arena Points (Season 1)
+
+If you don't have access to the recommendations above or prefer a two-handed weapon, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Option	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Starlight Dagger Starlight Dagger	Drop: Mennu the Betrayer (Heroic Slave Pens)
+PvP	High Warlord's Spellblade High Warlord's Spellblade	Vendor: 9000 Honor Points + 20 Eye of the Storm Mark of Honor Eye of the Storm Mark of Honor (PvP)
+Option	Sky Breaker Sky Breaker	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+Option	Bleeding Hollow Warhammer Bleeding Hollow Warhammer	Drop: Quagmirran (Heroic Slave Pens)
+Option	Runesong Dagger Runesong Dagger	Drop: Warbringer O'mrogg (The Shattered Halls)
+
+
+For two-handed weapons, Gladiator's War Staff is quite good, but does require a fair amount of PvP. Staff of Infinite Mysteries is quite close and is easier to obtain. Keep in mind, it is generally better to use a 1-Handed Weapon paired with an Offhand.
+Rank	Item	Source
+PvP	Gladiator's War Staff Gladiator's War Staff	Vendor: Arena Points (Season 1)
+BiS	Staff of Infinite Mysteries Staff of Infinite Mysteries	Drop: The Curator (Karazhan)
+Option	Terokk's Shadowstaff Terokk's Shadowstaff	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+Option	Grand Scepter of the Nexus-Kings Grand Scepter of the Nexus-Kings	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Auchenai Staff Auchenai Staff	Vendor: Quartermaster Endarin (The Aldor Revered)
+PvP	High Warlord's War Staff High Warlord's War Staff	Vendor: 27000 Honor Points + 20 Alterac Valley Mark of Honor Alterac Valley Mark of Honor (PvP)
+Option	Warpstaff of Arcanum Warpstaff of Arcanum	Drop: Warp Splinter (The Botanica)
+Option	The Bringer of Death The Bringer of Death	Drop: World Drop
+Option	Bloodfire Greatstaff Bloodfire Greatstaff	Drop: Aeonus (The Black Morass)
+
+Best in Slot Offhands for Balance Druid in TBC Classic Phase 1
+Talisman of Kalecgos offers the most Spell Power, while Jewel of Infinite Possibilities offers a good amount of Hit Rating.
+Rank	Item	Source
+BiS	Talisman of Kalecgos Talisman of Kalecgos	Vendor: G'eras (Badges of Justice)
+BiS	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Option	Lamp of Peaceful Radiance Lamp of Peaceful Radiance	Drop: Harbinger Skyriss (The Arcatraz)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Talisman of Nightbane Talisman of Nightbane	Drop: Nightbane (Karazhan)
+Option	Star-Heart Lamp Star-Heart Lamp	Drop: Temporus (The Black Morass)
+Option	Manual of the Nethermancer Manual of the Nethermancer	Drop: Nethermancer Sepethrea (The Mechanar)
+Option	The Saga of Terokk The Saga of Terokk	Quest: Terokk's Legacy Terokk's Legacy
+
+Best in Slot Idols for Balance Druid in TBC Classic Phase 1
+Ivory Idol of the Moon Goddess is what you'll want to grab for an idol. Keep in mind you can swap idols in combat, just like weapons, but it does take a global cooldown.
+Rank	Item	Source
+BiS	Ivory Idol of the Moongoddess Ivory Idol of the Moongoddess	Drop: Grand Warlock Nethekurse (The Shattered Halls)
+Option	Idol of the Avenger Idol of the Avenger	Quest: News of Victory News of Victory / News of Victory News of Victory
+Option	Idol of the Moon Idol of the Moon	Drop: World Drop (Classic)
+Kyxie
+WoW Classic Druid Writer
+Starting in 2019, SixPacKyx wrote comprehensive Druid class guides for Classic and Burning Crusade Classic content. The author created detailed guides covering Restoration healing and Balance DPS specializations, including advanced strategies, talent builds, gear recommendations, rotations, consumables, addons, and macros for PvE content.
+1 - 9 of 9
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+10
+
+	
+By Syanite (2,343 – 4·12) on 2021/07/02 (Burning Crusade)	
+	
+I am a Moonkin Main with full Spellfire and Spellstrike set and I think it was a trap.
+This "BiS" list will give you the Highest Overall Spellpower, but the lacking stats kind of suck for raids.
+For MOST fights you will be pretty fine and do hella DPS, but on long fights like Gruul and Mags, Nightbane, etc. you will fall very short on Mana.
+
+I HIGHLY recommend Moonkin Druids going Leatherworking for the Windhawk set over Tailoring and get some T4 for big stats and the use of Drums. There is not much talk about our new Talent "Lunar Guidance" which increases Spellpower and Healing by 25% of Intellect, furthering the benefit of High Int.
+
+I still think Spellfire is a great set. In Karazhan last night I had 1223 Arcane Power (With Ele Sham in my group) and was blasting some 6k Starfires. Amazing in Heroics as well. You will just use lots of consumables. Farm those Demonic Runes/ Dark Runes.
+
+Kinda what this boils down to is;
+If you Innervate yourself in fights, use Spellfire. If you Innervate Healers, use Windhawk.
+(In long fights you can Innervate yourself very early and have it up again when Healers start to OOM (Or greedy innervate yourself a second time))
+
+Here is a "BiS" list using Windhawk:
+https://tbc.wowhead.com/gear-planner/druid/night-elf/A0YQUQAiISUDE1IxNR_1AgMwH4FAcaWKdwBd3iCFrAIAcFqDQHGnim0AXfggfHuFYHNSbTgAXfggfHtAXfgGQHNUAF34IHx7hwBxpnqMiABvqYTYiSBzU20NAHx7igBxpITNCwBweQwAcfQNAG4_DgByuo8AcF6E05AAcGJtRxEAcD4SAH6D
+Last edited by Syanite on 2021/07/06
+
+7
+
+	
+By randomcringe88 (348 – 3) on 2021/08/28 (Burning Crusade)	
+	
+There are so many mistakes in this guide it’s not even funny. I’d happily make a new one if you hire me :)
+
+4
+
+	
+By khmaaw (1,997 – 3·13) on 2021/07/06 (Burning Crusade)	
+	
+You should also consider the Idol of the Avenger : Idol of the Avenger Idol of the Avenger
+
+Cause in many situation in Karazhan, mobs are immune to arcane and wrath is your only option.
+
+2
+
+	
+
+Syanite on 2021/07/15 (Burning Crusade)
+I use Idol of the Avenger when "Moonkin Tanking" during High King fight, when my target is down I switch to Ivory Idol of the Moongoddess for the last targets. When Wrath spamming your rotation is: Insect Swarm -> Moonfire -> Wrath x6 -> Repeat. When you refresh Faerie Fire, you will use 5 wraths instead.
+
+3
+
+	
+By Vodmorqele (5,377 – 2·17·23) on 2021/05/17 (Burning Crusade)	
+	
+Just a note: your shoulder enchants are around the wrong way.
+Aldor is Discipline.
+Scryers is Orb.
+
+3
+
+	
+By Partywagon (2,890 – 16·13) on 2021/07/21 (Burning Crusade)	
+	
+Quagmirran's Eye for trinket should be high on this list
+
+3
+
+	
+By turnaround (19,789 – 2·24·58) on 2021/08/11 (Burning Crusade)	
+	
+where is the pvp guide? why do we always see just bis raid guides?
+
+1
+
+	
+By Axxelsian (4,838 – 6·12) <Rare Premium User> on 2021/04/28 (Burning Crusade)	
+	
+As boomkins are regarded as a support class, alongside SPriest, I would consider adding Idol of the Raven Goddess to the list to better buff the rest of the group.
+
+0
+
+	
+
+Kyxie <Guide Author> on 2021/04/29 (Burning Crusade)
+Thanks for the feedback! I've added it to the list. The quest link seems a bit bugged but I think it'll eventually get sorted out in the database.
+
+-3
+
+	
+
+Innuendo on 2021/05/10 (Burning Crusade)
+Adding on to this: it is generally better for the Balance Druid to wear the on-use aura necklaces rather than try and get a competitive necklace.
+
+1
+
+	
+By Tiller28 (2,370 – 5·9) on 2021/07/04 (Burning Crusade)	
+	
+Should The Lightning Capacitor The Lightning Capacitor be on this list?
+Last edited by Tiller28 on 2021/07/04
+
+0
+
+	
+
+suchtie on 2021/08/11 (Burning Crusade)
+Yeah, this trinket definitely has potential. It favors faster casting though. I can see it being quite good for Curator and other situations that have you using Wrath instead of Starfire. I can't see it being much better than a good on-use trinket though.
+By benedekf (17,002 – 4·14·39) on 2021/08/02 (Burning Crusade)	
+	
+1 - 9 of 9
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Balance Druid Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+            Best In Slot Gear in Phase 2
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Idols
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Balance Druid DPS Best in Slot (BiS) Phase 2 Gear Guide - TBC Classic
+By Kyxie
+Updated: 2026/05/12
+Welcome to Wowhead's Best in Slot Gear list from Tempest Keep and Serpentshrine Cavern for Balance Druid DPS in The Burning Crusade Classic. This guide will list the recommended gear for Balance Druid DPS to acquire while they progress during the second phase of The Burning Crusade Classic, and contains gear sourced from Tempest Keep and Serpentshrine Cavern, plus other pieces from previous phases like Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best in slot lists, including a TBCC pre-patch list and a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Balance Druid DPS Best in Slot HubBalance Druid DPS Pre-Raid Best in Slot
+
+Best In Slot Gear for Balance Druid DPS in Phase 2
+During Phase 1, gear was more dependent on whether you chose to have Tailoring or Leatherworking. In Phase 2, there is more freedom to choose other professions, but this means you'll have to compete with more raid gear.
+
+Balance Druids looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Balance Druid Gems & Enchants
+Should Balance Druid DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 2?
+Choosing either Aldor or Scryer for Balance is fine and really comes down to a few options that can sway you in one direction. Regarding Phase 2 BiS gear, choosing The Scryers gives access to Scryer's Bloodgem Scryer's Bloodgem, which can help reach the cap for hit rating. If you are Aldor, you can swap out this trinket, but you will have to make up for the hit rating elsewhere, such as with gems. You want to aim for 12% hit rating since you can get 4% from talents in the Balance tree. You can potentially get away with less depending on your party setup, but it's generally a good idea to have a set of gear that reaches 12% on your own.
+
+The Aldor offer a better shoulder enchant with Greater Inscription of Discipline Greater Inscription of Discipline, slightly edging out Greater Inscription of the Orb Greater Inscription of the Orb. On the other hand, Scryer Tailors are also able to pick up and make their own Runic Spellthread Runic Spellthread, although the finished product can be bought and sold on the Auction House. In the long run, taking future phases into account, the Shattered Sun Offensive trinket proc off of Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen is better if you are aligned with The Aldor.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Balance Druids, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Balance Druid in TBC Classic Phase 2
+You'll definitely want to pick up Nordrassil Headpiece. It is beefy on stats, but mostly you will want to pick up the 4-set bonus from Tier 5.
+Rank	Item	Source
+BiS	Nordrassil Headpiece Nordrassil Headpiece	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Magnified Moon Specs Magnified Moon Specs	Profession: Engineering - BoP only
+Option	Antlers of Malorne Antlers of Malorne	Drop: Prince Malchezaar (Karazhan)
+Option	Cowl of the Grand Engineer Cowl of the Grand Engineer	Drop: Void Reaver (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+PvP	Merciless Gladiator's Wyrmhide Helm Merciless Gladiator's Wyrmhide Helm	Vendor: Arena Points (Season 2)
+
+Best in Slot Shoulder Armor for Balance Druid in TBC Classic Phase 2
+This is another slot where you really want to pick up the tier piece Nordrassil Wrath-Mantle. These shoulders are quite strong on their own, but getting the 4-set bonus is also important.
+Rank	Item	Source
+BiS	Nordrassil Wrath-Mantle Nordrassil Wrath-Mantle	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Mantle of the Elven Kings Mantle of the Elven Kings	Drop: Trash Mobs (Tempest Keep: The Eye)
+Option	Illidari Shoulderpads Illidari Shoulderpads	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Option	Pauldrons of Malorne Pauldrons of Malorne	Drop: High King Maulgar (Gruul's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Mana-Etched Spaulders Mana-Etched Spaulders	Drop: Quagmirran (Heroic The Slave Pens)
+PvP	Merciless Gladiator's Wyrmhide Spaulders Merciless Gladiator's Wyrmhide Spaulders	Vendor: Arena Points (Season 2)
+
+Best in Slot Back Armor for Balance Druid in TBC Classic Phase 2
+There are quite a few solid options for cloaks depending on your needs. Ruby Drape of the Mysticant is a solid pick if you need to up your hit rating. Otherwise, Ancient Spellcloak of the Highborne and Brute Cloak of the Ogre-Magi both offer good Spell Power combined with Crit. Royal Cloak of the Sunstriders offers the highest raw Spell Power.
+Rank	Item	Source
+BiS	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+BiS	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+BiS	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+BiS	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Sethekk Oracle Cloak Sethekk Oracle Cloak	Drop: Talon King Ikiss (Sethekk Halls)
+Option	Shadow-Cloak of Dalaran Shadow-Cloak of Dalaran	Drop: Moroes (Karazhan)
+
+Best in Slot Chest Armor for Balance Druid in TBC Classic Phase 2
+Nordrassil Chestpiece will be the go-to here as another piece towards the Tier 5 set bonus.
+Rank	Item	Source
+BiS	Nordrassil Chestpiece Nordrassil Chestpiece	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Spellfire Robe Spellfire Robe	Profession: Tailoring (Spellfire Tailoring) - BoP only
+Option	Robe of Hateful Echoes Robe of Hateful Echoes	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Option	Windhawk Hauberk Windhawk Hauberk	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Chestpiece of Malorne Chestpiece of Malorne	Drop: Magtheridon (Magtheridon's Lair)
+PvP	Merciless Gladiator's Wyrmhide Tunic Merciless Gladiator's Wyrmhide Tunic	Vendor: Arena Points (Season 2)
+
+Best in Slot Wrist Armor for Balance Druid in TBC Classic Phase 2
+Mindstorm Wristbands are the best choice for Phase 2, although the alternative options aren't too far off the mark, with many of them having the bonus of a socket.
+Rank	Item	Source
+BiS	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Crystalweave Bracers Crystalweave Bracers	Drop: Zone Drop (Blade's Edge Mountains) - can be purchased on the Auction House
+Option	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Crimson Bracers of Gloom Crimson Bracers of Gloom	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	Bands of Nefarious Deeds Bands of Nefarious Deeds	Drop: Maiden of Virtue (Karazhan)
+
+Best in Slot Hand Armor for Balance Druid in TBC Classic Phase 2
+This is another slot where you'll want to pick up Nordrassil Gauntlets to complete the 4-set bonus from Tier 5.
+Rank	Item	Source
+BiS	Nordrassil Gauntlets Nordrassil Gauntlets	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss)
+Option	Spellfire Gloves Spellfire Gloves	Profession: Tailoring (Spellfire Tailoring) - BoP only
+Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+There are other options that may offer better stats, such as Anger-Spark Gloves, but those are very hard to obtain and you want to hammer down your tier bonus.
+Rank	Item	Source
+Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Option	Gauntlets of the Sun King Gauntlets of the Sun King	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Gloves of Malorne Gloves of Malorne	Drop: The Curator (Karazhan)
+
+Best in Slot Waist Armor for Balance Druid in TBC Classic Phase 2
+It's hard to beat Belt of Blasting. It is high on Spell Power and is rounded out by Spell Hit, Spell Crit, as well as two sockets.
+Rank	Item	Source
+BiS	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Option	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Spellfire Belt Spellfire Belt	Profession: Tailoring (Spellfire Tailoring) - BoP only
+Option	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Windhawk Belt Windhawk Belt	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Belt of Divine Inspiration Belt of Divine Inspiration	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Leg Armor for Balance Druid in TBC Classic Phase 2
+Spellstrike Pants and Leggings of the Seventh Circle are the best options here, and this is the one main armor slot where you won't necessarily pick up a tier piece.
+Rank	Item	Source
+BiS	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+BiS	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+Option	Nordrassil Wrath-Kilt Nordrassil Wrath-Kilt	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Trousers of the Astromancer Trousers of the Astromancer	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Breeches of the Occultist Breeches of the Occultist	Drop: Aeonus (Heroic The Black Morass)
+Option	Tempest Leggings Tempest Leggings
+Kurenai Kilt Kurenai Kilt	Vendor: Provisioner Nasela / Trader Narasu (The Mag'har / Kurenai Revered)
+Option	Trial-Fire Trousers Trial-Fire Trousers	Drop: Opera Event (Karazhan)
+
+Best in Slot Feet Armor for Balance Druid in TBC Classic Phase 2
+Pick up Boots of Blasting if you need the Hit Rating and have Tailoring, otherwise use Velvet Boots of the Guardian.
+Rank	Item	Source
+BiS	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+BiS	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Ruby Slippers Ruby Slippers	Drop: Opera Event (Karazhan)
+
+Best in Slot Neck Jewelry for Balance Druid in TBC Classic Phase 2
+If you need the Hit Rating, you can go for Brooch of Unquenchable Fury. Otherwise, The Sun King's Talisman is the better option.
+Rank	Item	Source
+BiS	The Sun King's Talisman The Sun King's Talisman	Quest: Kael'thas and the Verdant Sphere Kael'thas and the Verdant Sphere (Tempest Keep: The Eye)
+Option	Eye of the Night Eye of the Night	Profession: Jewelcrafting- can be purchased on the Auction House
+Option	Adornment of Stolen Souls Adornment of Stolen Souls	Drop: Prince Malchezaar (Karazhan)
+Option	Brooch of Unquenchable Fury Brooch of Unquenchable Fury	Drop: Moroes (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+You can use the Jewelcrafting necklace Eye of the Night for a nice party-wide buff.
+Rank	Item	Source
+PvP	Veteran's Pendant of Conquest Veteran's Pendant of Conquest	Vendor: Honor Points (PvP)
+Option	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Best in Slot Ring Jewelry for Balance Druid in TBC Classic Phase 2
+Band of Crimson Fury, Ring of Endless Coils, and Ring of Recurrence are all solid options for rings, giving a good balance of stats between the two while both maintaining high Spell Power. Violet Signet of the Archmage offers similar stats with more Intellect, and Ashyen's Gift can be substituted in for more Hit Rating.
+Rank	Item	Source
+BiS	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+BiS	Ring of Recurrence Ring of Recurrence	Drop: Echo of Medivh (Karazhan)
+BiS	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Eminence Among the Violet Eye Eminence Among the Violet Eye (Karazhan)
+BiS	Band of Crimson Fury Band of Crimson Fury	Drop: Magtheridon (Magtheridon's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Ashyen's Gift Ashyen's Gift	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+Option	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Ring of Cryptic Dreams Ring of Cryptic Dreams	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Trinkets for Balance Druid in TBC Classic Phase 2
+Icon of the Silver Crescent, Dark Iron Smoking Pipe, and Quagmirran's Eye are the best options for trinkets.
+Rank	Item	Source
+BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+BiS	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Sextant of Unstable Currents Sextant of Unstable Currents	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+The Hit Rating from Scryer's Bloodgem and Neltharion's Tear are quite good as well if you need to pick up some extra Hit.
+Rank	Item	Source
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+Option	Eye of Magtheridon Eye of Magtheridon	Drop: Magtheridon (Magtheridon's Lair)
+BiS	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Option	Xi'ri's Gift Xi'ri's Gift	Vendor: Almaador (The Sha'tar Revered)
+
+Best in Slot Weapons for Balance Druid in TBC Classic Phase 2
+While the PvP weapons are best, if you are not interested in doing PvP to get gear for raiding, then you'll aim to get something else. Talon of the Tempest is very good, but it is off a World boss, making it extremely hard to get as well. Nathrezim Mindblade is quite close and easier to obtain.
+Rank	Item	Source
+PvP	Merciless Gladiator's Gavel Merciless Gladiator's Gavel
+Merciless Gladiator's Spellblade Merciless Gladiator's Spellblade	Vendor: Arena Points (Season 2)
+BiS	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+BiS	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+PvP	Gladiator's Spellblade Gladiator's Spellblade
+Gladiator's Gavel Gladiator's Gavel	Vendor: Arena Points (Season 1)
+
+If you don't have access to the recommendations above, or prefer a two-handed weapon, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Option	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Gavel of Unearthed Secrets Gavel of Unearthed Secrets	Vendor: Nakodu (Lower City Exalted)
+
+
+For two-handed weapons, The Nexus Key is very good and might be overall better/easier to get than the one-handed weapons listed above. Otherwise, you're looking to do a fair amount of PvP to get the best weapons in Phase 2.
+Rank	Item	Source
+BiS	The Nexus Key The Nexus Key	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+PvP	Merciless Gladiator's War Staff Merciless Gladiator's War Staff	Vendor: Arena Points (Season 2)
+PvP	Gladiator's War Staff Gladiator's War Staff	Vendor: Arena Points (Season 1)
+Option	Frostscythe of Lord Ahune Frostscythe of Lord Ahune	Drop: Ahune (Midsummer Fire Festival Seasonal Event)
+Option	Staff of Infinite Mysteries Staff of Infinite Mysteries	Drop: The Curator (Karazhan)
+Option	Terokk's Shadowstaff Terokk's Shadowstaff	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+
+Best in Slot Offhands for Balance Druid in TBC Classic Phase 2
+Fathomstone offers the most stats, but Jewel of Infinite Possibilities has Hit Rating if you aren't capped.
+Rank	Item	Source
+BiS	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Option	Talisman of Kalecgos Talisman of Kalecgos	Vendor: G'eras (Badges of Justice)
+Option	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Lamp of Peaceful Radiance Lamp of Peaceful Radiance	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Sapphiron's Left Eye Sapphiron's Left Eye	Drop: Sapphiron (Classic - Naxxramas)
+Option	Talisman of Nightbane Talisman of Nightbane	Drop: Nightbane (Karazhan)
+
+Best in Slot Idols for Balance Druid in TBC Classic Phase 2
+Ivory Idol of the Moon Goddess is what you'll want to grab for an idol. Keep in mind you can swap idols in combat, just like weapons, but it does take a global cooldown.
+Rank	Item	Source
+BiS	Ivory Idol of the Moongoddess Ivory Idol of the Moongoddess	Drop: Grand Warlock Nethekurse (The Shattered Halls)
+BiS	Idol of the Raven Goddess Idol of the Raven Goddess	Quest: Vanquish the Raven God Vanquish the Raven God (Heroic Sethekk Halls)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Idol Recommendations
+
+You can pick up Idol of the Avenger if you will be primarily using Wrath instead.
+
+Rank	Item	Source
+Option	Idol of the Avenger Idol of the Avenger	Quest: News of Victory News of Victory / News of Victory News of Victory
+Option	Idol of the Moon Idol of the Moon	Drop: World Drop (Classic)
+
+Kyxie
+WoW Classic Druid Writer
+Starting in 2019, SixPacKyx wrote comprehensive Druid class guides for Classic and Burning Crusade Classic content. The author created detailed guides covering Restoration healing and Balance DPS specializations, including advanced strategies, talent builds, gear recommendations, rotations, consumables, addons, and macros for PvE content.
+1 - 6 of 6
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+12
+
+	
+By Syanite (2,343 – 4·12) on 2021/08/10 (Burning Crusade)	
+	
+This list looks great, good job.
+Just remember that Balance Druids get the Talent "Lunar Guidance" which increases your spellpower and healing by 25% of your Intellect.
+So therefore, Violet Signet of the Archmage and Band of Crimson Fury are amazing rings since they each give 34 and 33 spellpower respectively as well as intellect (mana, spell crit and mana regen). Items with High Intellect will be valuable for Progression Raiding. There is a lot of room to play around with gear this phase.
+
+Spell Hit Ratings: 12% spell hit + 2/2 Balance of Power (4%) = 16% Hit cap
+102 spellhit = 8.09% spell hit, +Draenei (1%), +Totem of Wrath(3%) = 12% (Alliance Only)
+115 Spellhit = 9.12% Spellhit , +Totem of Wrath(3%) = 12%
+155 Spellhit = 12.29% Spellhit
+
+6
+
+	
+By Syanite (2,343 – 4·12) on 2021/08/22 (Burning Crusade)	
+	
+Also Note that Boots of Blasting are BoP, so only Tailors can wear them.
+
+1
+
+	
+By Blutelf (33,712 – 10·34·91) <Rare Premium User> on 2021/09/12 (Burning Crusade)	
+	
+Where is the ring Band of Al'ar?
+
+1
+
+	
+By Warwin64 (6,111 – 1·9·10) on 2022/01/05 (Burning Crusade)	
+	
+Missing talents, nice!
+
+1
+
+	
+By JonasOst (2,795 – 5·7) on 2026/05/16 (Burning Crusade)	
+	
+missing the ring from MH attunement quest
+
+Band of Eternity Band of Eternity
+
+0
+
+	
+
+Serenal <Rare Premium User> on 2026/05/16 (Burning Crusade)
+There has been a small amount of confusion around this, as our database flags it as Phase 3. Some writers have included, and others haven't. I will check its actually available, and we will update the guides
+By soundz89 (6,372 – 1·8·14) on 2021/10/27 (Burning Crusade)	
+	
+1 - 6 of 6
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Balance Druid Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+            Best In Slot Gear in Phase 3
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                1H Weapons
+                2H Weapons
+                Offhands
+                Idols
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Balance Druid DPS Best in Slot (BiS) Phase 3 Gear Guide
+By Kyxie
+Updated: 2026/07/31
+Welcome to Wowhead's Best in Slot Gear list from Phase 3 Black Temple and Mount Hyjal for Balance Druid DPS in The Burning Crusade Classic. This guide will list the recommended gear for Balance Druid DPS to acquire while they progress during the third phase of The Burning Crusade Classic, and contains gear sourced from Black Temple and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Balance Druid DPS in Phase 3
+Phase 3 introduces many haste items, which are quite spicy for Balance Druids. On top of that, the Tier 6 set bonuses are quite good and should be picked up. There are also upgraded gems.
+
+Balance Druids looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Balance Druid Gems & Enchants
+
+
+
+Thunderheart Headguard
+The Sun King's Talisman
+Thunderheart Shoulderpads
+Cloak of the Illidari Council
+Thunderheart Vest
+Bracers of Nimble Thought
+Thunderheart Handguards
+Belt of the Crescent Moon
+Leggings of Channeled Elements
+Naturewarden's Treads
+Ring of Ancient Knowledge
+Band of the Eternal Sage
+Ashtongue Talisman of Equilibrium
+The Skull of Gul'dan
+Zhar'doom, Greatstaff of the Devourer
+Off Hand
+Idol of the Raven Goddess
+Link
+Level70
+Should Balance Druid DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 3?
+Choosing either Aldor or Scryer for Balance is fine and really comes down to a few options that can sway you in one direction. Regarding Phase 2 BiS gear, choosing The Scryers gives access to Scryer's Bloodgem Scryer's Bloodgem, which can help reach the cap for hit rating. If you are Aldor, you can swap out this trinket, but you will have to make up for the hit rating elsewhere, such as with gems. You want to aim for 12% hit rating since you can get 4% from talents in the Balance tree. You can potentially get away with less depending on your party setup, but it's generally a good idea to have a set of gear that reaches 12% on your own.
+
+The Aldor offer a better shoulder enchant with Greater Inscription of Discipline Greater Inscription of Discipline, slightly edging out Greater Inscription of the Orb Greater Inscription of the Orb. On the other hand, Scryer Tailors are also able to pick up and make their own Runic Spellthread Runic Spellthread, although the finished product can be bought and sold on the Auction House. In the long run, taking future phases into account, the Shattered Sun Offensive trinket proc off of Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen is better if you are aligned with The Aldor.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Balance Druids, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Balance Druid in TBC Classic Phase 3
+Thunderheart Headguard is the go-to here as you'll want to pick this up for the tier set bonus.
+Rank	Item	Source
+BiS	Thunderheart Headguard Thunderheart Headguard	Drop: Archimonde (Hyjal Summit)
+Option	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+Option	Nordrassil Headpiece Nordrassil Headpiece	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Cowl of the Grand Engineer Cowl of the Grand Engineer	Drop: Void Reaver (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Magnified Moon Specs Magnified Moon Specs	Profession: Engineering - BoP only
+
+Best in Slot Shoulder Armor for Balance Druid in TBC Classic Phase 3
+This is another slot where you really want to pick up the tier piece Thunderheart Shoulderpads. These shoulders are quite strong on their own, but getting both set bonuses is also important.
+Rank	Item	Source
+BiS	Thunderheart Shoulderpads Thunderheart Shoulderpads	Drop: Mother Shahraz (Black Temple)
+Option	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+Option	Nordrassil Wrath-Mantle Nordrassil Wrath-Mantle	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Blood-cursed Shoulderpads Blood-cursed Shoulderpads	Drop: Gurtogg Bloodboil (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Mantle of the Elven Kings Mantle of the Elven Kings	Drop: Trash Mobs (Tempest Keep: The Eye)
+Option	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+
+Best in Slot Back Armor for Balance Druid in TBC Classic Phase 3
+The cloak slot is a little more complicated. Technically, Balance Druids want Shroud of the Highborne for the haste, but it only offers a marginal DPS gain over the alternative options and will be very contested due to it's rarity and strength for healers. Cloak of the Illidari Council is a more realistic option with higher spell power, and the DPS difference between the two is fairly small.
+Rank	Item	Source
+BiS	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+BiS	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: High Nethermancer Zerevor (Black Temple)
+Option	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+Option	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+Option	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Chest Armor for Balance Druid in TBC Classic Phase 3
+You'll want to pick up Thunderheart Vest for the tier set bonus in Phase 3.
+Rank	Item	Source
+BiS	Thunderheart Vest Thunderheart Vest	Drop: Illidan Stormrage (Black Temple)
+Option	Nordrassil Chestpiece Nordrassil Chestpiece	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Robes of Rhonin Robes of Rhonin	Drop: Archimonde (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Option	Spellfire Robe Spellfire Robe	Profession: Tailoring - BoP only
+
+Best in Slot Wrist Armor for Balance Druid in TBC Classic Phase 3
+Unless you need the hit rating from Focused Mana Bindings or Elunite Empowered Bracers, you'll want to pick up Bracers of Nimble Thought.
+Rank	Item	Source
+BiS	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring - can be purchased on the Auction House
+Option	Focused Mana Bindings Focused Mana Bindings	Drop: Shade of Akama (Black Temple)
+Option	Elunite Empowered Bracers Elunite Empowered Bracers	Drop: Essence of Anger (Black Temple)
+Option	Cuffs of Devastation Cuffs of Devastation	Drop: Rage Winterchill (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking - BoP only
+
+Best in Slot Hand Armor for Balance Druid in TBC Classic Phase 3
+This is another slot where you'll want to pick up Thunderheart Handguards to complete the 4-set bonus.
+Rank	Item	Source
+BiS	Thunderheart Handguards Thunderheart Handguards	Drop: Azgalor (Hyjal Summit)
+Option	Nordrassil Gauntlets Nordrassil Gauntlets	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Botanist's Gloves of Growth Botanist's Gloves of Growth	Drop: Teron Gorefiend (Black Temple)
+Option	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Spellfire Gloves Spellfire Gloves	Profession: Tailoring - BoP only
+Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+Option	Gauntlets of the Sun King Gauntlets of the Sun King	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Gloves of Malorne Gloves of Malorne	Drop: The Curator (Karazhan)
+
+Best in Slot Waist Armor for Balance Druid in TBC Classic Phase 3
+There are a few options for belts. Anetheron's Noose offers the highest raw spell power, Belt of the Crescent Moon offers haste, and Belt of Blasting offers hit rating.
+Rank	Item	Source
+BiS	Belt of the Crescent Moon Belt of the Crescent Moon	Drop: Kaz'rogal (Hyjal Summit)
+Option	Anetheron's Noose Anetheron's Noose	Drop: Anetheron (Hyjal Summit)
+Option	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Option	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Spellfire Belt Spellfire Belt	Profession: Tailoring - BoP only
+
+Best in Slot Leg Armor for Balance Druid in TBC Classic Phase 3
+Similar to Tier 5, this is a tier slot you may opt to use for a non-tier item. You'll want to grab Leggings of Channeled Elements. If these cannot be obtained, the next best option is tier legs, and you can look for another offpiece.
+Rank	Item	Source
+BiS	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+Option	Thunderheart Pants Thunderheart Pants	Drop: The Illidari Council (Black Temple)
+Option	Leggings of Devastation Leggings of Devastation	Drop: Mother Shahraz (Black Temple)
+Option	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+Option	Nordrassil Wrath-Kilt Nordrassil Wrath-Kilt	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Trousers of the Astromancer Trousers of the Astromancer	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+
+Best in Slot Feet Armor for Balance Druid in TBC Classic Phase 3
+Slippers of the Seacaller are the best boots here, but you can pick up Blue Suede Shoes if you need the hit rating. Naturewarden's Treads might be easier to obtain with less competition.
+Rank	Item	Source
+BiS	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+Option	Naturewarden's Treads Naturewarden's Treads	Drop: Essence of Anger (Black Temple)
+Option	Blue Suede Shoes Blue Suede Shoes	Drop: Kaz'rogal (Hyjal Summit)
+Option	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+Option	Ruby Slippers Ruby Slippers	Drop: The Crone (Karazhan)
+
+Best in Slot Neck Jewelry for Balance Druid in TBC Classic Phase 3
+Pick up Translucent Spellthread Necklace if you need the hit rating. Otherwise, go for The Sun King's Talisman. You can also use the Jewelcrafting necklaces Eye of the Night and Chain of the Twilight Owl for a nice party-wide buff.
+Rank	Item	Source
+BiS	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Essence of Anger (Black Temple)
+Option	Vindicator's Pendant of Conquest Vindicator's Pendant of Conquest	Vendor: Honor Points (Season 3)
+Option	Adornment of Stolen Souls Adornment of Stolen Souls	Drop: Prince Malchezaar (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Brooch of Unquenchable Fury Brooch of Unquenchable Fury	Drop: Moroes (Karazhan)
+Option	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+Option	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+
+Best in Slot Ring Jewelry for Balance Druid in TBC Classic Phase 3
+Ring of Ancient Knowledge is not Unique, so you can equip two of them if you are lucky enough to get your hands on two. Otherwise, you'll use Band of the Eternal Sage or Ring of Captured Storms if you need some extra hit rating.
+Rank	Item	Source
+BiS	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+BiS	Band of the Eternal Sage Band of the Eternal Sage	Quest: (Quest #10472) (The Scale of the Sands Exalted)
+Option	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+Option	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Ring of Recurrence Ring of Recurrence	Drop: Echo of Medivh (Karazhan)
+Option	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Path of the Violet Mage Path of the Violet Mage (The Violet Eye Exalted)
+Option	Band of Crimson Fury Band of Crimson Fury	Drop: Magtheridon (Magtheridon's Lair)
+
+Best in Slot Trinkets for Balance Druid in TBC Classic Phase 3
+The best trinkets for Phase 3 are The Skull of Gul'dan and Ashtongue Talisman of Equilibrium, but they can take a while to get. Icon of the Silver Crescent, Dark Iron Smoking Pipe, and Sextant of Unstable Currents are still solid alternatives until you can get these two.
+Rank	Item	Source
+BiS	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+BiS	Ashtongue Talisman of Equilibrium Ashtongue Talisman of Equilibrium	Vendor: Okuno (Ashtongue Deathsworn Exalted)
+Option	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Option	Sextant of Unstable Currents Sextant of Unstable Currents	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+
+Expect the brewfest event at some point during Phase 3, and make sure to pick up the new trinket available there.
+Rank	Item	Source
+Option	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Option	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril ( The Scryers Revered)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+Option	Eye of Magtheridon Eye of Magtheridon	Drop: Magtheridon (Magtheridon's Lair)
+Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+
+Best in Slot One-Handed Weapons for Balance Druid in TBC Classic Phase 3
+Once again, the PvP weapons are our best 1H weapon options available.
+Rank	Item	Source
+PvP	Vengeful Gladiator's Gavel Vengeful Gladiator's Gavel
+Vengeful Gladiator's Spellblade Vengeful Gladiator's Spellblade	Vendor: Arena Points (Season 3)
+BiS	The Maelstrom's Fury The Maelstrom's Fury	Drop: High Warlord Naj'entus (Black Temple)
+BiS	Hammer of Judgement Hammer of Judgement	Drop: Trash Mobs (Hyjal Summit)
+PvP	Merciless Gladiator's Gavel Merciless Gladiator's Gavel
+Merciless Gladiator's Spellblade Merciless Gladiator's Spellblade	Vendor: Arena Points (Season 2)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 1H Weapon Recommendations
+
+Rank	Item	Source
+Option	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+Option	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Two-Handed Weapons for Balance Druid in TBC Classic Phase 3
+Zhar'doom, Greatstaff of the Devourer is by far the best but will be hard to get your hands on. There are many great PvP options if you're into that.
+Rank	Item	Source
+BiS	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+PvP	Vengeful Gladiator's Battle Staff Vengeful Gladiator's Battle Staff	Vendor: Arena Points (Season 3)
+Option	The Nexus Key The Nexus Key	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+PvP	Vengeful Gladiator's War Staff Vengeful Gladiator's War Staff	Vendor: Arena Points (Season 3)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 2H Weapon Recommendations
+
+Rank	Item	Source
+PvP	Merciless Gladiator's War Staff Merciless Gladiator's War Staff	Vendor: Arena Points (Season 2)
+PvP	Gladiator's War Staff Gladiator's War Staff	Vendor: Arena Points (Season 1)
+Option	Frostscythe of Lord Ahune Frostscythe of Lord Ahune	Drop: Ahune (Midsummer Fire Festival Seasonal Event)
+Option	Staff of Infinite Mysteries Staff of Infinite Mysteries	Drop: The Curator (Karazhan)
+Option	Terokk's Shadowstaff Terokk's Shadowstaff	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+
+Best in Slot Offhands for Balance Druid in TBC Classic Phase 3
+Chronicle of Dark Secrets is the best option for an offhand if you do not have a 2H Weapon. Blind-Seers Icon offers slightly more hit rating.
+Rank	Item	Source
+BiS	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+Option	Blind-Seers Icon Blind-Seers Icon	Drop: Shade of Akama (Black Temple)
+Option	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Option	Talisman of Kalecgos Talisman of Kalecgos	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Option	Lamp of Peaceful Radiance Lamp of Peaceful Radiance	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Sapphiron's Left Eye Sapphiron's Left Eye	Drop: Sapphiron (Classic - Naxxramas)
+Option	Talisman of Nightbane Talisman of Nightbane	Drop: Nightbane (Karazhan)
+
+Best in Slot Idols for Balance Druid in TBC Classic Phase 3
+Ivory Idol of the Moongoddess increases your Starfire damage while Idol of the Avenger increases your Wrath damage. Idol of the Raven Goddess offers an increase to your party-wide buff. Keep in mind you can swap idols in combat, just like weapons, but it does take a global cooldown.
+Rank	Item	Source
+BiS	Idol of the Raven Goddess Idol of the Raven Goddess	Quest: Vanquish the Raven God Vanquish the Raven God (Heroic Sethekk Halls)
+BiS	Ivory Idol of the Moongoddess Ivory Idol of the Moongoddess	Drop: Grand Warlock Nethekurse (The Shattered Halls)
+Option	Idol of the Avenger Idol of the Avenger	Quest: News of Victory News of Victory / News of Victory News of Victory
+Option	Idol of the Moon Idol of the Moon	Drop: World Drop
+Kyxie
+WoW Classic Druid Writer
+Starting in 2019, SixPacKyx wrote comprehensive Druid class guides for Classic and Burning Crusade Classic content. The author created detailed guides covering Restoration healing and Balance DPS specializations, including advanced strategies, talent builds, gear recommendations, rotations, consumables, addons, and macros for PvE content.
+1 - 3 of 3
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By 1996468 (2,969 – 1·9·10) on 2022/01/14 (Burning Crusade)	
+	
+At the time of commenting (Jan 14, 2022, 4PM EST) there aren't any talents entered into the P3 BiS setup, so the spell stats (and shapeshifting section) are not accurate to what they'd be with some of the key talents entered.
+
+Not a dig at Sixpackyx, just a heads up for anyone looking at the spellpower stats on the gear planner embed that some of those numbers will be a bit higher once Sixpackyx enters the talents.
+Last edited by 1996468 on 2022/01/14
+
+1
+
+	
+
+Kyxie <Guide Author> on 2022/01/15 (Burning Crusade)
+Thanks for pointing that out! It should be added in now.
+
+3
+
+	
+By Aunuxa (1,295 – 2·9) on 2022/01/29 (Burning Crusade)	
+	
+@SixPacKyx :What is your opinion on the t5 vs t6 for boomkins? A lot of other guides say that t5 slightly edges out t6 for dps in consistency and longer fights. If that is the case would it be better to optimize around t5 and focus the other pieces of gear before swapping t5 for t6 (especially if you are only swapping one piece out at a time0? And once Sunwell comes out is it worth running the four piece of each set? Thank you ahead of time!
+
+0
+
+	
+
+fduba on 2022/04/17 (Burning Crusade)
+There's no consensus on that. I've seen excelent boomies using both and parsing. I guess it comes down to preference and play style, cuz they seem to converge to the same results. What I've seen in both cases though is boomies stacking on haste over crit towards P4 BIS and that might be the case beyond in P5 and endgame.
+
+2
+
+	
+By Bewater (5,196 – 1·14·27) on 2022/02/04 (Burning Crusade)	
+	
+Vindicator's Pendant of Subjugation is not in the game until Phase 4 (ZA)
+1 - 3 of 3
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase TwoClassesLevelingBest in SlotTier ListsRaidsAttunementsDungeonsReputationsProfessions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Balance Druid Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+            Best In Slot Gear in Phase 4
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                1H Weapons
+                2H Weapons
+                Offhands
+                Idols
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Balance Druid DPS Best in Slot (BiS) Phase 4 Gear Guide
+By Kyxie
+Updated: 2026/02/19
+Welcome to Wowhead's Best in Slot Gear list from Phase 4 Zul'Aman for Balance Druid DPS in The Burning Crusade Classic. This guide will list the recommended gear for Balance Druid DPS to acquire while they progress during the fourth phase of The Burning Crusade Classic, and contains gear sourced from Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Balance Druid DPS in Phase 4
+Phase 4 brings Zul'Aman as well as upgrades to the Badge of Justice vendor. The BiS items remain mostly the same with the exception of Brooch of Nature's Mercy Brooch of Nature's Mercy and Hex Shrunken Head Hex Shrunken Head from Zul'Aman. There is also a new competitive ring option Mana Attuned Band Mana Attuned Band which has both haste and hit although this ring is only better if you need the hit rating or can't get your hands on two Ring of Ancient Knowledge Ring of Ancient Knowledge.
+
+The Tier 6 set bonuses for Balance are quite good and should be sought after. Until you can get the full 4-set of Tier 6, it is still worth wearing the 4-set from Tier 5.
+
+Balance Druids looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Balance Druid Gems & Enchants
+Should Balance Druid DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 4?
+Choosing either Aldor or Scryer for Balance is fine and really comes down to a few options that can sway you in one direction. Regarding Phase 2 BiS gear, choosing The Scryers gives access to Scryer's Bloodgem Scryer's Bloodgem, which can help reach the cap for hit rating. If you are Aldor, you can swap out this trinket, but you will have to make up for the hit rating elsewhere, such as with gems. You want to aim for 12% hit rating since you can get 4% from talents in the Balance tree. You can potentially get away with less depending on your party setup, but it's generally a good idea to have a set of gear that reaches 12% on your own.
+
+The Aldor offer a better shoulder enchant with Greater Inscription of Discipline Greater Inscription of Discipline, slightly edging out Greater Inscription of the Orb Greater Inscription of the Orb. On the other hand, Scryer Tailors are also able to pick up and make their own Runic Spellthread Runic Spellthread, although the finished product can be bought and sold on the Auction House. In the long run, taking future phases into account, the Shattered Sun Offensive trinket proc off of Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen is better if you are aligned with The Aldor.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Balance Druids, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Balance Druid in TBC Classic Phase 4
+Thunderheart Headguard is the go-to here as you'll want to pick this up for the tier set bonus. If you do not have the 4-set bonus from Tier 6, it's still worth using the Tier 5 4-set bonus.
+Rank	Item	Source
+BiS	Thunderheart Headguard Thunderheart Headguard	Drop: Archimonde (Hyjal Summit)
+Option	Nordrassil Headpiece Nordrassil Headpiece	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+Option	Hood of Hexing Hood of Hexing	Drop: Hex Lord Malacrass (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Cowl of the Grand Engineer Cowl of the Grand Engineer	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Magnified Moon Specs Magnified Moon Specs	Profession: Engineering - BoP only
+
+Best in Slot Shoulder Armor for Balance Druid in TBC Classic Phase 4
+This is another slot where you really want to pick up the tier piece Thunderheart Shoulderpads. These shoulders are quite strong on their own, but getting the 4-set bonus is also important. If you do not have the 4-set bonus from Tier 6, it's still worth using the Tier 5 4-set bonus.
+Rank	Item	Source
+BiS	Thunderheart Shoulderpads Thunderheart Shoulderpads	Drop: Mother Shahraz (Black Temple)
+Option	Nordrassil Wrath-Mantle Nordrassil Wrath-Mantle	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Pauldrons of Tribal Fury Pauldrons of Tribal Fury	Vendor: G'eras (Badges of Justice)
+Option	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Blood-cursed Shoulderpads Blood-cursed Shoulderpads	Drop: Gurtogg Bloodboil (Black Temple)
+Option	Mantle of the Elven Kings Mantle of the Elven Kings	Drop: Trash Mobs (Tempest Keep: The Eye)
+Option	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+
+Best in Slot Back Armor for Balance Druid in TBC Classic Phase 4
+This is a rough item slot. Technically, Shroud of the Highborne is best for the haste, but it has considerably less spell power and only offers a marginal DPS gain. It will be a highly contested item due to it being healer BiS. Cloak of the Illidari Council is a more realistic option with higher spell power, and the DPS difference between the two is fairly small. Shadowcaster's Drape is a new option from ZA that has haste on it.
+Rank	Item	Source
+BiS	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+BiS	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: High Nethermancer Zerevor (Black Temple)
+Option	Shadowcaster's Drape Shadowcaster's Drape	Drop: First Timed Chest (Zul'Aman)
+Option	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+Option	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+Option	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Chest Armor for Balance Druid in TBC Classic Phase 4
+You'll want to pick up Thunderheart Vest for the tier set bonus. If you do not have the 4-set bonus from Tier 6, it's still worth using the Tier 5 4-set bonus.
+Rank	Item	Source
+BiS	Thunderheart Vest Thunderheart Vest	Drop: Illidan Stormrage (Black Temple)
+Option	Nordrassil Chestpiece Nordrassil Chestpiece	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Robes of Rhonin Robes of Rhonin	Drop: Archimonde (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Option	Blessed Elunite Coverings Blessed Elunite Coverings	Vendor: G'eras (Badges of Justice)
+Option	Spellfire Robe Spellfire Robe	Profession: Tailoring - BoP only
+Option	Chestpiece of Malorne Chestpiece of Malorne	Drop: Magtheridon (Magtheridon's Lair)
+
+Best in Slot Wrist Armor for Balance Druid in TBC Classic Phase 4
+Unless you need the hit rating from Focused Mana Bindings or Elunite Empowered Bracers, you'll want to pick up Bracers of Nimble Thought.
+Rank	Item	Source
+BiS	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring - can be purchased on the Auction House
+Option	Focused Mana Bindings Focused Mana Bindings	Drop: Shade of Akama (Black Temple)
+Option	Elunite Empowered Bracers Elunite Empowered Bracers	Drop: Essence of Anger (Black Temple)
+Option	Cuffs of Devastation Cuffs of Devastation	Drop: Rage Winterchill (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Fury of the Ursine Fury of the Ursine	Drop: Nalorakk (Zul'Aman)
+Option	Armwraps of the Kaldorei Protector Armwraps of the Kaldorei Protector	Vendor: G'eras (Badges of Justice)
+Option	Runed Spell-cuffs Runed Spell-cuffs	Vendor: G'eras (Badges of Justice)
+Option	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+
+Best in Slot Hand Armor for Balance Druid in TBC Classic Phase 4
+This is another slot where you'll want to pick up Thunderheart Handguards to complete the 4-set bonus. If you do not have the 4-set bonus from Tier 6, it's still worth using the Tier 5 4-set bonus.
+Rank	Item	Source
+BiS	Thunderheart Handguards Thunderheart Handguards	Drop: Azgalor (Hyjal Summit)
+Option	Nordrassil Gauntlets Nordrassil Gauntlets	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss)
+Option	Spellfire Gloves Spellfire Gloves	Profession: Tailoring (Spellfire Tailoring) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Botanist's Gloves of Growth Botanist's Gloves of Growth	Drop: Teron Gorefiend (Black Temple)
+Option	Studious Wraps Studious Wraps	Vendor: G'eras (Badges of Justice)
+Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+Option	Gauntlets of the Sun King Gauntlets of the Sun King	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Grasp of the Moonkin Grasp of the Moonkin	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Waist Armor for Balance Druid in TBC Classic Phase 4
+There are a few options for belts. Anetheron's Noose offers the highest raw spell power, Belt of the Crescent Moon offers haste, and Belt of Blasting offers hit rating.
+Rank	Item	Source
+BiS	Anetheron's Noose Anetheron's Noose	Drop: Anetheron (Hyjal Summit)
+Option	Belt of the Crescent Moon Belt of the Crescent Moon	Drop: Kaz'rogal (Hyjal Summit)
+Option	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Option	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Starfire Waistband Starfire Waistband	Vendor: G'eras (Badges of Justice)
+Option	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Voodoo-woven Belt Voodoo-woven Belt	Vendor: G'eras (Badges of Justice)
+Option	Spellfire Belt Spellfire Belt	Profession: Tailoring (Spellfire Tailoring) - BoP only
+
+Best in Slot Leg Armor for Balance Druid in TBC Classic Phase 4
+Similar to Tier 5, this is a tier slot you may opt to use for a non-tier item. You'll want to grab Leggings of Channeled Elements. However, if you need to use this slot to complete either the Tier 6 or Tier 5 set bonus, that is more important. If you do not have the 4-set bonus from Tier 6, it's still worth using the Tier 5 4-set bonus.
+Rank	Item	Source
+BiS	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+Option	Thunderheart Pants Thunderheart Pants	Drop: The Illidari Council (Black Temple)
+Option	Leggings of Devastation Leggings of Devastation	Drop: Mother Shahraz (Black Temple)
+Option	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+Option	Elunite Imbued Leggings Elunite Imbued Leggings	Drop: First Timed Chest (Zul'Aman)
+Option	Nordrassil Wrath-Kilt Nordrassil Wrath-Kilt	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Trousers of the Astromancer Trousers of the Astromancer	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Option	Pantaloons of Arcane Annihilation Pantaloons of Arcane Annihilation	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Feet Armor for Balance Druid in TBC Classic Phase 4
+Slippers of the Seacaller are the best boots here, but you can pick up Moon-walkers or Blue Suede Shoes if you need the hit rating. Naturewarden's Treads might be easier to obtain with less competition.
+Rank	Item	Source
+BiS	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+Option	Naturewarden's Treads Naturewarden's Treads	Drop: Essence of Anger (Black Temple)
+Option	Footpads of Madness Footpads of Madness	Drop: Jan'alai (Zul'Aman)
+Option	Moon-walkers Moon-walkers	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Blue Suede Shoes Blue Suede Shoes	Drop: Kaz'rogal (Hyjal Summit)
+Option	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+Option	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+Option	Ruby Slippers Ruby Slippers	Drop: The Crone (Karazhan)
+
+Best in Slot Neck Jewelry for Balance Druid in TBC Classic Phase 4
+Even though Brooch of Nature's Mercy is technically meant to be a healing item, it has slightly better stats than the caster alternative in Zul'Aman. You can use Translucent Spellthread Necklace if you need the hit rating.
+Rank	Item	Source
+BiS	Brooch of Nature's Mercy Brooch of Nature's Mercy	Drop: Akil'zon (Zul'Aman)
+Option	Loop of Cursed Bones Loop of Cursed Bones	Drop: Zul'jin (Zul'Aman)
+Option	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Essence of Anger (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+You can also use the Jewelcrafting necklaces Eye of the Night and Chain of the Twilight Owl for a nice party-wide buff.
+Rank	Item	Source
+PvP	Vindicator's Pendant of Conquest Vindicator's Pendant of Conquest	Vendor: Honor Points (Season 3)
+Option	Adornment of Stolen Souls Adornment of Stolen Souls	Drop: Prince Malchezaar (Karazhan)
+Option	Brooch of Unquenchable Fury Brooch of Unquenchable Fury	Drop: Moroes (Karazhan)
+Option	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+Option	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+
+Best in Slot Ring Jewelry for Balance Druid in TBC Classic Phase 4
+Ring of Ancient Knowledge is not Unique, so you can equip two of them if you are lucky enough to get your hands on two. Otherwise, you'll use Band of the Eternal Sage or Ring of Captured Storms if you need some extra hit rating.
+Rank	Item	Source
+BiS	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+BiS	Band of the Eternal Sage Band of the Eternal Sage	Quest: (Quest #10472) (The Scale of the Sands Exalted)
+BiS	Mana Attuned Band Mana Attuned Band	Drop: Third Timed Chest (Zul'Aman)
+Option	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Ring of Recurrence Ring of Recurrence	Drop: Echo of Medivh (Karazhan)
+Option	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Path of the Violet Mage Path of the Violet Mage (The Violet Eye Exalted)
+Option	Band of Crimson Fury Band of Crimson Fury	Drop: Magtheridon (Magtheridon's Lair)
+
+Best in Slot Trinkets for Balance Druid in TBC Classic Phase 4
+With the release of Zul'Aman, the best trinkets are The Skull of Gul'dan and Hex Shrunken Head. Although not as strong, Ashtongue Talisman of Equilibrium is an easy-to-get alternative that is still competitive.
+
+Icon of the Silver Crescent, Dark Iron Smoking Pipe, and Sextant of Unstable Currents are still solid alternatives until you can get better options.
+Rank	Item	Source
+BiS	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+BiS	Hex Shrunken Head Hex Shrunken Head	Drop: Hex Lord Malacrass (Zul'Aman)
+Option	Ashtongue Talisman of Equilibrium Ashtongue Talisman of Equilibrium	Vendor: Okuno (Ashtongue Deathsworn Exalted)
+Option	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Option	Sextant of Unstable Currents Sextant of Unstable Currents	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+Option	Eye of Magtheridon Eye of Magtheridon	Drop: Magtheridon (Magtheridon's Lair)
+Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+
+Best in Slot One-Handed Weapons for Balance Druid in TBC Classic Phase 4
+While the PvP weapons are best, if you are not interested in doing PvP to get gear for raid, then you'll aim to get something like The Maelstrom's Fury, Hammer of Judgement, or Wub's Cursed Hexblade.
+Rank	Item	Source
+PvP	Vengeful Gladiator's Gavel Vengeful Gladiator's Gavel
+Vengeful Gladiator's Spellblade Vengeful Gladiator's Spellblade	Vendor: Arena Points (Season 3)
+BiS	The Maelstrom's Fury The Maelstrom's Fury	Drop: High Warlord Naj'entus (Black Temple)
+BiS	Hammer of Judgement Hammer of Judgement	Drop: Trash Mobs (Hyjal Summit)
+BiS	Wub's Cursed Hexblade Wub's Cursed Hexblade	Drop: Jan'alai (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 1H Weapon Recommendations
+
+Rank	Item	Source
+PvP	Merciless Gladiator's Gavel Merciless Gladiator's Gavel
+Merciless Gladiator's Spellblade Merciless Gladiator's Spellblade	Vendor: Arena Points (Season 2)
+Option	Amani Punisher Amani Punisher	Drop: Akil'zon (Zul'Aman)
+Option	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+Option	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Two-Handed Weapons for Balance Druid in TBC Classic Phase 4
+Zhar'doom, Greatstaff of the Devourer is by far the best, but will be hard to get your hands on. There are many great PvP alternatives if you're willing to work towards those. Otherwise, the new Amani Divining Staff is a solid option, but it's still slightly worse than The Nexus Key.
+Rank	Item	Source
+BiS	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+PvP	Vengeful Gladiator's Battle Staff Vengeful Gladiator's Battle Staff	Vendor: Arena Points (Season 3)
+Option	The Nexus Key The Nexus Key	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Amani Divining Staff Amani Divining Staff	Drop: Second Timed Chest (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 2H Weapon Recommendations
+
+Rank	Item	Source
+PvP	Vengeful Gladiator's War Staff Vengeful Gladiator's War Staff	Vendor: Arena Points (Season 3)
+PvP	Merciless Gladiator's War Staff Merciless Gladiator's War Staff	Vendor: Arena Points (Season 2)
+PvP	Gladiator's War Staff Gladiator's War Staff	Vendor: Honor Points (Season 1)
+Option	Frostscythe of Lord Ahune Frostscythe of Lord Ahune	Drop: Ahune (Midsummer Fire Festival Seasonal Event)
+Option	Staff of Infinite Mysteries Staff of Infinite Mysteries	Drop: The Curator (Karazhan)
+Option	Terokk's Shadowstaff Terokk's Shadowstaff	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+
+Best in Slot Offhands for Balance Druid in TBC Classic Phase 4
+Chronicle of Dark Secrets is the best option for an offhand if you do not have a 2H Weapon.
+Rank	Item	Source
+BiS	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+Option	Fetish of the Primal Gods Fetish of the Primal Gods	Vendor: G'eras (Badges of Justice)
+Option	Blind-Seers Icon Blind-Seers Icon	Drop: Shade of Akama (Black Temple)
+Option	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Talisman of Kalecgos Talisman of Kalecgos	Vendor: G'eras (Badges of Justice)
+Option	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Option	Lamp of Peaceful Radiance Lamp of Peaceful Radiance	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Talisman of Nightbane Talisman of Nightbane	Drop: Nightbane (Karazhan)
+
+Best in Slot Idols for Balance Druid in TBC Classic Phase 4
+Ivory Idol of the Moongoddess increases your Starfire damage while Idol of the Avenger increases your Wrath damage. Idol of the Raven Goddess offers an increase to your party-wide buff. Keep in mind you can swap idols in combat, just like weapons, but it does take a global cooldown.
+Rank	Item	Source
+BiS	Idol of the Raven Goddess Idol of the Raven Goddess	Quest: Vanquish the Raven God Vanquish the Raven God (Heroic Sethekk Halls)
+BiS	Ivory Idol of the Moongoddess Ivory Idol of the Moongoddess	Drop: Grand Warlock Nethekurse (The Shattered Halls)
+Option	Idol of the Unseen Moon Idol of the Unseen Moon	Vendor: G'eras (Badges of Justice)
+Option	Idol of the Avenger Idol of the Avenger	Quest: News of Victory News of Victory / News of Victory News of Victory
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Idol Recommendations
+
+Rank	Item	Source
+Option	Idol of the Moon Idol of the Moon	Drop: World Drop
+
+Kyxie
+WoW Classic Druid Writer
+Starting in 2019, SixPacKyx wrote comprehensive Druid class guides for Classic and Burning Crusade Classic content. The author created detailed guides covering Restoration healing and Balance DPS specializations, including advanced strategies, talent builds, gear recommendations, rotations, consumables, addons, and macros for PvE content.
+No comments have been posted yet.
+Be the first to add a comment to this page!
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Balance Druid Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+            Best In Slot Gear in Phase 5
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                1H Weapons
+                2H Weapons
+                Offhands
+                Idols
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Balance Druid DPS Best in Slot (BiS) Phase 5 Gear Guide
+By Kyxie
+Updated: 2026/02/19
+Welcome to Wowhead's Best in Slot Gear list from Phase 5 Sunwell Plateau for Balance Druid DPS in The Burning Crusade Classic. This guide will list the recommended gear for Balance Druid DPS to acquire while they progress during the fifth and final phase of The Burning Crusade Classic, which contains gear sourced from Sunwell Plateau, Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Balance Druid DPS in Phase 5
+Phase 5 is the final phase of TBC and brings a lot of new gearing options. There is new raid gear from Sunwell Plateau, new Badge of Justice gear, Season 4 PvP gear, new profession gear, and new gems. In addition to the new raid gear, there is the transmute vendor Yrma who will take specific raid pieces, along with a Sunmote Sunmote, and turn them into a different item.
+
+While there isn't a new tier set, there are additional slots for Tier 6. Bracers, belts, and boots are now available to complete the Thunderheart Regalia set. This opens a lot of gearing options, and you'll definitely want to pick up these new pieces. With these additional items, you can equip both 4-set Tier 6 and 4-set Tier 5, but this is not as strong as picking up 4-set Tier 6 along with powerful off-pieces from Sunwell Plateau.
+
+Professions play a more important role in Phase 5. Jewelcrafting, Tailoring, and Leatherworking all offer some strong gearing options. Since you can only have two professions at a time, this means you'll have to make decisions on what gear to aim for and if you want to change professions. Jewelcrafting and Enchanting are really strong profession choices for personal player power, but Leatherworking and Tailoring are also solid and can be situationally beneficial and possibly better for the raid team, especially Leatherworking for the drums.
+
+Balance Druids looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Balance Druid Gems & Enchants
+Should Balance Druid DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 5?
+Choosing either Aldor or Scryer for Balance is fine and really comes down to a few options that can sway you in one direction. Regarding Phase 2 BiS gear, choosing The Scryers gives access to Scryer's Bloodgem Scryer's Bloodgem, which can help reach the cap for hit rating. If you are Aldor, you can swap out this trinket, but you will have to make up for the hit rating elsewhere, such as with gems. You want to aim for 12% hit rating since you can get 4% from talents in the Balance tree. You can potentially get away with less depending on your party setup, but it's generally a good idea to have a set of gear that reaches 12% on your own.
+
+The Aldor offer a better shoulder enchant with Greater Inscription of Discipline Greater Inscription of Discipline, slightly edging out Greater Inscription of the Orb Greater Inscription of the Orb. On the other hand, Scryer Tailors are also able to pick up and make their own Runic Spellthread Runic Spellthread, although the finished product can be bought and sold on the Auction House. Finally available in Phase 5, the Shattered Sun Offensive proc of Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen is better if you are aligned with The Aldor; however, this neck is not BiS, just a strong option while gearing.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Balance Druids, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Balance Druid in TBC Classic Phase 5
+Dark Conjuror's Collar is the strongest option here, but will be highly contested. A more realistic option for Balance would be to pick up the leather alternative, Cover of Ursoc the Mighty. You can also keep using your Tier 6 helm Thunderheart Headguard if you need this slot to complete the 4-set bonus, but ideally you'll want to shuffle the tier set to other slots.
+Rank	Item	Source
+BiS	Dark Conjuror's Collar Dark Conjuror's Collar	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Cover of Ursoc the Mighty Cover of Ursoc the Mighty	Vendor: Yrma
+Drop: Cover of Ursol the Wise Cover of Ursol the Wise from Kil'jaeden (Sunwell Plateau) & Sunmote Sunmote
+Option	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+Option	Hyper-Magnified Moon Specs Hyper-Magnified Moon Specs	Profession: Engineering - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Helm of Arcane Purity Helm of Arcane Purity	Vendor: Yrma
+Drop: Cowl of Light's Purity Cowl of Light's Purity from Kil'jaeden (Sunwell Plateau) & Sunmote Sunmote
+Option	Thunderheart Headguard Thunderheart Headguard	Drop: Archimonde (Hyjal Summit)
+Option	Nordrassil Headpiece Nordrassil Headpiece	Drop: Lady Vashj (Serpentshrine Cavern)
+
+Best in Slot Shoulder Armor for Balance Druid in TBC Classic Phase 5
+As individual pieces, both Amice of the Convoker and Spaulders of Devastation are best for this slot. However, you'll most likely aim to use this as one of the Tier 6 slots for the 4-set and use Thunderheart Shoulderpads.
+Rank	Item	Source
+BiS	Amice of the Convoker Amice of the Convoker	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+BiS	Spaulders of Devastation Spaulders of Devastation	Vendor: Yrma
+Drop: Spaulders of Reclamation Spaulders of Reclamation from Eredar Twins (Sunwell Plateau) & Sunmote Sunmote
+BiS	Thunderheart Shoulderpads Thunderheart Shoulderpads	Drop: Mother Shahraz (Black Temple)
+Option	Shoulderpads of Knowledge's Pursuit Shoulderpads of Knowledge's Pursuit	Vendor: Yrma
+Drop: Shawl of Wonderment Shawl of Wonderment from Eredar Twins (Sunwell Plateau) & Sunmote Sunmote
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Nordrassil Wrath-Mantle Nordrassil Wrath-Mantle	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Blood-cursed Shoulderpads Blood-cursed Shoulderpads	Drop: Gurtogg Bloodboil (Black Temple)
+Option	Pauldrons of Tribal Fury Pauldrons of Tribal Fury	Vendor: G'eras (Badges of Justice)
+Option	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+
+Best in Slot Back Armor for Balance Druid in TBC Classic Phase 5
+Tattered Cape of Antonidas is the absolute best option for a cloak, but it will be highly contested. The next best option would be Cloak of the Illidari Council.
+Rank	Item	Source
+BiS	Tattered Cape of Antonidas Tattered Cape of Antonidas	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: High Nethermancer Zerevor (Black Temple)
+Option	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+Option	Shadowcaster's Drape Shadowcaster's Drape	Drop: First Timed Chest (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+Option	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss) - can be purchased on the Auction House
+Option	Cloak of the Betrayed Cloak of the Betrayed	Drop: Priestess Delrissa (Magisters' Terrace)
+
+Best in Slot Chest Armor for Balance Druid in TBC Classic Phase 5
+Here is a slot where the new profession gear really shines. If you have Tailoring, Sunfire Robe is a fantastic item and worth crafting once you can pick up the recipe. If you do not have Tailoring, then Fel Conquerer Raiments is still a really good option.
+Rank	Item	Source
+BiS	Sunfire Robe Sunfire Robe	Profession: Tailoring - BoP only
+BiS	Fel Conquerer Raiments Fel Conquerer Raiments	Drop: Entropius & M'uru (Sunwell Plateau)
+Option	Robes of Ghostly Hatred Robes of Ghostly Hatred	Vendor: Yrma
+Drop: Robes of Faltered Light Robes of Faltered Light from Entropius & M'uru (Sunwell Plateau) & Sunmote Sunmote
+Option	Thunderheart Vest Thunderheart Vest	Drop: Illidan Stormrage (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Option	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Utopian Tunic of Elune Utopian Tunic of Elune	Vendor: Yrma
+Drop: Sunglow Vest Sunglow Vest from Entropius & M'uru (Sunwell Plateau) & Sunmote Sunmote
+Option	Nordrassil Chestpiece Nordrassil Chestpiece	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Wrist Armor for Balance Druid in TBC Classic Phase 5
+With the new options for Tier 6 slots, you'll aim to pick up Thunderheart Bands to complete the 4-set and open up other slots for better items.
+Rank	Item	Source
+BiS	Thunderheart Bands Thunderheart Bands	Drop: Kalecgos, Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+Option	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring - can be purchased on the Auction House
+Option	Focused Mana Bindings Focused Mana Bindings	Drop: Shade of Akama (Black Temple)
+Option	Elunite Empowered Bracers Elunite Empowered Bracers	Drop: Essence of Anger (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Cuffs of Devastation Cuffs of Devastation	Drop: Rage Winterchill (Hyjal Summit)
+Option	Fury of the Ursine Fury of the Ursine	Drop: Nalorakk (Zul'Aman)
+Option	Armwraps of the Kaldorei Protector Armwraps of the Kaldorei Protector	Vendor: G'eras (Badges of Justice)
+Option	Runed Spell-cuffs Runed Spell-cuffs	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Hand Armor for Balance Druid in TBC Classic Phase 5
+Handguards of Defiled Worlds is the clear winner for gloves, but as a Balance Druid, it is always hard to get the BiS cloth items from end bosses, so a more realistic option would be to pick up the leather Tranquil Moonlight Wraps. Even if you don't have Tailoring, you can also pick up Sunfire Handwraps since it is BoE.
+Rank	Item	Source
+BiS	Handguards of Defiled Worlds Handguards of Defiled Worlds	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Gloves of Tyri's Power Gloves of Tyri's Power	Vendor: Yrma
+Drop: Handguards of the Dawn Handguards of the Dawn from Kil'jaeden (Sunwell Plateau) & Sunmote Sunmote
+Option	Sunfire Handwraps Sunfire Handwraps	Profession: Tailoring - can be purchased on the Auction House
+Option	Tranquil Moonlight Wraps Tranquil Moonlight Wraps	Vendor: Yrma
+Drop: Tranquil Majesty Wraps Tranquil Majesty Wraps from Trash Mobs (Sunwell Plateau) & Sunmote Sunmote
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Thunderheart Handguards Thunderheart Handguards	Drop: Azgalor (Hyjal Summit)
+Option	Nordrassil Gauntlets Nordrassil Gauntlets	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss) - can be purchased on the Auction House
+
+Best in Slot Waist Armor for Balance Druid in TBC Classic Phase 5
+This is another slot where you want to pick up the new Tier 6 option, Thunderheart Cord. Not only is it better than the other options, but it also frees up other options for item slots that were being used for tier.
+Rank	Item	Source
+BiS	Thunderheart Cord Thunderheart Cord	Drop: Brutallus, Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+Option	Anetheron's Noose Anetheron's Noose	Drop: Anetheron (Hyjal Summit)
+Option	Belt of the Crescent Moon Belt of the Crescent Moon	Drop: Kaz'rogal (Hyjal Summit)
+Option	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+Option	Starfire Waistband Starfire Waistband	Vendor: G'eras (Badges of Justice)
+Option	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Voodoo-woven Belt Voodoo-woven Belt	Vendor: G'eras (Badges of Justice)
+Option	Spellfire Belt Spellfire Belt	Profession: Tailoring (Spellfire Tailoring) - BoP only
+
+Best in Slot Leg Armor for Balance Druid in TBC Classic Phase 5
+Leggings of Calamity are the best options for legs. If you're struggling to compete with other cloth wearers, you can pick up the leather option Breeches of Natural Aggression, instead.
+Rank	Item	Source
+BiS	Leggings of Calamity Leggings of Calamity	Drop: Brutallus (Sunwell Plateau)
+Option	Breeches of Natural Aggression Breeches of Natural Aggression	Drop: Kalecgos (Sunwell Plateau)
+Option	Pantaloons of Growing Strife Pantaloons of Growing Strife	Vendor: Yrma
+Drop: Pantaloons of Calming Strife Pantaloons of Calming Strife from Kalecgos (Sunwell Plateau) & Sunmote Sunmote
+Option	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Leggings of Devastation Leggings of Devastation	Drop: Mother Shahraz (Black Temple)
+Option	Thunderheart Pants Thunderheart Pants	Drop: The Illidari Council (Black Temple)
+
+Best in Slot Feet Armor for Balance Druid in TBC Classic Phase 5
+Thunderheart Footwraps are the best options for boots and will free up other tier slots for better options.
+Rank	Item	Source
+BiS	Thunderheart Footwraps Thunderheart Footwraps	Drop: Felmyst, Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+Option	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+Option	Naturewarden's Treads Naturewarden's Treads	Drop: Essence of Anger (Black Temple)
+Option	Footpads of Madness Footpads of Madness	Drop: Jan'alai (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Moon-walkers Moon-walkers	Vendor: G'eras (Badges of Justice)
+Option	Blue Suede Shoes Blue Suede Shoes	Drop: Kaz'rogal (Hyjal Summit)
+Option	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+
+Best in Slot Neck Jewelry for Balance Druid in TBC Classic Phase 5
+If you have Jewelcrafting, Pendant of Sunfire is the best option. If not, Amulet of Unfettered Magics will be the go-to option, but it will likely be quite contested. You can also use the Jewelcrafting necklaces Eye of the Night and Chain of the Twilight Owl for a nice party-wide buff.
+Rank	Item	Source
+BiS	Pendant of Sunfire Pendant of Sunfire	Profession: Jewelcrafting - BoP only
+BiS	Amulet of Unfettered Magics Amulet of Unfettered Magics	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+Group Buff	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+Group Buff	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Brooch of Nature's Mercy Brooch of Nature's Mercy	Drop: Akil'zon (Zul'Aman)
+Option	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Essence of Anger (Black Temple)
+Option	Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen	Vendor: Eldara Dawnrunner (Shattered Sun Offensive Exalted)
+Option	Sin'dorei Pendant of Conquest Sin'dorei Pendant of Conquest	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+PvP	Guardian's Pendant of Subjugation Guardian's Pendant of Subjugation	Vendor: Honor Points (Season 4)
+PvP	Guardian's Pendant of Conquest Guardian's Pendant of Conquest	Vendor: Honor Points (Season 4)
+Option	Loop of Cursed Bones Loop of Cursed Bones	Drop: Zul'jin (Zul'Aman)
+Option	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Ring Jewelry for Balance Druid in TBC Classic Phase 5
+You'll definitely want to get a Loop of Forged Power if you can afford one. Even if you don't have Jewelcrafting, you can still use this BoE item. Assuming you don't need hit since hit is pretty easy to obtain this late in TBC, the next best ring is Ring of Omnipotence. If you do happen to need some extra hit, Mana Attuned Band is a great option.
+Rank	Item	Source
+BiS	Loop of Forged Power Loop of Forged Power	Profession: Jewelcrafting - can be purchased on the Auction House
+BiS	Ring of Omnipotence Ring of Omnipotence	Drop: Entropius & M'uru (Sunwell Plateau)
+Option	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+Option	Mana Attuned Band Mana Attuned Band	Drop: Third Timed Chest (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Fused Nethergon Band and Ring of Captured Storms are two more decent sources of hit if required to reach the spell hit cap.
+Rank	Item	Source
+Option	Band of the Eternal Sage Band of the Eternal Sage	Quest: Sage's Covenant Sage's Covenant (The Scale of the Sands Exalted)
+Option	Fused Nethergon Band Fused Nethergon Band	Vendor: G'eras (Badges of Justice)
+Option	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+
+Best in Slot Trinkets for Balance Druid in TBC Classic Phase 5
+The best trinket combination is Shifting Naaru Sliver and The Skull of Gul'dan, although both are extremely hard to get. Hex Shrunken Head is a more realistic alternative from ZA and still very strong.
+Rank	Item	Source
+BiS	Shifting Naaru Sliver Shifting Naaru Sliver	Drop: M'uru (Sunwell Plateau)
+BiS	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+Option	Hex Shrunken Head Hex Shrunken Head	Drop: Hex Lord Malacrass (Zul'Aman)
+Option	Ashtongue Talisman of Equilibrium Ashtongue Talisman of Equilibrium	Drop: Okuno (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Ashtongue Talisman of Equilibrium, Icon of the Silver Crescent, Sextant of Unstable Currents, and Quagmirran's Eye are easier to obtain and still fairly competitive until you can get your hands on a better option.
+Rank	Item	Source
+Option	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Option	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Option	Sorcerer's Alchemist Stone Sorcerer's Alchemist Stone	Profession: Alchemy - BoP only
+Option	Sextant of Unstable Currents Sextant of Unstable Currents	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Timbal's Focusing Crystal Timbal's Focusing Crystal	Drop: Priestess Delrissa (Heroic Magisters' Terrace)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+Option	Eye of Magtheridon Eye of Magtheridon	Drop: Magtheridon (Magtheridon's Lair)
+Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+
+Best in Slot One-Handed Weapons for Balance Druid in TBC Classic Phase 5
+The best weapon to obtain is Sunflare, but it will be extremely contested. Reign of Misery is a decent alternative with less competition.
+Rank	Item	Source
+BiS	Sunflare Sunflare	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Reign of Misery Reign of Misery	Drop: Brutallus (Sunwell Plateau)
+PvP	Brutal Gladiator's Gavel Brutal Gladiator's Gavel
+Brutal Gladiator's Spellblade Brutal Gladiator's Spellblade	Vendor: Arena Points (Season 4)
+PvP	Vengeful Gladiator's Gavel Vengeful Gladiator's Gavel
+Vengeful Gladiator's Spellblade Vengeful Gladiator's Spellblade	Vendor: Arena Points (Season 3)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 1H Weapon Recommendations
+
+Rank	Item	Source
+Option	Scryer's Blade of Focus Scryer's Blade of Focus	Vendor: G'eras (Badges of Justice)
+Option	The Maelstrom's Fury The Maelstrom's Fury	Drop: High Warlord Naj'entus (Black Temple)
+Option	Hammer of Judgement Hammer of Judgement	Drop: Trash Mobs (Hyjal Summit)
+Option	Wub's Cursed Hexblade Wub's Cursed Hexblade	Drop: Jan'alai (Zul'Aman)
+PvP	Merciless Gladiator's Gavel Merciless Gladiator's Gavel
+Merciless Gladiator's Spellblade Merciless Gladiator's Spellblade	Vendor: Honor Points (Season 2)
+Option	Amani Punisher Amani Punisher	Drop: Akil'zon (Zul'Aman)
+
+Best in Slot Two-Handed Weapons for Balance Druid in TBC Classic Phase 5
+While the one-handed options are better in Phase 5, Grand Magister's Staff of Torrents is the best two-handed weapon.
+Rank	Item	Source
+BiS	Grand Magister's Staff of Torrents Grand Magister's Staff of Torrents	Drop: Felmyst (Sunwell Plateau)
+Option	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+PvP	Brutal Gladiator's Battle Staff Brutal Gladiator's Battle Staff	Vendor: Arena Points (Season 4)
+PvP	Vengeful Gladiator's Battle Staff Vengeful Gladiator's Battle Staff	Vendor: Arena Points (Season 3)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 2H Weapon Recommendations
+
+Rank	Item	Source
+Option	The Nexus Key The Nexus Key	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Amani Divining Staff Amani Divining Staff	Drop: Second Timed Chest (Zul'Aman)
+PvP	Vengeful Gladiator's War Staff Vengeful Gladiator's War Staff	Vendor: Arena Points (Season 3)
+
+Best in Slot Offhands for Balance Druid in TBC Classic Phase 5
+Since the one-handed weapons are considerably better in Phase 5, you'll want to pick up an offhand. Heart of the Pit is the best option if you can get it. Otherwise, Chronicle of Dark Secrets is still a decent alternative.
+Rank	Item	Source
+BiS	Heart of the Pit Heart of the Pit	Drop: Brutallus (Sunwell Plateau)
+Option	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+Option	Fetish of the Primal Gods Fetish of the Primal Gods	Vendor: G'eras (Badges of Justice)
+Option	Blind-Seers Icon Blind-Seers Icon	Drop: Shade of Akama (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Option	Talisman of Kalecgos Talisman of Kalecgos	Vendor: G'eras (Badges of Justice)
+PvP	Brutal Gladiator's Endgame Brutal Gladiator's Endgame	Vendor: Arena Points (Season 4)
+
+Best in Slot Idols for Balance Druid in TBC Classic Phase 5
+Ivory Idol of the Moongoddess increases your Starfire damage while Idol of the Avenger increases your Wrath damage. Idol of the Raven Goddess offers an increase to your party-wide buff. Keep in mind you can swap idols in combat, just like weapons, but it does take a global cooldown.
+Rank	Item	Source
+BiS	Idol of the Raven Goddess Idol of the Raven Goddess	Quest: Vanquish the Raven God Vanquish the Raven God (Heroic Sethekk Halls)
+BiS	Ivory Idol of the Moongoddess Ivory Idol of the Moongoddess	Drop: Grand Warlock Nethekurse (The Shattered Halls)
+Option	Idol of the Unseen Moon Idol of the Unseen Moon	Vendor: G'eras (Badges of Justice)
+Option	Idol of the Avenger Idol of the Avenger	Quest: News of Victory News of Victory / News of Victory News of Victory
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Idol Recommendations
+
+Rank	Item	Source
+Option	Idol of the Moon Idol of the Moon	Drop: World Drop
+
+Kyxie
+WoW Classic Druid Writer
+Starting in 2019, SixPacKyx wrote comprehensive Druid class guides for Classic and Burning Crusade Classic content. The author created detailed guides covering Restoration healing and Balance DPS specializations, including advanced strategies, talent builds, gear recommendations, rotations, consumables, addons, and macros for PvE content.
+No comments have been posted yet.
+Be the first to add a comment to this page!
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+

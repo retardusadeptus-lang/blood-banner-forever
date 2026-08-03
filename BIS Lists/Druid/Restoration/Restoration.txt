@@ -1,0 +1,3004 @@
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase TwoClassesLevelingBest in SlotTier ListsRaidsAttunementsDungeonsReputationsProfessions
+Guides...
+Guide Contents
+Patch 2.5.6
+3.6/5 (5 Votes)
+TBCC Restoration Druid Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Best In Slot Gear in Pre-Raid
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Idols
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Restoration Druid Healing Pre-Raid Best in Slot (BiS) - TBC Classic
+By Kyxie
+Updated: 2026/01/24
+In this Pre-Raid Best-in-Slot Gear List for Restoration Druid Healing in The Burning Crusade Classic, we will list the recommended gear for Restoration Druid Healing to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Restoration Druid Healing Best in Slot Hub
+Best In Slot Gear for Restoration Druid Healing in Pre-Raid
+Phase 1 gear sets are highly dependent on whether you choose Tailoring as a Profession or not. The Primal Mooncloth set is extremely good, but requires Tailoring. Not only is Primal Mooncloth pre-raid BiS, but it can also be considered Phase 1 BiS as well. The Whitemend set is Pre-Raid BiS, but can be very expensive and possibly replaced with raid gear.
+
+Many items can be considered BiS for each slot, depending on whether you play an aggressive Healing Power style or a Mana considerate style that relies more on stats like Spirit and MP5. The sections below offer detailed information for each slot.
+
+Restoration Druids looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Restoration Druid Gems & Enchants
+Should Restoration Druid Healer Choose Aldor or Scryer for BiS in TBC Classic Pre-Raid?
+Restoration Druids favor choosing Aldor. The shoulder enchant, Greater Inscription of Faith Greater Inscription of Faith, from the Aldor is better than the Scryer alternative, Greater Inscription of the Oracle Greater Inscription of the Oracle. There aren't any notable BoP items from either vendor. Since many Restoration Druids tend to have tailoring, the Aldors also offer the ability to make your own Golden Spellthread Golden Spellthread with the BoP recipe Pattern: Golden Spellthread Pattern: Golden Spellthread.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Restoration Druids, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Restoration Druid in TBC Classic Pre-Raid
+Whitemend Hood is extremely powerful and often the go-to right off the bat, as you can obtain this early. Even without the tailoring set bonus, it is best for pre-raid. However, the tailoring gear sets are quite expensive to craft or buy. Gladiator's Kodohide Helm and Cowl of Naaru Blessings are close alternatives.
+Rank	Item	Source
+BiS	Whitemend Hood Whitemend Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Gladiator's Kodohide Helm Gladiator's Kodohide Helm	Vendor: Arena Points (Season 1)
+Option	Cowl of Naaru Blessings Cowl of Naaru Blessings	Vendor: G'eras (Badges of Justice)
+Option	Hallowed Crown Hallowed Crown	Drop: Harbinger Skyriss (The Arcatraz)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Other options are easily obtained whilst farming reputation during your pre-raid endeavours; however, it is recommended to pick up a Head piece which offers Gem slots.
+Rank	Item	Source
+Option	Moonglade Cowl Moonglade Cowl	Drop: Warp Splinter (The Botanica)
+Option	Raven-Heart Headdress Raven-Heart Headdress	Drop: Shirrak the Dead Watcher (Auchenai Crypts)
+Option	Watcher's Cowl Watcher's Cowl	Vendor: Fedryen Swiftspear (Cenarion Expedition Revered)
+Option	Hood of Primal Life Hood of Primal Life	Profession: Leatherworking - can be purchased on the Auction House
+
+Best in Slot Shoulder Armor for Restoration Druid in TBC Classic Pre-Raid
+Primal Mooncloth Shoulders is the best shoulder option if you're a tailor, even though it does not offer sockets. If you aren't able to craft the tailoring shoulders, Hallowed Pauldrons or Gladiator's Kodohide Spaulders will be your best options.
+Rank	Item	Source
+BiS	Primal Mooncloth Shoulders Primal Mooncloth Shoulders	Profession: Tailoring (Primal Mooncloth Tailoring) - BoP only
+Option	Hallowed Pauldrons Hallowed Pauldrons	Drop: Grandmaster Vorpil (Shadow Labyrinth)
+Option	Gladiator's Kodohide Spaulders Gladiator's Kodohide Spaulders	Vendor: Arena Points (Season 1)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+The other options listed are easier to obtain but definitely lack in terms of power.
+Rank	Item	Source
+Option	Pauldrons of Sufferance Pauldrons of Sufferance	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Option	Moonglade Shoulders Moonglade Shoulders	Drop: Warlord Kalithresh (The Steamvault)
+Option	Ravenwing Pauldrons Ravenwing Pauldrons	Drop: Lieutenant Drake (Old Hillsbrad Foothills)
+
+Best in Slot Back Armor for Restoration Druid in TBC Classic Pre-Raid
+The best cloak options pre-raid are both BoE items, Lifegiving Cloak and White Remedy Cape. However, they may be quite expensive, and keep in mind that they will be replaced by a raid drop during Phase 1. It is probably better to go with Avian Cloak of Feathers, which is easy to obtain.
+Rank	Item	Source
+BiS	Lifegiving Cloak Lifegiving Cloak	Drop: World Drop
+BiS	White Remedy Cape White Remedy Cape	Profession: Tailoring - can be purchased on the Auction House
+Option	Avian Cloak of Feathers Avian Cloak of Feathers	Drop: Talon King Ikiss (Sethekk Halls)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Cloak of Suturing is another good option, which you might already have coming from Classic.
+Rank	Item	Source
+Option	Cloak of Suturing Cloak of Suturing	Drop: Patchwerk (Classic - Naxxramas)
+Option	Light-Touched Stole of Altruism Light-Touched Stole of Altruism	Drop: Exarch Maladaar (Heroic Auchenai Crypts)
+Option	Cloak of the Everliving Cloak of the Everliving	Drop: Watchkeeper Gargolmar (Heroic Hellfire Ramparts)
+Option	Bishop's Cloak Bishop's Cloak	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Chest Armor for Restoration Druid in TBC Classic Pre-Raid
+Primal Mooncloth Robe is just so incredibly good here with the added benefit of holding BiS through raid as well. Alternatively, if you are a Leatherworker, the Windhawk Armor set is not a bad option early on, making Windhawk Hauberk a solid choice as well. The most realistic option for those who do not wish to PvP or pick up Tailoring or Leatherworking is Hallowed Garments.
+Rank	Item	Source
+BiS	Primal Mooncloth Robe Primal Mooncloth Robe	Profession: Tailoring (Primal Mooncloth Tailoring) - BoP only
+Option	Windhawk Hauberk Windhawk Hauberk	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Gladiator's Kodohide Tunic Gladiator's Kodohide Tunic	Vendor: Arena Points (Season 1)
+Option	Hallowed Garments Hallowed Garments	Drop: Murmur (Shadow Labyrinth)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+There are other great alternatives from dungeons, such as Moonglade Robe.
+Rank	Item	Source
+Option	Moonglade Robe Moonglade Robe	Drop: Pathaleon the Calculator (The Mechanar)
+Option	Raiments of Divine Authority Raiments of Divine Authority	Drop: Keli'dan the Breaker (The Blood Furnace)
+Option	Living Crystal Breastplate Living Crystal Breastplate	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Raiments of Nature's Breath Raiments of Nature's Breath	Drop: Reinforced Fel Iron Chest (Heroic Hellfire Ramparts)
+Option	Robe of Effervescent Light Robe of Effervescent Light	Drop: Keli'dan the Breaker (Heroic The Blood Furnace)
+
+Best in Slot Wrist Armor for Restoration Druid in TBC Classic Pre-Raid
+Bindings of the Timewalker and Windhawk Bracers are both excellent options for bracers.
+Rank	Item	Source
+BiS	Bindings of the Timewalker Bindings of the Timewalker	Vendor: Alurmi (Keepers of Time Exalted)
+BiS	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+If you aren't a Leatherworker or don't want to wait on the Keepers of Time reputation, Bands of the Benevolent and Bracelets of Royal Redemption are not too far behind.
+Rank	Item	Source
+Option	Bands of the Benevolent Bands of the Benevolent	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+Option	Bracelets of Royal Redemption Bracelets of Royal Redemption	Drop: Emperor Vek'nilash (Classic - Ahn'Qiraj)
+Option	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+Option	Marshal's Kodohide Bracers Marshal's Kodohide Bracers	Vendor: Honor Points (PvP)
+Option	Shattrath Wraps Shattrath Wraps	Quest: The Soul Devices The Soul Devices (Shadow Labyrinth)
+Option	Lucid Dream Bracers Lucid Dream Bracers	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Dreamwalker Wristguards Dreamwalker Wristguards	Drop: Anub'Rekhan, Grand Widow Faerlina, & Gluth (Classic - Naxxramas)
+
+Best in Slot Hand Armor for Restoration Druid in TBC Classic Pre-Raid
+Gloves of the Living Touch are the best option for gloves, offering high healing and stats. The other options are viable if you don't want to spend the gold on a slot that will be replaced in Karazhan.
+Rank	Item	Source
+BiS	Gloves of the Living Touch Gloves of the Living Touch	Profession: Leatherworking - can be purchased on the Auction House
+Option	Gladiator's Kodohide Gloves Gladiator's Kodohide Gloves	Vendor: Arena Points (Season 1)
+Option	Bloody Surgeon's Mitts Bloody Surgeon's Mitts	Drop: Broggok (The Blood Furnace)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Cryo-mitts Cryo-mitts	Quest: Someone Else's Hard Work Pays Off Someone Else's Hard Work Pays Off (Mana-Tombs)
+Option	Natural Mender's Wraps Natural Mender's Wraps	Drop: Avatar of the Martyred (Auchenai Crypts)
+Option	Prismatic Mittens of Mending Prismatic Mittens of Mending	Drop: Commander Sarannis (The Botanica)
+Option	Gloves of Preservation Gloves of Preservation	Quest: Fel Embers Fel Embers (The Shattered Halls)
+Option	Wasphide Gauntlets Wasphide Gauntlets	Drop: Princess Huhuran (Classic - Ahn'Qiraj)
+Option	Hallowed Handwraps Hallowed Handwraps	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+
+Best in Slot Waist Armor for Restoration Druid in TBC Classic Pre-Raid
+Again, Tailoring proves to be a worthy profession with Primal Mooncloth Belt being the best belt option. The other options might have more raw stats, but nothing comes close to the amount of bonus healing you can get out of this belt.
+Rank	Item	Source
+BiS	Primal Mooncloth Belt Primal Mooncloth Belt	Profession: Tailoring (Primal Mooncloth Tailoring) - BoP only
+Option	Windhawk Belt Windhawk Belt	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Cord of Sanctification Cord of Sanctification	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+General's Kodohide Belt is comparable to Cord of Sanctification if you would prefer to use Honor points for this slot. Alternatively, if you managed to get any of the Classic options, these hold up really well as pre-raid options.
+Rank	Item	Source
+Option	General's Kodohide Belt General's Kodohide Belt	Vendor: Honor Points (PvP)
+Option	Dreamwalker Girdle Dreamwalker Girdle	Drop: Shared Boss Drop (Classic - Naxxramas)
+Option	Grasp of the Old God Grasp of the Old God	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Regenerating Belt of Vek'nilash Regenerating Belt of Vek'nilash	Drop: Emperor Vek'nilash (Classic - Ahn'Qiraj)
+Option	Cord of Belief Cord of Belief	Drop: Mennu the Betrayer (Heroic The Slave Pens)
+Option	The Sleeper's Cord The Sleeper's Cord	Drop: Wrath-Scryer Soccothrates (The Arcatraz)
+
+Best in Slot Leg Armor for Restoration Druid in TBC Classic Pre-Raid
+Whitemend Pants is great here, especially if you're making use of the set bonus. Kamaei's Cerulean Skirt is another expensive BoE with incredible healing power. Pontifex Kilt is a very strong pick if you're looking to save on some gold.
+Rank	Item	Source
+BiS	Whitemend Pants Whitemend Pants	Profession: Tailoring - can be purchased on the Auction House
+BiS	Pontifex Kilt Pontifex Kilt	Drop: Warlord Kalithresh (Heroic The Steamvault)
+BiS	Kamaei's Cerulean Skirt Kamaei's Cerulean Skirt	Drop: World Drop
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Pontiff's Pantaloons of Prophecy Pontiff's Pantaloons of Prophecy	Drop: Captain Skarloc (Heroic Old Hillsbrad Foothills)
+Option	Lifegiver Britches Lifegiver Britches	Drop: Reinforced Fel Iron Chest (Hellfire Ramparts)
+Option	Kilt of the Night Strider Kilt of the Night Strider	Drop: Broggok (The Blood Furnace)
+Option	Gladiator's Kodohide Legguards Gladiator's Kodohide Legguards	Vendor: Arena Points (Season 1)
+Option	Haramad's Leg Wraps Haramad's Leg Wraps	Quest: Undercutting the Competition Undercutting the Competition (Mana-Tombs)
+Option	Pants of Living Growth Pants of Living Growth	Drop: World Drop
+Option	Hallowed Trousers Hallowed Trousers	Drop: Talon King Ikiss (Sethekk Halls)
+Option	Pants of the Naaru Pants of the Naaru	Quest: Special Delivery to Shattrath City Special Delivery to Shattrath City
+
+Best in Slot Feet Armor for Restoration Druid in TBC Classic Pre-Raid
+Most people will choose to get Slippers of Serenity since they are quite easy to obtain from Normal Auchenai Crypts.
+Rank	Item	Source
+BiS	Slippers of Serenity Slippers of Serenity	Drop: Exarch Maladaar (Auchenai Crypts)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Curate's Boots are also relatively easy to get from Normal The Shattered Halls.
+Rank	Item	Source
+Option	Boots of the Pious Boots of the Pious	Drop: Pathaleon the Calculator (Heroic The Mechanar)
+Option	Curate's Boots Curate's Boots	Quest: Fel Embers Fel Embers (The Shattered Halls)
+Option	General's Kodohide Boots General's Kodohide Boots	Vendor: Honor Points (PvP)
+Option	Boots of the Glade-Keeper Boots of the Glade-Keeper	Drop: Cache of the Legion (The Mechanar)
+Option	Jeweled Boots of Sanctification Jeweled Boots of Sanctification	Drop: Warbringer O'mrogg (The Shattered Halls)
+
+Best in Slot Neck Jewelry for Restoration Druid in TBC Classic Pre-Raid
+Karja's Medallion and Natasha's Guardian Cord are very easy to get quest rewards. However, the former option is only available to members of the Aldor,
+Rank	Item	Source
+BiS	Karja's Medallion Karja's Medallion	Quest: Shutting Down Manaforge Ara Shutting Down Manaforge Ara
+BiS	Natasha's Guardian Cord Natasha's Guardian Cord	Quest: The Hound-Master The Hound-Master
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Necklace of Eternal Hope Necklace of Eternal Hope	Vendor: G'eras (Badges of Justice)
+Option	Necklace of Necropsy Necklace of Necropsy	Drop: Heigan the Unclean (Classic - Naxxramas)
+Option	Necklace of Resplendent Hope Necklace of Resplendent Hope	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Amulet of the Fallen God Amulet of the Fallen God	Drop: C'Thun (Classic - Ahn'Qiraj)
+
+Best in Slot Ring Jewelry for Restoration Druid in TBC Classic Pre-Raid
+Ancestral Band / Ring of Convalescence and Spiritualist's Mark of the Sha'tar will be very easy to obtain early on through reputation and questing. Ring of Fabled Hope offers a bit more if you can get your hands on it.
+Rank	Item	Source
+BiS	Ring of Fabled Hope Ring of Fabled Hope	Drop: The Black Stalker (Heroic The Underbog)
+BiS	Spiritualist's Mark of the Sha'tar Spiritualist's Mark of the Sha'tar	Quest: Battle of the Crimson Watch Battle of the Crimson Watch
+Option	Ancestral Band Ancestral Band
+Ring of Convalescence Ring of Convalescence	Vendor: Quartermaster Urgronn / Logistics Officer Ulrike (Thrallmar / Honor Hold Revered)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Band of Halos Band of Halos	Vendor: G'eras (Badges of Justice)
+Option	Pure Elementium Band Pure Elementium Band	Drop: Nefarian (Classic - Blackwing Lair)
+Option	Band of Unanswered Prayers Band of Unanswered Prayers	Drop: Anub'Rekhan (Classic - Naxxramas)
+Option	Celestial Jewel Ring Celestial Jewel Ring	Quest: Hitting the Motherlode Hitting the Motherlode
+Option	Brilliant Pearl Band Brilliant Pearl Band	Profession: Jewelcrafting - can be purchased on the Auction House
+Option	Band of the Crystalline Void Band of the Crystalline Void	Drop: Yor (Heroic Mana-Tombs)
+Option	Cosmic Lifeband Cosmic Lifeband	Drop: Nethermancer Sepethrea (The Mechanar)
+Option	Azure Moonstone Ring Azure Moonstone Ring	Profession: Jewelcrafting - can be purchased on the Auction House
+Option	Ring of the Martyr Ring of the Martyr	Drop: Princess Huhuran (Classic - Ahn'Qiraj)
+Option	Keeper's Ring of Piety Keeper's Ring of Piety	Quest: Hero of the Brood Hero of the Brood (Heroic Caverns of Time)
+
+Best in Slot Trinkets for Restoration Druid in TBC Classic Pre-Raid
+Essence of the Martyr and Lower City Prayerbook are the best options for trinkets with great on-use effects and the highest raw bonus healing stats. Rejuvenating Gem and Eye of the Dead are solid options that many players might already have from Classic raiding.
+Rank	Item	Source
+BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (Badges of Justice)
+BiS	Lower City Prayerbook Lower City Prayerbook	Vendor: Nakodu (Lower City Revered)
+BiS	Rejuvenating Gem Rejuvenating Gem	Drop: Flamegor, Firemaw, & Ebonroc (Classic - Blackwing Lair)
+BiS	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+The alternate options have some great on-use effects and are worth holding on to so you can use them interchangeably.
+Rank	Item	Source
+Option	Scarab of the Infinite Cycle Scarab of the Infinite Cycle	Drop: Aeonus (The Black Morass)
+Option	Oshu'gun Relic Oshu'gun Relic	Quest: Gava'xi Gava'xi
+Option	Auslese's Light Channeler Auslese's Light Channeler	Drop: Broggok (The Blood Furnace)
+
+Best in Slot Weapons for Restoration Druid in TBC Classic Pre-Raid
+It is generally better to use a 1-handed weapon paired with an offhand instead of a 2-handed weapon.
+
+While Gladiator's Salvation is the best pre-raid option, it is hard to obtain via PvP. Hand of Eternity is a great BoE pre-raid option available through buying or crafting via Blacksmithing. However, there are better options in raid, and the gold investment might not be worth it. Shockwave Truncheon is a cheaper alternative and still very solid. Keep in mind that Heroic dungeons might be very challenging early on.
+Rank	Item	Source
+BiS	Gladiator's Salvation Gladiator's Salvation	Vendor: Arena Points (Season 1)
+BiS	Hand of Eternity Hand of Eternity	Profession: Blacksmithing - can be purchased on the Auction House
+BiS	Shockwave Truncheon Shockwave Truncheon	Drop: Murmur (Heroic Shadow Labyrinth)
+
+If you don't have access to the recommendations above, or prefer a two-handed weapon, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Option	Gavel of Pure Light Gavel of Pure Light	Vendor: Almaador (The Sha'tar Exalted)
+Option	The Ancient Scepter of Sue-Min The Ancient Scepter of Sue-Min	Drop: World Drop
+Option	Hammer of the Twisting Nether Hammer of the Twisting Nether	Drop: Kel'Thuzad (Classic - Naxxramas)
+Option	Hammer of the Penitent Hammer of the Penitent	Drop: Mechano-Lord Capacitus (The Mechanar)
+Option	Dathrohan's Ceremonial Hammer Dathrohan's Ceremonial Hammer	Drop: Captain Skarloc (Heroic Old Hillsbrad Foothills)
+Option	Lightsworn Hammer Lightsworn Hammer	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Option	The Essence Focuser The Essence Focuser	Drop: World Drop
+
+
+Since it's rare to see an Atiesh, Greatstaff of the Guardian on a Druid, you'll most likely pick up something like Serpentcrest Life-Staff during pre-raid gearing if you can't get your hands on a 1-hand/offhand combo, which is generally better.
+Rank	Item	Source
+BiS	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Quest: Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian (Classic - Naxxramas)
+BiS	Serpentcrest Life-Staff Serpentcrest Life-Staff	Drop: Mekgineer Steamrigger (The Steamvault)
+Option	Seer's Cane Seer's Cane	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Epoch-Mender Epoch-Mender	Drop: Temporus (The Black Morass)
+
+
+Best in Slot Offhands for Restoration Druid in TBC Classic Pre-Raid
+Tears of Heaven is best in terms of raw healing power, while Windcaller's Orb has more of a balance with stats.
+Rank	Item	Source
+BiS	Tears of Heaven Tears of Heaven	Vendor: G'eras (Badges of Justice)
+BiS	Windcaller's Orb Windcaller's Orb	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+The Classic Naxxramas options hold up perfectly well as a pre-raid option. Most of the other options on the list are pretty viable and easy to obtain.
+Rank	Item	Source
+Option	Sapphiron's Right Eye Sapphiron's Right Eye	Drop: Sapphiron (Classic - Naxxramas)
+Option	Noth's Frigid Heart Noth's Frigid Heart	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+Option	Faol's Signet of Cleansing Faol's Signet of Cleansing	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	Swamplight Lantern Swamplight Lantern	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Lordaeron Medical Guide Lordaeron Medical Guide	Drop: Lieutenant Drake (Heroic Old Hillsbrad Foothills)
+Option	Netherwing Spiritualist's Charm Netherwing Spiritualist's Charm	Quest: Ally of the Netherwing Ally of the Netherwing
+Option	Lamp of Peaceful Repose Lamp of Peaceful Repose	Drop: Dalliah the Doomsayer (The Arcatraz)
+
+Best in Slot Idols for Restoration Druid in TBC Classic in Pre-Raid
+Idol of the Emerald Queen will be the go-to idol choice as Lifebloom is the name of the game for Resto in TBC.
+Rank	Item	Source
+BiS	Idol of the Emerald Queen Idol of the Emerald Queen	Drop: Ambassador Hellmaw (Shadow Labyrinth)
+Option	Harold's Rejuvenating Broach Harold's Rejuvenating Broach	Quest: The Ultimate Bloodsport The Ultimate Bloodsport
+Kyxie
+WoW Classic Druid Writer
+Starting in 2019, SixPacKyx wrote comprehensive Druid class guides for Classic and Burning Crusade Classic content. The author created detailed guides covering Restoration healing and Balance DPS specializations, including advanced strategies, talent builds, gear recommendations, rotations, consumables, addons, and macros for PvE content.
+1 - 6 of 6
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+5
+
+	
+By Sianis (10,811 – 2·19·20) on 2021/06/18 (Burning Crusade)	
+	
+What this page fails to mention is that Karja's Medallion Karja's Medallion is a reward from an aldor-only quest chain.
+
+2
+
+	
+By Moeparker (488 – 5·4) on 2021/04/28 (Burning Crusade)	
+	
+For head Watcher's Cowl from Cenarion Expedition - Revered is a very good option as well, as chances are you'll get CE Revered on your way to 70.
+
+1
+
+	
+
+Kyxie <Guide Author> on 2021/04/29 (Burning Crusade)
+Thanks for the feedback! I've added it to the list.
+
+2
+
+	
+By Zolerii (13,462 – 2·24·16) on 2021/06/25 (Burning Crusade)	
+	
+Warp Splinter is not a boss from The Arcatraz.
+
+0
+
+	
+
+Itme on 2021/07/11 (Burning Crusade)
+Adding to this moonglade hem is warp splinter not high botanist
+
+0
+
+	
+
+Kanly on 2021/07/14 (Burning Crusade)
+The Whitemend Hood pattern drops off of Warp Splinter (in Botanica)
+
+1
+
+	
+By getanotherone (114 – 1) on 2021/05/16 (Burning Crusade)	
+	
+Bracelets of Royal Redemption is not from Naxx, it’s from AQ40.
+
+1
+
+	
+By Calruid (1,040 – 1·4) on 2021/08/03 (Burning Crusade)	
+	
+Any update on Phase 2 BIS list ? :)
+By Nightshark (247 – 1·3) on 2021/07/02 (Burning Crusade)	
+	
+1 - 6 of 6
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+3.6/5 (6 Votes)
+TBCC Restoration Druid Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+            Best In Slot Gear in Phase 1
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Idols
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Restoration Druid Healing Phase 1 Best in Slot (BiS) - TBC Classic
+By Kyxie
+Updated: 2026/03/24
+In this Pre-Raid Best-in-Slot Gear List for Restoration Druid Healing in The Burning Crusade Classic, we will list the recommended gear for Restoration Druid Healing to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Restoration Druid Healing Best in Slot Hub
+
+Best In Slot Gear for Restoration Druid HEALING in Phase 1
+Phase 1 gear sets are highly dependent on whether you choose Tailoring as a Profession or not. The Primal Mooncloth set is extremely good, but requires you to have Tailoring as a profession. Restoration Druids who are not Tailors will need to select alternate pieces from the recommended lists below.
+
+Restoration Druids looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Restoration Druid Gems & Enchants
+Should Restoration Druid Healers Choose Aldor or Scryer for BiS in TBC Classic Phase 1?
+Restoration Druids favor choosing Aldor. The shoulder enchant Greater Inscription of Faith Greater Inscription of Faith from the Aldor is better than the Scryer alternative Greater Inscription of the Oracle Greater Inscription of the Oracle. There aren't any notable BoP items from either vendor. Since many Restoration Druids tend to have tailoring, the Aldors also offer the ability to make your own Golden Spellthread Golden Spellthread with the BoP recipe Pattern: Golden Spellthread Pattern: Golden Spellthread.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Restoration Druids, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Restoration Druid in TBC Classic Phase 1
+Whitemend Hood is extremely powerful right off the bat, as you can obtain this pre-raid. However, the tailoring gear sets are quite expensive to craft or buy. Crown of Malorne is also a very good option with the bonus of having a Meta socket.
+Rank	Item	Source
+BiS	Whitemend Hood Whitemend Hood	Profession: Tailoring - can be purchased on the Auction House
+BiS	Crown of Malorne Crown of Malorne	Dropped: Prince Malchezaar (Karazhan)
+Option	Gladiator's Kodohide Helm Gladiator's Kodohide Helm	Vendor: Arena Points (Season 1)
+Option	Cowl of Nature's Breath Cowl of Nature's Breath	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Cowl of Naaru Blessings Cowl of Naaru Blessings	Vendor: G'eras (Badges of Justice)
+Option	Hallowed Crown Hallowed Crown	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Moonglade Cowl Moonglade Cowl	Drop: High Botanist Freywinn (The Botanica)
+Option	Hood of Primal Life Hood of Primal Life	Profession: Tailoring - can be purchased on the Auction House
+
+
+Best in Slot Shoulder Armor for Restoration Druid in TBC Classic Phase 1
+Primal Mooncloth Shoulders and Shoulderguards of Malorne are the best shoulder options. If you can afford the tailoring set, it could be a better option since you're able to obtain it pre-raid and open up tier pieces to other raiders. However, if you aren't a tailor and can easily get the tier, it is a very good and cheaper choice.
+Rank	Item	Source
+BiS	Primal Mooncloth Shoulders Primal Mooncloth Shoulders	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+BiS	Shoulderguards of Malorne Shoulderguards of Malorne	Drop: High King Maulgar (Gruul's Lair)
+Option	Pauldrons of the Solace-Giver Pauldrons of the Solace-Giver	Drop: The Curator (Karazhan)
+Option	Hallowed Pauldrons Hallowed Pauldrons	Drop: Grandmaster Vorpil (Shadow Labyrinth)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Forest Wind Shoulderpads Forest Wind Shoulderpads	Drop: The Curator (Karazhan)
+Option	Gladiator's Kodohide Spaulders Gladiator's Kodohide Spaulders	Vendor: Arena Points (Season 1)
+Option	Pauldrons of Sufferance Pauldrons of Sufferance	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Option	Moonglade Shoulders Moonglade Shoulders	Drop: Warlord Kalithresh (The Steamvault)
+
+Best in Slot Back Armor for Restoration Druid in TBC Classic Phase 1
+The best cloaks are Stainless Cloak of the Pure Hearted and Lifegiving Cloak. The alternative options aren't terribly far off from this, though, in case you are struggling to complete Karazhan or can't afford the BoE.
+Rank	Item	Source
+BiS	Stainless Cloak of the Pure Hearted Stainless Cloak of the Pure Hearted	Drop: Prince Malchezaar (Karazhan)
+BiS	Lifegiving Cloak Lifegiving Cloak	Drop: World Drop
+Option	Light-Touched Stole of Altruism Light-Touched Stole of Altruism	Drop: Exarch Maladaar (Heroic Auchenai Crypts)
+Option	Red Riding Hood's Cloak Red Riding Hood's Cloak	Drop: Barnes (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Cloak of Suturing Cloak of Suturing	Drop: Patchwerk (Naxxramas)
+Option	Avian Cloak of Feathers Avian Cloak of Feathers	Drop: Talon King Ikiss (Sethekk Halls)
+Option	Bishop's Cloak Bishop's Cloak	Vendor: G'eras (Badges of Justice)
+Option	White Remedy Cape White Remedy Cape	Profession: Tailoring - can be purchased on the Auction House
+
+Best in Slot Chest Armor for Restoration Druid in TBC Classic Phase 1
+Primal Mooncloth Robe is incredibly good here with the added benefit of being able to be obtained pre-raid. If you aren't a tailor, Chestguard of Malorne is viable. Alternatively, if you are a Leatherworker, the Windhawk Armor set is not a bad option early on, making Windhawk Hauberk a solid choice as well.
+Rank	Item	Source
+BiS	Primal Mooncloth Robe Primal Mooncloth Robe	Profession: Tailoring (Mooncloth Tailoring) – BoP only
+BiS	Chestguard of Malorne Chestguard of Malorne	Drop: Magtheridon (Magtheridon's Lair)
+BiS	Windhawk Hauberk Windhawk Hauberk	Profession: Leatherworking (Tribal Leatherworking) – BoP only
+Option	Gladiator's Kodohide Tunic Gladiator's Kodohide Tunic	Vendor: Arena Points (Season 1)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+
+Rank	Item	Source
+Option	Hallowed Garments Hallowed Garments	Drop: Murmur (Shadow Labyrinth)
+Option	Stonebough Jerkin Stonebough Jerkin	Drop: Nightbane (Karazhan)
+Option	Moonglade Robe Moonglade Robe	Drop: Nethermancer Sepethrea and Pathaleon the Calculator (The Mechanar)
+Option	Raiments of Nature's Breath Raiments of Nature's Breath	Drop: Reinforced Fel Iron Chest (Heroic Hellfire Ramparts)
+Option	Robe of Effervescent Light Robe of Effervescent Light	Drop: Keli'dan the Breaker (Heroic The Blood Furnace)
+
+Best in Slot Wrist Armor for Restoration Druid in TBC Classic Phase 1
+Bindings of the Timewalker and Windhawk Bracers are both excellent options for bracers.
+Rank	Item	Source
+BiS	Bindings of the Timewalker Bindings of the Timewalker	Vendor: Alurmi (Keepers of Time Exalted)
+BiS	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking (Tribal Leatherworking) – BoP only
+Option	Bands of Indwelling Bands of Indwelling	Drop: Maiden of Virtue (Karazhan)
+Option	Bands of the Benevolent Bands of the Benevolent	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+If you aren't a Leatherworker or don't want to deal with the Keepers of Time reputation, Bands of the Benevolent and Bands of Indwelling are not too far behind the BiS.
+Rank	Item	Source
+Option	Bracelets of Royal Redemption Bracelets of Royal Redemption	Drop: Emperor Vek'nilash (Temple of Ahn'Qiraj)
+Option	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+Option	Marshal's Kodohide Bracers Marshal's Kodohide Bracers	Vendor: Honor Points (PvP)
+Option	Shattrath Wraps Shattrath Wraps	Quest: The Soul Devices The Soul Devices (Shadow Labyrinth)
+Option	Lucid Dream Bracers Lucid Dream Bracers	Drop: Nexus-Prince Shaffar (Heroic Mana Tombs)
+Option	Dreamwalker Wristguards Dreamwalker Wristguards	Drop: Anub'Rekhan, Grand Widow Faerlina, and Gluth (Naxxramas)
+
+Best in Slot Hand Armor for Restoration Druid in TBC Classic Phase 1
+Mitts of the Treemender are the best option for gloves, offering high healing, sockets, and stats.
+Rank	Item	Source
+BiS	Mitts of the Treemender Mitts of the Treemender	Drop: Maiden of Virtue (Karazhan)
+Option	Gloves of Saintly Blessings Gloves of Saintly Blessings	Drop: Attumen the Huntsman (Karazhan)
+Option	Handguards of Malorne Handguards of Malorne	Drop: The Curator (Karazhan)
+Option	Gloves of the Living Touch Gloves of the Living Touch	Profession: Leatherworking - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+PvP	Gladiator's Kodohide Gloves Gladiator's Kodohide Gloves	Vendor: Arena Points (Season 1)
+Option	Bloody Surgeon's Mitts Bloody Surgeon's Mitts	Drop: Broggok (The Blood Furnace)
+Option	Cryo-mitts Cryo-mitts	Quest: Someone Else's Hard Work Pays Off Someone Else's Hard Work Pays Off
+Option	Natural Mender's Wraps Natural Mender's Wraps	Drop: Avatar of the Martyred (Auchenai Crypts)
+Option	Gloves of Preservation Gloves of Preservation	Quest: Fel Embers Fel Embers
+
+Best in Slot Waist Armor for Restoration Druid in TBC Classic Phase 1
+Again, Tailoring proves to be a worthy profession with Primal Mooncloth Belt being the best belt option. The other options might have more raw stats, but nothing comes close to the amount of bonus healing you can get out of this belt.
+Rank	Item	Source
+BiS	Primal Mooncloth Belt Primal Mooncloth Belt	Profession: Tailoring (Mooncloth Tailoring) – BoP only
+BiS	Cord of Nature's Sustenance Cord of Nature's Sustenance	Drop: Terestian Illhoof (Karazhan)
+Option	Windhawk Belt Windhawk Belt	Profession: Leatherworking (Tribal Leatherworking) – BoP only
+Option	General's Kodohide Belt General's Kodohide Belt	Vendor: Honor Points (PvP)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Cincture of Will Cincture of Will	Drop: Terestian Illhoof (Karazhan)
+Option	Dreamwalker Girdle Dreamwalker Girdle	Drop: Shared Boss Drop (Classic - Naxxramas)
+Option	Grasp of the Old God Grasp of the Old God	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Regenerating Belt of Vek'nilash Regenerating Belt of Vek'nilash	Drop: Emperor Vek'nilash (Classic - Ahn'Qiraj)
+Option	Cord of Sanctification Cord of Sanctification	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Cord of Belief Cord of Belief	Drop: Mennu the Betrayer (Heroic The Slave Pens)
+Option	The Sleeper's Cord The Sleeper's Cord	Drop: Wrath-Scryer Soccothrates (The Arcatraz)
+
+Best in Slot Leg Armor for Restoration Druid in TBC Classic Phase 1
+Gilded Trousers of Benediction are extremely good but also incredibly hard or expensive to obtain. Whitemend Pants is a solid option, especially if you are making use of the set bonus. Otherwise, Earthsoul Leggings is a better pick here.
+Rank	Item	Source
+BiS	Gilded Trousers of Benediction Gilded Trousers of Benediction	Drop: Doomwalker (World Boss)
+BiS	Whitemend Pants Whitemend Pants	Profession: Tailoring – can be purchased on the Auction House
+BiS	Earthsoul Leggings Earthsoul Leggings	Drop: Barnes (Karazhan)
+Option	Pantaloons of Repentance Pantaloons of Repentance	Drop: Netherspite (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Pontifex Kilt Pontifex Kilt	Drop: Warlord Kalithresh (Heroic The Steamvault)
+Option	Kamaei's Cerulean Skirt Kamaei's Cerulean Skirt	World Drop
+Option	Legguards of Malorne Legguards of Malorne	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Pants of Living Growth Pants of Living Growth	World Drop
+Option	Pontiff's Pantaloons of Prophecy Pontiff's Pantaloons of Prophecy	Drop: Captain Skarloc (Heroic Old Hillsbrad Foothills)
+Option	Gladiator's Kodohide Legguards Gladiator's Kodohide Legguards	Vendor: Arena Points (Season 1)
+Option	Lifegiver Britches Lifegiver Britches	Drop: Reinforced Fel Iron Chest (Hellfire Ramparts)
+Option	Kilt of the Night Strider Kilt of the Night Strider	Drop: Broggok (The Blood Furnace)
+
+Best in Slot Feet Armor for Restoration Druid in TBC Classic Phase 1
+Again, the World Boss loot is just too good, with Gold-Leaf Wildboots being the best option for boots. As this is incredibly hard to get your hands on, most people will choose to get Forestlord Striders.
+Rank	Item	Source
+BiS	Gold-Leaf Wildboots Gold-Leaf Wildboots	Drop: Doom Lord Kazzak (World Boss)
+BiS	Forestlord Striders Forestlord Striders	Drop: Echo of Medivh (Karazhan)
+Option	Boots of the Incorrupt Boots of the Incorrupt	Drop: Shade of Aran (Karazhan)
+Option	Slippers of Serenity Slippers of Serenity	Drop: Exarch Maladaar (Auchenai Crypts)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Boots of the Pious Boots of the Pious	Drop: Pathaleon the Calculator (Heroic The Mechanar)
+Option	Curate's Boots Curate's Boots	Quest: Fel Embers Fel Embers
+Option	General's Kodohide Boots General's Kodohide Boots	Vendor: 16800 Honor Points + 40 Eye of the Storm Mark of Honor Eye of the Storm Mark of Honor (PvP)
+Option	Boots of the Glade-Keeper Boots of the Glade-Keeper	Drop: Cache of the Legion (The Mechanar)
+Option	Jeweled Boots of Sanctification Jeweled Boots of Sanctification	Drop: Warbringer O'mrogg (The Shattered Halls)
+
+Best in Slot Neck Jewelry for Restoration Druid in TBC Classic Phase 1
+World Boss loot strikes again with Archaic Charm of Presence. Most people will aim for Teeth of Gruul or Emberspur Talisman as these are easier to pick up and offer high healing power and/or raw stats.
+Rank	Item	Source
+BiS	Archaic Charm of Presence Archaic Charm of Presence	Drop: Doomwalker (World Boss)
+BiS	Teeth of Gruul Teeth of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+BiS	Emberspur Talisman Emberspur Talisman	Drop: Nightbane (Karazhan)
+Option	Shining Chain of the Afterworld Shining Chain of the Afterworld	Drop: Netherspite (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Karja's Medallion Karja's Medallion	Quest: Shutting Down Manaforge Ara Shutting Down Manaforge Ara
+Option	Natasha's Guardian Cord Natasha's Guardian Cord	Quest: The Hound-Master The Hound-Master
+Option	Necklace of Eternal Hope Necklace of Eternal Hope	Vendor: Badges of Justice
+Option	Necklace of Necropsy Necklace of Necropsy	Drop: Heigan the Unclean (Naxxramas)
+Option	Necklace of Resplendent Hope Necklace of Resplendent Hope	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Amulet of the Fallen God Amulet of the Fallen God	Drop: C'Thun (Ahn'Qiraj)
+
+Best in Slot Ring Jewelry for Restoration Druid in TBC Classic Phase 1
+Naaru Lightwarden's Band and Violet Signet of the Grand Restorer offer a nice balance of good healing power mixed with high amounts of raw stats. Jade Ring of the Everliving and Ring of Flowing Light dominate with raw bonus healing but lack stats.
+Rank	Item	Source
+BiS	Violet Signet of the Grand Restorer Violet Signet of the Grand Restorer	Quest: Eminence Among the Violet Eye Eminence Among the Violet Eye
+BiS	Jade Ring of the Everliving Jade Ring of the Everliving	Drop: Prince Malchezaar (Karazhan)
+BiS	Naaru Lightwarden's Band Naaru Lightwarden's Band	Drop: Magtheridon's Head Magtheridon's Head (Magtheridon's Lair)
+BiS	Ring of Flowing Light Ring of Flowing Light	Drop: Doom Lord Kazzak (World Boss)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+These alternative options are quite viable, and most are much easier to obtain.
+Rank	Item	Source
+Option	Ring of Fabled Hope Ring of Fabled Hope	Drop: The Black Stalker (Heroic The Underbog)
+Option	Ancestral Band Ancestral Band
+Ring of Convalescence Ring of Convalescence	Vendor: Quartermaster Urgronn / Logistics Officer Ulrike (Thrallmar / Honor Hold Revered)
+Option	Spiritualist's Mark of the Sha'tar Spiritualist's Mark of the Sha'tar	Quest: Battle of the Crimson Watch Battle of the Crimson Watch
+Option	Band of Halos Band of Halos	Vendor: G'eras (Badges of Justice)
+Option	Pure Elementium Band Pure Elementium Band	Drop: Nefarian (Classic - Blackwing Lair)
+Option	Band of Unanswered Prayers Band of Unanswered Prayers	Drop: Anub'Rekhan (Classic - Naxxramas)
+Option	Celestial Jewel Ring Celestial Jewel Ring	Quest: Hitting the Motherlode Hitting the Motherlode
+Option	Brilliant Pearl Band Brilliant Pearl Band	Profession: Jewelcrafting - can be purchased on the Auction House
+Option	Band of the Crystalline Void Band of the Crystalline Void	Drop: Yor (Heroic Mana-Tombs)
+
+Best in Slot Trinkets for Restoration Druid in TBC Classic Phase 1
+Trinkets depend on your playstyle and needs. For example, you might find you need better mana management or more healing output. Both Essence of the Martyr and Oshu'gun Relic offer powerful on-use healing power as well as static healing power.
+
+On the other hand, Lower City Prayerbook, Eye of Gruul, and Eye Pendant of the Violet Eye offer better mana management. Your choice here really boils down to what you find you need in a trinket slot. Rejuvenating Gem is still a well-rounded trinket, especially if you find yourself shying away from on-use effects.
+Rank	Item	Source
+BiS	Essence of the Martyr Essence of the Martyr	Vendor: Badges of Justice
+BiS	Oshu'gun Relic Oshu'gun Relic	Quest: Gava'xi Gava'xi
+Option	Rejuvenating Gem Rejuvenating Gem	Drop: Ebonroc, Firemaw, and Flamegor (Blackwing Lair)
+Option	Lower City Prayerbook Lower City Prayerbook	Vendor: Nakodu (Lower City Revered)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+
+Rank	Item	Source
+Option	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Barnes (Karazhan)
+Option	Scarab of the Infinite Cycle Scarab of the Infinite Cycle	Drop: Aeonus (The Black Morass)
+Option	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Naxxramas)
+Option	Pendant of the Violet Eye Pendant of the Violet Eye	Drop: Shade of Aran (Karazhan)
+Option	Eye of Gruul Eye of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Auslese's Light Channeler Auslese's Light Channeler	Drop: Broggok (The Blood Furnace)
+
+Best in Slot Weapons for Restoration Druid in TBC Classic Phase 1
+It is generally better to use a 1-Handed Weapon paired with an Offhand instead of a 2-Handed Weapon.
+
+Light's Justice is far and away the best choice, with a huge amount of healing power along with solid stats.
+Rank	Item	Source
+BiS	Light's Justice Light's Justice	Drop: Prince Malchezaar (Karazhan)
+PvP	Gladiator's Salvation Gladiator's Salvation	Vendor: Arena Points (Season 1)
+Option	Shard of the Virtuous Shard of the Virtuous	Drop: Maiden of Virtue (Karazhan)
+Option	Hand of Eternity Hand of Eternity	Profession: Blacksmithing – can be purchased on the Auction House
+
+If you don't have access to the recommendations above, or prefer a two-handed weapon, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Gladiator's Salvation and Shard of the Virtuous are the next best options. These have considerably higher bonus healing than the rest on the list. The other options can be much easier to obtain, but definitely lack the same healing power.
+Rank	Item	Source
+Option	Shockwave Truncheon Shockwave Truncheon	Drop: Murmur (Heroic Shadow Labyrinth)
+Option	The Ancient Scepter of Sue-Min The Ancient Scepter of Sue-Min	World Drop
+Option	Gavel of Pure Light Gavel of Pure Light	Vendor: Almaador (The Sha'tar Exalted)
+Option	Hammer of the Twisting Nether Hammer of the Twisting Nether	Drop: Kel'Thuzad (Classic - Naxxramas)
+Option	Hammer of the Penitent Hammer of the Penitent	Drop: Mechano-Lord Capacitus (The Mechanar)
+Option	Dathrohan's Ceremonial Hammer Dathrohan's Ceremonial Hammer	Drop: Captain Skarloc (Heroic Old Hillsbrad Foothills)
+Option	Lightsworn Hammer Lightsworn Hammer	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Option	The Essence Focuser The Essence Focuser	World Drop
+
+
+Exodar Life-Staff is really powerful, but will be insanely expensive and hard to get your hands on. Crystalheart Pulse-Staff isn't too far off the mark, having great healing power and high raw stats. Keep in mind that it is generally better to use a 1-Handed Weapon paired with an Offhand instead of a 2-Handed Weapon.
+Rank	Item	Source
+BiS	Exodar Life-Staff Exodar Life-Staff	Drop: Doom Lord Kazzak (World Boss)
+BiS	Crystalheart Pulse-Staff Crystalheart Pulse-Staff	Drop: Magtheridon (Magtheridon's Lair)
+Option	Nightstaff of the Everliving Nightstaff of the Everliving	Drop: Nightbane (Karazhan)
+Option	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Drop: Frame of Atiesh Frame of Atiesh (Naxxramas)
+Option	Serpentcrest Life-Staff Serpentcrest Life-Staff	Drop: Mekgineer Steamrigger (The Steamvault)
+Option	Seer's Cane Seer's Cane	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Epoch-Mender Epoch-Mender	Drop: Temporus (The Black Morass)
+Innervate	Nightstaff of the Everliving Nightstaff of the Everliving	Drop: Nightbane (Karazhan)
+Innervate	Staff of Divine Infusion Staff of Divine Infusion	World Drop
+
+Best in Slot Offhands for Restoration Druid in TBC Classic Phase 1
+Tears of Heaven is best in terms of raw healing power, while Windcaller's Orb has more of a balance with stats. Most of the other options on the list are pretty viable and easy to obtain.
+Rank	Item	Source
+BiS	Tears of Heaven Tears of Heaven	Vendor: Badges of Justice
+BiS	Windcaller's Orb Windcaller's Orb	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+Option	Aran's Soothing Sapphire Aran's Soothing Sapphire	Drop: Shade of Aran (Karazhan)
+Option	Signet of Unshakable Faith Signet of Unshakable Faith	Drop: Moroes (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Sapphiron's Right Eye Sapphiron's Right Eye	Drop: Sapphiron (Naxxramas)
+Option	Noth's Frigid Heart Noth's Frigid Heart	Drop: Noth the Plaguebringer (Naxxramas)
+Option	Faol's Signet of Cleansing Faol's Signet of Cleansing	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	Swamplight Lantern Swamplight Lantern	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Lordaeron Medical Guide Lordaeron Medical Guide	Drop: Lieutenant Drake (Heroic Old Hillsbrad Foothills)
+Option	Netherwing Spiritualist's Charm Netherwing Spiritualist's Charm	Quest: Ally of the Netherwing Ally of the Netherwing
+Option	Lamp of Peaceful Repose Lamp of Peaceful Repose	Drop: Dalliah the Doomsayer (The Arcatraz)
+
+Best in Slot Idols for Restoration Druid in TBC Classic Phase 1
+Idol of the Emerald Queen will be the go-to idol choice as Lifebloom is the name of the game for Resto in TBC. Harold's Rejuvenating Broach and Idol of the Avian Heart do have their uses, and are great options before you get the BiS Idol, and can be used interchangeably as needed.
+Rank	Item	Source
+BiS	Idol of the Emerald Queen Idol of the Emerald Queen	Drop: Ambassador Hellmaw (Shadow Labyrinth)
+Option	Harold's Rejuvenating Broach Harold's Rejuvenating Broach	Quest: The Ultimate Bloodsport The Ultimate Bloodsport
+Option	Idol of the Avian Heart Idol of the Avian Heart	Drop: Moroes (Karazhan)
+Kyxie
+WoW Classic Druid Writer
+Starting in 2019, SixPacKyx wrote comprehensive Druid class guides for Classic and Burning Crusade Classic content. The author created detailed guides covering Restoration healing and Balance DPS specializations, including advanced strategies, talent builds, gear recommendations, rotations, consumables, addons, and macros for PvE content.
+1 - 4 of 4
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By Eric573 (844 – 1·6) on 2021/04/30 (Burning Crusade)	
+	
+Hello, thank you for your guide. I'm wondering about Darkmoon Card: Blue Dragon. Did you forget about it or do you think it's not worth using?
+
+0
+
+	
+
+redceder on 2021/04/30 (Burning Crusade)
+In general these guides prioritize +healing stats. For a long duration fight DCBD is definitely a viable option because the regen is percentage based.
+
+0
+
+	
+
+Hoagie on 2021/06/10 (Burning Crusade)
+Yeah the wowhead resto bis lists typically leave out long fight mp5 alternatives, Blue Dragon’s regen is pretty massive in p1 gear, but it’s also fairly dependent on your guilds kills times if it’s worth substituting that much +heals
+
+3
+
+	
+By Inkadog (15,533 – 3·28·60) <Rare Premium User> on 2026/03/16 (Burning Crusade)	
+	
+Small correction, on Phase 1 hands, Gloves of the Living Touch are incorrectly listed as a tailoring item, when they are LW.
+
+Thanks for good lists!
+
+0
+
+	
+
+Serenal <Rare Premium User> on 2026/03/24 (Burning Crusade)
+That's been corrected now. Thank you for pointing it out!
+
+1
+
+	
+By rozen80 (4,222 – 17·43) on 2021/05/18 (Burning Crusade)	
+	
+Can anyone else put input on this list? I have read that we will replace primal mooncloth with the T4 shoulders.
+
+0
+
+	
+
+Saydi on 2021/06/06 (Burning Crusade)
+You won't replace Primal Mooncloth with T4 shoulders. They are close in power level though, so you're not losing much by using the cheaper to get T4. But the tailoring shoulders are simply better.
+
+-1
+
+	
+By Gadareth (22,147 – 2·11·19) <Rare Premium User> on 2021/06/14 (Burning Crusade)	
+	
+Why are the T4 legs not included? Every stat is better than the Hallowed Trousers, which are included.
+
+-1
+
+	
+
+RICKYMXR on 2021/07/01 (Burning Crusade)
+uhh they are included, besides this is wowhead. Druid discord is where you get the real info
+1 - 4 of 4
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Restoration Druid Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+            Best In Slot Gear in Phase 2
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                1H Weapons
+                2H Weapons
+                Offhands
+                Idols
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Restoration Druid Healing Best in Slot (BiS) Phase 2 Gear Guide - TBC Classic
+By Kyxie
+Updated: 2026/05/12
+Welcome to Wowhead's Best in Slot Gear list from Tempest Keep and Serpentshrine Cavern for Restoration Druid Healing in The Burning Crusade Classic. This guide will list the recommended gear for Restoration Druid Healing to acquire while they progress during the second phase of The Burning Crusade Classic, and contains gear sourced from Tempest Keep and Serpentshrine Cavern, plus other pieces from previous phases like Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best in slot lists, including a TBCC pre-patch list and a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Restoration Druid Healing Best in Slot HubRestoration Druid Healing Pre-Raid Best in Slot
+
+Best In Slot Gear for Restoration Druid Healing in Phase 2
+Tailoring and Leatherworking played a big role in gear during Phase 1. There is more freedom in Phase 2 to choose other professions since you can get competitive or better gear from raids.
+
+Many items can be competitive for each slot, depending on whether you play an aggressive Healing Power style or a Mana considerate style that relies more on stats like Spirit and MP5.
+
+Restoration Druids looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Restoration Druid Gems & Enchants
+Should Restoration Druid Healers Choose Aldor or Scryer for BiS in TBC Classic Phase 2?
+Restoration Druids favor choosing Aldor. The shoulder enchant Greater Inscription of Faith Greater Inscription of Faith from the Aldor is better than the Scryer alternative Greater Inscription of the Oracle Greater Inscription of the Oracle. There aren't any notable BoP items from either vendor. Since many Restoration Druids tend to have tailoring, the Aldors also offer the ability to make your own Golden Spellthread Golden Spellthread with the BoP recipe Pattern: Golden Spellthread Pattern: Golden Spellthread.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Restoration Druids, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Restoration Druid in TBC Classic Phase 2
+Nordrassil Headguard is extremely good, offering both high Healing Power and raw stats. If you are an Engineer, you can craft Wonderheal XT40 Shades as an alternative to the tier piece.
+Rank	Item	Source
+BiS	Nordrassil Headguard Nordrassil Headguard	Drop: Lady Vashj (Serpentshrine Cavern)
+BiS	Wonderheal XT40 Shades Wonderheal XT40 Shades	Profession: Engineering - BoP only
+Option	Merciless Gladiator's Kodohide Helm Merciless Gladiator's Kodohide Helm	Vendor: Arena Points (Season 2)
+Option	Crown of Malorne Crown of Malorne	Drop: Prince Malchezaar (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Whitemend Hood Whitemend Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Gladiator's Kodohide Helm Gladiator's Kodohide Helm	Vendor: Arena Points (Season 1)
+Option	Cowl of Nature's Breath Cowl of Nature's Breath	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Cowl of Naaru Blessings Cowl of Naaru Blessings	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Shoulder Armor for Restoration Druid in TBC Classic Phase 2
+With socketed gems, Nordrassil Life-Mantle ends up with higher Healing Power. Runetotem's Mantle is fairly close and offers more Spirit.
+Rank	Item	Source
+BiS	Nordrassil Life-Mantle Nordrassil Life-Mantle	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Runetotem's Mantle Runetotem's Mantle	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Primal Mooncloth Shoulders Primal Mooncloth Shoulders	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+Option	Shoulderguards of Malorne Shoulderguards of Malorne	Drop: High King Maulgar (Gruul's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Merciless Gladiator's Kodohide Spaulders Merciless Gladiator's Kodohide Spaulders	Vendor: Arena Points (Season 2)
+Option	Pauldrons of the Solace-Giver Pauldrons of the Solace-Giver	Drop: The Curator (Karazhan)
+Option	Hallowed Pauldrons Hallowed Pauldrons	Drop: Grandmaster Vorpil (Shadow Labyrinth)
+Option	Forest Wind Shoulderpads Forest Wind Shoulderpads	Drop: The Curator (Karazhan)
+
+Best in Slot Back Armor for Restoration Druid in TBC Classic Phase 2
+The best cloak is Sunshower Light Cloak. However, that cloak will have high competition with other classes, so if you have the gold to spare, you can pick up Lifegiving Cloak off the AH.
+Rank	Item	Source
+BiS	Sunshower Light Cloak Sunshower Light Cloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Stainless Cloak of the Pure Hearted Stainless Cloak of the Pure Hearted	Drop: Prince Malchezaar (Karazhan)
+Option	Lifegiving Cloak Lifegiving Cloak	Drop: World Drop
+Option	Light-Touched Stole of Altruism Light-Touched Stole of Altruism	Drop: Exarch Maladaar (Heroic Auchenai Crypts)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Red Riding Hood's Cloak Red Riding Hood's Cloak	Drop: The Big Bad Wolf (Karazhan)
+Option	Apexis Cloak Apexis Cloak	Vendor: Jho'nass (Ogri'la Revered)
+Option	White Remedy Cape White Remedy Cape	Profession: Tailoring - can be purchased on the Auction House
+
+Best in Slot Chest Armor for Restoration Druid in TBC Classic Phase 2
+Although Primal Mooncloth Robe is still competitive, Nordrassil Chestguard offers more stats.
+Rank	Item	Source
+BiS	Nordrassil Chestguard Nordrassil Chestguard	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Primal Mooncloth Robe Primal Mooncloth Robe	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+Option	Chestguard of Malorne Chestguard of Malorne	Drop: Magtheridon (Magtheridon's Lair)
+Option	Windhawk Hauberk Windhawk Hauberk	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Option	Merciless Gladiator's Kodohide Tunic Merciless Gladiator's Kodohide Tunic	Vendor: Arena Points (Season 2)
+Option	Gladiator's Kodohide Tunic Gladiator's Kodohide Tunic	Vendor: Arena Points (Season 1)
+Option	Gnarled Chestpiece of the Ancients Gnarled Chestpiece of the Ancients	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+
+Best in Slot Wrist Armor for Restoration Druid in TBC Classic Phase 2
+Bracers are an overall underwhelming slot offering very few options for sockets and a lower stat budget. This means that while Grove-Bands of Remulos are the best, the other options aren't terribly far off.
+Rank	Item	Source
+BiS	Grove-Bands of Remulos Grove-Bands of Remulos	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Bindings of the Timewalker Bindings of the Timewalker	Vendor: Alurmi (Keepers of Time Exalted)
+Option	Bands of Indwelling Bands of Indwelling	Drop: Maiden of Virtue (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Bands of the Benevolent Bands of the Benevolent	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+Option	Bracelets of Royal Redemption Bracelets of Royal Redemption	Drop: Emperor Vek'nilash (Classic - Ahn'Qiraj)
+
+Best in Slot Hand Armor for Restoration Druid in TBC Classic Phase 2
+Mitts of the Treemender maintain their position as the best option for gloves into Phase 2, offering high healing, sockets, and stats. The other options are viable but lack in one of those categories.
+Rank	Item	Source
+BiS	Mitts of the Treemender Mitts of the Treemender	Drop: Maiden of Virtue (Karazhan)
+Option	Nordrassil Gloves Nordrassil Gloves	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Gloves of Saintly Blessings Gloves of Saintly Blessings	Drop: Attumen the Huntsman (Karazhan)
+Option	Handguards of Malorne Handguards of Malorne	Drop: The Curator (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Gloves of the Living Touch Gloves of the Living Touch	Profession: Tailoring - can be purchased on the Auction House
+Option	Bark-Gloves of Ancient Wisdom Bark-Gloves of Ancient Wisdom	Drop: Trash Mobs (Tempest Keep: The Eye)
+Option	Merciless Gladiator's Kodohide Gloves Merciless Gladiator's Kodohide Gloves	Vendor: Arena Points (Season 2)
+Option	Gladiator's Kodohide Gloves Gladiator's Kodohide Gloves	Vendor: Arena Points (Season 1)
+
+Best in Slot Waist Armor for Restoration Druid in TBC Classic Phase 2
+Primal Mooncloth Belt remains a top contender for the waist slot, offering the highest Healing Power but lacking in raw stats. If you don't have Tailoring, both Belt of the Long Road and Girdle of Zaetar are close in power and have more well-rounded stats.
+Rank	Item	Source
+BiS	Primal Mooncloth Belt Primal Mooncloth Belt	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+BiS	Belt of the Long Road Belt of the Long Road	Profession: Tailoring - can be purchased on the Auction House
+BiS	Girdle of Zaetar Girdle of Zaetar	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Windhawk Belt Windhawk Belt	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Cord of Nature's Sustenance Cord of Nature's Sustenance	Drop: Terestian Illhoof (Karazhan)
+Option	Cincture of Will Cincture of Will	Drop: Terestian Illhoof (Karazhan)
+Option	Cord of Sanctification Cord of Sanctification	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	General's Kodohide Belt General's Kodohide Belt	Vendor: Honor Points (PvP)
+
+Best in Slot Leg Armor for Restoration Druid in TBC Classic Phase 2
+If you are lucky enough to get your hands on Gilded Trousers of Benediction, they still remain the best pants going into Phase 2 due to their extremely high Healing Power. Otherwise, Earthsoul Leggings from Phase 1 are still another BiS contender. The tier pants, Nordrassil Life-Kilt, are pretty good if you're unable to get either of these two.
+Rank	Item	Source
+BiS	Gilded Trousers of Benediction Gilded Trousers of Benediction	Drop: Doomwalker (World Boss)
+BiS	Earthsoul Leggings Earthsoul Leggings	Drop: Opera Event (Karazhan)
+Option	Nordrassil Life-Kilt Nordrassil Life-Kilt	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Whitemend Pants Whitemend Pants	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Pontifex Kilt Pontifex Kilt	Drop: Warlord Kalithresh (Heroic The Steamvault)
+Option	Pantaloons of Repentance Pantaloons of Repentance	Drop: Netherspite (Karazhan)
+Option	Kamaei's Cerulean Skirt Kamaei's Cerulean Skirt	Drop: World Drop
+Option	Star-Soul Breeches Star-Soul Breeches	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Option	Legguards of Malorne Legguards of Malorne	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+Best in Slot Feet Armor for Restoration Druid in TBC Classic Phase 2
+Gold-Leaf Wildboots remain the best option for boots, but they are extremely rare to see. Orca-Hide Boots will instead be the realistic go-to option here.
+Rank	Item	Source
+BiS	Gold-Leaf Wildboots Gold-Leaf Wildboots	Drop: Doom Lord Kazzak (World Boss)
+BiS	Orca-Hide Boots Orca-Hide Boots	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Soul-Strider Boots Soul-Strider Boots	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Forestlord Striders Forestlord Striders	Drop: Chess Event (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Boots of the Long Road Boots of the Long Road	Profession: Tailoring - BoP only
+Option	Boots of the Incorrupt Boots of the Incorrupt	Drop: Shade of Aran (Karazhan)
+Option	Boots of the Pious Boots of the Pious	Drop: Pathaleon the Calculator (Heroic The Mechanar)
+
+Best in Slot Neck Jewelry for Restoration Druid in TBC Classic Phase 2
+The best option here in terms of Healing Power is Lord Sanguinar's Claim. If you are finding yourself struggling with Mana, you can instead use Teeth of Gruul since it has a healthy amount of stats.
+Rank	Item	Source
+BiS	Lord Sanguinar's Claim Lord Sanguinar's Claim	Quest: Kael'thas and the Verdant Sphere Kael'thas and the Verdant Sphere (Tempest Keep: The Eye)
+Option	Archaic Charm of Presence Archaic Charm of Presence	Drop: Doomwalker (World Boss)
+Option	Emberspur Talisman Emberspur Talisman	Drop: Nightbane (Karazhan)
+Option	Teeth of Gruul Teeth of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Shining Chain of the Afterworld Shining Chain of the Afterworld	Drop: Netherspite (Karazhan)
+Option	Veteran's Pendant of Salvation Veteran's Pendant of Salvation	Vendor: Honor Points (PvP)
+
+Best in Slot Ring Jewelry for Restoration Druid in TBC Classic Phase 2
+Coral Band of the Revived is a fantastic ring that offers both high Healing Power as well as a healthy amount of raw stats. If you are looking for more Healing Power to pair with this ring, Jade Ring of the Everliving or Ring of Flowing Light are good options. Otherwise, if you are interested in more raw stats for Mana management, you can use rings like Violet Signet of the Grand Restorer or Naaru Lightwarden's Band.
+Rank	Item	Source
+BiS	Coral Band of the Revived Coral Band of the Revived	Drop: Lady Vashj (Serpentshrine Cavern)
+BiS	Jade Ring of the Everliving Jade Ring of the Everliving	Drop: Prince Malchezaar (Karazhan)
+Option	Violet Signet of the Grand Restorer Violet Signet of the Grand Restorer	Quest: Eminence Among the Violet Eye Eminence Among the Violet Eye (The Violet Eye Exalted)
+Option	Ring of Flowing Light Ring of Flowing Light	Drop: Doom Lord Kazzak (World Boss)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Spiritualist's Mark of the Sha'tar Spiritualist's Mark of the Sha'tar	Quest: Battle of the Crimson Watch Battle of the Crimson Watch
+Option	Gift of the Talonpriests Gift of the Talonpriests	Drop: Terokk (Terokkar Forest)
+Option	Naaru Lightwarden's Band Naaru Lightwarden's Band	Drop: Magtheridon (Magtheridon's Lair)
+Option	Ring of Fabled Hope Ring of Fabled Hope	Drop: The Black Stalker (Heroic The Underbog)
+Option	Ancestral Band Ancestral Band
+Ring of Convalescence Ring of Convalescence	Vendor: Quartermaster Urgronn / Logistics Officer Ulrike (Thrallmar / Honor Hold Revered)
+
+Best in Slot Trinkets for Restoration Druid in TBC Classic Phase 2
+Trinkets depend on your playstyle, needs, and fight length. Both Essence of the Martyr and Oshu'gun Relic offer powerful on-use healing power on 2-minute cooldowns, along with static healing power.
+
+If you are finding Mana to be an issue, trinkets like Lower City Prayerbook and Pendant of the Violet Eye offer better Mana management, but generally you'd go for better options. Your choice here really boils down to what you find you need in a trinket slot.
+Rank	Item	Source
+BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (Badges of Justice)
+BiS	Oshu'gun Relic Oshu'gun Relic	Quest: Gava'xi Gava'xi
+Option	Lower City Prayerbook Lower City Prayerbook	Vendor: Nakodu (Lower City Revered)
+Option	Scarab of the Infinite Cycle Scarab of the Infinite Cycle	Drop: Aeonus (The Black Morass)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Opera Event (Karazhan)
+Option	Rejuvenating Gem Rejuvenating Gem	Drop: Ebonroc, Firemaw, & Flamegor (Classic - Blackwing Lair)
+Option	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Classic - Naxxramas)
+Option	Pendant of the Violet Eye Pendant of the Violet Eye	Drop: Shade of Aran (Karazhan)
+Option	Eye of Gruul Eye of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+Best in Slot One-Handed Weapons for Restoration Druid in TBC Classic Phase 2
+It is generally better to use a one-handed weapon paired with an offhand instead of a 2-handed weapon.
+
+Lightfathom Scepter is far and away the best choice, with Merciless Gladiator's Salvation being the next best option. These have considerably higher bonus healing than the rest on the list. The other options can be much easier to obtain, but definitely lack the same healing power.
+Rank	Item	Source
+BiS	Lightfathom Scepter Lightfathom Scepter	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Merciless Gladiator's Salvation Merciless Gladiator's Salvation	Vendor: Arena Points (Season 2)
+Option	Light's Justice Light's Justice	Drop: Prince Malchezaar (Karazhan)
+Option	Gladiator's Salvation Gladiator's Salvation	Vendor: Arena Points (Season 1)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+1H Weapon Recommendations
+
+Rank	Item	Source
+Option	Shard of the Virtuous Shard of the Virtuous	Drop: Maiden of Virtue (Karazhan)
+Option	Hand of Eternity Hand of Eternity	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Shockwave Truncheon Shockwave Truncheon	Drop: Murmur (Heroic Shadow Labyrinth)
+Option	The Ancient Scepter of Sue-Min The Ancient Scepter of Sue-Min	Drop: World Drop
+Option	Gavel of Pure Light Gavel of Pure Light	Vendor: Almaador (The Sha'tar Exalted)
+
+Best in Slot Two-Handed Weapons for Restoration Druid in TBC Classic Phase 2
+Ethereum Life-Staff is the best option for a two-handed weapon. It doesn't compete with a good one-hander with an offhand, but it does have extremely high Spirit, making it an excellent weapon to swap on during Innervate.
+
+Keep in mind that it is generally better to use a one-handed weapon paired with an offhand instead of a two-handed weapon.
+Rank	Item	Source
+BiS	Ethereum Life-Staff Ethereum Life-Staff	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Option	Exodar Life-Staff Exodar Life-Staff	Drop: Doom Lord Kazzak (World Boss)
+Option	Crystalheart Pulse-Staff Crystalheart Pulse-Staff	Drop: Magtheridon (Magtheridon's Lair)
+Option	Nightstaff of the Everliving Nightstaff of the Everliving	Drop: Nightbane (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+2H Weapon Recommendations
+
+Rank	Item	Source
+Option	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Quest: Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian (Classic - Naxxramas)
+Innervate	Staff of Divine Infusion Staff of Divine Infusion	Drop: World Drop
+
+Best in Slot Offhands for Restoration Druid in TBC Classic Phase 2
+Tears of Heaven is best in terms of raw healing power, while Windcaller's Orb has more of a balance with stats.
+Rank	Item	Source
+BiS	Tears of Heaven Tears of Heaven	Vendor: G'eras (Badges of Justice)
+BiS	Windcaller's Orb Windcaller's Orb	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+Option	Merciless Gladiator's Reprieve Merciless Gladiator's Reprieve	Vendor: Arena Points (Season 2)
+Option	Talisman of the Sun King Talisman of the Sun King	Drop: Al'ar (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Aran's Soothing Sapphire Aran's Soothing Sapphire	Drop: Shade of Aran (Karazhan)
+Option	Sapphiron's Right Eye Sapphiron's Right Eye	Drop: Sapphiron (Classic - Naxxramas)
+Option	Noth's Frigid Heart Noth's Frigid Heart	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+Option	Faol's Signet of Cleansing Faol's Signet of Cleansing	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	Signet of Unshakable Faith Signet of Unshakable Faith	Drop: Moroes (Karazhan)
+
+Best in Slot Idols for Restoration Druid in TBC Classic Phase 2
+Idol of the Emerald Queen will be the go-to idol choice as Lifebloom is the name of the game for Resto in TBC.
+Rank	Item	Source
+BiS	Idol of the Emerald Queen Idol of the Emerald Queen	Drop: Ambassador Hellmaw (Shadow Labyrinth)
+Option	Idol of the Raven Goddess Idol of the Raven Goddess	Quest: Vanquish the Raven God Vanquish the Raven God
+Option	Harold's Rejuvenating Broach Harold's Rejuvenating Broach	Quest: The Ultimate Bloodsport The Ultimate Bloodsport
+Kyxie
+WoW Classic Druid Writer
+Starting in 2019, SixPacKyx wrote comprehensive Druid class guides for Classic and Burning Crusade Classic content. The author created detailed guides covering Restoration healing and Balance DPS specializations, including advanced strategies, talent builds, gear recommendations, rotations, consumables, addons, and macros for PvE content.
+1 - 7 of 7
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By Sealtest (24,689 – 8·29·168) on 2021/08/09 (Burning Crusade)	
+	
+List looks spot on, Oshu'gun only replaced if we actually get Direbrew Hops Direbrew Hops this year.
+
+3
+
+	
+By Baelko (11,854 – 2·9·18) on 2021/08/09 (Burning Crusade)	
+	
+Trinket section is bad. Eye of the Dead should be listed as BiS considering it's situationally better than Oshu'gun Relic. Direbrew Hops should be listed as it will be available fairly soon into Phase 2. A resto druid should absolutely never even consider using Eye of Gruul (especially since every rshaman and hpriest in your raid will want it 10x as badly) or Pendant of the Violet Eye. Auslese's Light Channeler is bugged and makes your entire mana disappear within 20s if you use it, so listing it as an option isn't a great idea. Ribbon is essentially a 70 healing stat stick for a resto druid so listing it when you can just get Prayerbook instead is a bit unnecessary.
+Last edited by Baelko on 2021/11/01
+
+2
+
+	
+By Endorer (3,053 – 8·9) on 2021/09/16 (Burning Crusade)	
+	
+Pretty nice; however, for the goggles Wonderheal XT40 Shades Wonderheal XT40 Shades it should be more advantageous to use Royal Nightseye Royal Nightseye instead of Teardrop Living Ruby Teardrop Living Ruby since you get +2 mp5 with the socket bonus making up for the lost +healing completely.
+Last edited by Endorer on 2021/09/16
+
+1
+
+	
+By Baelko (11,854 – 2·9·18) on 2021/08/10 (Burning Crusade)	
+	
+Mentioning the set bonus as gearing choice doesn't really make sense, you want to let your lifeblooms bloom as rarely as possible so the 4p is bad and you'll end up with the 2p anyway regardless of what world boss loot you have.
+
+1
+
+	
+By Kriyet (13,258 – 1·29·64) <Rare Premium User> on 2021/08/12 (Burning Crusade)	
+	
+For a mana regen trinket, wondering why Bangle of Endless Blessings hasn't made the list? It gives great mana regen and scales with spirit, which makes it better as your gear progresses. With our constant HOT casts, the procc seems limited only by the internal 45 sec CD.
+
+1
+
+	
+
+Twilightfan on 2021/11/10 (Burning Crusade)
+Resto druids have the highest sustain of any healing class right now, sacrificing the +healing (both passive and on-demand) that Hops/Essence gives you and to a lesser extent Oshu'gun/Eye of the Dead give you just isn't worthwhile - you sacrifice too much throughput to solve an issue that shouldn't exist with proper consumable usage.
+
+1
+
+	
+By Furano (156 – 0) on 2026/05/21 (Burning Crusade)	
+	
+Would be worth giving up earthsoul leggings for the t5 bonus? Assuming I wouldn't give up treemenders
+Last edited by Furano on 2026/05/21
+
+-1
+
+	
+By Calruid (1,040 – 1·4) on 2021/08/08 (Burning Crusade)	
+	
+breaking the 4 piece t5 for what exactly ?
+1 - 7 of 7
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Restoration Druid Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+            Best In Slot Gear in Phase 3
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                1H Weapons
+                2H Weapons
+                Offhands
+                Idols
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Restoration Druid Healing Best in Slot (BiS) Phase 3 Gear Guide
+By Kyxie
+Updated: 2026/07/16
+Welcome to Wowhead's Best in Slot Gear list from Phase 3 Black Temple and Mount Hyjal for Restoration Druid Healing in The Burning Crusade Classic. This guide will list the recommended gear for Restoration Druid Healing to acquire while they progress during the third phase of The Burning Crusade Classic, and contains gear sourced from Black Temple and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Restoration Druid Healing in Phase 3
+In Phase 3, we finally get access to haste items. For a Resto Druid, this means you can lower your global cooldown enough and squeeze in another Lifebloom. In order to get 5 in a cycle, you need at least 113 haste, but realistically, with any server lag, you will need to reach 125 or more. Since many classes and specs will seek haste, a lot of haste gear can be highly contentious.
+
+The Tier 6 set bonuses for Resto Druid are quite lacking. You'll want to pick up some of the tier pieces purely for the raw stats, but expect to be lower priority than other specs that get more benefit from their bonuses.
+
+Many items can be competitive for each slot, depending on whether you play an aggressive healing power style or a mana-considerate style that relies more on stats like Spirit and MP5.
+
+Some items have identical or close to identical alternatives like Angelista's Sash Angelista's Sash and Belt of Primal Majesty Belt of Primal Majesty. Technically, the former is 1 point of Intellect better, but the leather item is more realistic to get. Swiftheal Wraps Swiftheal Wraps and Bracers of Renewed Life Bracers of Renewed Life are another example where the items are close enough that you should aim to get whichever is easier for you and your raid team. The sections below offer more detailed information for each slot.
+
+
+Thunderheart Helmet
+Lord Sanguinar's Claim
+Thunderheart Spaulders
+Shroud of the Highborne
+Thunderheart Tunic
+Swiftheal Wraps
+Botanist's Gloves of Growth
+Angelista's Sash
+Leggings of Eternity
+Boots of the Divine Light
+Blessed Band of Karabor
+Blessed Band of Karabor
+Essence of the Martyr
+Memento of Tyrande
+Crystal Spire of Karabor
+Scepter of Purification
+Idol of the Emerald Queen
+Link
+Level70
+
+
+Restoration Druids looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Restoration Druid Gems & Enchants
+Should Restoration Druid Healing Choose Aldor or Scryer for BiS in TBC Classic Phase 3?
+Restoration Druids favor choosing Aldor. The shoulder enchant Greater Inscription of Faith Greater Inscription of Faith from the Aldor is better than the Scryer alternative Greater Inscription of the Oracle Greater Inscription of the Oracle. There aren't any notable BoP items from either vendor. Since many Restoration Druids tend to have tailoring, the Aldors also offer the ability to make your own Golden Spellthread Golden Spellthread with the BoP recipe Pattern: Golden Spellthread Pattern: Golden Spellthread.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Restoration Druids, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Restoration Druid in TBC Classic Phase 3
+Thunderheart Helmet and Cowl of Benevolence are both good options. The Resto Druid tier set bonus is weak and of very low priority for raid groups.
+Rank	Item	Source
+BiS	Thunderheart Helmet Thunderheart Helmet	Drop: Archimonde (Hyjal Summit)
+BiS	Cowl of Benevolence Cowl of Benevolence	Drop: Teron Gorefiend (Black Temple)
+Option	Nordrassil Headguard Nordrassil Headguard	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Wonderheal XT40 Shades Wonderheal XT40 Shades	Profession: Engineering - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Guise of the Tidal Lurker Guise of the Tidal Lurker	Drop: High Warlord Naj'entus (Black Temple)
+
+Best in Slot Shoulder Armor for Restoration Druid in TBC Classic Phase 3
+Even though the Resto Druid tier set is weak, Thunderheart Spaulders offers the best raw stats.
+
+If you have Leatherworking or Tailoring, Shoulderpads of Renewed Life or Swiftheal Mantle are great options, especially if they allow you to reach the 5 GCD haste breakpoint. It's also worth noting that although you will need the profession to craft them as they are BoP, the professions are not required to equip them, so you can change profession after crafting them.
+Rank	Item	Source
+BiS	Thunderheart Spaulders Thunderheart Spaulders	Drop: Mother Shahraz (Black Temple)
+Option	Shoulderpads of Renewed Life Shoulderpads of Renewed Life	Profession: Leatherworking - BoP only
+Option	Swiftheal Mantle Swiftheal Mantle	Profession: Tailoring - BoP only
+Option	Nordrassil Life-Mantle Nordrassil Life-Mantle	Drop: Void Reaver (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Runetotem's Mantle Runetotem's Mantle	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Shoulderguards of Malorne Shoulderguards of Malorne	Drop: High King Maulgar (Gruul's Lair)
+Option	Primal Mooncloth Shoulders Primal Mooncloth Shoulders	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+Option	Veil of Turning Leaves Veil of Turning Leaves	Drop: High Nethermancer Zerevor (Black Temple)
+Option	Amice of Brilliant Light Amice of Brilliant Light	Drop: Shade of Akama (Black Temple)
+
+Best in Slot Back Armor for Restoration Druid in TBC Classic Phase 3
+There will be a lot of contention over Shroud of the Highborne due to casters wanting the haste on it. Resto Druids also really want the haste on this cloak to squeeze in more Lifeblooms to the rotation. If you can't get your hands on this cloak, Shroud of Forgiveness and Sunshower Light Cloak give a lot of healing power along with Spirit.
+Rank	Item	Source
+BiS	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+Option	Shroud of Forgiveness Shroud of Forgiveness	Drop: Gurtogg Bloodboil (Black Temple)
+Option	Sunshower Light Cloak Sunshower Light Cloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Shroud of the Final Stand Shroud of the Final Stand	Drop: Trash Mobs (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Lifegiving Cloak Lifegiving Cloak	Drop: World Drop
+
+Best in Slot Chest Armor for Restoration Druid in TBC Classic Phase 3
+Even though the Resto Druid tier set bonus is weak, Thunderheart Tunic still has the best raw stats.
+Rank	Item	Source
+BiS	Thunderheart Tunic Thunderheart Tunic	Drop: Illidan Stormrage (Black Temple)
+Option	Nordrassil Chestguard Nordrassil Chestguard	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Primal Mooncloth Robe Primal Mooncloth Robe	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+Option	Chestguard of Malorne Chestguard of Malorne	Drop: Magtheridon (Magtheridon's Lair)
+Best in Slot Wrist Armor for Restoration Druid in TBC Classic Phase 3
+There are a few good options for bracers in Phase 3. The two bracers that drop from Winterchill offer spirit and the highest raw healing power due to having a socket, while the Tailoring and Leatherworking options offer haste.
+
+You'll most likely seek the Tailoring option Swiftheal Wraps, unless you are haste capped. The Leatherworking, Bracers of Renewed Life, is only marginally behind the Tailoring one.
+Rank	Item	Source
+BiS	Swiftheal Wraps Swiftheal Wraps	Profession: Tailoring - can be purchased on the Auction House
+BiS	Bracers of Renewed Life Bracers of Renewed Life	Profession: Leatherworking - can be purchased on the Auction House
+Option	Rejuvenating Bracers Rejuvenating Bracers
+Bracers of Martyrdom Bracers of Martyrdom	Drop: Rage Winterchill (Hyjal Summit)
+Option	Grove-Bands of Remulos Grove-Bands of Remulos	Drop: The Lurker Below (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Wristbands of Divine Influence Wristbands of Divine Influence	Drop: Shade of Akama (Black Temple)
+
+Best in Slot Hand Armor for Restoration Druid in TBC Classic Phase 3
+Botanist's Gloves of Growth are hands down the best option here. They offer the highest raw healing power as well as haste.
+Rank	Item	Source
+BiS	Botanist's Gloves of Growth Botanist's Gloves of Growth	Drop: Teron Gorefiend (Black Temple)
+Option	Gloves of Unfailing Faith Gloves of Unfailing Faith	Drop: Essence of Anger (Black Temple)
+Option	Thunderheart Gloves Thunderheart Gloves	Drop: Azgalor (Hyjal Summit)
+Option	Mitts of the Treemender Mitts of the Treemender	Drop: Maiden of Virtue (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Nordrassil Gloves Nordrassil Gloves	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Gloves of Saintly Blessings Gloves of Saintly Blessings	Drop: Attumen the Huntsman (Karazhan)
+
+Best in Slot Waist Armor for Restoration Druid in TBC Classic Phase 3
+There are a handful of great belts available in Phase 3. Both Angelista's Sash and Belt of Primal Majesty have haste, and the only difference between the two is 1 point of intellect and armor type.
+
+In terms of raw healing power, Primal Mooncloth Belt still offers the highest, but the other stats are much lower, and it has no haste. Of the rest of the belts, Belt of Divine Guidance has the most well-rounded stats, but the other options are fairly close to this belt.
+Rank	Item	Source
+BiS	Angelista's Sash Angelista's Sash	Drop: Kaz'rogal (Hyjal Summit)
+BiS	Belt of Primal Majesty Belt of Primal Majesty	Drop: Gurtogg Bloodboil (Black Temple)
+Option	Primal Mooncloth Belt Primal Mooncloth Belt	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+Option	Belt of Divine Guidance Belt of Divine Guidance	Drop: High Nethermancer Zerevor (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Belt of the Long Road Belt of the Long Road	Profession: Tailoring - can be purchased on the Auction House
+Option	Girdle of Zaetar Girdle of Zaetar	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Windhawk Belt Windhawk Belt	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+
+Best in Slot Leg Armor for Restoration Druid in TBC Classic Phase 3
+Leggings of Eternity is the best option here, but Kilt of Immortal Nature isn't too far behind.
+Rank	Item	Source
+BiS	Leggings of Eternity Leggings of Eternity	Drop: Archimonde (Hyjal Summit)
+Option	Kilt of Immortal Nature Kilt of Immortal Nature	Drop: Shade of Akama (Black Temple)
+Option	Gilded Trousers of Benediction Gilded Trousers of Benediction	Drop: Doomwalker (World Boss)
+Option	Thunderheart Legguards Thunderheart Legguards	Drop: The Illidari Council (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Earthsoul Leggings Earthsoul Leggings	Drop: Opera Event (Karazhan)
+Option	Nordrassil Life-Kilt Nordrassil Life-Kilt	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+Best in Slot Feet Armor for Restoration Druid in TBC Classic Phase 3
+Gold-Leaf Wildboots remain the best option for boots, but they are extremely rare to see. Boots of the Divine Light will instead be the go-to option here, though Orca-Hide Boots are very close behind.
+Rank	Item	Source
+BiS	Gold-Leaf Wildboots Gold-Leaf Wildboots	Drop: Doom Lord Kazzak (World Boss)
+BiS	Boots of the Divine Light Boots of the Divine Light	Drop: Trash Mobs (Hyjal Summit)
+Option	Orca-Hide Boots Orca-Hide Boots	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Soul-Strider Boots Soul-Strider Boots	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Archbishop's Slippers Archbishop's Slippers
+Enchanted Leather Sandals Enchanted Leather Sandals	Drop: Anetheron (Hyjal Summit)
+Option	Forestlord Striders Forestlord Striders	Drop: Echo of Medivh (Karazhan)
+
+Best in Slot Neck Jewelry for Restoration Druid in TBC Classic Phase 3
+Lord Sanguinar's Claim is still the best option here. Nadina's Pendant of Purity is solid but has better stats for other healers.
+Rank	Item	Source
+BiS	Lord Sanguinar's Claim Lord Sanguinar's Claim	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Nadina's Pendant of Purity Nadina's Pendant of Purity	Drop: Mother Shahraz (Black Temple)
+Option	Archaic Charm of Presence Archaic Charm of Presence	Drop: Doomwalker (World Boss)
+Option	Vindicator's Pendant of Salvation Vindicator's Pendant of Salvation	Vendor: Honor Points (Season 3)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Emberspur Talisman Emberspur Talisman	Drop: Nightbane (Karazhan)
+
+Best in Slot Ring Jewelry for Restoration Druid in TBC Classic Phase 3
+Blessed Band of Karabor is a fantastic option that offers haste as well as competitive healing power. It's also not unique, meaning you can equip two of these. Coral Band of the Revived is a very good option with solid stats that could last well into later phases.
+Rank	Item	Source
+BiS	Blessed Band of Karabor Blessed Band of Karabor	Drop: Trash Mobs (Black Temple)
+Option	Coral Band of the Revived Coral Band of the Revived	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Band of the Eternal Restorer Band of the Eternal Restorer	Quest: Restorer's Covenant Restorer's Covenant (The Scale of the Sands Exalted)
+Option	Jade Ring of the Everliving Jade Ring of the Everliving	Drop: Prince Malchezaar (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Ring of Flowing Light Ring of Flowing Light	Drop: Doom Lord Kazzak (World Boss)
+
+Best in Slot Trinkets for Restoration Druid in TBC Classic Phase 3
+Trinkets depend on your playstyle, needs, and fight length. Essence of the Martyr offers a powerful on-use healing power along with a decent static healing power increase. Memento of Tyrande has excellent static healing power, along with a proc that provides around 15-20 MP5.
+Rank	Item	Source
+BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (Badges of Justice)
+BiS	Memento of Tyrande Memento of Tyrande	Drop: Illidan Stormrage (Black Temple)
+Option	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Classic - Naxxramas)
+Option	Oshu'gun Relic Oshu'gun Relic	Quest: Gava'xi Gava'xi
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+If you are finding mana to be an issue, trinkets like Lower City Prayerbook can help, but generally you'd go for other options. Your choice here really boils down to what you find you need in a trinket slot. Rejuvenating Gem is still a well-rounded trinket, especially if you find yourself shying away from on-use effects.
+Rank	Item	Source
+Option	Rejuvenating Gem Rejuvenating Gem	Drop: Flamegor, Firemaw, & Ebonroc (Classic - Blackwing Lair)
+Option	Scarab of the Infinite Cycle Scarab of the Infinite Cycle	Drop: Aeonus (The Black Morass)
+Option	Lower City Prayerbook Lower City Prayerbook	Vendor: Nakodu (Lower City Revered)
+Option	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Opera Event (Karazhan)
+Option	Ashtongue Talisman of Equilibrium Ashtongue Talisman of Equilibrium	Vendor: Okuno (Ashtongue Deathsworn Exalted)
+
+Best in Slot One-Handed Weapons for Restoration Druid in TBC Classic Phase 3
+It is generally better to use a one-handed weapon paired with an offhand instead of a two-handed weapon.
+
+Crystal Spire of Karabor is the best choice, but it normally won't be a priority for a Resto Druid because the equip bonus does not work with HoTs. Vengeful Gladiator's Salvation is the next best option if you're into PvP; otherwise, Lightfathom Scepter from the previous phase is still great, but Hammer of Atonement is quite similar if you haven't been able to get the Scepter yet.
+Rank	Item	Source
+BiS	Crystal Spire of Karabor Crystal Spire of Karabor	Drop: Illidan Stormrage (Black Temple)
+PvP	Vengeful Gladiator's Salvation Vengeful Gladiator's Salvation	Vendor: Arena Points (Season 3)
+Option	Lightfathom Scepter Lightfathom Scepter	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Hammer of Atonement Hammer of Atonement	Drop: Kaz'rogal (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 1H Weapon Recommendations
+
+Rank	Item	Source
+PvP	Merciless Gladiator's Salvation Merciless Gladiator's Salvation	Vendor: Arena Points (Season 2)
+Option	Light's Justice Light's Justice	Drop: Prince Malchezaar (Karazhan)
+PvP	Gladiator's Salvation Gladiator's Salvation	Vendor: Honor Points (Season 1)
+Option	Shard of the Virtuous Shard of the Virtuous	Drop: Maiden of Virtue (Karazhan)
+
+Best in Slot Two-Handed Weapons for Restoration Druid in TBC Classic Phase 3
+Apostle of Argus is the best option for a two-handed weapon, although it doesn't compete with a decent one-hander/offhand combination. Ethereum Life-Staff remains the highest Spirit weapon for casting Innervate.
+Rank	Item	Source
+BiS	Apostle of Argus Apostle of Argus	Drop: Archimonde (Hyjal Summit)
+Option	Staff of Immaculate Recovery Staff of Immaculate Recovery	Drop: Gurtogg Bloodboil (Black Temple)
+Option/Innervate	Ethereum Life-Staff Ethereum Life-Staff	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Option	Exodar Life-Staff Exodar Life-Staff	Drop: Doom Lord Kazzak (World Boss)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 2H Weapon Recommendations
+
+Rank	Item	Source
+Option	Crystalheart Pulse-Staff Crystalheart Pulse-Staff	Drop: Magtheridon (Magtheridon's Lair)
+Innervate	Nightstaff of the Everliving Nightstaff of the Everliving	Drop: Nightbane (Karazhan)
+Innervate	Staff of Divine Infusion Staff of Divine Infusion	Drop: World Drop
+
+Best in Slot Offhands for Restoration Druid in TBC Classic Phase 3
+Scepter of Purification is best in terms of raw healing power and offers a good amount of other stats as well.
+Rank	Item	Source
+BiS	Scepter of Purification Scepter of Purification	Drop: Archimonde (Hyjal Summit)
+Option	Tears of Heaven Tears of Heaven	Vendor: G'eras (Badges of Justice)
+Option	Touch of Inspiration Touch of Inspiration	Drop: Essence of Anger (Black Temple)
+Option	Windcaller's Orb Windcaller's Orb	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+PvP	Vengeful Gladiator's Reprieve Vengeful Gladiator's Reprieve	Vendor: Arena Points (Season 3)
+PvP	Merciless Gladiator's Reprieve Merciless Gladiator's Reprieve	Vendor: Arena Points (Season 2)
+Option	Talisman of the Sun King Talisman of the Sun King	Drop: Al'ar (Tempest Keep: The Eye)
+
+Best in Slot Idols for Restoration Druid in TBC Classic Phase 3
+Idol of the Emerald Queen will be the go-to idol choice as Lifebloom is the name of the game for Resto in TBC.
+Rank	Item	Source
+BiS	Idol of the Emerald Queen Idol of the Emerald Queen	Drop: Ambassador Hellmaw (Shadow Labyrinth)
+Option	Idol of the Raven Goddess Idol of the Raven Goddess	Quest: Vanquish the Raven God Vanquish the Raven God (Heroic Sethekk Halls)
+Option	Harold's Rejuvenating Broach Harold's Rejuvenating Broach	Quest: The Ultimate Bloodsport The Ultimate Bloodsport
+Kyxie
+WoW Classic Druid Writer
+Starting in 2019, SixPacKyx wrote comprehensive Druid class guides for Classic and Burning Crusade Classic content. The author created detailed guides covering Restoration healing and Balance DPS specializations, including advanced strategies, talent builds, gear recommendations, rotations, consumables, addons, and macros for PvE content.
+1 - 7 of 7
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By Baelko (11,854 – 2·9·18) on 2022/01/16 (Burning Crusade)	
+	
+Should probably add the crafted LW and Tailoring shoulders as they enable you to get 5GCD quicker. The LW ones are technically even BiS, since the haste neck probably won't be in the game.
+
+3
+
+	
+By Ahrendel (6,418 – 1·24·33) on 2022/01/16 (Burning Crusade)	
+	
+Probably worth mentioning Crystal Spire of Karabor is going to be more effective in the hands of other healers who can utilize the unique property it has, since hots don't trigger it.
+
+0
+
+	
+
+IronicUserName on 2026/03/18 (Burning Crusade)
+Yes of course, Resto Druids should sacrifice the +healing that they use extremely efficiently in order to give sub-single tick of lifebloom healing potential to someone else. Thank you John Q. Definitelynotashaman.
+
+3
+
+	
+By Baelko (11,854 – 2·9·18) on 2022/01/27 (Burning Crusade)	
+	
+Might be worth it to add the 88 +healing Battlemaster's trinket, as it's the 4th best option after martyr, hops and memento
+
+2
+
+	
+By Nihlo (36,706 – 7·30·46) <Rare Premium User> on 2022/03/12 (Burning Crusade)	
+	
+If you are looking for a weapon set for RoS Phase 1 in which healers are doing damage, I think this is BiS:
+
+Weapon:
+Hammer of Judgement Hammer of Judgement
+Enchant:
+Enchant Weapon - Major Spellpower
+
+Offhand:
+Blind-Seers Icon Blind-Seers Icon
+
+Idol:
+Idol of the Avenger Idol of the Avenger
+
+This is actually the combo of weapons with the most hit-rating in complete tbc which is important since you won't have any hit and fighting a bosslevel mob. These are also very easy to get since it is a trash drop which can even drop in the first waves and an offhand probably noone else wants. Furthermore they don't need epic gems and the enchant is way cheaper than Sunfire or some of the other fancy caster-weapon enchants.
+
+Note: since you are spamming Wrath because it is more dps than Starfire you are also using a wrath idol and the normal spellpower enchant instead of the starfire idol and sunfire as moonkins do. Rather more like Ele-Shamans with their natural damage spells.
+
+Obviously you have to remember to switch back to your healing set after phase 1. Use a gear-addon/macro with keybind and maybe setup a WA to remember to use it.
+Last edited by Nihlo on 2022/03/20
+
+1
+
+	
+By Baelko (11,854 – 2·9·18) on 2022/01/16 (Burning Crusade)	
+	
+Could also be worth it to add a section explaining the 7 tick issue because it's why you want more than 113 haste. An alternate 4 GCD set could also be worth adding since it's likely going to be best for some fights in P3.
+
+1
+
+	
+By Beard2bFeard (6,517 – 1·5·12) on 2022/01/22 (Burning Crusade)	
+	
+Is Vindicator's Pendant of Reprieve not going to be available during Phase 3?
+
+0
+
+	
+
+Sealtest on 2022/01/23 (Burning Crusade)
+Doubtful since it was removed late in the PTR and didn't come in during this arena season
+
+1
+
+	
+
+Nihlo <Rare Premium User> on 2022/03/13 (Burning Crusade)
+Also not on the current PTR for Phase 4. So probably in Phase 5 and worthless for PvE then. Just get the ZA neck asap.
+
+-3
+
+	
+By Krust (4,426 – 21·15) on 2022/02/24 (Burning Crusade)	
+	
+Agree for the most part, but here are a few I disagree with -
+
+Coral Band is worse than Eternal Restorer. Coral averages out about 13+x healing behind, where x is dependent on getting extra procs based on time to kill, 7 stamina behind, and about the same on mana (worse on short fights, about same on long fights), having like 1-2 more mp5 but 11 less int.
+
+I also don't entirely agree with essence/hops being better than memento, its basically 17+x healing where x is dependent on getting extra usages based on time to kill vs 17.5+x mp5 where x is dependent on getting extra procs based on time to kill, I'll take mp5 over healing *at the same price* even though healing is much more valuable at common tradeoffs.
+
+Also the Kazzak boots have like 13 more healing at a loss of like 70 stats, it'd be kind of silly to prefer those in a real world scenario. By the same token, the leather haste belt and bracers are better than the cloth IMO. I know, the guides completely ignore stamina because it doesn't effect throughput or mana pool, but it's kind of important to be alive. The bracers are close enough to be dealers choice, but I'll take 5 stamina over 1 int (belt) any day of the week.
+1 - 7 of 7
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Restoration Druid Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+            Best In Slot Gear in Phase 4
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                1H Weapons
+                2H Weapons
+                Offhands
+                Idols
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Restoration Druid Healing Best in Slot (BiS) Phase 4 Gear Guide
+By Kyxie
+Updated: 2026/02/19
+Welcome to Wowhead's Best in Slot Gear list from Phase 4 Zul'Aman for Restoration Druid Healing in The Burning Crusade Classic. This guide will list the recommended gear for Restoration Druid Healing to acquire while they progress during the fourth phase of The Burning Crusade Classic, and contains gear sourced from Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Restoration Druid Healing in Phase 4
+Phase 4 brings Zul'Aman as well as many new items on the Badge of Justice vendor. While this doesn't change most of what is considered BiS, it does add lots of diversity and options for alternative or catch-up gear. One of the only big changes to the BiS setup will be getting Brooch of Nature's Mercy Brooch of Nature's Mercy from Zul'Aman.
+
+Haste and healing power are still the most important stats for Resto Druid. Phase 4 offers many items that can aid in getting enough haste for the five global rotation and loosen the need to have either Tailoring or Leatherworking. To get the five global rotation, you'll need to get ~125 haste on your gear due to normal server latency. It can be useful to have a set of gear with less than 125 haste but high on healing power and still use the four global rotation, especially on fights where there may only be one tank actively taking damage at a time.
+
+The Tier 6 set bonuses for Resto Druid are quite bad. You'll still want to pick up some of the tier items (Helm, Shoulders, and Chest) due to their raw stats, but expect to be a lower priority when receiving tier than other classes and specializations who gain more benefit from their bonuses.
+
+Many items can be competitive for each slot, depending on whether you play an aggressive healing power style or a mana-conservative style that relies more on stats like Spirit and MP5. Keep in mind you only need enough mana management stats, like MP5 or Spirit, to avoid going out of mana during a pull, and you only need enough Stamina to survive an encounter. Otherwise, you should aim to get healing power and haste.
+
+Some items have identical or close to identical alternatives like Angelista's Sash Angelista's Sash and Belt of Primal Majesty Belt of Primal Majesty. Swiftheal Wraps Swiftheal Wraps and Bracers of Renewed Life Bracers of Renewed Life are another example where the items are close enough that you should aim to get whichever is easier for you and your raid team. Or, if you have enough haste and want more healing power, you can use either Rejuvenating Bracers Rejuvenating Bracers or Bracers of Martyrdom Bracers of Martyrdom. The sections below offer more detailed information for each slot.
+
+Restoration Druids looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Restoration Druid Gems & Enchants
+Should Restoration Druid Healing Choose Aldor or Scryer for BiS in TBC Classic Phase 4?
+Restoration Druids favor choosing Aldor. The shoulder enchant Greater Inscription of Faith Greater Inscription of Faith from the Aldor is better than the Scryer alternative Greater Inscription of the Oracle Greater Inscription of the Oracle. There aren't any notable BoP items from either vendor. Since many Restoration Druids tend to have tailoring, the Aldors also offer the ability to make your own Golden Spellthread Golden Spellthread with the BoP recipe Pattern: Golden Spellthread Pattern: Golden Spellthread.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Restoration Druids, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Restoration Druid in TBC Classic Phase 4
+Thunderheart Helmet and Cowl of Benevolence are the best options and very close to each other. Pick up whichever option is easier to get. The Resto tier bonuses are not very good.
+Rank	Item	Source
+BiS	Thunderheart Helmet Thunderheart Helmet	Drop: Archimonde (Hyjal Summit)
+BiS	Cowl of Benevolence Cowl of Benevolence	Drop: Teron Gorefiend (Black Temple)
+Option	Nordrassil Headguard Nordrassil Headguard	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Wonderheal XT40 Shades Wonderheal XT40 Shades	Profession: Engineering - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Guise of the Tidal Lurker Guise of the Tidal Lurker	Drop: High Warlord Naj'entus (Black Temple)
+Option	Hood of the Third Eye Hood of the Third Eye	Drop: Hex Lord Malacrass (Zul'Aman)
+Option	Helm of Natural Regeneration Helm of Natural Regeneration	Drop: Jan'alai (Zul'Aman)
+
+Best in Slot Shoulder Armor for Restoration Druid in TBC Classic Phase 4
+Even though the Resto Druid tier set is weak, Thunderheart Spaulders offer the best raw stats. If you have Leatherworking or Tailoring, you'll most likely want to craft Shoulderpads of Renewed Life or Swiftheal Mantle for the haste until you can get better haste items.
+Rank	Item	Source
+BiS	Thunderheart Spaulders Thunderheart Spaulders	Drop: Mother Shahraz (Black Temple)
+Option	Nordrassil Life-Mantle Nordrassil Life-Mantle	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Gnarled Ironwood Pauldrons Gnarled Ironwood Pauldrons	Vendor: G'eras (Badges of Justice)
+Option	Shoulderpads of Renewed Life Shoulderpads of Renewed Life	Profession: Leatherworking - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Swiftheal Mantle Swiftheal Mantle	Profession: Tailoring - BoP only
+Option	Runetotem's Mantle Runetotem's Mantle	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Shoulderguards of Malorne Shoulderguards of Malorne	Drop: High King Maulgar (Gruul's Lair)
+Option	Primal Mooncloth Shoulders Primal Mooncloth Shoulders	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+
+Best in Slot Back Armor for Restoration Druid in TBC Classic Phase 4
+There will be a lot of contention over Shroud of the Highborne due to the haste on it. If you can't get your hands on this cloak, Shroud of Forgiveness offers more healing power.
+Rank	Item	Source
+BiS	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+BiS	Shroud of Forgiveness Shroud of Forgiveness	Drop: Gurtogg Bloodboil (Black Temple)
+Option	Sunshower Light Cloak Sunshower Light Cloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Cloak of Ancient Rituals Cloak of Ancient Rituals	Drop: Hex Lord Malacrass (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Shroud of the Final Stand Shroud of the Final Stand	Drop: Trash Mobs (Black Temple)
+Option	Lifegiving Cloak Lifegiving Cloak	Drop: World Drop
+
+Best in Slot Chest Armor for Restoration Druid in TBC Classic Phase 4
+Even though the Resto Druid tier set bonus is weak, Thunderheart Tunic still has the best raw stats.
+Rank	Item	Source
+BiS	Thunderheart Tunic Thunderheart Tunic	Drop: Illidan Stormrage (Black Temple)
+Option	Nordrassil Chestguard Nordrassil Chestguard	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Robes of Heavenly Purpose Robes of Heavenly Purpose	Drop: Nalorakk (Zul'Aman)
+Option	Primal Mooncloth Robe Primal Mooncloth Robe	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Option	Chestguard of Malorne Chestguard of Malorne	Drop: Magtheridon (Magtheridon's Lair)
+
+Best in Slot Wrist Armor for Restoration Druid in TBC Classic Phase 4
+There are many options for bracers. The two bracers that drop from Winterchill offer the highest raw healing power, while the Tailoring and Leatherworking options offer haste. You'll most likely seek the craftable haste options. There are also some decent catch-up bracers off the Badge of Justice vendor in Phase 4.
+Rank	Item	Source
+BiS	Rejuvenating Bracers Rejuvenating Bracers
+Bracers of Martyrdom Bracers of Martyrdom	Drop: Rage Winterchill (Hyjal Summit)
+BiS	Swiftheal Wraps Swiftheal Wraps	Profession: Tailoring - can be purchased on the Auction House
+BiS	Bracers of Renewed Life Bracers of Renewed Life	Profession: Leatherworking - can be purchased on the Auction House
+Option	Wristguards of Tranquil Thought Wristguards of Tranquil Thought	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Gargon's Bracers of Peaceful Slumber Gargon's Bracers of Peaceful Slumber	Vendor: G'eras (Badges of Justice)
+Option	Grove-Bands of Remulos Grove-Bands of Remulos	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Wristbands of Divine Influence Wristbands of Divine Influence	Drop: Shade of Akama (Black Temple)
+
+Best in Slot Hand Armor for Restoration Druid in TBC Classic Phase 4
+Botanist's Gloves of Growth are hands down the best option here. They offer the highest raw healing power as well as haste. Light-Blessed Bonds are a decent catch-up option off the Badge of Justice vendor in Phase 4.
+Rank	Item	Source
+BiS	Botanist's Gloves of Growth Botanist's Gloves of Growth	Drop: Teron Gorefiend (Black Temple)
+Option	Gloves of Unfailing Faith Gloves of Unfailing Faith	Drop: Essence of Anger (Black Temple)
+Option	Light-Blessed Bonds Light-Blessed Bonds	Vendor: G'eras (Badges of Justice)
+Option	Thunderheart Gloves Thunderheart Gloves	Drop: Azgalor (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Mitts of the Treemender Mitts of the Treemender	Drop: Maiden of Virtue (Karazhan)
+Option	Nordrassil Gloves Nordrassil Gloves	Drop: Leotheras the Blind (Serpentshrine Cavern)
+
+Best in Slot Waist Armor for Restoration Druid in TBC Classic Phase 4
+There are many options for belts. Both Angelista's Sash and Belt of Primal Majesty have haste and are very close in power. In terms of raw healing power, Primal Mooncloth Belt still offers the highest, but has severely reduced other stats. In Phase 4, we get the high healing power option Life-step Belt with some more well-rounded stats.
+Rank	Item	Source
+BiS	Angelista's Sash Angelista's Sash	Drop: Kaz'rogal (Hyjal Summit)
+BiS	Belt of Primal Majesty Belt of Primal Majesty	Drop: Gurtogg Bloodboil (Black Temple)
+BiS	Life-step Belt Life-step Belt	Drop: First Timed Chest (Zul'Aman)
+Option	Primal Mooncloth Belt Primal Mooncloth Belt	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Belt of Divine Guidance Belt of Divine Guidance	Drop: High Nethermancer Zerevor (Black Temple)
+Option	Belt of the Long Road Belt of the Long Road	Profession: Tailoring - can be purchased on the Auction House
+Option	Girdle of Zaetar Girdle of Zaetar	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Cord of Braided Troll Hair Cord of Braided Troll Hair	Drop: First Timed Chest (Zul'Aman)
+
+Best in Slot Leg Armor for Restoration Druid in TBC Classic Phase 4
+Leggings of Eternity is the best option here, but Kilt of Immortal Nature isn't too far behind. Achromic Trousers of the Naaru is a new haste option from the Badge vendor, although it is considerably lower on healing power.
+Rank	Item	Source
+BiS	Leggings of Eternity Leggings of Eternity	Drop: Archimonde (Hyjal Summit)
+Option	Kilt of Immortal Nature Kilt of Immortal Nature	Drop: Shade of Akama (Black Temple)
+Option	Gilded Trousers of Benediction Gilded Trousers of Benediction	Drop: Doomwalker (World Boss)
+Option	Thunderheart Legguards Thunderheart Legguards	Drop: The Illidari Council (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Achromic Trousers of the Naaru Achromic Trousers of the Naaru	Vendor: G'eras (Badges of Justice)
+Option	Pants of Splendid Recovery Pants of Splendid Recovery	Vendor: G'eras (Badges of Justice)
+Option	Earthsoul Leggings Earthsoul Leggings	Drop: Opera Event (Karazhan)
+Option	Nordrassil Life-Kilt Nordrassil Life-Kilt	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+Best in Slot Feet Armor for Restoration Druid in TBC Classic Phase 4
+Gold-Leaf Wildboots remain the highest healing power option but have less overall stats. Boots of the Divine Light will instead be the go-to option here. Orca-Hide Boots are still very close.
+Rank	Item	Source
+BiS	Boots of the Divine Light Boots of the Divine Light	Drop: Trash Mobs (Hyjal Summit)
+BiS	Gold-Leaf Wildboots Gold-Leaf Wildboots	Drop: Doom Lord Kazzak (World Boss)
+Option	Orca-Hide Boots Orca-Hide Boots	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Two-toed Sandals Two-toed Sandals	Drop: Zul'jin (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Soul-Strider Boots Soul-Strider Boots	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Archbishop's Slippers Archbishop's Slippers	Drop: Anetheron (Hyjal Summit)
+Option	Enchanted Leather Sandals Enchanted Leather Sandals	Drop: Anetheron (Hyjal Summit)
+Option	Forestlord Striders Forestlord Striders	Drop: Echo of Medivh (Karazhan)
+
+Best in Slot Neck Jewelry for Restoration Druid in TBC Classic Phase 4
+With Zul'Aman in Phase 4, we get the incredible Brooch of Nature's Mercy, which is a high healing power option with a lot of haste.
+Rank	Item	Source
+BiS	Brooch of Nature's Mercy Brooch of Nature's Mercy	Drop: Akil'zon (Zul'Aman)
+PvP	Vindicator's Pendant of Reprieve Vindicator's Pendant of Reprieve	Vendor: Honor Points (Season 3)
+Option	Lord Sanguinar's Claim Lord Sanguinar's Claim	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Nadina's Pendant of Purity Nadina's Pendant of Purity	Drop: Mother Shahraz (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Archaic Charm of Presence Archaic Charm of Presence	Drop: Doomwalker (World Boss)
+PvP	Vindicator's Pendant of Salvation Vindicator's Pendant of Salvation	Vendor: Honor Points (Season 3)
+Option	Emberspur Talisman Emberspur Talisman	Drop: Nightbane (Karazhan)
+
+Best in Slot Ring Jewelry for Restoration Druid in TBC Classic Phase 4
+Blessed Band of Karabor is a highly sought-after option that offers haste as well as competitive healing power. It's not Unique, meaning you can equip two of them. Coral Band of the Revived is a very good option with solid stats that could last well into later phases, as well as Band of the Eternal Restorer with a beefy healing power proc. Signet of the Quiet Forest is a new option for haste from Zul'Aman in Phase 4.
+Rank	Item	Source
+BiS	Blessed Band of Karabor Blessed Band of Karabor	Drop: Trash Mobs (Black Temple)
+BiS	Coral Band of the Revived Coral Band of the Revived	Drop: Lady Vashj (Serpentshrine Cavern)
+BiS	Band of the Eternal Restorer Band of the Eternal Restorer	Quest: Restorer's Covenant Restorer's Covenant (The Scale of the Sands Exalted)
+Option	Signet of the Quiet Forest Signet of the Quiet Forest	Drop: Third Timed Chest (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Jade Ring of the Everliving Jade Ring of the Everliving	Drop: Prince Malchezaar (Karazhan)
+Option	Ring of Flowing Light Ring of Flowing Light	Drop: Doom Lord Kazzak (World Boss)
+Option	Ring of Calming Waves Ring of Calming Waves	Drop: High Warlord Naj'entus (Black Temple)
+
+Best in Slot Trinkets for Restoration Druid in TBC Classic Phase 4
+Trinkets depend on your playstyle, needs, and fight length. Both Essence of the Martyr and Direbrew Hops offer powerful on-use healing power on 2-minute cooldowns that can be paired together or used separately. Memento of Tyrande has the highest static healing power but is still less overall than the two listed above when factoring in the on-use effect.
+Rank	Item	Source
+BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (Badges of Justice)
+BiS	Direbrew Hops Direbrew Hops	Drop: Coren Direbrew (Brewfest Seasonal Event)
+BiS	Memento of Tyrande Memento of Tyrande	Drop: Illidan Stormrage (Black Temple)
+Option	Oshu'gun Relic Oshu'gun Relic	Quest: Gava'xi Gava'xi
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+If you are finding mana to be an issue, trinkets like Lower City Prayerbook offer better mana management, but generally you'd go for other options. Your choice here really boils down to what you find you need in a trinket slot. Rejuvenating Gem is still a well-rounded trinket, especially if you find yourself shying away from on-use effects.
+Rank	Item	Source
+Option	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Classic - Naxxramas)
+Option	Rejuvenating Gem Rejuvenating Gem	Drop: Flamegor, Firemaw, & Ebonroc (Classic - Blackwing Lair)
+PvP	Battlemaster's Perseverance Battlemaster's Perseverance	Vendor: Honor Points (Season 3)
+Option	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Opera Event (Karazhan)
+Option	Ashtongue Talisman of Equilibrium Ashtongue Talisman of Equilibrium	Vendor: Okuno (Ashtongue Deathsworn Exalted)
+Option	Scarab of the Infinite Cycle Scarab of the Infinite Cycle	Drop: Aeonus (The Black Morass)
+Option	Lower City Prayerbook Lower City Prayerbook	Vendor: Nakodu (Lower City Revered)
+
+Best in Slot One-Handed Weapons for Restoration Druid in TBC Classic Phase 4
+It is generally better to use a one-handed weapon paired with an offhand instead of a two-handed weapon.
+
+Crystal Spire of Karabor is the best choice, but it normally won't be a priority for a Resto Druid since the equip bonus does not work with HoTs. Vengeful Gladiator's Salvation is the next best option if you're into PvP. Dark Blessing is worth considering due to the haste on it.
+Rank	Item	Source
+BiS	Crystal Spire of Karabor Crystal Spire of Karabor	Drop: Illidan Stormrage (Black Temple)
+PvP	Vengeful Gladiator's Salvation Vengeful Gladiator's Salvation	Vendor: Arena Points (Season 3)
+Option	Dark Blessing Dark Blessing	Drop: Zul'jin (Zul'Aman)
+Option	Lightfathom Scepter Lightfathom Scepter	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 1H Weapon Recommendations
+
+Rank	Item	Source
+Option	Hammer of Atonement Hammer of Atonement	Drop: Kaz'rogal (Hyjal Summit)
+PvP	Merciless Gladiator's Salvation Merciless Gladiator's Salvation	Vendor: Arena Points (Season 2)
+Option	Light's Justice Light's Justice	Drop: Prince Malchezaar (Karazhan)
+PvP	Gladiator's Salvation Gladiator's Salvation	Vendor: Honor Points (Season 1)
+Option	Shard of the Virtuous Shard of the Virtuous	Drop: Maiden of Virtue (Karazhan)
+
+Best in Slot Two-Handed Weapons for Restoration Druid in TBC Classic Phase 4
+Apostle of Argus is the best option for a two-handed weapon, although it doesn't compete with having a one-handed weapon and an offhand. Ethereum Life-Staff remains the highest Spirit weapon for using with Innervate.
+Rank	Item	Source
+BiS	Apostle of Argus Apostle of Argus	Drop: Archimonde (Hyjal Summit)
+Option	Staff of Dark Mending Staff of Dark Mending	Drop: Second Timed Chest (Zul'Aman)
+Option	Staff of Immaculate Recovery Staff of Immaculate Recovery	Drop: Gurtogg Bloodboil (Black Temple)
+Option/Innervate	Ethereum Life-Staff Ethereum Life-Staff	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 2H Weapon Recommendations
+
+Rank	Item	Source
+Option	Exodar Life-Staff Exodar Life-Staff	Drop: Doom Lord Kazzak (World Boss)
+Option	Crystalheart Pulse-Staff Crystalheart Pulse-Staff	Drop: Magtheridon (Magtheridon's Lair)
+Innervate	Nightstaff of the Everliving Nightstaff of the Everliving	Drop: Nightbane (Karazhan)
+Innervate	Staff of Divine Infusion Staff of Divine Infusion	Drop: World Drop
+
+Best in Slot Offhands for Restoration Druid in TBC Classic Phase 4
+Scepter of Purification is best in terms of raw healing power and offers a good amount of other stats as well.
+Rank	Item	Source
+BiS	Scepter of Purification Scepter of Purification	Drop: Archimonde (Hyjal Summit)
+Option	Tears of Heaven Tears of Heaven	Vendor: G'eras (Badges of Justice)
+Option	Touch of Inspiration Touch of Inspiration	Drop: Essence of Anger (Black Temple)
+Option	Windcaller's Orb Windcaller's Orb	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+PvP	Vengeful Gladiator's Reprieve Vengeful Gladiator's Reprieve	Vendor: Arena Points (Season 3)
+PvP	Merciless Gladiator's Reprieve Merciless Gladiator's Reprieve	Vendor: Arena Points (Season 2)
+
+Best in Slot Idols for Restoration Druid in TBC Classic Phase 4
+Idol of the Emerald Queen will be the go-to idol choice as Lifebloom is the name of the game for Resto in TBC. It can be beneficial to run Idol of the Raven Goddess if you are in the same group as the main tank.
+Rank	Item	Source
+BiS	Idol of the Emerald Queen Idol of the Emerald Queen	Drop: Ambassador Hellmaw (Shadow Labyrinth)
+Option	Idol of the Raven Goddess Idol of the Raven Goddess	Quest: Vanquish the Raven God Vanquish the Raven God (Heroic Sethekk Halls)
+Option	Harold's Rejuvenating Broach Harold's Rejuvenating Broach	Quest: The Ultimate Bloodsport The Ultimate Bloodsport
+Kyxie
+WoW Classic Druid Writer
+Starting in 2019, SixPacKyx wrote comprehensive Druid class guides for Classic and Burning Crusade Classic content. The author created detailed guides covering Restoration healing and Balance DPS specializations, including advanced strategies, talent builds, gear recommendations, rotations, consumables, addons, and macros for PvE content.
+1 - 2 of 2
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+5
+
+	
+By Nihlo (36,706 – 7·30·46) <Rare Premium User> on 2022/03/21 (Burning Crusade)	
+	
+Minor notes for restos in P4:
+
+    Gold-Leaf Wildboots Gold-Leaf Wildboots become BoE, so you might get them in the AH.
+    There is a new idol: Idol of Budding Life Idol of Budding Life but not really worth the badges though.
+    Also new heal offhand (Voodoo Shaker Voodoo Shaker) with spirit and +heal, also not really good.
+    If you don't got Hops or Memento the new ZA trinket might be interesting for you: Tome of Diabolic Remedy Tome of Diabolic Remedy
+
+2
+
+	
+By Nihlo (36,706 – 7·30·46) <Rare Premium User> on 2022/03/31 (Burning Crusade)	
+	
+Vindicator's Pendant of Reprieve Vindicator's Pendant of Reprieve is now ingame. If the ZA neck won't drop for you. If you really want to match the socket colour, not that Luminous Pyrestone Luminous Pyrestone isn't ingame yet.
+1 - 2 of 2
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Restoration Druid Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+            Best In Slot Gear in Phase 5
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                1H Weapons
+                2H Weapons
+                Offhands
+                Idols
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Restoration Druid Healing Best in Slot (BiS) Phase 5 Gear Guide
+By Kyxie
+Updated: 2026/02/22
+Welcome to Wowhead's Best in Slot Gear list from Phase 5 Sunwell Plateau for Restoration Druid Healing in The Burning Crusade Classic. This guide will list the recommended gear for Restoration Druid Healing to acquire while they progress during the fifth and final phase of The Burning Crusade Classic, which contains gear sourced from Sunwell Plateau, Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Restoration Druid Healing in Phase 5
+Phase 5 is the final phase of TBC and brings a lot of new gearing options. There is new raid gear from Sunwell Plateau, new Badge of Justice gear, Season 4 PvP gear, new profession gear, and new gems. In addition to the new raid gear, there is the transmute vendor Yrma who will take specific raid pieces, along with a Sunmote Sunmote, and turn them into a different item.
+
+While there isn't a new tier set, there are additional slots for Tier 6. Bracers, belts, and boots are now available to complete the Thunderheart Raiment set. This doesn't mean much to Resto Druids who didn't really care about the set before, but these additional tier items also happen to be the best options for those slots and are worth picking up.
+
+Professions play a more important role in Phase 5. Jewelcrafting, Tailoring, Leatherworking, and Alchemy all offer some strong gearing options. Since you can only have two professions at a time, this means you'll have to make decisions on what gear to aim for and if you want to change professions.
+
+Haste and healing power are still the most important stats for Resto Druid. With many more options for increased Haste in Phase 5, there are some gearing considerations to be made. To get the five global rotation, you'll need to get ~118 haste on your gear due to normal server latency. Once this threshold is met, haste is still a high-value stat until the optimal threshold of ~247. Beyond that value, HoT effects lose some HPS efficiency.
+
+Restoration Druids looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Restoration Druid Gems & Enchants
+Should Restoration Druid Healing Choose Aldor or Scryer for BiS in TBC Classic Phase 5?
+Restoration Druids favor choosing Aldor. The shoulder enchant Greater Inscription of Faith Greater Inscription of Faith from the Aldor is better than the Scryer alternative Greater Inscription of the Oracle Greater Inscription of the Oracle. There aren't any notable BoP items from either vendor. Since many Restoration Druids tend to have tailoring, the Aldors also offer the ability to make your own Golden Spellthread Golden Spellthread with the BoP recipe Pattern: Golden Spellthread Pattern: Golden Spellthread.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Restoration Druids, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Restoration Druid in TBC Classic Phase 5
+Cowl of Light's Purity is the best haste option for the head slot. Cover of Ursol the Wise may be more realistic to obtain, being leather, but also might be better if you are going to go over haste cap or need more mana regen.
+Rank	Item	Source
+BiS	Cowl of Light's Purity Cowl of Light's Purity	Drop: Kil'jaeden (Sunwell Plateau)
+BiS	Cover of Ursol the Wise Cover of Ursol the Wise	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Wonderheal XT68 Shades Wonderheal XT68 Shades	Profession: Engineering - BoP only
+Option	Thunderheart Helmet Thunderheart Helmet	Drop: Archimonde (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Cowl of Benevolence Cowl of Benevolence	Drop: Teron Gorefiend (Black Temple)
+Option	Nordrassil Headguard Nordrassil Headguard	Drop: Lady Vashj (Serpentshrine Cavern)
+
+Best in Slot Shoulder Armor for Restoration Druid in TBC Classic Phase 5
+Both Spaulders of Reclamation and Shawl of Wonderment are very strong options for shoulders, and they drop from the same boss. Which one you get will likely come down to which armor type is easier to obtain in your raid.
+Rank	Item	Source
+BiS	Spaulders of Reclamation Spaulders of Reclamation	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+BiS	Shawl of Wonderment Shawl of Wonderment	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+Option	Thunderheart Spaulders Thunderheart Spaulders	Drop: Mother Shahraz (Black Temple)
+Option	Nordrassil Life-Mantle Nordrassil Life-Mantle	Drop: Void Reaver (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Gnarled Ironwood Pauldrons Gnarled Ironwood Pauldrons	Vendor: G'eras (Badges of Justice)
+Option	Shoulderpads of Renewed Life Shoulderpads of Renewed Life	Profession: Leatherworking - BoP only
+Option	Swiftheal Mantle Swiftheal Mantle	Profession: Tailoring - BoP only
+
+Best in Slot Back Armor for Restoration Druid in TBC Classic Phase 5
+Both Shroud of Forgiveness and Shroud of the Highborne are solid picks for cloaks. The former provides the most healing power, while the latter is an excellent source of spell haste.
+Rank	Item	Source
+BiS	Shroud of Forgiveness Shroud of Forgiveness	Drop: Gurtogg Bloodboil (Black Temple)
+BiS	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+Option	Sunshower Light Cloak Sunshower Light Cloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Shroud of Redeemed Souls Shroud of Redeemed Souls	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Cloak of Ancient Rituals Cloak of Ancient Rituals	Drop: Hex Lord Malacrass (Zul'Aman)
+Option	Shroud of the Final Stand Shroud of the Final Stand	Drop: Trash Mobs (Black Temple)
+Option	Lifegiving Cloak Lifegiving Cloak	Drop: World Drop
+
+Best in Slot Chest Armor for Restoration Druid in TBC Classic Phase 5
+There are lots of chest options which are fairly close or situationally BiS depending on other gear, so it really boils down to ease of acquisition and how much haste you have.
+
+Sunglow Vest will be the general go-to pick here since leather is usually easier to obtain for a Resto Druid, although it does lack the Spirit that comes with Robes of Faltered Light, instead providing MP5. If you have Tailoring, you can craft Robe of Eternal Light, and if you have Leatherworking, you can craft Leather Chestguard of the Sun.
+Rank	Item	Source
+BiS	Sunglow Vest Sunglow Vest	Drop: Entropius & M'uru (Sunwell Plateau)
+BiS	Robes of Faltered Light Robes of Faltered Light	Drop: Entropius & M'uru (Sunwell Plateau)
+BiS	Robe of Eternal Light Robe of Eternal Light	Profession: Tailoring - BoP only
+BiS	Leather Chestguard of the Sun Leather Chestguard of the Sun	Profession: Leatherworking - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Option	Thunderheart Tunic Thunderheart Tunic	Drop: Illidan Stormrage (Black Temple)
+Option	Nordrassil Chestguard Nordrassil Chestguard	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Robes of Heavenly Purpose Robes of Heavenly Purpose	Drop: Nalorakk (Zul'Aman)
+Option	Primal Mooncloth Robe Primal Mooncloth Robe	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+
+Best in Slot Wrist Armor for Restoration Druid in TBC Classic Phase 5
+Even though the tier bonuses are not great, Thunderheart Bracers are still the best wrist option.
+Rank	Item	Source
+BiS	Thunderheart Bracers Thunderheart Bracers	Drop: Grand Warlock Alythess, Lady Sacrolash & Kalecgos (Sunwell Plateau)
+Option	Rejuvenating Bracers Rejuvenating Bracers
+Bracers of Martyrdom Bracers of Martyrdom	Drop: Rage Winterchill (Hyjal Summit)
+Option	Swiftheal Wraps Swiftheal Wraps	Profession: Tailoring - can be purchased on the Auction House
+Option	Bracers of Renewed Life Bracers of Renewed Life	Profession: Leatherworking - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Wristguards of Tranquil Thought Wristguards of Tranquil Thought	Vendor: G'eras (Badges of Justice)
+Option	Gargon's Bracers of Peaceful Slumber Gargon's Bracers of Peaceful Slumber	Vendor: G'eras (Badges of Justice)
+Option	Eversong Cuffs Eversong Cuffs	Drop: Selin Fireheart (Heroic Magisters' Terrace)
+
+Best in Slot Hand Armor for Restoration Druid in TBC Classic Phase 5
+Gloves are another item slot in Phase 5 with many options. The crafted Tailoring and Leatherworking gloves are BoE, so you do not need to have those professions to wear them, which opens up many options.
+
+Both Handguards of the Dawn and Leather Gauntlets of the Sun have a good amount of haste if you need it, with the leather option being more realistic to obtain. Hands of Eternal Light and Tranquil Majesty Wraps have higher healing power with the option of either Spirit or MP5. All of these options can be situationally BiS depending on your existing haste and healing power.
+Rank	Item	Source
+BiS	Handguards of the Dawn Handguards of the Dawn	Drop: Kil'jaeden (Sunwell Plateau)
+BiS	Leather Gauntlets of the Sun Leather Gauntlets of the Sun	Profession: Leatherworking - can be purchased on the Auction House
+BiS	Hands of Eternal Light Hands of Eternal Light	Profession: Tailoring - can be purchased on the Auction House
+BiS	Tranquil Majesty Wraps Tranquil Majesty Wraps	Drop: Trash Mobs (Sunwell Plateau)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Botanist's Gloves of Growth Botanist's Gloves of Growth	Drop: Teron Gorefiend (Black Temple)
+Option	Gloves of Unfailing Faith Gloves of Unfailing Faith	Drop: Essence of Anger (Black Temple)
+Option	Light-Blessed Bonds Light-Blessed Bonds	Vendor: G'eras (Badges of Justice)
+Option	Thunderheart Gloves Thunderheart Gloves	Drop: Azgalor (Hyjal Summit)
+
+Best in Slot Waist Armor for Restoration Druid in TBC Classic Phase 5
+Again, the new tier items tend to be best-in-slot for their raw stats alone, and Thunderheart Belt is no exception. Some of the other options aren't terribly far behind, though.
+Rank	Item	Source
+BiS	Thunderheart Belt Thunderheart Belt	Drop: Brutallus, Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+Option	Angelista's Sash Angelista's Sash	Drop: Kaz'rogal (Hyjal Summit)
+Option	Belt of Primal Majesty Belt of Primal Majesty	Drop: Gurtogg Bloodboil (Black Temple)
+Option	Life-step Belt Life-step Belt	Drop: First Timed Chest (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Primal Mooncloth Belt Primal Mooncloth Belt	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+Option	Belt of Divine Guidance Belt of Divine Guidance	Drop: High Nethermancer Zerevor (Black Temple)
+Option	Belt of the Long Road Belt of the Long Road	Profession: Tailoring - can be purchased on the Auction House
+Option	Girdle of Zaetar Girdle of Zaetar	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Cord of Braided Troll Hair Cord of Braided Troll Hair	Drop: First Timed Chest (Zul'Aman)
+
+Best in Slot Leg Armor for Restoration Druid in TBC Classic Phase 5
+Both Breeches of Natural Splendor and Pantaloons of Calming Strife are solid options for pants. The cloth options have additional crit on them, but Resto Druids do not gain much benefit from crit. As a result, these two are similar in strength, and the leather pants will have less competition.
+Rank	Item	Source
+BiS	Breeches of Natural Splendor Breeches of Natural Splendor	Vendor: Yrma
+Drop: Breeches of Natural Aggression Breeches of Natural Aggression from Kalecgos (Sunwell Plateau) & Sunmote Sunmote
+BiS	Pantaloons of Calming Strife Pantaloons of Calming Strife	Drop: Kalecgos (Sunwell Plateau)
+Option	Leggings of Eternity Leggings of Eternity	Drop: Archimonde (Hyjal Summit)
+Option	Kilt of Immortal Nature Kilt of Immortal Nature	Drop: Shade of Akama (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Gilded Trousers of Benediction Gilded Trousers of Benediction	Drop: Doomwalker (World Boss) - can be purchased on the Auction House
+Option	Grovewalker's Leggings Grovewalker's Leggings	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Feet Armor for Restoration Druid in TBC Classic Phase 5
+Thunderheart Boots are the best option for boots, although some of the other options are not too far behind.
+Rank	Item	Source
+BiS	Thunderheart Boots Thunderheart Boots	Drop: Felmyst, Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+Option	Boots of the Divine Light Boots of the Divine Light	Drop: Trash Mobs (Hyjal Summit)
+Option	Gold-Leaf Wildboots Gold-Leaf Wildboots	Drop: Doom Lord Kazzak (World Boss) - can be purchased on the Auction House
+Option	Orca-Hide Boots Orca-Hide Boots	Drop: Leotheras the Blind (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Slippers of Dutiful Mending Slippers of Dutiful Mending	Vendor: G'eras (Badges of Justice)
+Option	Two-toed Sandals Two-toed Sandals	Drop: Zul'jin (Zul'Aman)
+Option	Soul-Strider Boots Soul-Strider Boots	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+Best in Slot Neck Jewelry for Restoration Druid in TBC Classic Phase 5
+Even in Phase 5, Brooch of Nature's Mercy remains one of the best options for a necklace. If you have Jewelcrafting, the crafted Amulet of Flowing Life is very strong.
+Rank	Item	Source
+BiS	Brooch of Nature's Mercy Brooch of Nature's Mercy	Drop: Akil'zon (Zul'Aman)
+BiS	Amulet of Flowing Life Amulet of Flowing Life	Profession: Jewelcrafting - BoP only
+Option	Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration	Vendor: Eldara Dawnrunner (Shattered Sun Offensive Exalted)
+PvP	Guardian's Pendant of Reprieve Guardian's Pendant of Reprieve	Vendor: Honor Points (Season 4)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Brooch of the Highborne Brooch of the Highborne	Drop: Felmyst (Sunwell Plateau)
+Option	Sin'dorei Pendant of Salvation Sin'dorei Pendant of Salvation	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+PvP	Vindicator's Pendant of Reprieve Vindicator's Pendant of Reprieve	Vendor: Honor Points (Season 3)
+Option	Lord Sanguinar's Claim Lord Sanguinar's Claim	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+PvP	Guardian's Pendant of Salvation Guardian's Pendant of Salvation	Vendor: Honor Points (Season 4)
+Option	Nadina's Pendant of Purity Nadina's Pendant of Purity	Drop: Mother Shahraz (Black Temple)
+Option	Archaic Charm of Presence Archaic Charm of Presence	Drop: Doomwalker (World Boss) - can be purchased on the Auction House
+PvP	Vindicator's Pendant of Salvation Vindicator's Pendant of Salvation	Vendor: Honor Points (Season 3)
+Option	Emberspur Talisman Emberspur Talisman	Drop: Nightbane (Karazhan)
+
+Best in Slot Ring Jewelry for Restoration Druid in TBC Classic Phase 5
+Ring choice can depend on how much haste you have. Depending on your other gear, you might need to shed some haste to optimize your HoTs by remaining just under ~247 haste. If you need haste, Blessed Band of Karabor is an incredibly strong choice with the bonus of being able to equip two of them. Band of Lucent Beams has less haste and slightly improved mana regen. Band of the Eternal Restorer is a great healing power option, especially if you are approaching the haste threshold and can't use another haste ring.
+Rank	Item	Source
+BiS	Blessed Band of Karabor Blessed Band of Karabor	Drop: Trash Mobs (Black Temple)
+BiS	Band of Lucent Beams Band of Lucent Beams	Drop: Kalecgos (Sunwell Plateau)
+BiS	Band of the Eternal Restorer Band of the Eternal Restorer	Quest: Restorer's Covenant Restorer's Covenant (The Scale of the Sands Exalted)
+Option	Coral Band of the Revived Coral Band of the Revived	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Ring of Flowing Life Ring of Flowing Life	Profession: Jewelcrafting - can be purchased on the Auction House
+Option	Ring of Harmonic Beauty Ring of Harmonic Beauty	Drop: Trash Mobs (Sunwell Plateau)
+Option	Signet of the Quiet Forest Signet of the Quiet Forest	Drop: Third Timed Chest (Zul'Aman)
+Option	Kharmaa's Ring of Fate Kharmaa's Ring of Fate	Drop: Kael'thas Sunstrider (Heroic Magisters' Terrace)
+
+Best in Slot Trinkets for Restoration Druid in TBC Classic Phase 5
+Trinkets depend on your playstyle, needs, and fight length. Both Essence of the Martyr and Direbrew Hops offer powerful on-use healing power on 2-minute cooldowns that can be paired together or used separately.
+
+Memento of Tyrande, Glimmering Naaru Sliver, and Redeemer's Alchemist Stone all have high static healing power and some sort of mana regen attached. You can only use the Alchemist Stone if you have Alchemy.
+Rank	Item	Source
+BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (Badges of Justice)
+BiS	Direbrew Hops Direbrew Hops	Drop: Coren Direbrew (Brewfest Seasonal Event)
+BiS	Redeemer's Alchemist Stone Redeemer's Alchemist Stone	Profession: Alchemy - BoP only
+BiS	Glimmering Naaru Sliver Glimmering Naaru Sliver	Drop: Entropius & M'uru (Sunwell Plateau)
+BiS	Memento of Tyrande Memento of Tyrande	Drop: Illidan Stormrage (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	Oshu'gun Relic Oshu'gun Relic	Quest: Gava'xi Gava'xi
+Option	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Classic - Naxxramas)
+Option	Rejuvenating Gem Rejuvenating Gem	Drop: Ebonroc, Firemaw & Flamegor (Classic - Blackwing Lair)
+PvP	Battlemaster's Perseverance Battlemaster's Perseverance	Vendor: Honor Points (Season 3) or G'eras (Badges of Justice)
+Option	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Opera Event (Karazhan)
+Option	Ashtongue Talisman of Equilibrium Ashtongue Talisman of Equilibrium	Drop: Okuno (Black Temple)
+Option	Scarab of the Infinite Cycle Scarab of the Infinite Cycle	Drop: Aeonus (The Black Morass)
+Option	Lower City Prayerbook Lower City Prayerbook	Vendor: Nakodu (Lower City Revered)
+
+Best in Slot One-Handed Weapons for Restoration Druid in TBC Classic Phase 5
+It is generally better to use a one-handed weapon paired with an offhand instead of a two-handed weapon.
+
+Hammer of Sanctification is the best option for a weapon, but it will be very hard to get. Archon's Gavel is a decent alternative.
+Rank	Item	Source
+BiS	Hammer of Sanctification Hammer of Sanctification	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Archon's Gavel Archon's Gavel	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+PvP	Brutal Gladiator's Salvation Brutal Gladiator's Salvation	Vendor: Arena Points (Season 4)
+Option	Crystal Spire of Karabor Crystal Spire of Karabor	Drop: Illidan Stormrage (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 1H Weapon Recommendations
+
+Rank	Item	Source
+Option	Dark Blessing Dark Blessing	Drop: Zul'jin (Zul'Aman)
+Option	Gavel of Naaru Blessings Gavel of Naaru Blessings	Vendor: G'eras (Badges of Justice)
+PvP	Vengeful Gladiator's Salvation Vengeful Gladiator's Salvation	Vendor: Arena Points (Season 3)
+Option	Lightfathom Scepter Lightfathom Scepter	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Hammer of Atonement Hammer of Atonement	Drop: Kaz'rogal (Hyjal Summit)
+
+Best in Slot Two-Handed Weapons for Restoration Druid in TBC Classic Phase 5
+Golden Staff of the Sin'dorei is the best two-handed weapon option as well as the best Innervate weapon obtainable, although it would be fairly unrealistic to use it for that purpose unless you really want to flex with Spirit gems on it.
+
+Even though Apostle of Argus is the second option listed here, it falls really short of many one-handed options listed above, and it is normally better to get a one-handed weapon paired with an offhand.
+Rank	Item	Source
+BiS/Innervate	Golden Staff of the Sin'dorei Golden Staff of the Sin'dorei	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Apostle of Argus Apostle of Argus	Drop: Archimonde (Hyjal Summit)
+Option	Staff of Dark Mending Staff of Dark Mending	Drop: Second Timed Chest (Zul'Aman)
+Option	Staff of Immaculate Recovery Staff of Immaculate Recovery	Drop: Gurtogg Bloodboil (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 2H Weapon Recommendations
+
+Rank	Item	Source
+Option/Innervate	Ethereum Life-Staff Ethereum Life-Staff	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Option	Exodar Life-Staff Exodar Life-Staff	Drop: Doom Lord Kazzak (World Boss) - can be purchased on the Auction House
+Option/Innervate	Rod of the Blazing Light Rod of the Blazing Light	Drop: Vexallus (Heroic Magisters' Terrace)
+Option	Crystalheart Pulse-Staff Crystalheart Pulse-Staff	Drop: Magtheridon (Magtheridon's Lair)
+Innervate	Nightstaff of the Everliving Nightstaff of the Everliving	Drop: Nightbane (Karazhan)
+Innervate	Staff of Divine Infusion Staff of Divine Infusion	Drop: World Drop
+
+Best in Slot Offhands for Restoration Druid in TBC Classic Phase 5
+Both BiS options here are very solid picks. Book of Highborne Hymns has a good amount of haste on it if needed. Otherwise, Scepter of Purification has slightly higher healing power.
+Rank	Item	Source
+BiS	Book of Highborne Hymns Book of Highborne Hymns	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+BiS	Scepter of Purification Scepter of Purification	Drop: Archimonde (Hyjal Summit)
+PvP	Brutal Gladiator's Reprieve Brutal Gladiator's Reprieve	Vendor: Arena Points (Season 4)
+Option	Tears of Heaven Tears of Heaven	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Touch of Inspiration Touch of Inspiration	Drop: Essence of Anger (Black Temple)
+Option	Windcaller's Orb Windcaller's Orb	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+
+Best in Slot Idols for Restoration Druid in TBC Classic Phase 5
+Idol of the Emerald Queen will be the go-to idol choice as Lifebloom is the name of the game for Resto in TBC. It can be beneficial to run Idol of the Raven Goddess if you are in the same group as the main tank.
+Rank	Item	Source
+BiS	Idol of the Emerald Queen Idol of the Emerald Queen	Drop: Ambassador Hellmaw (Shadow Labyrinth)
+Option	Idol of the Raven Goddess Idol of the Raven Goddess	Quest: Vanquish the Raven God Vanquish the Raven God (Heroic Sethekk Halls)
+Option	Harold's Rejuvenating Broach Harold's Rejuvenating Broach	Quest: The Ultimate Bloodsport The Ultimate Bloodsport
+Kyxie
+WoW Classic Druid Writer
+Starting in 2019, SixPacKyx wrote comprehensive Druid class guides for Classic and Burning Crusade Classic content. The author created detailed guides covering Restoration healing and Balance DPS specializations, including advanced strategies, talent builds, gear recommendations, rotations, consumables, addons, and macros for PvE content.
+1 - 3 of 3
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+1
+
+	
+By draps7 (189 – 1) on 2022/05/07 (Burning Crusade)	
+	
+Innervate Rod of the Blazing Light Kil'jaeden - Sunwell Plateau
+
+This isn't dropped by Kil'Jaeden but dropped by Vexallus in Magister's Terrace
+
+1
+
+	
+By Nihlo (36,706 – 7·30·46) <Rare Premium User> on 2022/05/07 (Burning Crusade)	
+	
+Minor additions:
+
+- The Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration is probably BiS if you are Aldor and the proc adds +heal, it's way worse if you are Scryer and the thing tries to heal.
+- Same with Band of the Eternal Restorer Band of the Eternal Restorer. Those two procs could be so strong that you want to use them both which obvs. leads to new sets reaching your haste goals etc.
+- The Insightful Earthstorm Diamond Insightful Earthstorm Diamond could be neccersarry in some of the fights. To have two T6/SW heads with two different metas would be good. Keep in mind that they need different colours to be activated, so you might need additional items 2x.
+- Darkmoon Card: Blue Dragon Darkmoon Card: Blue Dragon is still a very strong regen trinket.
+- Rod of the Blazing Light Rod of the Blazing Light is a better regen staff than Ethereum Life-Staff Ethereum Life-Staff and easy to get.
+- also easy to get is Kharmaa's Ring of Fate Kharmaa's Ring of Fate which has haste and quite good +heal with a +22heal gem and Life-step Belt Life-step Belt with 2x +22heal gems.
+
+1
+
+	
+
+Profits <Rare Premium User> on 2022/05/10 (Burning Crusade)
+Blue Dragon card is incredibly RNG. Some fights it procs over and over and over, other times it doesn't proc at all. Would much rather go with Memento since it's infinitely more consistent with its regen.
+
+1
+
+	
+By Krust (4,426 – 21·15) on 2022/05/08 (Burning Crusade)	
+	
+Idol of the Crescent Goddess is situationally useful. There's no world in which you cast enough rejuvs to make Harold's a good idea.
+1 - 3 of 3
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+

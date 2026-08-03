@@ -1,0 +1,2839 @@
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase TwoClassesLevelingBest in SlotTier ListsRaidsAttunementsDungeonsReputationsProfessions
+Guides...
+Guide Contents
+Patch 2.5.6
+4.3/5 (10 Votes)
+TBCC Shadow Priest Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Best In Slot Gear in Pre-Raid
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Wands
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Shadow Priest DPS Pre-Raid Best in Slot (BiS) - TBC Classic
+By Passion
+Updated: 2026/07/14
+In this Pre-Raid Best-in-Slot Gear List for Shadow Priest DPS in The Burning Crusade Classic, we will list the recommended gear for Shadow Priest DPS to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Shadow Priest DPS Best in Slot Hub
+
+Best In Slot Gear for Shadow Priest DPS in Pre-Raid
+The gear below is the best you can possibly obtain before entering a Raid, but a lot of it can be replaced very easily in Karazhan, which, after Phase 1, is effectively pre-raid content. Most of the gear comes from Tailoring. Even if you don't intend to keep Tailoring in future Phases, it is vital to have it before entering 25-man raids.
+
+A lot of this gear is also ...of Shadow Wrath. These pieces offer no white stats, but their entire budget is spent on Shadow Damage, meaning that in most cases, they will have significantly more Spell Power than other pieces in the slot. Playing with a lot of ...of Shadow Wrath items will mean you are very squishy, but with smart play, this shouldn't be an issue until Phase 2 Raids, by then you can replace most of them. For most of your gearing until Phase 3, you will be using 3 pieces ...of Shadow Wrath, in your Wrist, Wand, and Back slots.
+
+You will unlikely get some of the items at this point, but they are listed because they are the best option. Items like Ring of the Fallen God Ring of the Fallen God and Band of the Inevitable Band of the Inevitable are from Classic raids. If you have them already, fantastic, you can wear them for a long time. If you don't, I wouldn't worry about getting them; other alternatives aren't quite as good but are significantly easier to get.
+
+Shadow Priests looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Shadow Priest Gems & Enchants
+Should Shadow Priest DPS Choose Aldor or Scryer for BiS in TBC Classic Pre-Raid?
+All of the gear from Aldor or Scryers is entirely negligible and will be replaced as soon as possible, meaning that the important parts are the Shoulder Enchants and the Recipes. Each faction gives a recipe for a Tailoring Leg Enchant: Aldor gives healing, and Scryers gives damage. The actual enchant can be freely traded, and they both tend to sell for around the same price, so this should not impact most players' decisions.
+
+The biggest part of Aldor vs Scryer is the Shoulder Enchant. There are a few Shoulder Enchants that casters consider, and the best one depends entirely on class and spec. For Shadow Priest, the answer is simple, as Aldor provides a significant amount more Spell Power than Scryers and is by far the best Shoulder Enchant for Shadow. If you decide against going with the Aldor, your best option will be Zandalar Signet of Mojo Zandalar Signet of Mojo, but let's be real, no one likes going back to Zul'Gurub, at least not in TBC.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Shadow Priests, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Shadow Priest in TBC Classic Pre-Raid
+The clear winner in this slot is the crafted Spellstrike Hood from Tailoring. This helm is fantastic, especially if you are using the set bonus. The hit is hard to pass up early in gearing, and the massive amount of Spell Power with sockets is more than you'll get anywhere else.
+Rank	Item	Source
+BiS	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Evoker's Helmet of Second Sight Evoker's Helmet of Second Sight	Quest: Teron Gorefiend, I am... Teron Gorefiend, I am... / Teron Gorefiend, I am... Teron Gorefiend, I am...
+Option	Hood of Oblivion Hood of Oblivion	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Mana-Etched Crown Mana-Etched Crown	Drop: Aeonus (The Black Morass)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Evoker's Helmet of Second Sight will likely be your go-to choice if you haven't got a Spellstrike Hood, and it is easy enough to get if you do the quests alongside your attunement quests.
+Rank	Item	Source
+Option	Hydromancer's Headwrap Hydromancer's Headwrap	Quest: The Warlord's Hideout The Warlord's Hideout
+Option	Mag'hari Ritualist's Horns Mag'hari Ritualist's Horns	Quest: Hero of the Mag'har Hero of the Mag'har
+Option	Elementalist Skullcap of Shadow Wrath	Drop: World Drop
+
+Best in Slot Shoulder Armor for Shadow Priest in TBC Classic Pre-Raid
+Frozen Shadoweave Shoulders is without a doubt your best option for this slot and is not beaten as an individual item for a long time. If you absolutely refuse Tailoring, Spaulders of Oblivion will be your next best option, though it is a significant downgrade.
+Rank	Item	Source
+BiS	Frozen Shadoweave Shoulders Frozen Shadoweave Shoulders	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Spaulders of Oblivion Spaulders of Oblivion	Drop: Murmur (Shadow Labyrinth)
+Option	Felstone Mantle of Shadow Wrath	Drop: Morcrush (Blade's Edge Mountains) - can be purchased on the Auction House
+Option	Elementalist Mantle of Shadow Wrath	Drop: World Drop
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+
+Rank	Item	Source
+Option	Incanter's Pauldrons Incanter's Pauldrons	Drop: Warlord Kalithresh (The Steamvault)
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest: The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+
+Best in Slot Back Armor for Shadow Priest in TBC Classic Pre-Raid
+Without a doubt, the best options for this slot are ...of Shadow Wrath items. The other alternatives are miles away in terms of Spell Power, and the Back slot rarely offers a lot of white stats to compensate. The best non ...of Shadow Wrath option is Cloak of the Black Void, a level 69 crafted item.
+Rank	Item	Source
+BiS	Illidari Cloak of Shadow Wrath	Drop: Chief Engineer Lorthander (Netherstorm) - can be purchased on the Auction House
+Option	Amber Cape of Shadow Wrath / Nether Cloak of Shadow Wrath / Ambusher's Cloak of Shadow Wrath	Drop: World Drop
+Option	Striderhide Cloak of Shadow Wrath	Drop: Marticar (Zangarmarsh) - can be purchased on the Auction House
+Option	Cloak of the Black Void Cloak of the Black Void	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+
+Rank	Item	Source
+Option	Cloak of the Devoured Cloak of the Devoured	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Torn-heart Cloak Torn-heart Cloak	Quest: The Cipher of Damnation - The Second Fragment Recovered The Cipher of Damnation - The Second Fragment Recovered
+
+Best in Slot Chest Armor for Shadow Priest in TBC Classic Pre-Raid
+Frozen Shadoweave Robe is another crafted piece that dwarfs the competition. There really is nothing else for this slot until Tier 5. Again, if you don't choose to go Tailoring, the options are limited and significant downgrades. Robe of Oblivion is the best non-crafted option for output, and Robe of the Crimson Order is an OK option if you need a lot of hit.
+Rank	Item	Source
+BiS	Frozen Shadoweave Robe Frozen Shadoweave Robe	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Robe of Oblivion Robe of Oblivion	Drop: Murmur (Shadow Labyrinth)
+Option	Robe of the Crimson Order Robe of the Crimson Order	Drop: World Drop
+Option	Auchenai Anchorite's Robe Auchenai Anchorite's Robe	Quest: Everything Will Be Alright Everything Will Be Alright
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+
+Rank	Item	Source
+Option	Warp Infused Drape Warp Infused Drape	Drop: Warp Splinter (Heroic The Botanica)
+Option	Anchorite's Robes Anchorite's Robes	Vendor: Quartermaster Endarin (The Aldor - Honored)
+Option	Robes of the Augurer Robes of the Augurer	Drop: The Black Stalker (The Underbog)
+Option	Bloodfyre Robes of Annihilation Bloodfyre Robes of Annihilation	Drop: Cache of the Legion (The Mechanar)
+Option	Crystal Webbed Robe Crystal Webbed Robe	Drop: Maexxna (Classic - Naxxramas)
+
+Best in Slot Wrist Armor for Shadow Priest in TBC Classic Pre-Raid
+This is another slot where ...of Shadow Wrath is the clear winner. Bracers don't typically offer much in the way of white stats, and generally have a very small stat budget anyway. If you can't find a decent pair of ...of Shadow Wrath bracers, Bracers of Havok is always available to get crafted.
+Rank	Item	Source
+BiS	Illidari Bindings of Shadow Wrath	Drop: Ambassador Jerrikar (Shadowmoon Valley) - can be purchased on the Auction House
+Option	Elementalist Bracelets of Shadow Wrath / Archmage Bracelets of Shadow Wrath / Eldr'naan Bracelets of Shadow Wrath	Drop: World Drop
+Option	Crocolisk Hide Bindings of Shadow Wrath	Drop: Goretooth (Nagrand) - can be purchased on the Auction House
+Option	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+
+Rank	Item	Source
+Option	Arcanium Signet Bands Arcanium Signet Bands	Drop: Hungarfen (Heroic The Underbog)
+Option	Shattrath Wraps Shattrath Wraps	Quest: The Soul Devices The Soul Devices
+Option	Bands of Negation Bands of Negation	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Crimson Bracers of Gloom Crimson Bracers of Gloom	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+
+Best in Slot Hand Armor for Shadow Priest in TBC Classic Pre-Raid
+The best option in this slot is yet again ...of Shadow Wrath, but there are some easy-to-get options in Phase 1 raids, so I personally wouldn't spend a fortune here. Tempest's Touch is your best option outside of ...of Shadow Wrath items.
+Rank	Item	Source
+BiS	Nethersteel-Lined Handwraps of Shadow Wrath	Drop: Speaker Mar'grom (Blade's Edge Mountains) - can be purchased on the Auction House
+Option	Elementalist Gloves of Shadow Wrath / Archmage Gloves of Shadow Wrath / Eldr'naan Gloves of Shadow Wrath	Drop: World Drop
+Option	Rockwurm Hide Handwraps of Shadow Wrath	Drop: Fulgorge (Hellfire Peninsula) - can be purchased on the Auction House
+Option	Tempest's Touch Tempest's Touch	Quest: Return to Andormu Return to Andormu
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+
+Rank	Item	Source
+Option	Manaspark Gloves Manaspark Gloves	Drop: Hungarfen (The Underbog)
+Option	Jaedenfire Gloves of Annihilation Jaedenfire Gloves of Annihilation	Drop: Ambassador Hellmaw (Shadow Labyrinth)
+Option	Dark Storm Gauntlets Dark Storm Gauntlets	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Ebony Flame Gloves Ebony Flame Gloves	Drop: Ebonroc (Classic - Blackwing Lair)
+Option	Gloves of the Deadwatcher Gloves of the Deadwatcher	Drop: Shirrak the Dead Watcher (Heroic Auchenai Crypts)
+Option	Mana-Etched Gloves Mana-Etched Gloves	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	Uvuros Hide Gloves Uvuros Hide Gloves	Quest: Wanted: Uvuros, Scourge of Shadowmoon Wanted: Uvuros, Scourge of Shadowmoon / Wanted: Uvuros, Scourge of Shadowmoon Wanted: Uvuros, Scourge of Shadowmoon (Shadowmoon Valley)
+Option	Energis Armwraps Energis Armwraps	Drop: High Botanist Freywinn (The Botanica)
+
+Best in Slot Waist Armor for Shadow Priest in TBC Classic Pre-Raid
+The best option here, again, is an ...of Shadow Wrath belt, but they can be kind of hard to come by and cost more than they're worth.
+Rank	Item	Source
+BiS	Voidweave Cilice of Shadow Wrath	Drop: Voidhunter Yar (Nagrand) - can be purchased on the Auction House
+Option	Elementalist Belt of Shadow Wrath / Archmage Belt of Shadow Wrath	Drop: World Drop
+Option	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+Option	Glyph-Lined Sash Glyph-Lined Sash	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+A'dal's Gift is a decent, relatively easy-to-get, option.
+Rank	Item	Source
+Option	A'dal's Gift A'dal's Gift	Quest: How to Break Into the Arcatraz How to Break Into the Arcatraz
+Option	Akama's Sash Akama's Sash	Quest: Akama's Promise Akama's Promise
+Option	Eyestalk Waist Cord Eyestalk Waist Cord	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Belt of Depravity Belt of Depravity	Drop: Harbinger Skyriss (Heroic The Arcatraz)
+Option	Mindfire Waistband Mindfire Waistband	Drop: Keli'dan the Breaker (The Blood Furnace)
+
+Best in Slot Leg Armor for Shadow Priest in TBC Classic Pre-Raid
+Spellstrike Pants is your best option here, with or without the set bonus. Nothing really comes close, outside of World Boss loot. The hit is invaluable and almost impossible to find on any other pre-raid pants. Khadgar's Kilt of Abjuration can hold you over until you get Spellstrike Pants, but they are leagues behind.
+Rank	Item	Source
+BiS	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+Option	Breeches of the Occultist Breeches of the Occultist	Drop: Aeonus (Heroic The Black Morass)
+Option	Kirin Tor Master's Trousers Kirin Tor Master's Trousers	Drop: Murmur (Heroic Shadow Labyrinth)
+Option	Chimaerahide Leggings of Shadow Wrath	Drop: Nuramoc (Netherstorm) - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+
+Rank	Item	Source
+Option	Elementalist Leggings of Shadow Wrath / Archmage Pants of Shadow Wrath	Drop: World Drop
+Option	Khadgar's Kilt of Abjuration Khadgar's Kilt of Abjuration	Drop: Temporus (The Black Morass)
+Option	Devil-Stitched Leggings Devil-Stitched Leggings	Drop: Laj (The Botanica)
+Option	Trousers of Oblivion Trousers of Oblivion	Drop: Talon King Ikiss (Sethekk Halls)
+
+Best in Slot Feet Armor for Shadow Priest in TBC Classic Pre-Raid
+Frozen Shadoweave Boots are absurdly good, and if you stick with Tailoring, these will likely not be replaced until Phase 5, the last Phase of the expansion. Again, if you refuse Tailoring, you'll be massively missing out here, with the next best option being either Shattrath Jumpers from quests, or potentially Rocket Boots Xtreme Lite if you are an Engineer.
+Rank	Item	Source
+BiS	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Shattrath Jumpers Shattrath Jumpers	Quest: Into the Heart of the Labyrinth Into the Heart of the Labyrinth
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Rocket Boots Xtreme Lite Rocket Boots Xtreme Lite	Profession: Engineering (330) required to equip - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+
+Rank	Item	Source
+Option	Abyssal Cloth Footwraps of Shadow Wrath	Drop: Kraator (Shadowmoon Valley) - can be purchased on the Auction House
+Option	Elementalist Boots of Shadow Wrath / Archmage Slippers of Shadow Wrath	Drop: World Drop
+Option	Embroidered Spellpyre Boots Embroidered Spellpyre Boots	Drop: Broggok (Heroic The Blood Furnace)
+Option	Boots of the Darkwalker Boots of the Darkwalker	Drop: Watchkeeper Gargolmar (Heroic Hellfire Ramparts)
+
+Best in Slot Neck Jewelry for Shadow Priest in TBC Classic Pre-Raid
+The pre-raid options here are not very interesting. Choker of the Fire Lord is a great item, if you got it in Classic, but absolutely not worth farming for now. Pendant of Dominance is slightly better when you place a red spell power gem into the socket.
+
+I personally recommend grabbing Eye of the Night, Chain of the Twilight Owl, and Jade Pendant of Blasting, rotating between their on-use abilities in Raids.
+Rank	Item	Source
+BiS	Pendant of Dominance Pendant of Dominance	Vendor: Honor Points (PvP)
+BiS	Choker of the Fire Lord Choker of the Fire Lord	Drop: Ragnaros (Classic - Molten Core)
+BiS	Natasha's Arcane Filament Natasha's Arcane Filament	Quest: The Hound-Master The Hound-Master
+BiS	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+BiS	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Natasha's Arcane Filament is okay and readily available from quests.
+Rank	Item	Source
+Option	Natasha's Ember Necklace Natasha's Ember Necklace	Quest: The Hound-Master The Hound-Master
+Option	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+Option	Jade Pendant of Blasting Jade Pendant of Blasting	Profession: Jewelcrafting - can be purchased on the Auction House
+
+Best in Slot Ring Jewelry for Shadow Priest in TBC Classic Pre-Raid
+Rings are rough slots for Shadow Priests in pre-raid. Most of your best options come from Classic Raids, but are, for the most part, not worth farming unless you really want to minmax. Ring slots are a great spot to make up for missing Hit without losing too much Spell Power.
+
+Seal of the Exorcist is incredibly easy to get, potentially even before hitting 70 if you are leveling in dungeons. Cobalt Band of Tyrigosa is your best option for a non-Classic ring until Phase 2 raids, but it is a pretty low drop rate Epic from a final Heroic boss, meaning you only get one try daily.
+Rank	Item	Source
+BiS	Ring of the Fallen God Ring of the Fallen God	Drop: C'Thun (Classic - Ahn'Qiraj)
+BiS	Band of the Inevitable Band of the Inevitable	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+BiS	Cobalt Band of Tyrigosa Cobalt Band of Tyrigosa	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+BiS	Seal of the Exorcist Seal of the Exorcist	Vendor: Spirit Sage Gartok / Spirit Sage Zran (50 Spirit Shard Spirit Shard)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Band of Dark Dominion Band of Dark Dominion	Drop: Death Talon Overseer, Blackwing Warlock, & Blackwing Spellbinder (Classic - Blackwing Lair)
+Option	Ring of Spell Power Ring of Spell Power	Drop: Gehennas, Sulfuron Harbinger, Lucifron, & Shazzrah (Classic - Molten Core)
+Option	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+Option	Band of Dominion Band of Dominion	Drop: World Drop
+Option	Evoker's Mark of the Redemption Evoker's Mark of the Redemption	Quest: Dissension Amongst the Ranks... Dissension Amongst the Ranks... / Dissension Amongst the Ranks... Dissension Amongst the Ranks...
+Option	Manastorm Band Manastorm Band	Quest: Shutting Down Manaforge Ara Shutting Down Manaforge Ara
+Option	Ashyen's Gift Ashyen's Gift	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+
+Best in Slot Trinkets for Shadow Priest in TBC Classic Pre-Raid
+Icon of the Silver Crescent is bought with Badges of Justice and should be bought as soon as you possibly can. This trinket will likely last you until Phase 4, and having on-demand Spell Power is incredible for Shadow Priests.
+
+If you got Mark of the Champion during Classic, you're in luck. This trinket will be the Best in Slot choice against Undead and Demons for the majority of TBC. Unlike the other Classic items listed here, this item could absolutely be worth farming for you. It is a guaranteed drop from Kel'Thuzad, so if you can manage to soft reserve or even hard reserve it, it is absolutely worth the effort.
+
+Quagmirran's Eye will likely be your go-to trinket for a while. The haste proc can feel kind of volatile at times, and losing most of a proc to Mind Flay always feels bad, but if the proc hits right, it is a fantastic DPS boost.
+Rank	Item	Source
+BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+BiS	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+BiS	Mark of the Champion Mark of the Champion	Drop: Kel'Thuzad (Classic - Naxxramas)
+Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+Option	Glowing Crystal Insignia Glowing Crystal Insignia
+Ancient Crystal Talisman Ancient Crystal Talisman	Quest: Overlord Gorefist Overlord Gorefist / A Spirit Ally? A Spirit Ally?
+Option	Arcanist's Stone Arcanist's Stone	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Terokkar Tablet of Vim Terokkar Tablet of Vim	Quest: Torgos! Torgos! / Torgos! Torgos!
+Option	Starkiller's Bauble Starkiller's Bauble	Quest: The Horrors of Pollution The Horrors of Pollution
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Mark of Defiance Mark of Defiance
+Mark of Defiance Mark of Defiance	Vendor: Alliance Field Scout / Horde Field Scout (30 Mark of Honor Hold Mark of Honor Hold / Mark of Thrallmar Mark of Thrallmar)
+
+Best in Slot Weapons for Shadow Priest in TBC Classic Pre-Raid
+Gavel of Unearthed Secrets will, in most cases, be your best pre-raid weapon. It is not strictly the best option pre-raid, but it is very easy to obtain, and it isn't significantly worse than most alternatives. Eternium Runed Blade is slightly better, but costs much more than it's worth, especially when you can replace it in Karazhan.
+Rank	Item	Source
+BiS	Gavel of Unearthed Secrets Gavel of Unearthed Secrets	Vendor: Nakodu (Lower City Exalted)
+BiS	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+BiS	Gladiator's Spellblade Gladiator's Spellblade
+Gladiator's Gavel Gladiator's Gavel	Vendor: Arena Points (Season 1)
+Option	Sky Breaker Sky Breaker	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Option	Starlight Dagger Starlight Dagger	Drop: Mennu the Betrayer (Heroic The Slave Pens)
+Option	Runesong Dagger Runesong Dagger	Drop: Warbringer O'mrogg (The Shattered Halls)
+Option	Bleeding Hollow Warhammer Bleeding Hollow Warhammer	Drop: Quagmirran (Heroic The Slave Pens)
+
+Best in Slot Offhands for Shadow Priest in TBC Classic Pre-Raid
+Orb of the Soul-Eater is without a doubt the best option, readily available for Badges of Justice. Any other option will just be to fill the slot until you can afford it.
+Rank	Item	Source
+BiS	Orb of the Soul-Eater Orb of the Soul-Eater	Vendor: G'eras (Badges of Justice)
+Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Option	Draenei Crystal Rod of Shadow Wrath / Tuurik Torch of Shadow Wrath	Drop: World Drop
+Option	Tome of Shadow Force Tome of Shadow Force	Vendor: Honor Points (PvP)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+The Saga of Terokk, from Terokk's Legacy, can also be used to tide you over until you can afford Orb of the Soul-Eater.
+Rank	Item	Source
+Option	The Saga of Terokk The Saga of Terokk	Quest: Terokk's Legacy Terokk's Legacy (Sethekk Halls)
+
+Best in Slot Wands for Shadow Priest in TBC Classic Pre-Raid
+...of Shadow Wrath Wands are potentially what you will end up using all the way until Zul'Aman in Phase 4. This slot generally provides next to no white stats, so using ...of Shadow Wrath here sacrifices very little. Even if you can't get the maximum roll, they are still significantly better than the competition.
+Rank	Item	Source
+BiS	Flawless Wand of Shadow Wrath	Drop: World Drop
+Option	Dragonscale Wand of Shadow Wrath / Draenethyst Wand of Shadow Wrath	Drop: World Drop
+Option	The Black Stalk The Black Stalk	Drop: The Black Stalker (Heroic The Underbog)
+Option	Wand of the Seer Wand of the Seer	Quest: Turning Point Turning Point
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+Rank	Item	Source
+Option	Nether Core's Control Rod Nether Core's Control Rod	Drop: Dalliah the Doomsayer (The Arcatraz)
+Option	Wand of the Netherwing Wand of the Netherwing	Drop: Blackheart the Inciter (Shadow Labyrinth)
+Option	Mechano-Wand of Shadow Wrath / Nobility Torch of Shadow Wrath / Solitaire Wand of Shadow Wrath / Majestic Wand of Shadow Wrath	Drop: World Drop
+
+Passion
+World of Warcraft Classic Class Lead
+Passion has been an avid MMORPG player for the better part of the last two decades, playing everything from Everquest and Tibia, to Hellgate: London and Global Agenda. With a particular love for the ever-evaporating Support role, such as the Bard class from Rift Online, Final Fantasy XI, and Everquest, the return of Support Shadow Priest in the Burning Crusade Classic was inescapable.
+
+Moving from writing and sharing guides in Class Discords, they got their start as the Classic WoW Shadow Priest Expert for Wowhead.
+1 - 8 of 8
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+1
+
+	
+By tnayr (4,173 – 10·16) on 2021/04/29 (Burning Crusade)	
+	
+Band of the Inevitable drops off of Noth not Heigan
+
+1
+
+	
+By Muhkoo (43,320 – 2·24·20) <Rare Premium User> on 2021/05/21 (Burning Crusade)	
+	
+The Wand, Illidari Rod of Discipline is from a quest related to the netherwing faction. Given that we have no idea when netherwing will be in the game (was originally in patch 2.1) It probably won't be obtainable at launch. Granted it is not the biggest source of spellpower, it is unfortunate to lose what looks like an easy to obtain item from an otherwise very expensive list.
+
+1
+
+	
+By Svarted0den (676 – 4·2) on 2021/05/31 (Burning Crusade)	
+	
+No worth mentioning the pvp neck? Seems pretty solid to me. The one from 10 EotS marks.
+
+1
+
+	
+By kerui (2,959 – 20·16) on 2021/06/11 (Burning Crusade)	
+	
+Manastorm Band is only obtainable if you are Scryer FYI.
+
+1
+
+	
+By Zoura (20,940 – 4·13·24) on 2021/06/12 (Burning Crusade)	
+	
+What about jaedenfire gloves of annihilation from shadowlabs?
+
+1
+
+	
+By CAPSLOCKMAN (1,290 – 2·5) on 2026/02/13 (Burning Crusade)	
+	
+Patch 2.5.5 (TBC Classic Anniv.)
+Rumor has it, "the epic pvp gear is not available until the 17th when the arena season starts"
+
+On Feb13, I visited Master Sergeant Biggins through the portal in Stormwind, but he isn't selling the Pendant of Dominance.
+Last edited by CAPSLOCKMAN on 2026/02/13
+
+1
+
+	
+By darkscorpion20 (2,638 – 21·10) on 2026/03/21 (Burning Crusade)	
+	
+Couple items to mention.
+
+The "Consortium Prince's Wrap" is a pretty solid belt for raw spell power and crit. With how expensive gems can be when you start out at 70 I would recommend this over Mindfire Waistband as a cheaper option.
+
+Also "Ryngo's Band of Ingenuity" is a good ring from normal Arcatraz.
+Last edited by darkscorpion20 on 2026/03/21
+
+-4
+
+	
+By benedekf (17,002 – 4·14·39) on 2021/08/02 (Burning Crusade)	
+	
+Please mention in the guide that the Hood of Oblivion Hood of Oblivion, Spaulders of Oblivion Spaulders of Oblivion, Robe of Oblivion Robe of Oblivion, Trousers of Oblivion Trousers of Oblivion and Gloves of Oblivion Gloves of Oblivion are parts of the warlock dungeon set Oblivion Raiment.
+Please don't roll need against a warlock on these items, only if you asked him/her before. Imagine how frustrating is when one of your set items finally drops, and someone with a different class gets it.
+Last edited by benedekf on 2021/08/02
+1 - 8 of 8
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+3.6/5 (7 Votes)
+TBCC Shadow Priest Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+            Best In Slot Gear in Phase 1
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Wands
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Shadow Priest DPS Phase 1 Best in Slot (BiS) - TBC Classic
+By Passion
+Updated: 2026/02/19
+In this Pre-Raid Best-in-Slot Gear List for Shadow Priest DPS in The Burning Crusade Classic, we will list the recommended gear for Shadow Priest DPS to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Shadow Priest DPS Best in Slot Hub
+
+Best In Slot Gear for Shadow Priest DPS in Phase 1
+The absolute BiS set uses ...of Shadow Wrath in 6 slots, ending up with just over 5000 Health and Mana. Even ignoring that this set is likely to get you killed because of this, the set is also almost impossible to actually achieve in-game, using all 3 ...of Shadow Wrath pieces from Karazhan, when most people will never even see one drop.
+
+Luckily, Shadow Priests can move a lot of gear around to deal with these issues. You absolutely do not need to wear any of the ...of Shadow Wrath pieces, and they all have solid alternatives.
+
+Shadow Priests looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Shadow Priest Gems & Enchants
+Should Shadow Priest DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 1?
+All of the gear from Aldor or Scryers is entirely negligible and will be replaced as soon as possible, meaning that the important parts are the Shoulder Enchants and the Recipes. Each faction gives a recipe for a Tailoring Leg Enchant: Aldor gives healing, and Scryers gives damage. The actual enchant can be freely traded, and they both tend to sell for around the same price, so this should not impact most players' decisions.
+
+The biggest part of Aldor vs Scryer is the Shoulder Enchant. There are a few Shoulder Enchants that casters consider, and the best one depends entirely on class and spec. For Shadow Priest, the answer is simple, as Aldor provides a significant amount more Spell Power than Scryers and is by far the best Shoulder Enchant for Shadow. If you decide against going with the Aldor, your best option will be Zandalar Signet of Mojo Zandalar Signet of Mojo, but let's be real, no one likes going back to Zul'Gurub, at least not in TBC.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Shadow Priests, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Shadow Priest in TBC Classic Phase 1
+Even with gear from Raids, your head slot options do not change. Spellstrike Hood remains the best choice by far. The Tier 4 helmet Incarnate Soul-Collar of the Incarnate is not as good but is "free", though it should absolutely not be a priority for Shadow Priests. Collar of Cho'gall is a cheaper filler that will save you on gem costs, but you will need to make up hit elsewhere, losing you more than you gain in the end.
+Rank	Item	Source
+BiS	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Collar of Cho'gall Collar of Cho'gall	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Soul-Collar of the Incarnate Soul-Collar of the Incarnate	Drop: Prince Malchezaar (Karazhan)
+Option	Evoker's Helmet of Second Sight Evoker's Helmet of Second Sight	Quest: Teron Gorefiend, I am... Teron Gorefiend, I am... / Teron Gorefiend, I am... Teron Gorefiend, I am...
+Best in Slot Shoulder Armor for Shadow Priest in TBC Classic Phase 1
+Another slot that is not impacted by Raid loot in Phase 1. Frozen Shadoweave Shoulders remains the best choice by far. Soul-Mantle of the Incarnate is the tiniest bit better than Spaulders of Oblivion.
+Rank	Item	Source
+BiS	Frozen Shadoweave Shoulders Frozen Shadoweave Shoulders	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Soul-Mantle of the Incarnate Soul-Mantle of the Incarnate	Drop: High King Maulgar (Gruul's Lair)
+Option	Spaulders of Oblivion Spaulders of Oblivion	Drop: Murmur (Shadow Labyrinth)
+Best in Slot Back Armor for Shadow Priest in TBC Classic Phase 1
+Your Best in Slot options for this slot do not change from Pre-BiS, but Raid content adds a lot of filler pieces, hit pieces, and Stamina pieces. I recommend finding your way to one Back item with Stamina on it, even if you don't use it most of the time, it could help you out in Phase 2 content.
+Rank	Item	Source
+BiS	Illidari Cloak of Shadow Wrath	Drop: Chief Engineer Lorthander (Netherstorm) - can be purchased on the Auction House
+Option	Amber Cape of Shadow Wrath / Nether Cloak of Shadow Wrath / Ambusher's Cloak of Shadow Wrath	Drop: World Drop
+Option	Striderhide Cloak of Shadow Wrath	Drop: Marticar (Zangarmarsh) - can be purchased on the Auction House
+Option	Shadow-Cloak of Dalaran Shadow-Cloak of Dalaran	Drop: Moroes (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+Option	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Chest Armor for Shadow Priest in TBC Classic Phase 1
+Crafted reigns supreme, yet again. Shroud of the Incarnate can be used in a pinch if you refuse to level Tailoring.
+Rank	Item	Source
+BiS	Frozen Shadoweave Robe Frozen Shadoweave Robe	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Shroud of the Incarnate Shroud of the Incarnate	Drop: Magtheridon (Magtheridon's Lair)
+Option	Robe of Oblivion Robe of Oblivion	Drop: Murmur (Shadow Labyrinth)
+Option	Robe of the Crimson Order Robe of the Crimson Order	Drop: World Drop
+Best in Slot Wrist Armor for Shadow Priest in TBC Classic Phase 1
+Ravager's Cuffs of Shadow Wrath is a pumped-up version of Illidari Bindings of Shadow Wrath, giving 13 Shadow Damage more. This item is incredibly rare, and you will likely never see it even if you attempt to farm for it. ...of Shadow Wrath beats non-random rolled loot by upwards of 15 Spell Power. Nothing else comes close yet.
+Rank	Item	Source
+BiS	Ravager's Cuffs of Shadow Wrath	Drop: Rokad the Ravager (Karazhan)
+BiS	Illidari Bindings of Shadow Wrath	Drop: Ambassador Jerrikar (Shadowmoon Valley) - can be purchased on the Auction House
+Option	Elementalist Bracelets of Shadow Wrath / Archmage Bracelets of Shadow Wrath / Eldr'naan Bracelets of Shadow Wrath	Drop: World Drop
+Option	Crocolisk Hide Bindings of Shadow Wrath	Drop: Goretooth (Nagrand) - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+Option	Bands of Nefarious Deeds Bands of Nefarious Deeds	Drop: Maiden of Virtue (Karazhan)
+Option	Harbinger Bands Harbinger Bands	Drop: Attumen the Huntsman (Karazhan)
+
+Best in Slot Hand Armor for Shadow Priest in TBC Classic Phase 1
+Finally, a slot that is actually improved by the addition of Raid loot. Phase 1 Raiding adds Soul-Eater's Handwraps, a pair of Gloves that is just barely beaten by Nethersteel-Lined Handwraps of Shadow Wrath but providing a significant amount of Stamina, which can be helpful in Serpentshrine Cavern in Phase 2. Handwraps of Flowing Thought also get added, becoming a very important item for Priests that don't have access to the the Draenei Racial Inspiring Presence in order to reach Hit Cap.
+Rank	Item	Source
+BiS	Nethersteel-Lined Handwraps of Shadow Wrath	Drop: Speaker Mar'grom (Blade's Edge Mountains) - can be purchased on the Auction House
+BiS	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+Option	Elementalist Gloves of Shadow Wrath	Drop: World Drop
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss)
+
+Best in Slot Waist Armor for Shadow Priest in TBC Classic Phase 1
+Lurker's Cord of Shadow Wrath gives an absurd 78 Shadow Damage, demolishing any competition. This item is incredibly rare, and you will likely never see it even if you attempt to farm for it. Belt of Divine Inspiration is a great option until Belt of Blasting is added in Phase 2.
+Rank	Item	Source
+BiS	Lurker's Cord of Shadow Wrath	Drop: Hyakiss the Lurker (Karazhan)
+BiS	Belt of Divine Inspiration Belt of Divine Inspiration	Drop: High King Maulgar (Gruul's Lair)
+Option	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+Best in Slot Leg Armor for Shadow Priest in TBC Classic Phase 1
+Spellstrike Pants remains at the top if you are a Tailor, but if you aren't activating Spellstrike Infusion and can make up for the 4 Hit lost, Leggings of the Seventh Circle become a real contender if you can get a hold of them. Trial-Fire Trousers are okay, but nothing worth prioritizing.
+Rank	Item	Source
+BiS	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+BiS	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+Option	Trial-Fire Trousers Trial-Fire Trousers	Drop: Opera Event (Karazhan)
+Option	Breeches of the Occultist Breeches of the Occultist	Drop: Aeonus (Heroic The Black Morass)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+
+Rank	Item	Source
+Option	Kirin Tor Master's Trousers Kirin Tor Master's Trousers	Drop: Murmur (Heroic Shadow Labyrinth)
+
+Best in Slot Feet Armor for Shadow Priest in TBC Classic Phase 1
+Glider's Foot-Wraps of Shadow Wrath just barely give more damage than Frozen Shadoweave Boots, but without requiring Tailoring. This item is incredibly rare, and you will likely never see it even if you attempt to farm for it. Frozen Shadoweave Boots remain just as absurdly powerful as in Pre-BiS. If you refuse Tailoring, Boots of Foretelling can be used as a filler if you don't need hit, or Ruby Slippers if you do need hit.
+Rank	Item	Source
+BiS	Glider's Foot-Wraps of Shadow Wrath	Drop: Shadikith the Glider (Karazhan)
+BiS	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+Option	Ruby Slippers Ruby Slippers	Drop: The Crone (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+
+Rank	Item	Source
+Option	Shattrath Jumpers Shattrath Jumpers	Quest: Into the Heart of the Labyrinth Into the Heart of the Labyrinth
+
+Best in Slot Neck Jewelry for Shadow Priest in TBC Classic Phase 1
+Karazhan adds an absolutely perfect Neck for Shadow Priests. Ritssyn's Lost Pendant from trash mobs will last you until at least Phase 3 and should be entirely uncontested. The Jewelcrafting Necks Eye of the Night and Chain of the Twilight Owl are absolutely still worth using in Raids, switching back to Ritssyn's Lost Pendant between uses.
+Rank	Item	Source
+BiS	Ritssyn's Lost Pendant Ritssyn's Lost Pendant	Drop: Trash (Karazhan)
+BiS	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+BiS	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+Option	Jade Pendant of Blasting Jade Pendant of Blasting	Profession: Jewelcrafting - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Pendant of Dominance Pendant of Dominance	Vendor: Honor Points (PvP)
+Option	Choker of the Fire Lord Choker of the Fire Lord	Drop: Ragnaros (Classic - Molten Core)
+Option	Natasha's Arcane Filament Natasha's Arcane Filament	Quest: The Hound-Master The Hound-Master
+
+Best in Slot Ring Jewelry for Shadow Priest in TBC Classic Phase 1
+Rings are barely changed from Pre-BiS, the main addition being Band of Crimson Fury if you need a chunk of Hit and don't happen to have Classic Rings. Otherwise, the Classic Ring duo remains at the top. Ring of Recurrence is good, but a Shadow Priest should never take it before any other caster.
+Rank	Item	Source
+BiS	Ring of the Fallen God Ring of the Fallen God	Drop: C'Thun (Classic - Ahn'Qiraj)
+BiS	Band of the Inevitable Band of the Inevitable	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+BiS	Ring of Recurrence Ring of Recurrence	Drop: Dust Covered Chest (Karazhan)
+BiS	Cobalt Band of Tyrigosa Cobalt Band of Tyrigosa	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+BiS	Band of Crimson Fury Band of Crimson Fury	Drop: Magtheridon (Magtheridon's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Violet Signet and all its upgrades on the way to Violet Signet of the Archmage are perfectly fine filler rings that are guaranteed from reputation.
+Rank	Item	Source
+Option	Seal of the Exorcist Seal of the Exorcist	Vendor: Spirit Sage Gartok / Spirit Sage Zran (50 Spirit Shard Spirit Shard)
+Option	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Path of the Violet Mage Path of the Violet Mage (The Violet Eye Exalted)
+Option	Band of Dark Dominion Band of Dark Dominion	Drop: Death Talon Overseer, Blackwing Warlock, & Blackwing Spellbinder (Classic - Blackwing Lair)
+Option	Ring of Spell Power Ring of Spell Power	Drop: Gehennas, Sulfuron Harbinger, Lucifron, & Shazzrah (Classic - Molten Core)
+Option	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+Option	Ashyen's Gift Ashyen's Gift	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+
+Best in Slot Trinkets for Shadow Priest in TBC Classic Phase 1
+Trinket choice is mostly unchanged from Pre-BiS, the only addition being Eye of Magtheridon. This Trinket should ideally be swapped with Quagmirran's Eye, depending on fight length. Eye of Magtheridon is the better choice on longer fights (>60 seconds), and Quagmirran's Eye is the better choice on shorter fights (<60 seconds). Mark of the Champion, from Classic, is very good but only against Undead and Demons.
+Rank	Item	Source
+BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+BiS	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+BiS	Eye of Magtheridon Eye of Magtheridon	Drop: Magtheridon (Magtheridon's Lair)
+BiS	Mark of the Champion Mark of the Champion	Quest: The Phylactery of Kel'Thuzad The Phylactery of Kel'Thuzad (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+
+Best in Slot Weapons for Shadow Priest in TBC Classic Phase 1
+Karazhan adds Nathrezim Mindblade, an item many Shadow Priests will become very familiar with, potentially using it all the way until the final boss of Black Temple. One-handed weapons paired with an off-hand are significantly better than any staves available.
+Talon of the Tempest is also a great option as it has the potential to grant more Spell Power when gemmed with 2 Spell Power gems however, expect this weapon to be difficult to get a hold of as it is awarded from a world boss.
+Rank	Item	Source
+BiS	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+BiS	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+PvP	Gladiator's Spellblade Gladiator's Spellblade
+Gladiator's Gavel Gladiator's Gavel	Vendor: Arena Points (Season 1)
+Option	Gavel of Unearthed Secrets Gavel of Unearthed Secrets	Vendor: Nakodu (Lower City Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Option	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+
+Best in Slot Offhands for Shadow Priest in TBC Classic Phase 1
+Nothing changes here at all. Orb of the Soul-Eater is still the best option, as well as being incredibly easy to get.
+Rank	Item	Source
+BiS	Orb of the Soul-Eater Orb of the Soul-Eater	Vendor: G'eras (Badges of Justice)
+Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Best in Slot Wands for Shadow Priest in TBC Classic Phase 1
+Nothing should change here either; the only notable addition is Tirisfal Wand of Ascendancy if you are absolutely desperate for Hit.
+
+...of Shadow Wrath Wands are potentially what you will end up using all the way until Zul'Aman in Phase 4. This slot generally provides next to no white stats, so using ...of Shadow Wrath here sacrifices very little. Even if you can't get the maximum roll, they are still significantly better than the competition.
+Rank	Item	Source
+BiS	Flawless Wand of Shadow Wrath	Drop: World Drop
+Option	The Black Stalk The Black Stalk	Drop: The Black Stalker (Heroic The Underbog)
+Option	Dragonscale Wand of Shadow Wrath / Draenethyst Wand of Shadow Wrath	Drop: World Drop
+Option	Tirisfal Wand of Ascendancy Tirisfal Wand of Ascendancy	Drop: Shade of Aran (Karazhan)
+Passion
+World of Warcraft Classic Class Lead
+Passion has been an avid MMORPG player for the better part of the last two decades, playing everything from Everquest and Tibia, to Hellgate: London and Global Agenda. With a particular love for the ever-evaporating Support role, such as the Bard class from Rift Online, Final Fantasy XI, and Everquest, the return of Support Shadow Priest in the Burning Crusade Classic was inescapable.
+
+Moving from writing and sharing guides in Class Discords, they got their start as the Classic WoW Shadow Priest Expert for Wowhead.
+1 - 11 of 11
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+5
+
+	
+By feelzie (605 – 2·2) on 2021/05/20 (Burning Crusade)	
+	
+I might not have the correct numbers, but arent the of shadow wrath pieces from the animal bosses in karazhan BIS for wrists and belt? wrists seem to be 52 shadow damage and belt seems to be 78 shadow damage. maybe the raw stats are important. i dont know.
+Last edited by feelzie on 2021/05/20
+
+0
+
+	
+
+Axxelsian <Rare Premium User> on 2021/06/14 (Burning Crusade)
+This is especially true if you're grouped with an elemental shaman, giving you 4% additional hit, and making you look for high SP only items, whether the epics from the basement, or high SP greens. You do want to be careful slotting too much of the high SP items into your build, as higher mana pools will help for longer fights. In the early phases, having 1-2 of these items work just fine.
+
+2
+
+	
+By Strykie (8,954 – 1·21·36) on 2021/04/28 (Burning Crusade)	
+	
+Spellpower + Hit gems were added in Patch 2.1 / Phase 3, Hyjal/BT.
+
+Shadow Priests WILL oom on longer fights.
+Low/No spirit gear will be an issue.
+Last edited by Strykie on 2021/04/28
+
+2
+
+	
+By Toshthebeloved (2,004 – 8·6) on 2021/06/10 (Burning Crusade)	
+	
+My green Draenethyst Wand of Shadow Wrath is a whopping 24 Shadow Damage and is better than all those wands with pure spell damage.
+Last edited by Toshthebeloved on 2021/06/10
+
+0
+
+	
+
+Axxelsian <Rare Premium User> on 2021/06/14 (Burning Crusade)
+The green wands can drop up to 25SP, and are arguably better for the wand slot. If you're grouped with an elemental shaman you're going to be trying to shed hit gear as much as possible, and this is an easy slot to do so.
+
+0
+
+	
+
+Toshthebeloved on 2021/07/28 (Burning Crusade)
+haha! yeah! i was able to pick up the 25sp wand! so nice.
+
+2
+
+	
+By knyckis (5,433 – 1·6·6) on 2021/07/02 (Burning Crusade)	
+	
+As noted by Krust, Illidari Rod of Discipline does not seem to be in the game yet. I cannot seem to get quests beyond "Ally of the Netherwing", and a little googling suggests that the rest is added in P2 or P3 (e.g. here https://us.forums.blizzard.com/en/wow/t/netherwing-rep-bug-or-phase-locked/994737)
+Last edited by knyckis on 2021/07/02
+
+1
+
+	
+By JustZhloe (482 – 1·3) on 2021/04/28 (Burning Crusade)	
+	
+How about Enchant Weapon - Soulfrost Enchant Weapon - Soulfrost as enchant ?
+
+1
+
+	
+
+Vaelis <Rare Premium User> on 2021/04/28 (Burning Crusade)
+I did mention it in my other resources, but sort of eluded me here when re-editing layout. Thanks for pointing out!
+
+1
+
+	
+By dieSeife (3,718 – 1·17·22) on 2021/06/09 (Burning Crusade)	
+	
+Can we stop with the meme that spell crit is "useless" for shadow priests?
+
+-1
+
+	
+
+PinkHair2 on 2021/06/11 (Burning Crusade)
+Its not useless at all just got to make sure to keep VE up on target you are SWDing
+
+1
+
+	
+
+dieSeife on 2021/06/18 (Burning Crusade)
+If healers aren't ready to heal your SWD dmg, that's a problem VE won't really get you out of.
+
+1
+
+	
+
+mangaguy2000 on 2021/06/28 (Burning Crusade)
+Death happens every twelve seconds. Also, you should take a look and see what is going on in the raid to see if pressing death would be okay.
+
+0
+
+	
+
+Vivien on 2026/03/02 (Burning Crusade)
+useless before wotlk
+
+1
+
+	
+By Joure (358 – 1·3) on 2021/06/28 (Burning Crusade)	
+	
+Thanks or the guide, after reading it i do have some questions:
+
+1 How do you socket red gems in blue/yellow slots?
+2 Why is crit considered useless? I mean yes dots cannot crit and make up most of your dmg but if you play it well (which includes minblast and swd usage on cd) those crits are definetly a big + for dps and so certainly not useless the way i see it, or am i missing something here?
+
+0
+
+	
+
+mangaguy2000 on 2021/06/28 (Burning Crusade)
+1. You can just put them in. The only thing you cannot do is put a coloured gem into a meta socket. You will not get the socket bonus if you put reds into blue/yellows, but it's generally worth it. 2. Crit is not useless but it is generally not as good as SP. Though if you can get 1% crit and lose 4SP, that's fine. People that go max SP without any thought to other stats don't actually play Spriest very well at all.
+
+1
+
+	
+By Jaesoni2019 (1,146 – 4·9) on 2021/07/24 (Burning Crusade)	
+	
+Looking at the quest Subdue the Subduer Subdue the Subduer, I am guessing Illidari Rod of Discipline Illidari Rod of Discipline does not actually exist in Phase 1.
+
+0
+
+	
+By Krust (4,426 – 21·15) on 2021/05/24 (Burning Crusade)	
+	
+Is Rod of Illidari Discipline in the game? I thought that quest was added early WotLK or pre-patch for WotLK
+
+-1
+
+	
+By legoman60 (8,921 – 1·22·42) on 2021/09/11 (Burning Crusade)	
+	
+lulululul "maximum output" is 5/5 blackout
+
+-1
+
+	
+By Budden (8,718 – 1·13·17) on 2026/03/20 (Burning Crusade)	
+	
+if spell power is so crucial and the main stat for shadow priests, why is the chest from nightbane not mentioned when it gives a huge 130 spell power proc?
+1 - 11 of 11
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+3.2/5 (9 Votes)
+TBCC Shadow Priest Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+            Best In Slot Gear in Phase 2
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Wands
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Shadow Priest DPS Best in Slot (BiS) Phase 2 Gear Guide - TBC Classic
+By Passion
+Updated: 2026/05/12
+Welcome to Wowhead's Best in Slot Gear list from Tempest Keep and Serpentshrine Cavern for Shadow Priest DPS in The Burning Crusade Classic. This guide will list the recommended gear for Shadow Priest DPS to acquire while they progress during the second phase of The Burning Crusade Classic, and contains gear sourced from Tempest Keep and Serpentshrine Cavern, plus other pieces from previous phases like Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best in slot lists, including a TBCC pre-patch list and a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Shadow Priest DPS Best in Slot HubShadow Priest DPS Pre-Raid Best in Slot
+
+Best In Slot Gear for Shadow Priest DPS in Phase 2
+Shadow Priest gearing is fairly straightforward. Your goal in the early Phases is to get as much Spell Power as you possibly can.
+
+    Spell Power - This is your main stat for almost all of The Burning Crusade, and outvalues almost every other stat available.
+    Spell Critical Strike Rating - Critical rating is mostly wasted on Shadow Priests, as only two of your five spells can crit. You can typically assume that 6 Spell Critical is worth one Spell Power.
+    Spell Hit Rating - Spell Hit has a few breakpoints that are relevant. The first one is 76 rating, putting you at 6% bonus chance to Hit with spells, enough to be Hit capped against all enemies when combined with 5 points in Shadow Focus. As you get more gear, you may end up over the Hit cap. If you are 2% over the Hit cap, you can remove a point in this talent and put it elsewhere.
+    Spell Penetration - This stat is almost entirely wasted in PvE content, as Curse of the Elements will, in almost every situation, reduce the enemies' Shadow Resistance to 0.
+    Stamina - A mostly incidental stat. Most gear has Stamina, and there are very few situations where you would need to prioritize more.
+    Intellect - Governs your mana pool and gives a very small amount of Spell Critical. Rarely relevant for deciding gear pieces, but it can be beneficial.
+    Spirit and Mana Per 5 Seconds - These stats give mana regeneration, which substantially affects your longevity in combat. Spirit is more valuable for Shadow Priests because of Spirit Tap, but neither is a deciding factor when choosing gear. The exception to this is if you will be raiding with a Priest specced into Improved Divine Spirit. In this case, roughly 10 Spirit is equivalent to one Spell Power.
+
+    Shadow Priests looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+    Shadow Priest Gems & Enchants
+    Should Shadow Priest DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 2?
+    By Phase 2, you will likely have replaced all Aldor or Scryers' gear, so the biggest part of Aldor vs Scryer is the Shoulder Enchant. There are a few Shoulder Enchants that casters consider, and the best one depends entirely on class and spec.
+
+    For Shadow Priests, though, the answer is simple. Aldor provides a significant amount more Spell Power than Scryers and is by far the best Shoulder Enchant for Shadow. If you decide against going Aldor, your best option will be Zandalar Signet of Mojo Zandalar Signet of Mojo, but let's be real, no one likes going back to Zul'Gurub, at least not in TBC.
+
+    Reputations Overview TBC Classic
+    Best in Slot Head Armor for Shadow Priest in TBC Classic Phase 2
+    Phase 2 adds three fantastic options for your Head slot. Destruction Holo-gogs is the best choice if you are an Engineer; otherwise, Hood of the Avatar will be the best option.
+
+    If you are Undead Undead, then Cowl of the Grand Engineer is slightly better than Hood of the Avatar, if you can manage without the hit. The reason for this is that Devouring Plague means you benefit slightly more from flat Spell Power than the Focus proc from your meta gem.
+
+    Even with all these options, you will likely want to keep wearing Spellstrike Hood until you can break the Spellstrike Infusion set bonus in both slots at once.
+    Rank	Item	Source
+    BiS - Engineering	Destruction Holo-gogs Destruction Holo-gogs	Profession: Engineering - BoP only
+    BiS	Hood of the Avatar Hood of the Avatar	Drop: Lady Vashj (Serpentshrine Cavern)
+    Option	Cowl of the Grand Engineer Cowl of the Grand Engineer	Drop: Void Reaver (Tempest Keep: The Eye)
+    Option	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+    Best in Slot Shoulder Armor for Shadow Priest in TBC Classic Phase 2
+    Finally, a decent option for non-Tailors. Wings of the Avatar is not quite as good as Frozen Shadoweave Shoulders, but it doesn't require Tailoring, and contributes to the Tier 5 set bonuses, making this item very competitive.
+    Rank	Item	Source
+    BiS	Wings of the Avatar Wings of the Avatar	Drop: Void Reaver (Tempest Keep: The Eye)
+    BiS - Tailoring	Frozen Shadoweave Shoulders Frozen Shadoweave Shoulders	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+    Option	Illidari Shoulderpads Illidari Shoulderpads	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+    Best in Slot Back Armor for Shadow Priest in TBC Classic Phase 2
+    ...of Shadow Wrath is still the best item for flat damage, but Royal Cloak of the Sunstriders is incredible. Offering almost as much Spell Power as the ...of Shadow Wrath item while also giving a significant amount of Health for the slot. If you haven't managed to get a hold of ...of Shadow Wrath, then this is absolutely the best option.
+    Rank	Item	Source
+    BiS	Illidari Cloak Illidari Cloak of Shadow Wrath	Drop: Chief Engineer Lorthander (Netherstorm)
+    BiS	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+    Option	Amber Cape Amber Cape of Shadow Wrath	Drop: World Drop
+    Option	Shadow-Cloak of Dalaran Shadow-Cloak of Dalaran	Drop: Moroes (Karazhan)
+    Best in Slot Chest Armor for Shadow Priest in TBC Classic Phase 2
+    Vestments of the Sea-Witch is an absolutely incredible item; it gives a massive amount of Hit, almost as much Spell Damage as Frozen Shadoweave Robe, and a chunk of Crit. The issue here is that Vestments of the Sea-Witch is worth a significant amount more on any other caster class, because of how well they scale with Crit compared to us. Because of this, I can't recommend that this item go to a Shadow Priest before all the other casters have it, even if it is technically the best option.
+
+    Luckily, there is another option if you decide to drop Tailoring in Phase 2. Shroud of the Avatar is better than Frozen Shadoweave Robe as long as you can make use of the Hit, and it also contributes to the Tier 5 set bonuses.
+    Rank	Item	Source
+    BiS	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+    Option	Shroud of the Avatar Shroud of the Avatar	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+    Option - Tailoring	Frozen Shadoweave Robe Frozen Shadoweave Robe	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+    Option	Robe of Hateful Echoes Robe of Hateful Echoes	Drop: Hydross the Unstable (Serpentshrine Cavern)
+    Best in Slot Wrist Armor for Shadow Priest in TBC Classic Phase 2
+    Nothing changes in this slot. Mindstorm Wristbands exists, but is worse than even ...of Shadow Wrath and should absolutely not be a priority for Shadow Priests.
+    Rank	Item	Source
+    BiS - Servant's Quarters	Ravager's Cuffs Ravager's Cuffs of Shadow Wrath	Drop: Rokad the Ravager (Karazhan)
+    BiS	Illidari Bindings Illidari Bindings of Shadow Wrath	Drop: Ambassador Jerrikar (Shadowmoon Valley)
+    Option	Elementalist Bracelets Elementalist Bracelets of Shadow Wrath	Drop: World Drop
+    Option	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Wrist Armor Recommendations
+
+    Rank	Item	Source
+    Option	Bands of Nefarious Deeds Bands of Nefarious Deeds	Drop: Maiden of Virtue (Karazhan)
+
+    Best in Slot Hand Armor for Shadow Priest in TBC Classic Phase 2
+    The only noteworthy addition to this slot is Handguards of the Avatar, but individually, it is worse than all the other options in this slot. Some people may opt to use this to activate the 4 set bonus of Avatar Regalia, though it is likely to be a DPS loss if you have any of the better options.
+    Rank	Item	Source
+    BiS	Nethersteel-Lined Handwraps Nethersteel-Lined Handwraps of Shadow Wrath	Drop: Speaker Mar'grom (Blade's Edge Mountains)
+    BiS - Hit	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+    Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+    Option	Handguards of the Avatar Handguards of the Avatar	Drop: Leotheras the Blind (Serpentshrine Cavern)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Hand Armor Recommendations
+
+    Rank	Item	Source
+    Option	Gauntlets of the Sun King Gauntlets of the Sun King	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+    Best in Slot Waist Armor for Shadow Priest in TBC Classic Phase 2
+    Phase 2 adds Belt of Blasting, just barely worse than Lurker's Cord of Shadow Wrath in straight output; it offers a large amount of Hit also, and is easy enough to just buy on the Auction House, especially later in the Phase. This belt is fantastic and should be picked up ASAP.
+
+    Cord of Screaming Terrors is another option. This belt is almost identical to Belt of Blasting, but instead of Spell Crit, it gives Stamina and Intellect. Because of how little Stamina Shadow Priests usually end up with, a lot of people opt for this belt instead to reduce risk.
+    Rank	Item	Source
+    BiS - Servant's Quarters	Lurker's Cord Lurker's Cord of Shadow Wrath	Drop: Hyakiss the Lurker (Karazhan)
+    BiS	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+    Option	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+    Option	Belt of Divine Inspiration Belt of Divine Inspiration	Drop: High King Maulgar (Gruul's Lair)
+    Best in Slot Leg Armor for Shadow Priest in TBC Classic Phase 2
+    Trousers of the Astromancer is fantastic. It gives more Spell Power than any of the other options, as well as a huge chunk of white stats. It is also entirely uncontested; no other class or spec particularly wants this item, so for the most part, it will go straight to the Shadow Priest. If you need the hit or want to use the set bonus, Leggings of the Avatar is a good option for the slot.
+    Rank	Item	Source
+    BiS	Trousers of the Astromancer Trousers of the Astromancer	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+    BiS - Hit	Leggings of the Avatar Leggings of the Avatar	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+    Option	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+    Option - World Boss	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Leg Armor Recommendations
+
+    Rank	Item	Source
+    Option	Trial-Fire Trousers Trial-Fire Trousers	Drop: Opera Event (Karazhan)
+
+    Best in Slot Feet Armor for Shadow Priest in TBC Classic Phase 2
+    Outside of Glider's Foot-Wraps of Shadow Wrath, the best item in this slot is still Frozen Shadoweave Boots as long as you are a Tailor, and you will likely use these boots until Phase 5.
+
+    Finally, though, there are interesting choices here for non-Tailors. Boots of the Shifting Nightmare gives a good chunk of pure Shadow Damage as well as a lot of Stamina and Hit. Once you have these, dropping Tailoring for Engineering or Enchanting becomes a real possibility.
+    Rank	Item	Source
+    BiS - Servant's Quarters	Glider's Foot-Wraps Glider's Foot-Wraps of Shadow Wrath	Drop: Shadikith the Glider (Karazhan)
+    BiS - Tailoring	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+    BiS	Boots of the Shifting Nightmare Boots of the Shifting Nightmare	Drop: Hydross the Unstable (Serpentshrine Cavern)
+    Option	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+    Best in Slot Neck Jewelry for Shadow Priest in TBC Classic Phase 2
+    Nothing changes here, Ritssyn's Lost Pendant is still absolutely the best choice, with the Jewelcrafting necks rotated for group content.
+    Rank	Item	Source
+    BiS	Ritssyn's Lost Pendant Ritssyn's Lost Pendant	Drop: Trash Mobs (Karazhan)
+    BiS - Group Content	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+    BiS - Group Content	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+    Option - Group Content	Jade Pendant of Blasting Jade Pendant of Blasting	Profession: Jewelcrafting - can be purchased on the Auction House
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Neck Jewelry Recommendations
+
+    Rank	Item	Source
+    Option	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+    Option - PvP	Veteran's Pendant of Dominance Veteran's Pendant of Dominance	Vendor: Honor Points (Season 2)
+
+    Best in Slot Ring Jewelry for Shadow Priest in TBC Classic Phase 2
+    Finally, there are options better than the Classic rings. Band of Al'ar is perfect for Shadow Priests, as long as you can manage without Hit from this slot. It has high Spell Damage as well as a good chunk of Stamina and Intellect.
+
+    Ring of Endless Coils is even better, giving the same Spell Damage, high Stamina, and a big chunk of Crit. Because of the big chunk of Crit, this item provides a lot more value for all other caster classes and specs, meaning ideally it should be low priority to Shadow Priests.
+    Rank	Item	Source
+    BiS	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+    BiS	Band of Al'ar Band of Al'ar	Drop: Al'ar (Tempest Keep: The Eye)
+    Option	Ring of the Fallen God Ring of the Fallen God	Drop: C'Thun (Classic - Ahn'Qiraj)
+    Option	Band of the Inevitable Band of the Inevitable	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Ring Jewelry Recommendations
+
+    Rank	Item	Source
+    Option	Ring of Recurrence Ring of Recurrence	Drop: Chess Event (Karazhan)
+    Option	Cobalt Band of Tyrigosa Cobalt Band of Tyrigosa	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+    Option - Hit	Band of Crimson Fury Band of Crimson Fury	Drop: Magtheridon (Magtheridon's Lair)
+    Option	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Path of the Violet Mage Path of the Violet Mage (The Violet Eye Exalted)
+    Option	The Horseman's Signet Ring The Horseman's Signet Ring	Drop: Headless Horseman (Hallow's End Seasonal Event)
+
+    Best in Slot Trinkets for Shadow Priest in TBC Classic Phase 2
+    Trinket choice is unchanged from Phase 1. Eye of Magtheridon should ideally be swapped with Quagmirran's Eye depending on fight length, with Eye of Magtheridon being the better choice on longer fights (>60 seconds) and Quagmirran's Eye being the better choice on shorter fights (<60 seconds).
+    Rank	Item	Source
+    BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+    BiS - Short Fights	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+    BiS - Long Fights	Eye of Magtheridon Eye of Magtheridon	Drop: Magtheridon (Magtheridon's Lair)
+    BiS	Mark of the Champion Mark of the Champion	Drop: Kel'Thuzad (Classic - Naxxramas)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Trinket Recommendations
+
+    Rank	Item	Source
+    BiS	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+    Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+
+    Best in Slot Weapons for Shadow Priest in TBC Classic Phase 2
+    There are no good weapons for Shadow Priests from Phase 2 Raids, but with every new Phase, there is a new arena season. Merciless Gladiator's Gavel is fantastic if you are a PvP player and completely outclasses Nathrezim Mindblade.
+    Rank	Item	Source
+    BiS - PvP	Merciless Gladiator's Gavel Merciless Gladiator's Gavel	Vendor: Arena Points (Season 2)
+    BiS	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+    BiS - World Boss	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+    Option - PvP	Gladiator's Gavel Gladiator's Gavel	Vendor: Arena Points (Season 1)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Weapon Recommendations
+
+    Rank	Item	Source
+    Option	The Nexus Key The Nexus Key	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+    Best in Slot Offhands for Shadow Priest in TBC Classic Phase 2
+    Nothing changes here at all. Orb of the Soul-Eater is still the best option, as well as being incredibly easy to get.
+    Rank	Item	Source
+    BiS	Orb of the Soul-Eater Orb of the Soul-Eater	Vendor: G'eras (Badges of Justice)
+    Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+    Best in Slot Wands for Shadow Priest in TBC Classic Phase 2
+    Finally, we have a good Wand that is not ...of Shadow Wrath. Wand of the Forgotten Star is great, giving as much output as the other alternatives but also giving Hit, allowing you to drop it elsewhere. Though again, this item is much better on other classes and specs, so don't expect it early, grab it if you can!
+    Rank	Item	Source
+    BiS	Wand of the Forgotten Star Wand of the Forgotten Star	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+    Option	Illidari Rod of Discipline Illidari Rod of Discipline	Quest: Subdue the Subduer Subdue the Subduer
+    Option	Flawless Wand Flawless Wand of Shadow Wrath	Drop: World Drop
+    Option	Dragonscale Wand Dragonscale Wand of Shadow Wrath
+    Draenethyst Wand Draenethyst Wand of Shadow Wrath	Drop: World Drop
+
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Wand Recommendations
+
+    Rank	Item	Source
+    Option - Hit	Tirisfal Wand of Ascendancy Tirisfal Wand of Ascendancy	Drop: Shade of Aran (Karazhan)
+
+Passion
+World of Warcraft Classic Class Lead
+Passion has been an avid MMORPG player for the better part of the last two decades, playing everything from Everquest and Tibia, to Hellgate: London and Global Agenda. With a particular love for the ever-evaporating Support role, such as the Bard class from Rift Online, Final Fantasy XI, and Everquest, the return of Support Shadow Priest in the Burning Crusade Classic was inescapable.
+
+Moving from writing and sharing guides in Class Discords, they got their start as the Classic WoW Shadow Priest Expert for Wowhead.
+1 - 6 of 6
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+11
+
+	
+By flaggel (10,557 – 2·10·13) on 2021/08/09 (Burning Crusade)	
+	
+Boots of the Shifting Nightmare is a great alternative without tailoring
+Item added. Thanks for feedback! ~Vaelis
+Last edited by Vaelis on 2021/10/17
+
+0
+
+	
+
+ccbing on 2021/08/10 (Burning Crusade)
+Tailoring is a prereq to playing spriest
+
+-6
+	
+
+Doktah on 2021/08/30 (Burning Crusade)
+
+3
+
+	
+By bigdollopenergy (1,516 – 2·9) on 2021/08/29 (Burning Crusade)	
+	
+So for phase 1 and phase 2 the best chest enchant has been stated to be Major Spirit if you have the improved divine spirit buff and Exceptional stats otherwise. IMO the 6mp5 restore mana prime enchant should be added as second preference and the exceptional stats as 3rd preference. It should at least be mentioned though, as it's definitely one to consider.
+
+Major Spirit = Equivalent to 3mp5 (while casting) and also 1.5 SP if you have the improved spirit buff.
+Exceptional Stats = 6 intellect (0.9mp5), 6 spirit (1.8mp5) which together is equivalent to 2.7mp5 while casting and 0.075% crit. You also get alittle more initial mana that you can convert to mp5 depending on fight length.
+Restore Mana Prime = 6mp5 (while casting).
+
+To me, assuming you don't value stamina at all (which you won't if min-maxing) and the extra initial mana from the intellect (90 mana) will be more than gained back from the extra 3.3mp5 you in any fight over a couple of minutes, such that it's better than the 0.075 crit you also get from the intellect. It seems to me that Restore Mana prime on chest is a marginal second place winner or at least should be mentioned as a third preference.
+Last edited by bigdollopenergy on 2021/08/29
+
+3
+
+	
+By legoman60 (8,921 – 1·22·42) on 2021/09/10 (Burning Crusade)	
+	
+No Dark Iron Smoking Pipe? (Dark Iron Smoking Pipe Dark Iron Smoking Pipe)
+
+IIRC it doesn't share the full cooldown with IotSC.
+Just the reduced cooldown to keep people from stacking the actives.
+
+At this point I think it would be safe to assume it will be included in brewfest this year until we hear otherwise.
+
+Also missing are a couple rings:
+Cobalt Band of Tyrigosa Cobalt Band of Tyrigosa
+Seer's Signet Seer's Signet
+
+Both of these are better than the ring from turning in mags head when hit capped (which shadow reaches easy).
+
+The more I look at this guide, the more problems I find.
+Glider's footwraps are only 3 shadow damage more than Frozen Shadoweave boots after socketing.
+Not much of an increase when you consider the other stats on shadoweave.
+
+T5 helm is not better than spellstrike hood. After sockets spellstrike has more damage and meta gems aren't good for shadow.
+
+Similar issue with pants, T5 is not as good as spellstrike.
+
+Pipe added, rings added for transparency (already present in Phase 1, linked above the post). Other points aren't exactly valid, thanks for feedback nonetheless. ~Vaelis
+Last edited by Vaelis on 2021/10/17
+
+1
+
+	
+By legoman60 (8,921 – 1·22·42) on 2021/08/28 (Burning Crusade)	
+	
+How is Mag's eye + IotSC BiS in ph2 but Quag's eye + IotSC is BiS in ph1?
+
+What changed to make the Quag proc less valuable than the 1% (with hit cap) chance to resist (thus proc) mag's eye?
+
+If the new trinkets aren't very good for shadow (sans DMC: sade) then wouldn't the new BiS be the same as the old BiS?
+
+Alternatively, if Mag's eye is better than Quag's, then wouldn't that be true in ph1 too?
+
+Something isn't right here.
+
+-2
+
+	
+
+ZanathKariashi on 2021/09/02 (Burning Crusade)
+Mag's eye was always the BiS for phase 1 (for non-target dependent). Quag's eye was a Pre-raid BiS option, but it's garbage for an Spriest compared to the Eye. Hell out of all of the classes, Spriest is probably the main spec that actually gets the most benefit from Mag's eye, but very little benefit from Quag's. Since Mindblast is your only real spell that benefits from Quags and you're only gonna get maybe 2 MB's during the proc duration vs about 1/3 extra passive damage (plus a big chunk extra for awhile when you get your 1% resist chance that could be snap-shotted).
+
+0
+
+	
+
+legoman60 on 2021/09/06 (Burning Crusade)
+I was referring to the raid BiS guide for ph1. If nothing changes then they should be the same.
+
+1
+
+	
+
+Overshadowed on 2021/09/15 (Burning Crusade)
+"Since Mindblast is your only real spell that benefits from Quags" so does vamp touch and mind flay (your highest overall dmg spell). So yeah, quags eye is still very good and on par with Mag's eye. Just look at the highest spriest parses... https://classic.warcraftlogs.com/zone/rankings/1008#boss=650&class=Priest&spec=Shadow But agreed that generally the raw sp and occasional proc from Mag's eye is considered just slightly better.
+
+1
+
+	
+By LadyMay23 (1,094 – 5·5) on 2026/06/25 (Burning Crusade)	
+	
+Missing Gauntlets of the Sun King Gauntlets of the Sun King as an option for gloves too
+
+-3
+
+	
+By Overshadowed (1,389 – 1·4) on 2021/09/15 (Burning Crusade)	
+	
+[...]
+As a side note, spellstrike helm/pants can be replaced with cowl+trousers only when you have both. 4 piece T5 is still BIS but only when you have all 4 pieces (not worth equipping any individual pieces until then if you're losing spellstike set piece).
+Issue resolved, removed for transparency. Thanks! ~Vaelis
+Last edited by Vaelis on 2021/10/17
+1 - 6 of 6
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Shadow Priest Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+            Best In Slot Gear in Phase 3
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Wands
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Shadow Priest DPS Best in Slot (BiS) Phase 3 Gear Guide
+By Passion
+Updated: 2026/02/28
+In this Pre-Raid Best-in-Slot Gear List for Shadow Priest DPS in The Burning Crusade Classic, we will list the recommended gear for Shadow Priest DPS to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Shadow Priest DPS Best in Slot Hub
+
+Best In Slot Gear for Shadow Priest DPS in Phase 3
+Shadow Priest gearing is fairly straightforward. Your goal is mainly to get as much spell power as you possibly can, and when available, grab spell haste as your second priority.
+
+    Spell Power - This is your main stat for almost all of The Burning Crusade, and outvalues almost every other stat available.
+    Spell Critical Strike Rating - Critical rating is mostly wasted on Shadow Priests, as only two of your five spells can crit. You can typically assume that 6 spell critical is worth one spell power.
+    Spell Hit Rating - Spell Hit has a few relevant breakpoints. The first one is at 76 rating, putting you at 6% bonus chance to hit with spells, enough to be hit capped against all enemies when combined with 5 points in Shadow Focus. As you get more gear, you may end up over the hit cap. If you are 2% over the hit cap, you can remove a point in this talent and put it elsewhere.
+    Spell Penetration - This stat is almost entirely wasted in PvE content, as Curse of the Elements will, in almost every situation, reduce the enemies' Shadow Resistance to 0.
+    Spell Haste Rating - A new stat introduced in TBC, which isn't readily available until Phase 3. This decreases your cast times and global cooldown. It is an incredible stat for Shadow Priests and outweighs every other stat except spell power. Your DoT effects do not benefit from this, but the primary gain is faster Mind Flay casts. Mind Flay always hits 3 times over its duration, but haste reduces its duration, meaning you get each tick sooner. Because of this, you can potentially fit more ticks between your other casts, and Mind Flay casts do make up the bulk of your casts during a fight.
+    Stamina - A mostly incidental stat. Most gear has Stamina, and there are very few situations where you would need to prioritize more.
+    Intellect - Governs your mana pool and gives a very small amount of spell critical. Rarely relevant for deciding gear pieces, but it can be beneficial.
+    Spirit and Mana Per 5 Seconds - These stats give mana regeneration, which substantially affects your longevity in combat. Spirit is more valuable for Shadow Priests because of Spirit Tap, but neither is a deciding factor when choosing gear. The exception to this is if you will be raiding with a Priest specced into Improved Divine Spirit. In this case, roughly 10 Spirit is equivalent to one spell power.
+
+    Shadow Priests looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+    Shadow Priest Gems & Enchants
+    Should Shadow Priest DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 3?
+    By Phase 3, you will likely have replaced all Aldor or Scryers' gear, so the biggest part of Aldor vs Scryer is the Shoulder Enchant. There are a few shoulder enchants that casters consider, and the best one depends entirely on class and spec.
+
+    For Shadow Priests, though, the answer is simple. Aldor provides a significant amount more spell power than Scryers and is by far the best shoulder enchant for Shadow. If you decide against going Aldor, your best option will be Zandalar Signet of Mojo Zandalar Signet of Mojo, but let's be real, no one likes going back to Zul'Gurub, at least not in TBC.
+
+    If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Shadow Priests, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+    Reputations Overview TBC Classic
+    Best in Slot Head Armor for Shadow Priest in TBC Classic Phase 3
+    Cowl of the Illidari High Lord is individually the best item in the slot, but doesn't contribute to the Absolution Regalia set bonus. Because of this, you're better off just holding out for Hood of Absolution for the slot instead.
+    Rank	Item	Source
+    BiS	Hood of Absolution Hood of Absolution	Drop: Archimonde (Hyjal Summit)
+    Option	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+    Option - Engineering	Destruction Holo-gogs Destruction Holo-gogs	Profession: Engineering - BoP only
+    Option	Hood of the Avatar Hood of the Avatar	Drop: Lady Vashj (Serpentshrine Cavern)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Head Armor Recommendations
+
+    Rank	Item	Source
+    Option	Cowl of the Grand Engineer Cowl of the Grand Engineer	Drop: Void Reaver (Tempest Keep: The Eye)
+
+    Best in Slot Shoulder Armor for Shadow Priest in TBC Classic Phase 3
+    Mantle of Nimble Thought is a solid piece, better than whatever you ended Phase 3 with, but it is Bind on Pickup and requires Tailoring to make, but not to use. If you are dropping Tailoring in this phase, I strongly recommend you craft this before you do. It will eventually be replaced with Shoulderpads of Absolution, but until then, it is a solid piece. As soon as you have access to them, Shoulderpads of Absolution will replace whatever you were wearing before.
+    Rank	Item	Source
+    BiS	Shoulderpads of Absolution Shoulderpads of Absolution	Drop: Mother Shahraz (Black Temple)
+    Option - Tailoring	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+    Option	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+    Option	Blood-cursed Shoulderpads Blood-cursed Shoulderpads	Drop: Gurtogg Bloodboil (Black Temple)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Shoulder Armor Recommendations
+
+    Rank	Item	Source
+    Option - Tailoring	Frozen Shadoweave Shoulders Frozen Shadoweave Shoulders	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+    Option	Wings of the Avatar Wings of the Avatar	Drop: Void Reaver (Tempest Keep: The Eye)
+
+    Best in Slot Back Armor for Shadow Priest in TBC Classic Phase 3
+    Nethervoid Cloak is almost entirely uncontested and is basically a free grab for Shadow Priests. This cloak is easily better than any of the cloaks from previous phases and gives almost 1.5% spell hit in this slot alone.
+
+    The next option is Shroud of the Highborne, a "healer" cloak. This cloak gives a relatively small amount of spell power, but the highest chunk of spell haste available in this slot for the entirety of TBC. This cloak is also sought after by a few other caster DPS, as well as most healers, so you have your competition cut out for you.
+    Rank	Item	Source
+    BiS	Nethervoid Cloak Nethervoid Cloak	Drop: Trash Mobs (Black Temple)
+    Option	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+    Option	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: The Illidari Council (Black Temple)
+    Option	Illidari Cloak Illidari Cloak of Shadow Wrath	Drop: Chief Engineer Lorthander (Netherstorm) - can be purchased on the Auction House
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Back Armor Recommendations
+
+    Rank	Item	Source
+    Option	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+    Best in Slot Chest Armor for Shadow Priest in TBC Classic Phase 3
+    Whatever chest you had in Phase 2 is blown out of the water by Shroud of Absolution. With gems, this item is almost 100 spell power from one item slot, as well as almost one third of the spell hit you need to reach the cap, along with some crit, int, and MP5 for good measure. This item is also a key component for reaching the Absolution Regalia set bonuses.
+    Rank	Item	Source
+    BiS	Shroud of Absolution Shroud of Absolution	Drop: Illidan Stormrage (Black Temple)
+    Option	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+    Option	Shroud of the Avatar Shroud of the Avatar	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+    Option	Robes of Rhonin Robes of Rhonin	Drop: Archimonde (Hyjal Summit)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Chest Armor Recommendations
+
+    Rank	Item	Source
+    Option - Tailoring	Frozen Shadoweave Robe Frozen Shadoweave Robe	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+    Option	Robe of Hateful Echoes Robe of Hateful Echoes	Drop: Hydross the Unstable (Serpentshrine Cavern)
+    Option	Robe of the Shadow Council Robe of the Shadow Council	Drop: Teron Gorefiend (Black Temple)
+
+    Best in Slot Wrist Armor for Shadow Priest in TBC Classic Phase 3
+    Bracers of Nimble Thought are easily crafted, Bind on Equip, and do not use Bind on Pickup materials. These bracers are a no-brainer and are better than any of the other options in this slot by a significant margin.
+    Rank	Item	Source
+    BiS	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring - can be purchased on the Auction House
+    Option	Cuffs of Devastation Cuffs of Devastation	Drop: Rage Winterchill (Hyjal Summit)
+    Option	Focused Mana Bindings Focused Mana Bindings	Drop: Shade of Akama (Black Temple)
+    Option - Servant's Quarters	Ravager's Cuffs Ravager's Cuffs of Shadow Wrath	Drop: Rokad the Ravager (Karazhan)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Wrist Armor Recommendations
+
+    Rank	Item	Source
+    Option	Illidari Bindings Illidari Bindings of Shadow Wrath	Drop: Ambassador Jerrikar (Netherstorm) - can be purchased on the Auction House
+
+    Best in Slot Hand Armor for Shadow Priest in TBC Classic Phase 3
+    Handguards of Absolution is the only new addition here for Shadow Priests, but luckily, it's a fantastic one. These gloves give a hefty chunk of spell hit, 58 spell power, and contribute to the 4-Set bonus.
+    Rank	Item	Source
+    BiS	Handguards of Absolution Handguards of Absolution	Drop: Azgalor (Hyjal Summit)
+    Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+    Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+    Option	Nethersteel-Lined Handwraps Nethersteel-Lined Handwraps of Shadow Wrath	Drop: Speaker Mar'grom (Blade's Edge Mountains) - can be purchased on the Auction House
+    Best in Slot Waist Armor for Shadow Priest in TBC Classic Phase 3
+    With how valuable spell haste is for Shadow Priests, Waistwrap of Infinity is incredible, beating Belt of Blasting easily.
+    Rank	Item	Source
+    BiS	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+    Option	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+    Option - Servant's Quarters	Lurker's Cord Lurker's Cord of Shadow Wrath	Drop: Hyakiss the Lurker (Karazhan)
+    Option	Anetheron's Noose Anetheron's Noose	Drop: Anetheron (Hyjal Summit)
+    Best in Slot Leg Armor for Shadow Priest in TBC Classic Phase 3
+    Leggings of Channeled Elements are the best option, but also the most contested option. Leggings of Devastation can be used in the meantime while only losing a few DPS worth of spell power, and Leggings of Absolution can fill in as well, especially if it gets you the 4-set bonus.
+    Rank	Item	Source
+    BiS	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+    Option	Leggings of Devastation Leggings of Devastation	Drop: Mother Shahraz (Black Temple)
+    Option	Leggings of Absolution Leggings of Absolution	Drop: The Illidari Council (Black Temple)
+    Option	Trousers of the Astromancer Trousers of the Astromancer	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Leg Armor Recommendations
+
+    Rank	Item	Source
+    Option	Leggings of the Avatar Leggings of the Avatar	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+    Best in Slot Feet Armor for Shadow Priest in TBC Classic Phase 3
+    Frozen Shadoweave Boots become stronger than ever with the addition of Runed Crimson Spinel Runed Crimson Spinel, beating out even Glider's Foot-Wraps of Shadow Wrath without requiring absurd luck. If you're not a Tailor, you can substitute them with Slippers of the Seacaller and lose very little in the process. This is the point where Tailoring generally becomes fully optional.
+    Rank	Item	Source
+    BiS	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+    BiS - Tailoring	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+    Option - Servant's Quarters	Glider's Foot-Wraps Glider's Foot-Wraps of Shadow Wrath	Drop: Shadikith the Glider (Karazhan)
+    Option	Boots of the Shifting Nightmare Boots of the Shifting Nightmare	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Feet Armor Recommendations
+
+    Rank	Item	Source
+    Option	Blue Suede Shoes Blue Suede Shoes	Drop: Kaz'rogal (Hyjal Summit)
+    Option	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+
+    Best in Slot Neck Jewelry for Shadow Priest in TBC Classic Phase 3
+    Neck options for Phase 3 remain almost as limited as ever. Translucent Spellthread Necklace is added, being an absolutely tiny DPS increase compared to Ritssyn's Lost Pendant. Other classes benefit a lot more from Translucent Spellthread Necklace, so I wouldn't be in a hurry for this one. The blue Jewelcrafting necks are still likely your best option for raiding, whenever they're off cooldown.
+    Rank	Item	Source
+    BiS	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Essence of Anger (Black Temple)
+    BiS - Group Content	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+    BiS - Group Content	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+    Option	Ritssyn's Lost Pendant Ritssyn's Lost Pendant	Drop: Trash Mobs (Karazhan)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Neck Jewelry Recommendations
+
+    Rank	Item	Source
+    Option - Group Content	Jade Pendant of Blasting Jade Pendant of Blasting	Profession: Jewelcrafting - can be purchased on the Auction House
+
+    Best in Slot Ring Jewelry for Shadow Priest in TBC Classic Phase 3
+    Ring of Ancient Knowledge is absurdly good for Shadow Priests, and it isn't Unique, meaning you can and want to use two of them. This ring drops from trash, which means it can potentially be farmed. Other classes want this, but none gain as much individually from it as Shadow Priests. This phase also brings a few other options that are absolutely better than the Phase 2 rings, but they don't compare to Ring of Ancient Knowledge.
+    Rank	Item	Source
+    BiS	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+    Option	Blessed Band of Karabor Blessed Band of Karabor	Drop: Trash Mobs (Black Temple)
+    Option	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+    Option	Band of the Eternal Sage Band of the Eternal Sage	Quest: Sage's Covenant Sage's Covenant (Scale of the Sands Exalted)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Ring Jewelry Recommendations
+
+    Rank	Item	Source
+    Option	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+    Option	Band of Al'ar Band of Al'ar	Drop: Al'ar (Tempest Keep: The Eye)
+    Option	Ring of the Fallen God Ring of the Fallen God	Drop: C'Thun (Classic - Ahn'Qiraj)
+    Option	Band of the Inevitable Band of the Inevitable	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+
+    Best in Slot Trinkets for Shadow Priest in TBC Classic Phase 3
+    Finally, some interesting trinkets! Darkmoon Card: Crusade is one of your best options, replacing the ideal 2x on-use trinkets from previous phases. This trinket, when fully stacked, gives a constant 80 spell power. Because of its 10-second duration, this trinket loses value on any fight where you would either be unable to build stacks effectively or where there is enough downtime for the stacks to fall off. If you have both on-use trinkets, this one might not be worth the cost because of minimal gain, but if you missed Brewfest, you should absolutely pick this one up ASAP.
+
+    The Skull of Gul'dan is the best trinket in the phase, but not by much. Because of this, I would recommend not taking it early if you are raiding with your guild, as it is incredible for other classes. Mark of the Champion makes a triumphant return, with many mobs in Black Temple and Hyjal Summit being Undead or Demon. Against these enemies, this is always your best trinket, giving a flat 85 spell power with no build-up and no cooldown. Because of how strong this Trinket is, people still run Naxxramas every week, and so should you if you haven't gotten it yet.
+    Rank	Item	Source
+    BiS	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+    BiS	Darkmoon Card: Crusade Darkmoon Card: Crusade	Quest: Blessings Deck Blessings Deck
+    BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+    BiS	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+    BiS	Mark of the Champion Mark of the Champion	Quest: The Phylactery of Kel'Thuzad The Phylactery of Kel'Thuzad (Classic - Naxxramas)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Trinket Recommendations
+
+    Rank	Item	Source
+    Option - Short Fights	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+    Option - Long Fights	Eye of Magtheridon Eye of Magtheridon	Drop: Magtheridon (Magtheridon's Lair)
+    Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+
+    Best in Slot Weapons for Shadow Priest in TBC Classic Phase 3
+    The most controversial slot for the entire phase, and likely the entire Expansion. Zhar'doom, Greatstaff of the Devourer has been causing arguments since Phase 1, and that is unlikely to change anytime soon. This incredible staff is the Best in Slot option for almost every caster DPS, and everyone will claim it is the best option for them. Shadow Priests absolutely want this weapon, as it allows you to reach spell haste levels that you can't otherwise, and without it, you may have to compensate in other slots for spell haste. Besides, unless you're a PvPer, you haven't received a new weapon since Karazhan, you're overdue!
+
+    There are a few one-handed options here, but none of them come even close to Zhar'doom. The Maelstrom's Fury and Hammer of Judgement can be fine to hold you over until you get Zhar'doom, but ideally they should go to other classes first that are lower priority for Zhar'doom.
+    Rank	Item	Source
+    BiS	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+    Option - PvP	Vengeful Gladiator's Gavel Vengeful Gladiator's Gavel	Vendor: Arena Points (Season 3)
+    Option	The Maelstrom's Fury The Maelstrom's Fury	Drop: High Warlord Naj'entus (Black Temple)
+    Option	Hammer of Judgement Hammer of Judgement	Drop: Trash Mobs (Hyjal Summit)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Weapon Recommendations
+
+    Rank	Item	Source
+    Option - PvP	Merciless Gladiator's Gavel Merciless Gladiator's Gavel	Vendor: Arena Points (Season 2)
+    Option	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+    Option - World Boss	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+
+    Best in Slot Offhands for Shadow Priest in TBC Classic Phase 3
+    Nothing changes here at all. Orb of the Soul-Eater is still the best option, as well as being incredibly easy to get.
+    Rank	Item	Source
+    BiS	Orb of the Soul-Eater Orb of the Soul-Eater	Vendor: G'eras (Badges of Justice)
+    Option	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+    Option	Blind-Seers Icon Blind-Seers Icon	Drop: Shade of Akama (Black Temple)
+    Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+    Best in Slot Wands for Shadow Priest in TBC Classic Phase 3
+    With Phase 3 comes Wand of Prismatic Focus, a slightly worse alternative to Wand of the Forgotten Star but almost entirely uncontested.
+    Rank	Item	Source
+    BiS	Wand of the Forgotten Star Wand of the Forgotten Star	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+    Option	Wand of Prismatic Focus Wand of Prismatic Focus	Drop: Gurtogg Bloodboil (Black Temple)
+    Option	Flawless Wand Flawless Wand of Shadow Wrath	Drop: World Drop
+    Option	Dragonscale Wand Dragonscale Wand of Shadow Wrath
+    Draenethyst Wand Draenethyst Wand of Shadow Wrath	Drop: World Drop
+
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Wand Recommendations
+
+    Rank	Item	Source
+    Option - Hit	Tirisfal Wand of Ascendancy Tirisfal Wand of Ascendancy	Drop: Shade of Aran (Karazhan)
+
+Passion
+World of Warcraft Classic Class Lead
+Passion has been an avid MMORPG player for the better part of the last two decades, playing everything from Everquest and Tibia, to Hellgate: London and Global Agenda. With a particular love for the ever-evaporating Support role, such as the Bard class from Rift Online, Final Fantasy XI, and Everquest, the return of Support Shadow Priest in the Burning Crusade Classic was inescapable.
+
+Moving from writing and sharing guides in Class Discords, they got their start as the Classic WoW Shadow Priest Expert for Wowhead.
+1 - 3 of 3
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+5
+
+	
+By Krust (4,426 – 21·15) on 2022/01/16 (Burning Crusade)	
+	
+Hope you wouldn't mind a little feedback. Mostly on the ordering of "optional" items, as BiS looks good. The only thing there is -- Darkmoon Card Crusade is missing from true BiS set at the top? Shouldn't it replace Icon, with the raw +11 SP outweighing icon flexibility on any lengthy fight without breaks to unstack card?
+
+Optional items ordering suggestions -
+
+frozen shadoweave shoulders is definitely better than blood-cursed shoulderpads (74 spell damage > 55 spell damage and 25 crit). hatefury mantle probably better than mantle of nimble thought I think (79 spell damage 24 crit vs 44 spell damage 38 spell haste).
+
+soul-eater's is better than flowing thought unless you specifically need the hit which very few will.
+
+anetheron's noose is certainly better than belt of blasting, and very possibly better than waistwrap of infinity.
+
+FSW boots > slippers of the seacaller (for the reasons you enumerate in text, but ordered the other way)
+
+mark of the champion > all where applicable. crusade is maaybe better than skull (80 spell damage vs 55 damage 29 haste, I think that goes the way of the spell damage slightly unless stacking is a significant issue on a fight).
+
+and this is a little bit of a quibble, but although it's technically correct that wand of the forgotten star is probably 1ish dps better than wand of prismatic focus, with them being that close i'd say the 21 stamina is worth grabbing (esp since uncontested). but i understand that's not how bis lists are written here.
+Last edited by Krust on 2022/01/16
+
+-1
+
+	
+
+Passion <Guide Author> on 2022/01/20 (Burning Crusade)
+As far as I'm aware, the combination of Icon and Skull of Gul'dan is better than Skull of Gul'dan and DMC:C on more fights than not. [pad]Trinkets are a weird situation, where they become better in combinations, at different fight lengths and other various factors. [pad]FSW Shoulders are better if you can't get any use out of the hit on Blood-cursed, so I chose to place Blood-cursed over because of that, as well as them not requiring a profession that is no longer the BiS profession in Phase 3. [pad]Yep, Soul-Eaters are better if you don't need the hit for sure, but the rankings of these items has to be done in more of a vacuum, where I assume all the stats will be used, because I can't actually know what people are wearing.[pad] Again, Noose has no hit, and I am valuing the items individually, not in a set. In that situation, Belt of Blasting is absolutely better and its not a close comparison. [pad]I debated with myself if FSW boots should be on top or vice versa, but in the end I decided that because having Tailoring is not the BiS option, boots crafted with Tailoring would go below. You are right though that individually FSW boots are better, so maybe I'll go back and look into it in the future.[pad] Mark is absolutely better on fights where it works, but that isn't all fights or all trash, so I decided to put it on the bottom of the Best rankings, and explain via the text blurb instead.[pad]Crusade afaik never sims better than Skull, but I'll look more into that. Plus, Crusade takes time to stack where as Skull does not. Busting out a haste on use for trash multidot is incredible for example. [pad]Yeah, Forgotten Star is just barely better than Prismatic Focus, but it is in fact better. Its almost impossible to give any kind of stat weight to Stamina purely because of how the game works. I personally will opt for Wand of Prismatic Focus because I don't have Forgotten Star, but such is life.
+
+1
+
+	
+
+Krust on 2022/01/23 (Burning Crusade)
+I guess the fights are short enough that Icon is better (w/ Skull than DMC:C) almost all the time, since you may get a use without a full cooldown, and have few enough uses the active gets disproportionally better because of the one. As for valuing hit, I suppose I understand wanting to ascribe it some value in a vacuum, and you're correct that I'm disagreeing with where I'm disagree with from not valuing it at all. At this point I've taken 2 points out of Shadow Focus.... But it's technically possible others may not be as overstuffed.
+
+4
+
+	
+By Divinement (18,240 – 2·7·5) on 2022/01/18 (Burning Crusade)	
+	
+Looks like Blizzard didn't roll out the new PvP necks, and is holding them until Sunwell.
+
+-1
+
+	
+
+Passion <Guide Author> on 2022/01/20 (Burning Crusade)
+Afraid so, although its more likely they'll be in Phase 4 than Phase 5. They've been edited out!
+
+1
+
+	
+By CAPSLOCKMAN (1,290 – 2·5) on 2026/03/20 (Burning Crusade)	
+	
+Head = Hood of the Avatar is worse than both the Spellstrike Hood and the Cowl of the Grand Engineer.
+
+Legs = Leggings of the Avatar and Trousers of the Astromancer are both worse than Spellstrike Hood.
+Last edited by CAPSLOCKMAN on 2026/03/20
+1 - 3 of 3
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Shadow Priest Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+            Best In Slot Gear in Phase 4
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Wands
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Shadow Priest DPS Best in Slot (BiS) Phase 4 Gear Guide
+By Passion
+Updated: 2026/02/28
+Welcome to Wowhead's Best in Slot Gear list from Phase 4 Zul'Aman for Shadow Priest DPS in The Burning Crusade Classic. This guide will list the recommended gear for Shadow Priest DPS to acquire while they progress during the fourth phase of The Burning Crusade Classic, and contains gear sourced from Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Shadow Priest DPS in Phase 4
+Shadow Priest gearing is fairly straightforward. Your goal is mainly to get as much spell power as you possibly can, and when available, grab spell haste as your second priority.
+
+    Spell Power - This is your main stat for almost all of The Burning Crusade, and outvalues almost every other stat available.
+    Spell Critical Strike Rating - Critical rating is mostly wasted on Shadow Priests, as only two of your five spells can crit. You can typically assume that 6 spell critical is worth one spell power.
+    Spell Hit Rating - Spell Hit has a few relevant breakpoints. The first one is at 76 rating, putting you at 6% bonus chance to hit with spells, enough to be hit capped against all enemies when combined with 5 points in Shadow Focus. As you get more gear, you may end up over the hit cap. If you are 2% over the hit cap, you can remove a point in this talent and put it elsewhere.
+    Spell Penetration - This stat is almost entirely wasted in PvE content, as Curse of the Elements will, in almost every situation, reduce the enemies' Shadow Resistance to 0.
+    Spell Haste Rating - A new stat introduced in TBC, which isn't readily available until Phase 3. This decreases your cast times and global cooldown. It is an incredible stat for Shadow Priests and outweighs every other stat except spell power. Your DoT effects do not benefit from this, but the primary gain is faster Mind Flay casts. Mind Flay always hits 3 times over its duration, but haste reduces its duration, meaning you get each tick sooner. Because of this, you can potentially fit more ticks between your other casts, and Mind Flay casts do make up the bulk of your casts during a fight.
+    Stamina - A mostly incidental stat. Most gear has Stamina, and there are very few situations where you would need to prioritize more.
+    Intellect - Governs your mana pool and gives a very small amount of spell critical. Rarely relevant for deciding gear pieces, but it can be beneficial.
+    Spirit and Mana Per 5 Seconds - These stats give mana regeneration, which substantially affects your longevity in combat. Spirit is more valuable for Shadow Priests because of Spirit Tap, but neither is a deciding factor when choosing gear. The exception to this is if you will be raiding with a Priest specced into Improved Divine Spirit. In this case, roughly 10 Spirit is equivalent to one spell power.
+
+    Zul'Aman is more of a catch-up raid than anything else; most of the items exist to help new characters get raid-ready as opposed to upgrading current raiders. Despite this, there are still some interesting items for sure. For example, Hex Shrunken Head Hex Shrunken Head is very good and will replace whatever you are using. Because Zul'Aman is a 10-man raid with a 3-day lockout, you are much more likely to get everything you'll want soon enough.
+
+    Shadow Priests looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+    Shadow Priest Gems & Enchants
+    Should Shadow Priest DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 4?
+    By Phase 4, you will likely have replaced all Aldor or Scryers' gear, so the biggest part of Aldor vs Scryer is the shoulder enchant. There are a few shoulder enchants that casters consider, and the best one depends entirely on class and spec.
+
+    For Shadow Priests, though, the answer is simple. The Aldor enchant, Greater Inscription of Discipline Greater Inscription of Discipline, provides a significant amount more spell power than the Scryers, Greater Inscription of the Orb Greater Inscription of the Orb, does, and is by far the best shoulder enchant for Shadow. If you decide against going Aldor, your best option will be Zandalar Signet of Mojo Zandalar Signet of Mojo, but let's be real, no one likes going back to Zul'Gurub, at least not in TBC.
+
+    If you need to grind reputation with the Aldor or the Scryers, or any of the other factions that offer BiS gear for Shadow Priests, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+    Reputations Overview TBC Classic
+    Best in Slot Head Armor for Shadow Priest in TBC Classic Phase 4
+    Absolution Regalia reigns supreme and you very much want to use Hood of Absolution to reach your 4-piece bonus.
+    Rank	Item	Source
+    BiS	Hood of Absolution Hood of Absolution	Drop: Archimonde (Hyjal Summit)
+    Option	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+    Option - Engineering	Destruction Holo-gogs Destruction Holo-gogs	Profession: Engineering - BoP only
+    Option	Hood of the Avatar Hood of the Avatar	Drop: Lady Vashj (Serpentshrine Cavern)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Head Armor Recommendations
+
+    Hood of Hexing is an okay entry-level piece added in Phase 4, but the lack of a meta gem slot and no set bonus means this falls behind many other options.
+    Rank	Item	Source
+    Option	Hood of Hexing Hood of Hexing	Drop: Hex Lord Malacrass (Zul'Aman)
+
+    Best in Slot Shoulder Armor for Shadow Priest in TBC Classic Phase 4
+    Another slot in which the Absolution Regalia piece is your best choice.
+    Rank	Item	Source
+    BiS	Shoulderpads of Absolution Shoulderpads of Absolution	Drop: Mother Shahraz (Black Temple)
+    Option - Tailoring	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+    Option	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+    Option	Blood-cursed Shoulderpads Blood-cursed Shoulderpads	Drop: Gurtogg Bloodboil (Black Temple)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Shoulder Armor Recommendations
+
+    Phase 4 adds Mantle of Ill Intent as a decent option, but items from raids and Tailoring overshadow it.
+    Rank	Item	Source
+    Option - Tailoring	Frozen Shadoweave Shoulders Frozen Shadoweave Shoulders	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+    Option	Wings of the Avatar Wings of the Avatar	Drop: Void Reaver (Tempest Keep: The Eye)
+    Option	Mantle of Ill Intent Mantle of Ill Intent	Drop: First Timed Chest (Zul'Aman)
+
+    Best in Slot Back Armor for Shadow Priest in TBC Classic Phase 4
+    The newly available Shadowcaster's Drape could be worth considering, especially if you haven't gotten a hold of Nethervoid Cloak, but generally it won't be your Best in Slot.
+    Rank	Item	Source
+    BiS	Nethervoid Cloak Nethervoid Cloak	Drop: Trash Mobs (Black Temple)
+    Option	Shadowcaster's Drape Shadowcaster's Drape	Drop: First Timed Chest (Zul'Aman)
+    Option	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+    Option	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: The Illidari Council (Black Temple)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Back Armor Recommendations
+
+    Rank	Item	Source
+    Option	Illidari Cloak Illidari Cloak of Shadow Wrath	Drop: Chief Engineer Lorthander (Netherstorm) - can be purchased on the Auction House
+    Option	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+    Best in Slot Chest Armor for Shadow Priest in TBC Classic Phase 4
+    Chest is a vital slot for your Absolution Regalia 4-piece, and Phase 4 adds nothing particularly worth considering as long as you have been raiding.
+    Rank	Item	Source
+    BiS	Shroud of Absolution Shroud of Absolution	Drop: Illidan Stormrage (Black Temple)
+    Option	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+    Option	Shroud of the Avatar Shroud of the Avatar	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+    Option	Robes of Rhonin Robes of Rhonin	Drop: Archimonde (Hyjal Summit)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Chest Armor Recommendations
+
+    Rank	Item	Source
+    Option - Tailoring	Frozen Shadoweave Robe Frozen Shadoweave Robe	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+    Option	Robe of Hateful Echoes Robe of Hateful Echoes	Drop: Hydross the Unstable (Serpentshrine Cavern)
+    Option	Robe of the Shadow Council Robe of the Shadow Council	Drop: Teron Gorefiend (Black Temple)
+    Option	Robe of Departed Spirits Robe of Departed Spirits	Drop: Halazzi (Zul'Aman)
+
+    Best in Slot Wrist Armor for Shadow Priest in TBC Classic Phase 4
+    Bracers of Nimble Thought are easily crafted, Bind on Equip, and do not use Bind on Pickup materials. These bracers are a no-brainer and are better than any of the other options in this slot by a significant margin.
+    Rank	Item	Source
+    BiS	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring - can be purchased on the Auction House
+    Option	Cuffs of Devastation Cuffs of Devastation	Drop: Rage Winterchill (Hyjal Summit)
+    Option	Focused Mana Bindings Focused Mana Bindings	Drop: Shade of Akama (Black Temple)
+    Option - Servant's Quarters	Ravager's Cuffs Ravager's Cuffs of Shadow Wrath	Drop: Rokad the Ravager (Karazhan)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Wrist Armor Recommendations
+
+    Rank	Item	Source
+    Option	Illidari Bindings Illidari Bindings of Shadow Wrath	Drop: Ambassador Jerrikar (Netherstorm) - can be purchased on the Auction House
+
+    Best in Slot Hand Armor for Shadow Priest in TBC Classic Phase 4
+    Studious Wraps, added in Phase 4 to the badge vendor, are still worse than Gloves of Absolution provided you have the 4-piece set bonus, but if you don't, they are a fantastic option for the slot.
+    Rank	Item	Source
+    BiS	Handguards of Absolution Handguards of Absolution	Drop: Azgalor (Hyjal Summit)
+    Option	Studious Wraps Studious Wraps	Vendor: G'eras (Badges of Justice)
+    Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+    Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Hand Armor Recommendations
+
+    Rank	Item	Source
+    Option	Nethersteel-Lined Handwraps Nethersteel-Lined Handwraps of Shadow Wrath	Drop: Speaker Mar'grom (Blade's Edge Mountains) - can be purchased on the Auction House
+
+    Best in Slot Waist Armor for Shadow Priest in TBC Classic Phase 4
+    Nothing new here worth considering. Waistwrap of Infinity stays on top.
+    Rank	Item	Source
+    BiS	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+    Option	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+    Option - Servant's Quarters	Lurker's Cord Lurker's Cord of Shadow Wrath	Drop: Hyakiss the Lurker (Karazhan)
+    Option	Anetheron's Noose Anetheron's Noose	Drop: Anetheron (Hyjal Summit)
+    Best in Slot Leg Armor for Shadow Priest in TBC Classic Phase 4
+    Pantaloons of Arcane Annihilation by itself isn't fantastic, but the availability of it via Badge of Justice makes it a fantastic choice for any freshly geared Shadow Priest.
+    Rank	Item	Source
+    BiS	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+    Option	Leggings of Devastation Leggings of Devastation	Drop: Mother Shahraz (Black Temple)
+    Option	Pantaloons of Arcane Annihilation Pantaloons of Arcane Annihilation	Vendor: G'eras (Badges of Justice)
+    Option	Leggings of Absolution Leggings of Absolution	Drop: The Illidari Council (Black Temple)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Leg Armor Recommendations
+
+    Rank	Item	Source
+    Option	Trousers of the Astromancer Trousers of the Astromancer	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+    Option	Leggings of the Avatar Leggings of the Avatar	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+    Best in Slot Feet Armor for Shadow Priest in TBC Classic Phase 4
+    Frozen Shadoweave Boots and Slippers of the Seacaller remain the strongest items with or without Tailoring respectively, but Footpads of Madness swoops in as a new easily accessible third place item, filling the slot nicely if you don't have either of the best options.
+    Rank	Item	Source
+    BiS	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+    BiS - Tailoring	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+    Option	Footpads of Madness Footpads of Madness	Drop: Jan'alai (Zul'Aman)
+    Option - Servant's Quarters	Glider's Foot-Wraps Glider's Foot-Wraps of Shadow Wrath	Drop: Shadikith the Glider (Karazhan)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Feet Armor Recommendations
+
+    Rank	Item	Source
+    Option	Boots of the Shifting Nightmare Boots of the Shifting Nightmare	Drop: Hydross the Unstable (Serpentshrine Cavern)
+    Option	Blue Suede Shoes Blue Suede Shoes	Drop: Kaz'rogal (Hyjal Summit)
+    Option	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+
+    Best in Slot Neck Jewelry for Shadow Priest in TBC Classic Phase 4
+    Translucent Spellthread Necklace's short time spent at the top of the BiS list is over, replaced by Loop of Cursed Bones. This neck is fantastic and hopefully less rare than Ritssyn's Lost Pendant.
+    Rank	Item	Source
+    BiS	Loop of Cursed Bones Loop of Cursed Bones	Drop: Zul'jin (Zul'Aman)
+    BiS - Group Content	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+    BiS - Group Content	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+    Option	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Essence of Anger (Black Temple)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Neck Jewelry Recommendations
+
+    Rank	Item	Source
+    Option	Ritssyn's Lost Pendant Ritssyn's Lost Pendant	Drop: Trash Mobs (Karazhan)
+    Option - Group Content	Jade Pendant of Blasting Jade Pendant of Blasting	Profession: Jewelcrafting - can be purchased on the Auction House
+
+    Best in Slot Ring Jewelry for Shadow Priest in TBC Classic Phase 4
+    While you still want to aim for 2x Ring of Ancient Knowledge, Mana Attuned Band is now available to fill the gap until you get your hands on two. Until you get your hands on your first Ring of Ancient Knowledge, you can use Band of the Eternal Sage as a guaranteed slot filler when you have the reputation.
+    Rank	Item	Source
+    BiS	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+    Option	Mana Attuned Band Mana Attuned Band	Drop: Third Timed Chest (Zul'Aman)
+    Option	Band of the Eternal Sage Band of the Eternal Sage	Quest: Sage's Covenant Sage's Covenant (Scale of the Sands Exalted)
+    Option	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Ring Jewelry Recommendations
+
+    Rank	Item	Source
+    Option	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+    Option	Band of Al'ar Band of Al'ar	Drop: Al'ar (Tempest Keep: The Eye)
+    Option	Ring of the Fallen God Ring of the Fallen God	Drop: C'Thun (Classic - Ahn'Qiraj)
+    Option	Band of the Inevitable Band of the Inevitable	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+
+    Best in Slot Trinkets for Shadow Priest in TBC Classic Phase 4
+    Hex Shrunken Head is a strictly better version of Icon of the Silver Crescent, but you can still use the two trinkets together. The Skull of Gul'dan remains the best second option, but is still a very small upgrade over the alternatives such as Darkmoon Card: Crusade or Icon of the Silver Crescent, and is a much bigger upgrade on other caster classes.
+    Rank	Item	Source
+    BiS	Hex Shrunken Head Hex Shrunken Head	Drop: Hex Lord Malacrass (Zul'Aman)
+    BiS	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+    BiS	Mark of the Champion Mark of the Champion	Quest: The Fall of Kel'Thuzad The Fall of Kel'Thuzad (Classic - Naxxramas)
+    BiS	Darkmoon Card: Crusade Darkmoon Card: Crusade	Quest: Darkmoon Blessings Deck Darkmoon Blessings Deck
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Trinket Recommendations
+
+    Ashtongue Talisman of Acumen is an odd trinket, being terrible in almost every situation; trash dies too fast for it to be useful, and on single target, it's worse than pre-raid trinkets. The Illidari Council is the exception, being a cleave fight that absolutely does not die too fast. If played correctly, you should be able to achieve close to 100% uptime on this trinket. Outside of this fight, it is effectively a paperweight.
+    Rank	Item	Source
+    Option	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+    Option	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+    Option - Illidari Council	Ashtongue Talisman of Acumen Ashtongue Talisman of Acumen	Vendor: Okuno (Ashtongue Deathsworn Exalted)
+    Option - Short Fights	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+    Option - Long Fights	Eye of Magtheridon Eye of Magtheridon	Drop: Magtheridon (Magtheridon's Lair)
+    Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+
+    Best in Slot Weapons for Shadow Priest in TBC Classic Phase 4
+    Phase 4 adds a few new items to fill the gap until you can get your hands on Zhar'doom, Greatstaff of the Devourer, but nothing that beats it.
+    Rank	Item	Source
+    BiS	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+    Option - PvP	Vengeful Gladiator's Gavel Vengeful Gladiator's Gavel	Vendor: Arena Points (Season 3)
+    Option	The Maelstrom's Fury The Maelstrom's Fury	Drop: High Warlord Naj'entus (Black Temple)
+    Option	Hammer of Judgement Hammer of Judgement	Drop: Trash Mobs (Hyjal Summit)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Weapon Recommendations
+
+    One noteworthy consideration is that Talon of the Tempest becomes Bind on Equip with Phase 4, so rich Shadow Priests can pick one up on the Auction House and use it until they get a Black Temple or Hyjal Summit weapon.
+    Rank	Item	Source
+    Option - PvP	Merciless Gladiator's Gavel Merciless Gladiator's Gavel	Vendor: Arena Points (Season 2)
+    Option	Amani Punisher Amani Punisher	Drop: Akil'zon (Zul'Aman)
+    Option	Wub's Cursed Hexblade Wub's Cursed Hexblade	Drop: Jan'alai (Zul'Aman)
+    Option	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+    Option	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss) - can be purchased on the Auction House
+    Option	Amani Divining Staff Amani Divining Staff	Drop: Second Timed Chest (Zul'Aman)
+
+    Best in Slot Offhands for Shadow Priest in TBC Classic Phase 4
+    Fetish of the Primal Gods replaces Orb of the Soul-Eater as the go-to offhand, available for the same price.
+    Rank	Item	Source
+    BiS	Fetish of the Primal Gods Fetish of the Primal Gods	Vendor: G'eras (Badges of Justice)
+    Option	Orb of the Soul-Eater Orb of the Soul-Eater	Vendor: G'eras (Badges of Justice)
+    Option	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+    Option	Blind-Seers Icon Blind-Seers Icon	Drop: Shade of Akama (Black Temple)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Offhand Recommendations
+
+    Rank	Item	Source
+    Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+
+    Best in Slot Wands for Shadow Priest in TBC Classic Phase 4
+    Phase 4 adds Carved Witch Doctor's Stick for Badges of Justice. This wand is both better than anything else available in the slot, giving 30 Spell Power if socketed with Runed Crimson Spinel Runed Crimson Spinel, while also being significantly easier to obtain.
+    Rank	Item	Source
+    BiS	Carved Witch Doctor's Stick Carved Witch Doctor's Stick	Vendor: G'eras (Badges of Justice)
+    Option	Wand of the Forgotten Star Wand of the Forgotten Star	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+    Option	Wand of Prismatic Focus Wand of Prismatic Focus	Drop: Gurtogg Bloodboil (Black Temple)
+    Option	Flawless Wand Flawless Wand of Shadow Wrath	Drop: World Drop
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Wand Recommendations
+
+    Rank	Item	Source
+    Option	Dragonscale Wand Dragonscale Wand of Shadow Wrath
+    Draenethyst Wand Draenethyst Wand of Shadow Wrath	Drop: World Drop
+    Option - Hit	Tirisfal Wand of Ascendancy Tirisfal Wand of Ascendancy	Drop: Shade of Aran (Karazhan)
+
+Passion
+World of Warcraft Classic Class Lead
+Passion has been an avid MMORPG player for the better part of the last two decades, playing everything from Everquest and Tibia, to Hellgate: London and Global Agenda. With a particular love for the ever-evaporating Support role, such as the Bard class from Rift Online, Final Fantasy XI, and Everquest, the return of Support Shadow Priest in the Burning Crusade Classic was inescapable.
+
+Moving from writing and sharing guides in Class Discords, they got their start as the Classic WoW Shadow Priest Expert for Wowhead.
+No comments have been posted yet.
+Be the first to add a comment to this page!
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Shadow Priest Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+            Best In Slot Gear in Phase 5
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Wands
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Shadow Priest DPS Best in Slot (BiS) Phase 5 Gear Guide
+By Passion
+Updated: 2026/02/28
+Welcome to Wowhead's Best in Slot Gear list from Phase 5 Sunwell Plateau for Shadow Priest DPS in The Burning Crusade Classic. This guide will list the recommended gear for Shadow Priest DPS to acquire while they progress during the fifth and final phase of The Burning Crusade Classic, which contains gear sourced from Sunwell Plateau, Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Shadow Priest DPS in Phase 5
+Shadow Priest gearing is fairly straightforward. Your goal is mainly to get as much spell power as you possibly can, and when available, grab spell haste as your second priority.
+
+    Spell Power - This is your main stat for almost all of The Burning Crusade, and outvalues almost every other stat available.
+    Spell Critical Strike Rating - Critical rating is mostly wasted on Shadow Priests, as only two of your five spells can crit. You can typically assume that 6 spell critical is worth one spell power.
+    Spell Hit Rating - Spell Hit has a few relevant breakpoints. The first one is at 76 rating, putting you at 6% bonus chance to hit with spells, enough to be hit capped against all enemies when combined with 5 points in Shadow Focus. As you get more gear, you may end up over the hit cap. If you are 2% over the hit cap, you can remove a point in this talent and put it elsewhere.
+    Spell Penetration - This stat is almost entirely wasted in PvE content, as Curse of the Elements will, in almost every situation, reduce the enemies' Shadow Resistance to 0.
+    Spell Haste Rating - A new stat introduced in TBC, which isn't readily available until Phase 3. This decreases your cast times and global cooldown. It is an incredible stat for Shadow Priests and outweighs every other stat except spell power. Your DoT effects do not benefit from this, but the primary gain is faster Mind Flay casts. Mind Flay always hits 3 times over its duration, but haste reduces its duration, meaning you get each tick sooner. Because of this, you can potentially fit more ticks between your other casts, and Mind Flay casts do make up the bulk of your casts during a fight.
+    Stamina - A mostly incidental stat. Most gear has Stamina, and there are very few situations where you would need to prioritize more.
+    Intellect - Governs your mana pool and gives a very small amount of spell critical. Rarely relevant for deciding gear pieces, but it can be beneficial.
+    Spirit and Mana Per 5 Seconds - These stats give mana regeneration, which substantially affects your longevity in combat. Spirit is more valuable for Shadow Priests because of Spirit Tap, but neither is a deciding factor when choosing gear. The exception to this is if you will be raiding with a Priest specced into Improved Divine Spirit. In this case, roughly 10 Spirit is equivalent to one spell power.
+
+    This is it, the final raid of The Burning Crusade. Sunwell Plateau is in a very special situation; the leap in gear quality is massive, and because of this, you will replace almost every piece of gear, no matter what you had before Phase 5.
+
+    We will still aim to pick up the 4-piece bonus from Absolution Regalia, but due to new Tier 6 pieces in Phase 6, the gear slots used will change. Ideally, you will use Shoulderpads of Absolution Shoulderpads of Absolution from Phase 3 together with Bracers of Absolution Bracers of Absolution, Treads of Absolution Treads of Absolution, and Cord of Absolution Cord of Absolution from Phase 5. The new Tier 6 pieces are absolutely outstanding, and you would most likely want to use them even without the set bonus, so getting 10% Mind Blast damage is just a cherry on top.
+
+    Shadow Priests looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+    Shadow Priest Gems & Enchants
+    Should Shadow Priest DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 5?
+    By Phase 5, you will likely have replaced all Aldor or Scryers' gear, so the biggest part of Aldor vs Scryer is the shoulder enchant. There are a few shoulder enchants that casters consider, and the best one depends entirely on class and spec.
+
+    For Shadow Priests, though, the answer is simple. The Aldor enchant, Greater Inscription of Discipline Greater Inscription of Discipline, provides a significant amount more spell power than the Scryers, Greater Inscription of the Orb Greater Inscription of the Orb, does, and is by far the best shoulder enchant for Shadow. If you decide against going Aldor, your best option will be Zandalar Signet of Mojo Zandalar Signet of Mojo, but let's be real, no one likes going back to Zul'Gurub, at least not in TBC.
+
+    If you need to grind reputation with the Aldor or the Scryers, or any of the other factions that offer BiS gear for Shadow Priests, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+    Reputations Overview TBC Classic
+    Best in Slot Head Armor for Shadow Priest in TBC Classic Phase 5
+    With the ability to get the Absolution Regalia set bonuses elsewhere, we replace Hood of Absolution with the insanely strong Dark Conjuror's Collar. If you're an Engineer, Annihilator Holo-Gogs is a solid pick if you can get your 4-piece elsewhere.
+    Rank	Item	Source
+    BiS	Dark Conjuror's Collar Dark Conjuror's Collar	Drop: Kil'jaeden (Sunwell Plateau)
+    Option - Engineering	Annihilator Holo-Gogs Annihilator Holo-Gogs	Profession: Engineering - BoP only
+    Option - Set Bonus	Hood of Absolution Hood of Absolution	Drop: Archimonde (Hyjal Summit)
+    Option	Helm of Arcane Purity Helm of Arcane Purity	Vendor: Yrma
+    Drop: Cowl of Light's Purity Cowl of Light's Purity from Kil'jaeden (Sunwell Plateau) & Sunmote Sunmote
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Head Armor Recommendations
+
+    Rank	Item	Source
+    Option	Hood of Hexing Hood of Hexing	Drop: Hex Lord Malacrass (Zul'Aman)
+    Option	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+
+    Best in Slot Shoulder Armor for Shadow Priest in TBC Classic Phase 5
+    Amice of the Convoker has the competition beat handily, but because you still have to use one piece of Absolution Regalia from Phase 3, you will probably want to stick with Shoulderpads of Absolution if you have it.
+    Rank	Item	Source
+    BiS - Set Bonus	Shoulderpads of Absolution Shoulderpads of Absolution	Drop: Mother Shahraz (Black Temple)
+    BiS	Amice of the Convoker Amice of the Convoker	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+    Option	Shoulderpads of Knowledge's Pursuit Shoulderpads of Knowledge's Pursuit	Vendor: Yrma
+    Drop: Shawl of Wonderment Shawl of Wonderment from Eredar Twins (Sunwell Plateau) & Sunmote Sunmote
+    Option - Tailoring	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Shoulder Armor Recommendations
+
+    Rank	Item	Source
+    Option	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+    Option	Blood-cursed Shoulderpads Blood-cursed Shoulderpads	Drop: Gurtogg Bloodboil (Black Temple)
+    Option - Tailoring	Frozen Shadoweave Shoulders Frozen Shadoweave Shoulders	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+    Option	Wings of the Avatar Wings of the Avatar	Drop: Void Reaver (Tempest Keep: The Eye)
+    Option	Fel-tinged Mantle Fel-tinged Mantle	Drop: Vexallus (Magisters' Terrace)
+
+    Best in Slot Back Armor for Shadow Priest in TBC Classic Phase 5
+    Tattered Cape of Antonidas has 56 spell power when gemmed, along with 32 spell haste. This item is leagues beyond every other cloak available for Shadow Priests.
+    Rank	Item	Source
+    BiS	Tattered Cape of Antonidas Tattered Cape of Antonidas	Drop: Kil'jaeden (Sunwell Plateau)
+    Option	Nethervoid Cloak Nethervoid Cloak	Drop: Trash Mobs (Black Temple)
+    Option	Shadowcaster's Drape Shadowcaster's Drape	Drop: First Timed Chest (Zul'Aman)
+    Option	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Back Armor Recommendations
+
+    Rank	Item	Source
+    Option	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: The Illidari Council (Black Temple)
+
+    Best in Slot Chest Armor for Shadow Priest in TBC Classic Phase 5
+    Finally, keeping Tailoring since Phase 1 is paying off, right? Kind of. Sunfire Robe is a straight upgrade to Fel Conquerer Raiments, so if you already have Tailoring, this is an easy choice.
+
+    On the other hand, if you already have other professions that contribute to DPS, like Engineering & Enchanting, don't go out of your way to get Sunfire Robe and just stick with Fel Conquerer Raiments. The jury is out on which one of the two will be most heavily contested at this point.
+    Rank	Item	Source
+    BiS - Tailoring	Sunfire Robe Sunfire Robe	Profession: Tailoring - BoP only
+    BiS	Fel Conquerer Raiments Fel Conquerer Raiments	Drop: M'uru (Sunwell Plateau)
+    Option - Set Bonus	Shroud of Absolution Shroud of Absolution	Drop: Illidan Stormrage (Black Temple)
+    Option	Robes of Ghostly Hatred Robes of Ghostly Hatred	Vendor: Yrma
+    Drop: Robes of Faltered Light Robes of Faltered Light from M'uru (Sunwell Plateau) & Sunmote Sunmote
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Chest Armor Recommendations
+
+    Rank	Item	Source
+    Option	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+    Option	Shroud of the Lore`nial Shroud of the Lore`nial	Vendor: Smith Hauthaa / Anwehu (Badges of Justice)
+    Option	Tormented Demonsoul Robes Tormented Demonsoul Robes	Vendor: Smith Hauthaa / Anwehu (Badges of Justice)
+    Option	Scarlet Sin'dorei Robes Scarlet Sin'dorei Robes	Drop: Kael'thas Sunstrider (Magisters' Terrace)
+    Option	Shroud of the Avatar Shroud of the Avatar	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+    Option	Robes of Rhonin Robes of Rhonin	Drop: Archimonde (Hyjal Summit)
+
+    Best in Slot Wrist Armor for Shadow Priest in TBC Classic Phase 5
+    Bracers of Absolution is the cooler cousin of Bracers of Nimble Thought. Giving more spell power and a red socket, while also contributing to your 4-piece bonus from Absolution Regalia. This one's a no-brainer.
+    Rank	Item	Source
+    BiS - Set Bonus	Bracers of Absolution Bracers of Absolution	Drop: Kalecgos (Sunwell Plateau)
+    Option	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring - can be purchased on the Auction House
+    Option	Cuffs of Devastation Cuffs of Devastation	Drop: Rage Winterchill (Hyjal Summit)
+    Option	Focused Mana Bindings Focused Mana Bindings	Drop: Shade of Akama (Black Temple)
+    Best in Slot Hand Armor for Shadow Priest in TBC Classic Phase 5
+    Handguards of Defiled Worlds are an important pick-up for any Shadow Priest in Phase 5. Spell hit is hard to come by, and these gloves give a third of what you need alone. Even without the hit, they're just a straight upgrade from all other gloves.
+    Rank	Item	Source
+    BiS	Handguards of Defiled Worlds Handguards of Defiled Worlds	Drop: Kil'jaeden (Sunwell Plateau)
+    Option - Set Bonus	Handguards of Absolution Handguards of Absolution	Drop: Azgalor (Hyjal Summit)
+    Option	Gloves of Tyri's Power Gloves of Tyri's Power	Vendor: Yrma
+    Drop: Handguards of the Dawn Handguards of the Dawn from Kil'jaeden (Sunwell Plateau) & Sunmote Sunmote
+    Option	Sunfire Handwraps Sunfire Handwraps	Profession: Tailoring - can be purchased on the Auction House
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Hand Armor Recommendations
+
+    Rank	Item	Source
+    Option	Enslaved Doomguard Soulgrips Enslaved Doomguard Soulgrips	Vendor: Smith Hauthaa / Anwehu (Badges of Justice)
+    Option	Studious Wraps Studious Wraps	Vendor: G'eras (Badges of Justice)
+    Option	Gloves of Arcane Acuity Gloves of Arcane Acuity	Drop: Kael'thas Sunstrider (Magisters' Terrace)
+
+    Best in Slot Waist Armor for Shadow Priest in TBC Classic Phase 5
+    Cord of Absolution is everything you could ever want from a piece of gear. Spell damage, spell haste, spell hit, a socket, set bonus, and Spirit instead of MP5. Another clear-cut example of Phase 5 gear just being in a different league.
+    Rank	Item	Source
+    BiS	Cord of Absolution Cord of Absolution	Drop: Brutallus (Sunwell Plateau)
+    Option	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+    Option	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+    Option	Anetheron's Noose Anetheron's Noose	Drop: Anetheron (Hyjal Summit)
+    Best in Slot Leg Armor for Shadow Priest in TBC Classic Phase 5
+    Leggings of Calamity and Pantaloons of Growing Strife are effectively interchangeable and realistically will be within 1 DPS of each other.
+    Rank	Item	Source
+    BiS	Leggings of Calamity Leggings of Calamity	Drop: Brutallus (Sunwell Plateau)
+    BiS	Pantaloons of Growing Strife Pantaloons of Growing Strife	Vendor: Yrma
+    Drop: Pantaloons of Calming Strife Pantaloons of Calming Strife from Kalecgos (Sunwell Plateau) & Sunmote Sunmote
+    Option	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+    Option	Leggings of Devastation Leggings of Devastation	Drop: Mother Shahraz (Black Temple)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Leg Armor Recommendations
+
+    Rank	Item	Source
+    Option	Pantaloons of Arcane Annihilation Pantaloons of Arcane Annihilation	Vendor: G'eras (Badges of Justice)
+    Option	Legwraps of Sweltering Flame Legwraps of Sweltering Flame	Vendor: Smith Hauthaa / Anwehu (Badges of Justice)
+    Option - Set Bonus	Leggings of Absolution Leggings of Absolution	Drop: The Illidari Council (Black Temple)
+    Option	Corrupted Soulcloth Pantaloons Corrupted Soulcloth Pantaloons	Vendor: Smith Hauthaa / Anwehu (Badges of Justice)
+
+    Best in Slot Feet Armor for Shadow Priest in TBC Classic Phase 5
+    Treads of Absolution, another Phase 5 Tier piece. This one was so close to that fantastic combination of damage, haste, and hit. Sadly, you get spell crit instead of hit here, but that doesn't really matter because these are so far above the competition anyway.
+    Rank	Item	Source
+    BiS	Treads of Absolution Treads of Absolution	Drop: Felmyst (Sunwell Plateau)
+    Option	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+    Option - Tailoring	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+    Option	Footpads of Madness Footpads of Madness	Drop: Jan'alai (Zul'Aman)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Feet Armor Recommendations
+
+    Rank	Item	Source
+    Option	Boots of Incantations Boots of Incantations	Vendor: Smith Hauthaa / Anwehu (Badges of Justice)
+    Option	Boots of the Shifting Nightmare Boots of the Shifting Nightmare	Drop: Hydross the Unstable (Serpentshrine Cavern)
+    Option	Blue Suede Shoes Blue Suede Shoes	Drop: Kaz'rogal (Hyjal Summit)
+
+    Best in Slot Neck Jewelry for Shadow Priest in TBC Classic Phase 5
+    Amulet of Unfettered Magics has everything we could ask for and gets us closer to the coveted Phase 5 hit cap. Pendant of Sunfire is a decent option here as well, if you're a jewelcrafter, but because it doesn't have hit, you would have to compensate elsewhere to make up the difference.
+    Rank	Item	Source
+    BiS	Amulet of Unfettered Magics Amulet of Unfettered Magics	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+    BiS - Group Content	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+    BiS - Group Content	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+    Option - Jewelcrafting	Pendant of Sunfire Pendant of Sunfire	Profession: Jewelcrafting - BoP only
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Neck Jewelry Recommendations
+
+    Rank	Item	Source
+    Option	Loop of Cursed Bones Loop of Cursed Bones	Drop: Zul'jin (Zul'Aman)
+    Option	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Essence of Anger (Black Temple)
+    Option	Ritssyn's Lost Pendant Ritssyn's Lost Pendant	Drop: Trash Mobs (Karazhan)
+    Option	Guardian's Pendant of Subjugation Guardian's Pendant of Subjugation	Vendor: Honor Points (Season 4)
+    Option	Sin'dorei Pendant of Conquest Sin'dorei Pendant of Conquest	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+    Option	Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen	Vendor: Eldara Dawnrunner (Shattered Sun Offensive Exalted)
+
+    Best in Slot Ring Jewelry for Shadow Priest in TBC Classic Phase 5
+    Ring of Omnipotence is here, a strictly better version of Ring of Ancient Knowledge, but of course, being Unique-Equipped, you can only use one. Loop of Forged Power is a BoE crafted option that can help you make up hit if you're missing it elsewhere.
+    Rank	Item	Source
+    BiS	Ring of Omnipotence Ring of Omnipotence	Drop: M'uru (Sunwell Plateau)
+    BiS	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+    Option	Loop of Forged Power Loop of Forged Power	Profession: Jewelcrafting - can be purchased on the Auction House
+    Option	Mana Attuned Band Mana Attuned Band	Drop: Third Timed Chest (Zul'Aman)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Ring Jewelry Recommendations
+
+    Rank	Item	Source
+    Option	Band of the Eternal Sage Band of the Eternal Sage	Quest: Sage's Covenant Sage's Covenant (Scale of the Sands Exalted)
+    Option	Fused Nethergon Band Fused Nethergon Band	Vendor: Smith Hauthaa / Anwehu (Badges of Justice)
+    Option	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+    Option	Guardian's Band of Dominance Guardian's Band of Dominance	Vendor: Honor Points (Season 4)
+    Option	Sin'dorei Band of Dominance Sin'dorei Band of Dominance	Drop: M'uru (Sunwell Plateau)
+
+    Best in Slot Trinkets for Shadow Priest in TBC Classic Phase 5
+    This is it - Shifting Naaru Sliver is your new best friend. Create the circle, love the circle, never leave the circle. This trinket absolutely demolishes the competition, and no matter what you pair it with, it will be on top.
+
+    Hex Shrunken Head is one of the few items that carries over through Phase 5 and also just outclasses most other trinkets. The Skull of Gul'dan does come close, so if you have one and not the other, I wouldn't lose sleep over it.
+    Rank	Item	Source
+    BiS	Shifting Naaru Sliver Shifting Naaru Sliver	Drop: M'uru (Sunwell Plateau)
+    BiS	Hex Shrunken Head Hex Shrunken Head	Drop: Hex Lord Malacrass (Zul'Aman)
+    Option	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+    Option - Classic	Mark of the Champion Mark of the Champion	Quest: The Fall of Kel'Thuzad The Fall of Kel'Thuzad (Classic - Naxxramas)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Trinket Recommendations
+
+    Timbal's Focusing Crystal is neat and seems like it's made just for us, but in reality, it just isn't that strong. If you're a fairly new Shadow Priest, it is decently obtainable and available outside of raids.
+    Rank	Item	Source
+    Option	Darkmoon Card: Crusade Darkmoon Card: Crusade	Quest: Darkmoon Blessings Deck Darkmoon Blessings Deck
+    Option	Timbal's Focusing Crystal Timbal's Focusing Crystal	Drop: Priestess Delrissa (Heroic Magisters' Terrace)
+    Option	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+    Option	Sorcerer's Alchemist Stone Sorcerer's Alchemist Stone	Profession: Alchemy - BoP only
+    Option	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+
+    Best in Slot Weapons for Shadow Priest in TBC Classic Phase 5
+    This list got really long, really fast. Phase 5 adds a bunch of new weapons, and because of the general strength of weapons across TBC, large chunks of weapons are comparable to each other.
+
+    Sunflare is absolutely the best option, giving almost 300 spell power by itself, as well as haste and crit, but of course, it is also the most contested, and every caster in the game can use daggers. Reign of Misery is a solid second choice, being a lot less contested but also quite a bit worse.
+    Rank	Item	Source
+    BiS	Sunflare Sunflare	Drop: Kil'jaeden (Sunwell Plateau)
+    Option	Reign of Misery Reign of Misery	Drop: Brutallus (Sunwell Plateau)
+    Option - PvP	Brutal Gladiator's Gavel Brutal Gladiator's Gavel
+    Brutal Gladiator's Spellblade Brutal Gladiator's Spellblade	Vendor: Arena Points (Season 4)
+    Option	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+
+    If you don't have access to the recommendations above, here are further options to choose from or farm:
+    Other Weapon Recommendations
+
+    Scryer's Blade of Focus is an easy grab for badges, and if paired with Heart of the Pit Heart of the Pit, does just barely edge out Zhar'doom. Grand Magister's Staff of Torrents looks good at a glance, but without an offhand, this staff really ends up lacking.
+    Rank	Item	Source
+    Option	Scryer's Blade of Focus Scryer's Blade of Focus	Vendor: Smith Hauthaa / Anwehu (Badges of Justice)
+    Option	Grand Magister's Staff of Torrents Grand Magister's Staff of Torrents	Drop: Felmyst (Sunwell Plateau)
+    Option - PvP	Vengeful Gladiator's Gavel Vengeful Gladiator's Gavel	Vendor: Arena Points (Season 3)
+    Option	The Maelstrom's Fury The Maelstrom's Fury	Drop: High Warlord Naj'entus (Black Temple)
+    Option	Hammer of Judgement Hammer of Judgement	Drop: Trash Mobs (Hyjal Summit)
+    Option - World Boss	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss) - can be purchased on the Auction House
+    Option	Amani Punisher Amani Punisher	Drop: Akil'zon (Zul'Aman)
+    Option	Wub's Cursed Hexblade Wub's Cursed Hexblade	Drop: Jan'alai (Zul'Aman)
+    Option	Cudgel of Consecration Cudgel of Consecration	Drop: Kael'thas Sunstrider (Magisters' Terrace)
+    Option	Jaded Crystal Dagger Jaded Crystal Dagger	Drop: Selin Fireheart (Magisters' Terrace)
+
+    Best in Slot Offhands for Shadow Priest in TBC Classic Phase 5
+    Heart of the Pit swoops in as a straight upgrade to Fetish of the Primal Gods, but is again an incredibly contested item, wanted by every caster.
+    Rank	Item	Source
+    BiS	Heart of the Pit Heart of the Pit	Drop: Brutallus (Sunwell Plateau)
+    Option	Fetish of the Primal Gods Fetish of the Primal Gods	Vendor: G'eras (Badges of Justice)
+    Option	Orb of the Soul-Eater Orb of the Soul-Eater	Vendor: G'eras (Badges of Justice)
+    Option	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+    Best in Slot Wands for Shadow Priest in TBC Classic Phase 5
+    Oh, how far wands have come over the course of The Burning Crusade - Wand of the Demonsoul is absolutely fantastic, having a socket, haste, and high spell power. To top all of that off, it drops from Trash, so lucky raids can get multiple in one night.
+    Rank	Item	Source
+    BiS	Wand of the Demonsoul Wand of the Demonsoul	Drop: Trash Mobs (Sunwell Plateau)
+    Option	Carved Witch Doctor's Stick Carved Witch Doctor's Stick	Vendor: G'eras (Badges of Justice)
+    Option	Wand of the Forgotten Star Wand of the Forgotten Star	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+    Option	Wand of Prismatic Focus Wand of Prismatic Focus	Drop: Gurtogg Bloodboil (Black Temple)
+
+Passion
+World of Warcraft Classic Class Lead
+Passion has been an avid MMORPG player for the better part of the last two decades, playing everything from Everquest and Tibia, to Hellgate: London and Global Agenda. With a particular love for the ever-evaporating Support role, such as the Bard class from Rift Online, Final Fantasy XI, and Everquest, the return of Support Shadow Priest in the Burning Crusade Classic was inescapable.
+
+Moving from writing and sharing guides in Class Discords, they got their start as the Classic WoW Shadow Priest Expert for Wowhead.
+1 - 2 of 2
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+1
+
+	
+By Umbarrella (522 – 4·3) on 2022/05/07 (Burning Crusade)	
+	
+Very comprehensive guide like always Passion. I like how you have revamped the entire list with currently available items rather than just adding 1 or 2 strong items like some of the other Wowhead class BIS lists have done.
+
+1
+
+	
+By bigdollopenergy (1,516 – 2·9) on 2022/05/14 (Burning Crusade)	
+	
+Great list. A couple minor things i wanted to comment on/mildly disagree with:
+
+Trinket:
+
+Timbals should be just above Darkmoon crusade and Mark of the Champion. It sims 2/3 dps higher than crusade on https://wowsims.github.io/tbc/shadow_priest/. The sim also plays to crusade cards stengths (tank and spank with no swapping/chance of stacks dropping) and inflates it's value above it's real world value and it still loses. It's only a fraction of a dps better than mark of the champion though, but edges out in most sim iterations.
+
+Given mark of the champions/crusade cards difficulty/time required to acquire, this could prevent a lot of spriests putting in a lost of wasted effort trying to get them.
+
+Neck:
+
+Guardians pendant of subjugation should be higher up in the list as it becomes better than loop of cursed bones once you've got a good chunk haste elsewhere (it sims just above loop of cursed bones for me in near p4 bis), or a note should be added for it to explain that. Obviously this assumes you put an epic gem in it.
+
+Weapons:
+
+Vengeful glad gavel/spellblade should be above above scryers blade of focus. You get slightly less stam+int (and a tiny bit of crit) but get spell hit instead. While you lose a small amount of survivability, It is obviously better in terms of raw dps and with hit becoming more of a concern in sunwell than in p3/p4 that isn't worthless at all. It's certainly better than the tiny bit of crit the extra int will give you. I'm not sure it's better than the sunwell staff though, so potentially scryers blade should be moved down rather than vengeful spellblade moved up.
+
+This is mostly based on simming (https://wowsims.github.io/tbc/shadow_priest/) and it's totally possible that the sim is wrong, but if this list was made just totalling coefficients, i'd argue it's more likely the sim is accurate.
+Last edited by bigdollopenergy on 2022/05/14
+
+0
+
+	
+
+Passion <Guide Author> on 2022/06/05 (Burning Crusade)
+The sim is accurate to your settings, remember that always. Just because it sims best with your latency, raid buffs, race and current gear, does not make that the case across the board.
+1 - 2 of 2
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+

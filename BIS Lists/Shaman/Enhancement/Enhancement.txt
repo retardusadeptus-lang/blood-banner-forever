@@ -1,0 +1,3691 @@
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase TwoClassesLevelingBest in SlotTier ListsRaidsAttunementsDungeonsReputationsProfessions
+Guides...
+Guide Contents
+Patch 2.5.6
+2.4/5 (12 Votes)
+TBCC Enhancement Shaman Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Best In Slot Gear in Pre-Raid
+                Aldor vs. Scryer
+                Head
+                Shoulder
+                Back
+                Chest
+                Wrist
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Totems
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Enhancement Shaman DPS Pre-Raid Best in Slot (BiS) - TBC Classic
+By Woah
+Updated: 2026/08/01
+In this Pre-Raid Best-in-Slot Gear List for Enhancement Shaman DPS in The Burning Crusade Classic, we will list the recommended gear for Enhancement Shaman DPS to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Enhancement Shaman DPS Best in Slot Hub
+Pre-Raid Best In Slot Gear for Enhancement Shaman DPS in Phase 3
+This guide gets an update as we get into Phase 3. As we potentially anticipate loot changes in Heroic dungeons in this Phase, this guide will also get updated to accommodate that once we get confirmation on that.
+
+For now, the main updates you'll see will include PvP gear from Season 2, crafted gear from Serpentshrine Cavern, and Engineering Goggles for those who opt into that profession. For Enhancement Shamans especially, the Arena weapons will be huge, as it'll be incredibly easy to get two of these weapons, and will be the biggest increase of power a fresh level 70 could get.
+Besides that, gear such as the Leatherworking Leatherworking crafted gear from Phase 1 and Badge of Justice Badge of Justice gear will still remain on this list. Because the Anniversary Servers have increased loot drop rates in Phase 1 and 2 (potentially 3 as well), when considering your pre-raid gear, prioritize the items that will not be replaced easily by overall BiS gear. Look at the gear that offers Hit and Expertise Rating, and aim for getting weapons ASAP.
+
+Enhancement Shamans looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Enhancement Shaman Gems & Enchants
+
+
+Below is an example of a Pre-BiS gear setup, with a combination of "true" Pre Raid BiS and some easier alternatives such as Braided Eternium Chain. It should be noted that this is setup if you're an Orc in regards to weapons, if you are a Non-Orc, your Main-hand would be Merciless Gladiator's Right Ripper Merciless Gladiator's Right Ripper.
+
+
+Wastewalker Helm
+Braided Eternium Chain
+Wastewalker Shoulderpads
+Vengeance Wrap
+Ebon Netherscale Breastplate
+Ebon Netherscale Bracers
+Fel Leather Gloves
+Belt of Deep Shadow
+Clefthoof Hide Leggings
+Fel Leather Boots
+Shapeshifter's Signet
+Shaffar's Band of Brutality
+Empty Mug of Direbrew
+Bloodlust Brooch
+Merciless Gladiator's Cleaver
+Merciless Gladiator's Cleaver
+Totem of the Astral Winds
+Link
+Level70
+Aldor vs. Scryer for Enhancement Shaman DPS in Pre-Raid
+Shamans can pick both The Aldor or The Scryers without much penalty. The Aldor shoulder enchant is slightly better, but the difference is minuscule from the Scryers enchant when considering your full gear stat bonuses. In general, it is best to pick based on which faction is cheaper to buy reputation materials for, as Aldor, for example, can often be extremely expensive due to having the favored shoulder enchant for most specializations.
+
+    Aldor offer a very slightly superior shoulder enchant for DPS.
+    Scryers offer a decent pre-raid leg option with Retainer's Leggings Retainer's Leggings.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Enhancement Shamans, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Pre-Raid Best in Slot Head Armor for Enhancement in TBC Classic Phase 3
+Surestrike Goggles v2.0 will technically be your best option if you happen to be Engineering, although the Leather option is better; we unfortunately can only craft the mail version. If you are Engineering, these are a great option. This piece is not BiS in any phase, however, so don't feel compelled to craft this as a fresh level 70.
+
+Other than that, Wastewalker Helm and Mask of the Deceiver are both great options for the helm slot. We'll lean towards the former when paired with its two-set bonus to help us achieve Hit cap.
+Rank	Item	Source
+Best - Set Bonus	Wastewalker Helm Wastewalker Helm	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Best - Crafted	Surestrike Goggles v2.0 Surestrike Goggles v2.0	Profession: Engineering (BoP)
+Best - Badge	Mask of the Deceiver Mask of the Deceiver	Vendor: G'eras (50 Badges of Justice)
+Good - Easy to Get	Helm of the Claw Helm of the Claw	Quest: The Warlord's Hideout The Warlord's Hideout
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+Rank	Item	Source
+Optional	Stealther's Helmet of Second Sight Stealther's Helmet of Second Sight	Quest: Teron Gorefiend, I am... Teron Gorefiend, I am... / Teron Gorefiend, I am... Teron Gorefiend, I am...
+
+Pre-Raid Best in Slot Shoulder Armor for Enhancement in TBC Classic Phase 3
+Wastewalker Shoulderpads are really good, especially when paired together with another piece of the set to get a lot of bonus Hit. As mentioned above, we recommend the Helm and Shoulder pairing as the best pair for the set bonus.
+Rank	Item	Source
+Best	Wastewalker Shoulderpads Wastewalker Shoulderpads	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+Optional	Mantle of Perenolde Mantle of Perenolde	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Optional	Blackened Leather Spaulders Blackened Leather Spaulders
+Talbuk Hide Spaulders Talbuk Hide Spaulders	Vendor: Trader Narasu - Requires Revered with The Kurenai
+Vendor: Provisioner Nasela - Requires Revered with The Mag'har
+Optional	Expedition Scout's Epaulets Expedition Scout's Epaulets	Fel Embers Fel Embers
+Pre-Raid Best in Slot Back Armor for Enhancement in TBC Classic Phase 3
+Vengeance Wrap and Cloak of Darkness are the best pre-raid cloaks, but any of the cloaks listed below are also strong for pre-raid standards. Should you want to save your money and you have a healthy amount of Badges of Justice, you can also opt into Blood Knight War Cloak
+Rank	Item	Source
+Best	Vengeance Wrap Vengeance Wrap	Profession: Tailoring (BoE)
+Best	Cloak of Darkness Cloak of Darkness	Profession: Leatherworking (BoE)
+Great	Blood Knight War Cloak Blood Knight War Cloak	Vendor: G'eras (25 Badges of Justice)
+Great	Auchenai Death Shroud Auchenai Death Shroud	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+Rank	Item	Source
+Good	Cloak of the Inciter Cloak of the Inciter	Drop: Blackheart the Inciter (Shadow Labyrinth)
+Good	Capacitus' Cloak of Calibration Capacitus' Cloak of Calibration	Drop: Cache of the Legion (The Mechanar)
+
+Pre-Raid Best in Slot Chest Armor for Enhancement in TBC Classic Phase 3
+Ebon Netherscale Breastplate or Primalstrike Vest are both great for Enhancement, and both are part of their specialization bind on pickup set.
+
+Hauberk of Karabor is an easily obtainable quest reward, in case you lack Leatherworking.
+Rank	Item	Source
+Best	Ebon Netherscale Breastplate Ebon Netherscale Breastplate	Profession: Dragonscale Leatherworking (BoP)
+Best	Primalstrike Vest Primalstrike Vest	Profession: Elemental Leatherworking (BoP)
+Optional	Hauberk of Karabor Hauberk of Karabor	Quest:Varedis Must Be Stopped Varedis Must Be Stopped / Varedis Must Be Stopped Varedis Must Be Stopped
+Pre-Raid Best in Slot Wrist Armor for Enhancement in TBC Classic Phase 3
+Ebon Netherscale Bracers or Primalstrike Bracers are also part of the Leatherworking sets that will be your ultimate Pre-Raid options.
+
+Outside of crafted gear, you can opt into Nightfall Wristguards from Heroic Old Hillsbrad Foothills, or get a very easy-to-get Spymistress's Wristguards from a one-time dungeon quest. You'll find this in the toggler for other wrist armor options.
+Rank	Item	Source
+Best	Primalstrike Bracers Primalstrike Bracers	Profession: Elemental Leatherworking (BoP)
+Best	Ebon Netherscale Bracers Ebon Netherscale Bracers	Profession: Dragonscale Leatherworking (BoP)
+Optional	Felstalker Bracers Felstalker Bracers	Profession: Leatherworking (BoE)
+Optional	Nightfall Wristguards Nightfall Wristguards	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+Rank	Item	Source
+Optional	Spymistress's Wristguards Spymistress's Wristguards	Quest:The Soul Devices The Soul Devices
+Optional	Nightstalker's Wristguards Nightstalker's Wristguards	Quest:Down With Daellis Down With Daellis
+
+Pre-Raid Best in Slot Hand Armor for Enhancement in TBC Classic Phase 3
+Fel Leather Gloves are excellent, as are most of the alternatives, such as the quest item Flesh Handler's Gauntlets, which are incredibly easy to obtain.
+Rank	Item	Source
+Best	Fel Leather Gloves Fel Leather Gloves	Profession: Leatherworking
+Great - Easy to Get	Flesh Handler's Gauntlets Flesh Handler's Gauntlets	Quest: The Flesh Lies... The Flesh Lies... - Netherstorm
+Optional	Handgrips of Assassination Handgrips of Assassination	Drop: Aeonus (The Black Morass)
+Optional	Predatory Gloves Predatory Gloves	Drop: Tavarok (Heroic Mana-Tombs)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+Rank	Item	Source
+Optional	Cobrascale Gloves Cobrascale Gloves	Profession: Leatherworking (BoE)
+Optional	Gloves of the Unbound Gloves of the Unbound	Drop: Wrath-Scryer Soccothrates (The Arcatraz)
+
+Pre-Raid Best in Slot Waist Armor for Enhancement in TBC Classic Phase 3
+A new crafted item enters our Pre-Raid BiS, being the Phase 2 crafted Belt of Deep Shadow. This will be a great option that you'll wear until you get raid gear. For the set bonuses, you can opt into Primalstrike Belt or Ebon Netherscale Belt if you are using the other two pieces. Alternatively, you can get Girdle of the Deathdealer or the much easier to obtain Shattrath's Champion Belt.
+Rank	Item	Source
+Best	Belt of Deep Shadow Belt of Deep Shadow	Profession: Leatherworking (BoE)
+Best - Set Bonus	Primalstrike Belt Primalstrike Belt	Profession: Elemental Leatherworking (BoP)
+Best - Set Bonus	Ebon Netherscale Belt Ebon Netherscale Belt	Profession: Dragonscale Leatherworking (BoP)
+Best - Non Crafted	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus (Heroic The Black Morass)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+Rank	Item	Source
+Optional	Epoch's Whispering Cinch Epoch's Whispering Cinch	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Optional	Shattrath's Champion Belt Shattrath's Champion Belt	Quest:How to Break Into the Arcatraz How to Break Into the Arcatraz
+
+Pre-Raid Best in Slot Leg Armor for Enhancement in TBC Classic Phase 3
+Clefthoof Hide Leggings are a great and easy-to-get leg armor. Any of the alternatives is relatively close in power, so you can feel free to get whichever happens to come your way the easiest. You should hold onto these along with Shattrath Leggings, as your Expertise options are extremely limited for a while.
+Rank	Item	Source
+Best	Clefthoof Hide Leggings Clefthoof Hide Leggings	Showdown Showdown - Blade's Edge Mountains
+Best	Midnight Legguards Midnight Legguards	Drop: Quagmirran (Heroic The Slave Pens)
+Great	Fel Leather Leggings Fel Leather Leggings	Profession: Leatherworking
+Great - Expertise	Shattrath Leggings Shattrath Leggings	Quest:Special Delivery to Shattrath City Special Delivery to Shattrath City
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+Rank	Item	Source
+
+Pre-Raid Best in Slot Feet Armor for Enhancement in TBC Classic Phase 3
+Fel Leather Boots are by far the best boots available before raiding, and should be one of the main things to buy or craft when you hit Level 69. It will be a decent gap in power from these boots to the next available option.
+Rank	Item	Source
+Best	Fel Leather Boots Fel Leather Boots	Profession: Leatherworking
+Optional	Boots of the Unjust Boots of the Unjust	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+Optional	The Master's Treads The Master's Treads	World Drop: The Outland
+Optional	Shadowstep Striders Shadowstep Striders	Drop: Harbinger Skyriss (Heroic The Arcatraz)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+Rank	Item	Source
+Optional	Felboar Hide Shoes Felboar Hide Shoes	Quest:The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+Optional	Farahlite Studded Boots Farahlite Studded Boots	Quest:A Fate Worse Than Death A Fate Worse Than Death
+
+Pre-Raid Best in Slot Neck Jewelry for Enhancement in TBC Classic Phase 3
+Choker of Vile Intent will be Pre-Raid BiS; however, the rest are still strong alternatives. It's also only 25 Badges and should be one of the first items you purchase. The PvP neck is powerful, but it is an intense grind for a neck you will replace. A quick and cheap option that can help secure a raid spot (along with providing Drums of Battle Drums of Battle) will be Braided Eternium Chain. It's not a major DPS loss and provides a buff to your party. Being the Enhancement Shaman. Totem twisting, providing drums, and providing the necklace buff all strengthen your spot in a raid as a major component to your party.
+Rank	Item	Source
+Best	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+Best - Party Buff	Braided Eternium Chain Braided Eternium Chain	Profession: Jewelcrafting (BoE)
+Optional	Haramad's Bargain Haramad's Bargain	Vendor: Paulsta'ats - Requires Exalted with The Consortium
+Optional	Natasha's Choker Natasha's Choker	Quest:The Hound-Master The Hound-Master
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+Rank	Item	Source
+Optional	Traitor's Noose Traitor's Noose	Drop: Mennu the Betrayer (Heroic The Slave Pens)
+Optional	Bone Chain Necklace Bone Chain Necklace	Drop: The Black Stalker (Heroic The Slave Pens)
+
+Pre-Raid Best in Slot Ring Jewelry for Enhancement in TBC Classic Phase 3
+Shapeshifter's Signet and Shaffar's Band of Brutality are the best ring combination, but Kaylaan's Signet is similar and much easier to obtain, as is Slayer's Mark of the Redemption.
+
+Note: Band of Eternity Band of Eternity is very easy to get, as you only have to complete Serpentshrine Cavern and Tempest Keep once. We'd recommend getting Shapeshifters, and then try your best to quickly obtain this ring after completing Champion's Pledge Champion's Pledge.
+Rank	Item	Source
+Best	Shapeshifter's Signet Shapeshifter's Signet	Vendor: Nakodu - Requires Exalted with Lower City
+Best	Shaffar's Band of Brutality Shaffar's Band of Brutality	Drop: Yor (Heroic Mana-Tombs)
+Optional	Kaylaan's Signet Kaylaan's Signet	Quest:Deathblow to the Legion Deathblow to the Legion
+Optional	Acrobat's Mark of the Sha'tar Acrobat's Mark of the Sha'tar	Quest:Battle of the Crimson Watch Battle of the Crimson Watch
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+Rank	Item	Source
+Optional	Ring of Arathi Warlords Ring of Arathi Warlords	Vendor: G'eras (25 Badges of Justice)
+Optional	Slayer's Mark of the Redemption Slayer's Mark of the Redemption	Quest:Dissension Amongst the Ranks... Dissension Amongst the Ranks...
+Optional	Ring of Umbral Doom Ring of Umbral Doom	Drop: Thorngrin the Tender (The Botanica)
+Optional	Overseer's Signet Overseer's Signet	Quest:Shutting Down Manaforge Ara Shutting Down Manaforge Ara
+Optional	Ravenclaw Band Ravenclaw Band	Drop: Talon King Ikiss (Sethekk Halls)
+
+Pre-Raid Best in Slot Trinkets Jewelry for Enhancement in TBC Classic Phase 3
+Bloodlust Brooch is the best pre-raid trinket to obtain. You have options on what you want to pair it with. You should make sure you are farming for these options, as your ultimate BiS trinket will be heavily contested for the entire game. Phase 3 on the Anniversary servers will line up with the Brewfest event, meaning you can get Empty Mug of Direbrew, which is the exact same thing as Brooch. You can wear both of these together for a very powerful combination.
+
+Alternatively, Abacus of Violent Odds or the quest reward Core of Ar'kelos are also very strong, and the Core is very easy to obtain.
+Rank	Item	Source
+Best	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Best - Seasonal	Empty Mug of Direbrew Empty Mug of Direbrew	Drop: Coren Direbrew (Blackrock Depths - Brewfest Event)
+Best (vs Demons / Undead)	Mark of the Champion Mark of the Champion	Drop: Kel'Thuzad (Naxxramas)
+Best	Abacus of Violent Odds Abacus of Violent Odds	Drop:Pathaleon the Calculator (The Mechanar)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+Rank	Item	Source
+Great - Easy to get	Core of Ar'kelos Core of Ar'kelos	Quest:Ar'kelos the Guardian Ar'kelos the Guardian
+Optional	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+Optional	Uniting Charm Uniting Charm
+Ogre Mauler's Badge Ogre Mauler's Badge	Corki's Gone Missing Again! Corki's Gone Missing Again!
+Bleeding Hollow Supply Crates Bleeding Hollow Supply Crates
+
+Pre-Raid Best in Slot Weapons and Offhands for Enhancement Shaman DPS in Phase 3
+When considering your weapons, you should aim for weapon synching, which is ideally done with two equal speed weapons so that they stay synched throughout the fight after the initial effort. This list will show you your available options for matching weapon speed in your main and offhand.
+
+Duel-Wielding two Merciless Gladiator's Cleavers is the best option for Orcs before going into raids; for non-Orcs, it'll be the Cleaver in the off-hand, and Merciless Gladiator's Right Ripper in the main. These are the Season 2 weapons, which will be heavily discounted once Phase 3/Season 3 starts. Technically, Season 3 will be the best "Pre-Raid" option, along with being Phase 3 BiS options, but we'll be listing Season 2 due to it being quick to grab before entering raids and requiring no rating. Remember that the Anniversary Edition of TBCC makes Arena gear much more accessible; so we srongly encourage you to continue to PvP for your Season 3 weapons as well!
+
+Dragonmaw or The Bladefist are also great, if PvPing is completely not an option. The latter can be paired with one Harvester of Souls, matching a 2.6 weapon speed. The former, however, only has one weapon to pair it with, and it's a level 61 world drop item, Fist of Reckoning. With Arena gear becoming much more accessible, we actually suggest not opting into Blacksmithing and avoiding this crafted mace, especially with Arena weapons being extremely accessible now. You can get 2.7 off-hands from raids, but the options are much more sparse than 2.6 weapons.
+
+Note: If a weapon does not specify whether it's for the main-hand (MH) or off-hand (OH), or has x2, then it is good for both and can be duel-wielded.
+Rank	Item	Source
+Best MH - 2.6 (Non Orc)	Merciless Gladiator's Right Ripper Merciless Gladiator's Right Ripper	Arena Points Arena Points - Arena Vendor
+Best x2 - 2.6 (Orc)	Merciless Gladiator's Cleaver Merciless Gladiator's Cleaver	Arena Points Arena Points - Arena Vendor
+Crafted Best MH - 2.7
+(Not Recommended)	Dragonstrike Dragonstrike	Profession: Master Hammersmith Blacksmithing (BoP)
+Best MH - 2.6	The Bladefist The Bladefist	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+Rank	Item	Source
+Great - 2.6	The Harvester of Souls The Harvester of Souls	Drop: Exarch Maladaar (Heroic Auchenai Crypts)]
+Great x2 - 2.9	High Warlord's Cleaver High Warlord's Cleaver	Honor Points Honor Points - Honor Vendor
+Best MH - 2.7	Reflex Blades Reflex Blades	Drop: Dalliah the Doomsayer (The Arcatraz)
+Optional MH - 2.8	Nexus-Claw Nexus-Claw	Vendor: Dealer Jadyan
+Optional OH - 2.8	Resonating Axe Resonating Axe	Quest:Measuring Warp Energies Measuring Warp Energies
+Optional MH - 2.5	Claw of the Watcher Claw of the Watcher	Drop: Shirrak the Dead Watcher
+Optional OH - 2.5	Sporeling Claw Sporeling Claw	Quest:Fhwoor Smash! Fhwoor Smash!
+Optional - 2.7	Fist of Reckoning Fist of Reckoning	World Drop: The Outland
+
+Pre-Raid Best in Slot Totems for Enhancement Shaman DPS in Phase 3
+Totem of the Astral Winds is the best totem by far, but unfortunately comes from one of, if not the hardest, Heroic bosses in game...hopefully your tank has plenty of Shadow Resistance gear in his bags!
+Rank	Item	Source
+Best	Totem of the Astral Winds Totem of the Astral Winds	Drop: Pandemonius (Heroic Mana-Tombs)
+Woah
+MoP Restoration/Elemental Shaman Guide Writer
+Woah has written over 275 guides for Wowhead since WoW Classic was released in 2019, with a particular focus on Shaman class guides. Shaman has been his main class since the start of Classic and also since WoW's initial launch in 2004.
+
+Currently playing in Gehennas EU Horde with Progress's 25-man alt/gold runs, Woah is looking to do some 10-man alt running on the side with a second shaman in Mists of Pandaria!
+1 - 13 of 13
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+14
+
+	
+By Oldbury (10,268 – 2·11·73) on 2021/05/31 (Burning Crusade)	
+	
+Personally, I would add one or two more chestpieces as the only ones listed are either BOP from certain professions, or from Arena, and while alternatives aren't nearly the strength of the former I feel they should still be included; my two suggestions would be either the Tunic of Assassination or the Wastewalker Tunic. Again, both those are far worse than the three currently listed in the guide but LW and PvP items will not be on the cards for many players.
+
+Similarly, while Reflex Blades/Harvester of Souls are mentioned as non-BS and non-PvP weapons, I'd like to see maybe 1 or 2 more options there be added; perhaps the Bloodskull Destroyer as it can be used in MH or OH, and maybe the Boggspine Knuckles too.
+
+The weapon section should also list Black Planar Edge for Orcs only as their racial makes that superior to the BS mace - while some people suggest that the Axe is better for all races, but that's still still not clear. And to prevent the weapon section being a huge list, I'd remove both Drakefist Hammer & Gladiator's Pummeler from the section as both are completely redundant.
+Last edited by Oldbury on 2021/05/31
+
+0
+
+	
+
+Woah <Guide Author> on 2021/06/08 (Burning Crusade)
+I agree, this list is still what my predecessor (Krug) wrote and I'll be giving it a full pass soon, looking forward to see your feedback when that is finished! :)
+
+0
+
+	
+
+Kalyiss on 2021/12/04 (Burning Crusade)
+Why is the Drakefist Hammer redundant?
+
+0
+
+	
+
+Zerrick on 2026/03/15 (Burning Crusade)
+Came to mention this, there's like no offhand options here for someone not doing arena.
+
+11
+
+	
+By Oldbury (10,268 – 2·11·73) on 2021/05/08 (Burning Crusade)	
+	
+This guide puts *far* too much emphasis on items with hit rating; while a lot of the good items from quests/dungeons come with Hit Rating anyway, there's so many items I would put ahead of the likes of Wastewalker Helm, Mantle of Perenolde and Fel Leather Boots.
+
+0
+
+	
+
+rhinoloupe <Rare Premium User> on 2021/07/22 (Burning Crusade)
+Especially if you're dipping into the Resto tree for totem twisting build. You get 9% hit rating from talents, so you don't actually need hit on gear at all. Would be helpful to have hit capped vs not hit capped options.
+
+2
+
+	
+
+seeq on 2021/07/30 (Burning Crusade)
+you are right in that shamans have some of the best hit talents in the game but still if you are dual wielding and fighting bosses you will need a lot of hit rating on your gear. cant crit if you cant hit :D
+
+2
+
+	
+
+ZugZugZug on 2021/08/19 (Burning Crusade)
+My personal opinion about shaman not needing hit is... Its bollocks! When equiping 2 weapons you suffer -25% chance to hit. 6% talent from ench tree brings you back to normal levels. If you dont believe me then go out there and test it out yourself. See what will happen if you have 9% hit or 0% hit on your gear. Difference is bloody gigantic! More hits = more ww procs = more crits = flurry active 24/7!
+
+10
+
+	
+By herbertgz (1,356 – 13·12) on 2021/04/28 (Burning Crusade)	
+	
+It should also be mentioned that the goggles aren't out by release. And the guide neglects to mention the importance of your weapons speed compared to each other. As well as the guide being out of date in regards to the newest changes on the beta.
+
+7
+
+	
+By Hamppa (835 – 5·6) on 2021/04/28 (Burning Crusade)	
+	
+Hi, so at the start you cant dual wield the dragonmaw hammers. I think you should add this note to your list. Aswell as the earlier mentioned change to Engineering goggles.
+
+7
+
+	
+By ash1k1 (14,328 – 4·28·66) on 2021/07/28 (Burning Crusade)	
+	
+Would be nice to see options that don't include Profession BoP (Leatherworking stuff, basically). Chest, for example, has LW or Arena gear. That's it.
+
+-1
+
+	
+
+Woah <Guide Author> on 2021/09/09 (Burning Crusade)
+Indeed, with the Phase 2 revision I added multiple new options to everywhere that only had difficult to get stuff, let me know what you think!
+
+5
+
+	
+By ChinookUT (8,417 – 2·15·28) on 2021/04/20 (Burning Crusade)	
+	
+TBC Beta testers have confirmed that the Blacksmithing axes, Planar Edge and Black Planar Edge, are more powerful than the Dragon maces (for all races) because the mace haste PPM is less than 1.0.
+
+2
+
+	
+
+Oshammoos on 2021/04/28 (Burning Crusade)
+Well thats not true. The testing showed a period of .8 ppm and over average just aaing it was at exactly 1ppm, which is before you start using ss and what not. It is going to be bis for non orcs unless you are forgoing BS to use 2 weapons of the same speed to take advantage of sync and stagger.
+
+1
+
+	
+
+ChinookUT on 2021/04/28 (Burning Crusade)
+Less than 1ppm, which is what the testing showed, means the axes are marginally better.
+
+0
+
+	
+
+TheMoneyHater on 2021/05/02 (Burning Crusade)
+No, mace are better.
+
+5
+
+	
+By Kerani (4,524 – 21·36) on 2021/06/08 (Burning Crusade)	
+	
+Why isn't The Bladefist The Bladefist mentioned in the weapons section?
+
+0
+
+	
+
+Woah <Guide Author> on 2021/06/13 (Burning Crusade)
+Actually using it right now, going to add! :D
+
+-3
+
+	
+
+Kaillin on 2021/06/24 (Burning Crusade)
+Because nobody wants to do anything besides caster cleave Shattered Halls.
+
+3
+
+	
+By Stew (1,107 – 2·5) on 2021/05/28 (Burning Crusade)	
+	
+There's very few options for weapons listed, 2 of them require a profession that I don't have and 2 of them require PVP that's not interesting to me. Please include some of the "worse" weapon options.
+
+2
+
+	
+
+Woah <Guide Author> on 2021/06/13 (Burning Crusade)
+Going over it right now!
+
+0
+
+	
+
+Vandechoz on 2021/06/15 (Burning Crusade)
+same issue for Chest pieces
+
+3
+
+	
+By Intervencion (22,563 – 6·30·81) on 2021/06/17 (Burning Crusade)	
+	
+Overseer's Signet Overseer's Signet from Shutting Down Manaforge Ara Shutting Down Manaforge Ara should be better than Slayer's Mark of the Redemption Slayer's Mark of the Redemption
+
+1
+
+	
+
+Woah <Guide Author> on 2021/06/18 (Burning Crusade)
+Yeah raw Strengths get scaled from Kings, good catch!
+
+3
+
+	
+By Goofybag (2,960 – 6·11) on 2021/10/15 (Burning Crusade)	
+	
+There are lots of great rings listed, but I feel Acrobat's Mark of the Sha'tar Acrobat's Mark of the Sha'tar should definitely make this list
+Last edited by Goofybag on 2021/10/15
+
+0
+
+	
+
+Woah <Guide Author> on 2022/01/09 (Burning Crusade)
+Yeah its a fine ring, added!
+
+1
+
+	
+By Fuzzpuff (2,022 – 4·7) on 2021/04/28 (Burning Crusade)	
+	
+In addition to the weapon notes above, Relentless Earthstorm Diamond is not available in Phase 1.
+
+1
+
+	
+By Helore (9,462 – 2·20·33) on 2021/08/09 (Burning Crusade)	
+	
+I feel like the waist reward Shattrath's Champion Belt Shattrath's Champion Belt from How to Break Into the Arcatraz How to Break Into the Arcatraz would be an option below Epoch's Whispering Cinch Epoch's Whispering Cinch on this list.
+
+*edit: These were slightly better than Tracker's Belt Tracker's Belt from (N) Slave Pens.
+Last edited by Helore on 2021/08/09
+
+0
+
+	
+
+Woah <Guide Author> on 2021/09/09 (Burning Crusade)
+Wanted to keep it short, but since you brought it up, I added it :)
+
+-2
+
+	
+By asdasdasd9001 (9,489 – 2·7·13) on 2021/10/27 (Burning Crusade)	
+	
+Yo, all melee dps+hunters should have Mark of the Champion Mark of the Champion
+
+really useful against demons and undead, the item drops from kt the final boss of naxx, and at lvl 70 naxx is quite fun. And many bosses (except in grull+zul a) from raids are demons or undead.
+
+2
+
+	
+
+Woah <Guide Author> on 2022/01/09 (Burning Crusade)
+That's a really good trinket, but most people will not have it because it is old content at this point, regardless it can be good to give out some awareness on it so added it up, thanks!
+1 - 13 of 13
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+3.3/5 (6 Votes)
+TBCC Enhancement Shaman Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+            Best In Slot Gear in Phase 1
+                Aldor vs Scryer
+                Head
+                Shoulder
+                Back
+                Chest
+                Wrist
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Totems
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Enhancement Shaman DPS Phase 1 Best in Slot (BiS) - TBC Classic
+By Woah
+Updated: 2026/05/11
+Welcome to Wowhead's Best in Slot Gear list from Karazhan, Gruul's Lair, and Magtheridon's Lair for Enhancement Shaman DPS in The Burning Crusade Classic. This guide will list the recommended gear for Enhancement Shaman DPS to acquire while they progress on the first few raids in The Burning Crusade Classic, and contains gear sourced from Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best-in-slot lists, including a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Enhancement Shaman DPS Best in Slot Guides
+Best In Slot Gear for Enhancement Shaman DPS in Phase 1
+In Phase 1, there are a couple of different gear setups that are very good. Most slots are still just one best item, but a few have alternatives that won't meaningfully change your throughput. Ideally, you will want to use the Tier 4 Head and Shoulder pieces, alongside the best off-set gear available. Using other options listed below is also fine, as there are multiple pieces with very similar stats, but try to get at least 2 pieces of Tier 4 for the set bonus. If you can, try to also do PvP for the gladiator weapons, as they are leaps and bounds ahead of any other option for the off-hand.
+
+For gems, Meta sockets are unique to head slot pieces and accept meta gems (instead of regular gems). Only a single meta socket may exist in any given piece, and many pieces come without a meta socket at all. Relentless Earthstorm Diamond Relentless Earthstorm Diamond is the best meta gem, and scales well with the rest of your gear, as it acts as a multiplier on your damage output.
+
+Enhancement Shaman looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Enhancement Shaman Gems & Enchants
+Should Enhancement Shaman DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 1?
+Shamans can pick both The Aldor or The Scryers without much penalty. The Aldor shoulder enchant is slightly better, but the difference is minuscule from the Scryers enchant when considering your full gear stat bonuses. In general, it is best to pick based on which faction is cheaper to buy reputation materials for, as Aldor, for example, can often be extremely expensive due to having the favored shoulder enchant for most specializations.
+
+    Aldor offer a very slightly superior shoulder enchant for DPS.
+    Scryers offer decent legs with Retainer's Leggings Retainer's Leggings, but isn't a determining factor worth going Scryer for.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Enhancement Shamans, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+
+Best in Slot Head Armor for Enhancement Shaman in TBC Classic Phase 1
+Cyclone Helm is the best Phase 1 helmet, sporting great stats and a meta socket allowing you to use Relentless Earthstorm Diamond Relentless Earthstorm Diamond. Should you want to opt out of your Tier, you can also grab Mask of the Deceiver
+
+Alternatively, you can get Cowl of Defiance, Wastewalker Helm, or any of the other easy-to-obtain helmets.
+Rank	Item	Source
+Best	Cyclone Helm Cyclone Helm	Drop: Tier Token from Prince Malchezaar (Karazhan)
+Best	Mask of the Deceiver Mask of the Deceiver	Vendor: G'eras (50 Badges of Justice)
+Optional	Cowl of Defiance Cowl of Defiance	Drop: Netherspite (Karazhan)
+Optional	Wastewalker Helm Wastewalker Helm	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+Rank	Item	Source
+Easy To Obtain	Helm of the Claw Helm of the Claw	Quest: The Warlord's Hideout The Warlord's Hideout
+Easy To Obtain	Stealther's Helmet of Second Sight Stealther's Helmet of Second Sight	Quest: Teron Gorefiend, I am... Teron Gorefiend, I am... / Teron Gorefiend, I am... Teron Gorefiend, I am...
+
+Best in Slot Shoulder Armor for Enhancement Shaman in TBC Classic Phase 1
+Cyclone Shoulderplates Tier 4 has two good pairs of shoulders for you. Tier 4 comes from 25-man, while the other option comes from the 10-man Karazhan.
+Rank	Item	Source
+Best	Cyclone Shoulderplates Cyclone Shoulderplates	Drop: High King Maulgar (Gruul'ls Lair)
+Best	Bladed Shoulderpads of the Merciless Bladed Shoulderpads of the Merciless	Drop: Karazhan Chess Event
+Optional	Wastewalker Shoulderpads Wastewalker Shoulderpads	Drop: Avatar of the Martyred (Auchenai Crypts)
+Optional	Mantle of Perenolde Mantle of Perenolde	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+Rank	Item	Source
+Optional	Expedition Scout's Epaulets Expedition Scout's Epaulets	Quest: Fel Embers Fel Embers
+
+Best in Slot Back Armor for Enhancement Shaman in TBC Classic Phase 1
+Vengeance Wrap is still a strong cloak from our Pre-BiS selection, but there's a new option from Karazhan, Drape of the Dark Reavers, that is good, and on the much cheaper side should you not have the time or money to create the former.
+Rank	Item	Source
+Best	Vengeance Wrap Vengeance Wrap	Profession: Tailoring (BoE)
+Optional	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+Optional	Auchenai Death Shroud Auchenai Death Shroud	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+Easy To Obtain	Cloak of the Inciter Cloak of the Inciter	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+These options may be easier than above, as even though the Best option is crafted, it may be expensive, whereas these options won't come at the expense of your gold!
+Rank	Item	Source
+
+Best in Slot Chest Armor for Enhancement Shaman in TBC Classic Phase 1
+Your crafted three-set for Pre-BiS will carry over into Phase 1 BiS. However, should that be out of your characters tax bracket, then Cyclone Breastplate, the tier chest, is really quite strong with great socket colors and a great socket bonus. The world boss option is better, but a much harder item to obtain.
+Rank	Item	Source
+Best	Terrorweave Tunic Terrorweave Tunic	Drop: Doomwalker (World Boss in Shadowmoon Valley)
+Best	Ebon Netherscale Breastplate Ebon Netherscale Breastplate	Profession: Dragonscale Leatherworking BoP)
+Best	Cyclone Breastplate Cyclone Breastplate	Drop: Magtheridon (Magtheridon's Liar)
+Best	Gladiator's Linked Armor Gladiator's Linked Armor	Arena Vendor - Season 1
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+These options may be easier than the above, as some of these come from Dungeons, Professions, or aren't contested Tier Tokens.
+Rank	Item	Source
+Optional	Primalstrike Vest Primalstrike Vest	Profession: Elemental Leatherworking (BoP)
+
+Best in Slot Wrist Armor for Enhancement Shaman in TBC Classic Phase 1
+Your crafted three-set for Pre-BiS will carry over into Phase 1 BiS. Outside of that, Bracers of Maliciousness, will be next in line.
+Rank	Item	Source
+Best	Ebon Netherscale Bracers Ebon Netherscale Bracers	Profession: Dragonscale Leatherworking (BoP)
+Best	Bracers of Maliciousness Bracers of Maliciousness	Drop: Maiden of Virtue (Karazhan)
+Optional	Primalstrike Bracers Primalstrike Bracers	Profession: Elemental Leatherworking (BoP)
+Optional	Felstalker Bracers Felstalker Bracers	Profession: Leatherworking (BoE)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+These options may be easier than above, as some of these come from Dungeons, Professions, and Quests.
+Rank	Item	Source
+Easy To Obtain	Spymistress's Wristguards Spymistress's Wristguards	Quest: The Soul Devices The Soul Devices
+Easy To Obtain	Nightstalker's Wristguards Nightstalker's Wristguards	Quest: Down With Daellis Down With Daellis
+
+Best in Slot hand Armor for Enhancement Shaman in TBC Classic Phase 1
+Liar's Tongue Gloves will be our best hand option for Phase 1, offering a whopping 72 Attack Power, 26 Critical Strike Rating, and two sockets! Grips of Deftness is another option offering Expertise Rating, but will be a little more contested than the former. You can also opt into your Tier with Cyclone Gauntlet, but this also may be a more contested piece.
+
+Flesh Handler's Gauntlets is still a strong piece with Expertise, should you not have luck with the raid options above.
+Rank	Item	Source
+Best	Liar's Tongue Gloves Liar's Tongue Gloves	Drop: Magtheridon (Magtheridon's Lair)
+Best	Grips of Deftness Grips of Deftness	Drop: Karazhan Trash Mobs
+Best	Cyclone Gauntlets Cyclone Gauntlets	Drop: Tier Token from The Curator (Karazhan)
+Optional	Flesh Handler's Gauntlets Flesh Handler's Gauntlets	Quest: The Flesh Lies... The Flesh Lies...
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+These options may be easier than above, as some of these come from Professions and Quests.
+Rank	Item	Source
+Optional	Cobrascale Gloves Cobrascale Gloves	Profession: Leatherworking (BoE)
+
+Best in Slot Waist Armor for Enhancement Shaman in TBC Classic Phase 1
+As mentioned with the other set pieces, your crafted three-set from Pre-BiS will carry over into overall BiS.
+
+Gronn-Stitched Girdle is next in line, and a very strong secondary option.
+Rank	Item	Source
+Best	Ebon Netherscale Belt Ebon Netherscale Belt	Profession: Dragonscale Leatherworking (BoP)
+Best	Gronn-Stitched Girdle Gronn-Stitched Girdle	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Optional	Primalstrike Belt Primalstrike Belt	Profession: Elemental Leatherworking (BoP)
+Optional	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus (Heroic The Black Morass)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+These options may be easier than above, as some of these come from Dungeons and Professions.
+
+Rank	Item	Source
+Optional	Epoch's Whispering Cinch Epoch's Whispering Cinch	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+
+Best in Slot Leg Armor for Enhancement Shaman in TBC Classic Phase 1
+Shattrath Leggings is still very strong from our Pre-BiS list; however, you can upgrade them with Skulker's Greaves.
+Rank	Item	Source
+Best	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+Very Strong	Shattrath Leggings Shattrath Leggings	Quest: Special Delivery to Shattrath City Special Delivery to Shattrath City
+Optional	Clefthoof Hide Leggings Clefthoof Hide Leggings	Quest: Showdown Showdown / Showdown Showdown
+Best in Slot Feet Armor for Enhancement Shaman in TBC Classic Phase 1
+There are 3 very good pairs of boots that you can use for tier 4. Edgewalker Longboots will be our top recommendation.
+Rank	Item	Source
+Best	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+Best	Fiend Slayer Boots Fiend Slayer Boots	Drop: Karazhan Chest Event
+Best	Fel Leather Boots Fel Leather Boots	Profession: Leatherworking (BoE)
+Optional	Boots of the Unjust Boots of the Unjust	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+These options may be easier than above, as some of these come from Dungeons and Quests.
+Rank	Item	Source
+Easy To Obtain	Farahlite Studded Boots Farahlite Studded Boots	Quest: A Fate Worse Than Death A Fate Worse Than Death
+
+Best in Slot Neck Jewelry for Enhancement Shaman in TBC Classic Phase 1
+All of the neck items that you can choose from are pretty easy to get. 25 badges are well worth Choker of Vile Intent considering this is still your best in slot for tier 4.
+Rank	Item	Source
+Best	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+Best	Worgen Claw Necklace Worgen Claw Necklace	Drop: Attumen the Huntsman (Karazhan)
+Easy To Obtain	Natasha's Choker Natasha's Choker	Quest: The Hound-Master The Hound-Master
+Optional	Traitor's Noose Traitor's Noose	Drop: Mennu the Betrayer (Heroic The Slave Pens)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+These options may be easier than above, as some of these come from Dungeons and Quests.
+Rank	Item	Source
+
+Best in Slot Ring Jewelry for Enhancement Shaman in TBC Classic Phase 1
+Karazhan has a few strong options for rings, but you'll still want to keep the expertise that you get from Shapeshifter's Signet. You can pair this with either Ring of a Thousand Marks or Garona's Signet Ring
+Rank	Item	Source
+Best	Shapeshifter's Signet Shapeshifter's Signet	Vendor: Nakodu Requires Exalted with Lower City
+Best	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+Best	Garona's Signet Ring Garona's Signet Ring	Drop: The Curator (Karazhan)
+Optional	Ring of Reciprocity Ring of Reciprocity	Drop: Doom Lord Kazzak (World Boss in Hellfire Peninsula)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+These options may be easier than above, as some of these come from Dungeons, Reputations, or aren't contested with other DPS classes.
+Rank	Item	Source
+Optional	Violet Signet of the Master Assassin Violet Signet of the Master Assassin	Quest: Eminence Among the Violet Eye Eminence Among the Violet Eye - Requires Exalted with The Violet Eye
+Optional	Ring of Arathi Warlords Ring of Arathi Warlords	Vendor: G'eras (25 Badges of Justice)
+Optional	Ring of Umbral Doom Ring of Umbral Doom	Drop: Thorngrin the Tender (The Botanica)
+Optional	Slayer's Mark of the Redemption Slayer's Mark of the Redemption	Quest: Dissension Amongst the Ranks... Dissension Amongst the Ranks... / Dissension Amongst the Ranks... Dissension Amongst the Ranks...
+
+Best in Slot Trinkets for Enhancement Shaman in TBC Classic Phase 1
+Dragonspine Trophy is the premier Melee DPS trinket from tier 4. You'll want to pair this with the on-use trinket, Bloodlust Brooch
+Rank	Item	Source
+Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Optional	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+Optional	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Trinkets will always be competitive, even with the 2nd or 3rd best options, as our best one is competitive with every other Melee DPS class, and these options are no different.
+Rank	Item	Source
+Optional	Core of Ar'kelos Core of Ar'kelos	Quest: Ar'kelos the Guardian Ar'kelos the Guardian
+
+Best in Slot Weapons for Enhancement Shaman in TBC Classic Phase 1
+Due to Flurry having a 0.5-second cooldown on being consumed, having weapons of matching speed is very important in order to minimize attack desynching and maximize your Flurry uptime. Most of the weapons we list below have 2.6 speed, except for the Blacksmithing Blacksmithing weapons and the final two alternative weapons, which are 2.7 speed and meant to be used together.
+
+For Orc Enhancement Shamans, the Gladiator Axes are the best and should be equipped in both hands. Non-Orcs can benefit from the slightly higher damage on Gladiator's Right Ripper. You should favor using the axes listed in the rest of the section as Orc as well, in order to benefit from Axe Specialization.
+
+If PvP weapons are not within your grasp, there are a few alternatives: The Decapitator / Fool's Bane from Karazhan with The Harvester of Souls in your off-hand, or Dragonmaw Dragonmaw / Black Planar Edge from Blacksmithing Blacksmithing for your main hand and Fist of Reckoning for your off-hand. Because the crafted weapons only matching off-hand in regards to speed is a Level 61 mace, we typically do not recommend pursuing Blacksmithing for this.
+Rank	Item	Source
+Best MH - 2.6	Gladiator's Right Ripper Gladiator's Right Ripper	Arena PVP Reward
+Best - 2.6	Gladiator's Cleaver Gladiator's Cleaver	Arena PVP Reward
+Best (MH)	The Decapitator The Decapitator	Drop: Prince Malchezaar (Karazhan)
+Great MH - 2.6	Fool's Bane Fool's Bane	Drop: Terestian Illhoof (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+These options may be easier than above, as some of these come from Honor, Dungeons, Professions, or aren't as contested.
+Rank	Item	Source
+Great MH - 2.6	The Bladefist The Bladefist	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Great - 2.6	The Harvester of Souls The Harvester of Souls	Drop: Exarch Maladaar (Heroic Auchenai Crypts)]
+Great - 2.6	Grand Marshal's Cleaver Grand Marshal's Cleaver	Honor PVP Reward
+Optional MH - 2.7	Black Planar Edge Black Planar Edge	Profession: Master Axesmith Blacksmithing (BoP)
+Optional MH - 2.7	Dragonmaw Dragonmaw	Profession: Master Hammersmith Blacksmithing (BoP)
+Optional MH - 2.7	Reflex Blades Reflex Blades	Drop: Dalliah the Doomsayer (The Arcatraz)
+Optional OH - 2.7	Fist of Reckoning Fist of Reckoning	Drop: BoE World Drop
+
+Best in Slot Totems for Enhancement Shaman in TBC Classic Phase 1
+Totem of the Astral Winds Totem of the Astral Winds Nothing comes even remotely close to this totem in regards to BiS for an Enhancement Shaman, definitely get this ASAP.
+Rank	Item	Source
+Best	Totem of the Astral Winds Totem of the Astral Winds	Drop: Pandemonius (Heroic Mana-Tombs)
+Woah
+MoP Restoration/Elemental Shaman Guide Writer
+Woah has written over 275 guides for Wowhead since WoW Classic was released in 2019, with a particular focus on Shaman class guides. Shaman has been his main class since the start of Classic and also since WoW's initial launch in 2004.
+
+Currently playing in Gehennas EU Horde with Progress's 25-man alt/gold runs, Woah is looking to do some 10-man alt running on the side with a second shaman in Mists of Pandaria!
+1 - 15 of 15
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+5
+
+	
+By Toron (1,450 – 7·13) on 2021/04/30 (Burning Crusade)	
+	
+"your off-hand should be another 2.6 speed weapon and the best one you can get will be The Decapitator from Karazhan"
+One problem with that is.. The Decapitator is classified as "Main hand" and thus cannot be used in an offhand.
+The Decapitator
+Item Level 125
+Binds when picked up
+Main Hand
+
+0
+
+	
+
+Woah <Guide Author> on 2021/05/24 (Burning Crusade)
+That was a goof by the previous writer, fixed now, let me know if you find anything else! :D
+
+0
+
+	
+
+Dreals on 2026/03/22 (Burning Crusade)
+i think it gets changed to 'one hand' in a later patch
+
+3
+
+	
+By Oldbury (10,268 – 2·11·73) on 2021/05/31 (Burning Crusade)	
+	
+I left a similar comment on the pre-raid BiS list, but I feel an alternative for a chestpiece should be suggested as accessibility is clearly taken into consideration on all WoWhead's BiS guides. I'd recommend Chestguard of the Conniver, as while it is far worse than the T4 chest it is the second best "just a drop" item and is far easier to obtain.
+
+While worse than the Gruul belt, Girdle of Treachery is definitely superior to the Girdle of the Deathdealer and should replace it in this guide.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/06/04 (Burning Crusade)
+Good suggestion, will include, thanks!
+
+3
+
+	
+By FatSephy (2,953 – 11·19) on 2021/06/01 (Burning Crusade)	
+	
+Based on current information, Expertise has been overvalued somewhat. It's a great stat, but it consumes too much stat weighting on items that non expertise gear is actually better (at least in the first phase).
+
+With this in mind, Skulker's Greaves are considered BiS legs, and Shapeshifter's Signet is no longer one of the best rings.
+
+Stick with Ring of a Thousand Marks and Garona's Signet Ring, with Violet Signet of the Master Assassin the best alternative. Shaffar's Band of Brutality is technically better than both Signets, but in order to summon the boss that drops it, you must grind an item repeatedly for hand ins (to get consumable keys) or quest completion for The Consortium (to get a permanent key) which requires Exalted reputation.
+
+Liar's Tongue Gloves are approximately 0.25% better than the Grips of Deftness, again due to Expertise being not as good bang for your buck.
+
+Yellow sockets should also be filled with Inscribed Noble Topaz over straight up hit gems. If you don't have 9% hit before gemming, you've made a grave mistake with your talents. You should reach around 15-18% hit in BiS gear without gems (including the 6-9% from talents). Hit and Crit ratings are interchangable beyond 9% and the raw strength on the orange gem puts it slightly ahead.
+Last edited by FatSephy on 2021/12/30
+
+0
+
+	
+
+Woah <Guide Author> on 2021/06/04 (Burning Crusade)
+Thanks for the feedback, will consult with the Shaman discord and get back to reviewing this BiS list in the next week :)
+
+0
+
+	
+
+Woah <Guide Author> on 2021/06/04 (Burning Crusade)
+Just went through with some of the changes, thanks again!
+
+3
+
+	
+By Genghisconn (5,888 – 1·11·14) on 2021/06/25 (Burning Crusade)	
+	
+If you're going to list the Gladiator weapons, list the GM (blue) weapons as well. The GM axe is a slightly better offhand than Harvester.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/06/26 (Burning Crusade)
+Good suggestion, listed the Gladiator weapons first because they are straight up BiS, while the GM axe is just a slightly upgrade but might as well put it in at this point!
+
+3
+
+	
+By badfreddyboy (13,804 – 1·11·16) on 2021/08/15 (Burning Crusade)	
+	
+So i was looking around on 1h off-hand options, and noticed Bloodskull Destroyer Bloodskull Destroyer exists. Is there any reason this isn't listed?
+
+1
+
+	
+
+Woah <Guide Author> on 2021/08/16 (Burning Crusade)
+Its a mace, so you do not get orc axe racial, and has worse stats than harvester of souls while coming from one of the most annoying heroic dungeons to do. If you get it its perfectly usable, just not quite as good or easy to get as some of the listed options :)
+
+2
+
+	
+By TheBeardedFetus (15,928 – 3·11·13) on 2021/06/05 (Burning Crusade)	
+	
+I hate that as a mail wearing class, leather pieces are BiS.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/06/06 (Burning Crusade)
+Same here >.< it does get a lot better in later expansions but by this point devs were still not entirely sure of what stats to put in each type of gear, and there were no "armor class" incentives such as +5% str/agi/int when all of your gear is from your highest armor class type.
+
+1
+
+	
+By Clavix (136 – 1·0) on 2021/07/22 (Burning Crusade)	
+	
+I find it a little frustrating/confusing that the graphic at the top listed as "an example set of gear with the best pieces available for each slot" doesn't match up with the text below. Some pieces in the graphic BiS set aren't even mentioned in text below or are listed as Optional.
+
+-1
+
+	
+
+Woah <Guide Author> on 2021/07/23 (Burning Crusade)
+Its because I forgot to edit some of the bottom listed ones (like gloves) when I took over the guide, the graphic example is the most correct, will go through the text again, thanks for the heads up!
+
+1
+
+	
+By Zarroe (9,867 – 2·9·31) on 2021/08/08 (Burning Crusade)	
+	
+Curious why Malefic Mask of the Shadows Malefic Mask of the Shadows isn't mentioned here anywhere?
+It seems to have a pretty solid balance of stats and looks comparable to the Cowl of Defiance Cowl of Defiance, if not better.
+I guess it depends if you'd have that little extra attack power instead of Crit and Hit rating.
+Last edited by Zarroe on 2021/08/08
+
+0
+
+	
+
+Woah <Guide Author> on 2021/08/08 (Burning Crusade)
+It is absolutely comparable, I just try to not list every single piece of gear to avoid bloat. Treat it as equivalent in rating to the Cowl of Defiance :)
+
+1
+
+	
+By Talyrius (44,030 – 15·45·194) <Rare Premium User> on 2021/08/12 (Burning Crusade)	
+	
+Enhancement Shaman Best in Slot Lists for Burning Crusade Classic:
+Wowhead (this), Icy Veins, WOWTBC.GG, WoW Classic BiS, and Warcraft Tavern
+
+It's unfortunate that there isn't much consensus as they all say something different… 🤦‍♂️
+Last edited by Talyrius on 2021/08/12
+
+0
+
+	
+
+Woah <Guide Author> on 2021/08/13 (Burning Crusade)
+Last time I checked all of them were really similar, could it be that the differences you see are pieces that have similar value?
+
+1
+
+	
+
+Wixman1234 on 2021/11/20 (Burning Crusade)
+his links go to P2 on icy veins and a couple other places... that's why they're different, I'd imagine. Note that everyone gets paid by advertising, and that means more clicks = better for them. Just because they have a BiS list does NOT mean it is good, well considered, or well vetted. The ones here usually are.
+
+1
+
+	
+By Dreals (24,677 – 2·7·18) on 2026/03/22 (Burning Crusade)	
+	
+Not mentioning Demonblood Eviscerator Demonblood Eviscerator as MH option, even tho its ilvl 115 and has expertise....
+what else is missing?
+
+-1
+
+	
+
+Whitemane4Ever on 2026/04/07 (Burning Crusade)
+It definitely fits into the Optional category since Reflex blades are in there and they are nearly identical in terms of dps and raw bonuses. I would argue that the Optional category isnt BiS by definition, so it makes sense that its not an exhaustive list here
+
+1
+
+	
+By Force303 (8,052 – 1·6·13) on 2026/06/22 (Burning Crusade)	
+	
+I'm Curious where Boggspine Knuckles Boggspine Knuckles would place? I am using it paired with the The Bladefist and I'm loving it. Is the Harvester of Souls really that much better?
+Last edited by Force303 on 2026/06/22
+
+0
+
+	
+By Fuzzpuff (2,022 – 4·7) on 2021/04/28 (Burning Crusade)	
+	
+As with the notes on the pre-raid BiS list, Dragonmaw is no longer BiS for any race in Phase 1 due to the low proc rate and lack of matching speed OH with comparable damage for the blacksmith crafted one-handers. Weapons with matching speed are critical due to the 0.5s internal cooldown on Flurry consumption.
+
+Also, Relentless Earthstorm Diamond is not available in Phase 1.
+
+0
+
+	
+
+Varly on 2021/05/07 (Burning Crusade)
+So what is considered BiS now? Is blacksmithing worth it now if Dragonmaw isn't BiS?
+
+1
+
+	
+
+Woah <Guide Author> on 2021/05/24 (Burning Crusade)
+Blacksmithing can still be worth it if you want a guaranteed strong weapon, but you can get better weapons through PvP or being lucky with Karazhan loot.
+
+2
+
+	
+
+Bloodyzan2 on 2021/05/28 (Burning Crusade)
+So... basically I leveled Blacksmithing for nothing because of this guide? Why do you still have it as the BiS after learning this information?
+
+1
+
+	
+
+biggleman on 2021/05/29 (Burning Crusade)
+yeah... a lot of people leveled blacksmithing because outdated info wasnt removed quick enough,, not just here but lots of guides
+
+-1
+
+	
+
+Woah <Guide Author> on 2021/06/04 (Burning Crusade)
+We just weren't sure how it would be almost up to the launch. Pretty much everyone thought BS weapons would be great until we could actually test them on the beta thanks for a few huge grinders. Right now the weapons are in their correct position, you can still get good use of BS if you are not a high rated PvPer or lucky with Kara loot! :)
+
+-2
+
+	
+By Strykie (8,954 – 1·21·36) on 2021/04/28 (Burning Crusade)	
+	
+Dont you think you should include an Epic Offhand weapon that isnt based on PvP?
+
+4
+
+	
+
+WzzShosho on 2021/04/28 (Burning Crusade)
+Doesnt exist. The only option is The Harvester of Souls. They even did a mistake with The Decapitator which is now Main Hand only
+
+-2
+
+	
+
+Citano on 2021/05/25 (Burning Crusade)
+won't an expertise weapon like Firebrand Battleaxe Firebrand Battleaxe be a strong OH despite 2.4 speed? There is also the lv.63 BoE version in Axe of the Legion Axe of the Legion.
+
+1
+
+	
+
+Woah <Guide Author> on 2021/05/25 (Burning Crusade)
+Can be a viable alternative but the faster off-hand will not only cause flurry desynch but also use up potential WF procs from your main hand, while dealing way less damage :(
+
+1
+
+	
+
+Traoth on 2021/07/07 (Burning Crusade)
+There isn't one man lol take 3 minutes to look at Atlas. The Fel Edged Axe is bad simply because it's 2.2 speed. Your only options are 1850 rating weapons or the two blue weapons from Heroic AC/OHB. That's it.
+
+0
+
+	
+
+Horcsch on 2021/07/15 (Burning Crusade)
+If you don't have The Harverster of Souls or a pvp offhand yet you can use an epic Kara dagger as a stopgap. Not optimal but with Flametongue it is still better than using Fist of Reckoning or a 2.6/2.7 lvl70 green weapon (which are your only other options).
+
+-2
+
+	
+By Mahina (6,711 – 2·11·22) on 2026/01/04 (Burning Crusade)	
+	
+There's a surprising amount of information about Balance Druids in this guide for Enhancement Shamans (check your section headers).
+By Dreals (24,677 – 2·7·18) on 2026/03/31 (Burning Crusade)	
+	
+1 - 15 of 15
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Enhancement Shaman Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+            Best In Slot Gear in Phase 2
+                Aldor vs Scryer
+                Head
+                Shoulder
+                Back
+                Chest
+                Wrist
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Totems
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Enhancement Shaman DPS Best in Slot (BiS) Phase 2 Gear Guide - TBC Classic
+By Woah
+Updated: 2026/07/14
+Welcome to Wowhead's Best in Slot Gear list from Tempest Keep and Serpentshrine Cavern for Enhancement Shaman DPS in The Burning Crusade Classic. This guide will list the recommended gear for Enhancement Shaman DPS to acquire while they progress during the second phase of The Burning Crusade Classic, and contains gear sourced from Tempest Keep and Serpentshrine Cavern, plus other pieces from previous phases like Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best in slot lists, including a TBCC pre-patch list and a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Enhancement Shaman DPS Best in Slot HubEnhancement Shaman DPS Pre-Raid Best in Slot
+Best In Slot Gear for Enhancement Shaman DPS in Phase 2
+In Phase 2, there are a couple of different gear setups that are very good. Most slots are still just one best item, but a few have alternatives that won't meaningfully change your throughput. Ideally, you will want to use four pieces of Tier 5 for the powerful 4-piece set bonus alongside the best off-set gear available. This is the biggest upgrade to power along with weapons that the Enhancement Shaman will get in this phase. Using other options listed below is okay, as there are individual pieces with similar stats, but the 4-set bonus, Improved Flurry, is worth chasing. All races of Enhancement Shaman can benefit a lot from getting the pvp weapons, but Orcs will benefit the most with duelwielding two Merciless Gladiator's Cleaver Merciless Gladiator's Cleaver, which are also some of the best weapons available. It is also worth noting that Phase 1's Arena weapons, like Gladiator's Cleaver Gladiator's Cleaver, will now be available without a rating requirement and for discounted Arena points, which makes it much more accessible in general.
+
+Enhancement Shaman looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Enhancement Shaman Gems & Enchants
+
+Should Enhancement Shaman DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 2?
+Shamans can pick both The Aldor or The Scryers without much penalty. The Aldor shoulder enchant is slightly better, but the difference is minuscule from the Scryers enchant when considering your full gear stat bonuses. In general, it is best to pick based on which faction is cheaper to buy reputation materials for, as Aldor, for example, can often be extremely expensive due to having the favored shoulder enchant for most specializations.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Enhancement Shamans, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Enhancement Shaman in TBC Classic Phase 2
+Cataclysm Helm is the best Phase 2 helmet, sporting a generous amount of primary stats and also offering Hit Rating. These will be one of our four slots for tier to chase our 4-set bonus. Surestrike Goggles v2.0, although only offering Stamina as a primary stat, make up for that with Hit Rating, Critical Strike Rating, and a whopping 96 Attack Power. If you can craft these and don't expect to get your tier any time soon, make them!
+
+Alternatively, you can use Cyclone Helm, which is the strongest helm for a physical damage party due to the Tier 4 2-piece set bonus until you obtain the Tier 5 4-piece bonus, which is a big damage increase.
+Rank	Item	Source
+Best	Cataclysm Helm Cataclysm Helm	Drop: Helm of the Vanquished Champion: Lady Vashj (Serpentshrine Cavern)
+Great	Surestrike Goggles v2.0 Surestrike Goggles v2.0	Profession: Engineering Engineering (BoP)
+Great	Cyclone Helm Cyclone Helm	Drop: Telm of the Fallen Champion: Prince Malchezaar (Karazhan)
+Great	Wastewalker Helm Wastewalker Helm	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Great	Helm of the Claw Helm of the Claw	Quest: The Warlord's Hideout The Warlord's Hideout
+Great	Cowl of Defiance Cowl of Defiance	Drop: Netherspite (Karazhan)
+
+Best in Slot Shoulder Armor for Enhancement Shaman in TBC Classic Phase 2
+We'll opt out of tier for our shoulder armor and look at Shoulderpads of the Stranger. This will be a pretty contested piece amongst the rest of your physical DPS, so looking for temporary alternatives such as Cyclone Shoulderplates or Bladed Shoulderpads of the Merciless from Phase 1 is recommended. With the former, you can still keep the 2set bonus of tier 4, Improved Strength of Earth
+Rank	Item	Source
+Best	Shoulderpads of the Stranger Shoulderpads of the Stranger	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Great	Cyclone Shoulderplates Cyclone Shoulderplates	Drop: Pauldrons of the Fallen Champion: High King Maulgar (Gruul's Lair)
+Great	Bladed Shoulderpads of the Merciless Bladed Shoulderpads of the Merciless	Drop: Karazhan Chess Event
+Great	Wastewalker Shoulderpads Wastewalker Shoulderpads	Drop: Avatar of the Martyred (Auchenai Crypts)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+Rank	Item	Source
+Great	Mantle of Perenolde Mantle of Perenolde	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Great	Expedition Scout's Epaulets Expedition Scout's Epaulets	Quest: Fel Embers Fel Embers
+
+Best in Slot Back Armor for Enhancement Shaman in TBC Classic Phase 2
+This cloak situation is a bit of a double-edged sword in Phase 2. Thalassian Wildercloak is technically better than Vengeance Wrap, but only by 1-2 DPS. So if you have the former, just stick with it, as other classes will gain more from it. The reason this is a double-edged sword, however, is that crafting the latter can be a bit expensive, so if you still don't have this, hopefully it's cheaper in Phase 2!
+Rank	Item	Source
+Best - Recommended	Vengeance Wrap Vengeance Wrap	Profession: Tailoring (BoE)
+Best - Small DPS Increase	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep)
+Great	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+Good	Auchenai Death Shroud Auchenai Death Shroud	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+Rank	Item	Source
+Okay	Cloak of the Inciter Cloak of the Inciter	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Best in Slot Chest Armor for Enhancement Shaman in TBC Classic Phase 2
+The Tier 5 chest, Cataclysm Chestplate, is yet another strong piece that will eventually allow you to unlock the powerful 4-set bonus. It should be noted that not only does it offer a healthy 41 Strength and 32 Agility, but having 46 Stamina is insane for personal survivability in encounters with unavoidable damage!
+
+You can use Cyclone Breastplate to keep the 2-set bonus active, if needed, but look to swap this piece whenever possible.
+Rank	Item	Source
+Best	Cataclysm Chestplate Cataclysm Chestplate	Drop: Chestguard of the Vanquished Champion: Kael'thas Sunstrider (Tempest Keep)
+Great	Cyclone Breastplate Cyclone Breastplate	Drop: Chestguard of the Fallen Champion: Magtheridon (Magtheridon's Liar)
+Great	Terrorweave Tunic Terrorweave Tunic	Drop: Doomwalker (World Boss in Shadowmoon Valley)
+Great	Primalstrike Vest Primalstrike Vest	Profession: Elemental Leatherworking (BoP)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+Rank	Item	Source
+Great	Ebon Netherscale Breastplate Ebon Netherscale Breastplate	Profession: Dragonscale Leatherworking BoP)
+
+Best in Slot Wrist Armor for Enhancement Shaman in TBC Classic Phase 2
+True-Aim Stalker Bands are the favored bracers for Enhance, and should be virtually uncontested with anyone else, as the only other Mail-wearing DPS class, Hunters, will be competing with Rogues and Druids over Vambraces of Ending.
+
+Bracers of Maliciousness andPhase 1 crafted gear pieces are also solid pre-Tier 5 gear.
+Rank	Item	Source
+Best	True-Aim Stalker Bands True-Aim Stalker Bands	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Great	Vambraces of Ending Vambraces of Ending	Drop: High Astromancer Solarian (Tempest Keep)
+Great	Bracers of Maliciousness Bracers of Maliciousness	Drop: Maiden of Virtue (Karazhan)
+Great	Primalstrike Bracers Primalstrike Bracers	Profession: Elemental Leatherworking (BoP)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+
+Rank	Item	Source
+Great	Ebon Netherscale Bracers Ebon Netherscale Bracers	Profession: Dragonscale Leatherworking (BoP)
+Great	Spymistress's Wristguards Spymistress's Wristguards	Quest: The Soul Devices The Soul Devices
+
+Best in Slot Hand Armor for Enhancement Shaman in TBC Classic Phase 2
+Our gloves will be another slot for Tier, so Cataclysm Gauntlets are a must-have item, and they also happen to be one of the easiest pieces of Tier 5 to get!
+
+If you get your hands on Tier 5 shoulders as part of your four-set, you can also opt into Gloves of the Searing Grip as your offpiece. This will be your second best option of gearing four set + one off piece.
+
+Use previous phase options Liar's Tongue Gloves or Grips of Deftness until you can get your hands on Tier 5 gloves.
+Rank	Item	Source
+Best	Cataclysm Gauntlets Cataclysm Gauntlets	Drop: Gloves of the Vanquished Champion: Leotheras the Blind (Serpentshrine Cavern)
+Great	Gloves of the Searing Grip Gloves of the Searing Grip	Drop: Al'ar (Tempest Keep
+Great	Liar's Tongue Gloves Liar's Tongue Gloves	Drop: Magtheridon (Magtheridon's Lair)
+Great	Grips of Deftness Grips of Deftness	Drop: Karazhan Trash Mobs
+Great	Cobrascale Gloves Cobrascale Gloves	Profession: Leatherworking (BoE)
+Best in Slot Waist Armor for Enhancement Shaman in TBC Classic Phase 2
+Belt of One-Hundred Deaths has a huge amount of stats, especially Expertise Rating, and also 2 sockets, making it best in slot for nearly the rest of the game. Unfortunately, this is the same story for nearly every melee class. Your second best will be Belt of Deep Shadow, and other alternatives will be from Phase 1, such as Primalstrike Belt and Gronn-Stitched Girdle.
+Rank	Item	Source
+Best	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentshrine Cavern)
+Best	Belt of Deep Shadow Belt of Deep Shadow	Profession: Leatherworking (BoE)
+Great	Primalstrike Belt Primalstrike Belt	Profession: Elemental Leatherworking (BoP)
+Great	Gronn-Stitched Girdle Gronn-Stitched Girdle	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Great	Ebon Netherscale Belt Ebon Netherscale Belt	Profession: Dragonscale Leatherworking (BoP)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+
+Rank	Item	Source
+Great	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus (Heroic The Black Morass)
+
+Best in Slot Leg Armor for Enhancement Shaman in TBC Classic Phase 2
+Cataclysm Legplates are used to obtain the powerful 4-set Tier 5 bonus, but on their own are worse than Skulker's Greaves and thus an upgrade that can be delayed until you can assemble the rest of your 4-set pieces (ideally helm, chest, and gloves).
+
+Shattrath Leggings and Clefthoof Hide Leggings are easy-to-obtain options, but are generally much weaker than the other top options.
+Rank	Item	Source
+Best	Cataclysm Legplates Cataclysm Legplates	Drop: Leggings of the Vanquished Champion: Fathom-Lord Karathress (Serpentshrine Cavern)
+Great	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+Great	Shattrath Leggings Shattrath Leggings	Quest: Special Delivery to Shattrath City Special Delivery to Shattrath City
+Great	Clefthoof Hide Leggings Clefthoof Hide Leggings	Quest: Showdown Showdown / Showdown Showdown
+Best in Slot Feet Armor for Enhancement Shaman in TBC Classic Phase 2
+Boots of Utter Darkness are the best boots available in Tier 5. You can also use Cobra-Lash Boots if crafting these is not an option. The former offers a very generous amount of Hit Rating, along with Critical Strike Rating and Attack Power, while the latter offers two gem sockets and Attack Power only. However, they are not BiS for anyone else, so obtaining your 2nd best, similar to your wrist option, should be an uncontested win.
+Rank	Item	Source
+Best	Boots of Utter Darkness Boots of Utter Darkness	Profession: Leatherworking (BoP)
+Great	Cobra-Lash Boots Cobra-Lash Boots	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+Great	Fel Leather Boots Fel Leather Boots	Profession: Leatherworking (BoE)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+Rank	Item	Source
+Great	Boots of the Unjust Boots of the Unjust	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+
+Best in Slot Neck Jewelry for Enhancement Shaman in TBC Classic Phase 2
+We have two options for "best" necklaces in Phase 2. Telonicus's Pendant of Mayhem is the best Tier 5 neck, but only by a few DPS, and comes from the final Boss of Tempest Keep. Pendant of the Perilous is similar in power and much easier to get, coming from trash mobs in Serpentshrine Cavern. You can seek out the former, but getting the latter should be a goal as well.
+Rank	Item	Source
+Best	Telonicus's Pendant of Mayhem Telonicus's Pendant of Mayhem	Drop: Kael'thas Sunstrider (Tempest Keep)
+Best	Pendant of the Perilous Pendant of the Perilous	Drop: Serpentshrine Cavern Trash Mobs)
+Great	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+Great	Worgen Claw Necklace Worgen Claw Necklace	Drop: Attumen the Huntsman (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+Rank	Item	Source
+Good	Natasha's Choker Natasha's Choker	Quest: The Hound-Master The Hound-Master
+Good	Traitor's Noose Traitor's Noose	Drop: Mennu the Betrayer (Heroic The Slave Pens)
+
+Best in Slot Ring Jewelry for Enhancement Shaman in TBC Classic Phase 2
+Band of the Ranger-General and Ring of Lethality are the best rings in Tier 5. If you compare these two rings to previous phase BiS, you'll notice that both are just pure upgrades to each, with Ring of Lethality being a better version of Garona's Signet Ring, and Band of the Ranger-General being a better version of Ring of a Thousand Marks. If you still do not have these Karazhan rings, you should definitely still be trying to obtain them.
+Rank	Item	Source
+Best	Band of the Ranger-General Band of the Ranger-General	Drop: Kael'thas Sunstrider (Tempest Keep)
+Best	Ring of Lethality Ring of Lethality	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Great	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+Great	Garona's Signet Ring Garona's Signet Ring	Drop: The Curator (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+Rank	Item	Source
+Great	Band of Eternity Band of Eternity	Quest:The Vials of Eternity The Vials of Eternity / Champion's Pledge Champion's Pledge
+Great	Shapeshifter's Signet Shapeshifter's Signet	Vendor: Nakodu Requires Exalted with Lower City
+Great	Ring of Reciprocity Ring of Reciprocity	Drop: Doom Lord Kazzak (World Boss in Hellfire Peninsula)
+Great	Violet Signet of the Master Assassin Violet Signet of the Master Assassin	Quest:Eminence Among the Violet Eye Eminence Among the Violet Eye - Requires Exalted with The Violet Eye
+Great	Ring of Arathi Warlords Ring of Arathi Warlords	Vendor: G'eras (25 Badges of Justice)
+
+Best in Slot Trinkets for Enhancement Shaman in TBC Classic Phase 2
+Dragonspine Trophy, and Bloodlust Brooch, are still the best trinkets in Tier 5, although it might be easier to get Tsunami Talisman instead of DST.
+
+Slayer's Crest is still very strong, if you have access to it, and Abacus of Violent Odds is a good alternative as well.
+Rank	Item	Source
+Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Optional	Tsunami Talisman Tsunami Talisman	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Optional	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Trinkets will always be competitive, even with the 2nd or 3rd best options, as our best one is competitive with every other Melee DPS class, and these options are no different.
+Rank	Item	Source
+Optional -
+Classic Raids	Slayer's Crest Slayer's Crest	Drop: Sapphiron (Naxxramas)
+Optional	Core of Ar'kelos Core of Ar'kelos	Quest: Ar'kelos the Guardian Ar'kelos the Guardian
+Optional	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+
+Best in Slot Weapons for Enhancement Shaman in TBC Classic Phase 2
+You'll notice that there are several Blacksmithing items listed here. Currently, it is NOT one of the top recommended professions to prioritize for Enhancement Shaman. However, should you still choose to pick this profession, these weapons are going to be some of our best options.
+
+Due to Flurry having a 0.5-second cooldown on being consumed, having weapons of matching speed is very important to minimize attack desynching and maximize your Flurry uptime. Most of the weapons we list below have either 2.6 or 2.7 speed, and weapons with the same speed are meant to be used together, whenever possible.
+
+For Orc Enhancement Shamans, using Wicked Edge of the Planes alongside a 2.7 OH or double Merciless Gladiator's Cleaver is ideal, assuming you decided to opt into Blacksmithing, while non-Orcs should use Talon of the Phoenix and Rod of the Sun King, instead. You should favor using the axes listed in the rest of the section as Orc as well, to benefit from Axe Specialization. A strong alternative to these weapons, especially for Orcs, is Netherbane, which can be dual-wielded.
+
+Both of the Karazhan main-hand only weapons, The Decapitator / Fool's Bane are also still strong and can combo with any of the 2.6 speed off-hands, such as The Harvester of Souls.
+
+If you did pick blacksmithing and opted to be a Hammersmith, can use Dragonstrike from Blacksmithing Blacksmithing for main hand and Fist of Reckoning for off-hand, which is recommended for its 2.7 speed, which combos well with the crafted weapons' 2.7 speed.
+Rank	Item	Source
+2.7 MH/OH
+(Unique)	Rod of the Sun King Rod of the Sun King	Kael'thas Sunstrider (Tempest Keep)
+2.7 MH	Talon of the Phoenix Talon of the Phoenix	Drop: Al'ar (Tempest Keep)
+2.6 MH/OH	Merciless Gladiator's Cleaver Merciless Gladiator's Cleaver	PvP Vendor
+Crafted 2.7 Best MH	Wicked Edge of the Planes Wicked Edge of the Planes	Blacksmithing Blacksmithing (Master Axesmith)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+Rank	Item	Source
+Crafted 2.7 Best MH	Dragonstrike Dragonstrike	Blacksmithing Blacksmithing (Master Hammersmith)
+2.6 Best MH/OH	Netherbane Netherbane	Drop: Al'ar (Tempest Keep)
+2.6 Great MH/OH	Gladiator's Cleaver Gladiator's Cleaver	PvP Vendor
+2.6 Great MH	The Decapitator The Decapitator	Drop: Prince Malchezaar (Karazhan)
+2.6 Great MH/OH	The Harvester of Souls The Harvester of Souls	Drop: Exarch Maladaar (Heroic Auchenai Crypts)
+2.6 Great MH/OH	Grand Marshal's Cleaver Grand Marshal's Cleaver
+High Warlord's Cleaver High Warlord's Cleaver	Honor PvP Vendor
+2.6 Optional MH	Fool's Bane Fool's Bane	Drop: Terestian Illhoof (Karazhan)
+Optional (2.7 MH)	Dragonmaw Dragonmaw	Profession: Master Hammersmith Blacksmithing (BoP)
+Optional (2.7 MH)	Black Planar Edge Black Planar Edge	Profession: Master Axesmith Blacksmithing (BoP)
+Optional (2.7 MH)	Reflex Blades Reflex Blades	Drop: Dalliah the Doomsayer (The Arcatraz)
+Optional (2.7 OH)	Fist of Reckoning Fist of Reckoning	World Drop: The Outland
+
+Best in Slot Totems for Enhancement Shaman in TBC Classic Phase 2
+Totem of the Astral Winds is our best, and nothing still comes even remotely close to this totem in regards to BiS for an Enhancement Shaman, definitely get this ASAP.
+Rank	Item	Source
+Best	Totem of the Astral Winds Totem of the Astral Winds	Drop: Pandemonius (Heroic Mana-Tombs)
+Woah
+MoP Restoration/Elemental Shaman Guide Writer
+Woah has written over 275 guides for Wowhead since WoW Classic was released in 2019, with a particular focus on Shaman class guides. Shaman has been his main class since the start of Classic and also since WoW's initial launch in 2004.
+
+Currently playing in Gehennas EU Horde with Progress's 25-man alt/gold runs, Woah is looking to do some 10-man alt running on the side with a second shaman in Mists of Pandaria!
+1 - 12 of 12
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By Tambard (3,249 – 13·7) on 2021/08/09 (Burning Crusade)	
+	
+"It is important to note that the Season 1 Gladiator weapons can now be purchased with Honor Points..."
+
+Ummm... No.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/08/11 (Burning Crusade)
+Got trolled on this one by the people I asked, its all fixed now, sorry for the confusion! Good reminder that you should always double check everything on PTR to make sure.
+
+2
+
+	
+By nachodan (1,517 – 18·18) on 2021/11/14 (Burning Crusade)	
+	
+It perplexes me how Ring of Arathi Warlords Ring of Arathi Warlords makes the list and yet Mithril Band of the Unscarred Mithril Band of the Unscarred does not.
+
+I guess 1 point of Crit Rating is better than 3 Strength? Why then, does the guide recommend strength gems? Gemming all Crit Strike rating should be the order of the day if 1 Crit is that much better than 1 Strength.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/12/27 (Burning Crusade)
+An oversight, will fix it in the P3 list coming soon, thanks!
+
+2
+
+	
+By mykkenny (2,695 – 15·12) on 2021/12/16 (Burning Crusade)	
+	
+Why is Belt of Deep Shadow not considered? Looking at the stats it has more agi for crit, and can slot two +8 str gems for more total AP than Primalstrike? And it has 18 hit!
+Last edited by mykkenny on 2021/12/16
+
+0
+
+	
+
+PowderBlue on 2021/12/22 (Burning Crusade)
+Agreed, both the SSC/TK pattern belts are not listed.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/12/27 (Burning Crusade)
+You are not wrong, but at this point I'll have to include it in the Phase 3 list instead, look forward to that soon! :)
+
+1
+
+	
+By Oshammoos (267 – 1·3) on 2021/08/09 (Burning Crusade)	
+	
+Yeah s1 arena gear isnt purchasable with honor in s2, the costs and rating requirements are removed. Maybe fix that since its mentioned like 3 or 4 times in your guide lol.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/08/11 (Burning Crusade)
+It is fixed now, my bad on asking, getting the wrong info and not double checking it myself on PTR, cheers!
+
+1
+
+	
+By rhinoloupe (72,952 – 31·94·604) <Rare Premium User> on 2021/08/10 (Burning Crusade)	
+	
+Romulo's Poison Vial Romulo's Poison Vial shouldn't be on this list at all. It's worse than the blue trinkets.
+
+Entry-level EP values for comparison:
+144.00 Dragonspine Trophy Dragonspine Trophy
+139.26 Tsunami Talisman Tsunami Talisman
+118.33 Bloodlust Brooch Bloodlust Brooch
+108.04 Hourglass of the Unraveller Hourglass of the Unraveller
+91.73 Abacus of Violent Odds Abacus of Violent Odds
+46.90 Romulo's Poison Vial Romulo's Poison Vial (not incl proc)
+
+Average of 1.6 procs per minute and doesn't scale well off your stats or off BL/Heroism; the proc will come out at around 1-2% of your overall DPS.
+Last edited by rhinoloupe on 2021/08/10
+
+1
+
+	
+
+Woah <Guide Author> on 2021/08/11 (Burning Crusade)
+Apparently it also eats up Stormstrike charges, just going to dump that and get Core of Arkelos in instead, as it is a great entry-level trinket that is trivial to get :)
+
+0
+
+	
+
+rhinoloupe <Rare Premium User> on 2021/08/11 (Burning Crusade)
+That's a great alternative!
+
+1
+
+	
+
+iridaya on 2021/08/12 (Burning Crusade)
+Hi, you're using the EPs from the vanilla TBC EJ guide. These have been comprehensively debunked - in fact, they were known to be flawed by TCers at the time. Abacus > Hourglass, for instance. I'd recommend visiting the Shaman discord instead.
+
+0
+
+	
+
+rhinoloupe <Rare Premium User> on 2021/08/19 (Burning Crusade)
+It's also the worst trinket listed on all the resources on the Shaman Discord
+
+0
+
+	
+
+Woah <Guide Author> on 2021/09/05 (Burning Crusade)
+Did a new pass on trinkets with the latest info, will be revisiting it soon before and after P5 lands just to make sure it is correct / in line with Discord :)
+
+1
+
+	
+By dann (289 – 1·4) on 2021/08/27 (Burning Crusade)	
+	
+Is Darkmoon Card: Crusade Darkmoon Card: Crusade phase 2? It's simming better than Tsunami Talisman Tsunami Talisman
+
+0
+
+	
+
+Woah <Guide Author> on 2021/08/28 (Burning Crusade)
+No one really knows, removed it for now after adding it briefly, but assuming it is in, it will be one of the top 3 alongside DST and Bloodlust Brooch!
+
+1
+
+	
+
+Woah <Guide Author> on 2021/09/22 (Burning Crusade)
+Now that the patch came out: this is not in the game yet :)
+
+1
+
+	
+By Meta392 (3,479 – 5·13) on 2021/09/05 (Burning Crusade)	
+	
+Is Enchant Ring - Stats supposed to come out in Phase 2?
+
+1
+
+	
+
+Woah <Guide Author> on 2021/09/05 (Burning Crusade)
+Apparently not, was hoping that they would introduce it one Phase sooner, but it looks like it will come in Phase 3 with Black Temple and Mount Hyjal.
+
+1
+
+	
+By Goofybag (2,960 – 6·11) on 2021/09/23 (Burning Crusade)	
+	
+Karazhan combo The Decapitator/Fool's Bane-
+
+These are both main hand weapons.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/09/24 (Burning Crusade)
+Fool's Bane is not listed as a combo with Decapitator, you either use one or the other in the main-hand.
+
+0
+
+	
+
+Goofybag on 2021/09/25 (Burning Crusade)
+Should update or remove the term "Karazhan combo" from the weapon explanation as it can easily be misconstrued.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/09/26 (Burning Crusade)
+I see what you mean, will edit the text to clarify, thanks!
+
+0
+
+	
+
+redback <Rare Premium User> on 2026/05/21 (Burning Crusade)
+if we go another round with TBC, I really hope they bring forward the change to that. I thought it was in p2 last time but it mustn't be until BT comes out. there isn't a viable epic oh for enhancement from PvE in p1.
+
+1
+
+	
+By Goofybag (2,960 – 6·11) on 2021/10/15 (Burning Crusade)	
+	
+Gloves of the Searing Grip should be listed as another great glove option
+
+1
+
+	
+
+Woah <Guide Author> on 2021/12/27 (Burning Crusade)
+True, will include it in the Phase 3 BiS list coming up soon, thanks!
+
+1
+
+	
+By Gwae (3,009 – 5·8) on 2022/01/04 (Burning Crusade)	
+	
+Hey, just noticed that for Belt of One-Hundred Deaths you have it listed as having no sockets. :)
+
+0
+
+	
+
+Woah <Guide Author> on 2022/01/09 (Burning Crusade)
+Whoops, thanks for finding this typo, fixed!
+
+1
+
+	
+By 3moRtal (4,591 – 5·6) on 2026/04/23 (Burning Crusade)	
+	
+why p1 Ebon Netherscale Breastplate and p2 Primalstrike Vest ?
+
+1
+
+	
+By absonom (6,073 – 1·9·14) on 2026/05/19 (Burning Crusade)	
+	
+P2 list for some reason has Grips of Deftness listed as Good, but does not have Gloves of the Searing Grip listed at all which are a direct upgrade and likely BiS.
+1 - 12 of 12
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Enhancement Shaman Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+            Best In Slot Gear in Phase 3
+                Aldor vs Scryer
+                Head
+                Shoulder
+                Back
+                Chest
+                Wrist
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Totems
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Enhancement Shaman DPS Best in Slot (BiS) Phase 3 Gear Guide
+By Woah
+Updated: 2026/08/01
+Welcome to Wowhead's Best in Slot Gear list from Phase 3 Black Temple and Mount Hyjal for Enhancement Shaman DPS in The Burning Crusade Classic. This guide will list the recommended gear for Enhancement Shaman DPS to acquire while they progress during the third phase of The Burning Crusade Classic, and contains gear sourced from Black Temple and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+Best In Slot Gear for Enhancement Shaman DPS in Phase 3
+Unfortunately (or fortunately, depending on how you see it), Enhancement Shaman Shaman Tier 6 set is not very good, unlike that of most classes and other Shaman specializations. On the positive side, this means you will be able to ignore the general rush for Tier 6 gear, but it also means that the drops you need are more subject to randomness than Tier tokens.
+
+Hold on to your Tier 5 4-piece bonus for as long as possible, as it provides a large amount of DPS. Overall, you should look to swap it out when you have 2 to 3 Phase 3 replacement pieces, rather than breaking it immediately. As with every phase, doing Arena PvP is still very valuable for the Season 3 gladiator weapons, but using double Syphon of the Nathrezim Syphon of the Nathrezim for their very slow speed is your best PvE option should you not PvP. However, we will continue to encourage players to take part in Arenas in TBC Anniversary, as the requirement rating for weapons was lowered to 1700, and this is very achievable!
+
+Meta sockets are unique to head slot pieces and accept meta gems (instead of regular gems). Only a single meta socket may exist in any given piece, and many pieces come without a meta socket at all. Relentless Earthstorm Diamond Relentless Earthstorm Diamond is the best meta gem, and scales well with the rest of your gear, as it acts as a multiplier on your damage output. Enhancement Shaman looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Enhancement Shaman Gems & Enchants
+
+
+Thank you to those in the Shaman Classic Discord for helping provide accurate information. Below is an example set of gear with the best pieces available for each slot. Please remember to take into account that a full BiS set is often not realistic, so make sure to look at your alternative, more realistic options as well below:
+
+
+Cursed Vision of Sargeras
+Choker of Endless Nightmares
+Swiftstrike Shoulders
+Shadowmoon Destroyer's Drape
+Midnight Chestguard
+Bindings of Lightning Reflexes
+Fists of Mukoa
+Belt of One-Hundred Deaths
+Bow-stitched Leggings
+Softstep Boots of Tracking
+Band of the Eternal Champion
+Stormrage Signet Ring
+Dragonspine Trophy
+Madness of the Betrayer
+Vengeful Gladiator's Cleaver
+Vengeful Gladiator's Cleaver
+Totem of the Astral Winds
+Link
+Level70
+Should Enhancement Shaman DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 3?
+Shamans can pick both The Aldor or The Scryers without much penalty. The Aldor shoulder enchant is slightly better, but the difference is minuscule from the Scryers enchant when considering your full gear stat bonuses. In general, it is best to pick based on which faction is cheaper to buy reputation materials for, as Aldor, for example, can often be extremely expensive due to having the favored shoulder enchant for most specializations.
+
+    Aldor offer a very slightly superior shoulder enchant for DPS.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Enhancement Shaman in TBC Classic Phase 3
+Cursed Vision of Sargeras is the best head option available by far, with impressive stats and a sleek look to go with them. Since you will be passing on all Tier 6 set pieces, this will be your main chase item alongside your weapons. This will, however, be nearly every other physical DPS's BiS head option as well. You can also use Forest Prowler's Helm or Skyshatter Cover as temporary alternatives, but note that the Tier 6 helmet has much weaker throughput stats and the Tier 6 set bonuses are pretty weak for Enhancement Shaman Shamans.
+
+Cataclysm Helm is still a great helmet, sporting great stats and a meta socket. Surestrike Goggles v2.0 are also fine, but do not contribute towards a set bonus. Alternatively, you can use Cyclone Helm, which is a strong helm for a physical damage party due to the Tier 4 2-piece set bonus.
+Rank	Item	Source
+Best	Cursed Vision of Sargeras Cursed Vision of Sargeras	Drop: Illidan Stormrage (Black Temple)
+Great	Forest Prowler's Helm Forest Prowler's Helm	Drop: The Illidari Council (Black Temple)
+Great	Skyshatter Cover Skyshatter Cover	Drop: Helm of the Forgotten Protector - Archimonde (Hyjal Summit)
+Great	Cataclysm Helm Cataclysm Helm	Drop: Helm of the Vanquished Champion: Lady Vashj (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Great	Surestrike Goggles v2.0 Surestrike Goggles v2.0	Profession: Engineering Engineering (BoP)
+Great	Cyclone Helm Cyclone Helm	Drop: Telm of the Fallen Champion: Prince Malchezaar (Karazhan)
+Great	Wastewalker Helm Wastewalker Helm	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Great	Helm of the Claw Helm of the Claw	Quest: The Warlord's Hideout The Warlord's Hideout
+Great	Cowl of Defiance Cowl of Defiance	Drop: Netherspite (Karazhan)
+
+Best in Slot Shoulder Armor for Enhancement Shaman in TBC Classic Phase 3
+The crafted Swiftstrike Shoulders / Shoulders of Lightning Reflexes are Enhancement's best shoulders in Tier 6, and very close in power. If you have the choice, you should opt for the latter versus the former.
+
+Alternatively, you can still use Shoulderpads of the Stranger or Mantle of Darkness, which are slightly worse, but still very strong, overall.
+Rank	Item	Source
+Best	Shoulders of Lightning Reflexes Shoulders of Lightning Reflexes	Profession: Leatherworking Leatherworking (BoP)
+Best	Swiftstrike Shoulders Swiftstrike Shoulders	Profession: Leatherworking Leatherworking (BoP)
+Great	Shoulderpads of the Stranger Shoulderpads of the Stranger	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Great	Mantle of Darkness Mantle of Darkness	Drop: High Warlord Naj'entus (Black Temple)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+Rank	Item	Source
+Great	Cyclone Shoulderplates Cyclone Shoulderplates	Drop: Pauldrons of the Fallen Champion: High King Maulgar (Gruul's Lair)
+Great	Bladed Shoulderpads of the Merciless Bladed Shoulderpads of the Merciless	Drop: Karazhan Chess Event
+Great	Wastewalker Shoulderpads Wastewalker Shoulderpads	Drop: Avatar of the Martyred (Auchenai Crypts)
+Great	Mantle of Perenolde Mantle of Perenolde	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Great	Expedition Scout's Epaulets Expedition Scout's Epaulets	Quest: Fel Embers Fel Embers
+
+Best in Slot Back Armor for Enhancement Shaman in TBC Classic Phase 3
+Shadowmoon Destroyer's Drape is the best cloak in Phase 3, finally overtaking Vengeance Wrap. However, still having the Phase 1/2 BiS cloak is still very strong. As mentioned in our Phase 2 BiS article, Thalassian Wildercloak does slightly edge out Vengeance Wrap, but is more powerful for other classes. If you are able to obtain it though, then take it!
+Rank	Item	Source
+Best	Shadowmoon Destroyer's Drape Shadowmoon Destroyer's Drape	Drop: Teron Gorefiend (Black Temple)
+Great	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep)
+Great	Vengeance Wrap Vengeance Wrap	Profession: Tailoring (BoE)
+Great	Cloak of Darkness Cloak of Darkness	Profession: Leatherworking - Requires Exalted with The Violet Eye
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+Rank	Item	Source
+Great	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+Great	Auchenai Death Shroud Auchenai Death Shroud	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+Great	Cloak of the Inciter Cloak of the Inciter	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Best in Slot Chest Armor for Enhancement Shaman in TBC Classic Phase 3
+Midnight Chestguard is the strongest chest for this phase by a large margin, sporting high stats and 3 sockets. Nether Shadow Tunic is a strong temporary alternative, as is the Tier 5 chest, Cataclysm Chestplate, especially if you need it to enable the 4-set bonus.
+Rank	Item	Source
+Best	Midnight Chestguard Midnight Chestguard	Drop: Archimonde (Hyjal Summit)
+Great	Nether Shadow Tunic Nether Shadow Tunic	Drop: Supremus (Black Temple)
+Great	Bloodsea Brigand's Vest Bloodsea Brigand's Vest	Drop: Chestguard of the Vanquished Champion: Kael'thas Sunstrider (Tempest Keep)
+Great	Cataclysm Chestplate Cataclysm Chestplate	Drop: Kael'thas Sunstrider (Tempest Keep)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+Rank	Item	Source
+Great	Cyclone Breastplate Cyclone Breastplate	Drop: Chestguard of the Fallen Champion: Magtheridon (Magtheridon's Liar)
+Great	Terrorweave Tunic Terrorweave Tunic	Drop: Doomwalker (World Boss in Shadowmoon Valley)
+Great	Primalstrike Vest Primalstrike Vest	Profession: Elemental Leatherworking (BoP)
+Great	Ebon Netherscale Breastplate Ebon Netherscale Breastplate	Profession: Dragonscale Leatherworking BoP)
+
+Best in Slot Wrist Armor for Enhancement Shaman in TBC Classic Phase 3
+Bindings of Lightning Reflexes and Deadly Cuffs are essentially the same in power, with Insidious Bands just barely being behind these as well, pretty much to the point where you wouldn't notice a difference. Bindings lack any Hit, however, so if you need it, opt for the other two options mentioned. Since Bindings are a crafted piece, this should be a more obtainable piece compared to the rest.
+Rank	Item	Source
+Best	Bindings of Lightning Reflexes Bindings of Lightning Reflexes	Drop: Leatherworking Leatherworking (BoE)
+Best	Deadly Cuffs Deadly Cuffs	Drop: Rage Winterchill (Hyjal Summit)
+Best	Insidious Bands Insidious Bands	Drop: Teron Gorefiend (Black Temple)
+Great	True-Aim Stalker Bands True-Aim Stalker Bands	Drop: Leotheras the Blind (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+
+Rank	Item	Source
+Great	Vambraces of Ending Vambraces of Ending	Drop: High Astromancer Solarian (Tempest Keep)
+Great	Bracers of Maliciousness Bracers of Maliciousness	Drop: Maiden of Virtue (Karazhan)
+Great	Primalstrike Bracers Primalstrike Bracers	Profession: Elemental Leatherworking (BoP)
+Great	Ebon Netherscale Bracers Ebon Netherscale Bracers	Profession: Dragonscale Leatherworking (BoP)
+Great	Spymistress's Wristguards Spymistress's Wristguards	Quest: The Soul Devices The Soul Devices
+
+Best in Slot Hand Armor for Enhancement Shaman in TBC Classic Phase 3
+Grips of Damnation and Fists of Mukoa are both very similar for throughput, and you can use any of them in your ideal gear setup. Damnation will see just about a 2 DPS difference compared to Fists, but you should find Fists less competative compared to the former.
+
+Gloves of the Searing Grip are a fine temporary alternative, as are the Cataclysm Gauntlets, which have great stats and can enable Tier 5's strong 4-set bonus.
+Rank	Item	Source
+Best	Fists of Mukoa Fists of Mukoa	Drop: High Warlord Naj'entus (Black Temple)
+Best	Grips of Damnation Grips of Damnation	Drop: Reliquary of the Lost (Black Temple)
+Great	Gloves of the Searing Grip Gloves of the Searing Grip	Drop: Al'ar (Tempest Keep)
+Great	Cataclysm Gauntlets Cataclysm Gauntlets	Drop: Gloves of the Vanquished Champion: Leotheras the Blind (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+
+Rank	Item	Source
+Great	Liar's Tongue Gloves Liar's Tongue Gloves	Drop: Magtheridon (Magtheridon's Lair)
+Great	Grips of Deftness Grips of Deftness	Drop: Karazhan Trash Mobs
+Great	Cobrascale Gloves Cobrascale Gloves	Profession: Leatherworking (BoE)
+
+Best in Slot Waist Armor for Enhancement Shaman in TBC Classic Phase 3
+Belt of One-Hundred Deaths is still the best belt available in Tier 6 by a large margin, but Boneweave Girdle, Shadow-walker's Cord, Don Alejandro's Money Belt, and Valestalker Girdle are all fine, and more realisitc options, because 100D is pretty much everyones best belt! It's the belt equivalent of DST, so make sure you have alternatives lined up.
+Rank	Item	Source
+Best	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Don Alejandro's Money Belt Don Alejandro's Money Belt	Drop: Anetheron (Hyjal Summit)
+Great	Boneweave Girdle Boneweave Girdle	Drop: Reliquary of the Lost (Black Temple)
+Great	Shadow-walker's Cord Shadow-walker's Cord	Drop: Shade of Akama (Black Temple)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+
+Rank	Item	Source
+Great	Belt of Deep Shadow Belt of Deep Shadow	Profession: Leatherworking Leatherworking (BoE)
+Great	Valestalker Girdle Valestalker Girdle	Drop: Kaz'rogal(Hyjal Summit)
+Great	Primalstrike Belt Primalstrike Belt	Profession: Elemental Leatherworking (BoP)
+Great	Gronn-Stitched Girdle Gronn-Stitched Girdle	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Great	Ebon Netherscale Belt Ebon Netherscale Belt	Profession: Dragonscale Leatherworking (BoP)
+Great	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus (Heroic The Black Morass)
+
+Best in Slot Leg Armor for Enhancement Shaman in TBC Classic Phase 3
+Bow-stitched Leggings are the best Phase 3 legs by a good margin, due to their high stats and 3 sockets. Alternatively, you can obtain Shady Dealer's Pantaloons from the same boss, which provides some armor penetration.
+
+If those are not an option, the Tier 6 legs offer great stats, along with Leggings of Murderous Intent if you happen to have them. However, you'll more than likely still be running Cataclysm Legplates with their 4-set bonus until you get enough gear to break the set.
+Rank	Item	Source
+Best	Bow-stitched Leggings Bow-stitched Leggings	Drop: Azgalor (Hyjal Summit)
+Great	Shady Dealer's Pantaloons Shady Dealer's Pantaloons	Drop: Azgalor (Hyjal Summit)
+Great	Skyshatter Pants Skyshatter Pants	Drop: Leggings of the Forgotten Protector, The Illidari Council (Black Temple
+Great	Leggings of Murderous Intent Leggings of Murderous Intent	Drop: Kael'thas Sunstrider (Tempest Keep)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+
+Rank	Item	Source
+Great	Cataclysm Legplates Cataclysm Legplates	Drop: Leggings of the Vanquished Champion: Fathom-Lord Karathress (Serpentshrine Cavern)
+Great	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+Great	Shattrath Leggings Shattrath Leggings	Quest: Special Delivery to Shattrath City Special Delivery to Shattrath City
+Great	Clefthoof Hide Leggings Clefthoof Hide Leggings	Quest: Showdown Showdown / Showdown Showdown
+
+Best in Slot Feet Armor for Enhancement Shaman in TBC Classic Phase 3
+Shadowmaster's Boots or Softstep Boots of Tracking are the best boots available in Phase 3, being close in power. Quickstrider Moccasins are a decent alternative, as are the Boots of Utter Darkness if you got those crafted from the previous phase.
+Rank	Item	Source
+Best	Softstep Boots of Tracking Softstep Boots of Tracking	Drop: Teron Gorefiend (Black Temple)
+Best	Shadowmaster's Boots Shadowmaster's Boots	Drop: Mother Shahraz (Black Temple)
+Great	Quickstrider Moccasins Quickstrider Moccasins	Drop: Anetheron (Hyjal Summit)
+Great	Boots of Utter Darkness Boots of Utter Darkness	Profession: Leatherworking (Tier 5 Raid Drop)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+Rank	Item	Source
+Great	Cobra-Lash Boots Cobra-Lash Boots	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+Great	Fel Leather Boots Fel Leather Boots	Profession: Leatherworking (BoE)
+Great	Boots of the Unjust Boots of the Unjust	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+
+Best in Slot Neck Jewelry for Enhancement Shaman in TBC Classic Phase 3
+Choker of Endless Nightmares is the best Tier 6 neck, but Choker of Serrated Blades is a decent alternative with high Armor Penetration.
+
+Both of these necks above are also BiS for nearly every other physical DPS, so looking at previous phase necks, such as Telonicus's Pendant of Mayhem and Pendant of the Perilous, are also strong, easier-to-obtain alternatives.
+Rank	Item	Source
+Best	Choker of Endless Nightmares Choker of Endless Nightmares	Drop: Supremus (Black Temple)
+Best	Choker of Serrated Blades Choker of Serrated Blades	Drop: Hyjal Summit / Black Temple Trash Mobs
+Great	Telonicus's Pendant of Mayhem Telonicus's Pendant of Mayhem	Drop: Kael'thas Sunstrider (Tempest Keep)
+Great	Pendant of the Perilous Pendant of the Perilous	Drop: Serpentshrine Cavern Trash Mobs
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+Rank	Item	Source
+Great	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+Great	Worgen Claw Necklace Worgen Claw Necklace	Drop: Attumen the Huntsman (Karazhan)
+Great	Natasha's Choker Natasha's Choker	Quest: The Hound-Master The Hound-Master
+Great	Traitor's Noose Traitor's Noose	Drop: Mennu the Betrayer (Heroic The Slave Pens)
+
+Best in Slot Ring Jewelry for Enhancement Shaman in TBC Classic Phase 3
+Stormrage Signet Ring, Band of the Eternal Champion and Band of the Ranger-General are the best rings in Tier 6.
+
+Band of Devastation, Unstoppable Aggressor's Ring, Ring of Deceitful Intent, and Ring of Lethality are viable, if weaker, alternatives.
+Rank	Item	Source
+Best	Stormrage Signet Ring Stormrage Signet Ring	Drop: Illidan Stormrage (Black Temple)
+Best	Band of the Eternal Champion Band of the Eternal Champion	Quest: Champion's Covenant Champion's Covenant (Hyjal Summit)
+Best	Band of the Ranger-General Band of the Ranger-General	Drop: Kael'thas Sunstrider (Tempest Keep)
+Great	Band of Devastation Band of Devastation	Drop: Black Temple Trash Mobs
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+Rank	Item	Source
+Great	Unstoppable Aggressor's Ring Unstoppable Aggressor's Ring	Drop: Gurtogg Bloodboil (Black Temple)
+Great	Ring of Deceitful Intent Ring of Deceitful Intent	Drop: Shade of Akama (Black Temple)
+Great	Ring of Lethality Ring of Lethality	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Great	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+Great	Garona's Signet Ring Garona's Signet Ring	Drop: The Curator (Karazhan)
+Great	Band of Eternity Band of Eternity	Quest:The Vials of Eternity The Vials of Eternity / Champion's Pledge Champion's Pledge
+Great	Shapeshifter's Signet Shapeshifter's Signet	Vendor: Nakodu Requires Exalted with Lower City
+Great	Ring of Reciprocity Ring of Reciprocity	Drop: Doom Lord Kazzak (World Boss in Hellfire Peninsula)
+Great	Violet Signet of the Master Assassin Violet Signet of the Master Assassin	Quest:Eminence Among the Violet Eye Eminence Among the Violet Eye - Requires Exalted with The Violet Eye
+Great	Mithril Band of the Unscarred Mithril Band of the Unscarred	Drop: Netherspite (Karazhan)
+Great	Ring of Arathi Warlords Ring of Arathi Warlords	Vendor: G'eras (25 Badges of Justice)
+
+Best in Slot Trinkets for Enhancement Shaman in TBC Classic Phase 3
+Madness of the Betrayer and Dragonspine Trophy are the two best trinkets to pair together. But, as we mentioned with other slots, let's also look at our (more realistic) alternatives. Bloodlust Brooch, and the new reputation gained Ashtongue Talisman of Vision are also VERY powerful trinkets.
+Rank	Item	Source
+Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best	Madness of the Betrayer Madness of the Betrayer	Drop: The Illidari Council (Black Temple)
+Great	Ashtongue Talisman of Vision Ashtongue Talisman of Vision	Vendor: Okuno - Requires Exalted with Ashtongue Deathsworn
+Great	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+Rank	Item	Source
+Best -
+Seasonal	Empty Mug of Direbrew Empty Mug of Direbrew	Drop: Coren Direbrew (Blackrock Depths)
+Optional -
+Classic Raids	Slayer's Crest Slayer's Crest	Drop: Sapphiron (Naxxramas)
+Optional	Darkmoon Card: Crusade Darkmoon Card: Crusade	Quest:Darkmoon Blessings Deck Darkmoon Blessings Deck
+Optional	Tsunami Talisman Tsunami Talisman	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Optional	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar)
+Optional	Core of Ar'kelos Core of Ar'kelos	Quest: Ar'kelos the Guardian Ar'kelos the Guardian
+Optional	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+
+Best in Slot Weapons for Enhancement Shaman in TBC Classic Phase 3
+Due to Flurry having a 0.5-second cooldown on being consumed, having weapons of matching speed is very important in order to minimize attack desynching and maximize your Flurry uptime. Most of the weapons we list below have either 2.6 or 2.7 speed, and weapons with the same speed are meant to be used together, whenever possible. Notably, Syphon of the Nathrezim can be dual-wielded and has 2.8 speed, making using two of them the best non-Orc combo available in Phase 3, but far from the only option.
+
+For Orc Orcs, Vengeful Gladiator's Cleaver is the best weapon available, and you would ideally use two of them, but using the old Merciless Gladiator's Cleaver or any 2.6 speed off-hand is also a fine option until two can be bought. Talon of the Phoenix and Rod of the Sun King are still a very strong combo, as they were in Tier 5. Remember to favor using the axes listed in the rest of the section if you are Orc, in order to benefit from Axe Specialization.
+
+It is important to note that the Season 2 Gladiator weapons can now be purchased without rating requirements and for discounted Arena Points, making them much easier and more reliable to get. Blacksmithing weapons are still strong, but players with them will finally be able to reliably get upgrades in the current tier.
+Rank	Item	Source
+Best (All)	Vengeful Gladiator's Cleaver Vengeful Gladiator's Cleaver	Arena Points Arena Points Vendor
+Best (All)	Syphon of the Nathrezim Syphon of the Nathrezim	Drop: Supremus (Black Temple)
+Optional (2.7 MH)	Claw of Molten Fury Claw of Molten Fury	Drop: Hyjal Summit Trash Mobs
+Optional (2.7 MH)	Talon of the Phoenix Talon of the Phoenix	Drop: Al'ar (Tempest Keep)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+Rank	Item	Source
+Optional (2.7 OH - Unique)	Rod of the Sun King Rod of the Sun King	Kael'thas Sunstrider (Tempest Keep)
+Optional (2.7 MH)	Wicked Edge of the Planes Wicked Edge of the Planes	Blacksmithing Blacksmithing (Master Axesmith)
+Optional (All)	Rising Tide Rising Tide	Drop: High Warlord Naj'entus (Black Temple)
+Optional (All)	Merciless Gladiator's Cleaver Merciless Gladiator's Cleaver	Honor Points Honor Points
+Optional (2.7 MH)	Dragonstrike Dragonstrike	Blacksmithing Blacksmithing (Master Hammersmith)
+Optional (All)	Netherbane Netherbane	Drop: Al'ar (Tempest Keep)
+Optional (All)	Gladiator's Cleaver Gladiator's Cleaver	Honor Points Honor Points
+Optional (2.6 MH)	The Decapitator The Decapitator	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Totems for Enhancement Shaman in TBC Classic Phase 3
+Totem of the Astral Winds is our best, and nothing still comes even remotely close to this totem in regards to BiS for an Enhancement Shaman, definitely get this ASAP.
+Rank	Item	Source
+Best	Totem of the Astral Winds Totem of the Astral Winds	Drop: Pandemonius (Heroic Mana-Tombs)
+Woah
+MoP Restoration/Elemental Shaman Guide Writer
+Woah has written over 275 guides for Wowhead since WoW Classic was released in 2019, with a particular focus on Shaman class guides. Shaman has been his main class since the start of Classic and also since WoW's initial launch in 2004.
+
+Currently playing in Gehennas EU Horde with Progress's 25-man alt/gold runs, Woah is looking to do some 10-man alt running on the side with a second shaman in Mists of Pandaria!
+1 - 6 of 6
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+2
+
+	
+By Tambard (3,249 – 13·7) on 2022/01/19 (Burning Crusade)	
+	
+Everything is mostly correct, but it seems like the massive difference between Cursed Vision and 2nd BiS is underplayed. Enhancement gains the most between BiS and 2nd BiS in that slot compared to other physical DPS that it seems this is absolutely worth emphasizing. Similarly, the cloak and neck are larger upgrades over 2nd BiS than chest and pants. Finally, Vengeful Gladiator weapons are only best in slot for Orcs. Syphons are BiS for all other races. Otherwise, pretty good. Think you're overvaluing the Exalted Ring a tiny bit, but obv not everyone has access to Ranger General's, so that makes sense. Would also probably point out that Madness is absolutely BiS this phase, but it's not really worth aggressively pursuing over others.
+
+Great job overall. Much better than some of the previous stuff! A+++++++++++++
+
+Edit: Spelling is tough. :(
+Last edited by Tambard on 2022/01/22
+
+0
+
+	
+
+Woah <Guide Author> on 2022/01/23 (Burning Crusade)
+Since Enha is skipping on tier, it makes a lot of sense to try and get prioritized on Cursed Vision instead, which is exactly what is happening on my guild right now, can put a bit more text on that for sure. I put Syphons on the gear planner setup at the start and in the weapon gear list it has the "Best in slot (All)" tag just like the Vengeful Glad axes, which means both of them can be BiS, maybe it wasn't completely clear so I'll add a bit more text on that so there's no doubts. On the ring, ease of acquiring was decidedly a factor but once again, Ranger General's has the same "Best in slot" tag which means it is of similar value. Finally, Madness has the same "Best in slot" as 3 other trinkets which means you can use any of them - not a gigantic upgrade. Thanks a lot for the feedback, but make sure to look for what I wrote in each "Rank" column when considering the intent, as some slots have multiple "Best in Slot" items where any of them are close in power, and can thus be part of your bis setup.
+
+0
+
+	
+
+Tambard on 2022/01/25 (Burning Crusade)
+Yeah, for the weapons, I didn't even notice on the first read through, but then I saw "Overall, Vengeful Gladiator's Cleaver is the best weapon available," which caused me to point out that that's only true for Orc. The rest are more phrasing things as you mentioned.
+
+0
+
+	
+
+Woah <Guide Author> on 2022/01/26 (Burning Crusade)
+Changes are now live, hopefully makes everything clearer! I did not go into high detail on just how much of an upgrade each piece is because it depends on what gear you are currently wearing, and is thus best left to sims. This list is fine to drive people to best in slot gear and possible upgrades along the way, but for the nitty gritty details it is always best to sim your own character for personalized advice :)
+
+2
+
+	
+By MHegs77 (3,858 – 9·15) on 2022/02/25 (Burning Crusade)	
+	
+I think the guide should point things like how Shaman should initially pursue Softstep Boots of Tracking if they are indeed comparable to Shadowmaster's Boots because the former is mail and the latter is leather and highly sought after by leather only classes like rogue/feral. I think these types of points are just as important for everyone to see how their loot fits into the big picture for their raid team and better help defer pieces to good homes. My two cents. Thank you for your time putting the pieces together for the guide.
+
+0
+
+	
+
+Woah <Guide Author> on 2022/02/26 (Burning Crusade)
+For sure, as long as the items are comparable I would always advise Shamans to get mail since it has less competition than leather, but for a guide you still need to be listing everything, as the mail equivalent might drop rarely for some guilds while the leather options are a dime a dozen. Most GMs should be on top of this stuff, doubt they need (or even read) the Wowhead guide to figure that out :)
+
+0
+
+	
+
+MHegs77 on 2022/03/04 (Burning Crusade)
+Haha i have seen many instances in several different guilds where these redundant seeming tendencies are often overlooked so it's much more prevalent than you'd imagine or I wouldn't feel the need to point it out :)
+
+1
+
+	
+By cgillaspie16 (3,245 – 7·11) on 2022/02/08 (Burning Crusade)	
+	
+I was wondering, wouldn't Forest Prowler's Helm be a good upgrade if you can't get CVOS right away but have enough gear to break your T5 4piece?
+
+0
+
+	
+
+Woah <Guide Author> on 2022/02/09 (Burning Crusade)
+In that situation it would be an upgrade, yeah, not much competition for it either in most guilds :) will add it to the list for that particular scenario, thanks!
+
+1
+
+	
+By Coconutshells (2,789 – 11·12) on 2022/02/09 (Burning Crusade)	
+	
+Might be worth having Bloodsea Brigand's Vest Bloodsea Brigand's Vest on the chest list, as it sims better (for me at least) than t5 chest. E.g., if I have bloodsea and then get bowstitched, it's probably worth breaking tier set.
+
+0
+
+	
+
+Woah <Guide Author> on 2022/02/09 (Burning Crusade)
+If you are breaking tier set it is worth more than T5 chest for sure, and since that's what we are looking to do this patch, might as well add it in!
+
+1
+
+	
+By Temppeli (1,246 – 2·7) on 2022/02/23 (Burning Crusade)	
+	
+I think Cloak of Darkness Cloak of Darkness should be added as alternative. It's comparable to Vengeance Wrap Vengeance Wrap in terms of DPS. And while it needs more materials, Enhancement Shamans are most likely chosen Leatherworking as one of their profession, making it more accessible for them. And since you can now buy Primal Nether Primal Nether with 10 Badge of Justice Badge of Justice, crafting one of these cloaks is even easier.
+
+0
+
+	
+
+Woah <Guide Author> on 2022/02/26 (Burning Crusade)
+Yeah its a great alternative for sure, will add, thanks!
+
+0
+
+	
+By badfreddyboy (13,804 – 1·11·16) on 2022/01/17 (Burning Crusade)	
+	
+Looking good I just want to make a couple comments.
+
+-On the shoulder section I assume you meant Shoulderpads of the Stranger Shoulderpads of the Stranger instead of Swiftstrike Shoulders Swiftstrike Shoulders
+"Alternatively, you can use Swiftstrike Shoulders Swiftstrike Shoulders or Mantle of Darkness Mantle of Darkness, which are slightly worse, but still very strong, overall."
+
+-And I feel like Gladiator's Cleaver Gladiator's Cleaver should be mentioned, since it can be obtained with 14k Honour and 20 Eye of the storm marks now, for those who dont play arena. Might be 10 EOTS marks after BT/MH release No marks required
+Last edited by badfreddyboy on 2022/02/03
+
+1
+
+	
+
+Woah <Guide Author> on 2022/01/23 (Burning Crusade)
+True, thanks for picking up on that typo and I'll add the good ol'Cleaver again for people doing their honor grind, cheers :)
+1 - 6 of 6
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Enhancement Shaman Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+            Best In Slot Gear in Phase 4
+                Aldor vs Scryer
+                Head
+                Shoulder
+                Back
+                Chest
+                Wrist
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Totems
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Enhancement Shaman DPS Best in Slot (BiS) Phase 4 Gear Guide
+By Woah
+Updated: 2026/02/27
+Welcome to Wowhead's Best in Slot Gear list from Phase 4 Zul'Aman for Enhancement Shaman DPS in The Burning Crusade Classic. This guide will list the recommended gear for Enhancement Shaman DPS to acquire while they progress during the fourth phase of The Burning Crusade Classic, and contains gear sourced from Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+Best In Slot Gear for Enhancement Shaman DPS in Phase 4
+Unfortunately, Enhancement Shaman Shaman Tier 6 set is not very good, unlike that of most classes and other Shaman specializations. On the positive side, this means you will be able to ignore the general rush for Tier 6 gear, but it also means that the drops you need are more subject to randomness than Tier tokens.
+
+Hold on to your Tier 5 4-piece bonus for as long as possible, as it provides a large amount of DPS. Overall, you should look to swap it out when you have 2 to 3 best-in-slot replacement pieces, rather than breaking it immediately.
+
+Doing Arena PvP is still very valuable for the Season 3 gladiator weapons, which are the best in slot options if you have them, but using double Syphon of the Nathrezim Syphon of the Nathrezim for their very slow speed is also a fine option, which is close in power. Phase 4 brings many gear options that are very similar to the absolute best in slot pieces, and you can take any of them and stay within 2 to 10 DPS of the best option, making it more of a cosmetic and / or RNG gear drop choice.
+
+Meta sockets are unique to head slot pieces and accept meta gems (instead of regular gems). Only a single meta socket may exist in any given piece, and many pieces come without a meta socket at all.
+
+Relentless Earthstorm Diamond Relentless Earthstorm Diamond is the best meta gem, and scales well with the rest of your gear, as it acts as a multiplier on your damage output.
+
+Enhancement Shaman looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Enhancement Shaman Gems & Enchants
+Should Enhancement Shaman DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 4?
+Shamans can pick both The Aldor or The Scryers without much penalty. The Aldor shoulder enchant is slightly better, but the difference is minuscule from the Scryers enchant when considering your full gear stat bonuses. In general, it is best to pick based on which faction is cheaper to buy reputation materials for, as Aldor, for example, can often be extremely expensive due to having the favored shoulder enchant for most specializations.
+
+    Aldor offer a very slightly superior shoulder enchant for DPS.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Enhancement Shaman in TBC Classic Phase 4
+Cursed Vision of Sargeras is the best helmet available by far, with impressive stats and a sleek look to go with them. Since you will be passing on all Tier 6 set pieces, this will be your main chase item alongside your weapons. You can also use Forest Prowler's Helm or Skyshatter Cover as temporary alternatives, but note that the Tier 6 helmet has much weaker throughput stats and the Tier 6 set bonuses are pretty weak for Enhancement Shaman Shamans.
+
+Cataclysm Helm is still a great helmet, sporting great stats and a meta socket. Surestrike Goggles v2.0 are also fine, but do not contribute towards a set bonus. Alternatively, you can use Cyclone Helm, which is a strong helm for a physical damage party due to the Tier 4 2-piece set bonus.
+Rank	Item	Source
+Best in slot	Cursed Vision of Sargeras Cursed Vision of Sargeras	Drop: Illidan Stormrage (Black Temple)
+Great	Skyshatter Cover Skyshatter Cover	Drop: Helm of the Forgotten Protector - Archimonde (Hyjal Summit)
+Great	Forest Prowler's Helm Forest Prowler's Helm	Drop: The Illidari Council (Black Temple)
+Great	Cataclysm Helm Cataclysm Helm	Drop: Helm of the Vanquished Champion: Lady Vashj (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Great	Surestrike Goggles v2.0 Surestrike Goggles v2.0	Profession: Engineering Engineering (BoP)
+Great	Cyclone Helm Cyclone Helm	Drop: Telm of the Fallen Champion: Prince Malchezaar (Karazhan)
+Great	Wastewalker Helm Wastewalker Helm	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Great	Helm of the Claw Helm of the Claw	Quest: The Warlord's Hideout The Warlord's Hideout
+Great	Cowl of Defiance Cowl of Defiance	Drop: Netherspite (Karazhan)
+
+Best in Slot Shoulder Armor for Enhancement Shaman in TBC Classic Phase 4
+The crafted Swiftstrike Shoulders / Shoulders of Lightning Reflexes are Enhancement's best shoulders in Tier 6, and very close in power.
+
+Alternatively, you can use Shoulderpads of the Stranger or Mantle of Darkness, which are slightly worse, but still very strong, overall.
+Rank	Item	Source
+Best in slot	Swiftstrike Shoulders Swiftstrike Shoulders	Profession: Leatherworking Leatherworking (BoP)
+Best in slot	Shoulders of Lightning Reflexes Shoulders of Lightning Reflexes	Profession: Leatherworking Leatherworking (BoP)
+Great	Shoulderpads of the Stranger Shoulderpads of the Stranger	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Great	Mantle of Darkness Mantle of Darkness	Drop: High Warlord Naj'entus (Black Temple)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+Rank	Item	Source
+Great	Cyclone Shoulderplates Cyclone Shoulderplates	Drop: Pauldrons of the Fallen Champion: High King Maulgar (Gruul's Lair)
+Great	Bladed Shoulderpads of the Merciless Bladed Shoulderpads of the Merciless	Drop: Karazhan Chess Event
+Great	Wastewalker Shoulderpads Wastewalker Shoulderpads	Drop: Avatar of the Martyred (Auchenai Crypts)
+Great	Mantle of Perenolde Mantle of Perenolde	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Great	Expedition Scout's Epaulets Expedition Scout's Epaulets	Quest: Fel Embers Fel Embers
+
+Best in Slot Back Armor for Enhancement Shaman in TBC Classic Phase 4
+Shadowmoon Destroyer's Drape is the best cloak in Phase 4, but Cloak of Fiends and Thalassian Wildercloak are also strong cloaks, and much easier to get.
+Rank	Item	Source
+Best in slot	Shadowmoon Destroyer's Drape Shadowmoon Destroyer's Drape	Drop: Teron Gorefiend (Black Temple)
+Great	Cloak of Fiends Cloak of Fiends	Drop: Zul'Aman Timed Event (1st Chest)
+Great	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep)
+Great	Cloak of Darkness Cloak of Darkness	Profession: Leatherworking - Requires Exalted with The Violet Eye
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+These options may be easier than the above, as even though the Best option is crafted, it may be expensive, whereas these options won't come at the expense of your gold!
+Rank	Item	Source
+Great	Dory's Embrace Dory's Embrace	Vendor: G'eras (60 Badges of Justice)
+Great	Vengeance Wrap Vengeance Wrap	Profession: Tailoring (BoE)
+Great	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+Great	Auchenai Death Shroud Auchenai Death Shroud	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+Great	Cloak of the Inciter Cloak of the Inciter	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Best in Slot Chest Armor for Enhancement Shaman in TBC Classic Phase 4
+Midnight Chestguard is the strongest chest for this phase by a large margin, sporting high stats and 3 sockets. Nether Shadow Tunic is a strong temporary alternative, as is the Tier 5 chest, Cataclysm Chestplate, especially if you need it to enable the 4-set bonus.
+Rank	Item	Source
+Best in slot	Midnight Chestguard Midnight Chestguard	Drop: Archimonde (Hyjal Summit)
+Great	Nether Shadow Tunic Nether Shadow Tunic	Drop: Supremus (Black Temple)
+Great	Bloodsea Brigand's Vest Bloodsea Brigand's Vest	Drop: Chestguard of the Vanquished Champion: Kael'thas Sunstrider (Tempest Keep)
+Great	Cataclysm Chestplate Cataclysm Chestplate	Drop: Kael'thas Sunstrider (Tempest Keep)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+Rank	Item	Source
+Great	Cyclone Breastplate Cyclone Breastplate	Drop: Chestguard of the Fallen Champion: Magtheridon (Magtheridon's Liar)
+Great	Terrorweave Tunic Terrorweave Tunic	Drop: Doomwalker (World Boss in Shadowmoon Valley)
+Great	Primalstrike Vest Primalstrike Vest	Profession: Elemental Leatherworking (BoP)
+Great	Ebon Netherscale Breastplate Ebon Netherscale Breastplate	Profession: Dragonscale Leatherworking BoP)
+
+Best in Slot Wrist Armor for Enhancement Shaman in TBC Classic Phase 4
+Deadly Cuffs, Bindings of Lightning Reflexes, or Insidious Bands are the favored bracers for Enhance, with all of them being close in power, overall.
+Rank	Item	Source
+Best in slot	Deadly Cuffs Deadly Cuffs	Drop: Rage Winterchill (Hyjal Summit)
+Best in slot	Bindings of Lightning Reflexes Bindings of Lightning Reflexes	Drop: Leatherworking Leatherworking (BoE)
+Best in slot	Insidious Bands Insidious Bands	Drop: Teron Gorefiend (Black Temple
+Great	Master Assassin Wristwraps Master Assassin Wristwraps	Vendor: G'eras (60 Badges of Justice)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+
+Rank	Item	Source
+Great	Wraps of Precise Flight Wraps of Precise Flight	Drop: Supremus (Black Temple)
+Great	True-Aim Stalker Bands True-Aim Stalker Bands	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Great	Vambraces of Ending Vambraces of Ending	Drop: High Astromancer Solarian (Tempest Keep)
+Great	Bracers of Maliciousness Bracers of Maliciousness	Drop: Maiden of Virtue (Karazhan)
+Great	Primalstrike Bracers Primalstrike Bracers	Profession: Elemental Leatherworking (BoP)
+Great	Ebon Netherscale Bracers Ebon Netherscale Bracers	Profession: Dragonscale Leatherworking (BoP)
+Great	Spymistress's Wristguards Spymistress's Wristguards	Quest: The Soul Devices The Soul Devices
+
+Best in Slot Hand Armor for Enhancement Shaman in TBC Classic Phase 4
+Grips of Damnation and Fists of Mukoa are both very similar for throughput, and you can use any of them in your ideal gear setup.
+
+Gloves of the Searing Grip can also be best in slot in some simulations and are a fine alternative, which is much easier to get at this point in time.
+Rank	Item	Source
+Best in slot	Fists of Mukoa Fists of Mukoa	Drop: High Warlord Naj'entus (Black Temple)
+Best in slot	Grips of Damnation Grips of Damnation	Drop: Reliquary of the Lost (Black Temple)
+Great	Gloves of the Searing Grip Gloves of the Searing Grip	Drop: Al'ar (Tempest Keep)
+Great	Trickster's Stickyfingers Trickster's Stickyfingers	Vendor: G'eras (60 Badges of Justice)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+
+Rank	Item	Source
+Great	Cataclysm Gauntlets Cataclysm Gauntlets	Drop: Gloves of the Vanquished Champion: Leotheras the Blind (Serpentshrine Cavern)
+Great	Liar's Tongue Gloves Liar's Tongue Gloves	Drop: Magtheridon (Magtheridon's Lair)
+Great	Grips of Deftness Grips of Deftness	Drop: Karazhan Trash Mobs
+Great	Cobrascale Gloves Cobrascale Gloves	Profession: Leatherworking (BoE)
+
+Best in Slot Waist Armor for Enhancement Shaman in TBC Classic Phase 4
+Belt of One-Hundred Deaths is still the best belt available in Tier 6 by a large margin, but Boneweave Girdle, Shadow-walker's Cord, Don Alejandro's Money Belt, and Valestalker Girdle are all fine alternatives.
+Rank	Item	Source
+Best in slot	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Boneweave Girdle Boneweave Girdle	Drop: Reliquary of the Lost (Black Temple)
+Great	Shadow-walker's Cord Shadow-walker's Cord	Drop: Shade of Akama (Black Temple)
+Great	Don Alejandro's Money Belt Don Alejandro's Money Belt	Drop: Anetheron (Hyjal Summit)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+
+Rank	Item	Source
+Great	Valestalker Girdle Valestalker Girdle	Drop: Kaz'rogal (Hyjal Summit)
+Great	Belt of Deep Shadow Belt of Deep Shadow	Profession: Leatherworking Leatherworking (BoE)
+Great	Primalstrike Belt Primalstrike Belt	Profession: Elemental Leatherworking (BoP)
+Great	Gronn-Stitched Girdle Gronn-Stitched Girdle	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Great	Ebon Netherscale Belt Ebon Netherscale Belt	Profession: Dragonscale Leatherworking (BoP)
+Great	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus (Heroic The Black Morass)
+
+Best in Slot Leg Armor for Enhancement Shaman in TBC Classic Phase 4
+Bow-stitched Leggings are the best Phase 4 legs by a good margin, due to their high stats and 3 sockets. Alternatively, you can obtain Shady Dealer's Pantaloons from the same boss, which provides some armor penetration.
+
+If those are not an option, Cataclysm Legplates can be used to obtain the powerful 4-set Tier 5 bonus, but on their own are worse than Skulker's Greaves.
+Rank	Item	Source
+Best in slot	Bow-stitched Leggings Bow-stitched Leggings	Drop: Azgalor (Hyjal Summit)
+Great	Shady Dealer's Pantaloons Shady Dealer's Pantaloons	Drop: Azgalor (Hyjal Summit)
+Great	Shallow-grave Trousers Shallow-grave Trousers	Vendor: G'eras (75 Badges of Justice)
+Great	Cataclysm Legplates Cataclysm Legplates	Drop: Leggings of the Vanquished Champion: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+
+Rank	Item	Source
+Great	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+Great	Shattrath Leggings Shattrath Leggings	Quest: Special Delivery to Shattrath City Special Delivery to Shattrath City
+Great	Clefthoof Hide Leggings Clefthoof Hide Leggings	Quest: Showdown Showdown / Showdown Showdown
+
+Best in Slot Feet Armor for Enhancement Shaman in TBC Classic Phase 4
+Softstep Boots of Tracking, Shadowmaster's Boots, and Nyn'jah's Tabi Boots are the best boots available in Phase 4, being close in power but with Nyn'jah's Tabi Boots being easier to obtain.
+
+Quickstrider Moccasins is a decent alternative, as are the Boots of Utter Darkness
+Rank	Item	Source
+Best in slot	Softstep Boots of Tracking Softstep Boots of Tracking	Drop: Teron Gorefiend (Black Temple)
+Best in slot	Shadowmaster's Boots Shadowmaster's Boots	Drop: Mother Shahraz (Black Temple)
+Best in slot	Nyn'jah's Tabi Boots Nyn'jah's Tabi Boots	Vendor: G'eras (60 Badges of Justice)
+Great	Quickstrider Moccasins Quickstrider Moccasins	Drop: Anetheron (Hyjal Summit)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+Rank	Item	Source
+Great	Boots of Utter Darkness Boots of Utter Darkness	Profession: Leatherworking (Tier 5 Raid Drop)
+Great	Cobra-Lash Boots Cobra-Lash Boots	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+Great	Fel Leather Boots Fel Leather Boots	Profession: Leatherworking (BoE)
+Great	Boots of the Unjust Boots of the Unjust	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+
+Best in Slot Neck Jewelry for Enhancement Shaman in TBC Classic Phase 4
+Choker of Endless Nightmares is the best Tier 6 neck, but Choker of Serrated Blades is a decent alternative with high Armor Penetration.
+
+Telonicus's Pendant of Mayhem and Pendant of the Perilous are also strong, easier to obtain alternatives.
+Rank	Item	Source
+Best in slot	Choker of Endless Nightmares Choker of Endless Nightmares	Drop: Supremus (Black Temple)
+Best in slot	Choker of Serrated Blades Choker of Serrated Blades	Drop: Hyjal Summit / Black Temple Trash Mobs
+Great	Telonicus's Pendant of Mayhem Telonicus's Pendant of Mayhem	Drop: Kael'thas Sunstrider (Tempest Keep)
+Great	Pendant of the Perilous Pendant of the Perilous	Drop: Serpentshrine Cavern Trash Mobs)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+Rank	Item	Source
+Great	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+Great	Brooch of Deftness Brooch of Deftness	Vendor: G'eras (35 Badges of Justice)
+Great	Worgen Claw Necklace Worgen Claw Necklace	Drop: Attumen the Huntsman (Karazhan)
+Great	Natasha's Choker Natasha's Choker	Quest: The Hound-Master The Hound-Master
+Great	Traitor's Noose Traitor's Noose	Drop: Mennu the Betrayer (Heroic The Slave Pens)
+
+Best in Slot Ring Jewelry for Enhancement Shaman in TBC Classic Phase 4
+Stormrage Signet Ring, Signet of Primal Wrath, Band of the Ranger-General and Band of Eternal Champion are the best rings in Tier 6.
+
+Band of Devastation, Unstoppable Aggressor's Ring, Ring of Deceitful Intent, and Ring of Lethality are viable, if weaker, alternatives.
+Recommended BiS Ring Enchant: Enchant Ring - Stats - Only Enchanters may apply Ring Enchants on their own rings.
+Rank	Item	Source
+Best in slot	Stormrage Signet Ring Stormrage Signet Ring	Drop: Illidan Stormrage (Black Temple)
+Best in slot	Signet of Primal Wrath Signet of Primal Wrath	Drop: Zul'Aman Timed Event (3rd Chest)
+Best in slot	Band of the Eternal Champion Band of the Eternal Champion	Quest: Champion's Covenant Champion's Covenant (Hyjal Summit)
+Best in slot	Band of the Ranger-General Band of the Ranger-General	Drop: Kael'thas Sunstrider (Tempest Keep)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+Rank	Item	Source
+Great	Band of Devastation Band of Devastation	Drop: Black Temple Trash Mobs
+Great	Unstoppable Aggressor's Ring Unstoppable Aggressor's Ring	Drop: Gurtogg Bloodboil (Black Temple)
+Great	Ring of Deceitful Intent Ring of Deceitful Intent	Drop: Shade of Akama (Black Temple)
+Great	Ring of Lethality Ring of Lethality	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Great	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+Great	Garona's Signet Ring Garona's Signet Ring	Drop: The Curator (Karazhan)
+Great	Band of Eternity Band of Eternity	Quest:The Vials of Eternity The Vials of Eternity / Champion's Pledge Champion's Pledge
+Great	Shapeshifter's Signet Shapeshifter's Signet	Vendor: Nakodu Requires Exalted with Lower City
+Great	Ring of Reciprocity Ring of Reciprocity	Drop: Doom Lord Kazzak (World Boss in Hellfire Peninsula)
+Great	Violet Signet of the Master Assassin Violet Signet of the Master Assassin	Quest:Eminence Among the Violet Eye Eminence Among the Violet Eye - Requires Exalted with The Violet Eye
+Great	Mithril Band of the Unscarred Mithril Band of the Unscarred	Drop: Netherspite (Karazhan)
+Great	Ring of Arathi Warlords Ring of Arathi Warlords	Vendor: G'eras (25 Badges of Justice)
+
+Best in Slot Trinkets for Enhancement Shaman in TBC Classic Phase 4
+Dragonspine Trophy, Berserker's Call and Madness of the Betrayer are the best trinkets available, but Ashtongue Talisman of Vision, Bloodlust Brooch, and Empty Mug of Direbrew are also excellent, although Empty Mug of Direbrew can only be obtained during the Brewfest event.
+Rank	Item	Source
+Best in slot	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best in slot	Madness of the Betrayer Madness of the Betrayer	Drop: The Illidari Council (Black Temple)
+Best in slot	Berserker's Call Berserker's Call	Drop: Zul'jin
+Optional	Ashtongue Talisman of Vision Ashtongue Talisman of Vision	Ashtongue Deathsworn Exalted
+Optional	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Best in slot -
+Seasonal	Empty Mug of Direbrew Empty Mug of Direbrew	Drop: Coren Direbrew (Blackrock Depths)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Trinkets will always be competitive, even with the 2nd or 3rd best options, as our best one is competitive with every other Melee DPS class, and these options are no different.
+Rank	Item	Source
+Optional	Tsunami Talisman Tsunami Talisman	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Optional	Darkmoon Card: Crusade Darkmoon Card: Crusade	Quest:Darkmoon Blessings Deck Darkmoon Blessings Deck
+Optional -
+Classic Raids	Slayer's Crest Slayer's Crest	Drop: Sapphiron (Naxxramas)
+Optional	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar)
+Optional	Core of Ar'kelos Core of Ar'kelos	Quest: Ar'kelos the Guardian Ar'kelos the Guardian
+Optional	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+
+Best in Slot Weapons for Enhancement Shaman in TBC Classic Phase 4
+Due to Flurry having a 0.5-second cooldown on being consumed, having weapons of matching speed is very important in order to minimize attack desynching and maximize your Flurry uptime. Most of the weapons we list below have either 2.6 or 2.7 speed, and weapons with the same speed are meant to be used together, whenever possible. Notably, Syphon of the Nathrezim can be dual-wielded and has 2.8 speed, making using two of them the best non-Orc combo available in Phase 4, but far from the only option.
+
+For Orc Orcs, Vengeful Gladiator's Cleaver is the best weapon available, and you would ideally use two of them, but using the old Merciless Gladiator's Cleaver or any 2.6 speed off-hand is also a fine option until two can be bought. Talon of the Phoenix and Rod of the Sun King are still a very strong combo, as they were in Tier 5. Remember to favor using the axes listed in the rest of the section if you are Orc, in order to benefit from Axe Specialization.
+
+It is important to note that the Season 2 Gladiator weapons can now be purchased without rating requirements and for discounted Arena Points, making them much easier and more reliable to get. Blacksmithing weapons are still strong, but players with them will finally be able to reliably get upgrades in the current tier.
+Rank	Item	Source
+Best in slot (All)	Vengeful Gladiator's Cleaver Vengeful Gladiator's Cleaver	Arena Points Arena Points Vendor
+Best in slot (All)	Syphon of the Nathrezim Syphon of the Nathrezim	Drop: Supremus (Black Temple)
+Optional (2.7 MH)	Claw of Molten Fury Claw of Molten Fury	Drop: Hyjal Summit Trash Mobs
+Optional (2.7 MH)	Talon of the Phoenix Talon of the Phoenix	Drop: Al'ar (Tempest Keep)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+Rank	Item	Source
+Optional (2.7 OH - Unique)	Rod of the Sun King Rod of the Sun King	Kael'thas Sunstrider (Tempest Keep)
+Optional (2.7 MH)	Wicked Edge of the Planes Wicked Edge of the Planes	Blacksmithing Blacksmithing (Master Axesmith)
+Optional (All)	Rising Tide Rising Tide	Drop: High Warlord Naj'entus (Black Temple)
+Optional (All)	Merciless Gladiator's Cleaver Merciless Gladiator's Cleaver	Honor Points Honor Points
+Optional (2.6 MH)	Rage Rage	Drop: Zul'Aman Timed Event (2nd Chest)
+Optional (2.6 OH)	Fury Fury	Drop: Nalorakk (Zul'Aman)
+Optional (2.7 MH)	Dragonstrike Dragonstrike	Blacksmithing Blacksmithing (Master Hammersmith)
+Optional (All)	Netherbane Netherbane	Drop: Al'ar (Tempest Keep)
+Optional (All)	Gladiator's Cleaver Gladiator's Cleaver	Honor Points Honor Points
+Optional (2.6 MH)	The Decapitator The Decapitator	Drop: Prince Malchezaar (Karazhan)
+Optional (All)	The Harvester of Souls The Harvester of Souls	Drop: Exarch Maladaar (Heroic Auchenai Crypts)
+Optional (All)	Grand Marshal's Cleaver Grand Marshal's Cleaver
+High Warlord's Cleaver High Warlord's Cleaver	Honor PvP Vendor
+Optional (2.6 MH)	Fool's Bane Fool's Bane	Drop: Terestian Illhoof (Karazhan)
+Optional (2.7 MH)	Dragonmaw Dragonmaw	Profession: Master Hammersmith Blacksmithing (BoP)
+Optional (2.7 MH)	Black Planar Edge Black Planar Edge	Profession: Master Axesmith Blacksmithing (BoP)
+Optional (2.7 MH)	Reflex Blades Reflex Blades	Drop: Dalliah the Doomsayer (The Arcatraz)
+Optional (2.7 OH)	Fist of Reckoning Fist of Reckoning	World Drop: The Outland
+
+Best in Slot Totems for Enhancement Shaman in TBC Classic Phase 4
+Stonebreaker's Totem is the best option available, as the attack power bonus of Totem of the Astral Winds is smaller and only applies to windfury attacks.
+Rank	Item	Source
+Best	Stonebreaker's Totem Stonebreaker's Totem	Vendor: G'eras (20 Badges of Justice)
+Best	Totem of the Astral Winds Totem of the Astral Winds	Drop: Pandemonius (Heroic Mana-Tombs)
+Woah
+MoP Restoration/Elemental Shaman Guide Writer
+Woah has written over 275 guides for Wowhead since WoW Classic was released in 2019, with a particular focus on Shaman class guides. Shaman has been his main class since the start of Classic and also since WoW's initial launch in 2004.
+
+Currently playing in Gehennas EU Horde with Progress's 25-man alt/gold runs, Woah is looking to do some 10-man alt running on the side with a second shaman in Mists of Pandaria!
+1 - 5 of 5
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+2
+
+	
+By LordRahl1986 (1,035 – 7·9) on 2022/03/30 (Burning Crusade)	
+	
+Drives me nuts to see every guide suggesting you take Elemental Focus as a talent, when you have single digit crit rating with spells.
+
+0
+
+	
+
+Woah <Guide Author> on 2022/03/31 (Burning Crusade)
+It is pretty awful, but the alternatives are even worse / do not provide any meaningful DPS, hence why you go with it.
+
+0
+
+	
+
+Gogumajiosu on 2022/04/14 (Burning Crusade)
+You actually get much better utility from the resto talents such as 3% extra hit for both spells and melee, less mana cost if you are twisting, and more range on totems in case you are put in a hunter group. Also having your shock spells actually hit is more crucial for bosses where you need a lot of (magic) interrupts rather than having them do just a tiny bit more damage. The extra little bit DPS on your shocks seems rather pointless in comparison.
+
+0
+
+	
+
+Woah <Guide Author> on 2022/04/27 (Burning Crusade)
+An alternative Nature's Guidance is listed in the talent page, so it is not like we are not recommending people to use it :) down to personal preference!
+
+1
+
+	
+By Ardensus (29,461 – 3·11·40) <Rare Premium User> on 2022/03/21 (Burning Crusade)	
+	
+No mention of Trickster's Stickyfingers from badges despite being up there in stats with Grips of Damnation
+
+1
+
+	
+
+Woah <Guide Author> on 2022/03/21 (Burning Crusade)
+Adding all of the missing badge gear right now, thanks for the heads up :)
+
+-1
+
+	
+
+snute100 on 2022/03/30 (Burning Crusade)
+also shallow-grave trousers is better than cataclysm legs, brooch of deftness might be better than choker of vile intent too
+
+1
+
+	
+
+Woah <Guide Author> on 2022/03/31 (Burning Crusade)
+Added the trousers, but on brooch of deftness, citing the Shaman discord "It ranks somewhere between garbo and "are you high" ", it basically has expertise over vile intent and that's it, making it a viable alternative to old gear but not really competitive with anything in Tier 6.
+
+1
+
+	
+By Kutyno (605 – 2) on 2022/03/22 (Burning Crusade)	
+	
+Wanted to ask about Shadowtooth Trollskin Cuirass. Is it falling off stat-wise, or ..?
+
+1
+
+	
+
+Woah <Guide Author> on 2022/03/22 (Burning Crusade)
+It doesn't have the best stats for Enha, but is still a fairly solid chest in the Tier 5 range.
+
+1
+
+	
+By Walay (27,034 – 4·24·31) <Rare Premium User> on 2022/03/29 (Burning Crusade)	
+	
+Does not mention Master Assassin Wristwraps Master Assassin Wristwraps at all, neither Wraps of Precise Flight Wraps of Precise Flight , which I would expect to be an upgrade at least over Spymistress's Wristguards Spymistress's Wristguards
+Last edited by Walay on 2022/03/30
+
+0
+
+	
+
+Woah <Guide Author> on 2022/03/31 (Burning Crusade)
+In general I have tried not to list more than three new pieces at a time to avoid bloat. The Spymistress Wristguards come from the very start of TBCC and are also much easier to obtain than the epic alternatives, which makes for a progressive list showcasing how you can evolve your gear from fresh 70 to raid veteran. Regardless, and in order to avoid further confusion I have added the mentioned items, cheers!
+
+1
+
+	
+By 2187458 (3,567 – 7·9) on 2022/04/05 (Burning Crusade)	
+	
+Is Fury not a good offhand option? It's 2.6, and you can just use it with Rage since they're like designed to go together and drop at the same spot.
+
+0
+
+	
+
+Woah <Guide Author> on 2022/04/27 (Burning Crusade)
+It is pretty good, just had not listed it before since there were so many good options already, added it in now!
+1 - 5 of 5
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Enhancement Shaman Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+            Best In Slot Gear in Phase 5
+                Aldor vs Scryer
+                Head
+                Shoulder
+                Back
+                Chest
+                Wrist
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Totems
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Enhancement Shaman DPS Best in Slot (BiS) Phase 5 Gear Guide
+By Woah
+Updated: 2026/02/27
+Welcome to Wowhead's Best in Slot Gear list from Phase 5 Sunwell Plateau for Enhancement Shaman DPS in The Burning Crusade Classic. This guide will list the recommended gear for Enhancement Shaman DPS to acquire while they progress during the fifth and final phase of The Burning Crusade Classic, which contains gear sourced from Sunwell Plateau, Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+Best In Slot Gear for Enhancement Shaman DPS in Phase 5
+Unfortunately, Enhancement Shaman Shaman Tier 6 set is not very good, outside of the three pieces you can get from Sunwell Plateau, which makes skipping the 4-piece bonus a strong option. Regardless, using Skyshatter Pauldrons Skyshatter Pauldrons in order to get the 4-set in a much easier way than having to loot Eredar Twins' shoulders is also a very competitive option.
+
+Doing Arena PvP is very valuable for the gladiator weapons, which are among the best in slot options, and even the much easier to get old season weapons are very competitive, so make sure to prioritize farming them if you still need weapons! Phase 5 brings multiple gear options that are close to the absolute best in slot pieces, so feel free to diversify your gear according to what drops in your raids.
+
+Meta sockets are unique to head slot pieces and accept meta gems (instead of regular gems). Only a single meta socket may exist in any given piece, and many pieces come without a meta socket at all.
+
+Relentless Earthstorm Diamond Relentless Earthstorm Diamond is the best meta gem, and scales well with the rest of your gear, as it acts as a multiplier on your damage output.
+
+Enhancement Shaman looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Enhancement Shaman Gems & Enchants
+Should Enhancement Shaman DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 5?
+Shamans can pick both The Aldor or The Scryers without much penalty. The Aldor shoulder enchant is slightly better, but the difference is minuscule from the Scryers enchant when considering your full gear stat bonuses. In general, it is best to pick based on which faction is cheaper to buy reputation materials for, as Aldor, for example, can often be extremely expensive due to having the favored shoulder enchant for most specializations.
+
+    Aldor offer a very slightly superior shoulder enchant for DPS.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Enhancement Shaman in TBC Classic Phase 5
+Duplicitous Guise and Coif of Alleria are the best helmets available in Phase 5, with Cursed Vision of Sargeras being a great alternative.
+
+You can also use Surestrike Goggles v3.0, Forest Prowler's Helm, or Skyshatter Cover as temporary alternatives, but note that the Tier 6 helmet has much weaker throughput stats and the Tier 6 set bonuses are pretty weak for Enhancement Shaman Shamans.
+Rank	Item	Source
+Best in slot	Duplicitous Guise Duplicitous Guise	Drop: Kil'jaeden (Sunwell Plateau)
+Best in slot	Coif of Alleria Coif of Alleria	Drop: Kil'jaeden (Sunwell Plateau)
+Best in slot	Cursed Vision of Sargeras Cursed Vision of Sargeras	Drop: Illidan Stormrage (Black Temple)
+Great	Surestrike Goggles v3.0 Surestrike Goggles v3.0	Profession: Engineering Engineering (BoP)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Great	Skyshatter Cover Skyshatter Cover	Drop: Helm of the Forgotten Protector - Archimonde (Hyjal Summit)
+Great	Forest Prowler's Helm Forest Prowler's Helm	Drop: The Illidari Council (Black Temple)
+Great	Cataclysm Helm Cataclysm Helm	Drop: Helm of the Vanquished Champion: Lady Vashj (Serpentshrine Cavern)
+Great	Cyclone Helm Cyclone Helm	Drop: Telm of the Fallen Champion: Prince Malchezaar (Karazhan)
+
+Best in Slot Shoulder Armor for Enhancement Shaman in TBC Classic Phase 5
+Demontooth Shoulderpads and Mantle of the Golden Forest are both excellent options, and share best in slot status. Skyshatter Pauldrons, if it grants you the 4-set bonus, is a great, easier to get alternative, as well!
+
+The crafted Swiftstrike Shoulders / Shoulders of Lightning Reflexes are also a great alternative, as are Shoulderpads of the Stranger.
+Rank	Item	Source
+Best in slot	Demontooth Shoulderpads Demontooth Shoulderpads	Drop: Lady Sacrolash / Grand Warlock Alythess (Sunmote Sunmote swap item) (Sunwell Plateau)
+Best in slot	Mantle of the Golden Forest Mantle of the Golden Forest	Drop: Lady Sacrolash / Grand Warlock Alythess (Sunwell Plateau)
+Best in slot (4-set)	Skyshatter Pauldrons Skyshatter Pauldrons	Drop: Mother Shahraz (Black Temple)
+Best in slot	Swiftstrike Shoulders Swiftstrike Shoulders	Profession: Leatherworking Leatherworking (BoP)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+Rank	Item	Source
+Best in slot	Shoulders of Lightning Reflexes Shoulders of Lightning Reflexes	Profession: Leatherworking Leatherworking (BoP)
+Great	Shoulderpads of the Stranger Shoulderpads of the Stranger	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Great	Mantle of Darkness Mantle of Darkness	Drop: High Warlord Naj'entus (Black Temple)
+Great	Cyclone Shoulderplates Cyclone Shoulderplates	Drop: Pauldrons of the Fallen Champion: High King Maulgar (Gruul's Lair)
+Great	Bladed Shoulderpads of the Merciless Bladed Shoulderpads of the Merciless	Drop: Karazhan Chess Event
+
+Best in Slot Back Armor for Enhancement Shaman in TBC Classic Phase 5
+Cloak of Unforgivable Sin is the best cloak in Phase 5, but previous phase BiS cloaks, such as Shadowmoon Destroyer's Drape, are also strong, and much easier to get.
+Rank	Item	Source
+Best in slot	Cloak of Unforgivable Sin Cloak of Unforgivable Sin	Drop: Kil'jaeden (Sunwell Plateau)
+Best in slot	Shadowmoon Destroyer's Drape Shadowmoon Destroyer's Drape	Drop: Teron Gorefiend (Black Temple)
+Great	Cloak of Fiends Cloak of Fiends	Drop: Zul'Aman Timed Event (1st Chest)
+Great	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+These options may be easier than the above, as even though the Best option is crafted, it may be expensive, whereas these options won't come at the expense of your gold!
+Rank	Item	Source
+Great	Cloak of Darkness Cloak of Darkness	Profession: Leatherworking - Requires Exalted with The Violet Eye
+Great	Dory's Embrace Dory's Embrace	Vendor: G'eras (60 Badges of Justice)
+Great	Vengeance Wrap Vengeance Wrap	Profession: Tailoring (BoE)
+Great	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+
+Best in Slot Chest Armor for Enhancement Shaman in TBC Classic Phase 5
+Bladed Chaos Tunic and Carapace of Sun and Shadow share the best in slot chest option status, but Embrace of the Phoenix, Vicious Hawkstrider Hauberk and Midnight Chestguard are also very strong, as they all have high stats and 3 sockets.
+
+Nether Shadow Tunic is a decent temporary alternative, as is the Tier 5 chest, Cataclysm Chestplate, especially if you need it to enable the 4-set bonus.
+Rank	Item	Source
+Best in slot	Bladed Chaos Tunic Bladed Chaos Tunic	Drop: M'uru (Sunmote Sunmote swap item) (Sunwell Plateau)
+Best in slot	Carapace of Sun and Shadow Carapace of Sun and Shadow	Profession: Leatherworking Leatherworking (BoP)
+Great	Embrace of the Phoenix Embrace of the Phoenix	Profession: Leatherworking Leatherworking (BoP)
+Great	Vicious Hawkstrider Hauberk Vicious Hawkstrider Hauberk	Drop: M'uru (Sunwell Plateau)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+Rank	Item	Source
+Great	Midnight Chestguard Midnight Chestguard	Drop: Archimonde (Hyjal Summit)
+Great	Nether Shadow Tunic Nether Shadow Tunic	Drop: Supremus (Black Temple)
+Great	Tunic of the Dark Hour Tunic of the Dark Hour	Vendor: Smith Hauthaa (100 Badges of Justice)
+Great	Bloodsea Brigand's Vest Bloodsea Brigand's Vest	Drop: Chestguard of the Vanquished Champion: Kael'thas Sunstrider (Tempest Keep)
+Great	Cataclysm Chestplate Cataclysm Chestplate	Drop: Kael'thas Sunstrider (Tempest Keep)
+Great	Cyclone Breastplate Cyclone Breastplate	Drop: Chestguard of the Fallen Champion: Magtheridon (Magtheridon's Liar)
+Great	Terrorweave Tunic Terrorweave Tunic	Drop: Doomwalker (World Boss in Shadowmoon Valley)
+Great	Primalstrike Vest Primalstrike Vest	Profession: Elemental Leatherworking (BoP)
+Great	Ebon Netherscale Breastplate Ebon Netherscale Breastplate	Profession: Dragonscale Leatherworking BoP)
+
+Best in Slot Wrist Armor for Enhancement Shaman in TBC Classic Phase 5
+Skyshatter Wristguards are by far the best wrists available, with previous Phase BiS options still being great alternatives.
+Rank	Item	Source
+Best in slot	Skyshatter Wristguards Skyshatter Wristguards	Drop: Bracers of the Forgotten Protector - Kalecgos (Sunwell Plateau)
+Great	Deadly Cuffs Deadly Cuffs	Drop: Rage Winterchill (Hyjal Summit)
+Great	Bindings of Lightning Reflexes Bindings of Lightning Reflexes	Profession: Leatherworking Leatherworking
+Great	Insidious Bands Insidious Bands	Drop: Teron Gorefiend (Black Temple)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+
+Rank	Item	Source
+Great	Master Assassin Wristwraps Master Assassin Wristwraps	Vendor: G'eras (35 Badges of Justice)
+Great	Wraps of Precise Flight Wraps of Precise Flight	Drop: Supremus (Black Temple)
+Great	True-Aim Stalker Bands True-Aim Stalker Bands	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Great	Vambraces of Ending Vambraces of Ending	Drop: High Astromancer Solarian (Tempest Keep)
+Great	Bracers of Maliciousness Bracers of Maliciousness	Drop: Maiden of Virtue (Karazhan)
+
+Best in Slot Hand Armor for Enhancement Shaman Hunter in TBC Classic Phase 5
+Thalassian Ranger Gauntlets and Gloves of Immortal Dusk are the best gloves available, but some other Phase 5 options, including Shadowed Gauntlets of Paroxysm and Fletcher's Gloves of the Phoenix, are good and less contested alternatives.
+
+Grips of Damnation and Fists of Mukoa from Black Temple are also still strong in their own right, from Black Temple.
+Rank	Item	Source
+Best in slot	Thalassian Ranger Gauntlets Thalassian Ranger Gauntlets	Drop: Kil'jaeden (Sunwell Plateau)
+Best in slot	Gloves of Immortal Dusk Gloves of Immortal Dusk	Profession: Leatherworking Leatherworking (BoE)
+Great	Shadowed Gauntlets of Paroxysm Shadowed Gauntlets of Paroxysm	Drop: M'uru (Sunwell Plateau)
+Great	Fletcher's Gloves of the Phoenix Fletcher's Gloves of the Phoenix	Profession: Leatherworking Leatherworking (BoE)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+
+Rank	Item	Source
+Great	Grips of Damnation Grips of Damnation	Drop: Reliquary of the Lost (Black Temple)
+Great	Fists of Mukoa Fists of Mukoa	Drop: High Warlord Naj'entus (Black Temple)
+Great	Gloves of the Searing Grip Gloves of the Searing Grip	Profession: Leatherworking (Tempest Keep) Pattern: Gloves of Immortal Dusk Pattern: Gloves of Immortal Dusk
+Great	Trickster's Stickyfingers Trickster's Stickyfingers	Vendor: G'eras (60 Badges of Justice)
+Great	Cataclysm Gauntlets Cataclysm Gauntlets	Drop: Gloves of the Vanquished Champion: Leotheras the Blind (Serpentshrine Cavern)
+Great	Liar's Tongue Gloves Liar's Tongue Gloves	Drop: Magtheridon (Magtheridon's Lair)
+Great	Grips of Deftness Grips of Deftness	Drop: Karazhan Trash Mobs
+
+Best in Slot Waist Armor for Enhancement Shaman in TBC Classic Phase 5
+Skyshatter Girdle is the best belt available by a large margin, finally providing Enhance Shamans another belt that provides Expertise on it outside of Belt of One-Hundred Deaths, which now take place of the 2nd best option for us.
+
+Other strong options right below these two will still provide you with good player power, just unfortunately lacking that + Expertise that, again, unfortunately, is not all too common on our gear choices.
+Rank	Item	Source
+Best in slot	Skyshatter Girdle Skyshatter Girdle	Drop: Belt of the Forgotten Protector - Brutallus (Sunwell Plateau)
+Best in slot	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Boneweave Girdle Boneweave Girdle	Drop: Reliquary of the Lost (Black Temple)
+Great	Shadow-walker's Cord Shadow-walker's Cord	Drop: Shade of Akama (Black Temple)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+
+Rank	Item	Source
+Great	Don Alejandro's Money Belt Don Alejandro's Money Belt	Drop: Anetheron (Hyjal Summit)
+Great	Valestalker Girdle Valestalker Girdle	Drop: Kaz'rogal (Hyjal Summit)
+Great	Primalstrike Belt Primalstrike Belt	Profession: Elemental Leatherworking (BoP)
+Great	Gronn-Stitched Girdle Gronn-Stitched Girdle	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+Best in Slot Leg Armor for Enhancement Shaman in TBC Classic Phase 5
+Leggings of the Immortal Night are, by far, the best Phase 5 legs, and are a priority upgrade.
+
+Bow-stitched Leggings, however, are still great, and you can now get Starstalker Legguards from an earlier boss in SWP or Trousers of the Scryers' Retainer from the Badge of Justice vendor as well, which are all decently close in power.
+
+Alternatively, Cataclysm Legplates can be used to obtain the 4-set Tier 5 bonus, if you are still gearing up.
+Rank	Item	Source
+Best in slot	Leggings of the Immortal Night Leggings of the Immortal Night	Drop: Felmyst (Sunwell Plateau)
+Great	Bow-stitched Leggings Bow-stitched Leggings	Drop: Azgalor (Hyjal Summit)
+Great	Starstalker Legguards Starstalker Legguards	Drop: Kalecgos (Sunwell Plateau)
+Great	Trousers of the Scryers' Retainer Trousers of the Scryers' Retainer	Vendor: Smith Hauthaa (100 Badges of Justice)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+
+Rank	Item	Source
+Great	Shady Dealer's Pantaloons Shady Dealer's Pantaloons	Drop: Azgalor (Hyjal Summit)
+Great	Shallow-grave Trousers Shallow-grave Trousers	Vendor: G'eras (75 Badges of Justice)
+Great	Cataclysm Legplates Cataclysm Legplates	Drop: Leggings of the Vanquished Champion: Fathom-Lord Karathress (Serpentshrine Cavern)
+Great	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+Great	Shattrath Leggings Shattrath Leggings	Quest: Special Delivery to Shattrath City Special Delivery to Shattrath City
+Great	Clefthoof Hide Leggings Clefthoof Hide Leggings	Quest: Showdown Showdown / Showdown Showdown
+
+Best in Slot Feet Armor for Enhancement Shaman in TBC Classic Phase 5
+Skyshatter Greaves are, by far, the best boots available in Phase 5, offering just a generous amount of power with its raw Strength, along with a healthy amount of + Expertise, Critical Strike Rating, and Haste. Compare these to the previous phase BiS items and see for yourself the huge difference these boots are to their predecessors.
+Rank	Item	Source
+Best in slot	Skyshatter Greaves Skyshatter Greaves	Drop: Boots of the Forgotten Protector - Felmyst (Sunwell Plateau)	Sunwell Plateau
+Great	Softstep Boots of Tracking Softstep Boots of Tracking	Drop: Teron Gorefiend (Black Temple)
+Great	Shadowmaster's Boots Shadowmaster's Boots	Drop: Mother Shahraz (Black Temple)
+Great	Nyn'jah's Tabi Boots Nyn'jah's Tabi Boots	Vendor: G'eras (60 Badges of Justice)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+Rank	Item	Source
+Great	Quickstrider Moccasins Quickstrider Moccasins	Drop: Anetheron (Hyjal Summit)
+Great	Boots of Utter Darkness Boots of Utter Darkness	Profession: Leatherworking (Tier 5 Raid Drop)
+Great	Cobra-Lash Boots Cobra-Lash Boots	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+
+Best in Slot Neck Jewelry for Enhancement Shaman in TBC Classic Phase 5
+Hard Khorium Choker is technically the best neck, but requires Jewelcrafting Jewelcrafting and isn't incredibly ahead of Clutch of Demise, which is the most reasonable option for most Enhancement Shaman Shamans.
+
+Choker of Endless Nightmares is still a great neck, as is the new Shattered Sun Pendant of Might from the Shattered Sun Offensive.
+Rank	Item	Source
+Best in slot (Jewelcrafting)	Hard Khorium Choker Hard Khorium Choker	Profession: Jewelcrafting Jewelcrafting
+Best in slot	Clutch of Demise Clutch of Demise	Drop: Brutallus (Sunwell Plateau)
+Great	Choker of Endless Nightmares Choker of Endless Nightmares	Drop: Supremus (Black Temple)
+Great	Shattered Sun Pendant of Might Shattered Sun Pendant of Might (Aldor)	Vendor: Eldara Dawnrunner - Requires Exalted with Shattered Sun Offensive
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+Rank	Item	Source
+Great	Choker of Serrated Blades Choker of Serrated Blades	Drop: Hyjal Summit / Black Temple Trash Mobs
+Great	Telonicus's Pendant of Mayhem Telonicus's Pendant of Mayhem	Drop: Kael'thas Sunstrider (Tempest Keep)
+Great	Pendant of the Perilous Pendant of the Perilous	Drop: Serpentshrine Cavern Trash Mobs)
+Great	Brooch of Deftness Brooch of Deftness	Vendor: G'eras (35 Badges of Justice)
+Great	Worgen Claw Necklace Worgen Claw Necklace	Drop: Attumen the Huntsman (Karazhan)
+
+Best in Slot Ring Jewelry for Enhancement Shaman in TBC Classic Phase 5
+Band of Ruinous Delight and Stormrage Signet Ring are the best rings in Phase 5. Both of these rings will still see high contention from this phase and the previous phase, so consider your next options as well!
+
+Recommended BiS Ring Enchant: Enchant Ring - Stats - Only Enchanters may apply Ring Enchants on their own rings.
+Rank	Item	Source
+Best in slot	Band of Ruinous Delight Band of Ruinous Delight	Drop: Lady Sacrolash / Grand Warlock Alythess (Sunwell Plateau)
+Best in slot	Stormrage Signet Ring Stormrage Signet Ring	Drop: Illidan Stormrage (Black Temple)
+Great	Hard Khorium Band Hard Khorium Band	Profession: Jewelcrafting Jewelcrafting (BoP)
+Great	Angelista's Revenge Angelista's Revenge	Vendor: G'eras (60 Badges of Justice)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+Rank	Item	Source
+Great	Signet of Primal Wrath Signet of Primal Wrath	Drop: Zul'Aman Timed Event (3rd Chest)
+Great	Band of the Eternal Champion Band of the Eternal Champion	Quest: Champion's Covenant Champion's Covenant (Hyjal Summit)
+Great	Band of the Ranger-General Band of the Ranger-General	Drop: Kael'thas Sunstrider (Tempest Keep)
+Great	Band of Devastation Band of Devastation	Drop: Black Temple Trash Mobs
+Great	Unstoppable Aggressor's Ring Unstoppable Aggressor's Ring	Drop: Gurtogg Bloodboil (Black Temple)
+Great	Ring of Deceitful Intent Ring of Deceitful Intent	Drop: Shade of Akama (Black Temple)
+Great	Ring of Lethality Ring of Lethality	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Great	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+Great	Garona's Signet Ring Garona's Signet Ring	Drop: The Curator (Karazhan)
+Great	Band of Eternity Band of Eternity	Quest:The Vials of Eternity The Vials of Eternity / Champion's Pledge Champion's Pledge
+Great	Shapeshifter's Signet Shapeshifter's Signet	Vendor: Nakodu Requires Exalted with Lower City
+
+Best in Slot Trinkets for Enhancement Shaman in TBC Classic Phase 5
+You will finally replace your Phase 1 trinket (should you actually have gotten it) along with any other trinket for these two new shiny toys: Blackened Naaru Sliver and Shard of Contempt. The former, unfortunately, is just as coveted as Dragonspine Trophy. The latter will be slightly easier to obtain, as it comes from the Heroic version of the new dungeon in Phase 5, Magisters' Terrace.
+
+Previous BiS trinkets will still hold you over well, so if you do happen to have Dragonspine Trophy, continue to cherish it!
+Rank	Item	Source
+Best in slot	Blackened Naaru Sliver Blackened Naaru Sliver	Drop: M'uru (Sunwell Plateau)
+Best in slot	Shard of Contempt Shard of Contempt	Drop: Priestess Delrissa (Heroic Magisters' Terrace)
+Optional	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Optional	Berserker's Call Berserker's Call	Drop: Zul'jin
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Trinkets will always be competitive, even with the 2nd or 3rd best options, as our best one is competitive with every other Melee DPS class, and these options are no different.
+Rank	Item	Source
+Optional	Madness of the Betrayer Madness of the Betrayer	Drop: The Illidari Council (Black Temple)
+Optional (Jewelcrafting)	Figurine - Shadowsong Panther Figurine - Shadowsong Panther	Profession: Jewelcrafting Jewelcrafting (BoP)
+Optional	Ashtongue Talisman of Vision Ashtongue Talisman of Vision	Ashtongue Deathsworn Exalted
+Optional	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Optional	Empty Mug of Direbrew Empty Mug of Direbrew	Drop: Coren Direbrew (Blackrock Depths)
+Optional	Tsunami Talisman Tsunami Talisman	Drop: Leotheras the Blind (Serpentshrine Cavern)
+
+Weapons and Offhands for Enhancement Shaman DPS in Phase 5
+Due to Flurry having a 0.5-second cooldown on being consumed, having weapons of matching speed is very important in order to minimize attack desynching and maximize your Flurry uptime. Most of the weapons we list below have either 2.6 or 2.7 speed, and weapons with the same speed are meant to be used together, whenever possible.
+
+Hand of the Deceiver and Mounting Vengeance are the ultimate weapons in Phase 5, having both the highest stats and two sockets each.
+
+Dual Brutal Gladiator's Cleaver or Vengeful Gladiator's Cleaver are very potent, and one of the best alternatives, as is dual-wielding Syphon of the Nathrezim.
+
+It is important to note that the Season 3 Gladiator weapons can now be purchased without rating requirements and for discounted Arena Points, making them much easier and more reliable to get.
+Rank	Item	Source
+Best in slot (2.6 MH)	Hand of the Deceiver Hand of the Deceiver	Drop: Kil'jaeden (Sunwell Plateau)
+Best in slot (2.6 OH)	Mounting Vengeance Mounting Vengeance	Drop: Sunwell Plateau Trash Mobs
+Optional (All)	Brutal Gladiator's Cleaver Brutal Gladiator's Cleaver	Arena Points
+Optional (All)	Vengeful Gladiator's Cleaver Vengeful Gladiator's Cleaver	Arena Points
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+Rank	Item	Source
+Optional (All)	Syphon of the Nathrezim Syphon of the Nathrezim	Drop: Supremus (Black Temple)
+Optional (2.7 MH)	Claw of Molten Fury Claw of Molten Fury	Drop: Hyjal Summit Trash Mobs
+Optional (2.7 MH)	Talon of the Phoenix Talon of the Phoenix	Drop: Al'ar (Tempest Keep)
+Optional (2.7 OH - Unique)	Rod of the Sun King Rod of the Sun King	Kael'thas Sunstrider (Tempest Keep)
+Optional (2.7 MH)	Wicked Edge of the Planes Wicked Edge of the Planes	Profession: Master Axesmith Blacksmith (BoP)
+Optional (All)	Rising Tide Rising Tide	Drop: High Warlord Naj'entus (Black Temple)
+Optional (2.5 MH)	Vanir's Right Fist of Brutality Vanir's Right Fist of Brutality	Vendor: G'eras (105 Badges of Justice)
+Optional (2.5 OH)	Vanir's Left Fist of Brutality Vanir's Left Fist of Brutality	Vendor: G'eras (45 Badges of Justice)
+Optional (All)	Merciless Gladiator's Cleaver Merciless Gladiator's Cleaver	Honor Points Honor Points
+Optional (2.7 MH)	Dragonstrike Dragonstrike	Blacksmithing Blacksmithing (Master Hammersmith)
+Optional (All)	Netherbane Netherbane	Drop: Al'ar (Tempest Keep)
+Optional (2.6 MH)	Rage Rage	Drop: Zul'Aman Timed Event (2nd Chest)
+Optional (2.6 OH)	Fury Fury	Drop: Nalorakk (Zul'Aman)
+
+Best in Slot Totems for Enhancement Shaman in TBC Classic Phase 5
+Stonebreaker's Totem finishes as the best option available still in TBC, as the Attack Power bonus of Totem of the Astral Winds is smaller and only applies to Windfury attacks.
+Rank	Item	Source
+Best	Stonebreaker's Totem Stonebreaker's Totem	Vendor: G'eras (20 Badges of Justice)
+Best	Totem of the Astral Winds Totem of the Astral Winds	Drop: Pandemonius (Heroic Mana-Tombs)
+Woah
+MoP Restoration/Elemental Shaman Guide Writer
+Woah has written over 275 guides for Wowhead since WoW Classic was released in 2019, with a particular focus on Shaman class guides. Shaman has been his main class since the start of Classic and also since WoW's initial launch in 2004.
+
+Currently playing in Gehennas EU Horde with Progress's 25-man alt/gold runs, Woah is looking to do some 10-man alt running on the side with a second shaman in Mists of Pandaria!
+1 - 8 of 8
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+4
+
+	
+By badfreddyboy (13,804 – 1·11·16) on 2022/05/06 (Burning Crusade)	
+	
+With the end of season 3 i think Grand Marshal's Cleaver Grand Marshal's Cleaver/High Warlord's Cleaver High Warlord's Cleaver can be safely removed from the weapon list, as Gladiator's Cleaver Gladiator's Cleaver or Gladiator's Right Ripper Gladiator's Right Ripper now have the same cost of 4782 Honor points.
+Last edited by badfreddyboy on 2022/05/06
+
+1
+
+	
+
+Woah <Guide Author> on 2022/05/07 (Burning Crusade)
+Good point, thanks!
+
+1
+
+	
+By njcope23 (1,760 – 3·7) on 2022/05/08 (Burning Crusade)	
+	
+Good list, very close to what I would expect.
+
+Food for thought: I would prio the socket bonus on the OH instead of the shoulders for your blue gem/yellow gem, and you could have bold spinels on the remaining sockets.
+
+Thanks for the guide!
+Last edited by njcope23 on 2022/05/08
+
+0
+
+	
+
+Woah <Guide Author> on 2022/05/10 (Burning Crusade)
+Nice suggestion, small change overall but keeps the same attack power bonus while gaining ~0.1% crit, edited it in, thanks!
+
+1
+
+	
+By Agoulou (2,678 – 5·7) on 2022/05/10 (Burning Crusade)	
+	
+You includes ingeenering Surestrike Goggles v2.0 but not v3.0 version ?
+
+0
+
+	
+
+Woah <Guide Author> on 2022/05/16 (Burning Crusade)
+True, added them in now!
+
+1
+
+	
+By dalexan24 (10,780 – 2·10·11) on 2022/05/12 (Burning Crusade)	
+	
+Is the Claw of Molten fury not good anymore ?
+
+0
+
+	
+
+Woah <Guide Author> on 2022/05/16 (Burning Crusade)
+Its not as good as anything coming from Sunwell but its perfectly competitive with the top T5 weapons, added it in!
+
+1
+
+	
+By Nyhtpossu (668 – 1·3) on 2022/05/23 (Burning Crusade)	
+	
+Does the bis setup activate the meta gem? It seems there are 1 blue gem missing or do I miscalculate?
+
+0
+
+	
+
+Woah <Guide Author> on 2022/05/24 (Burning Crusade)
+There's a blue (purple) gem on chest and on off-hand :)
+
+1
+
+	
+By Mozir (131 – 1·0) on 2022/06/10 (Burning Crusade)	
+	
+targeting the 4-piece bonus with S&*!hatter Pauldrons can be a good idea, right?
+less good in pure stats but:
++70 attack power
++ 2 Sockets
+
+0
+
+	
+
+Woah <Guide Author> on 2022/06/12 (Burning Crusade)
+Using 4 set has pretty close results to the off-piece setup, so for sure! Adding more info on that right now :)
+
+1
+
+	
+By Jakesmeester (146 – 1·0) on 2022/06/26 (Burning Crusade)	
+	
+Hey man love the guide ! We dont have any mentions towards mgt and the items there should they not be included on the tier lists of alternatives for phase 5 or are they just bad ?
+
+0
+
+	
+
+Woah <Guide Author> on 2022/06/30 (Burning Crusade)
+They are not bad, but worse than most comparable raid alternatives. Shard of Contempt is one of the exceptions and is even part of the best in slot setup I posted though :)
+By BeastControl17 (4,539 – 8·16) on 2022/05/06 (Burning Crusade)	
+	
+1 - 8 of 8
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+

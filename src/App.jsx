@@ -3289,6 +3289,8 @@ export default function App() {
                 setDbSearch={setDbSearch}
                 showMissingWowheadFilter={showMissingWowheadFilter}
                 setShowMissingWowheadFilter={setShowMissingWowheadFilter}
+                showWowheadNameMismatchFilter={showWowheadNameMismatchFilter}
+                setShowWowheadNameMismatchFilter={setShowWowheadNameMismatchFilter}
                 dbFilteredItems={dbFilteredItems}
                 specsSortedByClass={specsSortedByClass}
                 dbBisPriorities={dbBisPriorities}
@@ -3505,6 +3507,8 @@ export default function App() {
             setDbSearch={setDbSearch}
             showMissingWowheadFilter={showMissingWowheadFilter}
             setShowMissingWowheadFilter={setShowMissingWowheadFilter}
+            showWowheadNameMismatchFilter={showWowheadNameMismatchFilter}
+            setShowWowheadNameMismatchFilter={setShowWowheadNameMismatchFilter}
             dbFilteredItems={dbFilteredItems}
             specsSortedByClass={specsSortedByClass}
             dbBisPriorities={dbBisPriorities}
