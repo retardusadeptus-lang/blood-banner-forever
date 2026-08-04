@@ -18,8 +18,8 @@ RUN npm run build:prod
 # ---- Stage 2: Production ----
 FROM node:20-alpine AS production
 
-# Tools needed
-RUN apk add --no-cache python3 make g++ nginx gettext
+# Tools needed for API scripts and SQLite-based DB work on deployment
+RUN apk add --no-cache python3 sqlite make g++ nginx gettext
 
 # Verify nginx installation
 RUN nginx -v
@@ -44,12 +44,15 @@ RUN chmod +x /docker-entrypoint.sh
 COPY guild-loot-api/package*.json ./guild-loot-api/
 RUN cd guild-loot-api && npm ci --omit=dev
 
-# Copy API source
+# Copy API source, including BIS data and helper scripts needed for deployment
 COPY guild-loot-api/ ./guild-loot-api/
 
 # Keep importer input available in production container.
 # guild-loot-api/scripts/import-wowhead-item-list.js reads /app/src/wowheaditemlist.csv.
 COPY --from=builder /app/src/wowheaditemlist.csv /app/src/wowheaditemlist.csv
+
+# Ensure the working app root is the same in all environments when scripts are run on the container.
+ENV BIS_CSV_PATH="/app/guild-loot-api/BIS Lists/all-bis-items.csv"
 
 # API listens on API_PORT (nginx proxies /api/ to it); nginx serves the SPA on 3000.
 # API_PORT can be overridden at runtime (e.g. --env-file); nginx follows it.

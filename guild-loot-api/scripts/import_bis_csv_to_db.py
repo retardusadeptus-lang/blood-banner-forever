@@ -1,11 +1,25 @@
 import csv
+import os
 import re
 import sqlite3
 from pathlib import Path
 
 root = Path(__file__).resolve().parent.parent
-csv_path = root / 'BIS Lists' / 'all-bis-items.csv'
-db_path = root / 'guild-loot-api' / 'mydb.db'
+
+
+def resolve_path(env_var: str, default: Path) -> Path:
+    raw_value = os.environ.get(env_var)
+    if not raw_value:
+        return default
+
+    candidate = Path(raw_value)
+    if candidate.is_absolute():
+        return candidate
+    return root / candidate
+
+
+csv_path = resolve_path('BIS_CSV_PATH', root / 'BIS Lists' / 'all-bis-items.csv')
+db_path = resolve_path('GUILD_LOOT_DB_PATH', root / 'mydb.db')
 
 if not csv_path.exists():
     raise FileNotFoundError(f'Missing CSV file: {csv_path}')

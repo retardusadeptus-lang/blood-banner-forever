@@ -2,10 +2,11 @@
 // Run once with: node seed_mutable_items.js
 // Then delete this file.
 
+const path = require('path');
 const Database = require('better-sqlite3');
 const aggregatedBisData = require('./aggregated_bis_with_ids.json');
 
-const db = new Database('C:/Users/Steve/Projects/wow-loot-dashboard/guild-loot-api/mydb.db');
+const db = new Database(path.join(__dirname, '..', 'mydb.db'));
 
 // Normalize slot names (same logic as the old frontend normalizeSlot function)
 const normalizeSlot = (slot) => {
