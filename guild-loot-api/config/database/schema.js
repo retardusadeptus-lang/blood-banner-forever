@@ -599,7 +599,7 @@ function ensureOperationalTables(db) {
       image_data TEXT NOT NULL,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
-  `).run();
+  `);
 
   const rosterColumns = db.prepare('PRAGMA table_info(roster)').all();
   if (!rosterColumns.some(col => col.name === 'user_id')) {
