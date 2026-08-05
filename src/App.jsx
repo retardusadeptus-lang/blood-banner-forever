@@ -20,6 +20,7 @@ import RaidSignupsTab from './components/RaidSignupsTab';
 import ItemIdEditorModal from './components/ItemIdEditorModal';
 import * as helpers from './utils/helpers';
 import { downloadCsv } from './utils/csv';
+import useRaidHelperImport from './hooks/useRaidHelperImport';
 
 const CORE_SYNC_INTERVAL_MS = 15000;
 const BANK_SYNC_INTERVAL_MS = 20000;
@@ -161,7 +162,6 @@ export default function App() {
   const [newRaidZone, setNewRaidZone] = useState('SSC / TK');
   const [recentRaidHelperImportedIds, setRecentRaidHelperImportedIds] = useState([]);
   const [recentRaidHelperSpecConflictIds, setRecentRaidHelperSpecConflictIds] = useState([]);
-  const [raidHelperImportSession, setRaidHelperImportSession] = useState(null);
   const [itemIdEditor, setItemIdEditor] = useState(null);
 
   const {
@@ -593,6 +593,18 @@ export default function App() {
       setSelectedBisSpec(selectedMyPlayerBisSpec);
     }
   }, [activeTab, selectedMyPlayerBisSpec]);
+
+  // RaidHelper import handling (extracted to hook)
+  const {
+    raidHelperImportSession,
+    recentRaidHelperImportedIds,
+    recentRaidHelperSpecConflictIds,
+    handleImportRaidHelperJson,
+    handleUpdateRaidHelperImportEntry,
+    handleCancelRaidHelperImport,
+    handleApplyRaidHelperImport,
+    setRaidHelperImportSession
+  } = useRaidHelperImport({ roster, specsFromDb, playerStats, raidLogs, setRoster: setRosterLocal, setPlayerStats: setPlayerStatsLocal, setRaidLogs: setRaidLogsLocal, setNewRaidDate, setNewRaidZone, fetchData });
 
   const customRaidGroups = useMemo(() => {
     const grouped = raidAssignmentData?.__customBossGroups;
