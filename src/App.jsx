@@ -8,10 +8,7 @@ import GuildBankTab from './components/GuildBankTab';
 import BisConfigTab from './components/BisConfigTab';
 import AdminTodoTab from './features/admin/AdminTodoTab';
 import ResourcesTab from './features/resources/ResourcesTab';
-import ItemsDatabaseTab from './components/ItemsDatabaseTab';
-import BankRequestsTab from './components/BankRequestsTab';
-import LootCouncilTab from './components/LootCouncilTab';
-import RosterTab from './components/RosterTab';
+// component imports replaced by container wrappers
 import RosterContainer from './containers/RosterContainer';
 import ScoringContainer from './containers/ScoringContainer';
 import ItemsDatabaseContainer from './containers/ItemsDatabaseContainer';
@@ -20,11 +17,9 @@ import LootCouncilContainer from './containers/LootCouncilContainer';
 import RaidAssignmentsContainer from './containers/RaidAssignmentsContainer';
 import RaidAssignmentsHistory from './components/RaidAssignmentsHistory';
 import RaidSignupsContainer from './containers/RaidSignupsContainer';
-import ScoringTab from './components/ScoringTab';
-import RaidAssignmentsTab from './components/RaidAssignmentsTab';
 import OfficerRolesTab from './components/OfficerRolesTab';
 import DiscordBotConfigTab from './components/DiscordBotConfigTab';
-import RaidSignupsTab from './components/RaidSignupsTab';
+// replaced inline with RaidSignupsContainer
 import ItemIdEditorModal from './components/ItemIdEditorModal';
 import * as helpers from './utils/helpers';
 import { downloadCsv } from './utils/csv';
@@ -2913,16 +2908,16 @@ export default function App() {
         )}
 
         {activeTab === 'raidSignups' && (
-          <RaidSignupsTab
-            fetchData={fetchData}
-            putData={putData}
-            postData={postData}
-            deleteData={deleteData}
-            isAuthenticated={isAuthenticated}
-            specsFromDb={specsFromDb}
-            activeSection={raidSignupsSubTab}
-            onSectionChange={setRaidSignupsSubTab}
-          />
+          <RaidSignupsContainer {...{
+            fetchData,
+            putData,
+            postData,
+            deleteData,
+            isAuthenticated,
+            specsFromDb,
+            activeSection: raidSignupsSubTab,
+            onSectionChange: setRaidSignupsSubTab
+          }} />
         )}
 
         {/* =========================================
