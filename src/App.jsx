@@ -16,6 +16,9 @@ import RosterContainer from './containers/RosterContainer';
 import ScoringContainer from './containers/ScoringContainer';
 import ItemsDatabaseContainer from './containers/ItemsDatabaseContainer';
 import BankRequestsContainer from './containers/BankRequestsContainer';
+import LootCouncilContainer from './containers/LootCouncilContainer';
+import RaidAssignmentsContainer from './containers/RaidAssignmentsContainer';
+import RaidSignupsContainer from './containers/RaidSignupsContainer';
 import ScoringTab from './components/ScoringTab';
 import RaidAssignmentsTab from './components/RaidAssignmentsTab';
 import OfficerRolesTab from './components/OfficerRolesTab';
@@ -2871,25 +2874,27 @@ export default function App() {
         {activeTab === 'raidAssignments' && (
           <div className="space-y-4">
             {raidAssignmentsSubTab === 'overview' && (
-              <RaidAssignmentsTab
-                isAuthenticated={isAuthenticated}
-                roster={roster}
-                getSpecById={getSpecById}
-                enabledBosses={enabledBosses}
-                raidZones={raidZones}
-                handleToggleZone={handleToggleZone}
-                handleToggleBoss={handleToggleBoss}
-                customRaidGroups={customRaidGroups}
-                handleAddCustomRaidBoss={handleAddCustomRaidBoss}
-                handleRemoveCustomRaidBoss={handleRemoveCustomRaidBoss}
-                raidAssignmentData={raidAssignmentData}
-                setRaidAssignmentData={setRaidAssignmentData}
-                hasUnsavedChanges={raidAssignmentDataDirty || enabledBossesDirty}
-                onSaveChanges={handleSaveRaidAssignmentsChanges}
-                isSaving={isSavingRaidAssignments}
-                myPlayerName={selectedMyPlayerName}
-                actorBattleTag={bnetAuthState.user?.battletag || ''}
-                onCopyToArchive={handleCopyRaidAssignmentsToArchive}
+              <RaidAssignmentsContainer
+                {...{
+                  isAuthenticated,
+                  roster,
+                  getSpecById,
+                  enabledBosses,
+                  raidZones,
+                  handleToggleZone,
+                  handleToggleBoss,
+                  customRaidGroups,
+                  handleAddCustomRaidBoss,
+                  handleRemoveCustomRaidBoss,
+                  raidAssignmentData,
+                  setRaidAssignmentData,
+                  hasUnsavedChanges: raidAssignmentDataDirty || enabledBossesDirty,
+                  onSaveChanges: handleSaveRaidAssignmentsChanges,
+                  isSaving: isSavingRaidAssignments,
+                  myPlayerName: selectedMyPlayerName,
+                  actorBattleTag: bnetAuthState.user?.battletag || '',
+                  onCopyToArchive: handleCopyRaidAssignmentsToArchive
+                }}
               />
             )}
             {raidAssignmentsSubTab === 'history' && (
@@ -2987,42 +2992,44 @@ export default function App() {
         {activeTab === 'loot' && isAuthenticated && (
           <div className="space-y-4">
             {lootSubTab === 'assignment' && (
-              <LootCouncilTab
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-                filterZone={filterZone}
-                setFilterZone={setFilterZone}
-                uniqueZones={uniqueZones}
-                filterBoss={filterBoss}
-                setFilterBoss={setFilterBoss}
-                uniqueBosses={uniqueBosses}
-                filterSlot={filterSlot}
-                setFilterSlot={setFilterSlot}
-                filterCategory={filterCategory}
-                setFilterCategory={setFilterCategory}
-                uniqueSlots={uniqueSlots}
-                selectedItemName={selectedItemName}
-                setSelectedItemName={setSelectedItemName}
-                filteredItems={filteredItems}
-                selectedItem={selectedItem}
-                sortedEligiblePlayers={sortedEligiblePlayers}
-                getDisplayFromId={getDisplayFromId}
-                getSlugFromDisplay={getSlugFromDisplay}
-                bisPriorities={bisPriorities}
-                globalPhase={globalPhase}
-                assignments={assignments}
-                mutableItems={mutableItems}
-                getPlayerItemPriorityStatus={getPlayerItemPriorityStatus}
-                getSpecById={getSpecById}
-                getRankBadgeStyle={getRankBadgeStyle}
-                renderItemLink={renderItemLink}
-                handleSetPriority={handleSetPriority}
-                PlayerNameWithScore={PlayerNameWithScore}
-                hasUnsavedChanges={assignmentsDirty}
-                onSaveChanges={handleSaveLootCouncilChanges}
-                onClearItemAssignments={handleClearOverviewItemPriorities}
-                onToggleAwardedPriority={handleToggleAwardedPriority}
-                isSaving={isSavingLootCouncil}
+              <LootCouncilContainer
+                {...{
+                  searchQuery,
+                  setSearchQuery,
+                  filterZone,
+                  setFilterZone,
+                  uniqueZones,
+                  filterBoss,
+                  setFilterBoss,
+                  uniqueBosses,
+                  filterSlot,
+                  setFilterSlot,
+                  filterCategory,
+                  setFilterCategory,
+                  uniqueSlots,
+                  selectedItemName,
+                  setSelectedItemName,
+                  filteredItems,
+                  selectedItem,
+                  sortedEligiblePlayers,
+                  getDisplayFromId,
+                  getSlugFromDisplay,
+                  bisPriorities,
+                  globalPhase,
+                  assignments,
+                  mutableItems,
+                  getPlayerItemPriorityStatus,
+                  getSpecById,
+                  getRankBadgeStyle,
+                  renderItemLink,
+                  handleSetPriority,
+                  PlayerNameWithScore,
+                  hasUnsavedChanges: assignmentsDirty,
+                  onSaveChanges: handleSaveLootCouncilChanges,
+                  onClearItemAssignments: handleClearOverviewItemPriorities,
+                  onToggleAwardedPriority: handleToggleAwardedPriority,
+                  isSaving: isSavingLootCouncil
+                }}
               />
             )}
             {lootSubTab === 'scoring' && (
