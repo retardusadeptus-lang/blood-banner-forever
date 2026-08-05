@@ -2,7 +2,18 @@ const fs = require('fs');
 const path = require('path');
 const { db, ensureDatabaseReady } = require('../config/database');
 
-const csvPath = path.join(__dirname, '..', '..', 'src', 'wowheaditemlist.csv');
+const csvPath = (() => {
+  const envPath = process.env.WOWHEAD_ITEM_LIST_PATH;
+  if (envPath) return path.resolve(envPath);
+
+  const candidates = [
+    path.join(__dirname, '..', '..', 'src', 'wowheaditemlist.csv'),
+    path.join(__dirname, '..', '..', 'src', 'archive', 'wowheaditemlist.csv'),
+    path.join(__dirname, '..', 'BIS Lists', 'wowheaditemlist.csv'),
+  ];
+
+  return candidates.find(candidate => fs.existsSync(candidate)) || candidates[0];
+})();
 
 function parseCsvLine(line) {
   const values = [];

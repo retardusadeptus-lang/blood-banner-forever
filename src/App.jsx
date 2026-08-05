@@ -194,6 +194,10 @@ export default function App() {
     setDbNewItemId,
     dbSearch,
     setDbSearch,
+    dbPageSize,
+    setDbPageSize,
+    dbPage,
+    setDbPage,
     showMissingWowheadFilter,
     setShowMissingWowheadFilter,
     showWowheadNameMismatchFilter,
@@ -206,6 +210,7 @@ export default function App() {
     handleAddItemToDb,
     handleUpdateItemEligibility,
     handleUpdateItemId,
+    handleUpdateItemSource,
     handleDeleteItemFromDb,
     handleSaveItemsDbChanges,
   } = useItemsDatabase({
@@ -2248,6 +2253,7 @@ export default function App() {
     const normalized = String(slotName || '').trim().toLowerCase();
     if (['rings', 'ring', 'ring 1', 'ring 2', 'ring 1/2', 'finger', 'fingers', 'finger 1', 'finger 2'].includes(normalized)) return 'ring';
     if (['trinkets', 'trinket', 'trinket 1', 'trinket 2', 'trinket 1/2'].includes(normalized)) return 'trinket';
+    if (['two-hand', 'main hand', 'off hand', 'one hand', 'weapon'].includes(normalized)) return 'weapon';
     return normalized;
   };
 
@@ -3394,6 +3400,10 @@ export default function App() {
                 handleAddItemToDb={handleAddItemToDb}
                 dbSearch={dbSearch}
                 setDbSearch={setDbSearch}
+                dbPageSize={dbPageSize}
+                setDbPageSize={setDbPageSize}
+                dbPage={dbPage}
+                setDbPage={setDbPage}
                 showMissingWowheadFilter={showMissingWowheadFilter}
                 setShowMissingWowheadFilter={setShowMissingWowheadFilter}
                 showWowheadNameMismatchFilter={showWowheadNameMismatchFilter}
@@ -3403,6 +3413,7 @@ export default function App() {
                 dbBisPriorities={dbBisPriorities}
                 handleUpdateItemEligibility={handleUpdateItemEligibility}
                 handleUpdateItemId={handleUpdateItemId}
+                handleUpdateItemSource={handleUpdateItemSource}
                 handleDeleteItemFromDb={handleDeleteItemFromDb}
                 renderItemLink={renderItemLink}
                 masterItemsDbPhase={masterItemsDbPhase}
@@ -3621,6 +3632,7 @@ export default function App() {
             dbBisPriorities={dbBisPriorities}
             handleUpdateItemEligibility={handleUpdateItemEligibility}
             handleUpdateItemId={handleUpdateItemId}
+            handleUpdateItemSource={handleUpdateItemSource}
             handleDeleteItemFromDb={handleDeleteItemFromDb}
             renderItemLink={renderItemLink}
             masterItemsDbPhase={masterItemsDbPhase}

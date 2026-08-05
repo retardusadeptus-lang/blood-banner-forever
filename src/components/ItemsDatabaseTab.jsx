@@ -15,6 +15,10 @@ export default function ItemsDatabaseTab({
   handleAddItemToDb,
   dbSearch,
   setDbSearch,
+  dbPageSize,
+  setDbPageSize,
+  dbPage,
+  setDbPage,
   showMissingWowheadFilter,
   setShowMissingWowheadFilter,
   showWowheadNameMismatchFilter,
@@ -24,6 +28,7 @@ export default function ItemsDatabaseTab({
   dbBisPriorities,
   handleUpdateItemEligibility,
   handleUpdateItemId,
+  handleUpdateItemSource,
   handleDeleteItemFromDb,
   renderItemLink,
   masterItemsDbPhase,
@@ -32,6 +37,13 @@ export default function ItemsDatabaseTab({
   onSaveChanges,
   isSaving
 }) {
+  const resolvedPageSize = Number.isFinite(Number(dbPageSize)) ? Number(dbPageSize) : 25;
+  const resolvedPage = Number.isFinite(Number(dbPage)) ? Number(dbPage) : 1;
+  const totalPages = Math.max(1, Math.ceil(dbFilteredItems.length / Math.max(1, resolvedPageSize)));
+  const safePage = Math.min(Math.max(1, resolvedPage), totalPages);
+  const startIndex = (safePage - 1) * resolvedPageSize;
+  const visibleItems = dbFilteredItems.slice(startIndex, startIndex + resolvedPageSize);
+
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
       
@@ -90,6 +102,22 @@ export default function ItemsDatabaseTab({
               {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
             </select>
           </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-widest">Rows:</label>
+            <select
+              value={resolvedPageSize}
+              onChange={e => {
+                const nextSize = Number(e.target.value);
+                setDbPageSize(nextSize);
+                setDbPage(1);
+              }}
+              className="bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none cursor-pointer font-bold shadow-inner"
+            >
+              <option value={25}>25</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+            </select>
+          </div>
           <input type="text" placeholder="Filter items list..." className="bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none flex-1 sm:flex-none sm:w-64 shadow-inner" value={dbSearch} onChange={e => setDbSearch(e.target.value)} />
           <label className="flex items-center gap-2 cursor-pointer bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-sm font-semibold text-slate-300 hover:bg-slate-900 transition whitespace-nowrap">
             <input
@@ -127,18 +155,45 @@ export default function ItemsDatabaseTab({
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-800/60 text-xs font-medium">
-            {dbFilteredItems.map(item => (
+            {visibleItems.map(item => (
               <tr key={item.id || item.name} className="hover:bg-slate-900/30 group">
                 <td className="p-3 sticky left-0 bg-slate-950 group-hover:bg-slate-900/90 border-r border-slate-800 transition-colors shadow-[2px_0_5px_rgba(0,0,0,0.3)] min-w-[200px]">
                   <div className="truncate mb-0.5">{renderItemLink(item, "font-bold text-purple-400")}</div>
                   <div className="mt-1 text-[10px] text-slate-500 font-medium italic">
                     Stored name: <span className="text-slate-400">{item.name}</span>
                   </div>
-                  <div className="flex gap-2 flex-wrap text-slate-500 uppercase tracking-wide text-[10px] font-semibold">
-                    <span className="truncate">{item.boss} ({item.zone})</span>
-                    {item.drop_chance && (
-                      <span className="text-cyan-400/80 flex-shrink-0">{(item.drop_chance * 100).toFixed(0)}% Drop</span>
-                    )}
+                  <div className="mt-1 space-y-1">
+                    <div className="flex flex-col gap-1 text-[10px] text-slate-500 font-semibold">
+                      <label className="flex items-center gap-2 text-slate-400">
+                        <span className="w-11 shrink-0">Zone</span>
+                        <input
+                          type="text"
+                          value={item.source || ''}
+                          onChange={(e) => handleUpdateItemSource(item.id, 'source', e.target.value)}
+                          className="w-full rounded border border-slate-700 bg-slate-900 px-2 py-1 text-[10px] text-slate-200 focus:outline-none"
+                          placeholder="Black Temple"
+                        />
+                      </label>
+                      <label className="flex items-center gap-2 text-slate-400">
+                        <span className="w-11 shrink-0">Boss</span>
+                        <input
+                          type="text"
+                          value={item.source_type || ''}
+                          onChange={(e) => handleUpdateItemSource(item.id, 'source_type', e.target.value)}
+                          className="w-full rounded border border-slate-700 bg-slate-900 px-2 py-1 text-[10px] text-slate-200 focus:outline-none"
+                          placeholder="Illidan Stormrage"
+                        />
+                      </label>
+                    </div>
+                    <div className="flex gap-2 flex-wrap text-slate-500 uppercase tracking-wide text-[10px] font-semibold">
+                      <span className="truncate">
+                        {item.source || item.zone || 'No source'}
+                        {item.source_type && item.source ? ` / ${item.source_type}` : item.source_type ? ` ${item.source_type}` : ''}
+                      </span>
+                      {item.drop_chance && (
+                        <span className="text-cyan-400/80 flex-shrink-0">{(item.drop_chance * 100).toFixed(0)}% Drop</span>
+                      )}
+                    </div>
                   </div>
                 </td>
                 <td className="p-2 border-r border-slate-900 text-center">
@@ -174,11 +229,36 @@ export default function ItemsDatabaseTab({
                 </td>
               </tr>
             ))}
-            {dbFilteredItems.length === 0 && (
+            {visibleItems.length === 0 && (
               <tr><td colSpan={specsSortedByClass.length + 4} className="p-8 text-center text-slate-600 italic">No matching items found in the database matrix rows.</td></tr>
             )}
           </tbody>
         </table>
+      </div>
+
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-1 pt-2 text-xs text-slate-400">
+        <div>
+          Showing {dbFilteredItems.length === 0 ? 0 : startIndex + 1}-{Math.min(startIndex + resolvedPageSize, dbFilteredItems.length)} of {dbFilteredItems.length} items
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setDbPage(prev => Math.max(1, prev - 1))}
+            disabled={safePage <= 1}
+            className="rounded border border-slate-700 bg-slate-950 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-slate-300 transition disabled:cursor-not-allowed disabled:opacity-40 hover:border-slate-500"
+          >
+            Prev
+          </button>
+          <span className="min-w-[72px] text-center text-slate-300 font-semibold">Page {safePage}/{totalPages}</span>
+          <button
+            type="button"
+            onClick={() => setDbPage(prev => Math.min(totalPages, prev + 1))}
+            disabled={safePage >= totalPages}
+            className="rounded border border-slate-700 bg-slate-950 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-slate-300 transition disabled:cursor-not-allowed disabled:opacity-40 hover:border-slate-500"
+          >
+            Next
+          </button>
+        </div>
       </div>
     </section>
   );

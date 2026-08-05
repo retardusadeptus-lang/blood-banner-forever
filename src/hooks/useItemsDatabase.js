@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function useItemsDatabase({
   fetchData,
@@ -22,11 +22,17 @@ export function useItemsDatabase({
   const [dbNewBoss, setDbNewBoss] = useState(p2Bosses[0]);
   const [dbNewItemId, setDbNewItemId] = useState('');
   const [dbSearch, setDbSearch] = useState('');
+  const [dbPageSize, setDbPageSize] = useState(25);
+  const [dbPage, setDbPage] = useState(1);
   const [showMissingWowheadFilter, setShowMissingWowheadFilter] = useState(false);
   const [showWowheadNameMismatchFilter, setShowWowheadNameMismatchFilter] = useState(false);
   const [dbBisPrioritiesDirty, setDbBisPrioritiesDirty] = useState(false);
   const [mutableItemsDirty, setMutableItemsDirty] = useState(false);
   const [isSavingItemsDb, setIsSavingItemsDb] = useState(false);
+
+  useEffect(() => {
+    setDbPage(1);
+  }, [dbSearch, showMissingWowheadFilter, showWowheadNameMismatchFilter, masterItemsDbPhase]);
 
   const setBisPriorities = (newVal) => {
     setBisPrioritiesLocal(newVal);
@@ -52,6 +58,8 @@ export function useItemsDatabase({
       const newItem = await postData('items', {
         name: dbNewName.trim(),
         slot: dbNewSlot,
+        source: dbNewZone,
+        source_type: dbNewBoss,
         zone: dbNewZone,
         boss: dbNewBoss,
         itemId: dbNewItemId.trim()
@@ -88,6 +96,27 @@ export function useItemsDatabase({
     setMutableItemsDirty(true);
   };
 
+  const handleUpdateItemSource = (id, field, value) => {
+    setMutableItemsLocal(mutableItems.map(item => {
+      if (item.id !== id) return item;
+
+      const nextItem = { ...item, [field]: value };
+      const sourceDetails = {
+        source: field === 'source' ? value : (item.source ?? ''),
+        source_type: field === 'source_type' ? value : (item.source_type ?? ''),
+      };
+
+      return {
+        ...nextItem,
+        source: sourceDetails.source,
+        source_type: sourceDetails.source_type,
+        zone: sourceDetails.source || (field === 'source' ? value : item.zone || ''),
+        boss: sourceDetails.source_type || (field === 'source_type' ? value : item.boss || ''),
+      };
+    }));
+    setMutableItemsDirty(true);
+  };
+
   const handleDeleteItemFromDb = async (id, itemName) => {
     if (!window.confirm(`Permanently remove "${itemName}" from the master loot tables?`)) return;
 
@@ -114,12 +143,22 @@ export function useItemsDatabase({
 
       if (mutableItemsDirty) {
         const baselineById = new Map(mutableItemsBaseline.map(item => [item.id, item]));
-        const changedIds = mutableItems.filter(item => {
+        const changedItems = mutableItems.filter(item => {
           const baselineItem = baselineById.get(item.id);
-          return baselineItem && String(baselineItem.itemId || '') !== String(item.itemId || '');
+          if (!baselineItem) return false;
+
+          return (
+            String(baselineItem.itemId || '') !== String(item.itemId || '') ||
+            String(baselineItem.source || '') !== String(item.source || '') ||
+            String(baselineItem.source_type || '') !== String(item.source_type || '')
+          );
         });
 
-        await Promise.all(changedIds.map(item => putData(`items/${item.id}`, { itemId: item.itemId || '' })));
+        await Promise.all(changedItems.map(item => putData(`items/${item.id}`, {
+          itemId: item.itemId || '',
+          source: item.source || '',
+          source_type: item.source_type || '',
+        })));
       }
 
       const refreshedItems = await fetchData('mutable-items');
@@ -158,6 +197,10 @@ export function useItemsDatabase({
     setDbNewItemId,
     dbSearch,
     setDbSearch,
+    dbPageSize,
+    setDbPageSize,
+    dbPage,
+    setDbPage,
     showMissingWowheadFilter,
     setShowMissingWowheadFilter,
     showWowheadNameMismatchFilter,
@@ -171,6 +214,7 @@ export function useItemsDatabase({
     handleAddItemToDb,
     handleUpdateItemEligibility,
     handleUpdateItemId,
+    handleUpdateItemSource,
     handleDeleteItemFromDb,
     handleSaveItemsDbChanges,
   };
