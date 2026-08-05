@@ -49,7 +49,8 @@ COPY guild-loot-api/ ./guild-loot-api/
 
 # Keep importer input available in production container.
 # guild-loot-api/scripts/import-wowhead-item-list.js reads /app/src/wowheaditemlist.csv.
-COPY --from=builder /app/src/wowheaditemlist.csv /app/src/wowheaditemlist.csv
+# The CSV lives in `src/archive` in the repo; copy it from the build context.
+COPY src/archive/wowheaditemlist.csv /app/src/wowheaditemlist.csv
 
 # Ensure the working app root is the same in all environments when scripts are run on the container.
 ENV BIS_CSV_PATH="/app/guild-loot-api/BIS Lists/all-bis-items.csv"
