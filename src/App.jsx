@@ -13,6 +13,9 @@ import BankRequestsTab from './components/BankRequestsTab';
 import LootCouncilTab from './components/LootCouncilTab';
 import RosterTab from './components/RosterTab';
 import RosterContainer from './containers/RosterContainer';
+import ScoringContainer from './containers/ScoringContainer';
+import ItemsDatabaseContainer from './containers/ItemsDatabaseContainer';
+import BankRequestsContainer from './containers/BankRequestsContainer';
 import ScoringTab from './components/ScoringTab';
 import RaidAssignmentsTab from './components/RaidAssignmentsTab';
 import OfficerRolesTab from './components/OfficerRolesTab';
@@ -2696,29 +2699,7 @@ export default function App() {
             )}
             {bankSubTab === 'requests' && (
               isAuthenticated ? (
-                <BankRequestsTab
-                  bankRequests={visibleBankRequests}
-                  roster={roster}
-                  specsByName={specsByName}
-                  getDisplayFromId={getDisplayFromId}
-                  respondingRequestId={respondingRequestId}
-                  setRespondingRequestId={setRespondingRequestId}
-                  approveQuantity={approveQuantity}
-                  setApproveQuantity={setApproveQuantity}
-                  approvePrice={approvePrice}
-                  setApprovePrice={setApprovePrice}
-                  approveNote={approveNote}
-                  setApproveNote={setApproveNote}
-                  denyReason={denyReason}
-                  setDenyReason={setDenyReason}
-                  denyCustomReason={denyCustomReason}
-                  setDenyCustomReason={setDenyCustomReason}
-                  handleResolveBankRequest={handleResolveBankRequest}
-                  handleBulkResolveBankRequests={handleBulkResolveBankRequests}
-                  archivedBankRequests={archivedBankRequests}
-                  onArchiveBankRequests={handleArchiveBankRequests}
-                  onRestoreArchivedBankRequests={handleRestoreArchivedBankRequests}
-                />
+                <BankRequestsContainer {...bankRequestsProps} />
               ) : (
                 <div className="bg-slate-950 border border-slate-800 rounded-xl p-8 text-center text-slate-400">
                   <h3 className="text-lg font-bold text-slate-200 mb-2">Officer login required</h3>
@@ -2997,29 +2978,7 @@ export default function App() {
       TAB: BANK REQUESTS (AUTH-GATED)
       ========================================= */}
         {activeTab === 'bankRequests' && isAuthenticated && (
-          <BankRequestsTab
-            bankRequests={visibleBankRequests}
-            roster={roster}
-            specsByName={specsByName}
-            getDisplayFromId={getDisplayFromId}
-            respondingRequestId={respondingRequestId}
-            setRespondingRequestId={setRespondingRequestId}
-            approveQuantity={approveQuantity}
-            setApproveQuantity={setApproveQuantity}
-            approvePrice={approvePrice}
-            setApprovePrice={setApprovePrice}
-            approveNote={approveNote}
-            setApproveNote={setApproveNote}
-            denyReason={denyReason}
-            setDenyReason={setDenyReason}
-            denyCustomReason={denyCustomReason}
-            setDenyCustomReason={setDenyCustomReason}
-            handleResolveBankRequest={handleResolveBankRequest}
-            handleBulkResolveBankRequests={handleBulkResolveBankRequests}
-            archivedBankRequests={archivedBankRequests}
-            onArchiveBankRequests={handleArchiveBankRequests}
-            onRestoreArchivedBankRequests={handleRestoreArchivedBankRequests}
-          />
+          <BankRequestsContainer {...bankRequestsProps} />
         )}
 
         {/* =========================================
@@ -3067,24 +3026,7 @@ export default function App() {
               />
             )}
             {lootSubTab === 'scoring' && (
-              <ScoringTab
-                scoringConfig={scoringConfig}
-                setScoringConfig={setScoringConfig}
-                roster={roster}
-                playerStats={playerStats}
-                expandedPlayerId={expandedPlayerId}
-                setExpandedPlayerId={setExpandedPlayerId}
-                getSpecById={getSpecById}
-                getDisplayFromId={getDisplayFromId}
-                calculateAttendance={calculateAttendance}
-                updatePlayerStat={updatePlayerStat}
-                updatePlayerParse={updatePlayerParse}
-                updatePlayerManualAdjustment={updatePlayerManualAdjustment}
-                PlayerNameWithScore={PlayerNameWithScore}
-                hasUnsavedChanges={scoringConfigDirty || playerStatsDirty}
-                onSaveChanges={handleSaveScoringChanges}
-                isSaving={isSavingScoring}
-              />
+              <ScoringContainer {...scoringTabProps} />
             )}
             {lootSubTab === 'roster' && (
               <RosterContainer {...rosterTabProps} />
@@ -3139,6 +3081,86 @@ export default function App() {
           <RosterContainer {...rosterTabProps} />
         )}
 
+        const scoringTabProps = {
+          scoringConfig,
+          setScoringConfig,
+          roster,
+          playerStats,
+          expandedPlayerId,
+          setExpandedPlayerId,
+          getSpecById,
+          getDisplayFromId,
+          calculateAttendance,
+          updatePlayerStat,
+          updatePlayerParse,
+          updatePlayerManualAdjustment,
+          PlayerNameWithScore,
+          hasUnsavedChanges: scoringConfigDirty || playerStatsDirty,
+          onSaveChanges: handleSaveScoringChanges,
+          isSaving: isSavingScoring
+        };
+
+        const itemsDbTabProps = {
+          dbNewName,
+          setDbNewName,
+          dbNewSlot,
+          setDbNewSlot,
+          dbNewZone,
+          setDbNewZone,
+          dbNewBoss,
+          setDbNewBoss,
+          dbNewItemId,
+          setDbNewItemId,
+          handleAddItemToDb,
+          dbSearch,
+          setDbSearch,
+          dbPageSize,
+          setDbPageSize,
+          dbPage,
+          setDbPage,
+          showMissingWowheadFilter,
+          setShowMissingWowheadFilter,
+          showWowheadNameMismatchFilter,
+          setShowWowheadNameMismatchFilter,
+          dbFilteredItems,
+          specsSortedByClass,
+          dbBisPriorities,
+          handleUpdateItemEligibility,
+          handleUpdateItemId,
+          handleUpdateItemSource,
+          handleDeleteItemFromDb,
+          renderItemLink,
+          masterItemsDbPhase,
+          setMasterItemsDbPhase,
+          hasUnsavedChanges: dbBisPrioritiesDirty || mutableItemsDirty,
+          onSaveChanges: handleSaveItemsDbChanges,
+          isSaving: isSavingItemsDb
+        };
+
+        const bankRequestsProps = {
+          bankRequests: visibleBankRequests,
+          roster,
+          specsByName,
+          getDisplayFromId,
+          respondingRequestId,
+          setRespondingRequestId,
+          approveQuantity,
+          setApproveQuantity,
+          approvePrice,
+          setApprovePrice,
+          approveNote,
+          setApproveNote,
+          denyReason,
+          setDenyReason,
+          denyCustomReason,
+          setDenyCustomReason,
+          handleResolveBankRequest,
+          handleBulkResolveBankRequests,
+          archivedBankRequests,
+          onArchiveBankRequests: handleArchiveBankRequests,
+          onRestoreArchivedBankRequests: handleRestoreArchivedBankRequests
+        };
+
         {activeTab === 'officerRoles' && isAuthenticated && (
           <div className="space-y-4">
             {adminSubTab === 'officerRoles' && (
@@ -3170,42 +3192,7 @@ export default function App() {
               />
             )}
             {adminSubTab === 'itemsdb' && (
-              <ItemsDatabaseTab
-                dbNewName={dbNewName}
-                setDbNewName={setDbNewName}
-                dbNewSlot={dbNewSlot}
-                setDbNewSlot={setDbNewSlot}
-                dbNewZone={dbNewZone}
-                setDbNewZone={setDbNewZone}
-                dbNewBoss={dbNewBoss}
-                setDbNewBoss={setDbNewBoss}
-                dbNewItemId={dbNewItemId}
-                setDbNewItemId={setDbNewItemId}
-                handleAddItemToDb={handleAddItemToDb}
-                dbSearch={dbSearch}
-                setDbSearch={setDbSearch}
-                dbPageSize={dbPageSize}
-                setDbPageSize={setDbPageSize}
-                dbPage={dbPage}
-                setDbPage={setDbPage}
-                showMissingWowheadFilter={showMissingWowheadFilter}
-                setShowMissingWowheadFilter={setShowMissingWowheadFilter}
-                showWowheadNameMismatchFilter={showWowheadNameMismatchFilter}
-                setShowWowheadNameMismatchFilter={setShowWowheadNameMismatchFilter}
-                dbFilteredItems={dbFilteredItems}
-                specsSortedByClass={specsSortedByClass}
-                dbBisPriorities={dbBisPriorities}
-                handleUpdateItemEligibility={handleUpdateItemEligibility}
-                handleUpdateItemId={handleUpdateItemId}
-                handleUpdateItemSource={handleUpdateItemSource}
-                handleDeleteItemFromDb={handleDeleteItemFromDb}
-                renderItemLink={renderItemLink}
-                masterItemsDbPhase={masterItemsDbPhase}
-                setMasterItemsDbPhase={setMasterItemsDbPhase}
-                hasUnsavedChanges={dbBisPrioritiesDirty || mutableItemsDirty}
-                onSaveChanges={handleSaveItemsDbChanges}
-                isSaving={isSavingItemsDb}
-              />
+              <ItemsDatabaseContainer {...itemsDbTabProps} />
             )}
             {adminSubTab === 'todo' && (
               <AdminTodoTab
@@ -3239,24 +3226,7 @@ export default function App() {
               TAB: SCORING & CONFIG
               ========================================= */}
         {activeTab === 'scoring' && isAuthenticated && (
-          <ScoringTab
-            scoringConfig={scoringConfig}
-            setScoringConfig={setScoringConfig}
-            roster={roster}
-            playerStats={playerStats}
-            expandedPlayerId={expandedPlayerId}
-            setExpandedPlayerId={setExpandedPlayerId}
-            getSpecById={getSpecById}
-            getDisplayFromId={getDisplayFromId}
-            calculateAttendance={calculateAttendance}
-            updatePlayerStat={updatePlayerStat}
-            updatePlayerParse={updatePlayerParse}
-            updatePlayerManualAdjustment={updatePlayerManualAdjustment}
-            PlayerNameWithScore={PlayerNameWithScore}
-            hasUnsavedChanges={scoringConfigDirty || playerStatsDirty}
-            onSaveChanges={handleSaveScoringChanges}
-            isSaving={isSavingScoring}
-          />
+          <ScoringContainer {...scoringTabProps} />
         )}
 
         {/* =========================================
@@ -3279,38 +3249,7 @@ export default function App() {
               TAB: MASTER ITEMS DATABASE EDITING TABLE
               ========================================= */}
         {activeTab === 'itemsdb' && isAuthenticated && (
-          <ItemsDatabaseTab
-            dbNewName={dbNewName}
-            setDbNewName={setDbNewName}
-            dbNewSlot={dbNewSlot}
-            setDbNewSlot={setDbNewSlot}
-            dbNewZone={dbNewZone}
-            setDbNewZone={setDbNewZone}
-            dbNewBoss={dbNewBoss}
-            setDbNewBoss={setDbNewBoss}
-            dbNewItemId={dbNewItemId}
-            setDbNewItemId={setDbNewItemId}
-            handleAddItemToDb={handleAddItemToDb}
-            dbSearch={dbSearch}
-            setDbSearch={setDbSearch}
-            showMissingWowheadFilter={showMissingWowheadFilter}
-            setShowMissingWowheadFilter={setShowMissingWowheadFilter}
-            showWowheadNameMismatchFilter={showWowheadNameMismatchFilter}
-            setShowWowheadNameMismatchFilter={setShowWowheadNameMismatchFilter}
-            dbFilteredItems={dbFilteredItems}
-            specsSortedByClass={specsSortedByClass}
-            dbBisPriorities={dbBisPriorities}
-            handleUpdateItemEligibility={handleUpdateItemEligibility}
-            handleUpdateItemId={handleUpdateItemId}
-            handleUpdateItemSource={handleUpdateItemSource}
-            handleDeleteItemFromDb={handleDeleteItemFromDb}
-            renderItemLink={renderItemLink}
-            masterItemsDbPhase={masterItemsDbPhase}
-            setMasterItemsDbPhase={setMasterItemsDbPhase}
-            hasUnsavedChanges={dbBisPrioritiesDirty || mutableItemsDirty}
-            onSaveChanges={handleSaveItemsDbChanges}
-            isSaving={isSavingItemsDb}
-          />
+          <ItemsDatabaseContainer {...itemsDbTabProps} />
         )}
 
         <BnetClaimModal
