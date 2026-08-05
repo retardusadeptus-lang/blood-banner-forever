@@ -218,15 +218,31 @@ export default function App() {
     setSelectedItemName,
   });
 
-  // Bank state
-  const [bankItems, setBankItems] = useState([]);
-  const [bankRequests, setBankRequests] = useState([]);
-  const [bankSearch, setBankSearch] = useState('');
+  // Bank state (useBankData hook)
+  const {
+    bankItems,
+    bankRequests,
+    bankSearch,
+    setBankSearch,
+    bankArchivedRequestIds,
+    setBankArchivedRequestIds,
+    bankUploadParsed,
+    bankUploadStatus,
+    bankUploadMeta,
+    setBankUploadMeta,
+    handleUploadBankLuaFile,
+    handleParseBankUpdateJson,
+    handleSaveBankUpload,
+    bankContentsHistory,
+    setBankContentsHistory,
+    exportBankContentsHistoryCsv,
+    setBankItems,
+    setBankRequests
+  } = useBankData({ fetchData, putData, isAuthenticated });
+
   const [denyReason, setDenyReason] = useState('');
   const [approvePrice, setApprovePrice] = useState('');
   const [respondingRequestId, setRespondingRequestId] = useState(null);
-  const [bankUploadParsed, setBankUploadParsed] = useState(null);
-  const [bankUploadStatus, setBankUploadStatus] = useState('');
   const [denyCustomReason, setDenyCustomReason] = useState('');
   const [approveQuantity, setApproveQuantity] = useState('');
   const [approveNote, setApproveNote] = useState('');
@@ -428,19 +444,13 @@ export default function App() {
     localStorage.setItem('active-tab', activeTab);
   }, [activeTab]);
 
-  useEffect(() => {
-    localStorage.setItem('bank-archived-request-ids', JSON.stringify(bankArchivedRequestIds));
-  }, [bankArchivedRequestIds]);
-
 
 
   useEffect(() => {
     localStorage.setItem('raid-assignment-archives', JSON.stringify(raidAssignmentArchives));
   }, [raidAssignmentArchives]);
 
-  useEffect(() => {
-    localStorage.setItem('bank-contents-history', JSON.stringify(bankContentsHistory));
-  }, [bankContentsHistory]);
+  // bankArchivedRequestIds and bankContentsHistory are persisted inside useBankData
 
   // If a saved tab requires auth and the session is locked, fall back safely.
   useEffect(() => {
