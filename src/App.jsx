@@ -21,6 +21,8 @@ import ItemIdEditorModal from './components/ItemIdEditorModal';
 import * as helpers from './utils/helpers';
 import { downloadCsv } from './utils/csv';
 import useRaidHelperImport from './hooks/useRaidHelperImport';
+import useBankData from './hooks/useBankData';
+import useAuthSession from './hooks/useAuthSession';
 
 const CORE_SYNC_INTERVAL_MS = 15000;
 const BANK_SYNC_INTERVAL_MS = 20000;
@@ -93,14 +95,28 @@ export default function App() {
   // ==========================================
   // 1. ALL LOCAL UI AND FILTER STATES
   // ==========================================
-  const [isAuthenticated, setIsAuthenticated] = useState(() => sessionStorage.getItem('ar-auth') === 'true');
   const [passwordInput, setPasswordInput] = useState('');
   const [globalMyPlayerId, setGlobalMyPlayerId] = useState(() => localStorage.getItem('my-player-id') || '');
-  const [showBnetClaimModal, setShowBnetClaimModal] = useState(false);
-  const [bnetAuthState, setBnetAuthState] = useState({ loading: true, authenticated: false, user: null, claimedCharacters: [], error: '', characters: [], diagnostics: [], showBnetCharacterLookup: false });
   const [wowheadNameCache, setWowheadNameCache] = useState({});
-  const [bnetClaimBusy, setBnetClaimBusy] = useState(false);
-  const [rosterClaims, setRosterClaims] = useState([]);
+
+  const {
+    isAuthenticated,
+    setIsAuthenticated,
+    handleLogin,
+    handleLogout,
+    bnetAuthState,
+    bnetClaimBusy,
+    showBnetClaimModal,
+    setShowBnetClaimModal,
+    handleBattleNetLogin,
+    handleBattleNetLogout,
+    handleBattleNetClaim,
+    handleBattleNetManualClaim,
+    refreshBattleNetAuth,
+    rosterClaims,
+    refreshRosterClaims,
+    handleUnclaimClaim
+  } = useAuthSession({ fetchData, setRoster: setRosterLocal, setRosterDirty });
 
   // Global phase selector (controls which phase's assignments are shown)
   const [globalPhase, setGlobalPhase] = useState('T5');
@@ -822,139 +838,15 @@ export default function App() {
     );
   };
 
-  // ==========================================
-  // 6. ACTIONS & LOGIC
-  // ==========================================
-  const handleLogin = async (e) => {
+  // Auth/session handlers are provided by `useAuthSession` hook.
+  const handleLoginSubmit = async (e) => {
     if (e) e.preventDefault();
-    const token = await login(passwordInput);
-    if (token) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem('ar-auth-token', token); // session token, not the password
-      sessionStorage.setItem('ar-auth', 'true');
+    const ok = await handleLogin(passwordInput);
+    if (ok) {
       setPasswordInput('');
     } else {
-      alert("Incorrect password! Access Denied.");
+      alert('Incorrect password! Access Denied.');
       setPasswordInput('');
-    }
-  };
-
-  const refreshBattleNetAuth = async () => {
-    setBnetAuthState(prev => ({ ...prev, loading: true, error: '' }));
-    try {
-      const me = await getBattleNetAuthMe();
-      const authenticated = Boolean(me?.authenticated);
-      setBnetAuthState({
-        loading: false,
-        authenticated,
-        user: me?.user || null,
-        claimedCharacters: me?.claimedCharacters || [],
-        error: '',
-        characters: [],
-        diagnostics: [],
-        showBnetCharacterLookup: authenticated
-      });
-    } catch (error) {
-      setBnetAuthState({
-        loading: false,
-        authenticated: false,
-        user: null,
-        claimedCharacters: [],
-        error: error.message || 'Battle.net session unavailable.',
-        characters: [],
-        diagnostics: [],
-        showBnetCharacterLookup: false
-      });
-    }
-  };
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const authState = params.get('auth');
-    if (authState === 'success' || authState === 'failed') {
-      const nextUrl = `${window.location.pathname}${window.location.hash}`;
-      window.history.replaceState({}, '', nextUrl);
-    }
-    refreshBattleNetAuth();
-  }, []);
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    sessionStorage.removeItem('ar-auth');
-    sessionStorage.removeItem('ar-auth-token');
-  };
-
-  const handleBattleNetLogin = () => {
-    startBattleNetLogin();
-  };
-
-  const handleBattleNetLogout = async () => {
-    try {
-      await logoutBattleNet();
-    } catch (error) {
-      console.error('Failed to log out from Battle.net:', error);
-    } finally {
-      await refreshBattleNetAuth();
-    }
-  };
-
-  const handleBattleNetClaim = async (character) => {
-    setBnetClaimBusy(true);
-    setBnetAuthState(prev => ({ ...prev, error: '' }));
-    try {
-      await claimRosterCharacter({ characterName: character.name, realmSlug: character.realmSlug });
-      const rosterData = await fetchData('roster');
-      setRosterLocal(rosterData);
-      setRosterDirty(false);
-      await refreshBattleNetAuth();
-      setShowBnetClaimModal(false);
-    } catch (error) {
-      setBnetAuthState(prev => ({ ...prev, error: error.message || 'Failed to claim roster character.' }));
-    } finally {
-      setBnetClaimBusy(false);
-    }
-  };
-
-  const refreshRosterClaims = async () => {
-    if (!isAuthenticated) {
-      setRosterClaims([]);
-      return;
-    }
-    try {
-      const data = await getRosterClaimsAdmin();
-      setRosterClaims(data.claims || []);
-    } catch (error) {
-      setRosterClaims([]);
-    }
-  };
-
-  const handleUnclaimClaim = async (claim) => {
-    try {
-      await unclaimRosterCharacterAdmin({ rosterId: claim.rosterId });
-      const rosterData = await fetchData('roster');
-      setRosterLocal(rosterData);
-      setRosterDirty(false);
-      await refreshBattleNetAuth();
-      await refreshRosterClaims();
-    } catch (error) {
-      setBnetAuthState(prev => ({ ...prev, error: error.message || 'Failed to clear the claim.' }));
-    }
-  };
-
-  const handleBattleNetManualClaim = async (player) => {
-    setBnetClaimBusy(true);
-    setBnetAuthState(prev => ({ ...prev, error: '' }));
-    try {
-      await claimRosterCharacterManual({ rosterId: player.id, battletag: bnetAuthState.user?.battletag || '' });
-      const rosterData = await fetchData('roster');
-      setRosterLocal(rosterData);
-      setRosterDirty(false);
-      await refreshBattleNetAuth();
-      setShowBnetClaimModal(false);
-    } catch (error) {
-      setBnetAuthState(prev => ({ ...prev, error: error.message || 'Failed to claim roster character.' }));
-    } finally {
-      setBnetClaimBusy(false);
     }
   };
 
@@ -2696,7 +2588,7 @@ export default function App() {
                     <button onClick={handleLogout} className="ml-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-slate-200 h-6 flex items-center">Logout</button>
                   </>
                 ) : (
-                  <form onSubmit={handleLogin} className="flex items-center gap-2">
+                  <form onSubmit={handleLoginSubmit} className="flex items-center gap-2">
                     <input type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} className="bg-slate-950 text-white border border-slate-700 rounded px-2 py-1.5 text-[11px] leading-none focus:outline-none focus:ring-1 focus:ring-amber-500 tracking-widest h-6 w-36" placeholder="Officer Password" />
                     <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-1 px-3 rounded transition shadow-lg tracking-wider uppercase text-[11px] h-6 flex items-center justify-center">Unlock</button>
                   </form>
