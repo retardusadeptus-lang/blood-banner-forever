@@ -19,3 +19,18 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #4a3b22;
 }
+
+/* Wowhead tooltip icon overrides moved from App.jsx inline styles */
+.character-slot-icon .iconlarge {
+  width: 30px !important;
+  height: 30px !important;
+  display: block !important;
+}
+.character-slot-icon .iconlarge ins {
+  width: 32px !important;
+  height: 32px !important;
+}
+.overview-tab .character-slot-icon .iconlarge {
+  margin-top: -4px !important;
+  margin-left: -4px !important;
+}

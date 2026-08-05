@@ -15,6 +15,8 @@ import RaidAssignmentsTab from './components/RaidAssignmentsTab';
 import OfficerRolesTab from './components/OfficerRolesTab';
 import DiscordBotConfigTab from './components/DiscordBotConfigTab';
 import RaidSignupsTab from './components/RaidSignupsTab';
+import * as helpers from './utils/helpers';
+import { downloadCsv } from './utils/csv';
 
 const CORE_SYNC_INTERVAL_MS = 15000;
 const BANK_SYNC_INTERVAL_MS = 20000;
@@ -1043,40 +1045,9 @@ export default function App() {
     alert(`Saved raid log for ${activeRaiderIds.length} players!`);
   };
 
-  const normalizeRaidHelperToken = (value) => {
-    return String(value || '')
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, ' ')
-      .replace(/[0-9]+$/g, '');
-  };
-
-  const parseRaidHelperDate = (value) => {
-    const raw = String(value || '').trim();
-    const match = raw.match(/^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})$/);
-    if (!match) return new Date().toISOString().split('T')[0];
-    const day = match[1].padStart(2, '0');
-    const month = match[2].padStart(2, '0');
-    const year = match[3];
-    return `${year}-${month}-${day}`;
-  };
-
-  const parseRaidSignupDate = (value) => {
-    const raw = String(value || '').trim();
-    if (!raw) return new Date().toISOString().split('T')[0];
-
-    const ymd = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
-    if (ymd) {
-      return `${ymd[1]}-${ymd[2]}-${ymd[3]}`;
-    }
-
-    const dmy = raw.match(/^(\d{2})-(\d{2})-(\d{4})/);
-    if (dmy) {
-      return `${dmy[3]}-${dmy[2]}-${dmy[1]}`;
-    }
-
-    return new Date().toISOString().split('T')[0];
-  };
+  const normalizeRaidHelperToken = helpers.normalizeRaidHelperToken;
+  const parseRaidHelperDate = helpers.parseRaidHelperDate;
+  const parseRaidSignupDate = helpers.parseRaidSignupDate;
 
   const handleApplyRaidSignupGroupsToAttendance = async (eventId) => {
     const numericEventId = Number(eventId);
@@ -1889,11 +1860,7 @@ export default function App() {
   };
 
   const exportArchivedRequestsCsv = () => {
-    const header = ['id', 'created_at', 'status', 'item_name', 'quantity', 'approved_quantity', 'price', 'requester_name', 'reason', 'officer_note'];
-    const escapeCsv = (value) => {
-      const raw = String(value ?? '');
-      return /[",\n]/.test(raw) ? `"${raw.replace(/"/g, '""')}"` : raw;
-    };
+    const headers = ['id', 'created_at', 'status', 'item_name', 'quantity', 'approved_quantity', 'price', 'requester_name', 'reason', 'officer_note'];
     const rows = archivedBankRequests.map(request => {
       const rosterPlayer = roster.find(player => Number(player.id) === Number(request.player_id));
       return [
@@ -1907,25 +1874,13 @@ export default function App() {
         rosterPlayer?.name || request.player_name || request.requester_name || '',
         request.reason,
         request.officer_note
-      ].map(escapeCsv).join(',');
+      ];
     });
-    const blob = new Blob([[header.join(','), ...rows].join('\n')], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `bank-request-history-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    downloadCsv(`bank-request-history-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`, headers, rows);
   };
 
   const exportBankContentsHistoryCsv = () => {
-    const header = ['snapshot_id', 'timestamp', 'gold', 'item_wowhead_id', 'name', 'count', 'category', 'sub_type'];
-    const escapeCsv = (value) => {
-      const raw = String(value ?? '');
-      return /[",\n]/.test(raw) ? `"${raw.replace(/"/g, '""')}"` : raw;
-    };
+    const headers = ['snapshot_id', 'timestamp', 'gold', 'item_wowhead_id', 'name', 'count', 'category', 'sub_type'];
     const rows = bankContentsHistory.flatMap(snapshot => (
       Array.isArray(snapshot.items) && snapshot.items.length > 0
         ? snapshot.items.map(item => [
@@ -1937,18 +1892,10 @@ export default function App() {
             item.count ?? item.quantity,
             item.category,
             item.sub_type
-          ].map(escapeCsv).join(','))
-        : [[snapshot.id, snapshot.timestamp, snapshot.gold, '', '', '', '', ''].map(escapeCsv).join(',')]
+          ])
+        : [[snapshot.id, snapshot.timestamp, snapshot.gold, '', '', '', '', '']]
     ));
-    const blob = new Blob([[header.join(','), ...rows].join('\n')], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `bank-contents-history-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    downloadCsv(`bank-contents-history-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`, headers, rows);
   };
 
   const handleSaveAllChanges = async () => {
@@ -2070,15 +2017,7 @@ export default function App() {
 
   const normalizeWowheadName = (value) => String(value || '').trim().replace(/\s+/g, ' ').toLowerCase();
 
-  const getWowheadTitleFromHtml = (html) => {
-    const titleMatch = html.match(/<title>(.*?)<\/title>/i);
-    if (!titleMatch?.[1]) return null;
-
-    return titleMatch[1]
-      .replace(/\s*-\s*Item\s*-\s*TBC(?: Classic)?$/i, '')
-      .replace(/\s*-\s*Item$/i, '')
-      .trim();
-  };
+  const getWowheadTitleFromHtml = helpers.getWowheadTitleFromHtml;
 
   const dbFilteredItems = useMemo(() => {
     let items = mutableItems.filter(item => item && item.name && item.name.toLowerCase().includes(dbSearch.toLowerCase()));
@@ -2249,18 +2188,8 @@ export default function App() {
     return "bg-slate-900 text-slate-500 border border-slate-800 border-dashed";
   };
 
-  const normalizeSlotKey = (slotName) => {
-    const normalized = String(slotName || '').trim().toLowerCase();
-    if (['rings', 'ring', 'ring 1', 'ring 2', 'ring 1/2', 'finger', 'fingers', 'finger 1', 'finger 2'].includes(normalized)) return 'ring';
-    if (['trinkets', 'trinket', 'trinket 1', 'trinket 2', 'trinket 1/2'].includes(normalized)) return 'trinket';
-    if (['two-hand', 'main hand', 'off hand', 'one hand', 'weapon'].includes(normalized)) return 'weapon';
-    return normalized;
-  };
-
-  const isGroupedSlot = (slotName) => {
-    const normalized = String(slotName || '').trim().toLowerCase();
-    return normalized === 'rings' || normalized === 'trinkets' || normalized === 'ring' || normalized === 'trinket' || normalized === 'finger' || normalized === 'fingers';
-  };
+  const normalizeSlotKey = helpers.normalizeSlotKey;
+  const isGroupedSlot = helpers.isGroupedSlot;
 
   const getItemsForSlotAndSpec = (slot, spec) => {
     const normalizedSlot = normalizeSlotKey(slot);
@@ -2638,21 +2567,7 @@ export default function App() {
   // MAIN DASHBOARD
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-amber-500/30">
-      <style>{`
-          .character-slot-icon .iconlarge {
-            width: 30px !important;
-            height: 30px !important;
-            display: block !important;
-          }
-          .character-slot-icon .iconlarge ins {
-            width: 32px !important;
-            height: 32px !important;
-          }
-          .overview-tab .character-slot-icon .iconlarge {
-            margin-top: -4px !important;
-            margin-left: -4px !important;
-          }
-        `}</style>
+      {/* Wowhead tooltip icon overrides moved to src/index.css */}
       <div className="max-w-10/12 mx-auto px-4 sm:px-6 lg:px-0 py-10 space-y-6">
 
 <header className="flex flex-col md:flex-row md:items-stretch justify-between gap-4">
