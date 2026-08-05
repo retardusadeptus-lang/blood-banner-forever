@@ -12,6 +12,7 @@ import ItemsDatabaseTab from './components/ItemsDatabaseTab';
 import BankRequestsTab from './components/BankRequestsTab';
 import LootCouncilTab from './components/LootCouncilTab';
 import RosterTab from './components/RosterTab';
+import RosterContainer from './containers/RosterContainer';
 import ScoringTab from './components/ScoringTab';
 import RaidAssignmentsTab from './components/RaidAssignmentsTab';
 import OfficerRolesTab from './components/OfficerRolesTab';
@@ -30,6 +31,41 @@ const RAID_ASSIGNMENTS_SYNC_INTERVAL_MS = 15000;
 const RAIDHELPER_ALIAS_MAP_KEY = 'raidhelper-name-map-v1';
 
 export default function App() {
+        const rosterTabProps = {
+          fetchData,
+          handleSaveRaidLog,
+          handleApplyRaidSignupGroupsToAttendance,
+          handleImportRaidHelperJson,
+          newRaidDate,
+          setNewRaidDate,
+          newRaidZone,
+          setNewRaidZone,
+          raidLogs,
+          handleDeleteRaidLog,
+          handleAddPlayer,
+          newName,
+          setNewName,
+          newSpec,
+          setNewSpec,
+          specsFromDb,
+          setAllRaidStatus,
+          roster,
+          getSpecById,
+          toggleRaidStatus,
+          handleUpdatePlayer,
+          handleRemovePlayer,
+          importedRaidHelperPlayerIds: recentRaidHelperImportedIds,
+          importedRaidHelperSpecConflictIds: recentRaidHelperSpecConflictIds,
+          raidHelperImportSession,
+          onUpdateRaidHelperImportEntry: handleUpdateRaidHelperImportEntry,
+          onApplyRaidHelperImport: handleApplyRaidHelperImport,
+          onCancelRaidHelperImport: handleCancelRaidHelperImport,
+          specsByName,
+          PlayerNameWithScore,
+          hasUnsavedChanges: rosterDirty || raidLogsDirty || playerStatsDirty,
+          onSaveChanges: handleSaveRosterAttendanceChanges,
+          isSaving: isSavingRosterAttendance
+        };
 
   // ==========================================
   // SPECS DATA FROM DATABASE
@@ -3051,41 +3087,7 @@ export default function App() {
               />
             )}
             {lootSubTab === 'roster' && (
-              <RosterTab
-                fetchData={fetchData}
-                handleSaveRaidLog={handleSaveRaidLog}
-                handleApplyRaidSignupGroupsToAttendance={handleApplyRaidSignupGroupsToAttendance}
-                handleImportRaidHelperJson={handleImportRaidHelperJson}
-                newRaidDate={newRaidDate}
-                setNewRaidDate={setNewRaidDate}
-                newRaidZone={newRaidZone}
-                setNewRaidZone={setNewRaidZone}
-                raidLogs={raidLogs}
-                handleDeleteRaidLog={handleDeleteRaidLog}
-                handleAddPlayer={handleAddPlayer}
-                newName={newName}
-                setNewName={setNewName}
-                newSpec={newSpec}
-                setNewSpec={setNewSpec}
-                specsFromDb={specsFromDb}
-                setAllRaidStatus={setAllRaidStatus}
-                roster={roster}
-                getSpecById={getSpecById}
-                toggleRaidStatus={toggleRaidStatus}
-                handleUpdatePlayer={handleUpdatePlayer}
-                handleRemovePlayer={handleRemovePlayer}
-                importedRaidHelperPlayerIds={recentRaidHelperImportedIds}
-                importedRaidHelperSpecConflictIds={recentRaidHelperSpecConflictIds}
-                raidHelperImportSession={raidHelperImportSession}
-                onUpdateRaidHelperImportEntry={handleUpdateRaidHelperImportEntry}
-                onApplyRaidHelperImport={handleApplyRaidHelperImport}
-                onCancelRaidHelperImport={handleCancelRaidHelperImport}
-                specsByName={specsByName}
-                PlayerNameWithScore={PlayerNameWithScore}
-                hasUnsavedChanges={rosterDirty || raidLogsDirty || playerStatsDirty}
-                onSaveChanges={handleSaveRosterAttendanceChanges}
-                isSaving={isSavingRosterAttendance}
-              />
+              <RosterContainer {...rosterTabProps} />
             )}
             {lootSubTab === 'assigned' && (
               <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
@@ -3134,41 +3136,7 @@ export default function App() {
               TAB: ROSTER & ATTENDANCE
               ========================================= */}
         {activeTab === 'roster' && isAuthenticated && (
-          <RosterTab
-            fetchData={fetchData}
-            handleSaveRaidLog={handleSaveRaidLog}
-            handleApplyRaidSignupGroupsToAttendance={handleApplyRaidSignupGroupsToAttendance}
-            handleImportRaidHelperJson={handleImportRaidHelperJson}
-            newRaidDate={newRaidDate}
-            setNewRaidDate={setNewRaidDate}
-            newRaidZone={newRaidZone}
-            setNewRaidZone={setNewRaidZone}
-            raidLogs={raidLogs}
-            handleDeleteRaidLog={handleDeleteRaidLog}
-            handleAddPlayer={handleAddPlayer}
-            newName={newName}
-            setNewName={setNewName}
-            newSpec={newSpec}
-            setNewSpec={setNewSpec}
-            specsFromDb={specsFromDb}
-            setAllRaidStatus={setAllRaidStatus}
-            roster={roster}
-            getSpecById={getSpecById}
-            toggleRaidStatus={toggleRaidStatus}
-            handleUpdatePlayer={handleUpdatePlayer}
-            handleRemovePlayer={handleRemovePlayer}
-            importedRaidHelperPlayerIds={recentRaidHelperImportedIds}
-            importedRaidHelperSpecConflictIds={recentRaidHelperSpecConflictIds}
-            raidHelperImportSession={raidHelperImportSession}
-            onUpdateRaidHelperImportEntry={handleUpdateRaidHelperImportEntry}
-            onApplyRaidHelperImport={handleApplyRaidHelperImport}
-            onCancelRaidHelperImport={handleCancelRaidHelperImport}
-            specsByName={specsByName}
-            PlayerNameWithScore={PlayerNameWithScore}
-            hasUnsavedChanges={rosterDirty || raidLogsDirty || playerStatsDirty}
-            onSaveChanges={handleSaveRosterAttendanceChanges}
-            isSaving={isSavingRosterAttendance}
-          />
+          <RosterContainer {...rosterTabProps} />
         )}
 
         {activeTab === 'officerRoles' && isAuthenticated && (
