@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { downloadCsv } from '../utils/csv';
 
 const BANK_SYNC_INTERVAL_MS = 20000;
@@ -14,6 +14,7 @@ export default function useBankData({ fetchData, putData, isAuthenticated }) {
   const [bankRequests, setBankRequests] = useState([]);
   const [bankSearch, setBankSearch] = useState('');
   const [bankArchivedRequestIds, setBankArchivedRequestIds] = useState(() => JSON.parse(localStorage.getItem('bank-archived-request-ids') || '[]'));
+  const [bankUpdateJsonText, setBankUpdateJsonText] = useState('');
   const [bankUploadParsed, setBankUploadParsed] = useState(null);
   const [bankUploadStatus, setBankUploadStatus] = useState('');
   const [bankUploadMeta, setBankUploadMeta] = useState({ gold: null });
@@ -49,7 +50,8 @@ export default function useBankData({ fetchData, putData, isAuthenticated }) {
     return () => { mounted = false; clearInterval(interval); };
   }, [fetchData, isAuthenticated]);
 
-  const handleUploadBankLuaFile = (file, setBankUploadStatusLocal = () => {}) => {
+  const handleUploadBankLuaFile = (file) => {
+    if (!file) return;
     const reader = new FileReader();
     reader.onload = (evt) => {
       const text = evt.target.result;
@@ -91,12 +93,11 @@ export default function useBankData({ fetchData, putData, isAuthenticated }) {
       setBankUploadMeta({ gold: parsedGold });
       setBankUploadStatus(parsed.length === 0 ? '⚠️ Found 0 items. Check your Lua file.' : `✅ Loaded ${parsed.length} items. Click Save to update the bank.`);
       setBankUploadParsed(parsed.length === 0 ? null : parsed);
-      setBankUploadStatusLocal && setBankUploadStatusLocal(bankUploadStatus);
     };
     reader.readAsText(file);
   };
 
-  const handleParseBankUpdateJson = (bankUpdateJsonText) => {
+  const handleParseBankUpdateJson = () => {
     try {
       const parsedData = JSON.parse(bankUpdateJsonText || '{}');
       const items = Array.isArray(parsedData.bankItems)
@@ -125,7 +126,7 @@ export default function useBankData({ fetchData, putData, isAuthenticated }) {
       setBankUploadMeta({ gold: Number.isFinite(parsedGold) ? parsedGold : null });
       setBankUploadParsed(normalized);
       setBankUploadStatus(`✅ Loaded ${normalized.length} items from JSON. Click Save to update the bank.`);
-    } catch (error) {
+    } catch {
       setBankUploadStatus('❌ Invalid JSON. Please paste the exported blob from the addon.');
       setBankUploadParsed(null);
     }
@@ -150,7 +151,7 @@ export default function useBankData({ fetchData, putData, isAuthenticated }) {
       setBankUploadMeta({ gold: null });
       const items = await fetchData('bank-items');
       setBankItems(items);
-    } catch (e) {
+    } catch {
       setBankUploadStatus('❌ Error uploading.');
     }
   };
@@ -174,24 +175,82 @@ export default function useBankData({ fetchData, putData, isAuthenticated }) {
     downloadCsv(`bank-contents-history-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`, headers, rows);
   };
 
+  const clearBankUpload = () => {
+    setBankUploadParsed(null);
+    setBankUploadMeta({ gold: null });
+    setBankUploadStatus('');
+  };
+
+  const clearBankUpdate = () => {
+    setBankUpdateJsonText('');
+    clearBankUpload();
+  };
+
+  const archiveBankRequests = (requestIds = []) => {
+    const normalized = [...new Set([...bankArchivedRequestIds, ...requestIds.filter(Boolean)])];
+    setBankArchivedRequestIds(normalized);
+  };
+
+  const restoreArchivedBankRequests = (requestIds = []) => {
+    const normalized = new Set(requestIds.filter(Boolean));
+    setBankArchivedRequestIds(prev => prev.filter(id => !normalized.has(id)));
+  };
+
+  const visibleBankRequests = useMemo(() => {
+    return (Array.isArray(bankRequests) ? bankRequests : []).filter(request => !bankArchivedRequestIds.includes(request.id));
+  }, [bankRequests, bankArchivedRequestIds]);
+
+  const archivedBankRequests = useMemo(() => {
+    return (Array.isArray(bankRequests) ? bankRequests : []).filter(request => bankArchivedRequestIds.includes(request.id));
+  }, [bankRequests, bankArchivedRequestIds]);
+
+  const archivedRequestIds = useMemo(() => archivedBankRequests.map(request => request.id), [archivedBankRequests]);
+
+  const handleResolveBankRequest = async (id, status, price, note, approvedQuantity) => {
+    try {
+      await putData(`bank-requests/${id}`, { status, price, officer_note: note, approved_quantity: approvedQuantity });
+      const requests = await fetchData('bank-requests');
+      setBankRequests(requests);
+    } catch {
+      throw new Error('Failed to resolve bank request.');
+    }
+  };
+
+  const handleBulkResolveBankRequests = async (resolutions, summaryMessage) => {
+    try {
+      await putData('bank-requests/bulk-resolve', { resolutions });
+      const requests = await fetchData('bank-requests');
+      setBankRequests(requests);
+      return { success: true, summaryMessage };
+    } catch {
+      throw new Error('Failed to resolve bulk bank requests.');
+    }
+  };
+
   return {
     bankItems,
     bankRequests,
     bankSearch,
     setBankSearch,
     bankArchivedRequestIds,
-    setBankArchivedRequestIds,
+    bankUpdateJsonText,
+    setBankUpdateJsonText,
     bankUploadParsed,
     bankUploadStatus,
     bankUploadMeta,
-    setBankUploadMeta,
     handleUploadBankLuaFile,
     handleParseBankUpdateJson,
     handleSaveBankUpload,
+    clearBankUpload,
+    clearBankUpdate,
+    handleResolveBankRequest,
+    handleBulkResolveBankRequests,
+    archiveBankRequests,
+    restoreArchivedBankRequests,
+    visibleBankRequests,
+    archivedBankRequests,
+    archivedRequestIds,
     bankContentsHistory,
-    setBankContentsHistory,
-    exportBankContentsHistoryCsv,
-    setBankItems,
-    setBankRequests
+    exportBankContentsHistoryCsv
   };
 }

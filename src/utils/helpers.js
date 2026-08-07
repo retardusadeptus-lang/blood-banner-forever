@@ -8,7 +8,7 @@ export function normalizeRaidHelperToken(value) {
 
 export function parseRaidHelperDate(value) {
   const raw = String(value || '').trim();
-  const match = raw.match(/^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})$/);
+  const match = raw.match(/^(\d{1,2})[-/](\d{1,2})[-/](\d{4})$/);
   if (!match) return new Date().toISOString().split('T')[0];
   const day = match[1].padStart(2, '0');
   const month = match[2].padStart(2, '0');

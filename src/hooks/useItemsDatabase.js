@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export function useItemsDatabase({
   fetchData,
@@ -15,24 +15,40 @@ export function useItemsDatabase({
   const [mutableItemsBaseline, setMutableItemsBaseline] = useState([]);
   const [bisPriorities, setBisPrioritiesLocal] = useState({});
   const [dbBisPriorities, setDbBisPrioritiesLocal] = useState({});
-  const [masterItemsDbPhase, setMasterItemsDbPhase] = useState('T5');
+  const [masterItemsDbPhase, setMasterItemsDbPhaseLocal] = useState('T5');
   const [dbNewName, setDbNewName] = useState('');
   const [dbNewSlot, setDbNewSlot] = useState(leftSlots[0]);
   const [dbNewZone, setDbNewZone] = useState('SSC');
   const [dbNewBoss, setDbNewBoss] = useState(p2Bosses[0]);
   const [dbNewItemId, setDbNewItemId] = useState('');
-  const [dbSearch, setDbSearch] = useState('');
+  const [dbSearch, setDbSearchLocal] = useState('');
   const [dbPageSize, setDbPageSize] = useState(25);
   const [dbPage, setDbPage] = useState(1);
-  const [showMissingWowheadFilter, setShowMissingWowheadFilter] = useState(false);
-  const [showWowheadNameMismatchFilter, setShowWowheadNameMismatchFilter] = useState(false);
+  const [showMissingWowheadFilter, setShowMissingWowheadFilterLocal] = useState(false);
+  const [showWowheadNameMismatchFilter, setShowWowheadNameMismatchFilterLocal] = useState(false);
   const [dbBisPrioritiesDirty, setDbBisPrioritiesDirty] = useState(false);
   const [mutableItemsDirty, setMutableItemsDirty] = useState(false);
   const [isSavingItemsDb, setIsSavingItemsDb] = useState(false);
 
-  useEffect(() => {
+  const setDbSearch = (value) => {
+    setDbSearchLocal(value);
     setDbPage(1);
-  }, [dbSearch, showMissingWowheadFilter, showWowheadNameMismatchFilter, masterItemsDbPhase]);
+  };
+
+  const setShowMissingWowheadFilter = (value) => {
+    setShowMissingWowheadFilterLocal(value);
+    setDbPage(1);
+  };
+
+  const setShowWowheadNameMismatchFilter = (value) => {
+    setShowWowheadNameMismatchFilterLocal(value);
+    setDbPage(1);
+  };
+
+  const setMasterItemsDbPhase = (value) => {
+    setMasterItemsDbPhaseLocal(value);
+    setDbPage(1);
+  };
 
   const setBisPriorities = (newVal) => {
     setBisPrioritiesLocal(newVal);
@@ -71,7 +87,7 @@ export function useItemsDatabase({
       setDbNewName('');
       setDbNewItemId('');
       alert(`Successfully added "${newItem.name}" to items table!`);
-    } catch (err) {
+    } catch {
       alert('Failed to add item.');
     }
   };
@@ -127,7 +143,7 @@ export function useItemsDatabase({
       setMutableItemsBaseline(updatedItems);
       setMutableItemsDirty(false);
       if (setSelectedItemName) setSelectedItemName('');
-    } catch (err) {
+    } catch {
       alert('Failed to delete item.');
     }
   };
@@ -167,7 +183,7 @@ export function useItemsDatabase({
       setDbBisPrioritiesDirty(false);
       setMutableItemsDirty(false);
       alert('Master items changes saved.');
-    } catch (err) {
+    } catch {
       alert('Failed to save master items changes.');
     } finally {
       setIsSavingItemsDb(false);

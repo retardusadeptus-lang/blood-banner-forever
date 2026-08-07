@@ -3,7 +3,7 @@ import * as helpers from '../utils/helpers';
 
 const RAIDHELPER_ALIAS_MAP_KEY = 'raidhelper-name-map-v1';
 
-export default function useRaidHelperImport({ roster = [], specsFromDb = [], playerStats = {}, raidLogs = [], setRoster, setPlayerStats, setRaidLogs, setNewRaidDate, setNewRaidZone, fetchData }) {
+export default function useRaidHelperImport({ roster = [], specsFromDb = [], playerStats = {}, raidLogs = [], setRoster, setPlayerStats, setRaidLogs, setNewRaidDate, setNewRaidZone }) {
   const [raidHelperImportSession, setRaidHelperImportSession] = useState(null);
   const [recentRaidHelperImportedIds, setRecentRaidHelperImportedIds] = useState([]);
   const [recentRaidHelperSpecConflictIds, setRecentRaidHelperSpecConflictIds] = useState([]);
@@ -47,7 +47,7 @@ export default function useRaidHelperImport({ roster = [], specsFromDb = [], pla
     let parsed;
     try {
       parsed = JSON.parse(raw);
-    } catch (e) {
+    } catch {
       alert('Invalid JSON. Please paste the full RaidHelper payload.');
       return false;
     }
@@ -75,7 +75,7 @@ export default function useRaidHelperImport({ roster = [], specsFromDb = [], pla
     let aliasMap = {};
     try {
       aliasMap = JSON.parse(localStorage.getItem(RAIDHELPER_ALIAS_MAP_KEY) || '{}') || {};
-    } catch (e) {
+    } catch {
       aliasMap = {};
     }
 

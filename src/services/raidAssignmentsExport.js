@@ -1,4 +1,4 @@
-import { BOSS_TARGET_ID, RAID_MARKERS } from '../constants.js';
+import { BOSS_TARGET_ID } from '../constants.js';
 
 const MARKER_INDEX_BY_ID = {
   star: 1,

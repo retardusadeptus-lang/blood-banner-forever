@@ -40,13 +40,13 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
         diagnostics: [],
         showBnetCharacterLookup: authenticated
       });
-    } catch (error) {
+    } catch (err) {
       setBnetAuthState({
         loading: false,
         authenticated: false,
         user: null,
         claimedCharacters: [],
-        error: error.message || 'Battle.net session unavailable.',
+        error: err.message || 'Battle.net session unavailable.',
         characters: [],
         diagnostics: [],
         showBnetCharacterLookup: false
@@ -71,8 +71,8 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
   const handleBattleNetLogout = async () => {
     try {
       await logoutBattleNet();
-    } catch (error) {
-      console.error('Failed to log out from Battle.net:', error);
+    } catch (err) {
+      console.error('Failed to log out from Battle.net:', err);
     } finally {
       await refreshBattleNetAuth();
     }
@@ -88,8 +88,8 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
       setRosterDirty(false);
       await refreshBattleNetAuth();
       setShowBnetClaimModal(false);
-    } catch (error) {
-      setBnetAuthState(prev => ({ ...prev, error: error.message || 'Failed to claim roster character.' }));
+    } catch (err) {
+      setBnetAuthState(prev => ({ ...prev, error: err.message || 'Failed to claim roster character.' }));
     } finally {
       setBnetClaimBusy(false);
     }
@@ -103,7 +103,7 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
     try {
       const data = await getRosterClaimsAdmin();
       setRosterClaims(data.claims || []);
-    } catch (error) {
+    } catch {
       setRosterClaims([]);
     }
   };
@@ -116,8 +116,8 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
       setRosterDirty(false);
       await refreshBattleNetAuth();
       await refreshRosterClaims();
-    } catch (error) {
-      setBnetAuthState(prev => ({ ...prev, error: error.message || 'Failed to clear the claim.' }));
+    } catch (err) {
+      setBnetAuthState(prev => ({ ...prev, error: err.message || 'Failed to clear the claim.' }));
     }
   };
 
@@ -131,8 +131,8 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
       setRosterDirty(false);
       await refreshBattleNetAuth();
       setShowBnetClaimModal(false);
-    } catch (error) {
-      setBnetAuthState(prev => ({ ...prev, error: error.message || 'Failed to claim roster character.' }));
+    } catch (err) {
+      setBnetAuthState(prev => ({ ...prev, error: err.message || 'Failed to claim roster character.' }));
     } finally {
       setBnetClaimBusy(false);
     }

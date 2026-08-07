@@ -1,14 +1,50 @@
+import { useState } from 'react';
+
 export default function BankRequestHistory({
   archivedBankRequests,
   archivedRequestIds,
-  isArchivedRequestSelected,
-  toggleAllArchivedRequestsSelection,
-  restoreSelectedArchivedRequests,
   exportArchivedRequestsCsv,
-  selectedArchivedRequestIds,
-  toggleArchivedRequestSelection,
   onRestoreArchivedBankRequests
 }) {
+  const [selectedArchivedRequestIds, setSelectedArchivedRequestIds] = useState([]);
+
+  const normalizeRequestId = (requestId) => String(requestId);
+  const isArchivedRequestSelected = (requestId) => selectedArchivedRequestIds.some(id => normalizeRequestId(id) === normalizeRequestId(requestId));
+
+  const toggleArchivedRequestSelection = (requestId) => {
+    const normalizedId = normalizeRequestId(requestId);
+    setSelectedArchivedRequestIds(prev => prev.some(id => normalizeRequestId(id) === normalizedId)
+      ? prev.filter(id => normalizeRequestId(id) !== normalizedId)
+      : [...prev, requestId]);
+  };
+
+  const toggleAllArchivedRequestsSelection = () => {
+    const allSelected = archivedRequestIds.length > 0 && archivedRequestIds.every(id => isArchivedRequestSelected(id));
+
+    if (allSelected) {
+      setSelectedArchivedRequestIds(prev => prev.filter(id => !archivedRequestIds.some(archivedId => normalizeRequestId(archivedId) === normalizeRequestId(id))));
+      return;
+    }
+
+    setSelectedArchivedRequestIds(prev => {
+      const next = [...prev];
+      archivedRequestIds.forEach(id => {
+        const normalizedId = normalizeRequestId(id);
+        if (!next.some(existingId => normalizeRequestId(existingId) === normalizedId)) {
+          next.push(id);
+        }
+      });
+      return next;
+    });
+  };
+
+  const restoreSelectedArchivedRequests = () => {
+    if (selectedArchivedRequestIds.length === 0) return;
+    const requestIds = selectedArchivedRequestIds.filter(id => archivedRequestIds.some(archivedId => normalizeRequestId(archivedId) === normalizeRequestId(id)));
+    if (requestIds.length === 0) return;
+    onRestoreArchivedBankRequests(requestIds);
+    setSelectedArchivedRequestIds([]);
+  };
   return (
     <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-6">
       <div className="space-y-2">

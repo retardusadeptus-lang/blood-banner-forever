@@ -8,7 +8,6 @@ export default function useAdminData({
   scoringConfigDirty,
   setScoringConfigDirty,
   scoringConfig,
-  setScoringConfig,
   refreshRosterClaims
 }) {
   const [officerRoles, setOfficerRoles] = useState([]);
@@ -68,7 +67,7 @@ export default function useAdminData({
   };
 
   const handleSaveTodoItems = async ({ silent = false } = {}) => {
-    setAdminTodoItems(todoDraftItems);
+    localStorage.setItem('admin-todo-items', JSON.stringify(todoDraftItems));
     setTodoDirty(false);
     if (!silent) {
       alert('To-do list saved.');

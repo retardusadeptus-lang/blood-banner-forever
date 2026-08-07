@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import GuildBankTab from '../components/GuildBankTab';
 import BankUpdate from '../components/BankUpdate';
 import BankRequestHistory from '../components/BankRequestHistory';
@@ -30,7 +29,6 @@ export default function BankContainer({
     handleUploadBankLuaFile,
     handleParseBankUpdateJson,
     handleSaveBankUpload,
-    clearBankUpload,
     clearBankUpdate,
     handleResolveBankRequest,
     handleBulkResolveBankRequests,

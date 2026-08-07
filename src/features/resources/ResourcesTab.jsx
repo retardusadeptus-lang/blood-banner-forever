@@ -1,4 +1,3 @@
-import React from 'react';
 import BisConfigTab from '../../components/BisConfigTab';
 
 export default function ResourcesTab({

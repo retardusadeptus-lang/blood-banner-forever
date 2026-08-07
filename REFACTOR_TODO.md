@@ -1,44 +1,50 @@
 # Refactor To-Do List
 
-## Prioritized refactor plan
+## Current status
+- [x] The main refactor pass is largely complete.
+- [x] The app shell now focuses on orchestration, auth, shared navigation, and composing feature containers.
+- [x] Feature-specific state and handlers have been moved into dedicated hooks and containers for bank, admin/officer, loot council, raid assignments, roster, and raid-helper import.
+- [x] Frontend build currently succeeds; the targeted lint cleanup for the refactor files is largely complete.
+
+## Completed work
 
 ### P0 — Shrink the app shell
-- [ ] Move tab selection, subtab state, and top-level navigation handlers out of `src/App.jsx`.
-- [ ] Leave `src/App.jsx` responsible mainly for bootstrapping, auth, and composing feature containers.
-- [ ] Goal: make `src/App.jsx` mostly orchestration, not business logic.
+- [x] Moved substantial tab and subtab state out of the main app shell.
+- [x] Kept the main app file focused on bootstrapping, auth, shared state wiring, and container composition.
+- [x] The shell is now mostly orchestration rather than business logic.
 
-### P1 — Extract the bank feature first
-- [x] Pull the bank update flow, bank history, request state, and related handlers into a dedicated bank module or hook.
-- [x] Localized request approval/denial form state into `src/components/BankRequestsTab.jsx`.
-- [x] Moved archived-request selection state into `src/components/BankRequestHistory.jsx`.
-- [x] Removed redundant `src/containers/BankRequestsContainer.jsx` wrapper.
-- [ ] This is the highest-value target because it is already fairly isolated and has clear components in `src/components` and `src/hooks/useBankData.js`.
+### P1 — Extract the bank feature
+- [x] Extracted bank data flows, request state, and related handlers into the bank hook/container path.
+- [x] Localized request approval and denial form state into the bank request UI.
+- [x] Moved archived-request selection state into the history UI.
+- [x] Removed the redundant bank requests wrapper.
 
 ### P1 — Extract admin/officer features
-- [ ] Move officer roles, Discord bot config, and admin todo state into a dedicated admin feature module.
-- [ ] Remove a large amount of form and mutation logic from the main file.
+- [x] Moved officer roles, Discord bot config, and admin todo state into the admin feature flow.
+- [x] Reduced the amount of admin form and mutation logic directly owned by the main app file.
 
 ### P2 — Extract loot council and raid assignments
-- [ ] Split assignment state, loot decisions, and related actions into feature-specific hooks/containers.
-- [ ] These are important, but slightly more coupled to shared data than the bank flow.
+- [x] Extracted loot council state, filters, assignment actions, and save flow into dedicated hook/container logic.
+- [x] Extracted raid assignment state, archive/restore actions, and boss-zone handlers into a dedicated hook/container path.
 
 ### P2 — Extract roster and signup flows
-- [ ] Move roster claim logic and signup state into their own modules once the earlier areas are cleaned up.
-- [ ] This reduces the remaining cross-cutting responsibilities in `src/App.jsx`.
+- [x] Moved roster and attendance logic into the roster hook/container flow.
+- [x] Moved raid-helper import handling into the dedicated import hook and connected it to roster state updates.
+- [x] Kept the signup feature orchestration lightweight while moving the feature-specific logic into the dedicated module path.
 
 ### P3 — Clean up shared patterns
-- [ ] Consolidate repeated helpers, reduce prop drilling, and standardize the container/hook pattern across the app.
-- [ ] This should come after the major feature extraction so the structure is already clearer.
+- [x] Reduced obvious prop-drilling and stale state patterns created during the refactor pass.
+- [x] Cleaned up the most visible lint issues introduced by the refactor.
+- [ ] Optional follow-up polish for remaining non-blocking warnings if desired.
 
-## Suggested execution order for the next session
-- First: bank feature extraction
-- Second: admin feature extraction
-- Third: loot/assignments extraction
-- Fourth: roster/signups extraction
+## Remaining follow-up
+- [ ] Optionally clean up the remaining React hook dependency warnings in the refactor files.
+- [ ] Optionally do a final pass to simplify any remaining cross-feature props if the UI continues to grow.
 
 ## Definition of done
-The refactor is “mostly complete” when:
+The refactor is now in a “mostly complete” state when:
+- the main app file is no longer the primary owner of feature state
+- each major feature has its own hook or container module
+- the app still builds and the shell remains easy to reason about
 
-- `src/App.jsx` is no longer the main owner of feature state
-- each major feature has its own module or hook
-- the app still builds and the main shell remains easy to reason about
+Verified status: the frontend build completed successfully with Vite.

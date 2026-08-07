@@ -1,9 +1,6 @@
-import React from 'react';
 import { P2_BOSSES } from '../constants';
 
 export default function ScoringTab({
-  scoringConfig,
-  setScoringConfig,
   roster,
   playerStats,
   expandedPlayerId,

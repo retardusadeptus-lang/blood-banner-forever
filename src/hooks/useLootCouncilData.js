@@ -10,7 +10,7 @@ export default function useLootCouncilData({
   playerStats,
   scoringConfig,
   raidLogs,
-  specsByName,
+  getDisplayFromId,
   getSpecById,
   bisPriorities
 }) {
@@ -177,8 +177,6 @@ export default function useLootCouncilData({
     return mutableItems.find(i => i.name === selectedItemName);
   }, [mutableItems, selectedItemName]);
 
-  const activeRaiders = useMemo(() => roster.filter(p => p.in_raid), [roster]);
-
   useEffect(() => {
     const loadRedemption = async () => {
       if (!selectedItem || !selectedItem.is_token) return;
@@ -230,7 +228,7 @@ export default function useLootCouncilData({
     });
 
     return sortPlayersByRank(selectedItem, eligible, assignments);
-  }, [selectedItem, roster, assignments, playerStats, scoringConfig, raidLogs, bisPriorities, specsByName, getSpecById, tokenRedemptionsByItemId]);
+  }, [selectedItem, roster, assignments, playerStats, scoringConfig, raidLogs, bisPriorities, getSpecById, tokenRedemptionsByItemId]);
 
   const handleClearOverviewItemPriorities = (itemName) => {
     if (!itemName) return;
@@ -267,13 +265,11 @@ export default function useLootCouncilData({
     }
   };
 
-  const hasLootUnsavedChanges = assignmentsDirty;
-
   return {
     assignments,
     setAssignmentsData,
     assignmentsDirty,
-    hasLootUnsavedChanges,
+    hasLootUnsavedChanges: assignmentsDirty,
     isSavingLootCouncil,
     searchQuery,
     setSearchQuery,
