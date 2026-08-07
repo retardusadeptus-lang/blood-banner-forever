@@ -5,6 +5,7 @@
 - [x] The app shell now focuses on orchestration, auth, shared navigation, and composing feature containers.
 - [x] Feature-specific state and handlers have been moved into dedicated hooks and containers for bank, admin/officer, loot council, raid assignments, roster, and raid-helper import.
 - [x] Frontend build currently succeeds; the targeted lint cleanup for the refactor files is largely complete.
+- [ ] The app shell is still large enough that a final shell-reduction pass is still worthwhile if the goal is to make it much easier to read and maintain.
 
 ## Completed work
 
@@ -12,6 +13,7 @@
 - [x] Moved substantial tab and subtab state out of the main app shell.
 - [x] Kept the main app file focused on bootstrapping, auth, shared state wiring, and container composition.
 - [x] The shell is now mostly orchestration rather than business logic.
+- [x] Removed the most obvious inline feature-state ownership from the top-level component.
 
 ### P1 — Extract the bank feature
 - [x] Extracted bank data flows, request state, and related handlers into the bank hook/container path.
@@ -35,16 +37,45 @@
 ### P3 — Clean up shared patterns
 - [x] Reduced obvious prop-drilling and stale state patterns created during the refactor pass.
 - [x] Cleaned up the most visible lint issues introduced by the refactor.
-- [ ] Optional follow-up polish for remaining non-blocking warnings if desired.
+- [x] Reduced duplicate inline state wiring around the main feature areas.
 
-## Remaining follow-up
-- [ ] Optionally clean up the remaining React hook dependency warnings in the refactor files.
-- [ ] Optionally do a final pass to simplify any remaining cross-feature props if the UI continues to grow.
+## Remaining follow-up work to shrink the shell further
+
+### A. Extract navigation and tab orchestration
+- [ ] Move tab/subtab selection logic into a dedicated navigation hook or controller.
+- [ ] Move top-level navigation helpers such as main-nav selection and dropdown activation into a reusable navigation module.
+- [ ] Centralize tab-to-route mapping so the shell only delegates to a single navigation object.
+
+### B. Extract the app bootstrap and sync layer
+- [ ] Move the initial data bootstrap and periodic sync logic into a dedicated data-sync hook.
+- [ ] Isolate the auth/session bootstrap from the main shell so the top-level component mostly renders instead of coordinating lifecycle concerns.
+- [ ] Separate “load data” and “persist changes” concerns from the render tree.
+
+### C. Extract remaining inline helpers from the shell
+- [ ] Move remaining helper functions such as score calculation, rank badge styling, item-link rendering, and item-opening handlers into utilities or focused hooks.
+- [ ] Move any remaining one-off handlers for overview/loot/roster interactions into feature-specific modules.
+- [ ] Replace inline helper constants and ad-hoc state logic with composable modules where appropriate.
+
+### D. Split the main render tree into smaller view components
+- [ ] Extract the header and navigation section into a dedicated shell component.
+- [ ] Extract the main tab content router into a dedicated component that maps tab keys to feature containers.
+- [ ] Consider a small “content renderer” component so App.jsx mostly composes providers, state, and content routers.
+
+### E. Reduce prop plumbing and cross-feature coupling
+- [ ] Review the remaining props passed into container components and reduce unnecessary prop drilling.
+- [ ] Introduce shared context or a feature-state provider only where it clearly improves clarity.
+- [ ] Prefer passing a smaller, feature-specific prop bag to each container than the full shell state object.
+
+### F. Final pass for maintainability
+- [ ] Clean up remaining React hook dependency warnings if they are still present.
+- [ ] Remove any leftover dead code, comments, and legacy inline branches that no longer serve the refactored structure.
+- [ ] Revisit whether any still-large sections of App.jsx should be split into feature-specific components even if they are already using hooks.
 
 ## Definition of done
 The refactor is now in a “mostly complete” state when:
 - the main app file is no longer the primary owner of feature state
 - each major feature has its own hook or container module
-- the app still builds and the shell remains easy to reason about
+- the app still builds
+- the shell remains easy to reason about, with the top-level component largely focused on composition rather than implementation details
 
 Verified status: the frontend build completed successfully with Vite.
