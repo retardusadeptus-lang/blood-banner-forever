@@ -99,9 +99,10 @@ export default function App() {
   // Global phase selector (controls which phase's assignments are shown)
   const [globalPhase, setGlobalPhase] = useState('T5');
 
+  const [overviewSearch, setOverviewSearch] = useState('');
+
   // Default to public overview tab
   const [activeTab, setActiveTab] = useState(() => localStorage.getItem('active-tab') || 'loot');
-  const [overviewSearch, setOverviewSearch] = useState('');
   const [hoveredNavTab, setHoveredNavTab] = useState(null);
   const [bankSubTab, setBankSubTab] = useState('contents');
   const [raidAssignmentsSubTab, setRaidAssignmentsSubTab] = useState('overview');
@@ -113,133 +114,9 @@ export default function App() {
   const [isDbConnected, setIsDbConnected] = useState(false);
   const [newSpec, setNewSpec] = useState(null); // spec_id from database
   const [selectedBisSpec, setSelectedBisSpec] = useState(null); // Will be set to first spec from DB
+  const [selectedLootItemName, setSelectedLootItemName] = useState('');
   const [expandedPlayerId, setExpandedPlayerId] = useState(null);
   const [itemIdEditor, setItemIdEditor] = useState(null);
-
-  const {
-    mutableItems,
-    setMutableItemsLocal,
-    setMutableItemsBaseline,
-    bisPriorities,
-    setBisPrioritiesLocal,
-    dbBisPriorities,
-    setDbBisPrioritiesLocal,
-    masterItemsDbPhase,
-    setMasterItemsDbPhase,
-    dbNewName,
-    setDbNewName,
-    dbNewSlot,
-    setDbNewSlot,
-    dbNewZone,
-    setDbNewZone,
-    dbNewBoss,
-    setDbNewBoss,
-    dbNewItemId,
-    setDbNewItemId,
-    dbSearch,
-    setDbSearch,
-    dbPageSize,
-    setDbPageSize,
-    dbPage,
-    setDbPage,
-    showMissingWowheadFilter,
-    setShowMissingWowheadFilter,
-    showWowheadNameMismatchFilter,
-    setShowWowheadNameMismatchFilter,
-    dbBisPrioritiesDirty,
-    mutableItemsDirty,
-    isSavingItemsDb,
-    handleAddItemToDb,
-    handleUpdateItemEligibility,
-    handleUpdateItemId,
-    handleUpdateItemSource,
-    handleDeleteItemFromDb,
-    handleSaveItemsDbChanges,
-  } = useItemsDatabase({
-    fetchData,
-    putData,
-    postData,
-    deleteData,
-    phaseJsonKeys: PHASE_JSON_KEYS,
-    leftSlots: LEFT_SLOTS,
-    p2Bosses: P2_BOSSES,
-    globalPhase,
-    setSelectedItemName,
-  });
-
-  const {
-    assignments,
-    assignmentsDirty,
-    hasLootUnsavedChanges,
-    isSavingLootCouncil,
-    searchQuery,
-    setSearchQuery,
-    filterZone,
-    setFilterZone,
-    filterBoss,
-    setFilterBoss,
-    filterSlot,
-    setFilterSlot,
-    filterCategory,
-    setFilterCategory,
-    selectedItemName,
-    setSelectedItemName,
-    uniqueZones,
-    uniqueBosses,
-    uniqueSlots,
-    filteredItems,
-    selectedItem,
-    sortedEligiblePlayers,
-    getPlayerItemPriorityStatus,
-    handleSetPriority,
-    handleToggleAwardedPriority,
-    handleSaveLootCouncilChanges,
-    handleClearOverviewItemPriorities,
-    normalizeAwardedPlayerIds,
-    setAssignmentsData,
-  } = useLootCouncilData({
-    fetchData,
-    putData,
-    globalPhase,
-    roster,
-    mutableItems,
-    playerStats,
-    scoringConfig,
-    raidLogs,
-    getDisplayFromId,
-    getSpecById,
-    bisPriorities,
-  });
-
-  const {
-    raidAssignmentArchives,
-    selectedRaidAssignmentArchiveId,
-    selectedRaidRestoreBosses,
-    raidAssignmentData,
-    enabledBosses,
-    raidAssignmentDataDirty,
-    enabledBossesDirty,
-    isSavingRaidAssignments,
-    setRaidAssignmentData,
-    handleSaveRaidAssignmentsChanges,
-    handleCopyRaidAssignmentsToArchive,
-    handleViewRaidAssignmentArchive,
-    handleToggleRaidRestoreBoss,
-    handleRestoreRaidAssignmentArchive,
-    handleToggleZone,
-    handleToggleBoss,
-    handleAddCustomRaidBoss,
-    handleRemoveCustomRaidBoss,
-    customRaidGroups,
-    raidZones,
-  } = useRaidAssignmentsData({
-    fetchData,
-    putData,
-    activeTab,
-    setActiveTab,
-    setRaidAssignmentsSubTab,
-    isAuthenticated,
-  });
 
   const handleMainNavSelect = (mainTab, subTab = null) => {
     setHoveredNavTab(null);
@@ -427,7 +304,6 @@ export default function App() {
     { value: 'wipefest', label: 'Wipefest' }
   ];
 
-  // Persist current tab so refresh restores where the user left off.
   useEffect(() => {
     localStorage.setItem('active-tab', activeTab);
   }, [activeTab]);
@@ -468,6 +344,15 @@ export default function App() {
     handleUnclaimClaim
   } = useAuthSession({ fetchData, setRoster: setRosterLocal, setRosterDirty });
 
+  // If a saved tab requires auth and the session is locked, fall back safely.
+  useEffect(() => {
+    const authOnlyTabs = ['bankRequests', 'loot', 'roster', 'scoring', 'itemsdb', 'officerRoles', 'discordBotConfig'];
+    if (!isAuthenticated && authOnlyTabs.includes(activeTab)) {
+      setActiveTab('loot');
+      setLootSubTab('overview');
+    }
+  }, [isAuthenticated, activeTab]);
+
   const setRoster = (newVal) => {
     setRosterLocal(newVal);
     setRosterDirty(true);
@@ -475,6 +360,155 @@ export default function App() {
   const setScoringConfig = (newVal) => { setScoringConfigLocal(newVal); setScoringConfigDirty(true); };
   const setPlayerStats = (newVal) => { setPlayerStatsLocal(newVal); setPlayerStatsDirty(true); };
   const setRaidLogs = (newVal) => { setRaidLogsLocal(newVal); setRaidLogsDirty(true); };
+
+  const rosterData = useRosterData({
+    fetchData,
+    putData,
+    roster,
+    setRoster,
+    playerStats,
+    setPlayerStats,
+    raidLogs,
+    setRaidLogs,
+    setRosterLocal,
+    setPlayerStatsLocal,
+    setRaidLogsLocal,
+    rosterDirty,
+    playerStatsDirty,
+    raidLogsDirty,
+    setRosterDirty,
+    setPlayerStatsDirty,
+    setRaidLogsDirty,
+    newSpec,
+    setNewSpec,
+  });
+
+  const {
+    mutableItems,
+    setMutableItemsLocal,
+    setMutableItemsBaseline,
+    bisPriorities,
+    setBisPrioritiesLocal,
+    dbBisPriorities,
+    setDbBisPrioritiesLocal,
+    masterItemsDbPhase,
+    setMasterItemsDbPhase,
+    dbNewName,
+    setDbNewName,
+    dbNewSlot,
+    setDbNewSlot,
+    dbNewZone,
+    setDbNewZone,
+    dbNewBoss,
+    setDbNewBoss,
+    dbNewItemId,
+    setDbNewItemId,
+    dbSearch,
+    setDbSearch,
+    dbPageSize,
+    setDbPageSize,
+    dbPage,
+    setDbPage,
+    showMissingWowheadFilter,
+    setShowMissingWowheadFilter,
+    showWowheadNameMismatchFilter,
+    setShowWowheadNameMismatchFilter,
+    dbBisPrioritiesDirty,
+    mutableItemsDirty,
+    isSavingItemsDb,
+    handleAddItemToDb,
+    handleUpdateItemEligibility,
+    handleUpdateItemId,
+    handleUpdateItemSource,
+    handleDeleteItemFromDb,
+    handleSaveItemsDbChanges,
+  } = useItemsDatabase({
+    fetchData,
+    putData,
+    postData,
+    deleteData,
+    phaseJsonKeys: PHASE_JSON_KEYS,
+    leftSlots: LEFT_SLOTS,
+    p2Bosses: P2_BOSSES,
+    globalPhase,
+    setSelectedItemName: setSelectedLootItemName,
+  });
+
+  const {
+    assignments,
+    assignmentsDirty,
+    hasLootUnsavedChanges,
+    isSavingLootCouncil,
+    searchQuery,
+    setSearchQuery,
+    filterZone,
+    setFilterZone,
+    filterBoss,
+    setFilterBoss,
+    filterSlot,
+    setFilterSlot,
+    filterCategory,
+    setFilterCategory,
+    selectedItemName,
+    setSelectedItemName,
+    uniqueZones,
+    uniqueBosses,
+    uniqueSlots,
+    filteredItems,
+    selectedItem,
+    sortedEligiblePlayers,
+    getPlayerItemPriorityStatus,
+    handleSetPriority,
+    handleToggleAwardedPriority,
+    handleSaveLootCouncilChanges,
+    handleClearOverviewItemPriorities,
+    normalizeAwardedPlayerIds,
+    setAssignmentsData,
+  } = useLootCouncilData({
+    fetchData,
+    putData,
+    globalPhase,
+    roster,
+    mutableItems,
+    playerStats,
+    scoringConfig,
+    raidLogs,
+    getDisplayFromId,
+    getSpecById,
+    bisPriorities,
+    selectedItemName: selectedLootItemName,
+    setSelectedItemName: setSelectedLootItemName,
+  });
+
+  const {
+    raidAssignmentArchives,
+    selectedRaidAssignmentArchiveId,
+    selectedRaidRestoreBosses,
+    raidAssignmentData,
+    enabledBosses,
+    raidAssignmentDataDirty,
+    enabledBossesDirty,
+    isSavingRaidAssignments,
+    setRaidAssignmentData,
+    handleSaveRaidAssignmentsChanges,
+    handleCopyRaidAssignmentsToArchive,
+    handleViewRaidAssignmentArchive,
+    handleToggleRaidRestoreBoss,
+    handleRestoreRaidAssignmentArchive,
+    handleToggleZone,
+    handleToggleBoss,
+    handleAddCustomRaidBoss,
+    handleRemoveCustomRaidBoss,
+    customRaidGroups,
+    raidZones,
+  } = useRaidAssignmentsData({
+    fetchData,
+    putData,
+    activeTab,
+    setActiveTab,
+    setRaidAssignmentsSubTab,
+    isAuthenticated,
+  });
 
   const adminData = useAdminData({
     fetchData,
@@ -487,15 +521,6 @@ export default function App() {
     setScoringConfig,
     refreshRosterClaims
   });
-
-  // If a saved tab requires auth and the session is locked, fall back safely.
-  useEffect(() => {
-    const authOnlyTabs = ['bankRequests', 'loot', 'roster', 'scoring', 'itemsdb', 'officerRoles', 'discordBotConfig'];
-    if (!isAuthenticated && authOnlyTabs.includes(activeTab)) {
-      setActiveTab('loot');
-      setLootSubTab('overview');
-    }
-  }, [isAuthenticated, activeTab]);
 
   const sortedRosterForSelector = useMemo(() => {
     return [...roster].sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')));
@@ -547,28 +572,6 @@ export default function App() {
     handleCancelRaidHelperImport,
     handleApplyRaidHelperImport
   } = useRaidHelperImport({ roster, specsFromDb, playerStats, raidLogs, setRoster, setPlayerStats, setRaidLogs, setNewRaidDate: rosterData.setNewRaidDate, setNewRaidZone: rosterData.setNewRaidZone, fetchData });
-
-  const rosterData = useRosterData({
-    fetchData,
-    putData,
-    roster,
-    setRoster,
-    playerStats,
-    setPlayerStats,
-    raidLogs,
-    setRaidLogs,
-    setRosterLocal,
-    setPlayerStatsLocal,
-    setRaidLogsLocal,
-    rosterDirty,
-    playerStatsDirty,
-    raidLogsDirty,
-    setRosterDirty,
-    setPlayerStatsDirty,
-    setRaidLogsDirty,
-    newSpec,
-    setNewSpec,
-  });
 
   const hasItemsDbUnsavedChanges = dbBisPrioritiesDirty || mutableItemsDirty;
   const hasRosterUnsavedChanges = rosterDirty || raidLogsDirty || playerStatsDirty;

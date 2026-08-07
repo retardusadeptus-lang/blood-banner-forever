@@ -7,6 +7,12 @@
 - [x] Frontend build currently succeeds; the targeted lint cleanup for the refactor files is largely complete.
 - [ ] The app shell is still large enough that a final shell-reduction pass is still worthwhile if the goal is to make it much easier to read and maintain.
 
+## Runtime safety lessons learned
+- [x] A blank-page regression can happen when a new hook or refactor step introduces state that is referenced before its own initialization or before the parent shell has established the required shared state.
+- [x] When extracting state into hooks, keep the parent component's initialization order stable: shared tab/state values should exist before any dependent hooks are created, and any hook that depends on parent-owned state should receive it from the parent rather than reaching for a later-initialized value.
+- [x] Before landing future refactors, verify the app loads in the browser and check the console for initialization-order errors rather than relying only on a successful build.
+- [x] Add a small guardrail checklist for future refactors: confirm hook dependency order, confirm parent-owned state exists before child hooks are invoked, and verify runtime rendering after the change.
+
 ## Completed work
 
 ### P0 — Shrink the app shell
