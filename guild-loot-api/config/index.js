@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
 
-require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '.env') });
 
 const BNET_CLIENT_ID = String(process.env.BNET_CLIENT_ID || '').trim();
 const BNET_CLIENT_SECRET = String(process.env.BNET_CLIENT_SECRET || '').trim();

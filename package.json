@@ -12,6 +12,8 @@
     "preview": "vite preview",
     "dev:api": "node --env-file=.env guild-loot-api/server.js",
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:api\"",
+    "dev:full": "npm run dev:all",
+    "start:full": "powershell -ExecutionPolicy Bypass -File ./scripts/start-full.ps1",
     "build:docker": "docker build -t gntbc:latest -f ./Dockerfile ."
   },
   "postinstall": "cd guild-loot-api && npm install && cd .. && npm run build:prod",

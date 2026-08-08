@@ -55,8 +55,9 @@ function parseCookies(cookieHeader = '') {
 }
 
 function setBattleNetSessionCookie(res, token) {
-  const cookieValue = `${BNET_SESSION_COOKIE_NAME}=${encodeURIComponent(token)}; Path=/; HttpOnly; SameSite=Lax`;
-  res.setHeader('Set-Cookie', process.env.NODE_ENV === 'production' ? `${cookieValue}; Secure` : cookieValue);
+  const cookieParts = [`${BNET_SESSION_COOKIE_NAME}=${encodeURIComponent(token)}`, 'Path=/', 'HttpOnly'];
+  cookieParts.push('SameSite=Lax');
+  res.setHeader('Set-Cookie', cookieParts.join('; '));
 }
 
 function clearBattleNetSession(req, res) {
@@ -65,7 +66,9 @@ function clearBattleNetSession(req, res) {
   if (token) {
     BNET_AUTH_SESSIONS.delete(token);
   }
-  res.setHeader('Set-Cookie', `${BNET_SESSION_COOKIE_NAME}=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax`);
+  const clearParts = [`${BNET_SESSION_COOKIE_NAME}=`, 'Path=/', 'Max-Age=0', 'HttpOnly'];
+  clearParts.push('SameSite=Lax');
+  res.setHeader('Set-Cookie', clearParts.join('; '));
 }
 
 function createBattleNetSession(sessionData) {

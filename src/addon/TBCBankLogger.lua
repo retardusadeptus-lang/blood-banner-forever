@@ -248,6 +248,8 @@ local function buildExportPayload()
     local payload = {
         exported_at = date("!%Y-%m-%dT%H:%M:%SZ"),
         guild = GetGuildInfo("player") or "",
+        gold = GetGuildBankMoney() or 0,
+        guildGold = GetGuildBankMoney() or 0,
         items = {}
     }
 

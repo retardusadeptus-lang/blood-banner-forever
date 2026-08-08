@@ -93,6 +93,33 @@ function normalizePhaseForDb(phase) {
   return value;
 }
 
+function waitForBusyRetry(delayMs) {
+  if (delayMs <= 0) return;
+  const buffer = new Int32Array(new SharedArrayBuffer(4));
+  Atomics.wait(buffer, 0, 0, delayMs);
+}
+
+function runWithBusyRetries(operation, { retries = 5, initialDelayMs = 250 } = {}) {
+  let lastError;
+  for (let attempt = 0; attempt < retries; attempt += 1) {
+    try {
+      return operation();
+    } catch (error) {
+      const isBusy = error?.code === 'SQLITE_BUSY' || error?.code === 'SQLITE_LOCKED';
+      if (!isBusy || attempt === retries - 1) {
+        throw error;
+      }
+
+      lastError = error;
+      const delayMs = initialDelayMs * (attempt + 1);
+      console.warn(`[DB] SQLite busy, retrying schema init in ${delayMs}ms (attempt ${attempt + 1}/${retries})`);
+      waitForBusyRetry(delayMs);
+    }
+  }
+
+  throw lastError;
+}
+
 function ensureBattleNetAuthSchema(db) {
   db.exec(`
     CREATE TABLE IF NOT EXISTS users (
@@ -322,6 +349,16 @@ function ensureBankRequestSchema(db) {
   if (!hasRequesterName) {
     db.prepare('ALTER TABLE bank_requests ADD COLUMN requester_name TEXT').run();
   }
+
+  const hasRequesterDiscordUserId = columns.some(col => col.name === 'requester_discord_user_id');
+  if (!hasRequesterDiscordUserId) {
+    db.prepare('ALTER TABLE bank_requests ADD COLUMN requester_discord_user_id TEXT').run();
+  }
+
+  const hasRequesterDiscordUsername = columns.some(col => col.name === 'requester_discord_username');
+  if (!hasRequesterDiscordUsername) {
+    db.prepare('ALTER TABLE bank_requests ADD COLUMN requester_discord_username TEXT').run();
+  }
 }
 
 function ensureOfficerRolesTable(db) {
@@ -467,6 +504,136 @@ function ensureRaidSignupTables(db) {
   }
 }
 
+function ensureOperationalTables(db) {
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS assignments (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      phase VARCHAR(20) NOT NULL,
+      item_name VARCHAR(255) NOT NULL,
+      player_id INTEGER NOT NULL,
+      rank INTEGER,
+      is_pass INTEGER DEFAULT 0,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      UNIQUE(phase, item_name, player_id)
+    );
+
+    CREATE TABLE IF NOT EXISTS player_stats (
+      player_id INTEGER PRIMARY KEY,
+      consumables INTEGER DEFAULT 0,
+      enchants INTEGER DEFAULT 0,
+      gems INTEGER DEFAULT 0,
+      afks INTEGER DEFAULT 0,
+      manual_adjustment REAL DEFAULT 0,
+      manual_adjustment_note VARCHAR(255),
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS player_parses (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      player_id INTEGER NOT NULL,
+      boss_name VARCHAR(255) NOT NULL,
+      parse_value REAL,
+      is_support INTEGER DEFAULT 0,
+      recorded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      source VARCHAR(50) DEFAULT 'manual',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      UNIQUE(player_id, boss_name)
+    );
+
+    CREATE TABLE IF NOT EXISTS raid_logs (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      raid_date VARCHAR(20) NOT NULL,
+      zone VARCHAR(100),
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS raid_attendees (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      raid_id INTEGER NOT NULL REFERENCES raid_logs(id) ON DELETE CASCADE,
+      player_id INTEGER NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      UNIQUE(raid_id, player_id)
+    );
+
+    CREATE TABLE IF NOT EXISTS roster (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name VARCHAR(100) NOT NULL,
+      spec_id INTEGER NOT NULL REFERENCES specs(id) ON DELETE CASCADE,
+      in_raid INTEGER DEFAULT 1,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS bis_priorities (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      phase VARCHAR(20) NOT NULL UNIQUE,
+      data TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS scoring_config (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      data TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS bank_items (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      item_wowhead_id INTEGER NOT NULL,
+      name VARCHAR(255) NOT NULL,
+      category VARCHAR(100) NOT NULL,
+      count INTEGER NOT NULL DEFAULT 1,
+      sub_type VARCHAR(100) DEFAULT '',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS bank_uploads (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      item_count INTEGER NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS bank_requests (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      player_id INTEGER NOT NULL,
+      item_wowhead_id INTEGER NOT NULL,
+      item_name VARCHAR(255) NOT NULL,
+      quantity INTEGER NOT NULL DEFAULT 1,
+      reason TEXT DEFAULT '',
+      status VARCHAR(32) NOT NULL DEFAULT 'pending',
+      price INTEGER,
+      officer_note TEXT DEFAULT '',
+      approved_quantity INTEGER,
+      resolved_at DATETIME,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS raid_assignment_data (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      data TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS raid_assignment_config (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      enabled_bosses TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS raid_assignment_images (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      boss_name VARCHAR(255) NOT NULL,
+      caption TEXT DEFAULT '',
+      image_data TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+  `);
+
+  const rosterColumns = db.prepare('PRAGMA table_info(roster)').all();
+  if (!rosterColumns.some(col => col.name === 'user_id')) {
+    db.exec('ALTER TABLE roster ADD COLUMN user_id INTEGER');
+  }
+}
+
 function ensureDatabaseIndexes(db) {
   const statements = [
     'CREATE INDEX IF NOT EXISTS idx_assignments_phase_item ON assignments (phase, item_name)',
@@ -489,14 +656,17 @@ function ensureDatabaseIndexes(db) {
 }
 
 function ensureDatabaseReady(db) {
-  ensureBattleNetAuthSchema(db);
-  ensureTierTokenSupport(db);
-  ensureNormalizedOperationalTables(db);
-  ensureBankRequestSchema(db);
-  ensureOfficerRolesTable(db);
-  ensureDiscordBotConfigTable(db);
-  ensureRaidSignupTables(db);
-  ensureDatabaseIndexes(db);
+  runWithBusyRetries(() => {
+    ensureBattleNetAuthSchema(db);
+    ensureTierTokenSupport(db);
+    ensureOperationalTables(db);
+    ensureNormalizedOperationalTables(db);
+    ensureBankRequestSchema(db);
+    ensureOfficerRolesTable(db);
+    ensureDiscordBotConfigTable(db);
+    ensureRaidSignupTables(db);
+    ensureDatabaseIndexes(db);
+  });
 }
 
 module.exports = {

@@ -15,17 +15,40 @@ export function useItemsDatabase({
   const [mutableItemsBaseline, setMutableItemsBaseline] = useState([]);
   const [bisPriorities, setBisPrioritiesLocal] = useState({});
   const [dbBisPriorities, setDbBisPrioritiesLocal] = useState({});
-  const [masterItemsDbPhase, setMasterItemsDbPhase] = useState('T5');
+  const [masterItemsDbPhase, setMasterItemsDbPhaseLocal] = useState('T5');
   const [dbNewName, setDbNewName] = useState('');
   const [dbNewSlot, setDbNewSlot] = useState(leftSlots[0]);
   const [dbNewZone, setDbNewZone] = useState('SSC');
   const [dbNewBoss, setDbNewBoss] = useState(p2Bosses[0]);
   const [dbNewItemId, setDbNewItemId] = useState('');
-  const [dbSearch, setDbSearch] = useState('');
-  const [showMissingWowheadFilter, setShowMissingWowheadFilter] = useState(false);
+  const [dbSearch, setDbSearchLocal] = useState('');
+  const [dbPageSize, setDbPageSize] = useState(25);
+  const [dbPage, setDbPage] = useState(1);
+  const [showMissingWowheadFilter, setShowMissingWowheadFilterLocal] = useState(false);
+  const [showWowheadNameMismatchFilter, setShowWowheadNameMismatchFilterLocal] = useState(false);
   const [dbBisPrioritiesDirty, setDbBisPrioritiesDirty] = useState(false);
   const [mutableItemsDirty, setMutableItemsDirty] = useState(false);
   const [isSavingItemsDb, setIsSavingItemsDb] = useState(false);
+
+  const setDbSearch = (value) => {
+    setDbSearchLocal(value);
+    setDbPage(1);
+  };
+
+  const setShowMissingWowheadFilter = (value) => {
+    setShowMissingWowheadFilterLocal(value);
+    setDbPage(1);
+  };
+
+  const setShowWowheadNameMismatchFilter = (value) => {
+    setShowWowheadNameMismatchFilterLocal(value);
+    setDbPage(1);
+  };
+
+  const setMasterItemsDbPhase = (value) => {
+    setMasterItemsDbPhaseLocal(value);
+    setDbPage(1);
+  };
 
   const setBisPriorities = (newVal) => {
     setBisPrioritiesLocal(newVal);
@@ -51,6 +74,8 @@ export function useItemsDatabase({
       const newItem = await postData('items', {
         name: dbNewName.trim(),
         slot: dbNewSlot,
+        source: dbNewZone,
+        source_type: dbNewBoss,
         zone: dbNewZone,
         boss: dbNewBoss,
         itemId: dbNewItemId.trim()
@@ -62,7 +87,7 @@ export function useItemsDatabase({
       setDbNewName('');
       setDbNewItemId('');
       alert(`Successfully added "${newItem.name}" to items table!`);
-    } catch (err) {
+    } catch {
       alert('Failed to add item.');
     }
   };
@@ -87,6 +112,27 @@ export function useItemsDatabase({
     setMutableItemsDirty(true);
   };
 
+  const handleUpdateItemSource = (id, field, value) => {
+    setMutableItemsLocal(mutableItems.map(item => {
+      if (item.id !== id) return item;
+
+      const nextItem = { ...item, [field]: value };
+      const sourceDetails = {
+        source: field === 'source' ? value : (item.source ?? ''),
+        source_type: field === 'source_type' ? value : (item.source_type ?? ''),
+      };
+
+      return {
+        ...nextItem,
+        source: sourceDetails.source,
+        source_type: sourceDetails.source_type,
+        zone: sourceDetails.source || (field === 'source' ? value : item.zone || ''),
+        boss: sourceDetails.source_type || (field === 'source_type' ? value : item.boss || ''),
+      };
+    }));
+    setMutableItemsDirty(true);
+  };
+
   const handleDeleteItemFromDb = async (id, itemName) => {
     if (!window.confirm(`Permanently remove "${itemName}" from the master loot tables?`)) return;
 
@@ -97,7 +143,7 @@ export function useItemsDatabase({
       setMutableItemsBaseline(updatedItems);
       setMutableItemsDirty(false);
       if (setSelectedItemName) setSelectedItemName('');
-    } catch (err) {
+    } catch {
       alert('Failed to delete item.');
     }
   };
@@ -113,12 +159,22 @@ export function useItemsDatabase({
 
       if (mutableItemsDirty) {
         const baselineById = new Map(mutableItemsBaseline.map(item => [item.id, item]));
-        const changedIds = mutableItems.filter(item => {
+        const changedItems = mutableItems.filter(item => {
           const baselineItem = baselineById.get(item.id);
-          return baselineItem && String(baselineItem.itemId || '') !== String(item.itemId || '');
+          if (!baselineItem) return false;
+
+          return (
+            String(baselineItem.itemId || '') !== String(item.itemId || '') ||
+            String(baselineItem.source || '') !== String(item.source || '') ||
+            String(baselineItem.source_type || '') !== String(item.source_type || '')
+          );
         });
 
-        await Promise.all(changedIds.map(item => putData(`items/${item.id}`, { itemId: item.itemId || '' })));
+        await Promise.all(changedItems.map(item => putData(`items/${item.id}`, {
+          itemId: item.itemId || '',
+          source: item.source || '',
+          source_type: item.source_type || '',
+        })));
       }
 
       const refreshedItems = await fetchData('mutable-items');
@@ -127,7 +183,7 @@ export function useItemsDatabase({
       setDbBisPrioritiesDirty(false);
       setMutableItemsDirty(false);
       alert('Master items changes saved.');
-    } catch (err) {
+    } catch {
       alert('Failed to save master items changes.');
     } finally {
       setIsSavingItemsDb(false);
@@ -157,8 +213,14 @@ export function useItemsDatabase({
     setDbNewItemId,
     dbSearch,
     setDbSearch,
+    dbPageSize,
+    setDbPageSize,
+    dbPage,
+    setDbPage,
     showMissingWowheadFilter,
     setShowMissingWowheadFilter,
+    showWowheadNameMismatchFilter,
+    setShowWowheadNameMismatchFilter,
     dbBisPrioritiesDirty,
     setDbBisPrioritiesDirty,
     mutableItemsDirty,
@@ -168,6 +230,7 @@ export function useItemsDatabase({
     handleAddItemToDb,
     handleUpdateItemEligibility,
     handleUpdateItemId,
+    handleUpdateItemSource,
     handleDeleteItemFromDb,
     handleSaveItemsDbChanges,
   };

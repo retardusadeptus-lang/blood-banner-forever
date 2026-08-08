@@ -1,0 +1,3135 @@
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase TwoClassesLevelingBest in SlotTier ListsRaidsAttunementsDungeonsReputationsProfessions
+Guides...
+Guide Contents
+Patch 2.5.6
+4.7/5 (5 Votes)
+TBCC Mage Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Arcane
+            Fire
+            Frost
+                Best-In-Slot Gear in Pre-Raid
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Weapons
+                    Off-Hands
+                    Wands
+        Phase 1 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 2 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 3 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 4 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 5 BiS
+            Arcane
+            Fire
+            Frost
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Frost Mage DPS Pre-Raid Best-in-Slot (BiS) - TBC Classic
+By Foolipe
+Updated: 2026/02/15
+Foolipe
+Offline on Twitch
+Follow:
+In this Pre-Raid Best-in-Slot Gear List for Frost Mage DPS in The Burning Crusade Classic, we will list the recommended gear for Frost Mage DPS to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Frost Mage DPS Best in Slot Hub
+
+Best-In-Slot Gear for Frost Mage DPS in Pre-Raid
+There are a ton of different ways to gear a Frost Mage, and they all depend on the gear you have available, as well as some personal preferences. Between all the different powerful rings, trinkets, necks, and even a few armor items here and there, you can make adjustments and still do some of the best damage possible.
+
+Frost Mages looking to add enchants and gems to their BiS gear should take a look at our guide below:
+
+Frost Mage Gems & Enchants
+Should Frost Mage DPS Choose Aldor or Scryer for BiS in TBC Classic Pre-Raid?
+The Aldor vs Scryer choice for Mages is not super important. The key thing to keep in mind is the enchants, Greater Inscription of Discipline Greater Inscription of Discipline and Greater Inscription of the Orb Greater Inscription of the Orb. They are very, very similar, which overall makes the choice not super impactful—we're talking 0.x% in favor of Aldor.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Arcane Mages, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best-in-Slot Head Armor for Frost Mages in TBC Classic Pre-Raid
+For Frost Mage, the Mana-Etched Crown is pre-raid best in slot assuming a full set scenario with the items listed at the top of each section. If you're not using - for example - the Mana-Etched Gloves for the two set bonus with the headpiece, then it's likely something like the Mana-Binders Cowl will perform better (assuming you're hit capped through other items).
+
+The Spellstrike Hood is overestimated, given it doesn't have a meta gem socket (the legs of this set are still very good standalone). So I personally don't recommend it considering it performs lower in AoE as well as in single target dps (though by not as much) even in pre-raid gear.
+Rank	Item	Source
+BiS	Mana-Etched Crown Mana-Etched Crown	Drop: Aeonus (The Black Morass)
+BiS	Mana-Binders Cowl Mana-Binders Cowl	Sold by: G'eras - 50 Badge of Justice Badge of Justice
+Option	Hood of Oblivion Hood of Oblivion	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Incanter's Cowl Incanter's Cowl	Drop: Pathaleon the Calculator (The Mechanar)
+Option	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+
+Rank	Item	Source
+Option	Mag'hari Ritualist's Horns Mag'hari Ritualist's Horns	Quest:Hero of the Mag'har Hero of the Mag'har
+Option	Frostfire Circlet Frostfire Circlet	Quest:Frostfire Circlet Frostfire Circlet (Classic - Naxxramas)
+Option	Mish'undare, Circlet of the Mind Flayer Mish'undare, Circlet of the Mind Flayer	Drop: Nefarian (Classic - Blackwing Lair)
+Option	Evoker's Helmet of Second Sight Evoker's Helmet of Second Sight	Quest:Teron Gorefiend, I am... Teron Gorefiend, I am...
+
+Best-in-Slot Shoulder Armor for Frost Mages in TBC Classic Pre-Raid
+For the Shoulder slot, Tailoring provides the best option for Frost Mages: Frozen Shadoweave Shoulders, which provide a ton of Spell Power, as well as two sockets to increase damage further.
+Rank	Item	Source
+BiS	Frozen Shadoweave Shoulders Frozen Shadoweave Shoulders	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest:The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+Option	Evoker's Silk Amice Evoker's Silk Amice	Thrallmar - Honored
+Option	High Warlord's Silk Amice High Warlord's Silk Amice	Lady Palanseer - 10475 Honor Points Honor Points 10 Arathi Basin Mark of Honor Arathi Basin Mark of Honor
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Spaulders of Oblivion Spaulders of Oblivion	Drop: Murmur (Shadow Labyrinth)
+Option	Mana-Etched Spaulders Mana-Etched Spaulders	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Rime Covered Mantle Rime Covered Mantle	Drop: Gluth (Classic - Naxxramas)
+Option	Mantle of Three Terrors Mantle of Three Terrors	Drop: Chrono Lord Deja (The Black Morass)
+Option	Frostfire Shoulderpads Frostfire Shoulderpads	Quest:Frostfire Shoulderpads Frostfire Shoulderpads (Classic - Naxxramas)
+Option	Destroyers' Mantle Destroyers' Mantle	Quest:Natural Remedies Natural Remedies
+Option	Nether Guards Nether Guards	Quest:Dr. Boom! Dr. Boom!
+
+Best-in-Slot Back Armor for Frost Mages in TBC Classic Pre-Raid
+The cloak slot has two valid options to pick from, one is Cloak of the Necropolis which you might already have, and in this case simply continue using it until you replace it with the raid upgrade. The other one is the new Shawl of Shifting Probabilities which you can just buy with badges of justice. Both perform similarly with minor hit adjustments via gems.
+Rank	Item	Source
+BiS	Cloak of the Necropolis Cloak of the Necropolis	Drop: Sapphiron (Classic - Naxxramas)
+BiS	Shawl of Shifting Probabilities Shawl of Shifting Probabilities	Vendor: G'eras (Badges of Justice)
+Option	Ogre Slayer's Cover Ogre Slayer's Cover	Quest:Cho'war the Pillager Cho'war the Pillager
+Option	Cloak of the Devoured Cloak of the Devoured	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Sethekk Oracle Cloak Sethekk Oracle Cloak	Drop: Talon King Ikiss (Sethekk Halls)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Cloak of Entropy Cloak of Entropy	Drop: World Drop
+Option	Cloak of Woven Energy Cloak of Woven Energy	Quest:Hitting the Motherlode Hitting the Motherlode
+Option	Cloak of the Black Void Cloak of the Black Void	Profession: Tailoring - can be purchased on the Auction House
+
+Best-in-Slot Chest Armor for Frost Mages in TBC Classic Pre-Raid
+Chest is another slot where Tailoring is great, with Frost Mages being provided with the incredible Shadow's Embrace set. For this slot, Frozen Shadoweave Robe provides a massive +72 to Frost and Shadow damage and two sockets. This is an amazing item overall and massively better than anything else, even all the chests in the first set of raids. You'll be wearing this one for a while.
+Rank	Item	Source
+BiS	Frozen Shadoweave Robe Frozen Shadoweave Robe	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Will of Edward the Odd Will of Edward the Odd	Drop: World Drop
+Option	Mana-Etched Vestments Mana-Etched Vestments	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Option	Robe of the Crimson Order Robe of the Crimson Order	Drop: World Drop
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+
+Rank	Item	Source
+Option	Frostfire Robe Frostfire Robe	Quest:Frostfire Robe Frostfire Robe (Classic - Naxxramas)
+Option	Auchenai Anchorite's Robe Auchenai Anchorite's Robe	Quest:Everything Will Be Alright Everything Will Be Alright (Auchenai Crypts)
+Option	Warp Infused Drape Warp Infused Drape	Drop: Warp Splinter (The Botanica)
+Option	Robe of Oblivion Robe of Oblivion	Drop: Murmur (Shadow Labyrinth)
+Option	Kirin Tor Apprentice's Robes Kirin Tor Apprentice's Robes	Quest:Destroy Naberius! Destroy Naberius!
+Option	Shadowcast Tunic Shadowcast Tunic	Quest:Drill the Drillmaster Drill the Drillmaster /The Foot of the Citadel The Foot of the Citadel
+
+Best-in-Slot Wrist Armor for Frost Mages in TBC Classic Pre-Raid
+Wrists are a very easy slot to fill, you have either the General's Silk Cuffs which you can farm alone via battlegrounds; or the Bracers of Havok which perform the same but will cost you gold instead. Depending on whether you value your time or gold more, you can take a pick of either and be fine.
+Rank	Item	Source
+BiS	General's Silk Cuffs General's Silk Cuffs	Vendor: Honor Points (PvP)
+BiS	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+
+Rank	Item	Source
+Option	Bands of Negation Bands of Negation	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Shattrath Wraps Shattrath Wraps	Quest:The Soul Devices The Soul Devices (Shadow Labyrinth)
+Option	Crimson Bracers of Gloom Crimson Bracers of Gloom	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	The Soul Harvester's Bindings The Soul Harvester's Bindings	Drop: Gothik the Harvester (Classic - Naxxramas)
+
+Best-in-Slot Hand Armor for Frost Mages in TBC Classic Pre-Raid
+The best option for a Frost Mage's gloves is Mana-Etched Gloves if paired with the Mana-Etched Crown headpiece, if at any point you replace any or the other, the options below are likely to perform better.
+Rank	Item	Source
+BiS	Mana-Etched Gloves Mana-Etched Gloves	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	Gloves of Oblivion Gloves of Oblivion	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Option	Tempest's Touch Tempest's Touch	Quest:Return to Andormu Return to Andormu (Caverns of Time)
+Option	Incanter's Gloves Incanter's Gloves	Drop: Hydromancer Thespia (The Steamvault)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Manaspark Gloves Manaspark Gloves	Drop: Hungarfen (The Underbog)
+Option	Gloves of the Deadwatcher Gloves of the Deadwatcher	Drop: Shirrak the Dead Watcher (Heroic Auchenai Crypts)
+Option	Dark Storm Gauntlets Dark Storm Gauntlets	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Gloves of the High Magus Gloves of the High Magus	Quest:News of Victory News of Victory /News of Victory News of Victory
+Option	Grips of the Void Grips of the Void	Quest:Enraged Spirits of Air Enraged Spirits of Air
+
+Best-in-Slot Waist Armor for Frost Mages in TBC Classic Pre-Raid
+It's back to Tailoring for the Waist slot, as the profession once again offers a very strong item. This time, however, it's a BoE belt, so it's not something you need to craft yourself. Girdle of Ruination is the best option here, as it provides very strong base stats and, crucially, two sockets.
+
+Additionally, because of how easy the A'dal's Gift is to obtain, options below it aren't even worthwhile mentioning.
+Rank	Item	Source
+BiS	Girdle of Ruination Girdle of Ruination	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Belt of Depravity Belt of Depravity	Drop: Harbinger Skyriss (Heroic The Arcatraz)
+Option	Eyestalk Waist Cord Eyestalk Waist Cord	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Glyph-Lined Sash Glyph-Lined Sash	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	A'dal's Gift A'dal's Gift	Quest:How to Break Into the Arcatraz How to Break Into the Arcatraz (The Arcatraz)
+Best-in-Slot Leg Armor for Frost Mages in TBC Classic Pre-Raid
+Tailoring is back again for the leg slot, as Spellstrike Pants is an amazing option. Spell Power, Hit, Crit, three sockets, and a +92 Spell Power proc from the set bonus! These things are incredible, and as a Mage, you will spend a long time wearing the Spellstrike set.
+Rank	Item	Source
+BiS	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+Option	Breeches of the Occultist Breeches of the Occultist	Drop: Aeonus (Heroic The Black Morass)
+Option	Kirin Tor Master's Trousers Kirin Tor Master's Trousers	Drop: Murmur (Heroic Shadow Labyrinth)
+Option	Aran's Sorcerous Slacks Aran's Sorcerous Slacks	Drop: Lieutenant Drake (Old Hillsbrad Foothills)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+If you don't have tailoring, then there are also other solid options, mostly coming from a variety of different TBC dungeons, but even the Naxx BiS is fairly strong.
+Rank	Item	Source
+Option	Khadgar's Kilt of Abjuration Khadgar's Kilt of Abjuration	Drop: Temporus (The Black Morass)
+Option	Pantaloons of Flaming Wrath Pantaloons of Flaming Wrath	Drop: Blood Guard Porung (Heroic The Shattered Halls)
+Option	Devil-Stitched Leggings Devil-Stitched Leggings	Drop: Laj (The Botanica)
+Option	Leggings of Polarity Leggings of Polarity	Drop: Thaddius (Classic - Naxxramas)
+
+Best-in-Slot Feet Armor for Frost Mages in TBC Classic Pre-Raid
+As the third slot which can use items from this set, the Frozen Shadoweave Boots are also both pre-raid and phase best in slot. If you're not Tailoring by any chance, then the rest of the items are listed in terms of performance (with some Hit adjustments required for items such as Extravagant Boots of Malice).
+Rank	Item	Source
+BiS	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	General's Silk Footguards General's Silk Footguards	Vendor: Honor Points (PvP)
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Extravagant Boots of Malice Extravagant Boots of Malice	Drop: Tavarok (Heroic Mana-Tombs)
+Option	Shattrath Jumpers Shattrath Jumpers	Quest:Into the Heart of the Labyrinth Into the Heart of the Labyrinth (Shadow Labyrinth)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Frostfire Sandals Frostfire Sandals	Quest:Frostfire Sandals Frostfire Sandals (Classic - Naxxramas)
+Option	Boots of Blasphemy Boots of Blasphemy	Drop: Quagmirran (Heroic The Slave Pens)
+
+Best-in-Slot Neck Jewelry for Frost Mages in TBC Classic Pre-Raid
+Neck slot is filled by the very balanced Brooch of Heightened Potential - it provides a little of the required Hit while having its Spellpower and Critical Strike nearly match the other options.
+
+Though, if you're aiming for raid performance instead of personal gain, the Jewelcrafting necks are the best necks you can use for the entirity of TBC (Chain of the Twilight Owl and Eye of the Night). These should ideally be used by the support classes in your group, but if you don't have them, it's best for you to use a charge of either of them.
+Rank	Item	Source
+BiS	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+BiS - Raid DPS	Chain of the Twilight Owl Chain of the Twilight Owl	Profession Jewelcrafting can be purchased on the Auction House
+BiS - Raid DPS	Eye of the Night Eye of the Night	Profession Jewelcrafting can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+This slot doesn't have nor need many other options, given that the Torc of the Sethekk Prophet and Natasha's Ember Necklace both perform better than the necks not mentioned here and are both quest rewards. These two perform similarly so just use whichever you prefer.
+
+Lastly, if you happen to need some extra Hit from this slot specifically and can't just replace a red gem for a Veiled Noble Topaz, then the Hydra-fang Necklace can be solid.
+Rank	Item	Source
+Option	Torc of the Sethekk Prophet Torc of the Sethekk Prophet	Quest: Brother Against Brother Brother Against Brother
+Option	Natasha's Ember Necklace Natasha's Ember Necklace	Quest:The Hound-Master The Hound-Master
+Option	Hydra-fang Necklace Hydra-fang Necklace	Drop: Ghaz'an (Heroic The Underbog)
+Option	Manasurge Pendant Manasurge Pendant	Vendor: G'eras (Badges of Justice)
+Option	Amulet of Unstable Power Amulet of Unstable Power	Drop: World Drop
+
+Best-in-Slot Ring Jewelry for Frost Mages in TBC Classic Pre-Raid
+Plenty of great options for Rings, though the ones I personally recommend are first: the Ashyen's Gift for a solid chunk of the required Hit to cap; and second the Seer's Signet if you happen to be Scryer. If you are instead Aldor, then either the Band of Dominion or the Ring of Cryptic Dreams perform the same as the Seer's Signet.
+
+If you're struggling to find a second ring to go alongside the Ashyen's Gift due to being Aldor, and not having enough gold nor badges of justice for the alternatives, then the Sparking Arcanite Ring if you just happen to chance upon it in one of your runs, this option performs only very slightly worse than the other rings.
+Rank	Item	Source
+BiS	Ashyen's Gift Ashyen's Gift	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+BiS	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+BiS	Band of Dominion Band of Dominion	World Drop
+BiS	Ring of Cryptic Dreams Ring of Cryptic Dreams	G'eras - 25 Badge of Justice Badge of Justice
+Option	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Seal of the Exorcist Seal of the Exorcist	Vendor: Spirit Sage Gartok / Spirit Sage Zran (50 Spirit Shard Spirit Shard)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Frostfire Ring Frostfire Ring	Drop: Kel'Thuzad (Classic - Naxxramas)
+Option	Seal of the Damned Seal of the Damned	Drop: Four Horsemen Chest (Classic - Naxxramas)
+Option	Band of the Inevitable Band of the Inevitable	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+Option	Cobalt Band of Tyrigosa Cobalt Band of Tyrigosa	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Ring of the Fallen God Ring of the Fallen God	Quest:The Savior of Kalimdor The Savior of Kalimdor (Classic - Ahn'Qiraj)
+Option	Evoker's Mark of the Redemption Evoker's Mark of the Redemption	Quest:Dissension Amongst the Ranks... Dissension Amongst the Ranks... /Dissension Amongst the Ranks... Dissension Amongst the Ranks...
+Option	Manastorm Band Manastorm Band	Quest:Shutting Down Manaforge Ara Shutting Down Manaforge Ara
+Option	The Black Pearl The Black Pearl	Profession: Jewelcrafting - can be purchased on the Auction House
+
+Best-in-Slot Trinkets for Frost Mages in TBC Classic Pre-Raid
+Trinkets are where things get a bit technicaly, so I'll break them down:
+
+    Quagmirran's Eye and Icon of the Silver Crescent are not only pre-raid best, but also phase best — these perform great, add great value to your burst phase and should be considered your standard combo.
+    Mark of the Champion performs slightly better than Icon of the Silver Crescent, and should be used alongside Quagmirran's Eye — but only when fighting either demon or undead bosses.
+    Mind Quickening Gem is a great trinket that situationally performs better than all previous trinkets, but only in fights that are either extremely short (under 50-60 sec) or AoE pulls — this should be used alongside Icon of the Silver Crescent if you're able to use both simultaneously like in the previous TBC Classic release, or with a passive trinket like either Mark of the Champion (if undead or demon enemy) or Quagmirran's Eye.
+
+Overall, if you're trying to maximize your damage, I'd recommend gathering multiple trinkets and switching them around on different fights.
+Rank	Item	Source
+BiS	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+BiS	Mark of the Champion Mark of the Champion	Quest:The Fall of Kel'Thuzad The Fall of Kel'Thuzad (Classic - Naxxramas)
+Option	Mind Quickening Gem Mind Quickening Gem	Drop: Vaelastrasz the Corrupt (Classic - Blackwing Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+Option	Shiffar's Nexus-Horn Shiffar's Nexus-Horn	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Xi'ri's Gift Xi'ri's Gift	Vendor: Almaador (The Sha'tar Revered)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+Option	Vengeance of the Illidari Vengeance of the Illidari	Quest:Cruel's Intentions Cruel's Intentions /Overlord Overlord
+BiS	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Exalted)
+
+Best-in-Slot Weapons for Frost Mages in TBC Classic Pre-Raid
+One-handed weapons paired with a solid off-hand are the go-to choice most of the time for Mages. Simply put, they give more of the useful stats, like Spell Power and Crit, than staves. As such, you should be aiming to stick with a one-hand/off-hand combo as often as possible.
+
+The best of these is a quite expensive Blacksmithing craft, Eternium Runed Blade. Luckily, there are also very close alternatives from faction Quartermasters and dungeons, like Blade of the Archmage / Stormcaller, or lower performing dungeon drops, like Greatsword of Horrid Dreams.
+
+Specifically against Demon enemies such as Magtheridon or Prince Malchezaar, the Illidari-Bane Mageblade is great to have and use, at least until you replace both of your weapons by the phase 1 best options.
+Rank	Item	Source
+BiS	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+BiS	Stormcaller Stormcaller
+Blade of the Archmage Blade of the Archmage	Vendor: Quartermaster Urgronn / Logistics Officer Ulrike (Thrallmar / Honor Hold Exalted)
+BiS Against Demons	Illidari-Bane Mageblade Illidari-Bane Mageblade	Drop: Quenching the Blade Quenching the Blade
+BiS	Blade of Wizardry Blade of Wizardry	Drop: World Drop
+
+If you don't have access to the recommendations above, or prefer a two-handed weapon, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+
+Rank	Item	Source
+Option	Greatsword of Horrid Dreams Greatsword of Horrid Dreams	Drop: Murmur (Shadow Labyrinth)
+Option	Starlight Dagger Starlight Dagger	Drop: Mennu the Betrayer (Heroic The Slave Pens)
+Option	Continuum Blade Continuum Blade	Vendor: Alurmi (Keepers of Time Revered)
+Option	Runesong Dagger Runesong Dagger	Drop: Warbringer O'mrogg (Heroic The Shattered Halls)
+
+
+There are a few decent staves available in TBC, but as previously mentioned, they are all outclassed by one-handed weapons and off-hands. Even Atiesh, Greatstaff of the Guardian isn't that impressive anymore, as many one-handed weapons are better, and some staves even come very close to it.
+
+Still, it is the best staff option for Mages pre-raid, although with how rare it is, most people will have to look at things like Terokk's Shadowstaff or Auchenai Staff instead.
+Rank	Item	Source
+BiS	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Quest:Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian (Classic - Naxxramas)
+Option	Terokk's Shadowstaff Terokk's Shadowstaff	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+Option	Auchenai Staff Auchenai Staff	Vendor: Quartermaster Endarin (The Aldor Revered)
+Option	Warpstaff of Arcanum Warpstaff of Arcanum	Drop: Warp Splinter (The Botanica)
+Option	Grand Scepter of the Nexus-Kings Grand Scepter of the Nexus-Kings	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	The Bringer of Death The Bringer of Death	Drop: World Drop
+Option	Battle Mage's Baton Battle Mage's Baton	Quest:The Ring of Blood: The Final Challenge The Ring of Blood: The Final Challenge
+
+
+Best-in-Slot Off-Hands for Frost Mages in TBC Classic Pre-Raid
+The off-hand slot for Frost Mages is one of the simplest. Pre-raid, Sapphiron's Wing Bone is by far the best choice. It provides a ton more damage than anything else and is pretty simple to get, as it just requires badges.
+Rank	Item	Source
+BiS	Sapphiron's Wing Bone Sapphiron's Wing Bone	Vendor: G'eras (Badges of Justice)
+Option	Sapphiron's Left Eye Sapphiron's Left Eye	Drop: Sapphiron (Classic - Naxxramas)
+Option	Lamp of Peaceful Radiance Lamp of Peaceful Radiance	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Star-Heart Lamp Star-Heart Lamp	Drop: Temporus (The Black Morass)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Off-Hand Recommendations
+
+There are some alternatives like Naxx's Sapphiron's Left Eye or, if you need hit, Lamp of Peaceful Radiance.
+Rank	Item	Source
+Option	Manual of the Nethermancer Manual of the Nethermancer	Drop: Nethermancer Sepethrea (The Mechanar)
+Option	Hortus' Seal of Brilliance Hortus' Seal of Brilliance	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+
+Best-in-Slot Wands for Frost Mages in TBC Classic Pre-Raid
+With Wands, the Doomfinger or the The Black Stalk match in simmed performance, so either is fine to use - though the latter is a lot easier to obtain in TBC..
+Additionally, given there's great options even from basic quests - I wouldn't bother with the alternatives unless you really need Hit and can't swap gems nor any other item, in which case the Nether Core's Control Rod is an okay option.
+
+Given how little stat budget this slot has, these are very small dps differences no matter which of these 5 you end up picking.
+Rank	Item	Source
+BiS	Doomfinger Doomfinger	Drop: Kel'Thuzad (Classic - Naxxramas)
+BiS	The Black Stalk The Black Stalk	Drop: The Black Stalker (Heroic The Underbog)
+Option	Nethekurse's Rod of Torment Nethekurse's Rod of Torment	Quest: Turning the Tide Turning the Tide
+Option	Rod of Dire Shadows Rod of Dire Shadows	Quest: The Will of the Warchief The Will of the Warchief
+Option	Nether Core's Control Rod Nether Core's Control Rod	Drop: Dalliah the Doomsayer (The Arcatraz)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+Rank	Item	Source
+Option	Wand of Fates Wand of Fates	Drop: Patchwerk (Classic - Naxxramas)
+Option	Voidfire Wand Voidfire Wand	Drop: Pandemonius (Mana-Tombs)
+Option	Wand of the Seer Wand of the Seer	Quest: Turning Point Turning Point
+Option	Wand of the Netherwing Wand of the Netherwing	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Foolipe
+WoW Classic Mage Class Expert
+Foolipe started playing in mid-way through the release of 2019's Classic WoW, after getting into speedrunning and the more competitive side of classic wow, he started writing the guides for the Mage class during The Burning Crusade Classic.
+
+He's a Classic Mage discord regular and keeps up with the community peer-reviewed information to bring you the most up-to-date guides possible.
+No comments have been posted yet.
+Be the first to add a comment to this page!
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Mage Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Arcane
+            Fire
+            Frost
+        Phase 1 BiS
+            Arcane
+            Fire
+            Frost
+                Best In Slot Gear in Phase 1
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Weapons
+                    Offhands
+                    Wands
+        Phase 2 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 3 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 4 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 5 BiS
+            Arcane
+            Fire
+            Frost
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Frost Mage DPS Phase 1 Best in Slot (BiS) - TBC Classic
+By Foolipe
+Updated: 2026/02/02
+Foolipe
+Offline on Twitch
+Follow:
+Welcome to Wowhead's Best in Slot Gear list from Karazhan, Gruul's Lair, and Magtheridon's Lair for Frost Mage DPS in The Burning Crusade Classic. This guide will list the recommended gear for Frost Mage DPS to acquire while they progress on the first few raids in The Burning Crusade Classic, and contains gear sourced from Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best-in-slot lists, including a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Frost Mage DPS Best in Slot Guides
+
+Best In Slot Gear for Frost Mage DPS in Phase 1
+There are a ton of different ways to gear a Frost Mage, and they all depend on the gear you have available, as well as some personal preferences. Between all the different powerful Rings, Trinkets, Necks, and even a few armor items here and there, you can make adjustments and still do some of the best damage possible.
+
+Frost Mages looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Frost Mage Gems & Enchants
+Should Frost Mage DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 1?
+The Aldor vs Scryer choice for Mages is not super important. The key thing to keep in mind is the enchants, Greater Inscription of Discipline Greater Inscription of Discipline and Greater Inscription of the Orb Greater Inscription of the Orb. They are very, very similar, which overall makes the choice not super impactful - we're talking 0.x% in favor of Aldor.
+
+The Scryers do offer better items, most notably Scryer's Bloodgem Scryer's Bloodgem, which is a very strong Hit trinket. However, this is something you'll replace down the line, so really it's more of a personal choice, but if you really want to min-max, then Aldor is the pick for the long term.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Frost Mages, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Frost Mage in TBC Classic Phase 1
+Although the tailoring headpiece is highly rated by a lot of people, it simply doesn't perform as well as the other options due to the lack of a meta socket. Because of this, the Collar of the Aldor is the best option instead.
+Rank	Item	Source
+BiS	Collar of the Aldor Collar of the Aldor	Drop: Prince Malchezaar (Karazhan)
+Optional	Hood of Oblivion Hood of Oblivion	Drop: Harbinger Skyriss (The Arcatraz)
+Optional	Mana-Etched Crown Mana-Etched Crown	Drop: Aeonus (The Black Morass)
+Optional	Incanter's Cowl Incanter's Cowl	Drop: Pathaleon the Calculator (The Mechanar)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+
+Best in Slot Shoulder Armor for Frost Mage in TBC Classic Phase 1
+Shoulders don't see the biggest change from pre-raid to Phase 1 raids. Frozen Shadoweave Shoulders remains BiS for frost, although another set item, Pauldrons of the Aldor, is an okay alternative.
+Rank	Item	Source
+BiS	Frozen Shadoweave Shoulders Frozen Shadoweave Shoulders	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Pauldrons of the Aldor Pauldrons of the Aldor	Drop: High King Maulgar (Gruul's Lair)
+Option	Mana-Etched Spaulders Mana-Etched Spaulders	Drop: Quagmirran (Heroic The Slave Pens)
+Optional	Evoker's Silk Amice Evoker's Silk Amice	Thrallmar - Honored
+Option	High Warlord's Silk Amice High Warlord's Silk Amice	11250 Honor Points Honor Points 20 Arathi Basin Mark of Honor Arathi Basin Mark of Honor
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Rime Covered Mantle Rime Covered Mantle	Drop: Gluth (Classic - Naxxramas)
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest: The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+Option	Spaulders of Oblivion Spaulders of Oblivion	Drop: Murmur (Shadow Labyrinth)
+Option	Mantle of Three Terrors Mantle of Three Terrors	Drop: Chrono Lord Deja (The Black Morass)
+
+Best in Slot Back Armor for Frost Mage in TBC Classic Phase 1
+With the Cloak slot, it depends on your hit situation, since Frost Mages need 10% Hit from gear to be capped - this is a solid slot to get it from, making the Ruby Drape of the Mysticant a very solid option. Though if you're already Hit capped through other item slots, or have Totem of Wrath in your group, then you can and should use either the Ancient Spellcloak of the Highborne or the Brute Cloak of the Ogre-Magi instead.
+Rank	Item	Source
+BiS	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+BiS	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+BiS	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+Option	Cloak of the Necropolis Cloak of the Necropolis	Drop: Sapphiron (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Sethekk Oracle Cloak Sethekk Oracle Cloak	Drop: Talon King Ikiss (Sethekk Halls)
+Option	Cloak of the Devoured Cloak of the Devoured	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Shawl of Shifting Probabilities Shawl of Shifting Probabilities	Vendor: G'eras (Badges of Justice)
+Option	Shadow-Cloak of Dalaran Shadow-Cloak of Dalaran	Drop: Moroes (Karazhan)
+Option	Ogre Slayer's Cover Ogre Slayer's Cover	Quest: Cho'war the Pillager Cho'war the Pillager
+Option	Cloak of Woven Energy Cloak of Woven Energy	Quest: Hitting the Motherlode Hitting the Motherlode
+
+Best in Slot Chest Armor for Frost Mage in TBC Classic Phase 1
+Tailoring remains on top here with the incredible Shadow's Embrace set. For this slot, Frozen Shadoweave Robe provides a massive +72 to Frost and Shadow spell damage and two sockets. This is overall an amazing item, but similarly to the shoulder slot, you can use the alternative Robe of the Elder Scribes for similar full set results if itemized properly.
+Rank	Item	Source
+BiS	Frozen Shadoweave Robe Frozen Shadoweave Robe	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Robe of the Elder Scribes Robe of the Elder Scribes	Drop: Nightbane (Karazhan)
+Option	Will of Edward the Odd Will of Edward the Odd	Drop: World Drop
+Option	Vestments of the Aldor Vestments of the Aldor	Drop: Magtheridon (Magtheridon's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+
+Rank	Item	Source
+Option	Mana-Etched Vestments Mana-Etched Vestments	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Option	Robe of the Crimson Order Robe of the Crimson Order	Drop: World Drop
+Option	Auchenai Anchorite's Robe Auchenai Anchorite's Robe	Quest: Everything Will Be Alright Everything Will Be Alright
+Option	Warp Infused Drape Warp Infused Drape	Drop: Warp Splinter (The Botanica)
+Option	Kirin Tor Apprentice's Robes Kirin Tor Apprentice's Robes	Quest: Destroy Naberius! Destroy Naberius!
+Option	Shadowcast Tunic Shadowcast Tunic	Quest: Drill the Drillmaster Drill the Drillmaster / The Foot of the Citadel The Foot of the Citadel
+
+Best in Slot Wrist Armor for Frost Mage in TBC Classic Phase 1
+Wrists are another slot where raids don't do much to help. General's Silk Cuffs are the BiS option, providing a strong mix of both spell power and critical strike rating. Though they perform essentially the same as the Bracers of Havok, which some players might consider easier to obtain if they have more gold than time.
+Rank	Item	Source
+BiS	General's Silk Cuffs General's Silk Cuffs	11794 Honor Points Honor Points 20 Warsong Gulch Mark of Honor Warsong Gulch Mark of Honor
+BiS	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+Option	Crimson Bracers of Gloom Crimson Bracers of Gloom	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	Bands of Nefarious Deeds Bands of Nefarious Deeds	Drop: Maiden of Virtue (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+There aren't a lot of options listed for this slot because both the BiS options are very easy to obtain, as well as having the Shattrath Wraps as an option that's free and performs better than all other non-listed bracers.
+Rank	Item	Source
+Option	Shattrath Wraps Shattrath Wraps	Quest: The Soul Devices The Soul Devices
+
+Best in Slot Hand Armor for Frost Mage in TBC Classic Phase 1
+The Anger-Spark Gloves are technically the best in slot gloves, but since these will be unobtainable by a vast majority of the playerbase due to how restricted world boss loot can be, the Gloves of the Aldor are my recommendation instead. These not only provide very similar damage output, but help obtain the two-piece T4 set bonus that removes pushback on Frostbolt (that, although not major, can result in uptime gain).
+
+Similar to the T4 Gloves, the Handwraps of Flowing Thought are a solid alternative to the world boss gloves that are far easier to get and perform similarly to the former.
+Rank	Item	Source
+BiS	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss)
+BiS	Gloves of the Aldor Gloves of the Aldor	Drop: The Curator (Karazhan)
+BiS	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Grasp of the Dead Grasp of the Dead	Drop: Trash (Karazhan)
+Option	Mana-Etched Gloves Mana-Etched Gloves	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	Gloves of the Deadwatcher Gloves of the Deadwatcher	Drop: Shirrak the Dead Watcher (Heroic Auchenai Crypts)
+Option	Gloves of the High Magus Gloves of the High Magus	Quest: News of Victory News of Victory / News of Victory News of Victory
+
+Best in Slot Waist Armor for Frost Mage in TBC Classic Phase 1
+It's back to Tailoring for the Waist slot, as the profession once again offers up a very strong item. This time, however, it's a BoE belt, so it's not something you need to craft yourself. Girdle of Ruination is the best option here as it provides very strong base stats and, crucially, two sockets.
+Rank	Item	Source
+BiS	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+Option	Belt of Divine Inspiration Belt of Divine Inspiration	Drop: High King Maulgar (Gruul's Lair)
+Option	Malefic Girdle Malefic Girdle	Drop: Terestian Illhoof (Karazhan)
+Option	A'dal's Gift A'dal's Gift	Quest: How to Break Into the Arcatraz How to Break Into the Arcatraz
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Belt of Depravity Belt of Depravity	Drop: Harbinger Skyriss (Heroic The Arcatraz)
+Option	Eyestalk Waist Cord Eyestalk Waist Cord	Drop: C'Thun (Classic - Ahn'Qiraj)
+
+Best in Slot Leg Armor for Frost Mage in TBC Classic Phase 1
+Even though the set itself isn't useful, the Spellstrike Pants standalone are quite a good item, being better or as good as all other options. Outperformed only slightly by the world boss leggings, which are extremely hard to obtain.
+Rank	Item	Source
+BiS	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+BiS	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+Option	Legwraps of the Aldor Legwraps of the Aldor	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Breeches of the Occultist Breeches of the Occultist	Drop: Aeonus (Heroic The Black Morass)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+
+Rank	Item	Source
+Option	Trial-Fire Trousers Trial-Fire Trousers	Drop: The Big Bad Wolf, The Crone & Romulo (Karazhan)
+Option	Pantaloons of Flaming Wrath Pantaloons of Flaming Wrath	Drop: Blood Guard Porung (Heroic The Shattered Halls)
+Option	Aran's Sorcerous Slacks Aran's Sorcerous Slacks	Drop: Lieutenant Drake (Heroic Old Hillsbrad Foothills)
+Option	Kirin Tor Master's Trousers Kirin Tor Master's Trousers	Drop: Murmur (Heroic Shadow Labyrinth)
+Option	Khadgar's Kilt of Abjuration Khadgar's Kilt of Abjuration	Drop: Temporus (The Black Morass)
+Option	Devil-Stitched Leggings Devil-Stitched Leggings	Drop: Laj (The Botanica)
+
+Best in Slot Feet Armor for Frost Mage in TBC Classic Phase 1
+Once again, Tailoring remains king as Frozen Shadoweave Boots are by far the best boot option. These provide a ton more spell power than any alternatives and two sockets, making them very strong. Though the Boots of Foretelling perform similarly, or better if you have chosen to take Enchanting instead, when you account for the ring enchants.
+Rank	Item	Source
+BiS	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Ruby Slippers Ruby Slippers	Drop: The Crone (Karazhan)
+Option	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Optional	General's Silk Footguards General's Silk Footguards	17850 Honor Points Honor Points 40 Eye of the Storm Mark of Honor Eye of the Storm Mark of Honor
+Option	Extravagant Boots of Malice Extravagant Boots of Malice	Drop: Tavarok (Heroic Mana-Tombs)
+Option	Shattrath Jumpers Shattrath Jumpers	Quest: Into the Heart of the Labyrinth Into the Heart of the Labyrinth
+Option	Boots of Blasphemy Boots of Blasphemy	Drop: Quagmirran (Heroic The Slave Pens)
+
+Best in Slot Neck Jewelry for Frost Mage in TBC Classic Phase 1
+The neck slot is quite tricky in TBC. There are many good options, with raids adding two key drops. Here, you simply need to pick which stat you need most. Brooch of Heightened Potential fits a good all-around mixture, and Brooch of Unquenchable Fury is great for anyone missing hit. Meanwhile, Adornment of Stolen Souls is a good choice for just damage.
+
+Lastly, the Chain of the Twilight Owl and Eye of the Night are best in slot within the context of raid DPS - assuming nobody else in the group is already using them for their party-wide buffs.
+Rank	Item	Source
+BiS	Brooch of Unquenchable Fury Brooch of Unquenchable Fury	Drop: Moroes (Karazhan)
+BiS	Adornment of Stolen Souls Adornment of Stolen Souls	Drop: Prince Malchezaar (Karazhan)
+BiS	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+BiS - Raid DPS	Chain of the Twilight Owl Chain of the Twilight Owl	Profession Jewelcrafting can be purchased on the Auction House
+BiS - Raid DPS	Eye of the Night Eye of the Night	Profession Jewelcrafting can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Natasha's Ember Necklace Natasha's Ember Necklace	Quest: The Hound-Master The Hound-Master
+Option	Torc of the Sethekk Prophet Torc of the Sethekk Prophet	Quest: Brother Against Brother Brother Against Brother
+Option	Hydra-fang Necklace Hydra-fang Necklace	Drop: Ghaz'an (Heroic The Underbog)
+Option	Amulet of Unstable Power Amulet of Unstable Power	Drop: World Drop
+Option	Manasurge Pendant Manasurge Pendant	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Ring Jewelry for Frost Mage in TBC Classic Phase 1
+Rings are somewhat simple; you get Violet Signet of the Archmageguaranteed as one of your two rings from Karazhan's reputation.
+As for the second slot, you can either use the Band of Crimson Fury if you need Hit, or use the Ring of Recurrence, which can be easier to obtain and get the previously mentioned Hit from another slot, such as Neck or Cloak.
+Rank	Item	Source
+BiS	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Path of the Violet Mage Path of the Violet Mage (The Violet Eye Exalted)
+BiS	Band of Crimson Fury Band of Crimson Fury	Quest: The Fall of Magtheridon The Fall of Magtheridon / The Fall of Magtheridon The Fall of Magtheridon
+BiS	Ring of Recurrence Ring of Recurrence	Drop: Dust Covered Chest (Karazhan)
+Option	Ashyen's Gift Ashyen's Gift	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Given that one of the two best in slot rings is free, you only need one alternative, and with the Ring of Cryptic Dreams being so easy to obtain, the options that perform worse aren't even worth considering.
+Rank	Item	Source
+Option	Ring of the Fallen God Ring of the Fallen God	Quest: The Savior of Kalimdor The Savior of Kalimdor (Classic)
+Option	Ring of Cryptic Dreams Ring of Cryptic Dreams	Vendor: G'eras 25 Badge of Justice Badge of Justice
+
+Best in Slot Trinkets for Frost Mage in TBC Classic Phase 1
+Trinkets for Frost Mage are fairly straightforward, you use Icon of the Silver Crescent as your main slot Trinket, and then you can either use Quagmirran's Eye always, or swap it for Mark of the Champion whenever there's a Demon or Undead boss, though this swap is extremely minor in damage gain.
+
+Given how easy these top two trinkets are to obtain, the alternatives (outside of Mind Quickening Gem that's great for AoE and Trash) are essentially useless unless you're in very early gearing stages.
+Rank	Item	Source
+BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+BiS	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+BiS	Mark of the Champion Mark of the Champion	Quest: The Fall of Kel'Thuzad The Fall of Kel'Thuzad (Classic)
+Option	Mind Quickening Gem Mind Quickening Gem	Drop: Vaelastrasz the Corrupt (Classic - Blackwing Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	Shiffar's Nexus-Horn Shiffar's Nexus-Horn	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Xi'ri's Gift Xi'ri's Gift	Vendor: Almaador (The Sha'tar Revered)
+Option	Vengeance of the Illidari Vengeance of the Illidari	Quest: Cruel's Intentions Cruel's Intentions / Overlord Overlord
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Exalted)
+
+Best in Slot Weapons for Fire Mage in TBC Classic Phase 1
+One-handed weapons paired with a solid offhand are the go-to choice most of the time for Mages. Simply put, they give more of the useful stats like spell power, hit, and crit than staves. As such, you should be aiming to stick with a 1H/OH duo as often as possible.
+
+We can rejoice when it comes to the actual weapons, as raids provide multiple good drops. Talon of the Tempest is the best option in Phase 1, providing a ton of spell power, hit, crit, and two sockets - it's an amazing item overall. There is also Bloodmaw Magus-Blade and Nathrezim Mindblade, two very slightly weaker options, but ones that are easier to get.
+Rank	Item	Source
+BiS	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+BiS	Bloodmaw Magus-Blade Bloodmaw Magus-Blade	Drop: Gruul the Dragonkiller (Gruul's Lair)
+BiS	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+Option	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, or prefer a two-handed weapon, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+
+Rank	Item	Source
+Option	Stormcaller Stormcaller
+Blade of the Archmage Blade of the Archmage	Vendor: Quartermaster Urgronn / Logistics Officer Ulrike (Thrallmar / Honor Hold Exalted)
+Option	Blade of Wizardry Blade of Wizardry	Drop: World Drop
+Option	Greatsword of Horrid Dreams Greatsword of Horrid Dreams	Drop: Murmur (Shadow Labyrinth)
+Option	Starlight Dagger Starlight Dagger	Drop: Mennu the Betrayer (Heroic The Slave Pens)
+Option	Continuum Blade Continuum Blade	Vendor: Alurmi (Keepers of Time Revered)
+Option	Zangartooth Shortblade Zangartooth Shortblade	Drop: Swamplord Musel'ek (The Underbog)
+Option	Blade of Trapped Knowledge Blade of Trapped Knowledge	Drop: World Drop
+
+
+Raids don't do much for staves, with just one good option being added, and with staves still overall being outclassed by one-handed weapons and offhands.
+
+Still, if you want to use a staff, then Staff of Infinite Mysteries is your best bet.
+Rank	Item	Source
+BiS	Staff of Infinite Mysteries Staff of Infinite Mysteries	Drop: The Curator (Karazhan)
+Option	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Quest: Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian (Classic)
+Option	Terokk's Shadowstaff Terokk's Shadowstaff	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+Option	Auchenai Staff Auchenai Staff	Vendor: Quartermaster Endarin (The Aldor Revered)
+Option	Warpstaff of Arcanum Warpstaff of Arcanum	Drop: Warp Splinter (The Botanica)
+Option	Grand Scepter of the Nexus-Kings Grand Scepter of the Nexus-Kings	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	The Bringer of Death The Bringer of Death	Drop: World Drop
+Option	Battle Mage's Baton Battle Mage's Baton	Quest: The Ring of Blood: The Final Challenge The Ring of Blood: The Final Challenge
+
+
+Best in Slot Offhands for Frost Mage in TBC Classic Phase 1
+Not much changes for Mages in the offhand department with raids. Sapphiron's Wing Bone is still by far the best choice. It provides a ton more damage than anything else and is pretty simple to get, as it just requires badges.
+Rank	Item	Source
+BiS	Sapphiron's Wing Bone Sapphiron's Wing Bone	Vendor: G'eras (Badges of Justice)
+Option	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+Option	Sapphiron's Left Eye Sapphiron's Left Eye	Drop: Sapphiron (Classic - Naxxramas)
+Option	Lamp of Peaceful Radiance Lamp of Peaceful Radiance	Drop: Harbinger Skyriss (The Arcatraz)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+There are a few new alternatives from raids, but with Sapphiron's Wing Bone being so easy to get, there's no reason not to have it.
+Rank	Item	Source
+Option	Star-Heart Lamp Star-Heart Lamp	Drop: Temporus (The Black Morass)
+Option	Karaborian Talisman Karaborian Talisman	Drop: Magtheridon (Magtheridon's Lair)
+Option	Talisman of Nightbane Talisman of Nightbane	Drop: Nightbane (Karazhan)
+
+Best in Slot Wands for Frost Mage in TBC Classic Phase 1
+Eredar Wand of Obliteration is a very strong option if you're already Hit capped, while Tirisfal Wand of Ascendancy performs slightly better if you need its Hit.
+Rank	Item	Source
+BiS	Eredar Wand of Obliteration Eredar Wand of Obliteration	Drop: Magtheridon (Magtheridon's Lair)
+BiS	Tirisfal Wand of Ascendancy Tirisfal Wand of Ascendancy	Drop: Shade of Aran (Karazhan)
+Option	The Black Stalk The Black Stalk	Drop: The Black Stalker (Heroic The Underbog)
+Option	Doomfinger Doomfinger	Drop: Kel'Thuzad (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+Rank	Item	Source
+Option	Rod of Dire Shadows Rod of Dire Shadows	Quest: The Will of the Warchief The Will of the Warchief
+Option	Nethekurse's Rod of Torment Nethekurse's Rod of Torment	Quest: Turning the Tide Turning the Tide
+Option	Nether Core's Control Rod Nether Core's Control Rod	Drop: Dalliah the Doomsayer (The Arcatraz)
+Option	Wand of Fates Wand of Fates	Drop: Patchwerk (Classic - Naxxramas)
+Option	Voidfire Wand Voidfire Wand	Drop: Pandemonius (Mana-Tombs)
+Option	Wand of the Netherwing Wand of the Netherwing	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Foolipe
+WoW Classic Mage Class Expert
+Foolipe started playing in mid-way through the release of 2019's Classic WoW, after getting into speedrunning and the more competitive side of classic wow, he started writing the guides for the Mage class during The Burning Crusade Classic.
+
+He's a Classic Mage discord regular and keeps up with the community peer-reviewed information to bring you the most up-to-date guides possible.
+1 - 5 of 5
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+4
+
+	
+By Wohenmang (9,843 – 2·8·6) on 2021/08/08 (Burning Crusade)	
+	
+also Tier 4 shoulders why put 2x +9 spell gems when you can do a +9 spell gem and a +5 spell gem +4 hit/crit gem and make use of the socket bonus? you'll still get the same +spell damage but you'll gain hit or crit from the orange gem instead of the 2x red gems?
+
+2
+
+	
+By Immanuel (1,686 – 7·9) <Rare Premium User> on 2021/06/27 (Burning Crusade)	
+	
+Starkiller's Bauble Starkiller's Bauble should be added to the BiS/Pre-BiS List. It comes from the quest The Horrors of Pollution The Horrors of Pollution and is not only easy to obtain, but better than many of the trinkets listed.
+
+Also, Zangar Epaulets Zangar Epaulets from Stealing Back the Mushrooms Stealing Back the Mushrooms.
+
+And, Ethereal Sash Ethereal Sash from Gava'xi Gava'xi.
+
+And, Princely Reign Leggings Princely Reign Leggings from Mennu the Betrayer in Normal Slave Pens.
+
+I would also argue that this set of gear is closer to BiS than what you have here. It includes both the procs from Quagmirran's Eye Quagmirran's Eye and Robe of the Elder Scribes Robe of the Elder Scribes, has 3% higher crit rating, only 91 less frost power (but 108 more overall spell power), and the 2-piece set bonus from Tier 4. This set does not require you to be either Aldor or Scryer, and it also does not require you to spend excessive amounts of gold on minor power increases in the short term. Frozen Shadoweave gear is only good if you plan on only being frost, but if you prefer multi-speccing, or switching specs to arcane or fire in Tier 5, you don't want to waste time crafting that gear at all.
+Last edited by Immanuel on 2021/07/06
+
+-1
+
+	
+
+kelman <Rare Premium User> on 2021/06/30 (Burning Crusade)
+Added the trinket, but there's no point clogging the list with the other very weak items, just because they have hit. As for the list, like I said, mine is just an example of a possible build - that being said, yours trades 150 Frost Spell Power for 3% crit and general spell power is completely meaningless, since Frost Mages only spam Frost spells anyway.
+
+0
+
+	
+
+Immanuel <Rare Premium User> on 2021/07/02 (Burning Crusade)
+I mentioned those to be added to the pre-BiS list. And getting hit cap isn't as easy for some people, especially if you didn't play in Classic. You're assuming too much about the people reading your guide. I'm also not trading 150 frost power for 3% crit. My list has 977 frost power vs. yours with 1070. It's only 93 frost power. Some mages like more crit, and missing out on the proc from Robe of the Elder Scribes is big, imo.
+
+2
+
+	
+By moesashi (460 – 1·2) on 2021/08/11 (Burning Crusade)	
+	
+Shouldn't the bis enchant for weapons be Enchant Weapon - Soulfrost instead of Enchant Weapon - Sunfire ? Great guide nonetheless
+Last edited by moesashi on 2021/08/11
+
+2
+
+	
+By Biftard (10,602 – 1·20·46) on 2021/08/18 (Burning Crusade)	
+	
+Why are Bracers of Havok is listed as BIS? Since everything seems heavily weighted towards raw spell damage > hit >>> crit > intellect, I'm unclear on why a boe green "of frozen wrath" isnt listed as BIS. They give 45 frost spell damage. Havok gives 39 damage and a few intellect (and that's assuming you wanna blow 130g on the best gem.) In general I would assume 6 spell damage > 11 intellect. There are other examples less extreme like for waist or cloak slot, where an "of frozen wrath" level 70 green will come very close to BIS. These items should at least be mentioned in the "easy to obtain" section.
+
+And for the wrist and waist slot there are also the servant quarters drops in Kara which while very rare would blow your listed BIS out of the water. I mean if you're listing world boss drops which 95% of the player base will never see, at least on a medium size server, you should list these as well.
+
+1
+
+	
+By Atraira (6,218 – 2·21·24) on 2021/10/03 (Burning Crusade)	
+	
+...you have a +fire damage belt as 2nd BiS for frost? what?
+1 - 5 of 5
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Mage Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Arcane
+            Fire
+            Frost
+        Phase 1 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 2 BiS
+            Arcane
+            Fire
+            Frost
+                Best In Slot Gear in Phase 2
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    1H Weapons
+                    Offhands
+                    Wands
+        Phase 3 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 4 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 5 BiS
+            Arcane
+            Fire
+            Frost
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Frost Mage DPS Best in Slot (BiS) Phase 2 Gear Guide - TBC Classic
+By Foolipe
+Updated: 2026/05/12
+Foolipe
+Offline on Twitch
+Follow:
+Welcome to Wowhead's Best in Slot Gear list from Tempest Keep and Serpentshrine Cavern for Frost Mage DPS in The Burning Crusade Classic. This guide will list the recommended gear for Frost Mage DPS to acquire while they progress during the second phase of The Burning Crusade Classic, and contains gear sourced from Tempest Keep and Serpentshrine Cavern, plus other pieces from previous phases like Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best in slot lists, including a TBCC pre-patch list and a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Frost Mage DPS Best in Slot HubFrost Mage DPS Pre-Raid Best in Slot
+
+Best In Slot Gear for Frost Mage DPS in Phase 2
+There are a ton of different ways to gear a Frost Mage, and they all depend on the gear you have available, as well as some personal preferences. Between all the different powerful Rings, Trinkets, Necks, and even a few armor items here and there, you can make adjustments and still do some of the best damage possible.
+
+Frost Mages looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Frost Mage Gems & Enchants
+Should Frost Mage DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 2?
+The Aldor vs Scryer choice for Mages is not super important. The key thing to keep in mind is the enchants, Greater Inscription of Discipline Greater Inscription of Discipline and Greater Inscription of the Orb Greater Inscription of the Orb. They are very, very similar, which overall makes the choice not super impactful - we're talking 0.x% here in favor of Aldor.
+
+Meanwhile, Scryer does offer better items, most notably Scryer's Bloodgem Scryer's Bloodgem, which is a very strong Hit trinket. However, this is something you'll replace down the line, so really it's more of a personal choice, but if you really want to min-max, then Aldor is the pick for the long term.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Frost Mage in TBC Classic Phase 2
+Although the Cowl of Tirisfal isn't the best item stat-wise for this slot, it helps finish off the four-piece tier 5 set bonus given that the three other pieces of this set are BiS in all slots except chest.
+
+If you don't yet have those three other pieces of T5 to then complete with the T5 Head, then the Destruction Holo-gogs is the best in slot instead.
+Rank	Item	Source
+BiS	Cowl of Tirisfal Cowl of Tirisfal	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Destruction Holo-gogs Destruction Holo-gogs	Crafted: Destruction Holo-gogs (Engineering)
+Option	Collar of the Aldor Collar of the Aldor	Drop: Prince Malchezaar (Karazhan)
+Option	Mana-Binders Cowl Mana-Binders Cowl	Sold by: G'eras - 50 Badge of Justice Badge of Justice
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Hood of Oblivion Hood of Oblivion	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Incanter's Cowl Incanter's Cowl	Drop: Pathaleon the Calculator (The Mechanar)
+Option	Mana-Etched Crown Mana-Etched Crown	Drop: Aeonus (The Black Morass)
+
+Best in Slot Shoulder Armor for Frost Mage in TBC Classic Phase 2
+The Mantle of Tirisfal are the BiS option here, they not only are the best item stat-wise given that we don't need that much Hit as Frost Mage (when compared to specs like Fire), it also helps to provide the T5 set bonus with four pieces of it equipped surrounding the chest off-piece. If you do need Hit, then the Mantle of the Elven Kings does perform better temporarily if you don't yet have enough tier pieces to complete the set bonuses.
+Rank	Item	Source
+BiS	Mantle of Tirisfal Mantle of Tirisfal	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Mantle of the Elven Kings Mantle of the Elven Kings	Drop: Trash Mobs (Tempest Keep: The Eye)
+Option	Frozen Shadoweave Shoulders Frozen Shadoweave Shoulders	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+Option	Illidari Shoulderpads Illidari Shoulderpads	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Pauldrons of the Aldor Pauldrons of the Aldor	Drop: High King Maulgar (Gruul's Lair)
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest: The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+Option	Spaulders of Oblivion Spaulders of Oblivion	Drop: Murmur (Shadow Labyrinth)
+Option	Mana-Etched Spaulders Mana-Etched Spaulders	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Evoker's Silk Amice Evoker's Silk Amice	Thrallmar - Honored
+
+Best in Slot Back Armor for Frost Mage in TBC Classic Phase 2
+The Cloak slot doesn't see much change in Tier 5. There's just one decent addition, and you'll likely want to keep your Ruby Drape of the Mysticant as the Hit is vital. However, the Brute Cloak of the Ogre-Magi or the Ancient Spellcloak of the Highborne may be your best bet if you're good on Hit.
+Rank	Item	Source
+BiS	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+Option	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+Option	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+Option	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Cloak of the Necropolis Cloak of the Necropolis	Drop: Sapphiron (Classic - Naxxramas)
+Option	Cloak of the Devoured Cloak of the Devoured	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Sethekk Oracle Cloak Sethekk Oracle Cloak	Drop: Talon King Ikiss (Sethekk Halls)
+Option	Shadow-Cloak of Dalaran Shadow-Cloak of Dalaran	Drop: Moroes (Karazhan)
+Option	Shawl of Shifting Probabilities Shawl of Shifting Probabilities	Vendor: G'eras (Badges of Justice)
+Easy to Obtain	Cloak of Woven Energy Cloak of Woven Energy	Quest: Hitting the Motherlode Hitting the Motherlode
+Easy to Obtain	Ogre Slayer's Cover Ogre Slayer's Cover	Quest: Cho'war the Pillager Cho'war the Pillager
+
+Best in Slot Chest Armor for Frost Mage in TBC Classic Phase 2
+The Vestments of the Sea-Witch are the best chestpiece and the chosen off-piece when in an end-game set with four-piece tier 5 surrounding it on the slots where they can be equipped.
+Rank	Item	Source
+BiS	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Frozen Shadoweave Robe Frozen Shadoweave Robe	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+Option	Robes of Tirisfal Robes of Tirisfal	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Robe of Hateful Echoes Robe of Hateful Echoes	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Option	Robe of the Crimson Order Robe of the Crimson Order	Drop: World Drop
+Option	Auchenai Anchorite's Robe Auchenai Anchorite's Robe	Quest: Everything Will Be Alright Everything Will Be Alright (Auchenai Crypts)
+Option	Warp Infused Drape Warp Infused Drape	Drop: Warp Splinter (The Botanica)
+Option	Will of Edward the Odd Will of Edward the Odd	Drop: World Drop
+Option	Vestments of the Aldor Vestments of the Aldor	Drop: Magtheridon (Magtheridon's Lair)
+Easy to Obtain	Kirin Tor Apprentice's Robes Kirin Tor Apprentice's Robes	Quest: Destroy Naberius! Destroy Naberius!
+Easy to Obtain	Shadowcast Tunic Shadowcast Tunic	Quest: Drill the Drillmaster Drill the Drillmaster / The Foot of the Citadel The Foot of the Citadel
+
+Best in Slot Wrist Armor for Frost Mage in TBC Classic Phase 2
+Not many new options for bracers, the Mindstorm Wristbands are the best ones, and until you get them - you should use the season 2 Veteran's Silk Cuffs which you can farm on your own time.
+Rank	Item	Source
+BiS	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Veteran's Silk Cuffs Veteran's Silk Cuffs	Vendor: Honor Points (Season 2)
+Option	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+Option	Crimson Bracers of Gloom Crimson Bracers of Gloom	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Bands of Negation Bands of Negation	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Shattrath Wraps Shattrath Wraps	Quest:The Soul Devices The Soul Devices (Shadow Labyrinth)
+Option	The Soul Harvester's Bindings The Soul Harvester's Bindings	Drop: Gothik the Harvester (Classic - Naxxramas)
+
+Best in Slot Hand Armor for Frost Mage in TBC Classic Phase 2
+The Gauntlets of the Sun King have the best stats overall for this slot by a marginal amount, but the Gloves of Tirisfal help reach the four-piece set bonus which makes it the BiS item.
+Rank	Item	Source
+BiS	Gloves of Tirisfal Gloves of Tirisfal	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Gauntlets of the Sun King Gauntlets of the Sun King	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss)
+Option	Gloves of the Aldor Gloves of the Aldor	Drop: The Curator (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+Option	Manaspark Gloves Manaspark Gloves	Drop: Hungarfen (Heroic The Underbog)
+Option	Mana-Etched Gloves Mana-Etched Gloves	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Easy to Obtain	Gloves of the High Magus Gloves of the High Magus	Quest: News of Victory News of Victory / News of Victory News of Victory
+
+Best in Slot Waist Armor for Frost Mage in TBC Classic Phase 2
+There's two new relevant options for this slot: the Belt of Blasting are the best in slot, but can be too expensive for some players; in which case the Cord of Screaming Terrors performs only slightly worse and drops from the new raid instead.
+Rank	Item	Source
+BiS	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Option	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+Option	Belt of Divine Inspiration Belt of Divine Inspiration	Drop: High King Maulgar (Gruul's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Belt of Depravity Belt of Depravity	Drop: Harbinger Skyriss (Heroic The Arcatraz)
+Option	Eyestalk Waist Cord Eyestalk Waist Cord	Drop: C'Thun (Classic - Ahn'Qiraj)
+
+Best in Slot Leg Armor for Frost Mage in TBC Classic Phase 2
+The Leggings of Tirisfal are not only the item with the best stats, they also provide a relevant set bonus when equipped with four pieces of the Tier 5 set.
+Rank	Item	Source
+BiS	Leggings of Tirisfal Leggings of Tirisfal	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+Option	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+Option	Trousers of the Astromancer Trousers of the Astromancer	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Breeches of the Occultist Breeches of the Occultist	Drop: Aeonus (Heroic The Black Morass)
+Option	Legwraps of the Aldor Legwraps of the Aldor	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Trial-Fire Trousers Trial-Fire Trousers	Drop: Opera Event (Karazhan)
+Option	Khadgar's Kilt of Abjuration Khadgar's Kilt of Abjuration	Drop: Temporus (The Black Morass)
+
+Best in Slot Feet Armor for Frost Mage in TBC Classic Phase 2
+Few relevant options here: the Velvet Boots of the Guardian are technically the best in slot, and until you get those, you can use the Veteran's Silk Footguards which are easy to farm at your own pace. If you need Hit from this slot, then the Boots of Blasting perform better instead.
+Rank	Item	Source
+BiS	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Veteran's Silk Footguards Veteran's Silk Footguards	Vendor: Honor Points (Season 2)
+Option	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+Option	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Ruby Slippers Ruby Slippers	Drop: The Crone (Karazhan)
+Option	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Extravagant Boots of Malice Extravagant Boots of Malice	Drop: Tavarok (Heroic Mana-Tombs)
+
+Best in Slot Neck Jewelry for Frost Mage in TBC Classic Phase 2
+One great thing about Tier 5 is that it greatly simplifies the Neck slot for Frost. It's a simple choice of The Sun King's Talisman being by far the best option. Other than that, we also have options like Brooch of Heightened Potential or Brooch of Unquenchable Fury if you still need Hit.
+Rank	Item	Source
+BiS	The Sun King's Talisman The Sun King's Talisman	Quest: Kael'thas and the Verdant Sphere Kael'thas and the Verdant Sphere (Tempest Keep: The Eye)
+Option	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+Option	Brooch of Unquenchable Fury Brooch of Unquenchable Fury	Drop: Moroes (Karazhan)
+Option	Adornment of Stolen Souls Adornment of Stolen Souls	Drop: Prince Malchezaar (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+BiS - Raid DPS	Chain of the Twilight Owl Chain of the Twilight Owl	Profession Jewelcrafting can be purchased on the Auction House
+BiS - Raid DPS	Eye of the Night Eye of the Night	Profession Jewelcrafting can be purchased on the Auction House
+Option	Hydra-fang Necklace Hydra-fang Necklace	Drop: Ghaz'an (Heroic The Underbog)
+Option	Choker of the Fire Lord Choker of the Fire Lord	Drop: Ragnaros (Classic - Molten Core)
+Option	Amulet of Vek'nilash Amulet of Vek'nilash	Drop: Emperor Vek'nilash (Classic - Ahn'Qiraj)
+Option	Manasurge Pendant Manasurge Pendant	Vendor: G'eras (Badges of Justice)
+Easy to Obtain	Natasha's Ember Necklace Natasha's Ember Necklace	Quest: The Hound-Master The Hound-Master
+
+Best in Slot Ring Jewelry for Frost Mage in TBC Classic Phase 2
+If you're already H it capped you'll aim to use the combination of Band of Eternity and Ring of Endless Coils, the latter of which can be replaced by Violet Signet of the Archmage with very marginal dps loss.
+
+If you do need Hit, then Band of Crimson Fury is the best ring alongside Band of Eternity instead.
+Rank	Item	Source
+BiS	Band of Eternity Band of Eternity	Quest: Sage's Pledge Sage's Pledge
+BiS	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Band of Crimson Fury Band of Crimson Fury	Quest: The Fall of Magtheridon The Fall of Magtheridon (Magtheridon's Lair)
+Option	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Path of the Violet Mage Path of the Violet Mage (The Violet Eye Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Ring of Recurrence Ring of Recurrence	Drop: Chess Event (Karazhan)
+Option	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Ashyen's Gift Ashyen's Gift	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+Option	Ring of the Fallen God Ring of the Fallen God	Quest: The Savior of Kalimdor The Savior of Kalimdor (Classic - Ahn'Qiraj)
+Option	Seal of the Exorcist Seal of the Exorcist	Vendor: Spirit Sage Gartok / Spirit Sage Zran (50 Spirit Shard Spirit Shard)
+Option	Band of Al'ar Band of Al'ar	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+Option	Frostfire Ring Frostfire Ring	Drop: Kel'Thuzad (Classic - Naxxramas)
+
+Best in Slot Trinkets for Frost Mage in TBC Classic Phase 2
+There are two additions to Trinkets with Tier 5, Serpent-Coil Braid, which is a solid Frost option, as well as Sextant of Unstable Currents, which isn't the best pick for Frost Mages.
+Instead the Quagmirran's Eye is the best option alongside the previously mentioned Serpent-Coil Braid.
+
+If you're trying to maximize your damage, I'd recommend gathering multiple trinkets and switching them around on different fights, and remember to use Mark of the Champion against Demons or Undead.
+Rank	Item	Source
+BiS	Serpent-Coil Braid Serpent-Coil Braid	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+BiS	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Sextant of Unstable Currents Sextant of Unstable Currents	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	Mark of the Champion Mark of the Champion	Quest: The Fall of Kel'Thuzad The Fall of Kel'Thuzad (Classic - Naxxramas)
+Option	Mind Quickening Gem Mind Quickening Gem	Drop: Vaelastrasz the Corrupt (Classic - Blackwing Lair)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+Easy to Obtain	Vengeance of the Illidari Vengeance of the Illidari	Quest: Overlord Overlord / Cruel's Intentions Cruel's Intentions
+
+Best in Slot Weapons for Frost Mage in TBC Classic Phase 2
+There's a couple of new relevant options for Weapons this Phase:
+
+    Fang of the Leviathan is the new best in slot weapon, and considering we still use the same off-hand as last phase, it's a very realistic option.
+    The Nexus Key is far less contested than the one-handed weapon, and performs only 2-3 DPS worse.
+
+As for the previous options, they're organized in terms of broad performance (with hit in mind), with the Talon of the Tempest, Bloodmaw Magus-Blade, Nathrezim Mindblade ranking the same.
+Rank	Item	Source
+BiS	Fang of the Leviathan Fang of the Leviathan	Drop: Leotheras the Blind (Serpentshrine Cavern)
+BiS	The Nexus Key The Nexus Key	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+Option	Bloodmaw Magus-Blade Bloodmaw Magus-Blade	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Weapon Recommendations
+
+
+Rank	Item	Source
+Option	Staff of Infinite Mysteries Staff of Infinite Mysteries	Drop: The Curator (Karazhan)
+Option	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Drop: Kel'Thuzad (Classic - Naxxramas)
+Option	Illidari-Bane Mageblade Illidari-Bane Mageblade	Quest: Quenching the Blade Quenching the Blade
+Option	Blade of Wizardry Blade of Wizardry	Drop: World Drop
+Option	Stormcaller Stormcaller
+Blade of the Archmage Blade of the Archmage	Vendor: Quartermaster Urgronn / Logistics Officer Ulrike (Thrallmar / Honor Hold Exalted)
+Option	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Terokk's Shadowstaff Terokk's Shadowstaff	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+Option	Greatsword of Horrid Dreams Greatsword of Horrid Dreams	Drop: Murmur (Shadow Labyrinth)
+Option	Starlight Dagger Starlight Dagger	Drop: Mennu the Betrayer (Heroic The Slave Pens)
+Option	Continuum Blade Continuum Blade	Vendor: Alurmi (Keepers of Time Revered)
+Option	Runesong Dagger Runesong Dagger	Drop: Warbringer O'mrogg (Heroic The Shattered Halls)
+
+Best in Slot Offhands for Frost Mage in TBC Classic Phase 2
+The new Fathomstone replaces last phase's best in slot in a full end-game set scenario, though if you're in need of Hit, the old Sapphiron's Wing Bone continues to be better.
+Rank	Item	Source
+BiS	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Option	Sapphiron's Wing Bone Sapphiron's Wing Bone	Vendor: G'eras (Badges of Justice)
+Option	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+Option	Sapphiron's Left Eye Sapphiron's Left Eye	Drop: Sapphiron (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Lamp of Peaceful Radiance Lamp of Peaceful Radiance	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Star-Heart Lamp Star-Heart Lamp	Drop: Temporus (The Black Morass)
+Option	Karaborian Talisman Karaborian Talisman	Drop: Magtheridon (Magtheridon's Lair)
+Option	Talisman of Nightbane Talisman of Nightbane	Drop: Nightbane (Karazhan)
+Option	Manual of the Nethermancer Manual of the Nethermancer	Drop: Nethermancer Sepethrea (Heroic The Mechanar)
+
+Best in Slot Wands for Frost Mage in TBC Classic Phase 2
+Last but not least come wands, and we see a good upgrade here. Wand of the Forgotten Star comes in as the only new wand, and it is actually very good. It provides both Hit and Crit, as well as Spell Power, making it the go-to choice.
+Rank	Item	Source
+BiS	Wand of the Forgotten Star Wand of the Forgotten Star	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Option	Tirisfal Wand of Ascendancy Tirisfal Wand of Ascendancy	Drop: Shade of Aran (Karazhan)
+Option	Eredar Wand of Obliteration Eredar Wand of Obliteration	Drop: Magtheridon (Magtheridon's Lair)
+Option	Doomfinger Doomfinger	Drop: Kel'Thuzad (Classic - Naxxramas)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+Rank	Item	Source
+Option	Nether Core's Control Rod Nether Core's Control Rod	Drop: Dalliah the Doomsayer (The Arcatraz)
+Option	Nethekurse's Rod of Torment Nethekurse's Rod of Torment
+Rod of Dire Shadows Rod of Dire Shadows	Quest: Turning the Tide Turning the Tide
+The Will of the Warchief The Will of the Warchief
+Option	Wand of the Seer Wand of the Seer	Quest: Turning Point Turning Point
+Option	Wand of Fates Wand of Fates	Drop: Patchwerk (Classic - Naxxramas)
+Option	Voidfire Wand Voidfire Wand	Drop: Pandemonius (Mana-Tombs)
+Option	Wand of the Netherwing Wand of the Netherwing	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Foolipe
+WoW Classic Mage Class Expert
+Foolipe started playing in mid-way through the release of 2019's Classic WoW, after getting into speedrunning and the more competitive side of classic wow, he started writing the guides for the Mage class during The Burning Crusade Classic.
+
+He's a Classic Mage discord regular and keeps up with the community peer-reviewed information to bring you the most up-to-date guides possible.
+1 - 1 of 1
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By Biftard (10,602 – 1·20·46) on 2021/11/15 (Burning Crusade)	
+	
+From what I understand, frost only needs 10% hit from gear. All of your frost bis lists seem to be operating from the idea that we need 13%, which weights hit a lot more than it should. In raid, even pugs, I am 90% of the time in a group with an elemental shaman (providing 3% spell hit) and usually they are draenei. (another 1% hit). Hit has extremely high value up to cap, but is worth absolutely nothing after that. In raids I'm often 1-2% over hit cap because I can't get rid of enough of it. You should at least understand this, and adjust your main bis setup to reflect this.
+
+0
+
+	
+
+sharmain on 2022/01/30 (Burning Crusade)
+Facts. I have 13% hit rating and am still trying to find items to swap out 3 % for spell damage or crit.
+1 - 1 of 1
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+3.6/5 (7 Votes)
+TBCC Mage Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Arcane
+            Fire
+            Frost
+        Phase 1 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 2 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 3 BiS
+            Arcane
+            Fire
+            Frost
+                Best In Slot Gear in Phase 3
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Weapons
+                    Offhands
+                    Wands
+        Phase 4 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 5 BiS
+            Arcane
+            Fire
+            Frost
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Frost Mage DPS Best in Slot (BiS) Phase 3 Gear Guide
+By Foolipe
+Updated: 2026/07/02
+Foolipe
+Offline on Twitch
+Follow:
+Welcome to Wowhead's Best in Slot Gear list from Phase 3 Black Temple and Mount Hyjal for Frost Mage DPS in The Burning Crusade Classic. This guide will list the recommended gear for Frost Mage DPS to acquire while they progress during the third phase of The Burning Crusade Classic, and contains gear sourced from Black Temple and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Frost Mage DPS in Phase 3
+Frost Mages take an interesting turn in this phase, going from the worst Mage PvE specialization to at least being on par with Fire Mages. This is achieved in part through their lesser hit requirements, as Elemental Precision provides 6% spell hit for binary Frost spells such as Frostbolt and Cone of Cold. This is also facilitated by a specific build, which allows you to access more Arcane talents for both AoE and single target dps, such as Arcane Instability and Arcane Power for higher burst phases.
+
+
+Cowl of the Illidari High Lord
+The Sun King's Talisman
+Mantle of the Tempest
+Shroud of the Highborne
+Robes of the Tempest
+Bracers of Nimble Thought
+Gloves of the Tempest
+Waistwrap of Infinity
+Leggings of the Tempest
+Slippers of the Seacaller
+Ring of Ancient Knowledge
+Ring of Ancient Knowledge
+Ashtongue Talisman of Insight
+The Skull of Gul'dan
+Zhar'doom, Greatstaff of the Devourer
+Off Hand
+Wand of the Forgotten Star
+Link
+Level70
+
+
+Frost Mages looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Frost Mage Gems & Enchants
+Should Frost Mage DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 3?
+The Aldor vs Scryer choice for Mages is not super important. The main difference, particularly at this stage of TBC, to keep in mind is the enchants, Greater Inscription of Discipline Greater Inscription of Discipline and Greater Inscription of the Orb Greater Inscription of the Orb. They're extremely close when it comes to output, but to summarize, you should make your decision based on what you focus on - Aldor pushes ahead by about 2-3 DPS in single target, while Scryer outperforms by a similar amount in AoE scenarios.
+
+Meanwhile, Scryer does offer better items, most notably Scryer's Bloodgem Scryer's Bloodgem, which is a strong hit trinket. However, this is not as important for Frost due to a lower hit requirement, and it will be replaced once you are geared.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Frost Mages, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Frost Mage in TBC Classic Phase 3
+The main gearing goal for Frost Mages in Phase 3 is to achieve their Tempest Regalia 4-piece set bonus for the 5% extra damage on their Frostbolt. That said, the head is the best slot to wear an off-piece, so Cowl of the Illidari High Lord will be BiS this phase.
+
+If you do not have your 4-piece from other pieces, then Cowl of the Tempest is a fine alternative to achieve it until then. Destruction Holo-gogs is also a great off-piece if you're in the early stages of gearing.
+Rank	Item	Source
+BiS	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+Option	Cowl of the Tempest Cowl of the Tempest	Drop: Archimonde (Hyjal Summit)
+Pre-Raid	Destruction Holo-gogs Destruction Holo-gogs	Profession: Engineering - BoP only
+Best in Slot Shoulder Armor for Frost Mage in TBC Classic Phase 3
+As the Tempest Regalia set is so important to reach peak performance with the Frost specialization, Mantle of the Tempest is the clear-cut BiS item this phase.
+
+If you already have the 4-set bonus from your other items, then Hatefury Mantle is good. It's also BiS specifically for the Illidari Council fight in Black Temple, as you benefit greatly from spell penetration due to their Chromatic Resistance Aura ability. Outside of that, I recommend Mantle of Nimble Thought as it performs similarly to Hatefury Mantle, but it's also BiS for AoEing, so you'll use it then even once replaced with your end-game BiS item.
+Rank	Item	Source
+BiS	Mantle of the Tempest Mantle of the Tempest	Drop: Mother Shahraz (Black Temple)
+Option	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+Pre-Raid	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+Best in Slot Back Armor for Frost Mage in TBC Classic Phase 3
+Frost Mages benefit a lot from haste, so Shroud of the Highborne is the best in this slot by a significant margin. If you don't have access to this item since it's primarily considered a healing item, Cloak of the Illidari Council is a great second option. Until then, Brute Cloak of the Ogre-Magi continues to be third best option.
+Rank	Item	Source
+BiS	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+BiS	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: High Nethermancer Zerevor (Black Temple)
+Option	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+Pre-Raid Crit	Ogre Slayer's Cover Ogre Slayer's Cover	Quest: Cho'war the Pillager Cho'war the Pillager / Cho'war the Pillager Cho'war the Pillager
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+
+Rank	Item	Source
+Pre-Raid Hit	Sethekk Oracle Cloak Sethekk Oracle Cloak	Drop: Talon King Ikiss (Sethekk Halls)
+
+Best in Slot Chest Armor for Frost Mage in TBC Classic Phase 3
+Due to the Tempest Regalia set being so important, Robes of the Tempest is the BiS for Frost Mages in this phase. If you're looking for an off-piece, while already wearing four other pieces of your Tier 6 set, then Vestments of the Sea-Witch is by far the best option. If you don't yet have access to either, Robes of Rhonin is a great alternative, which is also not very contested in most raids.
+Rank	Item	Source
+BiS	Robes of the Tempest Robes of the Tempest	Drop: Illidan Stormrage (Black Temple)
+Option	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Robes of Rhonin Robes of Rhonin	Drop: Archimonde (Hyjal Summit)
+Best in Slot Wrist Armor for Frost Mage in TBC Classic Phase 3
+Bracers of Nimble Thought is by far the best, by about 20 DPS, while also being obtainable outside of raids.
+
+Due to this, almost every other choice is invalidated as something to aim for. The alternatives on this list are just the other options currently obtainable that are within reason to get, ranked by DPS output, in case you're still saving up resources to get the BiS.
+Rank	Item	Source
+BiS	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring - can be purchased on the Auction House
+Option	Cuffs of Devastation Cuffs of Devastation	Drop: Rage Winterchill (Hyjal Summit)
+Option	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+PvP	Vindicator's Silk Cuffs Vindicator's Silk Cuffs	Vendor: Honor Points (Season 3)
+Best in Slot Hand Armor for Frost Mage in TBC Classic Phase 3
+Another slot where you focus on Tempest Regalia set bonuses. Due to its high stats as a whole, Gloves of the Tempest is the BiS this phase, even if you already have your Tier 6 4-set bonus. If you're yet to reach this point, both Gloves of the Aldor and Handwraps of Flowing Thought perform similarly to each other.
+Rank	Item	Source
+BiS	Gloves of the Tempest Gloves of the Tempest	Drop: Azgalor (Hyjal Summit)
+Option	Gloves of the Aldor Gloves of the Aldor	Drop: The Curator (Karazhan)
+Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Best in Slot Waist Armor for Frost Mage in TBC Classic Phase 3
+Because Frost Mages have a somewhat low spell hit requirement, as well as scaling greatly with spell haste, Waistwrap of Infinity is BiS by a slight margin in single target. Anetheron's Noose is in very close second, but it's not as good for AoE performance.
+
+Besides these two belts, Belt of Blasting is still good and somewhat cheap nowadays. If you can use its spell, it becomes just as good while also being more easily accessible.
+Rank	Item	Source
+BiS	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+Option	Anetheron's Noose Anetheron's Noose	Drop: Anetheron (Hyjal Summit)
+Option	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Best in Slot Leg Armor for Frost Mage in TBC Classic Phase 3
+Leggings of the Tempest are the BiS for Frost Mages in Phase 3, as long as you're using them to achieve the Tempest Regalia 4-set bonus. Otherwise, Leggings of Channeled Elements slightly surpass them as an off-piece.
+
+If you're still gearing up into the new content, Spellstrike Pants are a great stand-alone option, just make sure you don't use its counterpart, Spellstrike Hood Spellstrike Hood, even if it's tempting, since it far underperforms compared to any other helm choice with a meta gem slot.
+Rank	Item	Source
+BiS	Leggings of the Tempest Leggings of the Tempest	Drop: The Illidari Council (Black Temple)
+Option	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+Pre-Raid	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+Best in Slot Feet Armor for Frost Mage in TBC Classic Phase 3
+When it comes to actual BiS, Slippers of the Seacaller are just the clear winner; there's no other option for end-game setups. If you're still gearing up to this point, then Boots of Blasting is a great item that's not too expensive to get crafted nowadays. If you're already hit capped, Vindicator's Silk Footguards outperforms the former.
+
+Since the latter two are easily accessible outside of raids, there's no point mentioning other items since they all perform worse than these two. The only exception is if you already have Velvet Boots of the Guardian, in which case just use those until you get Slippers of the Seacaller.
+Rank	Item	Source
+BiS	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+Option	Vindicator's Silk Footguards Vindicator's Silk Footguards	Vendor: Honor Points (Season 3)
+Pre-Raid	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+Option	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+Best in Slot Neck Jewelry for Frost Mage in TBC Classic Phase 3
+As Frost Mages scale so well with spell crit while having relatively low spell hit requirements, The Sun King's Talisman will be the BiS neck in this phase. If you can't get access to your specific BiS pieces for spell hit, then Translucent Spellthread Necklace is a fine alternative.
+
+Other than these two, I can only recommend Eye of the Night and Chain of the Twilight Owl, which are both best in slot for raid DPS. These should be used while coordinated with your party members for better raid performance. Because these two necks are both cheap or easily craftable by other raid members, these should also be considered pre-raid best in slot.
+Rank	Item	Source
+BiS	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Essence of Anger (Black Temple)
+BiS - Group Performance	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+BiS - Group Performance	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+Best in Slot Ring Jewelry for Frost Mage in TBC Classic Phase 3
+An important thing to note for your ring choices this phase is that Ring of Ancient Knowledge doesn't have a 'Unique' restriction. The combination of two Rings of Ancient Knowledge will be BiS this phase. Until then, we get the easily acquirable Band of the Eternal Sage from The Scale of the Sands reputation. Ring of Captured Storms is also pretty good, especially if you need the spell hit.
+
+If you're still gearing up, Band of Crimson Fury is a pretty solid ring that will help you reach your spell hit requirements early on.
+Rank	Item	Source
+BiS	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+Option	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+Option	Band of the Eternal Sage Band of the Eternal Sage	Quest: (Quest #10472) (The Scale of the Sands Exalted)
+Option	Band of Crimson Fury Band of Crimson Fury	Drop: Magtheridon (Magtheridon's Lair)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+If you don't need spell hit, Violet Signet of the Archmage is a great option.
+Rank	Item	Source
+Option	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Path of the Violet Mage Path of the Violet Mage (The Violet Eye Exalted)
+
+Best in Slot Trinkets for Frost Mage in TBC Classic Phase 3
+Haste impacts Frost Mages a lot, so Ashtongue Talisman of Insight performs really well, and is BiS for single target DPS. In this phase, we get The Skull of Gul'dan as well, which has a spell haste on-use, which you can coordinate with the rest of your cooldowns like Icy Veins and Arcane Power for higher burst phases.
+
+Until you get this combo, you'll do okay with Serpent-Coil Braid by using Mana Emerald Mana Emerald with the previously mentioned cooldown burst spells. For a more passive playstyle, we also have access to Quagmirran's Eye, which is pretty good.
+
+The optional trinkets are ordered in terms of performance, assuming Ashtongue Talisman of Insight as your primary trinket.
+Rank	Item	Source
+BiS	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+BiS	Ashtongue Talisman of Insight Ashtongue Talisman of Insight	Vendor: Okuno (Ashtongue Deathsworn Exalted)
+BiS	Serpent-Coil Braid Serpent-Coil Braid	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Option	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Another two solid options are Icon of the Silver Crescent and Dark Iron Smoking Pipe; these are essentially the same item, but the latter is only obtainable during Brewfest.
+Rank	Item	Source
+Option	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Option	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+
+Best in Slot Weapons for Frost Mage in TBC Classic Phase 3
+Because Frost Mages have the benefit of requiring less hit than Fire, Zhar'doom, Greatstaff of the Devourer is a lot better than the alternatives we currently have access to. The main alternative is Tempest of Chaos, but only if combined with Chronicle of Dark Secrets Chronicle of Dark Secrets in the offhand slot. Unlike other Mage specs, The Maelstrom's Fury is at least worth mentioning as a temporary upgrade since it has spell crit instead of spell hit as opposed to the PvP weapons.
+
+Until you get your BiS weapon, my best recommendation is Merciless Gladiator's Spellblade, as it's fairly easy to obtain from simply getting arena points capped every week, even at a low rating. If you're already an active member of the PvP community, then Vengeful Gladiator's Spellblade is surprisingly good for PvE and somewhat close to Tempest of Chaos.
+Rank	Item	Source
+BiS	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+Option	Tempest of Chaos Tempest of Chaos	Drop: Archimonde (Hyjal Summit)
+Option	The Maelstrom's Fury The Maelstrom's Fury	Drop: High Warlord Naj'entus (Black Temple)
+Option	Vengeful Gladiator's Spellblade Vengeful Gladiator's Spellblade	Vendor: Arena Points (Season 3)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Option	Merciless Gladiator's Spellblade Merciless Gladiator's Spellblade	Vendor: Arena Points (Season 2)
+
+Best in Slot Offhands for Frost Mage in TBC Classic Phase 3
+Chronicle of Dark Secrets is by far the best offhand in this phase, but it's only worthwhile if you have a good main-hand weapon. Fathomstone is a pretty good alternative if you've already got your main-hand weapon, but don't yet have an offhand. If you need the spell hit, Blind-Seers Icon is a great option that's not very contested. If you're still gearing up, then Talisman of Nightbane is surprisingly good for Frost Mages early on.
+Rank	Item	Source
+BiS	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+Option	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Option	Blind-Seers Icon Blind-Seers Icon	Drop: Shade of Akama (Black Temple)
+Option	Talisman of Nightbane Talisman of Nightbane	Drop: Nightbane (Karazhan)
+Best in Slot Wands for Frost Mage in TBC Classic Phase 3
+This phase, Wand of the Forgotten Star continues to be the best in slot wand. We do get introduced to Wand of Prismatic Focus, which is a close second option that not many classes want, so it's a great pick up regardless.
+
+Until then, Tirisfal Wand of Ascendancy is still a solid item that provides some filler spell hit. If you're in the early stages of your gearing process, then The Black Stalk should be fairly easy to get and comparable to the Karazhan wand.
+Rank	Item	Source
+BiS	Wand of the Forgotten Star Wand of the Forgotten Star	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Option	Wand of Prismatic Focus Wand of Prismatic Focus	Drop: Gurtogg Bloodboil (Black Temple)
+Option	Tirisfal Wand of Ascendancy Tirisfal Wand of Ascendancy	Drop: Shade of Aran (Karazhan)
+Pre-Raid	The Black Stalk The Black Stalk	Drop: The Black Stalker (Heroic The Underbog)
+Foolipe
+WoW Classic Mage Class Expert
+Foolipe started playing in mid-way through the release of 2019's Classic WoW, after getting into speedrunning and the more competitive side of classic wow, he started writing the guides for the Mage class during The Burning Crusade Classic.
+
+He's a Classic Mage discord regular and keeps up with the community peer-reviewed information to bring you the most up-to-date guides possible.
+No comments have been posted yet.
+Be the first to add a comment to this page!
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Mage Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Arcane
+            Fire
+            Frost
+        Phase 1 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 2 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 3 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 4 BiS
+            Arcane
+            Fire
+            Frost
+                Best In Slot Gear in Phase 4
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Weapons
+                    Offhands
+                    Wands
+        Phase 5 BiS
+            Arcane
+            Fire
+            Frost
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Frost Mage DPS Best in Slot (BiS) Phase 4 Guide
+By Foolipe
+Updated: 2026/02/14
+Foolipe
+Offline on Twitch
+Follow:
+Welcome to Wowhead's Best in Slot Gear list from Phase 4 Zul'Aman for Frost Mage DPS in The Burning Crusade Classic. This guide will list the recommended gear for Frost Mage DPS to acquire while they progress during the fourth phase of The Burning Crusade Classic, and contains gear sourced from Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Frost Mage DPS in Phase 4
+Frost Mages took an interesting turn last phase, going from the worst PVE specialization to at least being on par with Fire Mages. This is achieved through their lesser hit requirements, as Elemental Precision provides 6% spell hit for binary Frost spells such as Frostbolt and Cone of Cold, as well as a specific spec which allows you to access more Arcane talents for both AoE and single target DPS, such as Arcane Instability and Arcane Power for higher burst phases.
+
+An important part of a raid is overall damage. This means your damage to the raid as a whole, including trash mobs. A great benefit of the build mentioned previously is that it has access to all the talents that help your Arcane Explosion reach its peak performance.
+
+To be able to output the best possible damage, you'll need to swap some of your gear and do some trinket swaps, as there are powerful trinkets you can use on cooldown to your advantage. Here are some of them:
+
+    Mind Quickening Gem Mind Quickening Gem continues to be the most powerful AoE proc even though it's now eight phases old.
+    The Skull of Gul'dan The Skull of Gul'dan has a similar use to Mind Quickening Gem but is equipped with a lower cooldown, allowing for more uses.
+    Ashtongue Talisman of Insight Ashtongue Talisman of Insight is the best static trinket in your collection and should almost always be equipped in AoE situations since it'll have 100% uptime in AoE.
+    Serpent-Coil Braid Serpent-Coil Braid is worth it if your Mana Emerald Mana Emerald is available, which then provides 225 spellpower and has crit built into it. This is one of the best trinkets as long as the pack you're fighting is below the AoE cap.
+    Hex Shrunken Head Hex Shrunken Head is great if you're under AoE cap as it's basically a better Icon of the Silver Crescent Icon of the Silver Crescent
+    The Lightning Capacitor The Lightning Capacitor has its niche spot for situations where you're AoE capped (usually 14+ targets), which allows you to add damage above that point through its Lightning Bolts.
+    Sextant of Unstable Currents Sextant of Unstable Currents isn't especially best at anything, but it's consistent at what it does, providing 40 spell crit and a really good 190 spellpower proc.
+
+Frost Mages looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Frost Mage Gems & Enchants
+Should Frost Mage DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 4?
+The Aldor vs Scryer choice for Mages is not super important. The main difference, particularly at this stage of TBC, to keep in mind is the enchants, Greater Inscription of Discipline Greater Inscription of Discipline and Greater Inscription of the Orb Greater Inscription of the Orb. They're extremely close when it comes to output, but to summarize, you should make your decision based on what you focus on - Aldor pushes ahead by about 2-3 DPS in single target, while Scryers outperforms by a similar amount in AoE scenarios.
+
+Meanwhile, Scryers does offer better items, most notably Scryer's Bloodgem Scryer's Bloodgem, which is a strong hit trinket. However, this is not as important for Arcane due to a lower hit requirement, and it will be replaced once you are geared.
+
+If you need to grind reputation with the Aldor or the Scryers, or any of the other factions that offer BiS gear for Frost Mages, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Frost Mage in TBC Classic Phase 4
+The main gearing goal for Frost Mages in Phase 4 is to achieve their Tempest Regalia 4-piece set bonus for the 5% extra damage on their Frostbolt. That said, the head is the best slot to wear an off-piece, so Cowl of the Illidari High Lord will be BiS this phase.
+
+If you do not have your 4-piece from other pieces, then Cowl of the Tempest is a fine alternative to achieve it until then. Destruction Holo-gogs is also a great off-piece if you're in the early stages of gearing. I'd avoid any other option at all since the other craftable or raid drop items all sim lower than the Engineering goggles.
+Rank	Item	Source
+BiS	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+Option	Cowl of the Tempest Cowl of the Tempest	Drop: Archimonde (Hyjal Summit)
+Pre-Raid	Destruction Holo-gogs Destruction Holo-gogs	Profession: Engineering - BoP only
+Best in Slot Shoulder Armor for Frost Mage in TBC Classic Phase 4
+As the Tempest Regalia set is so important to reach peak performance with the Frost specialization, Mantle of the Tempest is still the BiS item in this phase.
+
+If you already have the 4-set bonus from your other items, then Hatefury Mantle is good. It's also BiS specifically for the Illidari Council fight in Black Temple, as you benefit greatly from spell penetration due to their Chromatic Resistance Aura ability. Outside of that, I recommend Mantle of Nimble Thought as it performs similarly to Hatefury Mantle, but it's also BiS for AoEing, so you'll use it then even once replaced with your end-game BiS item. In this phase, we can now also get Mantle of Ill Intent, which are just a little worse than the former haste shoulders, but you don't need to spend gold to get them.
+Rank	Item	Source
+BiS	Mantle of the Tempest Mantle of the Tempest	Drop: Mother Shahraz (Black Temple)
+Option	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+Pre-Raid	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+Option	Mantle of Ill Intent Mantle of Ill Intent	Drop: First Timed Chest (Zul'Aman)
+Best in Slot Back Armor for Frost Mage in TBC Classic Phase 4
+Frost Mages benefit a lot from haste, so Shroud of the Highborne is still the best item this phase.
+
+If you don't have access to this item since it's primarily considered a healing item, Shadowcaster's Drape is now another option that's still relatively close to the healing cloak in terms of performance. Cloak of the Illidari Council is also okay, but somewhat weaker in comparison to both of the former. If you're in the early stages of gearing, Cloak of Arcane Alacrity is now available from the Badge of Justice vendor, which is better than past alternatives up to this point, so it's not even worth mentioning them due to how easy it is to get.
+Rank	Item	Source
+BiS	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+Option	Shadowcaster's Drape Shadowcaster's Drape	Drop: First Timed Chest (Zul'Aman)
+Option	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: High Nethermancer Zerevor (Black Temple)
+Option	Cloak of Arcane Alacrity Cloak of Arcane Alacrity	Vendor: G'eras (Badges of Justice)
+Best in Slot Chest Armor for Frost Mage in TBC Classic Phase 4
+Due to the Tempest Regalia set being so important, Robes of the Tempest is the BiS for Frost Mages in this phase.
+
+If you're looking for an off-piece, while already wearing four other pieces of your Tier 6 set, then Vestments of the Sea-Witch is by far the best option. If you don't yet have access to either, Robes of Rhonin is a great alternative, which is also not very contested in most raids. We can also get Robe of Departed Spirits this phase, which should be fairly easy to get and performs better than past alternatives.
+Rank	Item	Source
+BiS	Robes of the Tempest Robes of the Tempest	Drop: Illidan Stormrage (Black Temple)
+Option	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Robes of Rhonin Robes of Rhonin	Drop: Archimonde (Hyjal Summit)
+Option	Robe of Departed Spirits Robe of Departed Spirits	Drop: Halazzi (Zul'Aman)
+Best in Slot Wrist Armor for Frost Mage in TBC Classic Phase 4
+Bracers of Nimble Thought consistently outperform any current alternative in most fight durations and are easily accessible through crafting or the Auction House.
+
+We are now able to get Runed Spell-cuffs from the Badge of Justice vendor, which are second best and even easier to get, so there is not much point mentioning any other alternative.
+Rank	Item	Source
+BiS	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring - can be purchased on the Auction House
+Pre-Raid	Runed Spell-cuffs Runed Spell-cuffs	Vendor: G'eras (Badges of Justice)
+Best in Slot Hand Armor for Frost Mage in TBC Classic Phase 4
+Yet another slot where you focus on the Tempest Regalia set bonuses. Thanks to its high stats as a whole, Gloves of the Tempest are the BiS this phase, even if you already have your four set bonuses from the rest of your gear.
+
+Anger-Spark Gloves becomes a BoE in this phase, so it's easier to acquire than previously. It's the best off-piece outside of Gloves of the Tempest. In Phase 4, Studious Wraps are now available from the badge vendor. Because these two are so easy to get regardless of what resources you have, there's little point in recommending lesser alternatives.
+Rank	Item	Source
+BiS	Gloves of the Tempest Gloves of the Tempest	Drop: Azgalor (Hyjal Summit)
+Pre-Raid	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss) - can be purchased on the Auction House
+Pre-Raid	Studious Wraps Studious Wraps	Vendor: G'eras (Badges of Justice)
+Best in Slot Waist Armor for Frost Mage in TBC Classic Phase 4
+Because Frost Mages have a somewhat low spell hit requirement, as well as scaling greatly with spell haste, Waistwrap of Infinity is BiS by a slight margin in single target. Anetheron's Noose is in very close second, but it's not as good for AoE performance.
+
+Besides these two belts, Belt of Blasting is still good and somewhat cheap nowadays. If you can make use of its spell hit, it becomes just as good while also being more easily accessible. Voodoo-woven Belt is now also a fairly easy-to-acquire option, although it's slightly worse than Belt of Blasting.
+Rank	Item	Source
+BiS	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+Option	Anetheron's Noose Anetheron's Noose	Drop: Anetheron (Hyjal Summit)
+Pre-Raid	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Pre-Raid	Voodoo-woven Belt Voodoo-woven Belt	Vendor: G'eras (Badges of Justice)
+Best in Slot Leg Armor for Frost Mage in TBC Classic Phase 4
+Leggings of the Tempest are the BiS for Frost Mages in Phase 4, as long as you're using them to achieve the Tempest Regalia 4-set bonus. Otherwise, Leggings of Channeled Elements slightly surpass them as an off-piece.
+
+If you're in the early stages of gearing, Pantaloons of Arcane Annihilation is now the best option as it performs better than any past alternatives and is incredibly easy to obtain.
+Rank	Item	Source
+BiS	Leggings of the Tempest Leggings of the Tempest	Drop: The Illidari Council (Black Temple)
+Option	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+Pre-Raid	Pantaloons of Arcane Annihilation Pantaloons of Arcane Annihilation	Vendor: G'eras (Badges of Justice)
+Best in Slot Feet Armor for Frost Mage in TBC Classic Phase 4
+Slippers of the Seacaller continue to be the best in slot boots this phase. Although that's the case, we now get a new alternative, Footpads of Madness, which replaces most previous options as it outperforms them and is easy to acquire.
+
+If you're just starting, then Boots of Blasting are worth considering, as they'll help you to reach the hit cap early on and are obtainable through a profession that can then be dropped afterwards.
+Rank	Item	Source
+BiS	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+Option	Footpads of Madness Footpads of Madness	Drop: Jan'alai (Zul'Aman)
+Pre-Raid	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+Best in Slot Neck Jewelry for Frost Mage in TBC Classic Phase 4
+In Phase 4, we get two new necks from Zul'Aman. For Frost Mages, they perform similarly. Brooch of Nature's Mercy is the best, with Loop of Cursed Bones being just slightly worse, but in my opinion, use whichever you can get first.
+
+Other than these two, I can only recommend Eye of the Night and Chain of the Twilight Owl, which are both best in slot for raid DPS. These should be used while coordinated with your party members for better raid performance. Because these two necks are both cheap or easily craftable by other raid members, these should also be considered pre-raid best in slot.
+Rank	Item	Source
+BiS	Brooch of Nature's Mercy Brooch of Nature's Mercy	Drop: Akil'zon (Zul'Aman)
+BiS	Loop of Cursed Bones Loop of Cursed Bones	Drop: Zul'jin (Zul'Aman)
+BiS - Group Performance	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+BiS - Group Performance	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+The Sun King's Talisman is still worth mentioning as it's a 100% drop from Kael'thas Sunstrider. It's quite a bit worse, but very easy to obtain nowadays. If you need spell hit and have nowhere else to get it from, Translucent Spellthread Necklace is still an okay option.
+Rank	Item	Source
+Option	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Essence of Anger (Black Temple)
+
+Best in Slot Ring Jewelry for Frost Mage in TBC Classic Phase 4
+Mana Attuned Band is now available in this phase, which helps solve some spell hit issues you might have, as well as providing spell haste, making it one of the best rings for a caster.
+
+An important thing to note for your ring choices is that Ring of Ancient Knowledge doesn't have a 'Unique' restriction. The combination of two Rings of Ancient Knowledge will continue to be BiS in this phase. Until then, we get the easily acquirable Band of the Eternal Sage from The Scale of the Sands reputation. Ring of Captured Storms is also pretty good, especially if you need the spell hit.
+Rank	Item	Source
+BiS	Mana Attuned Band Mana Attuned Band	Drop: Third Timed Chest (Zul'Aman)
+BiS	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+Option	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+Option	Band of the Eternal Sage Band of the Eternal Sage	Quest: (Quest #10472) (The Scale of the Sands Exalted)
+Best in Slot Trinkets for Frost Mage in TBC Classic Phase 4
+With Zul'Aman, casters get access to Hex Shrunken Head. This trinket is a point-by-point upgrade of Icon of the Silver Crescent / Dark Iron Smoking Pipe. It is very strong when used with other cooldowns towards your initial burst phase. The Skull of Gul'dan also continues to be your best in slot, since it helps you get hit capped and has a very good ability.
+
+If you don't have one of these, Ashtongue Talisman of Insight continues to be very strong because Frost Mage has very high crit change, especially if using Winter's Chill combined with the Arcane tree's crit modifiers. Serpent-Coil Braid is also a good trinket if you need the spell hit. Using it, you can combine Mana Emerald Mana Emerald with your other cooldowns and other trinkets for stronger burst phases.
+Rank	Item	Source
+BiS	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+BiS	Hex Shrunken Head Hex Shrunken Head	Drop: Hex Lord Malacrass (Zul'Aman)
+Option	Ashtongue Talisman of Insight Ashtongue Talisman of Insight	Vendor: Okuno (Ashtongue Deathsworn Exalted)
+Option	Serpent-Coil Braid Serpent-Coil Braid	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Outside of the best options, Quagmirran's Eye continues to be a very good trinket you can get really easily early on.
+Rank	Item	Source
+Option	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Option	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+
+Best in Slot Weapons for Frost Mage in TBC Classic Phase 4
+Because Frost Mages have the benefit of requiring less hit than Fire, Zhar'doom, Greatstaff of the Devourer is a lot better than the alternatives we currently have access to. The main alternative is Tempest of Chaos, which is great if you can take advantage of the spell hit it provides. In Phase 4, we can also get Blade of Twisted Visions, which is worth noting since it'll be a lot easier to obtain than the former options while performing ahead of every other alternative that's not mentioned in this list (if hit capped).
+
+Until you get your BiS weapon, PvP weapons are also great choices. Merciless Gladiator's Spellblade is fairly easy to obtain from simply getting PvP capped every week, even at a low rating. If you're already an active member of the PvP community, then Vengeful Gladiator's Spellblade is surprisingly good for PvE and somewhat close to Tempest of Chaos if you can use the spell hit.
+Rank	Item	Source
+BiS	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+Option	Tempest of Chaos Tempest of Chaos	Drop: Archimonde (Hyjal Summit)
+Option	Blade of Twisted Visions Blade of Twisted Visions	Drop: Zul'jin (Zul'Aman)
+Option - PvP	Vengeful Gladiator's Spellblade Vengeful Gladiator's Spellblade	Vendor: Arena Points (Season 3)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Option - PvP	Merciless Gladiator's Spellblade Merciless Gladiator's Spellblade	Vendor: Arena Points (Season 2)
+
+Best in Slot Offhands for Frost Mage in TBC Classic Phase 4
+In this phase, we can purchase Fetish of the Primal Gods from the badge vendor; this will generally be your new best offhand. Chronicle of Dark Secrets will slightly outperform the haste off-hand if you need spell hit to get capped with.
+Rank	Item	Source
+BiS	Fetish of the Primal Gods Fetish of the Primal Gods	Vendor: G'eras (Badges of Justice)
+Option	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+Best in Slot Wands for Frost Mage in TBC Classic Phase 4
+Although not the biggest upgrade, Carved Witch Doctor's Stick is one of the most exciting items we get this phase, as it enables more options and is easier to get than the previous best in slot. This is a great item to use towards getting your meta gem bonus using Glowing Shadowsong Amethyst Glowing Shadowsong Amethyst. You can also equip the wand with Runed Crimson Spinel Runed Crimson Spinel for raw damage. This wand replaces basically every past alternative, as you can swap the gem slot depending on what you need from it.
+
+The only other wand worth mentioning is Wand of the Forgotten Star, as it's still one of the best options if you badly need spell hit from this slot.
+Rank	Item	Source
+BiS	Carved Witch Doctor's Stick Carved Witch Doctor's Stick	Vendor: G'eras (Badges of Justice)
+Option	Wand of the Forgotten Star Wand of the Forgotten Star	Drop: High Astromancer Solarian (The Eye)
+Foolipe
+WoW Classic Mage Class Expert
+Foolipe started playing in mid-way through the release of 2019's Classic WoW, after getting into speedrunning and the more competitive side of classic wow, he started writing the guides for the Mage class during The Burning Crusade Classic.
+
+He's a Classic Mage discord regular and keeps up with the community peer-reviewed information to bring you the most up-to-date guides possible.
+No comments have been posted yet.
+Be the first to add a comment to this page!
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Mage Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Arcane
+            Fire
+            Frost
+        Phase 1 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 2 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 3 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 4 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 5 BiS
+            Arcane
+            Fire
+            Frost
+                Best In Slot Gear in Phase 5
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Weapons
+                    Offhands
+                    Wands
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Frost Mage DPS Best in Slot (BiS) Phase 5 Guide
+By Foolipe
+Updated: 2026/02/26
+Foolipe
+Offline on Twitch
+Follow:
+Welcome to Wowhead's Best in Slot Gear list from Phase 5 Sunwell Plateau for Frost Mage DPS in The Burning Crusade Classic. This guide will list the recommended gear for Frost Mage DPS to acquire while they progress during the fifth and final phase of The Burning Crusade Classic, which contains gear sourced from Sunwell Plateau, Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Frost Mage DPS in Phase 5
+Frost Mage might not be the best specialization overall, but it does have its niche in extremely low support comps. Players in more casual-oriented guilds might find themselves in this situation. This spec has lower spell hit requirements than Fire Mage while doing more DPS without requiring particular classes/specs in their group or raid. For these players, the following set is the highest performance you can get out of both the Deep Frost and the hybrid Arcane/Frost spec.
+
+Frost Mages looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Frost Mage Gems & Enchants
+Should Frost Mage DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 5?
+The Aldor vs Scryer choice for Mages is not super important. The main difference, particularly at this stage of TBC, to keep in mind is the enchants, Greater Inscription of Discipline Greater Inscription of Discipline and Greater Inscription of the Orb Greater Inscription of the Orb. They're extremely close when it comes to output, but to summarize, you should make your decision based on what you focus on - Aldor pushes ahead by about 2-3 DPS in single target, while Scryers outperforms by a similar amount in AoE scenarios.
+
+If you need to grind reputation with the Aldor or the Scryers, or any of the other factions that offer BiS gear for Frost Mages, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Frost Mage in TBC Classic Phase 5
+Dark Conjuror's Collar is significantly better than all other options for this slot. Until you get it, your best alternative is the new upgraded Engineering headpiece, Annihilator Holo-Gogs. If you're not an Engineer, then Cowl of the Illidari High Lord is still a great temporary item.
+Rank	Item	Source
+BiS	Dark Conjuror's Collar Dark Conjuror's Collar	Drop: Kil'jaeden (Sunwell Plateau)
+Pre-Raid	Annihilator Holo-Gogs Annihilator Holo-Gogs	Profession: Engineering - BoP only
+Option	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+Best in Slot Shoulder Armor for Frost Mage in TBC Classic Phase 5
+Frost Mages depend heavily on the four-piece Tempest Regalia set bonus to do proper damage. As a result, Mantle of the Tempest continues to be the best in slot shoulders.
+
+If you don't have any better off-piece elsewhere, Amice of the Convoker is a good temporary option as long as you have your four-piece Tier 6 set bonus through other items. Until you're at a stage where this matters, Mantle of Nimble Thought is a great early item.
+Rank	Item	Source
+BiS	Mantle of the Tempest Mantle of the Tempest	Drop: Mother Shahraz (Black Temple)
+BiS	Amice of the Convoker Amice of the Convoker	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+Pre-Raid	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+Best in Slot Back Armor for Frost Mage in TBC Classic Phase 5
+Tattered Cape of Antonidas beats all previous cloak options, but otherwise the rankings for cloaks remain the same.
+
+Shroud of the Highborne is now second best, though it can be somewhat hard to obtain as it's commonly thought of as a healer cloak. Shadowcaster's Drape is a fairly easy-to-obtain option that only performs a little bit worse than the Shroud. Cloak of the Illidari Council has similar output to the Zul'Aman back.
+Rank	Item	Source
+BiS	Tattered Cape of Antonidas Tattered Cape of Antonidas	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+Option	Shadowcaster's Drape Shadowcaster's Drape	Drop: First Timed Chest (Zul'Aman)
+Option	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: The Illidari Council (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Cloak of Arcane Alacrity, from the Badge of Justice vendor, is the best pre-raid cloak you can obtain and performs better than older raid items, which aren't mentioned in the list.
+Rank	Item	Source
+Pre-Raid	Cloak of Arcane Alacrity Cloak of Arcane Alacrity	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Chest Armor for Frost Mage in TBC Classic Phase 5
+Sunfire Robe is best in slot by quite a bit. The downside of this chestpiece is that it requires Tailoring to craft and use.
+
+Fel Conquerer Raiments are the second-best chestpiece, but it's heavily contested. Robes of Ghostly Hatred are less contested and only very slightly worse than the Raiments. If you can't get your four-piece Tempest Regalia set bonus from other items, then Robes of the Tempest are still a great option until you can.
+Rank	Item	Source
+BiS	Sunfire Robe Sunfire Robe	Profession: Tailoring - BoP only
+Option	Fel Conquerer Raiments Fel Conquerer Raiments	Drop: M'uru (Sunwell Plateau)
+Option	Robes of Ghostly Hatred Robes of Ghostly Hatred	Vendor: Yrma
+Drop: Robes of Faltered Light Robes of Faltered Light from M'uru (Sunwell Plateau) & Sunmote Sunmote
+Option	Robes of the Tempest Robes of the Tempest	Drop: Illidan Stormrage (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Tormented Demonsoul Robes are easily obtainable and better than nearly all past options that aren't mentioned in this list.
+Rank	Item	Source
+Pre-Raid	Tormented Demonsoul Robes Tormented Demonsoul Robes	Vendor: Smith Hauthaa (Badges of Justice)
+
+Best in Slot Wrist Armor for Frost Mage in TBC Classic Phase 5
+For bracers in Phase 5, your choice is simple, as Bracers of the Tempest are by far the best in slot, providing great stats while being part of the Tempest Regalia set. Until you get these, Bracers of Nimble Thought are the second-best bracers and easily obtainable, as they're a crafted BoE.
+Rank	Item	Source
+BiS	Bracers of the Tempest Bracers of the Tempest	Drop: Kalecgos, Lady Sacrolash, & Grand Warlock Alythess (Sunwell Plateau)
+Pre-Raid	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring - can be purchased on the Auction House
+Best in Slot Hand Armor for Frost Mage in TBC Classic Phase 5
+Handguards of Defiled Worlds are best in slot, as one of the most stacked off-pieces a Frost Mage can use. If you need to activate your four-piece Tempest Regalia set bonus, and have nowhere else to get it from temporarily, then Gloves of the Tempest are your best option.
+
+Sunfire Handwraps are a Phase 5 BoE that you can buy from other players, which perform better than past alternatives. If you're low on gold but have plenty of badges, Enslaved Doomguard Soulgrips are better than most items from past raids.
+Rank	Item	Source
+BiS	Handguards of Defiled Worlds Handguards of Defiled Worlds	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Gloves of the Tempest Gloves of the Tempest	Drop: Azgalor (Hyjal Summit)
+Pre-Raid	Sunfire Handwraps Sunfire Handwraps	Profession: Tailoring - can be purchased on the Auction House
+Pre-Raid	Enslaved Doomguard Soulgrips Enslaved Doomguard Soulgrips	Vendor: Smith Hauthaa (Badges of Justice)
+Best in Slot Waist Armor for Frost Mage in TBC Classic Phase 5
+Similar to a few other slots, when it comes to belts in Phase 5, we have one standout option: Belt of the Tempest, which provides significantly better stats than any previous belt while also contributing towards our set bonus.
+
+Frost Mages don't need as much spell hit as Fire Mages, so Anetheron's Noose is your second-best belt. Until you get these, Belt of Blasting is a great early option that'll be better than all other belts that aren't mentioned here as long as you use the spell hit.
+Rank	Item	Source
+BiS	Belt of the Tempest Belt of the Tempest	Drop: Brutallus, Lady Sacrolash, & Grand Warlock Alythess (Sunwell Plateau)
+Option	Anetheron's Noose Anetheron's Noose	Drop: Anetheron (Hyjal Summit)
+Pre-Raid	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Best in Slot Leg Armor for Frost Mage in TBC Classic Phase 5
+Leggings of Calamity are best in slot by a fair bit in long to medium fight lengths. Pantaloons of Growing Strife are competitive with the best pants in very short fight durations. If you don't yet have the four-piece Tempest Regalia set bonus from other items, and have no other way of getting it, Leggings of the Tempest are a great temporary option. If you're just starting out, Corrupted Soulcloth Pantaloons are easily accessible through the Badge of Justice vendor, and either better or close to past raid alternatives.
+Rank	Item	Source
+BiS	Leggings of Calamity Leggings of Calamity	Drop: Brutallus (Sunwell Plateau)
+Option	Pantaloons of Growing Strife Pantaloons of Growing Strife	Vendor: Yrma
+Drop: Pantaloons of Calming Strife Pantaloons of Calming Strife from Kalecgos (Sunwell Plateau) & Sunmote Sunmote
+Option	Leggings of the Tempest Leggings of the Tempest	Drop: The Illidari Council (Black Temple)
+Pre-Raid	Corrupted Soulcloth Pantaloons Corrupted Soulcloth Pantaloons	Vendor: Smith Hauthaa (Badges of Justice)
+Best in Slot Feet Armor for Frost Mage in TBC Classic Phase 5
+Boots of the Tempest are a lot better than all other options for this slot, even before considering they help you reach the Tempest Regalia four-piece set bonus.
+
+Until you get the set boots, Slippers of the Seacaller continue to be a great option. If you're just starting or have boots from previous content, Boots of Incantations are now available for Badges of Justice. These new boots outperform nearly all older choices.
+Rank	Item	Source
+BiS	Boots of the Tempest Boots of the Tempest	Drop: Felmyst (Sunwell Plateau)
+Option	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+Pre-Raid	Boots of Incantations Boots of Incantations	Vendor: Smith Hauthaa (Badges of Justice)
+Best in Slot Neck Jewelry for Frost Mage in TBC Classic Phase 5
+In a full BiS setup, Amulet of Unfettered Magics is the best neckpiece for Horde, mostly because of high value stats with spell hit included. If you are spell hit capped through other items or play Alliance, then there are two options. Pendant of Sunfire, if you're a Jewelcrafter, is the second-best neck. Until you get either of these two - there's the season 4 PvP spell haste neck Guardian's Pendant of Subjugation. This neck is comparable to or better than both the Zul'Aman necks.
+
+Even though these are the best personal DPS items for this slot, Eye of the Night and Chain of the Twilight Owl are optimal to use for the raid's overall DPS. As long as you use their respective active abilities to buff the rest of the group. These are best used when coordinated with your raid.
+Rank	Item	Source
+BiS	Amulet of Unfettered Magics Amulet of Unfettered Magics	Drop: Lady Sacrolash & Grand Warlock Alythess (Sunwell Plateau)
+Option	Pendant of Sunfire Pendant of Sunfire	Profession: Jewelcrafting - BoP only
+Option	Guardian's Pendant of Subjugation Guardian's Pendant of Subjugation	Vendor: Honor Points (Season 4)
+BiS (Group Performance)	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+BiS (Group Performance)	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+Best in Slot Ring Jewelry for Frost Mage in TBC Classic Phase 5
+In Phase 5, Loop of Forged Power is now available. This ring is a BoE item you can buy or get crafted, and it's one of the best rings we have access to due to its high offensive stats and very high spell hit. Regardless of what items you have on the rest of your set, this ring is likely your best in slot. For your second ring, it's a choice between Ring of Omnipotence if you're spell hit capped, or Mana Attuned Band if you need the spell hit and have nowhere else to get it from.
+
+Ring of Ancient Knowledge is somewhat underwhelming compared to newer options, but still a great ring to use temporarily until you get those.
+Rank	Item	Source
+BiS	Loop of Forged Power Loop of Forged Power	Profession: Jewelcrafting - can be purchased on the Auction House
+BiS	Ring of Omnipotence Ring of Omnipotence	Drop: M'uru (Sunwell Plateau)
+BiS	Mana Attuned Band Mana Attuned Band	Drop: Third Timed Chest (Zul'Aman)
+Option	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Band of the Eternal Sage is still a high-performing ring and one of the easiest items to get, since you get it from reputation.
+Rank	Item	Source
+Option	Band of the Eternal Sage Band of the Eternal Sage	Quest: Sage's Covenant Sage's Covenant (The Scale of the Sands Exalted)
+
+Best in Slot Trinkets for Frost Mage in TBC Classic Phase 5
+The Skull of Gul'dan continues to be one of the best trinkets for Frost Mages. Not only does it help to achieve spell hit cap, but it also extends your burst phase. The same applies to the new trinket, Shifting Naaru Sliver. As this trinket has a 1.5-minute cooldown instead of the usual 2-minute cooldown, it matches perfectly with both Icy Veins and Arcane Power. These two trinkets will be the best in slot for Frost Mages.
+
+Very close to these two trinkets is Hex Shrunken Head, which can also be used during burst phases. This trinket replaces both of the spell power on-use trinkets used in previous phases. If you're lacking spell hit and can't get it elsewhere, Serpent-Coil Braid is also great since it can be used combined with other active trinkets through the use of Mana Emerald during your burst cooldowns.
+Rank	Item	Source
+BiS	Shifting Naaru Sliver Shifting Naaru Sliver	Drop: M'uru (Sunwell Plateau)
+BiS	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+Option	Hex Shrunken Head Hex Shrunken Head	Drop: Hex Lord Malacrass (Zul'Aman)
+Option	Serpent-Coil Braid Serpent-Coil Braid	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+If you're starting out, Icon of the Silver Crescent and Dark Iron Smoking Pipe are great options to consider, either combined or alongside Quagmirran's Eye as your second trinket. As Frost Mages have such high spell crit, Ashtongue Talisman of Insight is also a worthwhile option temporarily.
+Rank	Item	Source
+Option	Ashtongue Talisman of Insight Ashtongue Talisman of Insight	Vendor: Okuno (Ashtongue Deathsworn Exalted)
+Pre-Raid	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Pre-Raid	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Pre-Raid	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+
+Best in Slot Weapons for Frost Mage in TBC Classic Phase 5
+In this phase, there's not much choice. Sunflare is the best weapon in all of TBC, and will be the most contested item for casters in this phase. We have access to another option in Sunwell Plateau - Grand Magister's Staff of Torrents, which isn't a bad weapon by any means. This staff provides a big chunk of the required spell hit to get capped with, and can aid your gearing process for the rest of your slots. The staff is an upgrade over all weapons in Phase 4 and previously, so if given the opportunity, make sure to grab it either way.
+
+Otherwise, rankings for weapons remain about the same. Zhar'doom, Greatstaff of the Devourer is still a great weapon, but now more so a temporary upgrade. Tempest of Chaos performs similarly, although a bit worse, but is easier to gear around, which can have benefits.
+Rank	Item	Source
+BiS	Sunflare Sunflare	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Grand Magister's Staff of Torrents Grand Magister's Staff of Torrents	Drop: Felmyst (Sunwell Plateau)
+Option	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+Option	Tempest of Chaos Tempest of Chaos	Drop: Archimonde (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Blade of Twisted Visions from Zul'Aman is also not to scoff at and is a great item that'll last until you get a Sunwell Plateau weapon.
+
+As for pre-raid options, we can now get Scryer's Blade of Focus from the Phase 5 badge vendor. This weapon might seem underwhelming, but it performs about the same as Blade of Twisted Visions. There's also the PVP weapons - Vengeful Gladiator's Spellblade from last season, which now doesn't require arena rating to purchase. This PvP dagger performs close to Tempest of Chaos if you can use the spell hit. Finally, if you're an active PvP player, Brutal Gladiator's Spellblade is a slight upgrade over the past season's dagger and worth considering for PvE.
+Rank	Item	Source
+Option - PvP	Brutal Gladiator's Spellblade Brutal Gladiator's Spellblade	Vendor: Arena Points (Season 4)
+Option	Blade of Twisted Visions Blade of Twisted Visions	Drop: Zul'jin (Zul'Aman)
+Option - PvP	Vengeful Gladiator's Spellblade Vengeful Gladiator's Spellblade	Vendor: Arena Points (Season 3)
+Pre-Raid	Scryer's Blade of Focus Scryer's Blade of Focus	Vendor: Smith Hauthaa (Badges of Justice)
+
+Best in Slot Offhands for Frost Mage in TBC Classic Phase 5
+For this phase, Heart of the Pit will be the new best-in-slot offhand. The ranking for past offhands remains about the same. Chronicle of Dark Secrets is still great if you need the spell hit and can't get it elsewhere. Fetish of the Primal Gods is the only other option worth considering; this offhand is obtainable for Badges of Justice, so is very easy to pick up.
+Rank	Item	Source
+BiS	Heart of the Pit Heart of the Pit	Drop: Brutallus (Sunwell Plateau)
+Option	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+Pre-Raid	Fetish of the Primal Gods Fetish of the Primal Gods	Vendor: G'eras (Badges of Justice)
+Best in Slot Wands for Frost Mage in TBC Classic Phase 5
+After three phases, we finally get a new worthwhile wand. Wand of the Demonsoul drops from the trash mobs in Sunwell Plateau, meaning it can be farmed. This new wand is significantly better than past alternatives as long as you are spell hit capped.
+
+If you aren't spell hit capped, then Wand of the Forgotten Star is still a fine option. Until then, Carved Witch Doctor's Stick is a great temporary item which can be gemmed differently depending on your current needs.
+Rank	Item	Source
+BiS	Wand of the Demonsoul Wand of the Demonsoul	Drop: Trash Mobs (Sunwell Plateau)
+Option	Wand of the Forgotten Star Wand of the Forgotten Star	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Pre-Raid	Carved Witch Doctor's Stick Carved Witch Doctor's Stick	Vendor: G'eras (Badges of Justice)
+Foolipe
+WoW Classic Mage Class Expert
+Foolipe started playing in mid-way through the release of 2019's Classic WoW, after getting into speedrunning and the more competitive side of classic wow, he started writing the guides for the Mage class during The Burning Crusade Classic.
+
+He's a Classic Mage discord regular and keeps up with the community peer-reviewed information to bring you the most up-to-date guides possible.
+1 - 1 of 1
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By Ghostsheepy (1,525 – 2·15) on 2022/05/20 (Burning Crusade)	
+	
+I want to see somebody in sunwell actually going frost mage
+1 - 1 of 1
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+4.7/5 (5 Votes)
+TBCC Mage Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Arcane
+            Fire
+            Frost
+                Best-In-Slot Gear in Pre-Raid
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Weapons
+                    Off-Hands
+                    Wands
+        Phase 1 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 2 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 3 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 4 BiS
+            Arcane
+            Fire
+            Frost
+        Phase 5 BiS
+            Arcane
+            Fire
+            Frost
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Frost Mage DPS Pre-Raid Best in Slot (BiS) - TBC Classic
+By Foolipe
+Updated: 2026/02/15
+Foolipe
+Offline on Twitch
+Follow:
+In this Pre-Raid Best-in-Slot Gear List for Frost Mage DPS in The Burning Crusade Classic, we will list the recommended gear for Frost Mage DPS to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Frost Mage DPS Best in Slot Hub
+
+Best-In-Slot Gear for Frost Mage DPS in Pre-Raid
+There are a ton of different ways to gear a Frost Mage, and they all depend on the gear you have available, as well as some personal preferences. Between all the different powerful rings, trinkets, necks, and even a few armor items here and there, you can make adjustments and still do some of the best damage possible.
+
+Frost Mages looking to add enchants and gems to their BiS gear should take a look at our guide below:
+
+Frost Mage Gems & Enchants
+Should Frost Mage DPS Choose Aldor or Scryer for BiS in TBC Classic Pre-Raid?
+The Aldor vs Scryer choice for Mages is not super important. The key thing to keep in mind is the enchants, Greater Inscription of Discipline Greater Inscription of Discipline and Greater Inscription of the Orb Greater Inscription of the Orb. They are very, very similar, which overall makes the choice not super impactful—we're talking 0.x% in favor of Aldor.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Arcane Mages, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best-in-Slot Head Armor for Frost Mages in TBC Classic Pre-Raid
+For Frost Mage, the Mana-Etched Crown is pre-raid best in slot assuming a full set scenario with the items listed at the top of each section. If you're not using - for example - the Mana-Etched Gloves for the two set bonus with the headpiece, then it's likely something like the Mana-Binders Cowl will perform better (assuming you're hit capped through other items).
+
+The Spellstrike Hood is overestimated, given it doesn't have a meta gem socket (the legs of this set are still very good standalone). So I personally don't recommend it considering it performs lower in AoE as well as in single target dps (though by not as much) even in pre-raid gear.
+Rank	Item	Source
+BiS	Mana-Etched Crown Mana-Etched Crown	Drop: Aeonus (The Black Morass)
+BiS	Mana-Binders Cowl Mana-Binders Cowl	Sold by: G'eras - 50 Badge of Justice Badge of Justice
+Option	Hood of Oblivion Hood of Oblivion	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Incanter's Cowl Incanter's Cowl	Drop: Pathaleon the Calculator (The Mechanar)
+Option	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+
+Rank	Item	Source
+Option	Mag'hari Ritualist's Horns Mag'hari Ritualist's Horns	Quest:Hero of the Mag'har Hero of the Mag'har
+Option	Frostfire Circlet Frostfire Circlet	Quest:Frostfire Circlet Frostfire Circlet (Classic - Naxxramas)
+Option	Mish'undare, Circlet of the Mind Flayer Mish'undare, Circlet of the Mind Flayer	Drop: Nefarian (Classic - Blackwing Lair)
+Option	Evoker's Helmet of Second Sight Evoker's Helmet of Second Sight	Quest:Teron Gorefiend, I am... Teron Gorefiend, I am...
+
+Best-in-Slot Shoulder Armor for Frost Mages in TBC Classic Pre-Raid
+For the Shoulder slot, Tailoring provides the best option for Frost Mages: Frozen Shadoweave Shoulders, which provide a ton of Spell Power, as well as two sockets to increase damage further.
+Rank	Item	Source
+BiS	Frozen Shadoweave Shoulders Frozen Shadoweave Shoulders	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest:The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+Option	Evoker's Silk Amice Evoker's Silk Amice	Thrallmar - Honored
+Option	High Warlord's Silk Amice High Warlord's Silk Amice	Lady Palanseer - 10475 Honor Points Honor Points 10 Arathi Basin Mark of Honor Arathi Basin Mark of Honor
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Spaulders of Oblivion Spaulders of Oblivion	Drop: Murmur (Shadow Labyrinth)
+Option	Mana-Etched Spaulders Mana-Etched Spaulders	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Rime Covered Mantle Rime Covered Mantle	Drop: Gluth (Classic - Naxxramas)
+Option	Mantle of Three Terrors Mantle of Three Terrors	Drop: Chrono Lord Deja (The Black Morass)
+Option	Frostfire Shoulderpads Frostfire Shoulderpads	Quest:Frostfire Shoulderpads Frostfire Shoulderpads (Classic - Naxxramas)
+Option	Destroyers' Mantle Destroyers' Mantle	Quest:Natural Remedies Natural Remedies
+Option	Nether Guards Nether Guards	Quest:Dr. Boom! Dr. Boom!
+
+Best-in-Slot Back Armor for Frost Mages in TBC Classic Pre-Raid
+The cloak slot has two valid options to pick from, one is Cloak of the Necropolis which you might already have, and in this case simply continue using it until you replace it with the raid upgrade. The other one is the new Shawl of Shifting Probabilities which you can just buy with badges of justice. Both perform similarly with minor hit adjustments via gems.
+Rank	Item	Source
+BiS	Cloak of the Necropolis Cloak of the Necropolis	Drop: Sapphiron (Classic - Naxxramas)
+BiS	Shawl of Shifting Probabilities Shawl of Shifting Probabilities	Vendor: G'eras (Badges of Justice)
+Option	Ogre Slayer's Cover Ogre Slayer's Cover	Quest:Cho'war the Pillager Cho'war the Pillager
+Option	Cloak of the Devoured Cloak of the Devoured	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Sethekk Oracle Cloak Sethekk Oracle Cloak	Drop: Talon King Ikiss (Sethekk Halls)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Cloak of Entropy Cloak of Entropy	Drop: World Drop
+Option	Cloak of Woven Energy Cloak of Woven Energy	Quest:Hitting the Motherlode Hitting the Motherlode
+Option	Cloak of the Black Void Cloak of the Black Void	Profession: Tailoring - can be purchased on the Auction House
+
+Best-in-Slot Chest Armor for Frost Mages in TBC Classic Pre-Raid
+Chest is another slot where Tailoring is great, with Frost Mages being provided with the incredible Shadow's Embrace set. For this slot, Frozen Shadoweave Robe provides a massive +72 to Frost and Shadow damage and two sockets. This is an amazing item overall and massively better than anything else, even all the chests in the first set of raids. You'll be wearing this one for a while.
+Rank	Item	Source
+BiS	Frozen Shadoweave Robe Frozen Shadoweave Robe	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Will of Edward the Odd Will of Edward the Odd	Drop: World Drop
+Option	Mana-Etched Vestments Mana-Etched Vestments	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Option	Robe of the Crimson Order Robe of the Crimson Order	Drop: World Drop
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+
+Rank	Item	Source
+Option	Frostfire Robe Frostfire Robe	Quest:Frostfire Robe Frostfire Robe (Classic - Naxxramas)
+Option	Auchenai Anchorite's Robe Auchenai Anchorite's Robe	Quest:Everything Will Be Alright Everything Will Be Alright (Auchenai Crypts)
+Option	Warp Infused Drape Warp Infused Drape	Drop: Warp Splinter (The Botanica)
+Option	Robe of Oblivion Robe of Oblivion	Drop: Murmur (Shadow Labyrinth)
+Option	Kirin Tor Apprentice's Robes Kirin Tor Apprentice's Robes	Quest:Destroy Naberius! Destroy Naberius!
+Option	Shadowcast Tunic Shadowcast Tunic	Quest:Drill the Drillmaster Drill the Drillmaster /The Foot of the Citadel The Foot of the Citadel
+
+Best-in-Slot Wrist Armor for Frost Mages in TBC Classic Pre-Raid
+Wrists are a very easy slot to fill, you have either the General's Silk Cuffs which you can farm alone via battlegrounds; or the Bracers of Havok which perform the same but will cost you gold instead. Depending on whether you value your time or gold more, you can take a pick of either and be fine.
+Rank	Item	Source
+BiS	General's Silk Cuffs General's Silk Cuffs	Vendor: Honor Points (PvP)
+BiS	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+
+Rank	Item	Source
+Option	Bands of Negation Bands of Negation	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Shattrath Wraps Shattrath Wraps	Quest:The Soul Devices The Soul Devices (Shadow Labyrinth)
+Option	Crimson Bracers of Gloom Crimson Bracers of Gloom	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	The Soul Harvester's Bindings The Soul Harvester's Bindings	Drop: Gothik the Harvester (Classic - Naxxramas)
+
+Best-in-Slot Hand Armor for Frost Mages in TBC Classic Pre-Raid
+The best option for a Frost Mage's gloves is Mana-Etched Gloves if paired with the Mana-Etched Crown headpiece, if at any point you replace any or the other, the options below are likely to perform better.
+Rank	Item	Source
+BiS	Mana-Etched Gloves Mana-Etched Gloves	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	Gloves of Oblivion Gloves of Oblivion	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Option	Tempest's Touch Tempest's Touch	Quest:Return to Andormu Return to Andormu (Caverns of Time)
+Option	Incanter's Gloves Incanter's Gloves	Drop: Hydromancer Thespia (The Steamvault)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Manaspark Gloves Manaspark Gloves	Drop: Hungarfen (The Underbog)
+Option	Gloves of the Deadwatcher Gloves of the Deadwatcher	Drop: Shirrak the Dead Watcher (Heroic Auchenai Crypts)
+Option	Dark Storm Gauntlets Dark Storm Gauntlets	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Gloves of the High Magus Gloves of the High Magus	Quest:News of Victory News of Victory /News of Victory News of Victory
+Option	Grips of the Void Grips of the Void	Quest:Enraged Spirits of Air Enraged Spirits of Air
+
+Best-in-Slot Waist Armor for Frost Mages in TBC Classic Pre-Raid
+It's back to Tailoring for the Waist slot, as the profession once again offers a very strong item. This time, however, it's a BoE belt, so it's not something you need to craft yourself. Girdle of Ruination is the best option here, as it provides very strong base stats and, crucially, two sockets.
+
+Additionally, because of how easy the A'dal's Gift is to obtain, options below it aren't even worthwhile mentioning.
+Rank	Item	Source
+BiS	Girdle of Ruination Girdle of Ruination	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Belt of Depravity Belt of Depravity	Drop: Harbinger Skyriss (Heroic The Arcatraz)
+Option	Eyestalk Waist Cord Eyestalk Waist Cord	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Glyph-Lined Sash Glyph-Lined Sash	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	A'dal's Gift A'dal's Gift	Quest:How to Break Into the Arcatraz How to Break Into the Arcatraz (The Arcatraz)
+Best-in-Slot Leg Armor for Frost Mages in TBC Classic Pre-Raid
+Tailoring is back again for the leg slot, as Spellstrike Pants is an amazing option. Spell Power, Hit, Crit, three sockets, and a +92 Spell Power proc from the set bonus! These things are incredible, and as a Mage, you will spend a long time wearing the Spellstrike set.
+Rank	Item	Source
+BiS	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+Option	Breeches of the Occultist Breeches of the Occultist	Drop: Aeonus (Heroic The Black Morass)
+Option	Kirin Tor Master's Trousers Kirin Tor Master's Trousers	Drop: Murmur (Heroic Shadow Labyrinth)
+Option	Aran's Sorcerous Slacks Aran's Sorcerous Slacks	Drop: Lieutenant Drake (Old Hillsbrad Foothills)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+If you don't have tailoring, then there are also other solid options, mostly coming from a variety of different TBC dungeons, but even the Naxx BiS is fairly strong.
+Rank	Item	Source
+Option	Khadgar's Kilt of Abjuration Khadgar's Kilt of Abjuration	Drop: Temporus (The Black Morass)
+Option	Pantaloons of Flaming Wrath Pantaloons of Flaming Wrath	Drop: Blood Guard Porung (Heroic The Shattered Halls)
+Option	Devil-Stitched Leggings Devil-Stitched Leggings	Drop: Laj (The Botanica)
+Option	Leggings of Polarity Leggings of Polarity	Drop: Thaddius (Classic - Naxxramas)
+
+Best-in-Slot Feet Armor for Frost Mages in TBC Classic Pre-Raid
+As the third slot which can use items from this set, the Frozen Shadoweave Boots are also both pre-raid and phase best in slot. If you're not Tailoring by any chance, then the rest of the items are listed in terms of performance (with some Hit adjustments required for items such as Extravagant Boots of Malice).
+Rank	Item	Source
+BiS	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	General's Silk Footguards General's Silk Footguards	Vendor: Honor Points (PvP)
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Extravagant Boots of Malice Extravagant Boots of Malice	Drop: Tavarok (Heroic Mana-Tombs)
+Option	Shattrath Jumpers Shattrath Jumpers	Quest:Into the Heart of the Labyrinth Into the Heart of the Labyrinth (Shadow Labyrinth)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Frostfire Sandals Frostfire Sandals	Quest:Frostfire Sandals Frostfire Sandals (Classic - Naxxramas)
+Option	Boots of Blasphemy Boots of Blasphemy	Drop: Quagmirran (Heroic The Slave Pens)
+
+Best-in-Slot Neck Jewelry for Frost Mages in TBC Classic Pre-Raid
+Neck slot is filled by the very balanced Brooch of Heightened Potential - it provides a little of the required Hit while having its Spellpower and Critical Strike nearly match the other options.
+
+Though, if you're aiming for raid performance instead of personal gain, the Jewelcrafting necks are the best necks you can use for the entirity of TBC (Chain of the Twilight Owl and Eye of the Night). These should ideally be used by the support classes in your group, but if you don't have them, it's best for you to use a charge of either of them.
+Rank	Item	Source
+BiS	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+BiS - Raid DPS	Chain of the Twilight Owl Chain of the Twilight Owl	Profession Jewelcrafting can be purchased on the Auction House
+BiS - Raid DPS	Eye of the Night Eye of the Night	Profession Jewelcrafting can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+This slot doesn't have nor need many other options, given that the Torc of the Sethekk Prophet and Natasha's Ember Necklace both perform better than the necks not mentioned here and are both quest rewards. These two perform similarly so just use whichever you prefer.
+
+Lastly, if you happen to need some extra Hit from this slot specifically and can't just replace a red gem for a Veiled Noble Topaz, then the Hydra-fang Necklace can be solid.
+Rank	Item	Source
+Option	Torc of the Sethekk Prophet Torc of the Sethekk Prophet	Quest: Brother Against Brother Brother Against Brother
+Option	Natasha's Ember Necklace Natasha's Ember Necklace	Quest:The Hound-Master The Hound-Master
+Option	Hydra-fang Necklace Hydra-fang Necklace	Drop: Ghaz'an (Heroic The Underbog)
+Option	Manasurge Pendant Manasurge Pendant	Vendor: G'eras (Badges of Justice)
+Option	Amulet of Unstable Power Amulet of Unstable Power	Drop: World Drop
+
+Best-in-Slot Ring Jewelry for Frost Mages in TBC Classic Pre-Raid
+Plenty of great options for Rings, though the ones I personally recommend are first: the Ashyen's Gift for a solid chunk of the required Hit to cap; and second the Seer's Signet if you happen to be Scryer. If you are instead Aldor, then either the Band of Dominion or the Ring of Cryptic Dreams perform the same as the Seer's Signet.
+
+If you're struggling to find a second ring to go alongside the Ashyen's Gift due to being Aldor, and not having enough gold nor badges of justice for the alternatives, then the Sparking Arcanite Ring if you just happen to chance upon it in one of your runs, this option performs only very slightly worse than the other rings.
+Rank	Item	Source
+BiS	Ashyen's Gift Ashyen's Gift	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+BiS	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+BiS	Band of Dominion Band of Dominion	World Drop
+BiS	Ring of Cryptic Dreams Ring of Cryptic Dreams	G'eras - 25 Badge of Justice Badge of Justice
+Option	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Seal of the Exorcist Seal of the Exorcist	Vendor: Spirit Sage Gartok / Spirit Sage Zran (50 Spirit Shard Spirit Shard)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Frostfire Ring Frostfire Ring	Drop: Kel'Thuzad (Classic - Naxxramas)
+Option	Seal of the Damned Seal of the Damned	Drop: Four Horsemen Chest (Classic - Naxxramas)
+Option	Band of the Inevitable Band of the Inevitable	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+Option	Cobalt Band of Tyrigosa Cobalt Band of Tyrigosa	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Ring of the Fallen God Ring of the Fallen God	Quest:The Savior of Kalimdor The Savior of Kalimdor (Classic - Ahn'Qiraj)
+Option	Evoker's Mark of the Redemption Evoker's Mark of the Redemption	Quest:Dissension Amongst the Ranks... Dissension Amongst the Ranks... /Dissension Amongst the Ranks... Dissension Amongst the Ranks...
+Option	Manastorm Band Manastorm Band	Quest:Shutting Down Manaforge Ara Shutting Down Manaforge Ara
+Option	The Black Pearl The Black Pearl	Profession: Jewelcrafting - can be purchased on the Auction House
+
+Best-in-Slot Trinkets for Frost Mages in TBC Classic Pre-Raid
+Trinkets are where things get a bit technicaly, so I'll break them down:
+
+    Quagmirran's Eye and Icon of the Silver Crescent are not only pre-raid best, but also phase best — these perform great, add great value to your burst phase and should be considered your standard combo.
+    Mark of the Champion performs slightly better than Icon of the Silver Crescent, and should be used alongside Quagmirran's Eye — but only when fighting either demon or undead bosses.
+    Mind Quickening Gem is a great trinket that situationally performs better than all previous trinkets, but only in fights that are either extremely short (under 50-60 sec) or AoE pulls — this should be used alongside Icon of the Silver Crescent if you're able to use both simultaneously like in the previous TBC Classic release, or with a passive trinket like either Mark of the Champion (if undead or demon enemy) or Quagmirran's Eye.
+
+Overall, if you're trying to maximize your damage, I'd recommend gathering multiple trinkets and switching them around on different fights.
+Rank	Item	Source
+BiS	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+BiS	Mark of the Champion Mark of the Champion	Quest:The Fall of Kel'Thuzad The Fall of Kel'Thuzad (Classic - Naxxramas)
+Option	Mind Quickening Gem Mind Quickening Gem	Drop: Vaelastrasz the Corrupt (Classic - Blackwing Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+Option	Shiffar's Nexus-Horn Shiffar's Nexus-Horn	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Xi'ri's Gift Xi'ri's Gift	Vendor: Almaador (The Sha'tar Revered)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+Option	Vengeance of the Illidari Vengeance of the Illidari	Quest:Cruel's Intentions Cruel's Intentions /Overlord Overlord
+BiS	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Exalted)
+
+Best-in-Slot Weapons for Frost Mages in TBC Classic Pre-Raid
+One-handed weapons paired with a solid off-hand are the go-to choice most of the time for Mages. Simply put, they give more of the useful stats, like Spell Power and Crit, than staves. As such, you should be aiming to stick with a one-hand/off-hand combo as often as possible.
+
+The best of these is a quite expensive Blacksmithing craft, Eternium Runed Blade. Luckily, there are also very close alternatives from faction Quartermasters and dungeons, like Blade of the Archmage / Stormcaller, or lower performing dungeon drops, like Greatsword of Horrid Dreams.
+
+Specifically against Demon enemies such as Magtheridon or Prince Malchezaar, the Illidari-Bane Mageblade is great to have and use, at least until you replace both of your weapons by the phase 1 best options.
+Rank	Item	Source
+BiS	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+BiS	Stormcaller Stormcaller
+Blade of the Archmage Blade of the Archmage	Vendor: Quartermaster Urgronn / Logistics Officer Ulrike (Thrallmar / Honor Hold Exalted)
+BiS Against Demons	Illidari-Bane Mageblade Illidari-Bane Mageblade	Drop: Quenching the Blade Quenching the Blade
+BiS	Blade of Wizardry Blade of Wizardry	Drop: World Drop
+
+If you don't have access to the recommendations above, or prefer a two-handed weapon, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+
+Rank	Item	Source
+Option	Greatsword of Horrid Dreams Greatsword of Horrid Dreams	Drop: Murmur (Shadow Labyrinth)
+Option	Starlight Dagger Starlight Dagger	Drop: Mennu the Betrayer (Heroic The Slave Pens)
+Option	Continuum Blade Continuum Blade	Vendor: Alurmi (Keepers of Time Revered)
+Option	Runesong Dagger Runesong Dagger	Drop: Warbringer O'mrogg (Heroic The Shattered Halls)
+
+
+There are a few decent staves available in TBC, but as previously mentioned, they are all outclassed by one-handed weapons and off-hands. Even Atiesh, Greatstaff of the Guardian isn't that impressive anymore, as many one-handed weapons are better, and some staves even come very close to it.
+
+Still, it is the best staff option for Mages pre-raid, although with how rare it is, most people will have to look at things like Terokk's Shadowstaff or Auchenai Staff instead.
+Rank	Item	Source
+BiS	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Quest:Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian (Classic - Naxxramas)
+Option	Terokk's Shadowstaff Terokk's Shadowstaff	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+Option	Auchenai Staff Auchenai Staff	Vendor: Quartermaster Endarin (The Aldor Revered)
+Option	Warpstaff of Arcanum Warpstaff of Arcanum	Drop: Warp Splinter (The Botanica)
+Option	Grand Scepter of the Nexus-Kings Grand Scepter of the Nexus-Kings	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	The Bringer of Death The Bringer of Death	Drop: World Drop
+Option	Battle Mage's Baton Battle Mage's Baton	Quest:The Ring of Blood: The Final Challenge The Ring of Blood: The Final Challenge
+
+
+Best-in-Slot Off-Hands for Frost Mages in TBC Classic Pre-Raid
+The off-hand slot for Frost Mages is one of the simplest. Pre-raid, Sapphiron's Wing Bone is by far the best choice. It provides a ton more damage than anything else and is pretty simple to get, as it just requires badges.
+Rank	Item	Source
+BiS	Sapphiron's Wing Bone Sapphiron's Wing Bone	Vendor: G'eras (Badges of Justice)
+Option	Sapphiron's Left Eye Sapphiron's Left Eye	Drop: Sapphiron (Classic - Naxxramas)
+Option	Lamp of Peaceful Radiance Lamp of Peaceful Radiance	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Star-Heart Lamp Star-Heart Lamp	Drop: Temporus (The Black Morass)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Off-Hand Recommendations
+
+There are some alternatives like Naxx's Sapphiron's Left Eye or, if you need hit, Lamp of Peaceful Radiance.
+Rank	Item	Source
+Option	Manual of the Nethermancer Manual of the Nethermancer	Drop: Nethermancer Sepethrea (The Mechanar)
+Option	Hortus' Seal of Brilliance Hortus' Seal of Brilliance	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+
+Best-in-Slot Wands for Frost Mages in TBC Classic Pre-Raid
+With Wands, the Doomfinger or the The Black Stalk match in simmed performance, so either is fine to use - though the latter is a lot easier to obtain in TBC..
+Additionally, given there's great options even from basic quests - I wouldn't bother with the alternatives unless you really need Hit and can't swap gems nor any other item, in which case the Nether Core's Control Rod is an okay option.
+
+Given how little stat budget this slot has, these are very small dps differences no matter which of these 5 you end up picking.
+Rank	Item	Source
+BiS	Doomfinger Doomfinger	Drop: Kel'Thuzad (Classic - Naxxramas)
+BiS	The Black Stalk The Black Stalk	Drop: The Black Stalker (Heroic The Underbog)
+Option	Nethekurse's Rod of Torment Nethekurse's Rod of Torment	Quest: Turning the Tide Turning the Tide
+Option	Rod of Dire Shadows Rod of Dire Shadows	Quest: The Will of the Warchief The Will of the Warchief
+Option	Nether Core's Control Rod Nether Core's Control Rod	Drop: Dalliah the Doomsayer (The Arcatraz)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+Rank	Item	Source
+Option	Wand of Fates Wand of Fates	Drop: Patchwerk (Classic - Naxxramas)
+Option	Voidfire Wand Voidfire Wand	Drop: Pandemonius (Mana-Tombs)
+Option	Wand of the Seer Wand of the Seer	Quest: Turning Point Turning Point
+Option	Wand of the Netherwing Wand of the Netherwing	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Foolipe
+WoW Classic Mage Class Expert
+Foolipe started playing in mid-way through the release of 2019's Classic WoW, after getting into speedrunning and the more competitive side of classic wow, he started writing the guides for the Mage class during The Burning Crusade Classic.
+
+He's a Classic Mage discord regular and keeps up with the community peer-reviewed information to bring you the most up-to-date guides possible.
+No comments have been posted yet.
+Be the first to add a comment to this page!
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+

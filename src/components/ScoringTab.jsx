@@ -1,9 +1,6 @@
-import React from 'react';
 import { P2_BOSSES } from '../constants';
 
 export default function ScoringTab({
-  scoringConfig,
-  setScoringConfig,
   roster,
   playerStats,
   expandedPlayerId,
@@ -32,20 +29,6 @@ export default function ScoringTab({
         </button>
       </div>
       
-      {/* Global Modifier Multipliers Form Row */}
-      <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner mb-8">
-        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Global Score Weighting Weights</h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
-          <div><label className="block text-xs font-semibold text-slate-500 mb-1">Parse Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.parseWeight} onChange={e => setScoringConfig({ ...scoringConfig, parseWeight: e.target.value })} /></div>
-          <div><label className="block text-xs font-semibold text-slate-500 mb-1">Support Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.supportMulti} onChange={e => setScoringConfig({ ...scoringConfig, supportMulti: e.target.value })} /></div>
-          <div><label className="block text-xs font-semibold text-slate-500 mb-1">Consumables (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.consBonus} onChange={e => setScoringConfig({ ...scoringConfig, consBonus: e.target.value })} /></div>
-          <div><label className="block text-xs font-semibold text-slate-500 mb-1">Enchants (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.enchantBonus} onChange={e => setScoringConfig({ ...scoringConfig, enchantBonus: e.target.value })} /></div>
-          <div><label className="block text-xs font-semibold text-slate-500 mb-1">Gems (+)</label><input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.gemBonus} onChange={e => setScoringConfig({ ...scoringConfig, gemBonus: e.target.value })} /></div>
-          <div><label className="block text-xs font-semibold text-slate-500 mb-1">Attendance Multiplier</label><input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig.attWeight} onChange={e => setScoringConfig({ ...scoringConfig, attWeight: e.target.value })} /></div>
-          <div><label className="block text-xs font-bold text-red-500 mb-1">AFK Penalty (-)</label><input type="number" step="0.1" className="w-full bg-slate-900 text-red-400 font-bold border border-red-900 rounded p-2 focus:outline-none" value={scoringConfig.afkPenalty || ''} onChange={e => setScoringConfig({ ...scoringConfig, afkPenalty: e.target.value })} /></div>
-        </div>
-      </div>
-
       {/* Individual Roster Profiles Accordion Grid */}
       <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Player Performance Profiles</h3>
       <div className="flex flex-col gap-3">

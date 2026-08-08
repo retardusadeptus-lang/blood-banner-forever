@@ -1,4 +1,5 @@
 const express = require('express');
+const { parseSourceDetails } = require('../utils/itemSource');
 
 function buildMutableItemsRoutes({ db }) {
   const router = express.Router();
@@ -11,8 +12,8 @@ function buildMutableItemsRoutes({ db }) {
           i.name,
           i.slot,
           i.phase,
-          i.source as zone,
-          i.source_type as boss,
+          i.source,
+          i.source_type,
           i.drop_chance,
           i.rarity,
           i.wowhead_id as itemId,
@@ -26,12 +27,19 @@ function buildMutableItemsRoutes({ db }) {
         ORDER BY i.name
       `).all();
 
-      const mapped = rows.map(row => ({
-        ...row,
-        is_token: row.is_token === 1,
-        is_quest: row.is_quest === 1,
-        token_classes: row.classes_json ? JSON.parse(row.classes_json) : []
-      }));
+      const mapped = rows.map(row => {
+        const sourceDetails = parseSourceDetails(row.source, row.source_type);
+        return {
+          ...row,
+          boss: sourceDetails.boss,
+          zone: sourceDetails.zone,
+          source: sourceDetails.source,
+          source_type: sourceDetails.source_type,
+          is_token: row.is_token === 1,
+          is_quest: row.is_quest === 1,
+          token_classes: row.classes_json ? JSON.parse(row.classes_json) : []
+        };
+      });
 
       res.json(mapped);
     } catch (e) {

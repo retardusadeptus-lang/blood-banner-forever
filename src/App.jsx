@@ -1,130 +1,168 @@
 import { useState, useMemo, useEffect } from 'react';
-import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, RIGHT_SLOTS, BOTTOM_SLOTS, P2_BOSSES, CATEGORY_MAP, RAID_ZONES } from './constants';
-import { fetchData, putData, postData, deleteData, login, getBattleNetAuthMe, startBattleNetLogin, logoutBattleNet, claimRosterCharacter, claimRosterCharacterManual, getRosterClaimsAdmin, unclaimRosterCharacterAdmin } from './services/apiService';
+import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, BOTTOM_SLOTS, P2_BOSSES, DEFAULT_GLOBAL_PHASE, CORE_SYNC_INTERVAL_MS, STORAGE_KEYS } from './constants';
+import { fetchData, putData, postData, deleteData } from './services/apiService';
 import { useItemsDatabase } from './hooks/useItemsDatabase';
+import useSpecData from './hooks/useSpecData';
+import useAppShellState from './hooks/useAppShellState';
+import useAppShellLifecycle from './hooks/useAppShellLifecycle';
 import OverviewTab from './components/OverviewTab';
-import BnetClaimModal from './components/BnetClaimModal';
-import GuildBankTab from './components/GuildBankTab';
-import BisConfigTab from './components/BisConfigTab';
-import ItemsDatabaseTab from './components/ItemsDatabaseTab';
-import BankRequestsTab from './components/BankRequestsTab';
-import LootCouncilTab from './components/LootCouncilTab';
-import RosterTab from './components/RosterTab';
-import ScoringTab from './components/ScoringTab';
-import RaidAssignmentsTab from './components/RaidAssignmentsTab';
-import OfficerRolesTab from './components/OfficerRolesTab';
-import DiscordBotConfigTab from './components/DiscordBotConfigTab';
-import RaidSignupsTab from './components/RaidSignupsTab';
-
-const CORE_SYNC_INTERVAL_MS = 15000;
-const BANK_SYNC_INTERVAL_MS = 20000;
-const RAID_ASSIGNMENTS_SYNC_INTERVAL_MS = 15000;
-const RAIDHELPER_ALIAS_MAP_KEY = 'raidhelper-name-map-v1';
+import AdminContainer from './containers/AdminContainer';
+import useAdminData from './hooks/useAdminData';
+import useLootCouncilData from './hooks/useLootCouncilData';
+import useRaidAssignmentsData from './hooks/useRaidAssignmentsData';
+import useRosterData from './hooks/useRosterData';
+import ResourcesTab from './features/resources/ResourcesTab';
+import DashboardHeader from './components/DashboardHeader';
+import DashboardNavigationTabs from './components/DashboardNavigationTabs';
+import DashboardMainContent from './components/DashboardMainContent';
+import DashboardPageLayout from './components/DashboardPageLayout';
+import DashboardModals from './components/DashboardModals';
+// component imports replaced by container wrappers
+import RosterContainer from './containers/RosterContainer';
+import ScoringContainer from './containers/ScoringContainer';
+import ItemsDatabaseContainer from './containers/ItemsDatabaseContainer';
+import BankContainer from './containers/BankContainer';
+import LootCouncilContainer from './containers/LootCouncilContainer';
+import RaidAssignmentsContainer from './containers/RaidAssignmentsContainer';
+import RaidAssignmentsHistory from './components/RaidAssignmentsHistory';
+import AssignedLootOverview from './components/AssignedLootOverview';
+import RaidSignupsContainer from './containers/RaidSignupsContainer';
+// replaced inline with RaidSignupsContainer
+import * as helpers from './utils/helpers';
+import { calculatePlayerScore, getRankBadgeStyle as getAppShellRankBadgeStyle } from './utils/appShellHelpers';
+import useRaidHelperImport from './hooks/useRaidHelperImport';
+import useAuthSession from './hooks/useAuthSession';
+import useDashboardNavigation from './hooks/useDashboardNavigation';
+import useDashboardMainContentViewModel from './hooks/useDashboardMainContentViewModel';
+import useDashboardHelpers from './hooks/useDashboardHelpers.jsx';
+import useDataSync from './hooks/useDataSync';
 
 export default function App() {
-
   // ==========================================
   // SPECS DATA FROM DATABASE
   // ==========================================
-  const [specsFromDb, setSpecsFromDb] = useState([]);
-
-  // Create lookup objects for specs
-  const specsByName = useMemo(() => {
-    const lookup = {};
-    specsFromDb.forEach(spec => {
-      lookup[spec.spec] = spec;
-    });
-    return lookup;
-  }, [specsFromDb]);
-
-  // Sorted specs by class for Master Items DB
-  const specsSortedByClass = useMemo(() => {
-    return [...specsFromDb].sort((a, b) => {
-      if (a.class !== b.class) {
-        return a.class.localeCompare(b.class);
-      }
-      return a.spec.localeCompare(b.spec);
-    });
-  }, [specsFromDb]);
-
-  // Helper to get slug from display name
-  const getSlugFromDisplay = (displayName) => {
-    const spec = specsByName[displayName];
-    return spec ? spec.slug : null;
-  };
-
-  // Helper to get display name from spec_id
-  const getDisplayFromId = (specId) => {
-    const spec = specsFromDb.find(s => s.id === specId);
-    return spec ? spec.spec : null;
-  };
-
-  // Helper to get spec object from spec_id
-  const getSpecById = (specId) => {
-    return specsFromDb.find(s => s.id === specId);
-  };
-
-  // Fetch specs on mount
-  useEffect(() => {
-    const loadSpecs = async () => {
-      try {
-        const specs = await fetchData('specs');
-        setSpecsFromDb(specs);
-        // Set default specs to first one from database
-        if (specs.length > 0 && newSpec === null) {
-          setNewSpec(specs[0].id);
-        }
-        if (specs.length > 0 && selectedBisSpec === null) {
-          setSelectedBisSpec(specs[0].spec);
-        }
-      } catch (e) {
-        console.error('Failed to load specs:', e);
-      }
-    };
-    loadSpecs();
-  }, []);
+  const {
+    specsFromDb,
+    specsByName,
+    specsSortedByClass,
+    getSlugFromDisplay,
+    getDisplayFromId,
+    getSpecById,
+  } = useSpecData({
+    onSpecSelection: ({ specId, specName }) => {
+      setNewSpec(prev => prev ?? specId);
+      setSelectedBisSpec(prev => prev ?? specName);
+    }
+  });
 
   // ==========================================
   // 1. ALL LOCAL UI AND FILTER STATES
   // ==========================================
-  const [isAuthenticated, setIsAuthenticated] = useState(() => sessionStorage.getItem('ar-auth') === 'true');
   const [passwordInput, setPasswordInput] = useState('');
-  const [globalMyPlayerId, setGlobalMyPlayerId] = useState(() => localStorage.getItem('my-player-id') || '');
-  const [showBnetClaimModal, setShowBnetClaimModal] = useState(false);
-  const [bnetAuthState, setBnetAuthState] = useState({ loading: true, authenticated: false, user: null, claimedCharacters: [], error: '', characters: [], diagnostics: [], showBnetCharacterLookup: false });
-  const [bnetClaimBusy, setBnetClaimBusy] = useState(false);
-  const [rosterClaims, setRosterClaims] = useState([]);
+  const [globalMyPlayerId, setGlobalMyPlayerId] = useState(() => localStorage.getItem(STORAGE_KEYS.myPlayerId) || '');
 
   // Global phase selector (controls which phase's assignments are shown)
-  const [globalPhase, setGlobalPhase] = useState('T5');
+  const [globalPhase, setGlobalPhase] = useState(DEFAULT_GLOBAL_PHASE);
 
-  // Default to public overview tab
-  const AUTH_ONLY_TABS = ['bankRequests', 'loot', 'roster', 'scoring', 'itemsdb', 'officerRoles', 'discordBotConfig'];
-  const [activeTab, setActiveTab] = useState(() => localStorage.getItem('active-tab') || 'overview');
   const [overviewSearch, setOverviewSearch] = useState('');
 
   const [isDbConnected, setIsDbConnected] = useState(false);
-  const [newName, setNewName] = useState('');
   const [newSpec, setNewSpec] = useState(null); // spec_id from database
-  const [selectedItemName, setSelectedItemName] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filterBoss, setFilterBoss] = useState('');
-  const [filterZone, setFilterZone] = useState('');
-  const [filterSlot, setFilterSlot] = useState('');
-  const [filterCategory, setFilterCategory] = useState('');
   const [selectedBisSpec, setSelectedBisSpec] = useState(null); // Will be set to first spec from DB
+  const [selectedLootItemName, setSelectedLootItemName] = useState('');
   const [expandedPlayerId, setExpandedPlayerId] = useState(null);
-  const [newRaidDate, setNewRaidDate] = useState(new Date().toISOString().split('T')[0]);
-  const [newRaidZone, setNewRaidZone] = useState('SSC / TK');
-  const [recentRaidHelperImportedIds, setRecentRaidHelperImportedIds] = useState([]);
-  const [recentRaidHelperSpecConflictIds, setRecentRaidHelperSpecConflictIds] = useState([]);
-  const [raidHelperImportSession, setRaidHelperImportSession] = useState(null);
   const [itemIdEditor, setItemIdEditor] = useState(null);
+
+  const [roster, setRosterLocal] = useState([]);
+  const [scoringConfig, setScoringConfigLocal] = useState({});
+  const [playerStats, setPlayerStatsLocal] = useState({});
+  const [raidLogs, setRaidLogsLocal] = useState([]);
+
+  const [rosterDirty, setRosterDirty] = useState(false);
+  const [scoringConfigDirty, setScoringConfigDirty] = useState(false);
+  const [playerStatsDirty, setPlayerStatsDirty] = useState(false);
+  const [raidLogsDirty, setRaidLogsDirty] = useState(false);
+
+  const [isSavingScoring, setIsSavingScoring] = useState(false);
+
+  const {
+    isAuthenticated,
+    handleLogin,
+    handleLogout,
+    bnetAuthState,
+    bnetClaimBusy,
+    showBnetClaimModal,
+    setShowBnetClaimModal,
+    handleBattleNetLogin,
+    handleBattleNetLogout,
+    handleBattleNetClaim,
+    handleBattleNetManualClaim,
+    rosterClaims,
+    refreshRosterClaims,
+    handleUnclaimClaim
+  } = useAuthSession({ fetchData, setRoster: setRosterLocal, setRosterDirty });
+
+  const {
+    activeTab,
+    setActiveTab,
+    hoveredNavTab,
+    setHoveredNavTab,
+    bankSubTab,
+    setBankSubTab,
+    raidAssignmentsSubTab,
+    setRaidAssignmentsSubTab,
+    raidSignupsSubTab,
+    setRaidSignupsSubTab,
+    lootSubTab,
+    setLootSubTab,
+    adminSubTab,
+    setAdminSubTab,
+    resourcesSubTab,
+    setResourcesSubTab,
+    handleMainNavSelect,
+    getDropdownItemActiveState,
+    subTabs,
+  } = useDashboardNavigation({ isAuthenticated });
+
+
+  // bankArchivedRequestIds and bankContentsHistory are persisted inside useBankData
+
+  // ==========================================
+  // 2. CLOUD SYNCHRONIZATION STATES
+  // ==========================================
+  const setRoster = (newVal) => {
+    setRosterLocal(newVal);
+    setRosterDirty(true);
+  };
+  const setScoringConfig = (newVal) => { setScoringConfigLocal(newVal); setScoringConfigDirty(true); };
+  const setPlayerStats = (newVal) => { setPlayerStatsLocal(newVal); setPlayerStatsDirty(true); };
+  const setRaidLogs = (newVal) => { setRaidLogsLocal(newVal); setRaidLogsDirty(true); };
+
+  const rosterData = useRosterData({
+    fetchData,
+    putData,
+    roster,
+    setRoster,
+    playerStats,
+    setPlayerStats,
+    raidLogs,
+    setRaidLogs,
+    setRosterLocal,
+    setPlayerStatsLocal,
+    setRaidLogsLocal,
+    rosterDirty,
+    playerStatsDirty,
+    raidLogsDirty,
+    setRosterDirty,
+    setPlayerStatsDirty,
+    setRaidLogsDirty,
+    newSpec,
+    setNewSpec,
+  });
 
   const {
     mutableItems,
     setMutableItemsLocal,
-    mutableItemsBaseline,
     setMutableItemsBaseline,
     bisPriorities,
     setBisPrioritiesLocal,
@@ -144,16 +182,21 @@ export default function App() {
     setDbNewItemId,
     dbSearch,
     setDbSearch,
+    dbPageSize,
+    setDbPageSize,
+    dbPage,
+    setDbPage,
     showMissingWowheadFilter,
     setShowMissingWowheadFilter,
+    showWowheadNameMismatchFilter,
+    setShowWowheadNameMismatchFilter,
     dbBisPrioritiesDirty,
-    setDbBisPrioritiesDirty,
     mutableItemsDirty,
-    setMutableItemsDirty,
     isSavingItemsDb,
     handleAddItemToDb,
     handleUpdateItemEligibility,
     handleUpdateItemId,
+    handleUpdateItemSource,
     handleDeleteItemFromDb,
     handleSaveItemsDbChanges,
   } = useItemsDatabase({
@@ -165,73 +208,97 @@ export default function App() {
     leftSlots: LEFT_SLOTS,
     p2Bosses: P2_BOSSES,
     globalPhase,
+    setSelectedItemName: setSelectedLootItemName,
+  });
+
+  const {
+    assignments,
+    assignmentsDirty,
+    hasLootUnsavedChanges,
+    isSavingLootCouncil,
+    searchQuery,
+    setSearchQuery,
+    filterZone,
+    setFilterZone,
+    filterBoss,
+    setFilterBoss,
+    filterSlot,
+    setFilterSlot,
+    filterCategory,
+    setFilterCategory,
+    selectedItemName,
     setSelectedItemName,
+    uniqueZones,
+    uniqueBosses,
+    uniqueSlots,
+    filteredItems,
+    selectedItem,
+    sortedEligiblePlayers,
+    getPlayerItemPriorityStatus,
+    handleSetPriority,
+    handleToggleAwardedPriority,
+    handleSaveLootCouncilChanges,
+    handleClearOverviewItemPriorities,
+    normalizeAwardedPlayerIds,
+    setAssignmentsData,
+  } = useLootCouncilData({
+    fetchData,
+    putData,
+    globalPhase,
+    roster,
+    mutableItems,
+    playerStats,
+    scoringConfig,
+    raidLogs,
+    getDisplayFromId,
+    getSpecById,
+    bisPriorities,
+    selectedItemName: selectedLootItemName,
+    setSelectedItemName: setSelectedLootItemName,
   });
 
-  // Bank state
-  const [bankItems, setBankItems] = useState([]);
-  const [bankRequests, setBankRequests] = useState([]);
-  const [bankSearch, setBankSearch] = useState('');
-  const [denyReason, setDenyReason] = useState('');
-  const [approvePrice, setApprovePrice] = useState('');
-  const [respondingRequestId, setRespondingRequestId] = useState(null);
-  const [bankUploadParsed, setBankUploadParsed] = useState(null);
-  const [bankUploadStatus, setBankUploadStatus] = useState('');
-  const [denyCustomReason, setDenyCustomReason] = useState('');
-  const [approveQuantity, setApproveQuantity] = useState('');
-  const [approveNote, setApproveNote] = useState('');
-  const [officerRoles, setOfficerRoles] = useState([]);
-  const [discordBotConfig, setDiscordBotConfigLocal] = useState({
-    request_roles: [],
-    signup_roles: [],
-    bench_roles: []
+  const {
+    raidAssignmentArchives,
+    selectedRaidAssignmentArchiveId,
+    selectedRaidRestoreBosses,
+    raidAssignmentData,
+    enabledBosses,
+    raidAssignmentDataDirty,
+    enabledBossesDirty,
+    isSavingRaidAssignments,
+    setRaidAssignmentData,
+    handleSaveRaidAssignmentsChanges,
+    handleCopyRaidAssignmentsToArchive,
+    handleViewRaidAssignmentArchive,
+    handleToggleRaidRestoreBoss,
+    handleRestoreRaidAssignmentArchive,
+    handleToggleZone,
+    handleToggleBoss,
+    handleMoveEnabledBoss,
+    handleAddCustomRaidBoss,
+    handleRemoveCustomRaidBoss,
+    customRaidGroups,
+    raidZones,
+  } = useRaidAssignmentsData({
+    fetchData,
+    putData,
+    activeTab,
+    setActiveTab,
+    setRaidAssignmentsSubTab,
+    isAuthenticated,
   });
 
-  // Persist current tab so refresh restores where the user left off.
-  useEffect(() => {
-    localStorage.setItem('active-tab', activeTab);
-  }, [activeTab]);
-
-  // If a saved tab requires auth and the session is locked, fall back safely.
-  useEffect(() => {
-    if (!isAuthenticated && AUTH_ONLY_TABS.includes(activeTab)) {
-      setActiveTab('overview');
-    }
-  }, [isAuthenticated, activeTab]);
-
-  // ==========================================
-  // 2. CLOUD SYNCHRONIZATION STATES
-  // ==========================================
-  const [roster, setRosterLocal] = useState([]);
-  const [assignments, setAssignmentsLocal] = useState({});
-  const [scoringConfig, setScoringConfigLocal] = useState({});
-  const [playerStats, setPlayerStatsLocal] = useState({});
-  const [raidLogs, setRaidLogsLocal] = useState([]);
-  const [tokenRedemptionsByItemId, setTokenRedemptionsByItemId] = useState({});
-  const [raidAssignmentData, setRaidAssignmentDataLocal] = useState({});
-  const [enabledBosses, setEnabledBossesLocal] = useState([]);
-
-  const [assignmentsDirty, setAssignmentsDirty] = useState(false);
-  const [rosterDirty, setRosterDirty] = useState(false);
-  const [scoringConfigDirty, setScoringConfigDirty] = useState(false);
-  const [playerStatsDirty, setPlayerStatsDirty] = useState(false);
-  const [raidLogsDirty, setRaidLogsDirty] = useState(false);
-  const [raidAssignmentDataDirty, setRaidAssignmentDataDirty] = useState(false);
-  const [enabledBossesDirty, setEnabledBossesDirty] = useState(false);
-  const [officerRolesDirty, setOfficerRolesDirty] = useState(false);
-  const [discordBotConfigDirty, setDiscordBotConfigDirty] = useState(false);
-
-  const [isSavingLootCouncil, setIsSavingLootCouncil] = useState(false);
-  const [isSavingRosterAttendance, setIsSavingRosterAttendance] = useState(false);
-  const [isSavingScoring, setIsSavingScoring] = useState(false);
-  const [isSavingRaidAssignments, setIsSavingRaidAssignments] = useState(false);
-  const [isSavingOfficerRoles, setIsSavingOfficerRoles] = useState(false);
-  const [isSavingDiscordBotConfig, setIsSavingDiscordBotConfig] = useState(false);
-
-  const selectedMyPlayerName = useMemo(() => {
-    if (!globalMyPlayerId) return null;
-    return roster.find(p => p.id === parseInt(globalMyPlayerId))?.name || null;
-  }, [globalMyPlayerId, roster]);
+  const adminData = useAdminData({
+    fetchData,
+    putData,
+    activeTab,
+    adminSubTab,
+    scoringConfigDirty,
+    setScoringConfigDirty,
+    scoringConfig,
+    setScoringConfig,
+    refreshRosterClaims
+  });
 
   const sortedRosterForSelector = useMemo(() => {
     return [...roster].sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')));
@@ -251,6 +318,12 @@ export default function App() {
     return Boolean(selectedGlobalPlayer.user_id);
   }, [selectedGlobalPlayer]);
 
+  const selectedMyPlayerName = useMemo(() => {
+    if (!globalMyPlayerId) return '';
+    const player = roster.find(p => String(p.id) === String(globalMyPlayerId));
+    return player?.name || '';
+  }, [globalMyPlayerId, roster]);
+
   const selectedMyPlayerBisSpec = useMemo(() => {
     if (!globalMyPlayerId) return null;
     const player = roster.find(p => p.id === parseInt(globalMyPlayerId, 10));
@@ -267,166 +340,138 @@ export default function App() {
     }
   }, [activeTab, selectedMyPlayerBisSpec]);
 
-  const customRaidGroups = useMemo(() => {
-    const grouped = raidAssignmentData?.__customBossGroups;
-    if (Array.isArray(grouped)) return grouped;
+  // RaidHelper import handling (extracted to hook)
+  const {
+    raidHelperImportSession,
+    recentRaidHelperImportedIds,
+    recentRaidHelperSpecConflictIds,
+    handleImportRaidHelperJson,
+    handleUpdateRaidHelperImportEntry,
+    handleCancelRaidHelperImport,
+    handleApplyRaidHelperImport
+  } = useRaidHelperImport({ roster, specsFromDb, playerStats, raidLogs, setRoster, setPlayerStats, setRaidLogs, setNewRaidDate: rosterData.setNewRaidDate, setNewRaidZone: rosterData.setNewRaidZone, fetchData });
 
-    // Backward compatibility for older single-list custom boss storage.
-    const legacy = Array.isArray(raidAssignmentData?.__customBosses) ? raidAssignmentData.__customBosses : [];
-    if (legacy.length === 0) return [];
-    return [{ zone: 'Custom', bosses: legacy }];
-  }, [raidAssignmentData]);
+  const hideWowheadTooltip = () => {
+    if (window.$WowheadPower && window.$WowheadPower.hideTooltip) { window.$WowheadPower.hideTooltip(); }
+  };
 
-  const raidZones = useMemo(() => {
-    const mergedByZone = new Map();
+  const renderItemLink = (item, className = "") => {
+    const url = item.itemId
+      ? `https://www.wowhead.com/tbc/item=${item.itemId}`
+      : `https://www.wowhead.com/tbc/search?q=${encodeURIComponent(item.name)}`;
 
-    RAID_ZONES.forEach(zone => {
-      mergedByZone.set(zone.name.toLowerCase(), {
-        name: zone.name,
-        bosses: [...zone.bosses]
-      });
-    });
+    return (
+      <a href={url} target="_blank" rel="noreferrer" className={`hover:underline cursor-help ${className}`} onMouseLeave={hideWowheadTooltip}>
+        {item.name}
+      </a>
+    );
+  };
 
-    customRaidGroups
-      .filter(group => group && group.zone)
-      .forEach(group => {
-        const key = String(group.zone).toLowerCase();
-        const incomingBosses = Array.isArray(group.bosses) ? group.bosses : [];
-        if (!incomingBosses.length) return;
+  const dashboardHelpers = useDashboardHelpers({
+    fetchData,
+    putData,
+    roster,
+    playerStats,
+    scoringConfig,
+    raidLogs,
+    setRoster,
+    setRaidLogs,
+    setSelectedItemName: setSelectedLootItemName,
+    setActiveTab,
+    setLootSubTab,
+    setSearchQuery,
+    setIsSavingScoring,
+    setScoringConfigDirty,
+    setPlayerStatsDirty,
+    setNewRaidDate: rosterData.setNewRaidDate,
+    setNewRaidZone: rosterData.setNewRaidZone,
+    scoringConfigDirty,
+    playerStatsDirty,
+    mutableItems,
+    dbBisPriorities,
+    selectedBisSpec,
+    setItemIdEditor,
+    handleUpdateItemId: (itemId, value) => {
+      const item = mutableItems.find(entry => entry.id === itemId);
+      if (item) {
+        const nextItems = mutableItems.map(entry => entry.id === itemId ? { ...entry, itemId: value } : entry);
+        setMutableItemsLocal(nextItems);
+      }
+    },
+    renderItemLink,
+    hideWowheadTooltip,
+    getDisplayFromId,
+    getSpecById,
+  });
 
-        const existing = mergedByZone.get(key);
-        if (existing) {
-          existing.bosses = [...new Set([...existing.bosses, ...incomingBosses])];
-        } else {
-          mergedByZone.set(key, {
-            name: group.zone,
-            bosses: [...new Set(incomingBosses)]
-          });
-        }
-      });
+  const {
+    initializeDefaultBisPriorities,
+    handleApplyRaidSignupGroupsToAttendance,
+    handleOpenItemForLootAssignment,
+    handleSaveScoringChanges,
+    renderItemSlot,
+    jumpToMasterItemsDbForItem,
+    handleSaveItemIdFromModal,
+  } = dashboardHelpers;
 
-    return Array.from(mergedByZone.values());
-  }, [customRaidGroups]);
-
-  const hasLootUnsavedChanges = assignmentsDirty;
   const hasItemsDbUnsavedChanges = dbBisPrioritiesDirty || mutableItemsDirty;
   const hasRosterUnsavedChanges = rosterDirty || raidLogsDirty || playerStatsDirty;
   const hasScoringUnsavedChanges = scoringConfigDirty || playerStatsDirty;
   const hasRaidAssignmentsUnsavedChanges = raidAssignmentDataDirty || enabledBossesDirty;
-  const hasAnyUnsavedChanges = hasLootUnsavedChanges || hasItemsDbUnsavedChanges || hasRosterUnsavedChanges || hasScoringUnsavedChanges || hasRaidAssignmentsUnsavedChanges || officerRolesDirty || discordBotConfigDirty;
 
-  // ==========================================
-  // HELPER: Initialize default BiS priorities from aggregated data
-  // ==========================================
+  const shellState = useAppShellState({
+    hasLootUnsavedChanges,
+    hasItemsDbUnsavedChanges,
+    hasRosterUnsavedChanges,
+    hasScoringUnsavedChanges,
+    hasRaidAssignmentsUnsavedChanges,
+    adminData,
+    handleSaveLootCouncilChanges,
+    handleSaveRaidAssignmentsChanges,
+    handleSaveRosterAttendanceChanges: rosterData.handleSaveRosterAttendanceChanges,
+    handleSaveScoringChanges,
+    handleSaveItemsDbChanges,
+    handleSaveAdminChanges: adminData.handleSaveAdminChanges,
+  });
 
-  const initializeDefaultBisPriorities = async (phase) => {
-    const phaseKey = PHASE_JSON_KEYS[phase];
-    const data = await fetchData(`bis-defaults/${phaseKey}`);
-    return data;
-  };
+  const { hasAnyUnsavedChanges, unsavedSections, handleSaveAllChanges } = shellState;
+
+  useAppShellLifecycle({ activeTab, hasAnyUnsavedChanges });
 
   // ==========================================
   // 3. SQL SYNC ENGINE
   // ==========================================
-  useEffect(() => {
-    let isSyncInFlight = false;
-
-    const loadAll = async () => {
-      if (document.hidden || isSyncInFlight) return;
-      isSyncInFlight = true;
-      try {
-        const phaseKey = PHASE_JSON_KEYS[globalPhase];
-        const assignmentsDocName = globalPhase === 'T5' ? 't5' : phaseKey;
-        const bisPrioritiesDocName = globalPhase === 'T5' ? 't5' : phaseKey;
-
-        const [rosterData, assignmentsData, bisData, configData, statsData, logsData, itemsData] = await Promise.all([
-          fetchData('roster'),
-          fetchData('assignments/' + assignmentsDocName),
-          fetchData('bis-priorities/' + bisPrioritiesDocName),
-          fetchData('scoring-config'),
-          fetchData('player-stats'),
-          fetchData('raid-logs'),
-          fetchData('mutable-items'),
-        ]);
-
-        if (!rosterDirty) setRosterLocal(rosterData);
-        if (!assignmentsDirty) setAssignmentsLocal(assignmentsData);
-        const defaults = Object.keys(bisData).length ? bisData : await initializeDefaultBisPriorities(globalPhase);
-        setBisPrioritiesLocal(defaults);
-        if (!scoringConfigDirty) {
-          setScoringConfigLocal(Object.keys(configData).length ? configData : { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5, afkPenalty: 5 });
-        }
-        if (!playerStatsDirty) setPlayerStatsLocal(statsData);
-        if (!raidLogsDirty) setRaidLogsLocal(logsData);
-        if (!mutableItemsDirty) {
-          setMutableItemsLocal(itemsData);
-          setMutableItemsBaseline(itemsData);
-        }
-        setIsDbConnected(true);
-      } catch (e) {
-        console.error('Failed to load data:', e);
-      } finally {
-        isSyncInFlight = false;
-      }
-    };
-
-    loadAll();
-    const interval = setInterval(loadAll, CORE_SYNC_INTERVAL_MS);
-    return () => clearInterval(interval);
-  }, [globalPhase, rosterDirty, assignmentsDirty, scoringConfigDirty, playerStatsDirty, raidLogsDirty, mutableItemsDirty]);
-
-  // Separate sync for Master Items DB phase selector
-  useEffect(() => {
-    if (activeTab !== 'bis' && activeTab !== 'itemsdb') return;
-
-    const loadDbBis = async () => {
-      const phaseKey = PHASE_JSON_KEYS[masterItemsDbPhase];
-      const data = await fetchData('bis-priorities/' + phaseKey);
-      const dbDefaults = Object.keys(data).length ? data : await initializeDefaultBisPriorities(masterItemsDbPhase);
-      setDbBisPrioritiesLocal(dbDefaults);
-    };
-    loadDbBis();
-  }, [masterItemsDbPhase, activeTab]);
+  useDataSync({
+    globalPhase,
+    fetchData,
+    rosterDirty,
+    setRosterLocal,
+    assignmentsDirty,
+    setAssignmentsData,
+    initializeDefaultBisPriorities: async (phase) => {
+      const phaseKey = PHASE_JSON_KEYS[phase];
+      return fetchData(`bis-defaults/${phaseKey}`);
+    },
+    setBisPrioritiesLocal,
+    scoringConfigDirty,
+    setScoringConfigLocal,
+    playerStatsDirty,
+    setPlayerStatsLocal,
+    raidLogsDirty,
+    setRaidLogsLocal,
+    mutableItemsDirty,
+    setMutableItemsLocal,
+    setMutableItemsBaseline,
+    setIsDbConnected,
+    activeTab,
+    masterItemsDbPhase,
+    setDbBisPrioritiesLocal,
+  });
 
   // ==========================================
   // 4. CLOUD WRITERS
   // ==========================================
-  const setRoster = (newVal) => {
-    setRosterLocal(newVal);
-    setRosterDirty(true);
-  };
-  const setAssignments = (newVal) => {
-    setAssignmentsLocal(newVal);
-    setAssignmentsDirty(true);
-  };
-  const setBisPriorities = (newVal) => {
-    setBisPrioritiesLocal(newVal);
-    const phaseKey = PHASE_JSON_KEYS[globalPhase];
-    putData('bis-priorities/' + phaseKey, newVal);
-  };
-  const setDbBisPriorities = (newVal) => {
-    setDbBisPrioritiesLocal(newVal);
-    setDbBisPrioritiesDirty(true);
-  };
-  const setScoringConfig = (newVal) => { setScoringConfigLocal(newVal); setScoringConfigDirty(true); };
-  const setPlayerStats = (newVal) => { setPlayerStatsLocal(newVal); setPlayerStatsDirty(true); };
-  const setRaidLogs = (newVal) => { setRaidLogsLocal(newVal); setRaidLogsDirty(true); };
-  const setRaidAssignmentData = (newValOrUpdater) => {
-    setRaidAssignmentDataLocal(prev => (typeof newValOrUpdater === 'function' ? newValOrUpdater(prev) : newValOrUpdater));
-    setRaidAssignmentDataDirty(true);
-  };
-  const setEnabledBosses = (newValOrUpdater) => {
-    setEnabledBossesLocal(prev => (typeof newValOrUpdater === 'function' ? newValOrUpdater(prev) : newValOrUpdater));
-    setEnabledBossesDirty(true);
-  };
-  const setOfficerRolesData = (newValOrUpdater) => {
-    setOfficerRoles(prev => (typeof newValOrUpdater === 'function' ? newValOrUpdater(prev) : newValOrUpdater));
-    setOfficerRolesDirty(true);
-  };
-  const setDiscordBotConfig = (newValOrUpdater) => {
-    setDiscordBotConfigLocal(prev => (typeof newValOrUpdater === 'function' ? newValOrUpdater(prev) : newValOrUpdater));
-    setDiscordBotConfigDirty(true);
-  };
+  // Roster state setters are defined above the hook usage to keep the shared state flow consistent.
   // ==========================================
   // 5. WOWHEAD TOOLTIP ENGINE
   // ==========================================
@@ -447,1283 +492,35 @@ export default function App() {
   }, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, overviewSearch, selectedBisSpec]);
 
 
-  const hideWowheadTooltip = () => {
-    if (window.$WowheadPower && window.$WowheadPower.hideTooltip) { window.$WowheadPower.hideTooltip(); }
-  };
-
-  const renderItemLink = (item, className = "") => {
-    const url = item.itemId
-      ? `https://www.wowhead.com/tbc/item=${item.itemId}`
-      : `https://www.wowhead.com/tbc/search?q=${encodeURIComponent(item.name)}`;
-
-    return (
-      <a href={url} target="_blank" rel="noreferrer" className={`hover:underline cursor-help ${className}`} onMouseLeave={hideWowheadTooltip}>
-        {item.name}
-      </a>
-    );
-  };
-
-  // ==========================================
-  // 6. ACTIONS & LOGIC
-  // ==========================================
-  const handleLogin = async (e) => {
+  // Auth/session handlers are provided by `useAuthSession` hook.
+  const handleLoginSubmit = async (e) => {
     if (e) e.preventDefault();
-    const token = await login(passwordInput);
-    if (token) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem('ar-auth-token', token); // session token, not the password
-      sessionStorage.setItem('ar-auth', 'true');
+    try {
+      const ok = await handleLogin(passwordInput);
+      if (ok) {
+        setPasswordInput('');
+      } else {
+        alert('Incorrect password or login request failed.');
+        setPasswordInput('');
+      }
+    } catch (error) {
+      console.error('Officer login submit failed:', error);
+      alert('Officer login request failed. Check that the local API is running.');
       setPasswordInput('');
-    } else {
-      alert("Incorrect password! Access Denied.");
-      setPasswordInput('');
     }
-  };
-
-  const refreshBattleNetAuth = async () => {
-    setBnetAuthState(prev => ({ ...prev, loading: true, error: '' }));
-    try {
-      const me = await getBattleNetAuthMe();
-      const authenticated = Boolean(me?.authenticated);
-      setBnetAuthState({
-        loading: false,
-        authenticated,
-        user: me?.user || null,
-        claimedCharacters: me?.claimedCharacters || [],
-        error: '',
-        characters: [],
-        diagnostics: [],
-        showBnetCharacterLookup: authenticated
-      });
-    } catch (error) {
-      setBnetAuthState({
-        loading: false,
-        authenticated: false,
-        user: null,
-        claimedCharacters: [],
-        error: error.message || 'Battle.net session unavailable.',
-        characters: [],
-        diagnostics: [],
-        showBnetCharacterLookup: false
-      });
-    }
-  };
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const authState = params.get('auth');
-    if (authState === 'success' || authState === 'failed') {
-      const nextUrl = `${window.location.pathname}${window.location.hash}`;
-      window.history.replaceState({}, '', nextUrl);
-    }
-    refreshBattleNetAuth();
-  }, []);
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    sessionStorage.removeItem('ar-auth');
-    sessionStorage.removeItem('ar-auth-token');
-  };
-
-  const handleBattleNetLogin = () => {
-    startBattleNetLogin();
-  };
-
-  const handleBattleNetLogout = async () => {
-    try {
-      await logoutBattleNet();
-    } catch (error) {
-      console.error('Failed to log out from Battle.net:', error);
-    } finally {
-      await refreshBattleNetAuth();
-    }
-  };
-
-  const handleBattleNetClaim = async (character) => {
-    setBnetClaimBusy(true);
-    setBnetAuthState(prev => ({ ...prev, error: '' }));
-    try {
-      await claimRosterCharacter({ characterName: character.name, realmSlug: character.realmSlug });
-      const rosterData = await fetchData('roster');
-      setRosterLocal(rosterData);
-      setRosterDirty(false);
-      await refreshBattleNetAuth();
-      setShowBnetClaimModal(false);
-    } catch (error) {
-      setBnetAuthState(prev => ({ ...prev, error: error.message || 'Failed to claim roster character.' }));
-    } finally {
-      setBnetClaimBusy(false);
-    }
-  };
-
-  const refreshRosterClaims = async () => {
-    if (!isAuthenticated) {
-      setRosterClaims([]);
-      return;
-    }
-    try {
-      const data = await getRosterClaimsAdmin();
-      setRosterClaims(data.claims || []);
-    } catch (error) {
-      setRosterClaims([]);
-    }
-  };
-
-  const handleUnclaimClaim = async (claim) => {
-    try {
-      await unclaimRosterCharacterAdmin({ rosterId: claim.rosterId });
-      const rosterData = await fetchData('roster');
-      setRosterLocal(rosterData);
-      setRosterDirty(false);
-      await refreshBattleNetAuth();
-      await refreshRosterClaims();
-    } catch (error) {
-      setBnetAuthState(prev => ({ ...prev, error: error.message || 'Failed to clear the claim.' }));
-    }
-  };
-
-  const handleBattleNetManualClaim = async (player) => {
-    setBnetClaimBusy(true);
-    setBnetAuthState(prev => ({ ...prev, error: '' }));
-    try {
-      await claimRosterCharacterManual({ rosterId: player.id, battletag: bnetAuthState.user?.battletag || '' });
-      const rosterData = await fetchData('roster');
-      setRosterLocal(rosterData);
-      setRosterDirty(false);
-      await refreshBattleNetAuth();
-      setShowBnetClaimModal(false);
-    } catch (error) {
-      setBnetAuthState(prev => ({ ...prev, error: error.message || 'Failed to claim roster character.' }));
-    } finally {
-      setBnetClaimBusy(false);
-    }
-  };
-
-  const handleAddPlayer = (e) => {
-    e.preventDefault();
-    if (!newName.trim()) return;
-    const newId = Date.now();
-    setRoster([...roster, { id: newId, name: newName, spec_id: newSpec, in_raid: true }]);
-    setPlayerStats({ ...playerStats, [newId]: { cons: true, enchants: true, gems: true, afks: 0, parses: {} } });
-    setNewName('');
-  };
-
-  const handleUpdatePlayer = (id, updates) => {
-    setRoster(roster.map(p => (p.id === id ? { ...p, ...updates } : p)));
-  };
-
-  const handleRemovePlayer = (id) => {
-    if (window.confirm("Are you sure you want to permanently delete this player?")) {
-      setRoster(roster.filter(p => p.id !== id));
-    }
-  };
-
-  const toggleRaidStatus = (id) => setRoster(roster.map(p => p.id === id ? { ...p, in_raid: !p.in_raid } : p));
-  const setAllRaidStatus = (status) => setRoster(roster.map(p => ({ ...p, in_raid: status })));
-  const handleSetPriority = (playerId, priority) => {
-    setAssignments({ ...assignments, [selectedItemName]: { ...(assignments[selectedItemName] || {}), [playerId]: priority } });
-    setAssignmentsDirty(true);
-  };
-
-  const calculateAttendance = (playerId) => {
-    if (raidLogs.length === 0) return 100;
-    const attendedCount = raidLogs.filter(log => (log.attendees || []).map(Number).includes(Number(playerId))).length;
-    return Math.round((attendedCount / raidLogs.length) * 100);
   };
 
   const calculateScore = (playerId) => {
-    const stats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {}, manualAdjustment: { value: 0, note: '' } };
-    let parseSum = 0; let parseCount = 0;
-    Object.values(stats.parses || {}).forEach(p => {
-      if (p && p.val) { parseSum += Number(p.val) * (p.support ? Number(scoringConfig.supportMulti) : 1); parseCount++; }
-    });
-    const avgParse = parseCount > 0 ? parseSum / parseCount : 0;
-    const cons = stats.cons ? Number(scoringConfig.consBonus) : 0;
-    const ench = stats.enchants ? Number(scoringConfig.enchantBonus) : 0;
-    const gem = stats.gems ? Number(scoringConfig.gemBonus) : 0;
-    const att = calculateAttendance(playerId) * Number(scoringConfig.attWeight);
-    const afkPenalty = (stats.afks || 0) * Number(scoringConfig.afkPenalty || 5);
-    const manualAdj = stats.manualAdjustment?.value || 0;
-
-    return ((avgParse * Number(scoringConfig.parseWeight)) + cons + ench + gem + att - afkPenalty + manualAdj).toFixed(1);
-  };
-
-  const handleSaveRaidLog = (e) => {
-    e.preventDefault();
-    const activeRaiderIds = roster.filter(p => p.in_raid).map(p => Number(p.id));
-    setRaidLogs([{ id: Date.now(), date: newRaidDate, zone: newRaidZone, attendees: activeRaiderIds }, ...raidLogs]);
-    alert(`Saved raid log for ${activeRaiderIds.length} players!`);
-  };
-
-  const normalizeRaidHelperToken = (value) => {
-    return String(value || '')
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, ' ')
-      .replace(/[0-9]+$/g, '');
-  };
-
-  const parseRaidHelperDate = (value) => {
-    const raw = String(value || '').trim();
-    const match = raw.match(/^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})$/);
-    if (!match) return new Date().toISOString().split('T')[0];
-    const day = match[1].padStart(2, '0');
-    const month = match[2].padStart(2, '0');
-    const year = match[3];
-    return `${year}-${month}-${day}`;
-  };
-
-  const parseRaidSignupDate = (value) => {
-    const raw = String(value || '').trim();
-    if (!raw) return new Date().toISOString().split('T')[0];
-
-    const ymd = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
-    if (ymd) {
-      return `${ymd[1]}-${ymd[2]}-${ymd[3]}`;
-    }
-
-    const dmy = raw.match(/^(\d{2})-(\d{2})-(\d{4})/);
-    if (dmy) {
-      return `${dmy[3]}-${dmy[2]}-${dmy[1]}`;
-    }
-
-    return new Date().toISOString().split('T')[0];
-  };
-
-  const handleApplyRaidSignupGroupsToAttendance = async (eventId) => {
-    const numericEventId = Number(eventId);
-    if (!numericEventId) {
-      alert('Select a raid signup event first.');
-      return false;
-    }
-
-    try {
-      const event = await fetchData(`raid-signup-events/${numericEventId}`);
-      const groups = Array.isArray(event?.groups) ? event.groups : [];
-      const groupedNames = [...new Set(
-        groups
-          .map(row => String(row?.player_name || '').trim())
-          .filter(Boolean)
-      )];
-
-      if (groupedNames.length === 0) {
-        alert('This signup event has no grouped players assigned yet.');
-        return false;
-      }
-
-      const rosterByToken = new Map();
-      roster.forEach(player => {
-        const token = normalizeRaidHelperToken(player.name);
-        if (!rosterByToken.has(token)) rosterByToken.set(token, []);
-        rosterByToken.get(token).push(player);
-      });
-
-      const attendeeIds = [];
-      const unmatched = [];
-      const ambiguous = [];
-
-      groupedNames.forEach(name => {
-        const token = normalizeRaidHelperToken(name);
-        const matches = rosterByToken.get(token) || [];
-
-        if (matches.length === 0) {
-          unmatched.push(name);
-          return;
-        }
-
-        if (matches.length > 1) {
-          ambiguous.push(name);
-        }
-
-        attendeeIds.push(Number(matches[0].id));
-      });
-
-      const attendeeSet = new Set(attendeeIds);
-      const rosterWithRaidState = roster.map(player => ({
-        ...player,
-        in_raid: attendeeSet.has(Number(player.id))
-      }));
-
-      const raidDate = parseRaidSignupDate(event?.scheduled_for);
-      const raidZone = String(event?.title || newRaidZone || 'Raid Signup Import').trim();
-
-      setRoster(rosterWithRaidState);
-      setRaidLogs([{ id: Date.now(), date: raidDate, zone: raidZone, attendees: [...attendeeSet] }, ...raidLogs]);
-      setNewRaidDate(raidDate);
-      setNewRaidZone(raidZone);
-
-      let msg = `Imported ${attendeeSet.size} grouped attendees from signup #${numericEventId}.`;
-      if (unmatched.length > 0) {
-        msg += `\nUnmatched (${unmatched.length}): ${unmatched.slice(0, 12).join(', ')}${unmatched.length > 12 ? ', ...' : ''}`;
-      }
-      if (ambiguous.length > 0) {
-        msg += `\nAmbiguous name matches (${ambiguous.length}) used first roster match.`;
-      }
-
-      alert(msg);
-      return true;
-    } catch (e) {
-      alert('Failed to import attendees from raid signup event.');
-      return false;
-    }
-  };
-
-  const resolveSpecIdFromRaidHelper = (signup, preferredClass) => {
-    const classCandidates = [signup?.className, signup?.cClassName]
-      .map(v => String(v || '').trim())
-      .filter(Boolean)
-      .filter(v => !['Absence', 'Tentative', 'Bench', 'Late', 'Tank'].includes(v));
-
-    const preferredClassToken = normalizeRaidHelperToken(preferredClass);
-    const classTokens = [...new Set(classCandidates.map(normalizeRaidHelperToken))];
-    const specTokens = [...new Set([signup?.specName, signup?.cSpecName].map(normalizeRaidHelperToken).filter(Boolean))];
-    if (specTokens.length === 0) return null;
-
-    const specMatches = specsFromDb.filter(spec => specTokens.includes(normalizeRaidHelperToken(spec.spec)));
-    if (specMatches.length === 0) return null;
-
-    if (preferredClassToken) {
-      const preferred = specMatches.find(spec => normalizeRaidHelperToken(spec.class) === preferredClassToken);
-      if (preferred) return preferred.id;
-    }
-
-    if (classTokens.length > 0) {
-      const classFiltered = specMatches.filter(spec => classTokens.includes(normalizeRaidHelperToken(spec.class)));
-      if (classFiltered.length === 1) return classFiltered[0].id;
-      if (classFiltered.length > 1) return classFiltered[0].id;
-    }
-
-    if (specMatches.length === 1) return specMatches[0].id;
-    return specMatches[0].id;
-  };
-
-  const handleImportRaidHelperJson = (rawJson) => {
-    const raw = String(rawJson || '').trim();
-    if (!raw) {
-      alert('Paste RaidHelper JSON first.');
-      return false;
-    }
-
-    let parsed;
-    try {
-      parsed = JSON.parse(raw);
-    } catch (e) {
-      alert('Invalid JSON. Please paste the full RaidHelper payload.');
-      return false;
-    }
-
-    const signUps = Array.isArray(parsed?.signUps) ? parsed.signUps : [];
-    if (signUps.length === 0) {
-      alert('No signUps found in this payload.');
-      return false;
-    }
-
-    const skipClasses = new Set(['absence', 'tentative', 'bench', 'late']);
-    const raidSignUps = signUps.filter(signup => {
-      const classToken = normalizeRaidHelperToken(signup?.className || signup?.cClassName);
-      const statusToken = normalizeRaidHelperToken(signup?.status || 'primary');
-      if (!signup?.name) return false;
-      if (skipClasses.has(classToken)) return false;
-      return statusToken === 'primary' || statusToken === '';
-    });
-
-    if (raidSignUps.length === 0) {
-      alert('No eligible primary raid signups found after filtering Absence/Tentative/Bench/Late.');
-      return false;
-    }
-
-    let aliasMap = {};
-    try {
-      aliasMap = JSON.parse(localStorage.getItem(RAIDHELPER_ALIAS_MAP_KEY) || '{}') || {};
-    } catch (e) {
-      aliasMap = {};
-    }
-
-    const nextRoster = [...roster];
-    const pending = [];
-    const autoActions = [];
-
-    const findRosterByName = (name) => {
-      const target = normalizeRaidHelperToken(name);
-      return nextRoster.find(player => normalizeRaidHelperToken(player.name) === target);
-    };
-
-    raidSignUps.forEach(signup => {
-      const importedName = String(signup.name || '').trim();
-      if (!importedName) return;
-
-      let matchedPlayer = findRosterByName(importedName);
-      const importedNameToken = normalizeRaidHelperToken(importedName);
-
-      if (!matchedPlayer && aliasMap[importedNameToken]) {
-        matchedPlayer = findRosterByName(aliasMap[importedNameToken]);
-      }
-
-      const matchedSpec = matchedPlayer ? getSpecById(matchedPlayer.spec_id) : null;
-      const resolvedSpecId = resolveSpecIdFromRaidHelper(signup, matchedSpec?.class);
-      const resolvedSpec = resolvedSpecId ? getSpecById(resolvedSpecId) : null;
-      const classFromJson = [signup?.className, signup?.cClassName]
-        .map(v => String(v || '').trim())
-        .find(v => v && !['Absence', 'Tentative', 'Bench', 'Late', 'Tank'].includes(v));
-      const selectedClass = resolvedSpec?.class || classFromJson || '';
-
-      if (!matchedPlayer) {
-        pending.push({
-          id: `${importedNameToken}-${signup.id || Date.now()}-${pending.length}`,
-          source: 'unmatched',
-          imported_name: importedName,
-          imported_token: importedNameToken,
-          incoming_spec_name: signup?.specName || signup?.cSpecName || '',
-          resolution: 'add',
-          mapped_player_id: '',
-          selected_class: selectedClass,
-          selected_spec_id: resolvedSpecId || ''
-        });
-        return;
-      }
-
-      if (resolvedSpecId && Number(matchedPlayer.spec_id) !== Number(resolvedSpecId)) {
-        pending.push({
-          id: `${importedNameToken}-${signup.id || Date.now()}-${pending.length}`,
-          source: 'specMismatch',
-          imported_name: importedName,
-          imported_token: importedNameToken,
-          incoming_spec_name: signup?.specName || signup?.cSpecName || '',
-          resolution: 'leave',
-          mapped_player_id: matchedPlayer.id,
-          selected_class: selectedClass,
-          selected_spec_id: resolvedSpecId || ''
-        });
-        return;
-      }
-
-      autoActions.push({
-        imported_name: importedName,
-        imported_token: importedNameToken,
-        mapped_player_id: matchedPlayer.id
-      });
-    });
-
-    const raidDate = parseRaidHelperDate(parsed?.date);
-    const raidZone = String(parsed?.displayTitle || parsed?.title || parsed?.channelName || newRaidZone || 'Imported Raid').trim();
-
-    if (pending.length > 0) {
-      setRaidHelperImportSession({
-        raidDate,
-        raidZone,
-        aliasMap,
-        autoActions,
-        pending
-      });
-      return true;
-    }
-
-    const attendeeIds = autoActions.map(action => Number(action.mapped_player_id)).filter(Boolean);
-    if (attendeeIds.length === 0) {
-      alert('No attendees could be mapped from this import.');
-      return false;
-    }
-
-    localStorage.setItem(RAIDHELPER_ALIAS_MAP_KEY, JSON.stringify(aliasMap));
-
-    const attendeeSet = new Set(attendeeIds.map(Number));
-    const rosterWithRaidState = roster.map(player => ({
-      ...player,
-      in_raid: attendeeSet.has(Number(player.id))
-    }));
-
-    setRoster(rosterWithRaidState);
-    setPlayerStats(playerStats);
-    setRaidLogs([{ id: Date.now(), date: raidDate, zone: raidZone, attendees: attendeeIds }, ...raidLogs]);
-    setNewRaidDate(raidDate);
-    setNewRaidZone(raidZone);
-    setRecentRaidHelperImportedIds(attendeeIds);
-    setRecentRaidHelperSpecConflictIds([]);
-
-    alert(`RaidHelper import complete: ${attendeeIds.length} attendees imported.`);
-    return true;
-  };
-
-  const handleUpdateRaidHelperImportEntry = (entryId, patch) => {
-    setRaidHelperImportSession(prev => {
-      if (!prev) return prev;
-      return {
-        ...prev,
-        pending: prev.pending.map(entry => {
-          if (entry.id !== entryId) return entry;
-          const merged = { ...entry, ...patch };
-
-          if (Object.prototype.hasOwnProperty.call(patch, 'selected_class')) {
-            const selectedClass = String(patch.selected_class || '').trim();
-            const classSpecs = specsFromDb.filter(spec => spec.class === selectedClass);
-            if (classSpecs.length > 0 && !classSpecs.some(spec => Number(spec.id) === Number(merged.selected_spec_id))) {
-              merged.selected_spec_id = classSpecs[0].id;
-            }
-          }
-
-          return merged;
-        })
-      };
+    return calculatePlayerScore({
+      playerId,
+      playerStats,
+      scoringConfig,
+      attendanceScore: rosterData.calculateAttendance(playerId)
     });
   };
 
-  const handleCancelRaidHelperImport = () => {
-    setRaidHelperImportSession(null);
-  };
+  const getRankBadgeStyle = (rank) => getAppShellRankBadgeStyle(rank);
 
-  const handleApplyRaidHelperImport = () => {
-    const session = raidHelperImportSession;
-    if (!session) return;
-
-    const invalidEntries = (session.pending || []).filter(entry => {
-      const resolution = String(entry.resolution || '').toLowerCase();
-      if (resolution === 'add') {
-        return !entry.selected_spec_id;
-      }
-      return !entry.mapped_player_id;
-    });
-
-    if (invalidEntries.length > 0) {
-      alert('Please complete all required dropdown selections before applying import.');
-      return;
-    }
-
-    let nextRoster = [...roster];
-    const nextPlayerStats = { ...playerStats };
-    const attendeeIds = new Set();
-    const conflictIds = new Set();
-    const aliasMap = { ...(session.aliasMap || {}) };
-    let createdCount = 0;
-    let mappedCount = 0;
-    let amendedCount = 0;
-    let nextIdSeed = Date.now();
-
-    const ensurePlayerStats = (id) => {
-      if (!nextPlayerStats[id]) {
-        nextPlayerStats[id] = { cons: true, enchants: true, gems: true, afks: 0, parses: {}, manualAdjustment: { value: 0, note: '' } };
-      }
-    };
-
-    (session.autoActions || []).forEach(action => {
-      if (action?.mapped_player_id) attendeeIds.add(Number(action.mapped_player_id));
-    });
-
-    (session.pending || []).forEach(entry => {
-      const resolution = String(entry.resolution || '').toLowerCase();
-      const selectedSpecId = Number(entry.selected_spec_id || 0) || null;
-
-      if (resolution === 'add') {
-        const fallbackSpecId = selectedSpecId || (specsFromDb[0]?.id || null);
-        if (!fallbackSpecId) return;
-        const newPlayer = {
-          id: ++nextIdSeed,
-          name: entry.imported_name,
-          spec_id: fallbackSpecId,
-          in_raid: true
-        };
-        nextRoster.push(newPlayer);
-        ensurePlayerStats(newPlayer.id);
-        attendeeIds.add(Number(newPlayer.id));
-        createdCount++;
-        return;
-      }
-
-      const mappedPlayerId = Number(entry.mapped_player_id || 0);
-      if (!mappedPlayerId) return;
-      const mappedPlayer = nextRoster.find(player => Number(player.id) === mappedPlayerId);
-      if (!mappedPlayer) return;
-
-      attendeeIds.add(Number(mappedPlayer.id));
-
-      if (entry.source === 'unmatched') {
-        aliasMap[entry.imported_token] = mappedPlayer.name;
-        mappedCount++;
-      }
-
-      if (resolution === 'amend' && selectedSpecId && Number(mappedPlayer.spec_id) !== selectedSpecId) {
-        nextRoster = nextRoster.map(player => Number(player.id) === Number(mappedPlayer.id) ? { ...player, spec_id: selectedSpecId } : player);
-        amendedCount++;
-        conflictIds.add(Number(mappedPlayer.id));
-      }
-
-      if (resolution === 'leave') {
-        conflictIds.add(Number(mappedPlayer.id));
-      }
-    });
-
-    const finalAttendeeIds = [...attendeeIds];
-    if (finalAttendeeIds.length === 0) {
-      alert('No attendees could be resolved from this import.');
-      return;
-    }
-
-    localStorage.setItem(RAIDHELPER_ALIAS_MAP_KEY, JSON.stringify(aliasMap));
-
-    const attendeeSet = new Set(finalAttendeeIds.map(Number));
-    const rosterWithRaidState = nextRoster.map(player => ({
-      ...player,
-      in_raid: attendeeSet.has(Number(player.id))
-    }));
-
-    setRoster(rosterWithRaidState);
-    setPlayerStats(nextPlayerStats);
-    setRaidLogs([{ id: Date.now(), date: session.raidDate, zone: session.raidZone, attendees: finalAttendeeIds }, ...raidLogs]);
-    setNewRaidDate(session.raidDate);
-    setNewRaidZone(session.raidZone);
-    setRecentRaidHelperImportedIds(finalAttendeeIds);
-    setRecentRaidHelperSpecConflictIds([...conflictIds]);
-    setRaidHelperImportSession(null);
-
-    alert(`RaidHelper import complete: ${finalAttendeeIds.length} attendees, ${createdCount} new players, ${mappedCount} alias mappings, ${amendedCount} specs amended.`);
-  };
-
-  const handleClearOverviewItemPriorities = (itemName) => {
-    if (!itemName) return;
-    if (!window.confirm(`Clear all assigned priorities for ${itemName}? This will remove it from Priority Overview until reassigned.`)) return;
-
-    const next = { ...assignments };
-    delete next[itemName];
-    setAssignments(next);
-    setAssignmentsDirty(true);
-  };
-
-  const handleDeleteRaidLog = (logId) => {
-    if (window.confirm("Delete this raid log?")) setRaidLogs(raidLogs.filter(log => log.id !== logId));
-  };
-
-  const updatePlayerStat = (playerId, field, value) => {
-    const currentStats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {} };
-    setPlayerStats({ ...playerStats, [playerId]: { ...currentStats, [field]: value } });
-  };
-
-  const updatePlayerParse = (playerId, bossName, field, value) => {
-    const currentStats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {}, manualAdjustment: { value: 0, note: '' } };
-    const currentParses = currentStats.parses || {};
-    const specificParse = currentParses[bossName] || { val: '', support: false };
-    setPlayerStats({ ...playerStats, [playerId]: { ...currentStats, parses: { ...currentParses, [bossName]: { ...specificParse, [field]: value } } } });
-  };
-
-  const updatePlayerManualAdjustment = (playerId, field, value) => {
-    const currentStats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {}, manualAdjustment: { value: 0, note: '' } };
-    setPlayerStats({ ...playerStats, [playerId]: { ...currentStats, manualAdjustment: { ...currentStats.manualAdjustment, [field]: value } } });
-  };
-
-  const handleSaveLootCouncilChanges = async () => {
-    if (!assignmentsDirty) return;
-    setIsSavingLootCouncil(true);
-    try {
-      const phaseKey = PHASE_JSON_KEYS[globalPhase];
-      await putData('assignments/' + phaseKey, assignments);
-      try {
-        const latest = await fetchData('assignments/' + phaseKey);
-        setAssignments(latest);
-      } catch (e) {
-        console.warn('Failed to re-fetch assignments after save:', e);
-      }
-      setAssignmentsDirty(false);
-      alert('Loot council assignments saved.');
-    } catch (e) {
-      alert('Failed to save loot council assignments.');
-    } finally {
-      setIsSavingLootCouncil(false);
-    }
-  };
-
-  const handleSaveRosterAttendanceChanges = async () => {
-    if (!rosterDirty && !playerStatsDirty && !raidLogsDirty) return;
-    setIsSavingRosterAttendance(true);
-    try {
-      let updatedRoster = roster;
-      let updatedStats = playerStats;
-      let updatedRaidLogs = raidLogs;
-      let idMap = {};
-
-      if (rosterDirty) {
-        updatedRoster = await putData('roster', roster);
-
-        updatedRoster.forEach(newPlayer => {
-          const oldPlayer = roster.find(p => p.name === newPlayer.name);
-          if (oldPlayer) {
-            idMap[oldPlayer.id] = newPlayer.id;
-          }
-        });
-
-        updatedStats = {};
-        Object.entries(playerStats).forEach(([oldId, stats]) => {
-          const newId = idMap[oldId] || Number(oldId);
-          updatedStats[newId] = stats;
-        });
-
-        updatedRaidLogs = raidLogs.map(log => ({
-          ...log,
-          attendees: (log.attendees || []).map(attendeeId => idMap[attendeeId] || Number(attendeeId))
-        }));
-
-        setRosterLocal(updatedRoster);
-        setPlayerStatsLocal(updatedStats);
-        setRaidLogsLocal(updatedRaidLogs);
-      }
-
-      if (playerStatsDirty || rosterDirty) {
-        await putData('player-stats', updatedStats);
-      }
-
-      if (raidLogsDirty || rosterDirty) {
-        await putData('raid-logs', updatedRaidLogs);
-      }
-
-      setRosterDirty(false);
-      setPlayerStatsDirty(false);
-      setRaidLogsDirty(false);
-      alert('Roster and attendance changes saved.');
-    } catch (e) {
-      alert('Failed to save roster/attendance changes.');
-    } finally {
-      setIsSavingRosterAttendance(false);
-    }
-  };
-
-  const handleSaveScoringChanges = async () => {
-    if (!scoringConfigDirty && !playerStatsDirty) return;
-    setIsSavingScoring(true);
-    try {
-      if (scoringConfigDirty) {
-        await putData('scoring-config', scoringConfig);
-      }
-      if (playerStatsDirty) {
-        await putData('player-stats', playerStats);
-      }
-      setScoringConfigDirty(false);
-      setPlayerStatsDirty(false);
-      alert('Scoring configuration saved.');
-    } catch (e) {
-      alert('Failed to save scoring changes.');
-    } finally {
-      setIsSavingScoring(false);
-    }
-  };
-
-  const handleSaveOfficerRoles = async () => {
-    if (!officerRolesDirty) return;
-    setIsSavingOfficerRoles(true);
-    try {
-      await putData('officer-roles', officerRoles);
-      setOfficerRolesDirty(false);
-      alert('Officer roles saved.');
-    } catch (e) {
-      alert('Failed to save officer roles.');
-    } finally {
-      setIsSavingOfficerRoles(false);
-    }
-  };
-
-  const handleSaveDiscordBotConfig = async () => {
-    if (!discordBotConfigDirty) return;
-    setIsSavingDiscordBotConfig(true);
-    try {
-      await putData('discord-bot-config', discordBotConfig);
-      setDiscordBotConfigDirty(false);
-      alert('Discord bot config saved.');
-    } catch (e) {
-      alert('Failed to save Discord bot config.');
-    } finally {
-      setIsSavingDiscordBotConfig(false);
-    }
-  };
-
-  const handleSaveRaidAssignmentsChanges = async () => {
-    if (!raidAssignmentDataDirty && !enabledBossesDirty) return;
-    if (!isAuthenticated) {
-      alert('Officer login required to save raid assignments.');
-      return;
-    }
-    setIsSavingRaidAssignments(true);
-    try {
-      if (raidAssignmentDataDirty) {
-        await putData('raid-assignment-data', raidAssignmentData);
-      }
-      if (enabledBossesDirty) {
-        await putData('raid-assignment-config', enabledBosses);
-      }
-      setRaidAssignmentDataDirty(false);
-      setEnabledBossesDirty(false);
-      alert('Raid assignments saved.');
-    } catch (e) {
-      alert('Failed to save raid assignments.');
-    } finally {
-      setIsSavingRaidAssignments(false);
-    }
-  };
-
-  const handleResolveBankRequest = async (id, status, price, note, approvedQuantity) => {
-    try {
-      await putData(`bank-requests/${id}`, { status, price, officer_note: note, approved_quantity: approvedQuantity });
-      const requests = await fetchData('bank-requests');
-      setBankRequests(requests);
-      setRespondingRequestId(null);
-      setApprovePrice('');
-      setApproveQuantity('');
-      setApproveNote('');
-      setDenyReason('');
-      setDenyCustomReason('');
-    } catch (e) {
-      alert('Failed to resolve request.');
-    }
-  };
-
-  const handleBulkResolveBankRequests = async (resolutions) => {
-    try {
-      await putData('bank-requests/bulk-resolve', { resolutions });
-      const requests = await fetchData('bank-requests');
-      setBankRequests(requests);
-      setRespondingRequestId(null);
-      setApprovePrice('');
-      setApproveQuantity('');
-      setApproveNote('');
-      setDenyReason('');
-      setDenyCustomReason('');
-    } catch (e) {
-      alert('Failed to resolve basket requests.');
-    }
-  };
-
-  const handleBankFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (evt) => {
-      const text = evt.target.result;
-      const parsed = [];
-
-      const idRegex = /\[(\d+)\]\s*=\s*\{/g;
-      let match;
-
-      while ((match = idRegex.exec(text)) !== null) {
-        const id = match[1];
-        const restOfFile = text.substring(match.index);
-        const closingBracket = restOfFile.indexOf('},');
-        const itemDataStr = restOfFile.substring(0, closingBracket);
-
-        const countMatch = itemDataStr.match(/\["count"\]\s*=\s*(\d+)/);
-        const count = countMatch ? parseInt(countMatch[1]) : 1;
-
-        const nameMatch = itemDataStr.match(/\["name"\]\s*=\s*"([^"]+)"/);
-        const name = nameMatch ? nameMatch[1] : 'Unknown Item';
-
-        const catMatch = itemDataStr.match(/\["category"\]\s*=\s*"([^"]+)"/);
-        const rawCat = catMatch ? catMatch[1] : 'Misc';
-        const cleanCat = CATEGORY_MAP[rawCat] || 'Misc';
-
-        const subTypeMatch = itemDataStr.match(/\["subtype"\]\s*=\s*"([^"]+)"/);
-        const subType = subTypeMatch ? subTypeMatch[1] : '';
-
-        parsed.push({
-          item_wowhead_id: parseInt(id),
-          count,
-          name,
-          category: cleanCat,
-          sub_type: subType
-        });
-      }
-
-      if (parsed.length === 0) {
-        setBankUploadStatus('⚠️ Found 0 items. Check your Lua file.');
-        setBankUploadParsed(null);
-      } else {
-        setBankUploadStatus(`✅ Loaded ${parsed.length} items. Click Save to update the bank.`);
-        setBankUploadParsed(parsed);
-      }
-    };
-    reader.readAsText(file);
-  };
-
-  const handleSaveBankUpload = async () => {
-    if (!bankUploadParsed) return;
-    setBankUploadStatus('Uploading...');
-    try {
-      const data = await putData('bank-items', bankUploadParsed);
-      setBankUploadStatus(`✅ Bank updated with ${data.count} items! Discord notified.`);
-      setBankUploadParsed(null);
-      const items = await fetchData('bank-items');
-      setBankItems(items);
-    } catch (e) {
-      setBankUploadStatus('❌ Error uploading.');
-    }
-  };
-
-  const handleToggleZone = (zoneName, checked) => {
-    const zone = raidZones.find(z => z.name === zoneName);
-    if (!zone) return;
-    const set = new Set(enabledBosses);
-    zone.bosses.forEach(b => checked ? set.add(b) : set.delete(b));
-    setEnabledBosses([...set]);
-  };
-  const handleToggleBoss = (bossName, checked) => {
-    const set = new Set(enabledBosses);
-    if (checked) set.add(bossName); else set.delete(bossName);
-    setEnabledBosses([...set]);
-  };
-
-  const handleAddCustomRaidBoss = (zoneName, bossName) => {
-    const zone = String(zoneName || '').trim();
-    const boss = String(bossName || '').trim();
-    if (!zone || !boss) return;
-
-    const allKnownBosses = new Set(raidZones.flatMap(z => z.bosses.map(b => b.toLowerCase())));
-    if (allKnownBosses.has(boss.toLowerCase())) {
-      alert('Boss already exists in the selector.');
-      return;
-    }
-
-    setRaidAssignmentData(prev => {
-      const next = { ...(prev || {}) };
-      const existingGroups = Array.isArray(next.__customBossGroups) ? next.__customBossGroups : [];
-      const clone = existingGroups.map(group => ({ zone: group.zone, bosses: [...(group.bosses || [])] }));
-      const found = clone.find(group => String(group.zone).toLowerCase() === zone.toLowerCase());
-
-      if (found) {
-        found.bosses = [...new Set([...(found.bosses || []), boss])].sort((a, b) => a.localeCompare(b));
-      } else {
-        clone.push({ zone, bosses: [boss] });
-      }
-
-      next.__customBossGroups = clone.sort((a, b) => String(a.zone).localeCompare(String(b.zone)));
-      delete next.__customBosses;
-      return next;
-    });
-
-    setEnabledBosses(prev => [...new Set([...(prev || []), boss])]);
-  };
-
-  const handleRemoveCustomRaidBoss = (zoneName, bossName) => {
-    const zone = String(zoneName || '').trim();
-    const boss = String(bossName || '').trim();
-    if (!zone || !boss) return;
-
-    setRaidAssignmentData(prev => {
-      const next = { ...(prev || {}) };
-      const existingGroups = Array.isArray(next.__customBossGroups) ? next.__customBossGroups : [];
-      const updatedGroups = existingGroups
-        .map(group => {
-          if (String(group.zone).toLowerCase() !== zone.toLowerCase()) return { zone: group.zone, bosses: [...(group.bosses || [])] };
-          return { zone: group.zone, bosses: (group.bosses || []).filter(b => b !== boss) };
-        })
-        .filter(group => (group.bosses || []).length > 0);
-
-      next.__customBossGroups = updatedGroups;
-      delete next[boss];
-      delete next.__customBosses;
-      return next;
-    });
-
-    setEnabledBosses(prev => (prev || []).filter(b => b !== boss));
-  };
-
-  // --- FILTERS ---
-  const uniqueZones = useMemo(() => [...new Set(mutableItems.map(i => i.zone))].sort(), [mutableItems]);
-  const uniqueBosses = useMemo(() => {
-    let filtered = mutableItems;
-    if (filterZone) filtered = filtered.filter(i => i.zone === filterZone);
-    return [...new Set(filtered.map(i => i.boss))].sort();
-  }, [mutableItems, filterZone]);
-  const uniqueSlots = useMemo(() => [...new Set(mutableItems.map(i => i.slot))].sort(), [mutableItems]);
-
-  const filteredItems = mutableItems.filter(item => {
-    if (!item || !item.name) return false;
-    const matchSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchBoss = filterBoss === '' || item.boss === filterBoss;
-    const matchZone = filterZone === '' || item.zone === filterZone;
-    const matchSlot = filterSlot === '' || item.slot === filterSlot;
-    const isTokenItem = !!item.is_token;
-    const matchCategory =
-      filterCategory === '' ||
-      (filterCategory === 'token' && isTokenItem) ||
-      (filterCategory === 'item' && !isTokenItem);
-    return matchSearch && matchBoss && matchZone && matchSlot && matchCategory;
-  });
-
-  const dbFilteredItems = useMemo(() => {
-    let items = mutableItems.filter(item => item && item.name && item.name.toLowerCase().includes(dbSearch.toLowerCase()));
-    if (showMissingWowheadFilter) {
-      items = items.filter(item => !item.itemId || String(item.itemId).trim() === '');
-    }
-    return items.sort((a, b) => a.name.localeCompare(b.name));
-  }, [mutableItems, dbSearch, showMissingWowheadFilter]);
-
-  useEffect(() => {
-    if (filterZone && filterBoss && !mutableItems.some(i => i.zone === filterZone && i.boss === filterBoss)) setFilterBoss('');
-  }, [filterZone, filterBoss, mutableItems]);
-
-  const selectedItem = mutableItems.find(i => i.name === selectedItemName);
-  const activeRaiders = roster.filter(p => p.in_raid);
-
-  useEffect(() => {
-    const loadRedemption = async () => {
-      if (!selectedItem || !selectedItem.is_token) return;
-      if (tokenRedemptionsByItemId[selectedItem.id]) return;
-      try {
-        const data = await fetchData('token-redemptions/' + selectedItem.id);
-        setTokenRedemptionsByItemId(prev => ({ ...prev, [selectedItem.id]: data }));
-      } catch (e) {
-        console.error('Failed to load token redemption mapping:', e);
-      }
-    };
-
-    loadRedemption();
-  }, [selectedItem, tokenRedemptionsByItemId]);
-
-  const getPlayerItemPriorityStatus = (itemObj, specDisplay) => {
-    if (!itemObj) return '';
-
-    if (!itemObj.is_token) {
-      const itemKey = `${itemObj.name}|${specDisplay}`;
-      return bisPriorities[itemKey] || '';
-    }
-
-    const redemption = tokenRedemptionsByItemId[itemObj.id];
-    const rewards = redemption?.redeemableItems || [];
-    if (rewards.length === 0) return '';
-
-    let hasOpt = false;
-    for (const reward of rewards) {
-      const rewardKey = `${reward.name}|${specDisplay}`;
-      const rewardStatus = bisPriorities[rewardKey];
-      if (rewardStatus === 'BiS') return 'BiS';
-      if (rewardStatus === 'Opt') hasOpt = true;
-    }
-    return hasOpt ? 'Opt' : '';
-  };
-
-  const sortPlayersByRank = (itemObj, playerList, assignmentData) => {
-    return [...playerList].sort((a, b) => {
-      const rankA = assignmentData[itemObj.name]?.[a.id];
-      const rankB = assignmentData[itemObj.name]?.[b.id];
-      if (rankA === 'Pass' && rankB !== 'Pass') return 1;
-      if (rankB === 'Pass' && rankA !== 'Pass') return -1;
-      if (!rankA && rankB && rankB !== 'Pass') return 1;
-      if (rankA && rankA !== 'Pass' && !rankB) return -1;
-      if (typeof rankA === 'number' && typeof rankB === 'number') return rankA - rankB;
-      const scoreA = Number(calculateScore(a.id));
-      const scoreB = Number(calculateScore(b.id));
-      if (scoreA !== scoreB) return scoreB - scoreA;
-      return a.name.localeCompare(b.name);
-    });
-  };
-
-  const sortedEligiblePlayers = useMemo(() => {
-    if (!selectedItem) return [];
-    const tokenClasses = Array.isArray(selectedItem.token_classes)
-      ? selectedItem.token_classes.map(c => String(c).toLowerCase())
-      : [];
-
-    // Build a list of players to show:
-    // - all roster players
-    // - plus any player ids explicitly assigned to this item even if not in roster
-    const rosterPlayers = roster.slice();
-
-    // gather assigned player IDs from DB state
-    const assignedMap = assignments[selectedItem.name] || {};
-    const assignedIds = Object.keys(assignedMap).map(id => Number(id));
-
-    // create placeholder player objects for assigned players not in roster
-    const rosterIds = new Set(rosterPlayers.map(p => Number(p.id)));
-    for (const pid of assignedIds) {
-      if (!rosterIds.has(pid)) {
-        rosterPlayers.push({ id: pid, name: `Player ${pid}`, spec_id: null, in_raid: false });
-      }
-    }
-
-    // Filter rosterPlayers to those that are eligible by BiS/Opt OR are assigned to this item
-    const eligible = rosterPlayers.filter(player => {
-      const specDisplay = getDisplayFromId(player.spec_id) || '?';
-      const specObj = getSpecById(player.spec_id);
-      const className = String(specObj?.class || '').toLowerCase();
-
-      if (selectedItem.is_token && tokenClasses.length > 0 && !tokenClasses.includes(className)) {
-        // still include if player is explicitly assigned
-        return assignedIds.includes(Number(player.id));
-      }
-
-      const bisStatus = getPlayerItemPriorityStatus(selectedItem, specDisplay);
-      return (bisStatus && bisStatus !== '') || assignedIds.includes(Number(player.id));
-    });
-
-    return sortPlayersByRank(selectedItem, eligible, assignments);
-  }, [selectedItem, activeRaiders, assignments, playerStats, scoringConfig, raidLogs, bisPriorities, specsByName, getSpecById, tokenRedemptionsByItemId]);
-
-  const getRankBadgeStyle = (rank) => {
-    if (rank === 1) return "bg-gradient-to-br from-yellow-300 to-yellow-600 text-yellow-950 border border-yellow-200 shadow-[0_0_10px_rgba(253,224,71,0.6)]";
-    if (rank === 2) return "bg-gradient-to-br from-slate-300 to-slate-500 text-slate-950 border border-slate-200 shadow-[0_0_8px_rgba(203,213,225,0.5)]";
-    if (rank === 3) return "bg-gradient-to-br from-amber-600 to-amber-800 text-amber-100 border border-amber-500 shadow-[0_0_8px_rgba(217,119,6,0.5)]";
-    if (typeof rank === 'number') return "bg-slate-800 text-white border border-slate-600";
-    if (rank === 'Pass') return "bg-red-950/50 text-red-400 border border-red-900";
-    return "bg-slate-900 text-slate-500 border border-slate-800 border-dashed";
-  };
-
-  const getItemsForSlotAndSpec = (slot, spec) => {
-    const dataSlot = slot === "Ring 1" || slot === "Ring 2" ? "ring"
-      : slot === "Trinket 1" || slot === "Trinket 2" ? "trinket"
-        : slot.toLowerCase();
-    const slotIndex = slot === "Ring 2" || slot === "Trinket 2" ? 1 : 0;
-    const isDualSlot = slot.endsWith(" 1") || slot.endsWith(" 2");
-
-    const itemsInSlot = mutableItems.filter(i =>
-      i.slot && i.slot.toLowerCase() === dataSlot
-    );
-
-    const bis = itemsInSlot.filter(item => {
-      const itemKey = `${item.name}|${spec}`;
-      return dbBisPriorities[itemKey] === 'BiS';
-    });
-    const opt = itemsInSlot.filter(item => {
-      const itemKey = `${item.name}|${spec}`;
-      return dbBisPriorities[itemKey] === 'Opt';
-    });
-
-    if (isDualSlot) {
-      const bisForThisSlot = bis[slotIndex] ? [bis[slotIndex]] : [];
-      const optForThisSlot = slotIndex === 0 && bis.length <= 1 ? opt
-        : slotIndex === 1 && bis.length >= 2 ? opt
-          : slotIndex === 1 && bis.length < 2 ? [...bis.slice(1), ...opt]
-            : [];
-      return { bis: bisForThisSlot, opt: optForThisSlot };
-    }
-
-    return { bis, opt };
-  };
-
-  const jumpToMasterItemsDbForItem = (itemName) => {
-    const targetName = String(itemName || '').trim().toLowerCase();
-    if (!targetName) return;
-
-    const item = mutableItems.find(entry => String(entry.name || '').trim().toLowerCase() === targetName);
-    if (!item) {
-      alert(`Item not found in Master Items DB: ${itemName}`);
-      return;
-    }
-
-    setItemIdEditor({
-      itemId: item.id,
-      itemName: item.name,
-      wowheadIdInput: String(item.itemId || '')
-    });
-  };
-
-  const handleSaveItemIdFromModal = () => {
-    if (!itemIdEditor) return;
-    const trimmed = String(itemIdEditor.wowheadIdInput || '').trim();
-    if (trimmed && !/^\d+$/.test(trimmed)) {
-      alert('Wowhead ID must be numeric (or blank to clear).');
-      return;
-    }
-
-    handleUpdateItemId(itemIdEditor.itemId, trimmed);
-    setItemIdEditor(null);
-  };
-
-  const renderItemSlot = (slotName) => {
-    const { bis, opt } = getItemsForSlotAndSpec(slotName, selectedBisSpec);
-    const isBottomSlot = BOTTOM_SLOTS.includes(slotName);
-
-    // For dual slots, hide the second slot entirely if there's no second item
-    const isDualSecond = slotName === "Ring 2" || slotName === "Trinket 2";
-    if (isDualSecond && bis.length === 0 && opt.length === 0) return null;
-
-    if (bis.length === 0 && opt.length === 0 && !BOTTOM_SLOTS.includes(slotName)) {
-      return (
-        <div key={slotName} className="flex gap-3 bg-slate-900/40 border border-slate-800/50 p-2.5 rounded-lg opacity-50">
-          <div className="w-10 h-10 rounded bg-slate-950 border border-slate-800 flex-shrink-0"></div>
-          <div className="flex flex-col justify-center">
-            <span className="text-xs text-slate-600 font-bold uppercase tracking-wider">{slotName}</span>
-            <span className="text-sm text-slate-700 font-medium">No items found</span>
-          </div>
-        </div>
-      );
-    }
-    if (bis.length === 0 && opt.length === 0) return null;
-
-    return (
-      <div key={slotName} className="flex gap-3 bg-slate-900 border border-slate-700 hover:border-slate-500 p-2.5 rounded-lg transition-colors shadow-sm">
-        <div key={`${slotName}-${selectedBisSpec}`} className="w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex-shrink-0 flex items-center justify-center relative shadow-inner overflow-hidden character-slot-icon">
-          {bis.length > 0 && bis[0].itemId ? (
-            <a
-              href={`https://tbc.wowhead.com/item=${bis[0].itemId}`}
-              data-wh-rename-link="false"
-              data-wh-icon-size="large"
-              className="item-link"
-              target="_blank"
-              rel="noreferrer"
-              onMouseLeave={hideWowheadTooltip}
-            />
-          ) : (
-            <>
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent"></div>
-              <span className="text-[9px] font-bold text-slate-500 uppercase z-10 rotate-45 opacity-30">{slotName}</span>
-            </>
-          )}
-        </div>
-
-        <div className="flex flex-col min-w-0 justify-center">
-          <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">{slotName}</span>
-          {bis.length > 0 ? (
-            bis.map(i => (
-              <div key={i.name} className="flex flex-col">
-                <div className="flex items-center justify-between gap-2">
-                  {renderItemLink(i, "text-sm font-bold text-purple-400 drop-shadow-sm leading-tight")}
-                  {isAuthenticated && (
-                    <button
-                      type="button"
-                      onClick={() => jumpToMasterItemsDbForItem(i?.name || '')}
-                      className="w-5 h-5 flex-shrink-0 flex items-center justify-center rounded-full bg-amber-600 hover:bg-amber-500 text-slate-950 text-[10px] font-black leading-none shadow"
-                      title={i?.itemId ? 'Edit Wowhead ID in Master Items DB' : 'Set Wowhead ID in Master Items DB'}
-                    >
-                      ✎
-                    </button>
-                  )}
-                </div>
-                <div className="flex gap-2 flex-wrap">
-                  <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
-                  {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
-                </div>
-              </div>
-            ))
-          ) : (<span className="text-sm font-bold text-slate-500 italic leading-tight">No primary BiS</span>)}
-          {opt.length > 0 && (
-            <div className="mt-1 flex flex-col gap-y-1">
-              {opt.map(i => (
-                <div key={i.name} className="flex flex-col">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-[10px] text-amber-500/70 font-semibold uppercase flex-shrink-0">Alt:</span>
-                    <div className="flex items-center justify-between gap-2 w-full min-w-0">
-                      {renderItemLink(i, "text-[10px] text-slate-400 truncate max-w-[150px]")}
-                      {isAuthenticated && (
-                        <button
-                          type="button"
-                          onClick={() => jumpToMasterItemsDbForItem(i?.name || '')}
-                          className="w-4 h-4 flex-shrink-0 flex items-center justify-center rounded-full bg-amber-600 hover:bg-amber-500 text-slate-950 text-[9px] font-black leading-none shadow"
-                          title={i?.itemId ? 'Edit Wowhead ID in Master Items DB' : 'Set Wowhead ID in Master Items DB'}
-                        >
-                          ✎
-                        </button>
-                      )}
-                    </div>
-                    {!isBottomSlot && <span className="text-[10px] text-amber-500/70 font-semibold whitespace-nowrap">{i.boss}</span>}
-                  </div>
-                  {isBottomSlot && (
-                    <div className="flex gap-2 pl-6">
-                      <span className="text-[10px] text-amber-500/70 font-semibold">{i.boss}</span>
-                      {i.drop_chance && <span className="text-[10px] text-cyan-400/70 font-semibold">{(i.drop_chance * 100).toFixed(0)}% Drop</span>}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-    );
-  };
 
   const filteredOverviewItems = useMemo(() => {
     let items = mutableItems.filter(item => {
@@ -1758,100 +555,6 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [filteredOverviewItems]);
 
-  useEffect(() => {
-    const isBankTabActive = activeTab === 'bank' || activeTab === 'bankRequests';
-    if (!isBankTabActive) return;
-
-    const loadBankData = async () => {
-      if (document.hidden) return;
-      try {
-        const items = await fetchData('bank-items');
-        setBankItems(items);
-        if (isAuthenticated) {
-          const requests = await fetchData('bank-requests');
-          setBankRequests(requests);
-        }
-      } catch (e) {
-        console.error('Failed to load bank data:', e);
-      }
-    };
-    loadBankData();
-    const interval = setInterval(loadBankData, BANK_SYNC_INTERVAL_MS);
-    return () => clearInterval(interval);
-  }, [activeTab, isAuthenticated]);
-
-  useEffect(() => {
-    if (activeTab !== 'raidAssignments') return;
-
-    const loadRaidAssignments = async () => {
-      if (document.hidden) return;
-      try {
-        const [data, config] = await Promise.all([
-          fetchData('raid-assignment-data'),
-          fetchData('raid-assignment-config')
-        ]);
-        if (!raidAssignmentDataDirty) setRaidAssignmentDataLocal(data);
-        if (!enabledBossesDirty) setEnabledBossesLocal(config);
-      } catch (e) {
-        console.error('Failed to load raid assignments:', e);
-      }
-    };
-    loadRaidAssignments();
-    const interval = setInterval(loadRaidAssignments, RAID_ASSIGNMENTS_SYNC_INTERVAL_MS);
-    return () => clearInterval(interval);
-  }, [activeTab, raidAssignmentDataDirty, enabledBossesDirty]);
-
-  useEffect(() => {
-    if (activeTab !== 'officerRoles') return;
-
-    const loadOfficerRoles = async () => {
-      if (document.hidden) return;
-      try {
-        const data = await fetchData('officer-roles');
-        if (!officerRolesDirty) setOfficerRoles(data);
-      } catch (e) {
-        console.error('Failed to load officer roles:', e);
-      }
-    };
-
-    loadOfficerRoles();
-  }, [activeTab, officerRolesDirty]);
-
-  useEffect(() => {
-    if (activeTab !== 'discordBotConfig') return;
-
-    const loadDiscordBotConfig = async () => {
-      if (document.hidden) return;
-      try {
-        const data = await fetchData('discord-bot-config');
-        if (!discordBotConfigDirty) {
-          setDiscordBotConfigLocal({
-            request_roles: Array.isArray(data?.request_roles) ? data.request_roles : [],
-            signup_roles: Array.isArray(data?.signup_roles) ? data.signup_roles : [],
-            bench_roles: Array.isArray(data?.bench_roles) ? data.bench_roles : []
-          });
-        }
-      } catch (e) {
-        console.error('Failed to load Discord bot config:', e);
-      }
-    };
-
-    loadDiscordBotConfig();
-    refreshRosterClaims();
-  }, [activeTab, discordBotConfigDirty]);
-
-  useEffect(() => {
-    if (!hasAnyUnsavedChanges) return undefined;
-
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = '';
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [hasAnyUnsavedChanges]);
-
   const PlayerNameWithScore = ({ player }) => {
     const specDisplay = getDisplayFromId(player.spec_id) || '?';
     return (
@@ -1865,543 +568,263 @@ export default function App() {
     );
   };
 
+  const mainContentViewModel = useDashboardMainContentViewModel({
+    activeTab,
+    bankSubTab,
+    raidAssignmentsSubTab,
+    raidSignupsSubTab,
+    lootSubTab,
+    adminSubTab,
+    resourcesSubTab,
+    isAuthenticated,
+    globalMyPlayerId,
+    selectedBisSpec,
+    setSelectedBisSpec,
+    selectedMyPlayerName,
+    bnetAuthState,
+    hasLootUnsavedChanges,
+    handleSaveLootCouncilChanges,
+    handleOpenItemForLootAssignment,
+    handleClearOverviewItemPriorities,
+    handleToggleAwardedPriority,
+    handleSaveRaidAssignmentsChanges,
+    isSavingRaidAssignments,
+    handleCopyRaidAssignmentsToArchive,
+    handleViewRaidAssignmentArchive,
+    handleRestoreRaidAssignmentArchive,
+    handleToggleRaidRestoreBoss,
+    handleToggleZone,
+    handleToggleBoss,
+    handleMoveEnabledBoss,
+    handleAddCustomRaidBoss,
+    handleRemoveCustomRaidBoss,
+    fetchData,
+    putData,
+    postData,
+    deleteData,
+    roster,
+    specsFromDb,
+    specsByName,
+    getDisplayFromId,
+    getSpecById,
+    getSlugFromDisplay,
+    getRankBadgeStyle,
+    renderItemLink,
+    hideWowheadTooltip,
+    calculateScore,
+    overviewSearch,
+    setOverviewSearch,
+    filteredOverviewItems,
+    assignments,
+    selectedItemName,
+    setSelectedItemName,
+    searchQuery,
+    setSearchQuery,
+    filterZone,
+    setFilterZone,
+    uniqueZones,
+    filterBoss,
+    setFilterBoss,
+    uniqueBosses,
+    filterSlot,
+    setFilterSlot,
+    uniqueSlots,
+    filterCategory,
+    setFilterCategory,
+    filteredItems,
+    selectedItem,
+    sortedEligiblePlayers,
+    getPlayerItemPriorityStatus,
+    handleSetPriority,
+    PlayerNameWithScore,
+    assignmentsDirty,
+    isSavingLootCouncil,
+    mutableItems,
+    bisPriorities,
+    globalPhase,
+    raidAssignmentArchives,
+    selectedRaidAssignmentArchiveId,
+    selectedRaidRestoreBosses,
+    setSelectedRaidRestoreBosses: (value) => {
+      if (typeof value === 'function') {
+        const nextValue = value(selectedRaidRestoreBosses);
+        if (Array.isArray(nextValue)) {
+          return nextValue;
+        }
+      }
+      return value;
+    },
+    raidAssignmentData,
+    setRaidAssignmentData,
+    enabledBosses,
+    raidAssignmentDataDirty,
+    enabledBossesDirty,
+    raidZones,
+    customRaidGroups,
+    recentRaidHelperImportedIds,
+    recentRaidHelperSpecConflictIds,
+    raidHelperImportSession,
+    handleUpdateRaidHelperImportEntry,
+    handleApplyRaidHelperImport,
+    handleCancelRaidHelperImport,
+    handleSaveScoringChanges,
+    scoringConfig,
+    setScoringConfig,
+    playerStats,
+    expandedPlayerId,
+    setExpandedPlayerId,
+    calculateAttendance: rosterData.calculateAttendance,
+    updatePlayerStat: rosterData.updatePlayerStat,
+    updatePlayerParse: rosterData.updatePlayerParse,
+    updatePlayerManualAdjustment: rosterData.updatePlayerManualAdjustment,
+    scoringConfigDirty,
+    playerStatsDirty,
+    isSavingScoring,
+    dbNewName,
+    setDbNewName,
+    dbNewSlot,
+    setDbNewSlot,
+    dbNewZone,
+    setDbNewZone,
+    dbNewBoss,
+    setDbNewBoss,
+    dbNewItemId,
+    setDbNewItemId,
+    handleAddItemToDb,
+    dbSearch,
+    setDbSearch,
+    dbPageSize,
+    setDbPageSize,
+    dbPage,
+    setDbPage,
+    showMissingWowheadFilter,
+    setShowMissingWowheadFilter,
+    showWowheadNameMismatchFilter,
+    setShowWowheadNameMismatchFilter,
+    dbFilteredItems: mutableItems.filter(item => {
+      const name = String(item?.name || '').toLowerCase();
+      const query = (dbSearch || '').toLowerCase();
+      if (query && !name.includes(query)) return false;
+      if (showMissingWowheadFilter && item?.itemId) return false;
+      if (showWowheadNameMismatchFilter && !item?.name) return false;
+      return true;
+    }),
+    specsSortedByClass,
+    dbBisPriorities,
+    handleUpdateItemEligibility,
+    handleUpdateItemId,
+    handleUpdateItemSource,
+    handleDeleteItemFromDb,
+    masterItemsDbPhase,
+    setMasterItemsDbPhase,
+    dbBisPrioritiesDirty,
+    mutableItemsDirty,
+    isSavingItemsDb,
+    handleSaveItemsDbChanges,
+    onSaveRosterAttendanceChanges: rosterData.handleSaveRosterAttendanceChanges,
+    isSavingRosterAttendance: rosterData.isSavingRosterAttendance,
+    setNewRaidDate: rosterData.setNewRaidDate,
+    setNewRaidZone: rosterData.setNewRaidZone,
+    newRaidDate: rosterData.newRaidDate,
+    newRaidZone: rosterData.newRaidZone,
+    handleSaveRaidLog: rosterData.handleSaveRaidLog,
+    raidLogs,
+    handleApplyRaidSignupGroupsToAttendance,
+    handleDeleteRaidLog: rosterData.handleDeleteRaidLog,
+    handleAddPlayer: rosterData.handleAddPlayer,
+    newName: rosterData.newName,
+    setNewName: rosterData.setNewName,
+    newSpec: rosterData.newSpec,
+    setNewSpec: rosterData.setNewSpec,
+    setAllRaidStatus: rosterData.setAllRaidStatus,
+    toggleRaidStatus: rosterData.toggleRaidStatus,
+    handleUpdatePlayer: rosterData.handleUpdatePlayer,
+    handleRemovePlayer: rosterData.handleRemovePlayer,
+    rosterDirty,
+    raidLogsDirty,
+    playerStatsDirty,
+    rosterClaims,
+    handleUnclaimClaim,
+    adminData,
+    renderItemSlot,
+  });
+
   // ==========================================
   // 7. RENDER SCREENS
   // ==========================================
 
-  // LOADING SCREEN
-  if (!isDbConnected || specsFromDb.length === 0) {
-    return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-amber-500 space-y-4">
-        <svg className="w-12 h-12 animate-spin text-amber-500" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-        <h1 className="text-2xl font-serif italic tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Connecting to Cloud Database...</h1>
-      </div>
-    );
-  }
-
-  // MAIN DASHBOARD
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-amber-500/30">
-      <style>{`
-          .character-slot-icon .iconlarge {
-            width: 30px !important;
-            height: 30px !important;
-            display: block !important;
-          }
-          .character-slot-icon .iconlarge ins {
-            width: 32px !important;
-            height: 32px !important;
-          }
-          .overview-tab .character-slot-icon .iconlarge {
-            margin-top: -4px !important;
-            margin-left: -4px !important;
-          }
-        `}</style>
-      <div className="max-w-10/12 mx-auto px-4 sm:px-6 lg:px-0 py-10 space-y-6">
-
-<header className="flex flex-col md:flex-row md:items-stretch justify-between gap-4">
-          <div className="flex flex-col justify-center">
-            <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600 tracking-tight font-serif italic drop-shadow-sm">
-              &lt;Guild Name TBC&gt;
-            </h1>
-            <p className="text-slate-400 mt-2 font-medium uppercase tracking-widest text-sm">
-              Guild management dashboard
-            </p>
-          </div>
-
-          <div className="flex items-stretch justify-end gap-4 flex-nowrap">
-            <div className="w-64 flex flex-col justify-between bg-slate-900 border border-slate-800 rounded-lg p-2">
-              <div className="flex justify-center items-center mb-2">
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Current Phase:</span>
-                <select
-                  value={globalPhase}
-                  onChange={e => setGlobalPhase(e.target.value)}
-                  className="ml-3 bg-slate-950 text-amber-400 font-bold border border-slate-700 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
-                >
-                  {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
-                </select>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <select
-                  value={globalMyPlayerId}
-                  onChange={e => {
-                    const id = e.target.value;
-                    setGlobalMyPlayerId(id);
-                    localStorage.setItem('my-player-id', id || '');
-                    if (id) {
-                      const player = roster.find(p => p.id === parseInt(id));
-                      if (player) {
-                        const specName = getDisplayFromId(player.spec_id);
-                        if (specName) setSelectedBisSpec(specName);
-                      }
-                    }
-                  }}
-                  className="flex-1 bg-slate-950 text-amber-400 font-bold border border-slate-700 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
-                >
-                  <option value="">— Select Character —</option>
-                  {sortedRosterForSelector.map(player => {
-                    const isCurrentUserClaim = currentUserClaimedRosterIds.has(Number(player.id));
-                    const isClaimedElsewhere = Boolean(player.user_id && !isCurrentUserClaim);
-                    const icon = isCurrentUserClaim ? '✓' : isClaimedElsewhere ? '●' : '○';
-                    const specDisplay = getDisplayFromId(player.spec_id);
-                    const styleColor = isCurrentUserClaim
-                      ? '#34d399'
-                      : isClaimedElsewhere
-                        ? '#64748b'
-                        : (specsByName[specDisplay]?.color || '#e2e8f0');
-                    return (
-                      <option key={player.id} value={player.id} style={{ color: styleColor }}>
-                        {icon} {player.name}
-                      </option>
-                    );
-                  })}
-                </select>
-                <button
-                  type="button"
-                  onClick={() => setShowBnetClaimModal(true)}
-                  disabled={!bnetAuthState.authenticated || selectedGlobalPlayerIsClaimed}
-                  className={`text-[10px] font-bold uppercase tracking-wider ${!bnetAuthState.authenticated || selectedGlobalPlayerIsClaimed ? 'text-slate-500 cursor-not-allowed' : 'text-cyan-400 hover:text-cyan-300'}`}
-                >
-                  Claim
-                </button>
-              </div>
-            </div>
-
-            <div className={`flex flex-col justify-between bg-slate-900 border border-slate-800 rounded-lg w-64 p-2`}>
-              <div className="flex justify-end items-center px-3 h-6">
-                {bnetAuthState.authenticated ? (
-                  <>
-                    {bnetAuthState.user?.battletag && (
-                      <span className="text-[11px] font-semibold text-cyan-300 whitespace-nowrap">Logged in as {bnetAuthState.user.battletag}</span>
-                    )}
-                    <button onClick={handleBattleNetLogout} className="ml-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-slate-200 h-6 flex items-center">Logout</button>
-                  </>
-                ) : (
-                  <button onClick={handleBattleNetLogin} className="bg-cyan-700 hover:bg-cyan-600 text-white font-bold py-1 px-3 rounded text-[11px] uppercase tracking-wider h-6 flex items-center justify-center">Log in with Battle.net</button>
-                )}
-              </div>
-
-              <div className="flex justify-end items-center px-3 h-6">
-                {isAuthenticated ? (
-                  <>
-                    <span className="text-[11px] font-semibold text-amber-300">Logged in as Officer</span>
-                    <button onClick={handleLogout} className="ml-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-slate-200 h-6 flex items-center">Logout</button>
-                  </>
-                ) : (
-                  <form onSubmit={handleLogin} className="flex items-center gap-2">
-                    <input type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} className="bg-slate-950 text-white border border-slate-700 rounded px-2 py-1.5 text-[11px] leading-none focus:outline-none focus:ring-1 focus:ring-amber-500 tracking-widest h-6 w-36" placeholder="Officer Password" />
-                    <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-1 px-3 rounded transition shadow-lg tracking-wider uppercase text-[11px] h-6 flex items-center justify-center">Unlock</button>
-                  </form>
-                )}
-              </div>
-            </div>
-          </div>
-        </header>
-
-        {/* --- NAVIGATION TABS --- */}
-        <div className="flex overflow-x-auto gap-2 border-b border-slate-800 pb-px custom-scrollbar">
-          <button onClick={() => setActiveTab('overview')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'overview' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Priority Overview</button>
-          <button onClick={() => setActiveTab('bis')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bis' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>BiS Config</button>
-          <button onClick={() => setActiveTab('bank')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bank' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Guild Bank</button>
-          <button onClick={() => setActiveTab('raidAssignments')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'raidAssignments' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-            <span className="inline-flex items-center gap-2">
-              <span>Raid Assignments</span>
-              {hasRaidAssignmentsUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-            </span>
-          </button>
-          <button onClick={() => setActiveTab('raidSignups')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'raidSignups' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Raid Signups</button>
-          {/* Lock down all editing tabs behind authentication */}
-          {isAuthenticated && (
-            <>
-              <button onClick={() => setActiveTab('bankRequests')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'bankRequests' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>Bank Requests</button>
-              <button onClick={() => setActiveTab('loot')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'loot' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-                <span className="inline-flex items-center gap-2">
-                  <span>Loot Council</span>
-                  {hasLootUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-                </span>
-              </button>
-              <button onClick={() => setActiveTab('roster')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'roster' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-                <span className="inline-flex items-center gap-2">
-                  <span>Roster & Attendance</span>
-                  {hasRosterUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-                </span>
-              </button>
-              <button onClick={() => setActiveTab('scoring')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'scoring' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-                <span className="inline-flex items-center gap-2">
-                  <span>Scoring & Config</span>
-                  {hasScoringUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-                </span>
-              </button>
-              <button onClick={() => setActiveTab('itemsdb')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'itemsdb' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-                <span className="inline-flex items-center gap-2">
-                  <span>Master Items DB</span>
-                  {hasItemsDbUnsavedChanges && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-                </span>
-              </button>
-              <button onClick={() => setActiveTab('officerRoles')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'officerRoles' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-                <span className="inline-flex items-center gap-2">
-                  <span>Officer Roles</span>
-                  {officerRolesDirty && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-                </span>
-              </button>
-              <button onClick={() => setActiveTab('discordBotConfig')} className={`whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${activeTab === 'discordBotConfig' ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}>
-                <span className="inline-flex items-center gap-2">
-                  <span>Config</span>
-                  {discordBotConfigDirty && <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded px-1.5 py-0.5 text-[9px] leading-none">Unsaved</span>}
-                </span>
-              </button>
-            </>
-          )}
-        </div>
-
-        {/* =========================================
-              TAB: PRIORITY OVERVIEW (MASTER LEDGER - PUBLIC)
-              ========================================= */}
-        {activeTab === 'overview' && (
-          <OverviewTab
-            filteredOverviewItems={filteredOverviewItems}
-            overviewSearch={overviewSearch}
-            setOverviewSearch={setOverviewSearch}
-            roster={roster}
-            assignments={assignments}
-            calculateScore={calculateScore}
-            getRankBadgeStyle={getRankBadgeStyle}
-            renderItemLink={renderItemLink}
-            hideWowheadTooltip={hideWowheadTooltip}
-            isAuthenticated={isAuthenticated}
-            setActiveTab={setActiveTab}
-            setSearchQuery={setSearchQuery}
-            setSelectedItemName={setSelectedItemName}
-            specsByName={specsByName}
-            getDisplayFromId={getDisplayFromId}
-            myPlayerName={selectedMyPlayerName}
-            onClearItemPriorities={handleClearOverviewItemPriorities}
-            hasLootUnsavedChanges={hasLootUnsavedChanges}
-            onSaveAssignments={handleSaveLootCouncilChanges}
-            onEditItemId={jumpToMasterItemsDbForItem}
-          />
-        )}
-
-        {
-  /* =========================================
-      TAB: GUILD BANK (PUBLIC)
-      ========================================= */}
-        {activeTab === 'bank' && (
-          <GuildBankTab
-            bankItems={bankItems}
-            bankSearch={bankSearch}
-            setBankSearch={setBankSearch}
-            isAuthenticated={isAuthenticated}
-            roster={roster}
-            myPlayerId={globalMyPlayerId ? parseInt(globalMyPlayerId) : null}
-          />
-        )}
-
-        {/* =========================================
-      TAB: RAID ASSIGNMENTS (PUBLIC, EDIT GATED)
-      ========================================= */}
-        {activeTab === 'raidAssignments' && (
-          <RaidAssignmentsTab
-            isAuthenticated={isAuthenticated}
-            roster={roster}
-            getSpecById={getSpecById}
-            enabledBosses={enabledBosses}
-            raidZones={raidZones}
-            handleToggleZone={handleToggleZone}
-            handleToggleBoss={handleToggleBoss}
-            customRaidGroups={customRaidGroups}
-            handleAddCustomRaidBoss={handleAddCustomRaidBoss}
-            handleRemoveCustomRaidBoss={handleRemoveCustomRaidBoss}
-            raidAssignmentData={raidAssignmentData}
-            setRaidAssignmentData={setRaidAssignmentData}
-            hasUnsavedChanges={raidAssignmentDataDirty || enabledBossesDirty}
-            onSaveChanges={handleSaveRaidAssignmentsChanges}
-            isSaving={isSavingRaidAssignments}
-            myPlayerName={selectedMyPlayerName}
-          />
-        )}
-
-        {activeTab === 'raidSignups' && (
-          <RaidSignupsTab
-            fetchData={fetchData}
-            putData={putData}
-            postData={postData}
-            deleteData={deleteData}
-            isAuthenticated={isAuthenticated}
-            specsFromDb={specsFromDb}
-          />
-        )}
-
-        {/* =========================================
-      TAB: BANK REQUESTS (AUTH-GATED)
-      ========================================= */}
-        {activeTab === 'bankRequests' && isAuthenticated && (
-          <BankRequestsTab
-            bankRequests={bankRequests}
-            roster={roster}
-            specsByName={specsByName}
-            getDisplayFromId={getDisplayFromId}
-            respondingRequestId={respondingRequestId}
-            setRespondingRequestId={setRespondingRequestId}
-            approveQuantity={approveQuantity}
-            setApproveQuantity={setApproveQuantity}
-            approvePrice={approvePrice}
-            setApprovePrice={setApprovePrice}
-            approveNote={approveNote}
-            setApproveNote={setApproveNote}
-            denyReason={denyReason}
-            setDenyReason={setDenyReason}
-            denyCustomReason={denyCustomReason}
-            setDenyCustomReason={setDenyCustomReason}
-            handleResolveBankRequest={handleResolveBankRequest}
-            handleBulkResolveBankRequests={handleBulkResolveBankRequests}
-            handleBankFileUpload={handleBankFileUpload}
-            setBankUploadParsed={setBankUploadParsed}
-            bankUploadParsed={bankUploadParsed}
-            handleSaveBankUpload={handleSaveBankUpload}
-            bankUploadStatus={bankUploadStatus}
-          />
-        )}
-
-        {/* =========================================
-              TAB: LOOT COUNCIL ASSIGNMENT
-              ========================================= */}
-        {activeTab === 'loot' && isAuthenticated && (
-          <LootCouncilTab
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-            filterZone={filterZone}
-            setFilterZone={setFilterZone}
-            uniqueZones={uniqueZones}
-            filterBoss={filterBoss}
-            setFilterBoss={setFilterBoss}
-            uniqueBosses={uniqueBosses}
-            filterSlot={filterSlot}
-            setFilterSlot={setFilterSlot}
-            filterCategory={filterCategory}
-            setFilterCategory={setFilterCategory}
-            uniqueSlots={uniqueSlots}
-            selectedItemName={selectedItemName}
-            setSelectedItemName={setSelectedItemName}
-            filteredItems={filteredItems}
-            selectedItem={selectedItem}
-            sortedEligiblePlayers={sortedEligiblePlayers}
-            getDisplayFromId={getDisplayFromId}
-            getSlugFromDisplay={getSlugFromDisplay}
-            bisPriorities={bisPriorities}
-            globalPhase={globalPhase}
-            assignments={assignments}
-            mutableItems={mutableItems}
-            getPlayerItemPriorityStatus={getPlayerItemPriorityStatus}
-            getSpecById={getSpecById}
-            getRankBadgeStyle={getRankBadgeStyle}
-            renderItemLink={renderItemLink}
-            handleSetPriority={handleSetPriority}
-            PlayerNameWithScore={PlayerNameWithScore}
-            hasUnsavedChanges={assignmentsDirty}
-            onSaveChanges={handleSaveLootCouncilChanges}
-            onClearItemAssignments={handleClearOverviewItemPriorities}
-            isSaving={isSavingLootCouncil}
-          />
-        )}
-
-        {/* =========================================
-              TAB: ROSTER & ATTENDANCE
-              ========================================= */}
-        {activeTab === 'roster' && isAuthenticated && (
-          <RosterTab
-            fetchData={fetchData}
-            handleSaveRaidLog={handleSaveRaidLog}
-            handleApplyRaidSignupGroupsToAttendance={handleApplyRaidSignupGroupsToAttendance}
-            handleImportRaidHelperJson={handleImportRaidHelperJson}
-            newRaidDate={newRaidDate}
-            setNewRaidDate={setNewRaidDate}
-            newRaidZone={newRaidZone}
-            setNewRaidZone={setNewRaidZone}
-            raidLogs={raidLogs}
-            handleDeleteRaidLog={handleDeleteRaidLog}
-            handleAddPlayer={handleAddPlayer}
-            newName={newName}
-            setNewName={setNewName}
-            newSpec={newSpec}
-            setNewSpec={setNewSpec}
-            specsFromDb={specsFromDb}
-            setAllRaidStatus={setAllRaidStatus}
-            roster={roster}
-            getSpecById={getSpecById}
-            toggleRaidStatus={toggleRaidStatus}
-            handleUpdatePlayer={handleUpdatePlayer}
-            handleRemovePlayer={handleRemovePlayer}
-            importedRaidHelperPlayerIds={recentRaidHelperImportedIds}
-            importedRaidHelperSpecConflictIds={recentRaidHelperSpecConflictIds}
-            raidHelperImportSession={raidHelperImportSession}
-            onUpdateRaidHelperImportEntry={handleUpdateRaidHelperImportEntry}
-            onApplyRaidHelperImport={handleApplyRaidHelperImport}
-            onCancelRaidHelperImport={handleCancelRaidHelperImport}
-            specsByName={specsByName}
-            PlayerNameWithScore={PlayerNameWithScore}
-            hasUnsavedChanges={rosterDirty || raidLogsDirty || playerStatsDirty}
-            onSaveChanges={handleSaveRosterAttendanceChanges}
-            isSaving={isSavingRosterAttendance}
-          />
-        )}
-
-        {activeTab === 'officerRoles' && isAuthenticated && (
-          <OfficerRolesTab
-            roster={roster}
-            getSpecById={getSpecById}
-            officerRoles={officerRoles}
-            setOfficerRoles={setOfficerRolesData}
-            myPlayerId={globalMyPlayerId}
-            hasUnsavedChanges={officerRolesDirty}
-            onSaveChanges={handleSaveOfficerRoles}
-            isSaving={isSavingOfficerRoles}
-          />
-        )}
-
-        {activeTab === 'discordBotConfig' && isAuthenticated && (
-          <DiscordBotConfigTab
-            config={discordBotConfig}
-            setConfig={setDiscordBotConfig}
-            hasUnsavedChanges={discordBotConfigDirty}
-            onSaveChanges={handleSaveDiscordBotConfig}
-            isSaving={isSavingDiscordBotConfig}
-            claims={rosterClaims}
-            onUnclaimClaim={handleUnclaimClaim}
-            roster={roster}
-            specsByName={specsByName}
-            getDisplayFromId={getDisplayFromId}
-          />
-        )}
-
-        {/* =========================================
-              TAB: SCORING & CONFIG
-              ========================================= */}
-        {activeTab === 'scoring' && isAuthenticated && (
-          <ScoringTab
-            scoringConfig={scoringConfig}
-            setScoringConfig={setScoringConfig}
-            roster={roster}
-            playerStats={playerStats}
-            expandedPlayerId={expandedPlayerId}
-            setExpandedPlayerId={setExpandedPlayerId}
-            getSpecById={getSpecById}
-            getDisplayFromId={getDisplayFromId}
-            calculateAttendance={calculateAttendance}
-            updatePlayerStat={updatePlayerStat}
-            updatePlayerParse={updatePlayerParse}
-            updatePlayerManualAdjustment={updatePlayerManualAdjustment}
-            PlayerNameWithScore={PlayerNameWithScore}
-            hasUnsavedChanges={scoringConfigDirty || playerStatsDirty}
-            onSaveChanges={handleSaveScoringChanges}
-            isSaving={isSavingScoring}
-          />
-        )}
-
-        {/* =========================================
-              TAB: BiS & ALTERNATIVES (CHARACTER SHEET)
-              ========================================= */}
-        {activeTab === 'bis' && (
-          <BisConfigTab
-            selectedBisSpec={selectedBisSpec}
-            setSelectedBisSpec={setSelectedBisSpec}
-            masterItemsDbPhase={masterItemsDbPhase}
-            setMasterItemsDbPhase={setMasterItemsDbPhase}
-            specsFromDb={specsFromDb}
-            renderItemSlot={renderItemSlot}
-            specsByName={specsByName}
-          />
-        )}
-
-        {/* =========================================
-              TAB: MASTER ITEMS DATABASE EDITING TABLE
-              ========================================= */}
-        {activeTab === 'itemsdb' && isAuthenticated && (
-          <ItemsDatabaseTab
-            dbNewName={dbNewName}
-            setDbNewName={setDbNewName}
-            dbNewSlot={dbNewSlot}
-            setDbNewSlot={setDbNewSlot}
-            dbNewZone={dbNewZone}
-            setDbNewZone={setDbNewZone}
-            dbNewBoss={dbNewBoss}
-            setDbNewBoss={setDbNewBoss}
-            dbNewItemId={dbNewItemId}
-            setDbNewItemId={setDbNewItemId}
-            handleAddItemToDb={handleAddItemToDb}
-            dbSearch={dbSearch}
-            setDbSearch={setDbSearch}
-            showMissingWowheadFilter={showMissingWowheadFilter}
-            setShowMissingWowheadFilter={setShowMissingWowheadFilter}
-            dbFilteredItems={dbFilteredItems}
-            specsSortedByClass={specsSortedByClass}
-            dbBisPriorities={dbBisPriorities}
-            handleUpdateItemEligibility={handleUpdateItemEligibility}
-            handleUpdateItemId={handleUpdateItemId}
-            handleDeleteItemFromDb={handleDeleteItemFromDb}
-            renderItemLink={renderItemLink}
-            masterItemsDbPhase={masterItemsDbPhase}
-            setMasterItemsDbPhase={setMasterItemsDbPhase}
-            hasUnsavedChanges={dbBisPrioritiesDirty || mutableItemsDirty}
-            onSaveChanges={handleSaveItemsDbChanges}
-            isSaving={isSavingItemsDb}
-          />
-        )}
-
-        <BnetClaimModal
-          open={showBnetClaimModal}
-          onClose={() => setShowBnetClaimModal(false)}
-          isAuthenticated={bnetAuthState.authenticated}
-          showBnetCharacterLookup={bnetAuthState.showBnetCharacterLookup}
-          isLoading={bnetAuthState.loading || bnetClaimBusy}
-          error={bnetAuthState.error}
-          characters={bnetAuthState.characters}
-          diagnostics={bnetAuthState.diagnostics}
+    <DashboardPageLayout
+      isDbConnected={isDbConnected}
+      specsFromDb={specsFromDb}
+      header={(
+        <DashboardHeader
+          hasAnyUnsavedChanges={hasAnyUnsavedChanges}
+          unsavedSections={unsavedSections}
+          handleSaveAllChanges={handleSaveAllChanges}
+          globalPhase={globalPhase}
+          setGlobalPhase={setGlobalPhase}
+          globalMyPlayerId={globalMyPlayerId}
+          onCharacterSelect={(id) => {
+            setGlobalMyPlayerId(id);
+            localStorage.setItem(STORAGE_KEYS.myPlayerId, id || '');
+            if (id) {
+              const player = roster.find(p => p.id === parseInt(id));
+              if (player) {
+                const specName = getDisplayFromId(player.spec_id);
+                if (specName) setSelectedBisSpec(specName);
+              }
+            }
+          }}
+          sortedRosterForSelector={sortedRosterForSelector}
+          currentUserClaimedRosterIds={currentUserClaimedRosterIds}
+          selectedGlobalPlayerIsClaimed={selectedGlobalPlayerIsClaimed}
+          setShowBnetClaimModal={setShowBnetClaimModal}
+          bnetAuthState={bnetAuthState}
+          handleBattleNetLogin={handleBattleNetLogin}
+          handleBattleNetLogout={handleBattleNetLogout}
+          isAuthenticated={isAuthenticated}
+          handleLoginSubmit={handleLoginSubmit}
+          passwordInput={passwordInput}
+          setPasswordInput={setPasswordInput}
+          handleLogout={handleLogout}
           roster={roster}
-          onClaim={handleBattleNetClaim}
-          onManualClaim={handleBattleNetManualClaim}
-          onLogin={handleBattleNetLogin}
-          onLogout={handleBattleNetLogout}
-          claimedRosterNames={new Set((roster || []).filter(player => player.user_id).map(player => String(player.name || '').trim().toLowerCase()))}
+          getDisplayFromId={getDisplayFromId}
+          specsByName={specsByName}
         />
-
-        {itemIdEditor && (
-          <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
-            <div className="bg-slate-900 border border-slate-700 rounded-xl p-6 w-full max-w-md">
-              <h3 className="text-lg font-bold text-slate-100 mb-2">Edit Wowhead ID</h3>
-              <p className="text-xs text-slate-500 mb-4">{itemIdEditor.itemName}</p>
-
-              <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Wowhead Item ID</label>
-              <input
-                type="text"
-                value={itemIdEditor.wowheadIdInput}
-                onChange={e => setItemIdEditor(prev => ({ ...prev, wowheadIdInput: e.target.value }))}
-                placeholder="e.g. 32505"
-                className="w-full bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
-              />
-
-              <div className="flex gap-2 mt-5 justify-end">
-                <button
-                  type="button"
-                  onClick={() => setItemIdEditor(null)}
-                  className="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-2 px-4 rounded"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  onClick={handleSaveItemIdFromModal}
-                  className="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2 px-4 rounded"
-                >
-                  Save ID
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-      </div>
-    </div>
+      )}
+      navigation={(
+        <DashboardNavigationTabs
+          activeTab={activeTab}
+          hoveredNavTab={hoveredNavTab}
+          setHoveredNavTab={setHoveredNavTab}
+          handleMainNavSelect={handleMainNavSelect}
+          getDropdownItemActiveState={getDropdownItemActiveState}
+          isAuthenticated={isAuthenticated}
+          subTabs={subTabs}
+        />
+      )}
+      mainContent={(
+        <DashboardMainContent
+          viewModel={mainContentViewModel}
+        />
+      )}
+      modalContent={(
+        <DashboardModals
+          showBnetClaimModal={showBnetClaimModal}
+          setShowBnetClaimModal={setShowBnetClaimModal}
+          bnetAuthState={bnetAuthState}
+          bnetClaimBusy={bnetClaimBusy}
+          handleBattleNetClaim={handleBattleNetClaim}
+          handleBattleNetManualClaim={handleBattleNetManualClaim}
+          handleBattleNetLogin={handleBattleNetLogin}
+          handleBattleNetLogout={handleBattleNetLogout}
+          roster={roster}
+          itemIdEditor={itemIdEditor}
+          setItemIdEditor={setItemIdEditor}
+          handleSaveItemIdFromModal={handleSaveItemIdFromModal}
+        />
+      )}
+    />
   );
 }

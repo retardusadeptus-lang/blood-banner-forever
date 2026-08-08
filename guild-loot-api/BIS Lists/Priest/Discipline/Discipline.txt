@@ -1,0 +1,3204 @@
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase TwoClassesLevelingBest in SlotTier ListsRaidsAttunementsDungeonsReputationsProfessions
+Guides...
+Guide Contents
+Patch 2.5.6
+4.2/5 (10 Votes)
+TBCC Priest Healing Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Best In Slot Gear in Pre-Raid
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Wands
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Priest Healing Pre-Raid Best in Slot (BiS) - TBC Classic
+By Wowhead
+Updated: 2026/02/17
+In this Pre-Raid Best-in-Slot Gear List for Priest Healing in The Burning Crusade Classic, we will list the recommended gear for Priest Healing to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Priest Healing Best in Slot Hub
+
+Best In Slot Gear for Priest Healing DPS in Pre-Raid
+Healer gearing always heavily depends on playstyle, situation, and raid environment, so treat the BiS list below as a guideline rather than a gospel. Trinkets, for example, are always situational, so you should have several and swap them based on the encounter.
+
+Priest Healings looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Priest Healing Gems & Enchants
+Should Priest Healing DPS Choose Aldor or Scryer for BiS in TBC Classic Pre-Raid?
+Although the Greater Inscription of Faith Greater Inscription of Faith enchant is moderately better than Greater Inscription of the Oracle Greater Inscription of the Oracle, the choice between The Aldor and The Scryers is fairly unimportant for healers, as both Zandalar Signet of Serenity Zandalar Signet of Serenity and Resilience of the Scourge Resilience of the Scourge are virtually identical to the Aldor enchant in terms of value.
+
+The choice technically also affects whether Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration will proc a healing power buff or a direct heal on your target in Phase 5, but as you'll likely already have Brooch of Nature's Mercy Brooch of Nature's Mercy by then, this is also not really impactful.
+
+In conclusion, if you care about the slight stat advantage, you should opt for the Aldor, but if you'd like to choose the Scryers, you should go for it, as the shoulder enchant won't ever make a noticeable difference.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Priest Healings, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Priest Healing in TBC Classic Pre-Raid
+Cowl of Naaru Blessings is a decent option by itself, but costs a ton of badges, which you would be better off spending on other items that will last you longer.
+
+Although Whitemend Hood technically has the highest healing power, it does not have a meta socket and is also fairly expensive. The main benefit of it is that it can be crafted before stepping into any raid without having to rely on any RNG.
+Rank	Item	Source
+BiS	Cowl of Naaru Blessings Cowl of Naaru Blessings	Vendor: G'eras (Badges of Justice)
+BiS	Whitemend Hood Whitemend Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Hallowed Crown Hallowed Crown	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Watcher's Cowl Watcher's Cowl	Vendor: Fedryen Swiftspear (Cenarion Expedition Revered)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Scintillating Headdress of Second Sight Scintillating Headdress of Second Sight	Drop: Shirrak the Dead Watcher (Heroic Auchenai Crypts)
+Option	Circlet of Faith Circlet of Faith	Drop: Thaddius (Classic - Naxxramas)
+Option	Evoker's Helmet of Second Sight Evoker's Helmet of Second Sight	Quest: Teron Gorefiend, I am... Teron Gorefiend, I am... / Teron Gorefiend, I am... Teron Gorefiend, I am...
+
+Best in Slot Shoulder Armor for Priest Healing in TBC Classic Pre-Raid
+Primal Mooncloth Shoulders is a great pre-BiS crafted option, though it does require Mooncloth Tailoring.
+Rank	Item	Source
+Option	Primal Mooncloth Shoulders Primal Mooncloth Shoulders	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+Option	Hallowed Pauldrons Hallowed Pauldrons	Drop: Grandmaster Vorpil (Shadow Labyrinth)
+Option	Pauldrons of Sufferance Pauldrons of Sufferance	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Option	Vestia's Pauldrons of Inner Grace Vestia's Pauldrons of Inner Grace	Drop: Cache of the Legion (The Mechanar)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Hallowed Pauldrons is the next best alternative with fairly decent stats that you can get while farming Shockwave Truncheon.
+Rank	Item	Source
+Option	Shoulderpads of Faith Shoulderpads of Faith	Drop: Shared Boss Drop (Classic - Naxxramas)
+
+Best in Slot Back Armor for Priest Healing in TBC Classic Pre-Raid
+Light-Touched Stole of Altruism has a large amount of healing power combined with decent stats. White Remedy Cape is cheap to make and a perfectly viable pre-raid option. The lack of stamina is the only downside. Lifegiving Cloak is another good cloak, but due to it being an expensive world drop and having absolutely no stamina, it's usually not worth going for.
+Rank	Item	Source
+BiS	Light-Touched Stole of Altruism Light-Touched Stole of Altruism	Drop: Exarch Maladaar (Heroic Auchenai Crypts)
+Option	Bishop's Cloak Bishop's Cloak	Vendor: G'eras (Badges of Justice)
+Option	White Remedy Cape White Remedy Cape	Profession: Tailoring - can be purchased on the Auction House
+Option	Lifegiving Cloak Lifegiving Cloak	Drop: World Drop
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+
+Rank	Item	Source
+Option	Cloak of Scintillating Auras Cloak of Scintillating Auras	Drop: Zereketh the Unbound (The Steamvault)
+Option	Cloak of Whispering Shells Cloak of Whispering Shells	Drop: Hydromancer Thespia (The Arcatraz)
+
+Best in Slot Chest Armor for Priest Healing in TBC Classic Pre-Raid
+Primal Mooncloth Robe is again far and away the best item in this slot, but provides no stamina, similar to the other Primal Mooncloth pieces. Like the other pieces of the set, Hallowed Garments is a great pre-raid choice that drops in Shadow Labyrinth, which has a couple of other worthwhile pre-raid drops.
+Rank	Item	Source
+BiS	Primal Mooncloth Robe Primal Mooncloth Robe	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+Option	Hallowed Garments Hallowed Garments	Drop: Murmur (Shadow Labyrinth)
+Option	Raiments of Divine Authority Raiments of Divine Authority	Drop: Keli'dan the Breaker (The Blood Furnace)
+Option	Robe of Effervescent Light Robe of Effervescent Light	Drop: Keli'dan the Breaker (Heroic The Blood Furnace)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+
+Rank	Item	Source
+Option	Robe of Faith Robe of Faith	Drop: Four Horsemen Chest (Classic - Naxxramas)
+
+Best in Slot Wrist Armor for Priest Healing in TBC Classic Pre-Raid
+Bands of the Benevolent is most likely the best option to go for, as farming Bindings of the Timewalker can take quite a while.
+Rank	Item	Source
+BiS	Bindings of the Timewalker Bindings of the Timewalker	Vendor: Alurmi (Keepers of Time Exalted)
+BiS	Bands of the Benevolent Bands of the Benevolent	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+Option	Bracelets of Royal Redemption Bracelets of Royal Redemption	Drop: Emperor Vek'nilash (Classic - Ahn'Qiraj)
+Option	Elementalist Bracelets of Healing	Drop: World Drop
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+Option	Shattrath Wraps Shattrath Wraps	Quest: The Soul Devices The Soul Devices
+Option	Bindings of Faith Bindings of Faith	Drop: Shared Boss Drop (Classic - Naxxramas)
+
+Best in Slot Hand Armor for Priest Healing in TBC Classic Pre-Raid
+All of these options listed are fairly close in terms of value, so simply take the first one that drops for you and spend more time on other slots.
+Rank	Item	Source
+BiS	Hallowed Handwraps Hallowed Handwraps	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+BiS	Bloody Surgeon's Mitts Bloody Surgeon's Mitts	Drop: Broggok (The Blood Furnace)
+Option	Prismatic Mittens of Mending Prismatic Mittens of Mending	Drop: Commander Sarannis (The Botanica)
+Option	Gloves of Penitence Gloves of Penitence	Quest: Levixus the Soul Caller Levixus the Soul Caller
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Gloves of Faith Gloves of Faith	Drop: Shared Boss Drop (Classic - Naxxramas)
+
+Best in Slot Waist Armor for Priest Healing in TBC Classic Pre-Raid
+The best option here, again, is a Primal Mooncloth crafted Tailoring piece.
+Rank	Item	Source
+BiS	Primal Mooncloth Belt Primal Mooncloth Belt	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+Option	Cord of Sanctification Cord of Sanctification	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Grasp of the Old God Grasp of the Old God	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Cord of Belief Cord of Belief	Drop: Mennu the Betrayer (Heroic: The Slave Pens)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Cord of Sanctification is your best non-crafted option, though it arguably might not be worth farming given there's not much else to get in Old Hillsbrad Foothills.
+Rank	Item	Source
+Option	Glyph-Lined Sash Glyph-Lined Sash	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+
+Best in Slot Leg Armor for Priest Healing in TBC Classic Pre-Raid
+Whitemend Pants is just the best, but may be expensive, and the other options are very close behind.
+Rank	Item	Source
+BiS	Whitemend Pants Whitemend Pants	Profession: Tailoring - can be purchased on the Auction House
+Option	Pontifex Kilt Pontifex Kilt	Drop: Warlord Kalithresh (Heroic The Steamvault)
+Option	Kamaei's Cerulean Skirt Kamaei's Cerulean Skirt	Drop: World Drop
+Option	Pontiff's Pantaloons of Prophecy Pontiff's Pantaloons of Prophecy	Drop: Captain Skarloc (Heroic Old Hillsbrad Foothills)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Lifegiver Britches Lifegiver Britches	Drop: Reinforced Fel Iron Chest (Hellfire Ramparts)
+Option	Hallowed Trousers Hallowed Trousers	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+Option	Khadgar's Kilt of Abjuration Khadgar's Kilt of Abjuration	Drop: Temporus (The Black Morass)
+Option	Pants of the Naaru Pants of the Naaru	Quest: Special Delivery to Shattrath City Special Delivery to Shattrath City
+
+Best in Slot Feet Armor for Priest Healing in TBC Classic Pre-Raid
+Boots of the Pious and Slippers of Serenity are your best dungeon options that will most likely still last you for quite a while.
+Rank	Item	Source
+BiS	Boots of the Pious Boots of the Pious	Drop: Pathaleon the Calculator (Heroic The Mechanar)
+BiS	Slippers of Serenity Slippers of Serenity	Drop: Exarch Maladaar (Auchenai Crypts)
+Option	Shattrath Jumpers Shattrath Jumpers	Quest: Into the Heart of the Labyrinth Into the Heart of the Labyrinth
+Option	Jeweled Boots of Sanctification Jeweled Boots of Sanctification	Drop: Warbringer O'mrogg (The Shattered Halls)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Curate's Boots Curate's Boots	Quest: Fel Embers Fel Embers (The Shattered Halls)
+
+Best in Slot Neck Jewelry for Priest Healing in TBC Classic Pre-Raid
+There are many different options for this slot, which are all worth using, but the easiest one to obtain is most likely Karja's Medallion as it's a (The Aldor only) quest reward.
+Rank	Item	Source
+BiS	Karja's Medallion Karja's Medallion	Quest: Shutting Down Manaforge Ara Shutting Down Manaforge Ara
+BiS	Necklace of Eternal Hope Necklace of Eternal Hope	Vendor: G'eras (Badges of Justice)
+Option	Necklace of Resplendent Hope Necklace of Resplendent Hope	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Natasha's Guardian Cord Natasha's Guardian Cord	Quest: The Hound-Master The Hound-Master
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Necklace of Necropsy Necklace of Necropsy	Drop: Heigan the Unclean (Classic - Naxxramas)
+Option	Amulet of the Fallen God Amulet of the Fallen God	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Swampstone Necklace Swampstone Necklace	Drop: Swamplord Musel'ek (Heroic The Underbog)
+Option	Choker of Fluid Thought Choker of Fluid Thought	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Sethekk Oracle's Focus Sethekk Oracle's Focus	Quest: Brother Against Brother Brother Against Brother
+
+Best in Slot Ring Jewelry for Priest Healing in TBC Classic Pre-Raid
+Once again, it's best to simply pick two rings that are easy to get and stick to them, as they'll be replaced with raid alternatives pretty quickly.
+Rank	Item	Source
+BiS	Band of Halos Band of Halos	Vendor: G'eras (Badges of Justice)
+BiS	Ancestral Band Ancestral Band
+Ring of Convalescence Ring of Convalescence	Vendor: Quartermaster Urgronn / Logistics Officer Ulrike (Thrallmar / Honor Hold Revered)
+BiS	Band of the Crystalline Void Band of the Crystalline Void	Drop: Yor (Heroic Mana-Tombs)
+BiS	Spiritualist's Mark of the Sha'tar Spiritualist's Mark of the Sha'tar	Quest: Battle of the Crimson Watch Battle of the Crimson Watch
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Keeper's Ring of Piety Keeper's Ring of Piety	Quest: The Opening of the Dark Portal The Opening of the Dark Portal (The Black Morass)
+Option	Cosmic Lifeband Cosmic Lifeband	Drop: Nethermancer Sepethrea (The Mechanar)
+Option	Ring of Fabled Hope Ring of Fabled Hope	Drop: The Black Stalker (Heroic The Underbog)
+Option	Celestial Jewel Ring Celestial Jewel Ring	Quest: Hitting the Motherlode Hitting the Motherlode
+
+Best in Slot Trinkets for Priest Healing in TBC Classic Pre-Raid
+Essence of the Martyr is both pre-raid and raid BiS in Phase 1. It's definitely the best way to spend your first batch of badges!
+
+Scarab Brooch is a trinket hailing from Classic that has a scaling bonus, so in TBC it remains as strong as it was in Classic, with the absorb effect adjusting to updated output standards. Darkmoon Card: Blue Dragon sees no changes in TBC and remains just as useful, with the bonus being percentage-based. Obviously, it should only be used if you run short on mana throughout the given encounter.
+Rank	Item	Source
+BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (Badges of Justice)
+BiS	Scarab Brooch Scarab Brooch	Drop: Viscidus (Ahn'Qiraj)
+Option	Darkmoon Card: Blue Dragon Darkmoon Card: Blue Dragon	Quest: Darkmoon Beast Deck Darkmoon Beast Deck (Darkmoon Faire)
+Option	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Bangle of Endless Blessings has an on-use effect that synergizes well with Blue Dragon, in case you need even more mana.
+
+Scarab of the Infinite Cycle is particularly good for how easy it is to acquire, dropping both in Normal and Heroic mode. Lower City Prayerbook is a reputation reward for content you'll be running anyway for other items.
+Rank	Item	Source
+Option	Rejuvenating Gem Rejuvenating Gem	Drop: Flamegor, Firemaw, & Ebonroc (Classic - Blackwing Lair)
+Option	Scarab of the Infinite Cycle Scarab of the Infinite Cycle	Drop: Aeonus (Heroic The Black Morass)
+Option	Lower City Prayerbook Lower City Prayerbook	Vendor: Nakodu (Lower City Revered)
+Option	Oshu'gun Relic Oshu'gun Relic	Quest: Gava'xi Gava'xi
+Option	Bangle of Endless Blessings Bangle of Endless Blessings	Drop: Warp Splinter (The Botanica)
+
+Best in Slot Weapons for Priest Healing in TBC Classic Pre-Raid
+Generally, it is best to combine a one-handed weapon with an off-hand in TBC, as this will provide superior stats to most two-handed weapons. There are quite a few weapons with very similar stats available pre-raid.
+Rank	Item	Source
+BiS	Hand of Eternity Hand of Eternity	Profession: Blacksmithing - can be purchased on the Auction House
+BiS	Shockwave Truncheon Shockwave Truncheon	Drop: Murmur (Heroic Shadow Labyrinth)
+Option	Gavel of Pure Light Gavel of Pure Light	Vendor: Almaador (The Sha'tar Exalted)
+Option	The Ancient Scepter of Sue-Min The Ancient Scepter of Sue-Min	Drop: World Drop
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+The Essence Focuser in particular is a good pick since it can be bought off the auction house, and is generally relatively inexpensive.
+Rank	Item	Source
+Option	Hammer of the Twisting Nether Hammer of the Twisting Nether	Drop: Kel'Thuzad (Classic - Naxxramas)
+Option	Hammer of the Penitent Hammer of the Penitent	Drop: Mechano-Lord Capacitus (The Mechanar)
+Option	Dathrohan's Ceremonial Hammer Dathrohan's Ceremonial Hammer	Drop: Captain Skarloc (Heroic Old Hillsbrad Foothills)
+Option	Lightsworn Hammer Lightsworn Hammer	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Option	The Essence Focuser The Essence Focuser	Drop: World Drop
+
+
+Since it's rare to see an Atiesh, Greatstaff of the Guardian, you'll most likely pick up something like Serpentcrest Life-Staff during pre-raid gearing if you can't get your hands on a 1-hand/offhand combo, which is generally better.
+Rank	Item	Source
+BiS	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Quest: Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian (Classic - Naxxramas)
+BiS	Serpentcrest Life-Staff Serpentcrest Life-Staff	Drop: Mekgineer Steamrigger (The Steamvault)
+Option	Seer's Cane Seer's Cane	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Epoch-Mender Epoch-Mender	Drop: Temporus (The Black Morass)
+
+
+Best in Slot Offhands for Priest Healing in TBC Classic Pre-Raid
+Tears of Heaven is one of the items you should most likely spend your badges on eventually, but in the meantime, Windcaller's Orb is a great option that only requires reputation.
+Rank	Item	Source
+Option	Windcaller's Orb Windcaller's Orb	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+Option	Tears of Heaven Tears of Heaven	Vendor: G'eras (Badges of Justice)
+Option	Sapphiron's Right Eye Sapphiron's Right Eye	Drop: Sapphiron (Classic - Naxxramas)
+Option	Noth's Frigid Heart Noth's Frigid Heart	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Faol's Signet of Cleansing Faol's Signet of Cleansing	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	Swamplight Lantern Swamplight Lantern	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Lordaeron Medical Guide Lordaeron Medical Guide	Drop: Lieutenant Drake (Heroic Old Hillsbrad Foothills)
+Option	Netherwing Spiritualist's Charm Netherwing Spiritualist's Charm	Quest: Ally of the Netherwing Ally of the Netherwing
+Option	Lamp of Peaceful Repose Lamp of Peaceful Repose	Drop: Dalliah the Doomsayer (The Arcatraz)
+
+Best in Slot Wands for Priest Healing in TBC Classic Pre-Raid
+Soul-Wand of the Aldor is a great dungeon option, but if you get unlucky, you can simply buy a BoE wand with the +healing attribute.
+Rank	Item	Source
+BiS	Soul-Wand of the Aldor Soul-Wand of the Aldor	Drop: Ambassador Hellmaw (Shadow Labyrinth)
+BiS	Flawless Wand of Healing	Drop: World Drop
+Option	Wand of the Whispering Dead Wand of the Whispering Dead	Drop: Instructor Razuvious (Classic - Naxxramas)
+Option	Rejuvenating Scepter Rejuvenating Scepter	Quest: Ar'kelos the Guardian Ar'kelos the Guardian
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+Rank	Item	Source
+Option	Wand of the Seer Wand of the Seer	Quest: Turning Point Turning Point
+
+Wowhead
+Wowhead is the composite author encompassing general-interest guides and news, as well as representing many wonderful past and present writers.
+1 - 14 of 14
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+5
+
+	
+By VolkerRacho (983 – 2·8) on 2026/02/04 (Burning Crusade)	
+	
+I made a atlasloot importable list maybe this helps somebody out:
+
+i:32090,i:24264,i:28413,i:29174,i:31104,
+
+i:21874,i:27775,i:27433,i:28250,
+
+i:29354,i:29375,i:24254,i:31329,
+
+i:21875,i:28230,i:24397,i:27506,
+
+i:29183,i:29249,i:21604,i:24692,
+
+i:27536,i:24393,i:28304,i:29315,
+
+i:21873,i:29250,i:21582,i:27542,
+
+i:24261,i:30543,i:31343,i:28218,
+
+i:29251,i:27411,i:28179,i:27525,
+
+i:29251,i:27411,i:28179,i:27525,
+
+i:30377,i:29374,i:28233,i:31691,
+
+i:29373,i:29168,i:29169,i:31923,i:31383,
+
+i:29376,i:21625,i:19288,i:23047,
+
+i:23556,i:29353,i:29175,i:31342,
+
+i:27885,i:25295,i:23009,i:29779,
+Last edited by VolkerRacho on 2026/02/04
+
+1
+
+	
+
+Acrophis on 2026/02/12 (Burning Crusade)
+This was super useful. Thank you.
+
+3
+
+	
+By IdontLikeUsernam (272 – 1·2) on 2021/04/29 (Burning Crusade)	
+	
+This is ignoring how Atiesh affects the party and yourself. Also that it can stack with itself and have +62 to all party members times 5 for a total of 310 extra healing for the party or 610 +healing for self.
+
+0
+
+	
+
+bobloki on 2021/04/30 (Burning Crusade)
+I completely agree. Atiesh was mentioned on the Mage page (The 2% Crit is amazing) but I will be using my Atiesh on my priest for some time in TBC.
+
+-1
+
+	
+
+Vaelis <Rare Premium User> on 2021/05/08 (Burning Crusade)
+Added a mention, it's an entertaining bit of novelty info at very least. Curious to see if any guild manages to make full use of the buff stack (assuming it does not get berfed, hah!)
+
+3
+
+	
+By bobloki (1,371 – 2·5) on 2021/04/30 (Burning Crusade)	
+	
+Scarab Brooch Scarab Brooch is one of the greatest items in Classic and TBC. Very sad it was not mentioned here.
+
+0
+
+	
+
+Vaelis <Rare Premium User> on 2021/05/08 (Burning Crusade)
+It will not be a popular item among new players for certain, but it is worth a mention nonetheless! Thanks for suggestion, added.
+
+0
+
+	
+
+Actualtroll on 2026/02/09 (Burning Crusade)
+You dont understand how scarab brooch works. Its actually not that good for holy priest. There are way better trimkets
+
+3
+
+	
+By Hrogath (799 – 12·9) on 2021/06/23 (Burning Crusade)	
+	
+What a great list! I would just like to add that that Cowl of Naaru Blessings Cowl of Naaru Blessings is available from G'eras even in Phase 1 (Wowhead lists it as Phase 3) for 50 Badge of Justice Badge of Justice, and it is stronger than Hallowed Crown Hallowed Crown if you ignore the set bonus. :)
+
+3
+
+	
+By Smallindie (1,045 – 6·8) on 2026/01/16 (Burning Crusade)	
+	
+Can you do the guides with the whole character overview and actually list all the items without having to click every #$%^ing drop down. What downs kid is doing these guides these days.
+
+1
+
+	
+By Brolinski (797 – 3·3) on 2021/04/13 (Burning Crusade)	
+	
+I have a question:
+What does the symbol next to some of the dungeons and bosses mean?
+I figured the skull is indicating "Heroic" dungeons but what about the vortex? (e.g.:Section "Feet" -> Dungeon "Auchenai Crypts".
+Thanks for the help already.
+Last edited by Brolinski on 2021/04/13
+
+0
+
+	
+
+Xirhas <Epic Premium User> on 2021/04/26 (Burning Crusade)
+I believe it means "instance"
+
+0
+
+	
+
+Vaelis <Rare Premium User> on 2021/04/28 (Burning Crusade)
+Stands for "normal" mode only. As items labeled with that icon are always below 68, I felt it would be decently intuitive.
+
+1
+
+	
+By Narkov (228 – 1·1) on 2021/06/13 (Burning Crusade)	
+	
+I would like to point out some mistakes. Pants of the Naaru Pants of the Naaru are from the quest Special Delivery to Shattrath City Special Delivery to Shattrath City and Soul-Wand of the Aldor Soul-Wand of the Aldor isnt from Netherstorm but from Shadow Labyrinth. Good guide tho, keep up the good work!
+Last edited by Narkov on 2021/06/13
+
+1
+
+	
+By Welune (14,280 – 1·21·19) on 2021/07/06 (Burning Crusade)	
+	
+Head items: I was using Don Rigobertos Lost Hat until Hallowed crown
+
+1
+
+	
+By Helore (9,462 – 2·20·33) on 2022/01/08 (Burning Crusade)	
+	
+Ethereum Life-Staff feels out of place for this being a Pre-Raid BiS guide.
+
+1
+
+	
+By Aliana (1,171 – 3·6) on 2025/11/04 (Burning Crusade)	
+	
+Hi! I am a little bit confused on the BoJ purchases/ranks.
+
+1) Achromic Trousers of the Naaru are listed as pre-raid BIS (and a rank 1 BoJ purchase), and are listed as better than Pontifex Kilt. In Phase 1 and Phase 2 lists, Achromic Trousers are not on the list, and Pontifex Kilt etc are listed as BIS items. I love haste, but thinking the Achromic Trousers are not worth the 75 badge purchase? What happened to them for Phase 1 and 2?
+
+2) Voodoo Shaker. Listed as pre-raid BIS (beating Tears of Heaven), and in the Phase 1 Phase 2 lists, Tears of Heaven is shown as superior (voodoo shaker no where to be found).
+
+Just trying to plan out the best and worthwhile BoJ purchases.
+
+Thanks for checking this out! Good work!
+Last edited by Aliana on 2025/11/04
+
+2
+
+	
+
+Serenal <Rare Premium User> on 2025/11/06 (Burning Crusade)
+Hey, the pre-raid bis guide at the moment is set to the final phase of TBC, voodoo shaker & archromic trousers aren't available until Phase 4 so they aren't on the earlier phases bis lists.
+
+0
+
+	
+
+Aliana on 2025/11/18 (Burning Crusade)
+That would make perfect sense! Thanks for the reply/info!
+
+1
+
+	
+By thecakeisal1e (4,492 – 3·8) on 2026/02/17 (Burning Crusade)	
+	
+In the waist section, Commander Sarannis is listed as being in Heroic Blood Furnace when she is from Heroic Botanica.
+Also, I'm surprised Belt of Faith isn't listed in the Other Recommends.
+
+0
+
+	
+
+Serenal <Rare Premium User> on 2026/02/17 (Burning Crusade)
+Thank you for flagging this. Looks like this belt actually drops from The Slave Pens heroic.
+
+-3
+
+	
+By Actualtroll (2,608 – 4·7) on 2026/02/09 (Burning Crusade)	
+	
+Scarab brooch and blue card dragon trinkets are not good for holy. Thats not how holy priest is played in TBC. Lower city prayer book(which you can use 2, not unique) is far better than either of those trinkets. I'd take prayer bead from ST over scarab brooch.
+
+0
+
+	
+
+moodymann on 2026/02/09 (Burning Crusade)
+Proc rate tends to differ between servers, and its usefulness depends on encounter and pre/post nerf states. That said, Blue Dragon Card is a very strong trinket for CoH mashing fights, especially when combined with Earring later on.
+
+-4
+
+	
+By Celtias (1,719 – 2·5) on 2021/08/28 (Burning Crusade)	
+	
+You do not need +healing gems or shouldn't anyways. I use int and spirit. You will find this early in the game that everything has piles of plus healing but you will run out of mana fast. Spirit slows down how fast you burn through the mana (and +healing bonus) Int is how much and how long with a crit bonus. Most tanks will not have enough health for you to use that much plus healing. You can down rank healing spells to save mana how ever you only have a few hot keys and will have to start manually clicking the spells which is slow and you miss the clutch spells on spike damage.
+
+0
+
+	
+
+Actualtroll on 2026/02/09 (Burning Crusade)
+You just sound like an inexperienced healer
+By Actualtroll (2,608 – 4·7) on 2026/02/09 (Burning Crusade)	
+	
+1 - 14 of 14
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+4.3/5 (12 Votes)
+TBCC Priest Healing Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+            Best In Slot Gear in Phase 1
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Off-Hands
+                Wands
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Priest Healing Phase 1 Best in Slot (BiS) - TBC Classic
+By Wowhead
+Updated: 2026/03/09
+In this Pre-Raid Best-in-Slot Gear List for Priest Healing in The Burning Crusade Classic, we will list the recommended gear for Priest Healing to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Priest Healing Best in Slot Hub
+Best In Slot Gear for Priest Healing in Phase 1
+Healer gearing always heavily depends on playstyle, situation, and raid environment, so treat the BiS list below as a guideline rather than a gospel. Trinkets, for example, are always situational, so you should have several and swap them based on the encounter.
+
+Although Eye of Gruul Eye of Gruul isn't worth using on most Phase 1 encounters, it was included in the BiS list, since picking it up is important for the later phases. Phase 1 Priest BiS consists of two different sets, depending on whether or not you decided to go for the Primal Mooncloth set. The tailor set is by far the better one, but tends to be quite expensive to craft.
+
+Healing Priests looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Healing Priest Gems & Enchants
+Should Priest Healer Choose Aldor or Scryer for BiS in TBC Classic Phase 1?
+Although the Greater Inscription of Faith Greater Inscription of Faith enchant is moderately better than Greater Inscription of the Oracle Greater Inscription of the Oracle, the choice between The Aldor and The Scryers is fairly unimportant for healers. It's worth mentioning that Karja's Medallion Karja's Medallion, which is a solid pre-bis option, is only available to Aldor players.
+
+The choice technically also affects whether Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration will proc a healing power buff or a direct heal on your target in Phase 5, but as you'll likely already have Brooch of Nature's Mercy Brooch of Nature's Mercy by then, this is also not really impactful.
+
+In conclusion, if you care about the slight stat advantage, you should opt for the Aldor, but if you'd like to choose the Scryers, you should go for it, as the shoulder enchant won't ever make a noticeable difference.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Healing Priest in TBC Classic Phase 1
+Light-Collar of the Incarnate is definitely the best choice in this slot, due to its great stats as well as the meta socket that allows you to gem Insightful Earthstorm Diamond.
+
+If you do get unlucky on the tier token and have a lot of leftover badges, Cowl of Naaru Blessings is a decent alternative.
+Whitemend Hood technically has the highest healing power, but due to the lack of a meta socket, it's generally considered worse than the previous two options. The main benefit is that it can be crafted before stepping into any raid without having to rely on the RNG of any sort.
+
+Rank	Item	Source
+BiS	Light-Collar of the Incarnate Light-Collar of the Incarnate	Drop: Prince Malchezaar (Helm of the Fallen Defender, Karazhan)
+Option	Cowl of Naaru Blessings Cowl of Naaru Blessings	Vendor: G'eras, Shattrath City - 50
+Option	Whitemend Hood Whitemend Hood	Profession: Tailoring (Can be Purchased on the Auction House)
+Option	Headdress of the High Potentate Headdress of the High Potentate	Drop: Dust Covered Chest (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+
+Rank	Item	Source
+Option	Hallowed Crown Hallowed Crown	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Watcher's Cowl Watcher's Cowl	Reputation: Cenarion Expedition - Revered
+
+
+Best in Slot Shoulder Armor for Healing Priest in TBC Classic Phase 1
+Primal Mooncloth Shoulders is individually the strongest item in this slot and also grants you access to the set bonus, which makes it by far the best shoulders option. The downside is that it requires Tailoring, has low stamina, and is also somewhat expensive to craft.
+
+Light-Mantle of the Incarnate is the next best alternative with fairly decent stats, but might be a bit hard to obtain as our token is quite contested.
+
+Rank	Item	Source
+BiS	Primal Mooncloth Shoulders Primal Mooncloth Shoulders	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+BiS	Light-Mantle of the Incarnate Light-Mantle of the Incarnate	Drop: High King Maulgar (Gruul's Lair)
+Option	Hallowed Pauldrons Hallowed Pauldrons	Drop: Grandmaster Vorpil (Shadow Labyrinth)
+Option	Pauldrons of the Solace-Giver Pauldrons of the Solace-Giver	Drop: The Curator (Karazhan)
+Best in Slot Back Armor for Healing Priest in TBC Classic Phase 1
+Stainless Cloak of the Pure Hearted is the recommended cloak for Phase 1, as it has a large amount of healing power combined with decent stats.
+
+Lifegiving Cloak is another viable cloak, but due to it being an expensive world drop and having absolutely no stamina, it's usually not worth going for. Light-Touched Stole of Altruism is a great alternative, as the difference from the Karazhan cloak is pretty insignificant.
+
+Rank	Item	Source
+BiS	Stainless Cloak of the Pure Hearted Stainless Cloak of the Pure Hearted	Drop: Prince Malchezaar (Karazhan)
+BiS	Lifegiving Cloak Lifegiving Cloak	Drop: World Drop (Outlands)
+Option	Light-Touched Stole of Altruism Light-Touched Stole of Altruism	Drop: Exarch Maladaar (Heroic Auchenai Crypts)
+Option	Red Riding Hood's Cloak Red Riding Hood's Cloak	Drop: The Big Bad Wolf (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+
+Rank	Item	Source
+Option	Bishop's Cloak Bishop's Cloak	Vendor: G'eras, Shattrath City - 25
+
+
+Best in Slot Chest Armor for Healing Priest in TBC Classic Phase 1
+Primal Mooncloth Robe is again far and away the best item in this slot, but provides no stamina, similar to the other Primal Mooncloth pieces.
+
+On average, the proc effect of Masquerade Gown will provide about 31 spirit, which makes Robes of the Incarnate the superior choice, but the Gown is great if you don't want to spend a fortune on Teardrop Living Ruby's.
+
+Rank	Item	Source
+BiS	Primal Mooncloth Robe Primal Mooncloth Robe	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+BiS	Robes of the Incarnate Robes of the Incarnate	Drop: Chestguard of the Fallen Defender Magtheridon Magtheridon's Lair)
+Option	Masquerade Gown Masquerade Gown	Drop: Julianne (Karazhan)
+Option	Hallowed Garments Hallowed Garments	Drop: Murmur (Shadow Labyrinth)
+Best in Slot Wrist Armor for Healing Priest in TBC Classic Phase 1
+Strictly speaking, Ravager's Cuffs of Healing is the highest healing power wrist option, but has absolutely no stamina and is a ridiculously rare drop off one of the Karazhan basement bosses, so Bindings of the Timewalker is realistically your best throughput option. Keep in mind that it's a fairly long grind, so you might want to opt for one of the sustain alternatives instead.
+
+Both Bands of Indwelling and Bands of the Benevolent are so close in value that it's best to just settle for the one you get first, so you don't waste gold on an incredibly negligible upgrade.
+
+Rank	Item	Source
+BiS	Bindings of the Timewalker Bindings of the Timewalker	Reputation: Keepers of Time (Exalted)
+BiS	Ravager's Cuffs of Healing	Drop: Rokad the Ravager (Karazhan)
+Option	Bands of Indwelling Bands of Indwelling	Drop: Maiden of Virtue (Karazhan)
+Option	Bands of the Benevolent Bands of the Benevolent	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+Best in Slot Hand Armor for Healing Priest in TBC Classic Phase 1
+Gloves of Saintly Blessings are the top item here, since they have the highest healing power, best regeneration, and gem sockets. The only reason you could opt for Handwraps of the Incarnate is the set bonuses, but they're mostly not worth the stat loss.
+
+Rank	Item	Source
+BiS	Gloves of Saintly Blessings Gloves of Saintly Blessings	Drop: Attumen the Huntsman (Karazhan)
+Option	Handwraps of the Incarnate Handwraps of the Incarnate	Drop: Gloves of the Fallen Defender The Curator (Karazhan)
+Option	Bloody Surgeon's Mitts Bloody Surgeon's Mitts	Drop: Broggok (The Blood Furnace)
+Option	Hallowed Handwraps Hallowed Handwraps	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Best in Slot Waist Armor for Healing Priest in TBC Classic Phase 1
+As you might have guessed, Primal Mooncloth Belt also reigns supreme in this slot. Even Phase 2 belts are only barely better than it.
+
+As the stats are otherwise on-par, Cincture of Will is moderately better than Cord of Santification, due to spirit being preferred over MP5 to make use of our talents like Meditation and Spiritual Guidance.
+Rank	Item	Source
+BiS	Primal Mooncloth Belt	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+BiS	Cincture of Will Cincture of Will	Drop: Terestian Illhoof (Karazhan)
+Option	Cord of Sanctification Cord of Sanctification	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Best in Slot Leg Armor for Healing Priest in TBC Classic Phase 1
+Gilded Trousers of Benediction are the greatest throughput option and remain competitive with T5 in Phase 2; however, they're quite tricky to acquire because they're a world boss drop.
+
+Pantaloons of Repentance and Pontifex Kilt are another example of a heroic drop being nearly equal to a raid drop. Unless you care about the small amount of extra stats, simply gem and thread the first one you get.
+
+Whitemend Pants are good when used together with the Helm to obtain the set bonus, allowing you to maximize your healing power. However, that means you miss out on a significant amount of mana regeneration from the lack of a meta socket, so it's not recommended.
+
+Rank	Item	Source
+BiS	Gilded Trousers of Benediction Gilded Trousers of Benediction	Drop: Doomwalker (World Boss Shadowmoon Valley)
+BiS	Pantaloons of Repentance Pantaloons of Repentance	Drop: Netherspite (Karazhan)
+BiS	Pontifex Kilt Pontifex Kilt	Drop: Warlord Kalithresh (The Steamvault)
+Option	Whitemend Pants Whitemend Pants	Profession: Tailoring (Can be Purchased on the Auction House)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+
+Rank	Item	Source
+Option	Trousers of the Incarnate Trousers of the Incarnate	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+
+Best in Slot Feet Armor for Healing Priest in TBC Classic Phase 1
+Glider's Foot-Wraps of Healing are one more absurdly rare Karazhan basement drop. If you randomly come across them, consider using them, but otherwise just stick to the two alternatives. Boots of the Incorrupt are best in slot by a small margin, but the difference is inconsequential enough that it's probably not worth it to reenchant Boots of the Pious if you got that one first.
+
+Rank	Item	Source
+BiS	Boots of the Incorrupt Boots of the Incorrupt	Drop: Shade of Aran (Karazhan)
+BiS	Boots of the Pious Boots of the Pious	Drop: Pathaleon the Calculator (Heroic The Mechanar)
+BiS	Glider's Foot-Wraps of Healing	Drop: Hyakiss the Lurker (Karazhan)
+Option	Slippers of Serenity Slippers of Serenity	Drop: Exarch Maladaar (Auchenai Crypts)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+
+Rank	Item	Source
+Option	Shattrath Jumpers Shattrath Jumpers	Quest: Into the Heart of the Labyrinth Into the Heart of the Labyrinth (Shadow Labyrinth)
+
+
+
+
+Best in Slot Neck Jewelry for Healing Priest in TBC Classic Phase 1
+Unless you got lucky and came by Archaic Charm of Presence , there are more or less three great choices in this slot. Teeth of Gruul for sustain, Emberspur Talisman for throughput, and Shining Chain of the Afterworld for stamina on encounters like Nightbane or Vashj.
+
+Rank	Item	Source
+BiS	Archaic Charm of Presence Archaic Charm of Presence	Drop: Doomwalker (World Boss, Shadowmoon Valley)
+BiS - Sustain	Teeth of Gruul Teeth of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+BiS - Throughput	Emberspur Talisman Emberspur Talisman	Drop: Nightbane (Karazhan)
+BiS - Stamina	Shining Chain of the Afterworld Shining Chain of the Afterworld	Drop: Netherspite (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+
+Rank	Item	Source
+Option	Karja's Medallion Karja's Medallion	Quest: Shutting Down Manaforge Ara Shutting Down Manaforge Ara (Netherstorm)
+Option	Necklace of Eternal Hope Necklace of Eternal Hope	Vendor: G'eras, Shattrath City - 25
+
+
+Best in Slot Ring Jewelry for Healing Priest in TBC Classic Phase 1
+Violet Signet of the Grand Restorer and Jade Ring of the Everliving is the best ring combination in most cases, aside from world boss loot. Mender's Heart-Ring is also great if you'd prefer additional stats.
+
+Rank	Item	Source
+BiS	Ring of Flowing Light Ring of Flowing Light	Drop: Doom Lord Kazzak (World Boss, Hellfire Peninsula)
+BiS	Violet Signet of the Grand Restorer Violet Signet of the Grand Restorer	Reputation: The Violet Eye—Exalted
+BiS	Jade Ring of the Everliving Jade Ring of the Everliving	Drop: Prince Malchezaar (Karazhan)
+Option	Mender's Heart-Ring Mender's Heart-Ring	Drop: Terestian Illhoof (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+
+Naaru Lightwarden's Band isn't really worth taking unless nobody else needs it. Our spirit talents make the other ring options better or equal to it.
+Rank	Item	Source
+Option	Naaru Lightwarden's Band Naaru Lightwarden's Band	Quest: The Fall of Magtheridon The Fall of Magtheridon/The Fall of Magtheridon The Fall of Magtheridon (Magtheridon's Lair)
+
+
+Best in Slot Trinkets for Healing Priest in TBC Classic Phase 1
+Trinkets depend on your playstyle and needs. For example, you might find you need better mana management or more healing output.
+
+Essence of the Martyr is absolutely the best option for throughput. It has 133.5 average healing power, assuming the encounter is over right as the cooldown ends, meaning realistically, they can be worth even more than that on a given fight. It should always be your first BoJ purchase.
+
+Eye of Gruul is a good option for any situation in which you are mainly casting Circle of Healing as the 2% proc chance is per target hit, not per cast. Void Reaver is a great example, as the trinket can typically be worth up to 130mp5 on average on this encounter, but it's also solid for most of the T5 trash and arguably even Leotheras and Morogrim. While that value is fairly unrealistic for most other fights, around 30 to 40% CoH usage is when EoG will generally provide more value than Blue Dragon, though you can also combine them, of course.
+
+Rank	Item	Source
+BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras, Shattrath City - 41
+BiS	Eye of Gruul Eye of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Opera Event (Karazhan)
+Option	Scarab of the Infinite Cycle Scarab of the Infinite Cycle	Drop: Aeonus (The Black Morass)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Ribbon of Sacrifice, Scarab of the Infinite Cycle, and Eye of the Dead are the best options if you also want to wear a throughput trinket in your second slot. There's no huge difference between the three, so simply choose the one that you think benefits you the most. Autoqueueing them with an addon is also a good idea for getting as many uses as possible during a raid.
+
+Darkmoon Card: Blue Dragon is not quite as good as Eye of Gruul for CoH-heavy bosses, but still provides a decent amount of MP5 even when you are mainly casting single-target heals, like on Prince Malchezaar or Lady Vashj, for example. With T4 BiS gear, it's worth 56/69/89 mp5 on average with 24/30/40 casts per minute, respectively, regardless of what spells you are casting specifically.
+
+Your choice here really boils down to what you find you need in a trinket slot.
+Rank	Item	Source
+Option	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Naxxramas - WoW Classic)
+Option	Darkmoon Card: Blue Dragon Darkmoon Card: Blue Dragon	Quest: Beasts Deck Beasts Deck (Darkmoon Faire)
+Option	Lower City Prayerbook Lower City Prayerbook	Reputation: Lower City (Revered)
+Option	Bangle of Endless Blessings Bangle of Endless Blessings	Drop: Warp Splinter (The Botanica)
+
+Best in Slot Weapons for Healing Priest in TBC Classic Phase 1
+Light's Justice is definitely what you'll want to get in this slot, since it's the most powerful mainhand and isn't too hard to obtain, considering you can easily clear Karazhan with just two healers.
+
+Rank	Item	Source
+BiS	Light's Justice Light's Justice	Drop: Prince Malchezaar (Karazhan)
+Option	Gladiator's Salvation Gladiator's Salvation	PvP: Assorted Arena Vendors
+Option	Shard of the Virtuous Shard of the Virtuous	Drop: Maiden of Virtue (Karazhan)
+Option	Hand of Eternity Hand of Eternity	Profession: Blacksmithing (Can be Purchased on the Auction House)
+
+
+If you don't have access to the recommendations above, or prefer a two-handed weapon, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Shard of the Virtuous is a great alternative in case you get unlucky.
+Rank	Item	Source
+Option	Shockwave Truncheon Shockwave Truncheon	Drop: Murmur (Heroic Shadow Labyrinth)
+Option	The Ancient Scepter of Sue-Min The Ancient Scepter of Sue-Min	Drop: World Drop (Outland)
+Option	Gavel of Pure Light Gavel of Pure Light	Reputation: The Sha'tar (Exalted)
+
+Both Crystalheart Pulse-Staff and Nightstaff of the Everliving are worse than the two raid-drop maces, so they're only good as placeholders.
+
+Rank	Item	Source
+BiS	Exodar Life-Staff Exodar Life-Staff	Drop: Doom Lord Kazzak (World Boss, Hellfire Peninsula)
+BiS	Crystalheart Pulse-Staff Crystalheart Pulse-Staff	Drop: Magtheridon (Magtheridon's Lair)
+Option	Nightstaff of the Everliving Nightstaff of the Everliving	Drop: Nightbane (Karazhan)
+Option	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Quest: Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian (Classic - Naxxramas)
+Option	Serpentcrest Life-Staff Serpentcrest Life-Staff	Drop: Mekgineer Steamrigger (The Steamvault)
+
+Best in Slot Off-Hands for Healing Priest in TBC Classic Phase 1
+Here you can choose either Tears of Heaven or Windcaller's Orb, depending on whether you value throughput over sustain, but the latter technically provides more value.
+
+Rank	Item	Source
+BiS	Windcaller's Orb Windcaller's Orb	Reputation: Cenarion Expedition
+BiS	Tears of Heaven Tears of Heaven	Vendor: G'eras, Shattrath City - 25
+Option	Aran's Soothing Sapphire Aran's Soothing Sapphire	Drop: Shade of Aran (Karazhan)
+Option	Signet of Unshakable Faith Signet of Unshakable Faith	Drop: Moroes (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Off-Hand Recommendations
+
+
+Rank	Item	Source
+Best in Slot Wands for Healing Priest in TBC Classic Phase 1
+Both wands are relatively close in value, but if you find yourself wanding during downtime fairly often, you should opt for Flawless Wand of Healing over Blue Diamond Witchwand as it will not use up Improved Shadow Bolt stacks.
+
+Rank	Item	Source
+BiS	Blue Diamond Witchwand Blue Diamond Witchwand	Drop: Opera Event (Karazhan)
+BiS	Flawless Wand of Healing	Drop: World Drop (Outland)
+Option	Rejuvenating Scepter Rejuvenating Scepter	Quest: Ar'kelos the Guardian Ar'kelos the Guardian (Netherstorm)
+Option	Soul-Wand of the Aldor Soul-Wand of the Aldor	Drop: Ambassador Hellmaw (Shadow Labyrinth)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+
+Rank	Item	Source
+Option	Wand of the Whispering Dead Wand of the Whispering Dead	Drop: Instructor Razuvious (Naxxramas - WoW Classic
+
+
+Wowhead
+Wowhead is the composite author encompassing general-interest guides and news, as well as representing many wonderful past and present writers.
+1 - 14 of 14
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+10
+
+	
+By Zhandd (5,893 – 3·6·10) on 2026/02/28 (Burning Crusade)	
+	
+Not a fan of the new guide format for bis lists. Show us all the gear on a character setup like in era/previous iterations. You had the armor categories on the left side so if people wanted to see alternative pieces, they could check there.
+
+0
+
+	
+
+grimlok on 2026/03/19 (Burning Crusade)
+Some of this stuff isn't exactly right either. The Whitemend stuff is making it sound like the set sucks. But, in reality until phase 5 you get the most +healing while sacrificing almost no mana regen. The only exception is the pants from Doom Walker, which you'd wear as soon as you find a replacement for the helm. Even without replacing the helm the Doom Walker pants might be better than Whitemend set bonus or at least equivalent. This guide is screwing with the Whitemend market.
+
+7
+
+	
+By Sakkura (19,731 – 4·21·74) on 2021/06/01 (Burning Crusade)	
+	
+Insightful Earthstorm Diamond apparently has a 5% chance to return 300 mana on every cast, with a 15 second cooldown. That's just flat out way better than 26 +healing from Bracing Earthstorm Diamond.
+
+1
+
+	
+
+Vaelis <Rare Premium User> on 2021/06/03 (Burning Crusade)
+Might be, might be not. Depends on whether your guild is struggling or not. Pretty much the same as Darkmoon Card: Blue Dragon Darkmoon Card: Blue Dragon and Bangle of Endless Blessings Bangle of Endless Blessings talk.
+
+0
+
+	
+
+Kellise on 2021/06/26 (Burning Crusade)
+It's also worth noting that requires having 2 of each base colour of gem, which is difficult with some gem configs.
+
+0
+
+	
+
+SilverSapphire on 2021/08/18 (Burning Crusade)
+Depends on whether your guild is struggling? THEN WHY IS THIS NOT REFLECTED IN THE GUIDE?
+
+0
+
+	
+
+grimlok on 2026/03/17 (Burning Crusade)
+I think Whitemend Pants Whitemend Pants and Whitemend Hood Whitemend Hood are better than Insightful Earthstorm Diamond Insightful Earthstorm Diamond items with meta sockets. Excluding world boss drops, Whitemend is better than other options. Insightful gives between 15 mp5 and 35 mp5 for most casts, and with the right gems Whitemend gives 29 mp5 to 34 mp5. I think this guide is highly underrating Whitemend, while overrating Insightful Eathstorm Diamond. You get a lot more plus healing with Whitemend too. Guide doesn't mention you don't lose a meaningful amount of mana regen using Whitemend. You might actually gain mana regen from downranking because of Whitemend.
+
+5
+
+	
+By philmyster (1,511 – 11·11) on 2026/03/07 (Burning Crusade)	
+	
+Essence of the Martyr is 41 badges in TBC not 25. It got me excited until I got to the vendor.
+
+4
+
+	
+By Handofgodd (3,097 – 17·14) on 2021/05/05 (Burning Crusade)	
+	
+You are saying the Gladiator mace is the best weapon in phase1, but that is incorrect. Light's Justice has 7 more healing, 3 intelect and 20 spirit.
+
+0
+
+	
+
+Vaelis <Rare Premium User> on 2021/05/08 (Burning Crusade)
+Thanks for feedback. This minor oversight is now fixed.
+
+4
+
+	
+By themagicteeth (27,255 – 3·19·37) <Rare Premium User> on 2021/06/26 (Burning Crusade)	
+	
+Just a mistake I noticed "Next purchase recommended is either Bishop's Cloak or Bishop's Cloak, both as worthwhile. These are not needed if high-end Classic items are possessed, such as Pure Elementium Band, Band of Unanswered Prayers and Ring of Faith". The classic items you mentioned are rings. Also Bishop's Cloak is mentioned two times in that sentence.
+Last edited by themagicteeth on 2021/06/26
+
+0
+
+	
+
+Vaelis <Rare Premium User> on 2021/08/01 (Burning Crusade)
+Haha, fixed. Band of Halos Band of Halos was supposed to be the first link, with which Classic rings would flow in logically.
+
+4
+
+	
+By SilverAutumn (6,218 – 2·14·20) on 2021/08/29 (Burning Crusade)	
+	
+just wanted to point out that the guide says you can get the scarab of the infinite cycle from the darkmoon faire beasts deck.
+
+3
+
+	
+By VolkerRacho (983 – 2·8) on 2026/02/04 (Burning Crusade)	
+	
+I made a atlasloot importable list maybe this helps somebody out:
+
+i:29049,i:32090,i:24264,i:28756,
+
+i:21874,i:29054,i:27775,i:28612,
+
+i:28765,i:31329,i:29354,i:28582,
+
+i:28765,i:31329,i:29354,i:28582,
+
+i:21875,i:29050,i:28578,i:28230,
+
+i:29183,i:30684,i:28511,i:29249,
+
+i:28508,i:29055,i:24393,i:27536,
+
+i:21873,i:28652,i:29250,
+
+i:30727,i:28742,i:30543,i:24261,
+
+i:28663,i:29251,i:30680,i:27411,
+
+i:30726,i:28822,i:28609,i:28731,
+
+i:30736,i:29290,i:28763,i:28661,
+
+i:29376,i:28823,i:28590,i:28190,
+
+i:28771,i:32451,i:28522,i:23556,
+
+i:29170,i:29274,i:28728,i:28525,
+
+i:28588,i:25295,i:29779,i:27885,
+
+2
+
+	
+By Zoura (20,940 – 4·13·24) on 2021/07/18 (Burning Crusade)	
+	
+You know there is a typo at "Next purchase recommended is either Bishop's Cloak or Bishop's Cloak, both as worthwhile."
+
+1
+
+	
+By SilverSapphire (9,071 – 1·23·80) on 2021/07/02 (Burning Crusade)	
+	
+Some items you left out. Manaweave Cloak, Avian Cloak of Feathers (both are very good cloaks). You under-sell the value of Darkmoon Card Blue Dragon. The trinket is the best regen trinket even in tier 4 gear, and the trinket only grows in power as your stats do. Furthermore, I also would say that your up-front BIS list made me wince until I saw the further lists down below. Most people looking for a simple BIS list, this is as far as they're going to go, and that list is not ideal. I would also say that you very much overvalue the raw bonus healing stat, this is an especially important point of contention for people who are still in the progression stage and need mana. Don't forget that you get bonus healing from spirit as well via your talents.
+
+1
+
+	
+By Hyzer (3,132 – 1·20·20) on 2021/07/08 (Burning Crusade)	
+	
+I think Signet of Unshakable Faith Signet of Unshakable Faith from Moroes should be added under Off-hands. It has the best white stats for off-hands, so it could be considered BiS equivalent.
+
+Cowl of Naaru Blessings Cowl of Naaru Blessings is also in the game in phase 1 costing 50 badges, which is probably the best head piece outside of raids.
+
+1
+
+	
+By Vivien (2,682 – 4·6) on 2026/03/24 (Burning Crusade)	
+	
+can someone explain how Windcaller's Orb is better than Tears of Heaven? even counting Spiritual Guidance it is still waste of 7 healing power and 4 mp5 for 16 int. in gems it's: 2 yellow int gems vs 1,3 blue mp5 gem + 0,4 red healing gem. so it's 2 gems vs 1,7 gems but these 1,7 are much more valuable
+Last edited by Vivien on 2026/03/31
+
+0
+
+	
+
+thewildbear on 2026/05/02 (Burning Crusade)
+My understanding is 16 Int and 12 Spirit would work out to 4-5 casting mp5, so Tears of Heaven offers 1-2 mp5 and 7-8 Healing Power more than Windcaller's Orb. Windcaller's Orb offers 240 max mana, about 0.2% spell crit chance and somewhere in the region of 10 mp5 more while not casting. So ignoring non-casting mp5, Windcaller's Orb is more mana until fight length of at least 10 minutes. Longer factoring any 5 second gaps. I suspect in practice they're so close you could call either item BiS, and just take whichever is more convenient.
+
+-1
+
+	
+By Kellise (3,102 – 4·13) on 2021/06/26 (Burning Crusade)	
+	
+You've got alot of red gems in blue sockets at the moment.
+
+I'm using this build for non-tailoring:
+https://tbc.wowhead.com/gear-planner/priest/undead/A0YTBVIwADAgAS8jUFEDAwIVBQAD_4FAcXmKdQBlKSBd-QIAcJaDQHF-cyMAXd0gXfmFYHF6bTgAXd0gXflAXfkGAG_sh2BwRnqKAHdTIHeLQF35iABv94TYiQBx_20HigBxf4TPCwByagwAcHYNAHLADgBvro8AcF1tOpAAcGOE2hEAcfISAG-s
+Last edited by Kellise on 2021/06/26
+
+4
+
+	
+
+Yamomahoe on 2021/07/14 (Burning Crusade)
+Some bonuses arnt worth it. Why would you give up 9 healing for 4 stam? Or 18 healing for 4 int?
+
+0
+
+	
+
+Vivien on 2026/03/16 (Burning Crusade)
+If you're on the autism spectrum, you simply cannot stand the fact that these colors don't match, and you're willing to sacrifice some stats just to silence the frustration
+
+0
+
+	
+
+grimlok on 2026/03/19 (Burning Crusade)
+Not having the bonus filled in is reason for some to get it. It's annoying seeing the flaw in your stat sheet from that bonus not lighting up. Blizzard needs to fix gem itemization to enable more bonuses so the autistic don't have to have hard to look at visual flaws in their character stat sheet.
+By IdontLikeUsernam (272 – 1·2) on 2021/04/29 (Burning Crusade)	
+	
+By jaredj90 (1,195 – 7·8) on 2021/04/29 (Burning Crusade)	
+	
+1 - 14 of 14
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+4.1/5 (9 Votes)
+TBCC Priest Healing Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+            Best In Slot Gear in Phase 2
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Wands
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Priest Healing Best in Slot (BiS) Phase 2 Gear Guide - TBC Classic
+By Wowhead
+Updated: 2026/05/13
+Welcome to Wowhead's Best in Slot Gear list from Tempest Keep and Serpentshrine Cavern for Priest Healing in The Burning Crusade Classic. This guide will list the recommended gear for Priest Healing to acquire while they progress during the second phase of The Burning Crusade Classic, and contains gear sourced from Tempest Keep and Serpentshrine Cavern, plus other pieces from previous phases like Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best in slot lists, including a TBCC pre-patch list and a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Priest Healing Best in Slot HubPriest Healing Pre-Raid Best in Slot
+
+Best In Slot Gear for Priest Healing in Phase 2
+Healer gearing always heavily depends on playstyle, situation, and raid environment, so treat the BiS list below as a guideline rather than a gospel. Trinkets, for example, are always situational, so you should have several and swap them based on the encounter.
+
+Other than that, gearing in Phase 2 is fairly straightforward as the majority of new items are direct stat upgrades over the Phase 1 options. The only thing you need to be aware of during your gear progression is that you should usually only break the Primal Mooncloth set bonus once you have acquired four pieces of Avatar Raiment.
+
+Priest Healers looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Priest Healing Gems & Enchants
+Should Priest Healing Choose Aldor or Scryer for BiS in TBC Classic Phase 2?
+Although the Greater Inscription of Faith Greater Inscription of Faith enchant is moderately better than Greater Inscription of the Oracle Greater Inscription of the Oracle, the choice between The Aldor and The Scryers is fairly unimportant for healers, as both Zandalar Signet of Serenity Zandalar Signet of Serenity and Resilience of the Scourge Resilience of the Scourge are virtually identical to the Aldor enchant in terms of value.
+
+The choice technically also affects whether Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration will proc a healing power buff or a direct heal on your target in Phase 5, but as you'll likely already have Brooch of Nature's Mercy Brooch of Nature's Mercy by then, this is also not really impactful.
+
+In conclusion, if you care about the slight stat advantage, you should opt for the Aldor, but if you'd like to choose the Scryers, you should go for it, as the shoulder enchant won't ever make a noticeable difference.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Priest Healing in TBC Classic Phase 2
+Cowl of the Avatar is a very strongly itemized piece of gear that is both an improvement in sustain and in throughput compared to Light-Collar of the Incarnate. The gem bonus, which pairs well with Insightful Earthstorm Diamond Insightful Earthstorm Diamond, is just the cherry on top.
+
+Powerheal 4000 Lens is somewhat worse than the Avatar Raiment alternative but is still worth crafting if you've already got Engineering, as it might take a while before it's your turn to receive tier tokens.
+
+Crown of the Sun has a large amount of stats, but as it doesn't have a meta socket, it's not much more than a catch-up item.
+Rank	Item	Source
+BiS	Cowl of the Avatar Cowl of the Avatar	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Powerheal 4000 Lens Powerheal 4000 Lens	Profession: Engineering - BoP only
+Great	Light-Collar of the Incarnate Light-Collar of the Incarnate	Drop: Prince Malchezaar (Karazhan)
+Viable	Crown of the Sun Crown of the Sun	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Viable	Whitemend Hood Whitemend Hood	Profession: Tailoring - can be purchased on the Auction House
+
+Best in Slot Shoulder Armor for Priest Healing in TBC Classic Phase 2
+Mantle of the Avatar is a sizable upgrade over the respective crafted item, but if you're currently using the Primal Mooncloth set, you will most likely want to wait with equipping it until you have enough Avatar Raiment pieces for it to be worth losing the Mana Regen 5% set bonus.
+Rank	Item	Source
+BiS	Mantle of the Avatar Mantle of the Avatar	Drop: Void Reaver (Tempest Keep: The Eye)
+Great	Primal Mooncloth Shoulders Primal Mooncloth Shoulders	Profession: Tailoring (Primal Mooncloth Tailoring) - BoP only
+Viable	Light-Mantle of the Incarnate Light-Mantle of the Incarnate	Drop: High King Maulgar (Gruul's Lair)
+Best in Slot Back Armor for Priest Healing in TBC Classic Phase 2
+Although only one new option for the back slot presents itself in T5, the combination of strong regeneration stats, high healing power, and a fair amount of stamina easily makes Sunshower Light Cloak the best cloak for Phase 2.
+Rank	Item	Source
+BiS	Sunshower Light Cloak Sunshower Light Cloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Great	Stainless Cloak of the Pure Hearted Stainless Cloak of the Pure Hearted	Drop: Prince Malchezaar (Karazhan)
+Great	Light-Touched Stole of Altruism Light-Touched Stole of Altruism	Drop: Exarch Maladaar (Heroic Auchenai Crypts)
+Great	Lifegiving Cloak Lifegiving Cloak	Drop: World Drop
+Best in Slot Chest Armor for Priest Healing in TBC Classic Phase 2
+Although Primal Mooncloth Robe has the same amount of healing power when fully gemmed, the additional Stamina, Spirit, and Intellect Vestments of the Avatar provides makes this a decent pickup. Keep in mind that you should only swap once you have dropped the Mana Regen 5% set bonus, which is typically once you have 4 pieces of Avatar Raiment.
+Rank	Item	Source
+BiS	Vestments of the Avatar Vestments of the Avatar	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Great	Primal Mooncloth Robe Primal Mooncloth Robe	Profession: Tailoring (Primal Mooncloth Tailoring) - BoP only
+Viable	Robes of the Incarnate Robes of the Incarnate	Drop: Magtheridon (Magtheridon's Lair)
+Best in Slot Wrist Armor for Priest Healing in TBC Classic Phase 2
+Wraps of Purification are roughly on-par with the other sustain wrist options, overall not more than a sidegrade at best.
+
+Veteran's Mooncloth Cuffs are a direct upgrade to Bindings of the Timewalker, but as you only gain some Stamina and a little bit of Intellect, it is only a very minor improvement.
+Rank	Item	Source
+Throughput BiS	Veteran's Mooncloth Cuffs Veteran's Mooncloth Cuffs	Vendor: Honor Points (Season 2)
+Throughput BiS	Bindings of the Timewalker Bindings of the Timewalker	Vendor: Alurmi (Keepers of Time Exalted)
+Regen BiS	Wraps of Purification Wraps of Purification	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Regen BiS	Bands of Indwelling Bands of Indwelling	Drop: Maiden of Virtue (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Throughput BiS	Ravager's Cuffs Ravager's Cuffs of Healing	Drop: Rokad the Ravager (Karazhan)
+Regen BiS	Bands of the Benevolent Bands of the Benevolent	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+
+Best in Slot Hand Armor for Priest Healing in TBC Classic Phase 2
+Gloves of the Avatar are an easy choice here as they are the strongest item in the slot and help you access the strong Avatar Raiment set bonuses. Though it is only a very minor upgrade over Gloves of Saintly Blessings in terms of stats, it is worth picking up nonetheless.
+Rank	Item	Source
+BiS	Gloves of the Avatar Gloves of the Avatar	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Great	Gloves of Saintly Blessings Gloves of Saintly Blessings	Drop: Attumen the Huntsman (Karazhan)
+Great	Handwraps of the Incarnate Handwraps of the Incarnate	Drop: The Curator (Karazhan)
+Best in Slot Waist Armor for Priest Healing in TBC Classic Phase 2
+Belt of the Long Road is technically only a slight upgrade over Primal Mooncloth Belt, but the useful socket bonus, along with it allowing you to drop Tailoring in favour of a different profession make this a worthwhile pickup, especially if you are running the Insightful Earthstorm Diamond Insightful Earthstorm Diamond meta gem. Keep in mind that you should only swap once you have dropped the Mana Regen 5% set bonus, which is typically once you have 4 pieces of Avatar Raiment.
+Rank	Item	Source
+BiS	Belt of the Long Road Belt of the Long Road	Profession: Tailoring - can be purchased on the Auction House
+BiS	Primal Mooncloth Belt Primal Mooncloth Belt	Profession: Tailoring (Primal Mooncloth Tailoring) - BoP only
+Best in Slot Leg Armor for Priest Healing in TBC Classic Phase 2
+Assuming you have managed to obtain them, Gilded Trousers of Benediction are still a competitive throughput option for the legs slot in Phase 2. However, if you do not have access to world boss loot or prefer sustain stats, Breeches of the Avatar are a more balanced alternative and will be the go-to choice for most Healing Priests.
+Rank	Item	Source
+BiS	Breeches of the Avatar Breeches of the Avatar	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+BiS	Gilded Trousers of Benediction Gilded Trousers of Benediction	Drop: Doomwalker (World Boss)
+Viable	Pantaloons of Repentance Pantaloons of Repentance	Drop: Netherspite (Karazhan)
+Viable	Star-Soul Breeches Star-Soul Breeches	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Viable	Pontifex Kilt Pontifex Kilt	Drop: Warlord Kalithresh (The Steamvault)
+Viable	Whitemend Pants Whitemend Pants	Profession: Tailoring - can be purchased on the Auction House
+
+Best in Slot Feet Armor for Priest Healing in TBC Classic Phase 2
+Soul-Strider Boots are the boots of choice for priests in T5. Their high stat allocation and two gem sockets, combined with the fact that they are only sought after by Healing Priests, make this item your top option for Phase 2.
+
+While Boots of the Long Road are still better than any Phase 1 alternative, the lack of gem sockets makes these boots strictly inferior to Soul-Strider Boots for PvE content. However, it is worth mentioning that the pattern is BoE, so given that you have Tailoring, it can be made before stepping into any raid instance.
+Rank	Item	Source
+BiS	Soul-Strider Boots Soul-Strider Boots	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Great	Boots of the Long Road Boots of the Long Road	Profession: Tailoring - BoP only
+Viable	Boots of the Incorrupt Boots of the Incorrupt	Drop: Shade of Aran (Karazhan)
+Viable	Boots of the Pious Boots of the Pious	Drop: Pathaleon the Calculator (Heroic The Mechanar)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Viable	Glider's Foot-Wraps Glider's Foot-Wraps of Healing	Drop: Hyakiss the Lurker (Karazhan)
+
+Best in Slot Neck Jewelry for Priest Healing in TBC Classic Phase 2
+Lord Sanguinar's Claim is by far the best necklace available in Phase 2, but as it's a turn-in reward, healers will likely end up with lower priority for the Verdant Sphere Verdant Sphere drop. All three other options listed below are viable replacements.
+Rank	Item	Source
+BiS	Lord Sanguinar's Claim Lord Sanguinar's Claim	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Great	Archaic Charm of Presence Archaic Charm of Presence	Drop: Doomwalker (World Boss)
+Great	Emberspur Talisman Emberspur Talisman	Drop: Nightbane (Karazhan)
+Great	Teeth of Gruul Teeth of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best in Slot Ring Jewelry for Priest Healing in TBC Classic Phase 2
+Out of the two Phase 2 healer rings, Coral Band of the Revived is the one that stands out. It has the highest healing power out of all currently available rings, as well as a decent amount of regeneration stats and Stamina, so it's easily BiS.
+
+Phoenix-Ring of Rebirth isn't any better than Violet Signet of the Grand Restorer or Band of Eternity, both of which are quest rewards, so it's not really worth considering.
+Rank	Item	Source
+BiS	Coral Band of the Revived Coral Band of the Revived	Drop: Lady Vashj (Serpentshrine Cavern)
+BiS	Violet Signet of the Grand Restorer Violet Signet of the Grand Restorer	Quest: Eminence Among the Violet Eye Eminence Among the Violet Eye (The Violet Eye Exalted)
+Great	Ring of Flowing Light Ring of Flowing Light	Drop: Doom Lord Kazzak (World Boss)
+Great	Jade Ring of the Everliving Jade Ring of the Everliving	Drop: Prince Malchezaar (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Great	Band of Eternity Band of Eternity	Quest: Restorer's Pledge Restorer's Pledge
+Great	Phoenix-Ring of Rebirth Phoenix-Ring of Rebirth	Drop: Al'ar (Tempest Keep: The Eye)
+
+Best in Slot Trinkets for Priest Healing in TBC Classic Phase 2
+Essence of the Martyr remains the best option for throughput, though you can also combine it with Direbrew Hops on bosses for which you don't need any mana regeneration trinkets. They both have 133.5 average healing power, assuming the encounter is over right as the cooldown ends, meaning realistically they can be worth even more than that on a given fight.
+
+Eye of Gruul is a good option for any situation in which you are mainly casting Circle of Healing, as the 2% proc chance is per target hit, not per cast. Void Reaver is a great example as the trinket can typically be worth up to 130 MP5 on average on this encounter, but it's also solid for most of the T5 trash and arguably even Leotheras and Morogrim. While that value is fairly unrealistic for most other fights, around 30 to 40% CoH usage is when EoG will generally provide more value than Blue Dragon, though you can also combine them, of course.
+
+Fel Reaver's Piston Fel Reaver's Piston is absolutely not worth using over any of the trinkets listed below. The low 15% proc rate combined with the 15s ICD and the fact that the HoT proc does not scale with +healing as well as it only ever proccing a single renew, even on multi-target heals, makes this worse than pre-bis for all four healer classes.
+
+Direbrew Hops has been placed under the Toggler choices as Brewfest is not yet available.
+Rank	Item	Source
+Throughput BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (Badges of Justice)
+Regen BiS (CoH)	Eye of Gruul Eye of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Opera Event (Karazhan)
+Option	Earring of Soulful Meditation Earring of Soulful Meditation	Drop: The Lurker Below (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Earring of Soulful Meditation is mostly a PvP trinket, but it's also most likely the next best thing if you don't have access to at least two of the four previously mentioned trinkets. In T5 BiS gear, it's worth 80.4 average healing power and 20.36 MP5 if you continue casting during the entire proc, or 67.86 MP5 if you spend the entire proc outside of the five-second rule.
+Rank	Item	Source
+Throughput BiS	Direbrew Hops Direbrew Hops	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Viable	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Classic - Naxxramas)
+Viable	Scarab of the Infinite Cycle Scarab of the Infinite Cycle	Drop: Aeonus (The Black Morass)
+
+Best in Slot Weapons for Priest Healing in TBC Classic Phase 2
+Lightfathom Scepter is obviously the best Phase 2 weapon, though if you're holy specced, it might not be a bad idea to hold out for Crystal Spire of Karabor Crystal Spire of Karabor in Phase 3, as the Spire is arguably CoH priest BiS for the entire expansion or at least until Kil'jaeden.
+
+Merciless Gladiator's Salvation is only slightly worse than Lightfathom Scepter, making it a great option for anyone who enjoys Arena PvP or simply wants to save their loot priority for more meaningful equipment.
+
+Ethereum Life-Staff is a slight upgrade over the Light's Justice & Windcaller's Orb combination most priests are currently still using. In exchange for 31 Healing Power, you gain +7 Int, +36 Stam, and +30 Spirit, so considering the additional healing power you gain from Spiritual Guidance, it's a decent trade-off.
+
+Light's Justice is, of course, still a great option and also fairly easy to obtain.
+Rank	Item	Source
+BiS	Lightfathom Scepter Lightfathom Scepter	Drop: Lady Vashj (Serpentshrine Cavern)
+BiS	Merciless Gladiator's Salvation Merciless Gladiator's Salvation	Vendor: Arena Points (Season 2)
+Great	Ethereum Life-Staff Ethereum Life-Staff	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Great	Light's Justice Light's Justice	Drop: Prince Malchezaar (Karazhan)
+Best in Slot Offhands for Priest Healing in TBC Classic Phase 2
+While Talisman of the Sun King is superior to the Phase 1 BiS offhands, it's mainly due to the additional Stamina, so it's not necessarily worth picking up. Both other offhands are still perfectly fine options for Phase 2.
+Rank	Item	Source
+BiS	Talisman of the Sun King Talisman of the Sun King	Drop: Al'ar (Tempest Keep: The Eye)
+Great	Windcaller's Orb Windcaller's Orb	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+Great	Tears of Heaven Tears of Heaven	Vendor: G'eras (Badges of Justice)
+Best in Slot Wands for Priest Healing in TBC Classic Phase 2
+All three wands are relatively close in value, but if you find yourself wanding during downtime fairly often, you should opt for Flawless Wand of Healing as it's the only one that will not use up Improved Shadow Bolt stacks.
+Rank	Item	Source
+BiS	Luminescent Rod of the Naaru Luminescent Rod of the Naaru	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+BiS	Blue Diamond Witchwand Blue Diamond Witchwand	Drop: The Crone (Karazhan)
+BiS	Flawless Wand Flawless Wand of Healing	Drop: World Drop
+Wowhead
+Wowhead is the composite author encompassing general-interest guides and news, as well as representing many wonderful past and present writers.
+1 - 4 of 4
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+5
+
+	
+By piromiru (9,921 – 4·31·32) on 2021/08/10 (Burning Crusade)	
+	
+I Would like to see Blue Dragon and Rejuvenating Gem in the trinket section mentioned, as both are very good, and still considered BiS in some lists, but otherwise good list!
+
+-5
+	
+
+Pakman184 on 2021/08/10 (Burning Crusade)
+
+8
+
+	
+
+Tyfighter15 on 2021/08/19 (Burning Crusade)
+I will live and die by the Blue Dragon card. Can't say anything about the rejuv gem. I will swap out the card for another trinket on shorter fights but for any fight at 5min or longer that card will proc for me on average 4 times. Netting me over 7200 mana fully raid boofed. Actually very excited for a proc and then use earing of the soulful. Gonna be such a nice mana explosion
+
+-2
+
+	
+
+Actualtroll on 2026/05/04 (Burning Crusade)
+If you need regen trinkets as a Hpriest youre just a sloppy healer and your dps is extremely low. eye and bottle are BIS and its not even close. earring is a pvp trinket and darkmoon/rejuv gem are just bad
+
+5
+
+	
+By Rayman (5,498 – 2·7·7) on 2021/12/22 (Burning Crusade)	
+	
+Overall this guide has improved a lot with the new author.
+
+Nevertheless, I would like to suggest a few minor amendments:
+
+    Teeth of Gruul Teeth of Gruul should qualify as Regen BiS.
+    Bangle of Endless Blessings Bangle of Endless Blessings should qualify as Regen Viable.
+    Blue Diamond Witchwand Blue Diamond Witchwand is still BiS since it has spirit and you have to take into consideration all enhancing raid buffs and talents.
+    Scarab of the Infinite Cycle Scarab of the Infinite Cycle is actually Throughput BiS considering how impactful haste is. I didn't believe it myself until I did the math. So let's say 320 haste for 6 sec with 10% proc chance and 45 sec cooldown equals 1 proc per minute which can be valued as 32 static haste. Using greater heal as an example, 32 haste rating makes the cast time 2,45 sec instead of 2,5 sec. You might think it's insignificant, but in a 2 minutes fight this equals 1 additional greater heal. Within any given time frame you are able to increase the number of casts by ~2%. Let's say your average greater heal restores 4400 health. The amount of bonus healing you would need in order to increase this amount by 2% taking into account the 3/3,5 = 0,857 coefficient: (4400*0,02)/0,857 = 103. The total throughput value of this trinket is: 103 + 70 = 173 bonus healing.
+
+Last edited by Rayman on 2021/12/22
+
+1
+
+	
+
+Baelko on 2022/01/26 (Burning Crusade)
+Wand: With Kings and SoR, Blue Diamond Witchwand has 12.7 spirit but 1.1 less intellect, which translates to 4.27 mp5 while casting, 14.22 mp5 while not casting, and about 3.2 healing power. If you add those stats onto the wand, Rod of the Naaru has 2.8 more healing power, 16.5 more max mana and 1.73 more mp5 while casting, at the cost of 8.22 less mp5 outside the five second rule. I usually tend to favour other stats over OO5SR mp5 as you can drinkwalk outside of encounters anyway and don't frequently get OO5SR ticks during combat, which is why I feel "Great" is fair enough for the wand.
+
+1
+
+	
+
+Baelko on 2022/01/26 (Burning Crusade)
+Neck: Skipping the explanation but doing the same thing as above: Teeth of Gruul has 2.2 int and 22 spirit over Sanguinar's, which is 8.19 i5sr, 27.31 o5sr. Adding the stats up, when swapping from Sanguinar's to Gruul, you gain 9.2mp5 while casting, 35.31mp5 while not casting and 33 max mana in exchange for 27.5 stamina and 27.5 healing power. Ignoring the stamina, that's roughly 3 healing power lost per mp5 gained, which I feel is a bit harsh compared to the other things listed as Regen BiS, but it's the most reasonable one out of the 4 suggestions. (BD -> 1.28, EoG -> 1.02, Bracers -> 2.2)
+
+1
+
+	
+
+Baelko on 2022/01/26 (Burning Crusade)
+Bangle: Even under ideal usage, I can only get bangle to just 32mp5 and 6.25 average healing power at 40cpm. As comparison, Lower City Prayerbook is 70 healing power and 18.33 mp5 at ideal usage and does not make it onto the list, despite providing far better value imo.
+
+1
+
+	
+
+Baelko on 2022/01/26 (Burning Crusade)
+Scarab: The issue here is scarab is bugged and does not apply to the first cast, actually making it 4.5 to 3.5s of haste, apart from that it's also completely random which diminishes the value in reality.
+
+4
+
+	
+By Sakkura (19,731 – 4·21·74) on 2021/08/10 (Burning Crusade)	
+	
+You put spelldamage gems in a few of the items for some reason.
+
+1
+
+	
+
+Vaelis <Rare Premium User> on 2021/08/13 (Burning Crusade)
+I handle both specs, must have mixed up item IDs :p Fixed, ty
+
+2
+
+	
+By Krackow (136 – 1·0) on 2021/08/14 (Burning Crusade)	
+	
+What's people's take on trinkets ? Looks like there are a bunch of good options, but most of the comparisons I find online date back to retail tbc. Is Eye of Gruul good ? Why choose it over Essence of the Martyr in the example "absolute best" set ?
+
+2
+
+	
+
+Tyfighter15 on 2021/08/19 (Burning Crusade)
+It really depends on you and what you're required to do. I've had awful luck with the Eye of Gruul. In our last two Mag kills which are around 6min, it proc'd twice and it hasn't proc'd many other times so I've actually made it my back-up trinket for shorter fights as it gives hp and my Blue Dragon Card doesn't. I'd say if you have long fights tho the Blue Dragon card is absolute BiS + the earing. But also keep essence for shorter fights when mana isn't an issue
+
+1
+
+	
+
+Gamblero on 2021/09/18 (Burning Crusade)
+As someone who's clearing p2 week one and speedruns content a lot with holy priest, please believe me. Eye of the Gruul proc rate is miserably low, Blue Dragon is absolutely amazing. The majority of the fights in p2(SSC TK) are very long and Blue Dragon can save your life. If you're completely BIS from T4, you can regen up to 2500 mana per proc. Essence/Ribbon/Blue Dragon/ Bangle are all absolutely better options than Eye of the Gruul. This month I will use Essence and Blue dragon for a fair balance of healing power and mana regen. Once the fights become shorter I'll go for healing power.
+
+-1
+
+	
+
+Gamblero on 2021/09/18 (Burning Crusade)
+^(cont) Preferably Essence+Scarab/Ribbon.
+1 - 4 of 4
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Priest Healing Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+            Best In Slot Gear in Phase 3
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Wands
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Priest Healing Best in Slot (BiS) Phase 3 Gear Guide
+By Wowhead
+Updated: 2026/02/14
+Welcome to Wowhead's Best in Slot Gear list from Tempest Keep and Serpentshrine Cavern for Priest Healing in The Burning Crusade Classic. This guide will list the recommended gear for Priest Healing to acquire while they progress during the second phase of The Burning Crusade Classic, and contains gear sourced from Tempest Keep and Serpentshrine Cavern, plus other pieces from previous phases like Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best in slot lists, including a TBCC pre-patch list and a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Priest Healing Best in Slot HubPriest Healing Pre-Raid Best in Slot
+
+Best In Slot Gear for Priest Healing in Phase 3
+Healer gearing always heavily depends on playstyle, situation, and raid environment, so treat the BiS list below as a guideline rather than a gospel. Trinkets, for example, are always situational, so you should have several and swap them based on the encounter.
+
+Phase 3 Priest BiS consists of two different sets. The difference between the sets is fairly small, so if you don't feel like swapping around often, you can just choose one and stick to it.
+
+The T5 4P set will be the go-to for the majority of Phase 3, as T6 tokens are fairly contested, but both set bonuses being great makes this a super competitive option. Even once you have access to T6, it could potentially still be worth it to swap to this set on renew-heavy encounters since it's not unrealistic for the set bonuses to outperform the stat gains from the other set.
+
+The T6 4P set has higher healing power and regen stats than T5 4P but significantly worse set bonuses. Depending on how much the Phase 3 fights favour Renew, either this set or the T5 4P will be the set of choice for encounters that primarily consist of free casting.
+
+If you still have Tailoring, Swiftheal Mantle Swiftheal Mantle can be worth using on encounters in which you are chain-casting most of the time. This can be done with both sets, though it's better with T6 once you have access to it.
+
+Priest Healers looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Priest Healing Gems & Enchants
+Should Priest Healing Choose Aldor or Scryer for BiS in TBC Classic Phase 3?
+Although the Greater Inscription of Faith Greater Inscription of Faith enchant is moderately better than Greater Inscription of the Oracle Greater Inscription of the Oracle, the choice between The Aldor and The Scryers is fairly unimportant for healers, as both Zandalar Signet of Serenity Zandalar Signet of Serenity and Resilience of the Scourge Resilience of the Scourge are virtually identical to the Aldor enchant in terms of value.
+
+The choice technically also affects whether Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration will proc a healing power buff or a direct heal on your target in Phase 5, but as you'll likely already have Brooch of Nature's Mercy Brooch of Nature's Mercy by then, this is also not really impactful.
+
+In conclusion, if you care about the slight stat advantage, you should opt for the Aldor, but if you'd like to choose the Scryers, you should go for it, as the shoulder enchant won't ever make a noticeable difference.
+
+If you need to grind reputation with the Aldor or the Scryers, or any of the other factions that offer BiS gear for Priest Healing, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Priest Healing in TBC Classic Phase 3
+Cowl of Absolution is what you'll want to use if you want the additional healing power and mana regeneration from the T6 4P set. As we share our tier token with Warlocks and Paladins, they'll usually take a while to get.
+
+Cowl of the Avatar is your go-to earlier in the phase, and still a great option later on if you opt for the T5 4P set, as it helps you access the strong Avatar Raiment set bonuses.
+
+Cowl of Benevolence isn't quite as good as Cowl of Absolution, but can be used as a placeholder, as it might take a while before it's your turn to receive tier tokens.
+Rank	Item	Source
+BiS	Cowl of Absolution Cowl of Absolution	Drop: Archimonde (Hyjal Summit)
+BiS	Cowl of the Avatar Cowl of the Avatar	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Cowl of Benevolence Cowl of Benevolence	Drop: Teron Gorefiend (Black Temple)
+Viable	Powerheal 4000 Lens Powerheal 4000 Lens	Profession: Engineering - BoP only
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Viable	Light-Collar of the Incarnate Light-Collar of the Incarnate	Drop: Prince Malchezaar (Karazhan)
+Viable	Crown of the Sun Crown of the Sun	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Shoulder Armor for Priest Healing in TBC Classic Phase 3
+Mantle of Absolution again has higher healing power and sustain in exchange for less useful set bonuses. If you've also got access to the crafted shoulders, you'd ideally use T6 on encounters that primarily consist of loose casting, rather than chain-casting.
+
+Depending on your playstyle, Mantle of the Avatar is still a strong contender in this phase, as the Renew and Greater Heal bonuses are amazing, even in Phase 3.
+
+Swiftheal Mantle is technically the highest value item for GCD-capped situations in this slot, so if you are still a Tailor, it's definitely worth crafting. Keep in mind that it does not require Tailoring to be used, which means you can swap it for a different profession after crafting it.
+Rank	Item	Source
+BiS	Mantle of Absolution Mantle of Absolution	Drop: Mother Shahraz (Black Temple)
+BiS	Mantle of the Avatar Mantle of the Avatar	Drop: Void Reaver (Tempest Keep: The Eye)
+BiS	Swiftheal Mantle Swiftheal Mantle	Profession: Tailoring - BoP only
+Great	Primal Mooncloth Shoulders Primal Mooncloth Shoulders	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Viable	Light-Mantle of the Incarnate Light-Mantle of the Incarnate	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Back Armor for Priest Healing in TBC Classic Phase 3
+Shroud of the Highborne is an amazing cloak that grants you a whole 2% haste as well as decent other stats, which is why it's not replaced until the next expansion. However, some more hardcore guilds might choose to give it to caster DPS instead, since it's technically their best cloak by a tiny margin.
+
+Both Sunshower Light Cloak and Shroud of Forgiveness are your next best options and roughly on-par with each other, so simply stick to whichever one of these you get first if you can't get Shroud of the Highborne.
+Rank	Item	Source
+BiS	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+Great	Sunshower Light Cloak Sunshower Light Cloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Great	Shroud of Forgiveness Shroud of Forgiveness	Drop: Gurtogg Bloodboil (Black Temple)
+Viable	Shroud of the Final Stand Shroud of the Final Stand	Drop: Trash Mobs (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Viable	Stainless Cloak of the Pure Hearted Stainless Cloak of the Pure Hearted	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Chest Armor for Priest Healing in TBC Classic Phase 3
+Same as with the other tier pieces, whether you'll want to use Vestments of Absolution or Vestments of the Avatar mainly depends on the set you're going for as a whole.
+Rank	Item	Source
+BiS	Vestments of Absolution Vestments of Absolution	Drop: Illidan Stormrage (Black Temple)
+BiS	Vestments of the Avatar Vestments of the Avatar	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Great	Primal Mooncloth Robe Primal Mooncloth Robe	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+Viable	Robes of the Incarnate Robes of the Incarnate	Drop: Magtheridon (Magtheridon's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Viable	Garments of Temperance Garments of Temperance	Drop: Gurtogg Bloodboil (Black Temple)
+
+Best in Slot Wrist Armor for Priest Healing in TBC Classic Phase 3
+Like with the other haste options, Swiftheal Wraps are always your best bet for additional healing throughput and safety. It's worth mentioning that they're a crafted BoE item, which means that you can get them almost immediately if you are willing to spend enough gold.
+
+Bracers of Martyrdom can be worth swapping to in situations where you can make use of the additional sustain.
+Rank	Item	Source
+Throughput BiS	Swiftheal Wraps Swiftheal Wraps	Profession: Tailoring - can be purchased on the Auction House
+Regen BiS	Bracers of Martyrdom Bracers of Martyrdom	Drop: Rage Winterchill (Hyjal Summit)
+Great	Wristbands of Divine Influence Wristbands of Divine Influence	Drop: Shade of Akama (Black Temple)
+Great	Vindicator's Mooncloth Cuffs Vindicator's Mooncloth Cuffs	Vendor: Honor Points (Season 3)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Great	Bindings of the Timewalker Bindings of the Timewalker	Vendor: Alurmi (Keepers of Time Exalted)
+Great	Wraps of Purification Wraps of Purification	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Great	Bands of Indwelling Bands of Indwelling	Drop: Maiden of Virtue (Karazhan)
+
+Best in Slot Hand Armor for Priest Healing in TBC Classic Phase 3
+Gloves of Absolution offer slightly higher healing power and stats than the alternatives but have far worse set bonuses.
+
+Gloves of the Avatar remain one of the best items in this slot if you'd like to keep the T5 set bonuses at the cost of some healing power and mana regeneration.
+
+Gloves of Unfailing Faith are a slightly worse version of the T6 gloves, but can be a solid placeholder if you aren't too bothered by missing out on a set bonus, especially considering the T6 bonuses are fairly unimportant.
+Rank	Item	Source
+BiS	Gloves of Absolution Gloves of Absolution	Drop: Azgalor (Hyjal Summit)
+BiS	Gloves of the Avatar Gloves of the Avatar	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Great	Gloves of Unfailing Faith Gloves of Unfailing Faith	Drop: Essence of Anger (Black Temple)
+Viable	Gloves of Saintly Blessings Gloves of Saintly Blessings	Drop: Attumen the Huntsman (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Viable	Handwraps of the Incarnate Handwraps of the Incarnate	Drop: The Curator (Karazhan)
+
+Best in Slot Waist Armor for Priest Healing in TBC Classic Phase 3
+Angelista's Sash is by far the best choice for encounters in which you are chain-casting the majority of the time and could use the additional throughput. Apart from that, there's a version of it for every armor type, so it's a very uncontested drop.
+
+Belt of Divine Guidance is essentially a Belt of the Long Road with slightly more Intellect and Stamina. If you find yourself not being GCD-locked often on an encounter and would rather have the additional sustain, this is a decent swap.
+Rank	Item	Source
+Throughput BiS	Angelista's Sash Angelista's Sash	Drop: Kaz'rogal (Hyjal Summit)
+Regen BiS	Belt of Divine Guidance Belt of Divine Guidance	Drop: High Nethermancer Zerevor (Black Temple)
+Great	Belt of the Long Road Belt of the Long Road	Profession: Tailoring - can be purchased on the Auction House
+Great	Primal Mooncloth Belt Primal Mooncloth Belt	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+Best in Slot Leg Armor for Priest Healing in TBC Classic Phase 3
+Leggings of Eternity are basically a better version of Gilded Trousers of Benediction, which makes them a significant upgrade over all other options in this slot and therefore the recommended off-set piece for Phase 3.
+
+Breeches of Absolution and Breeches of the Avatar can both be worth using if you'd like to pick Swiftheal Mantle Swiftheal Mantle as your off-set piece, rather than Leggings of Eternity.
+Rank	Item	Source
+BiS	Leggings of Eternity Leggings of Eternity	Drop: Archimonde (Hyjal Summit)
+Great	Breeches of Absolution Breeches of Absolution	Drop: The Illidari Council (Black Temple)
+Great	Breeches of the Avatar Breeches of the Avatar	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Great	Gilded Trousers of Benediction Gilded Trousers of Benediction	Drop: Doomwalker (World Boss)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Viable	Pantaloons of Repentance Pantaloons of Repentance	Drop: Netherspite (Karazhan)
+
+Best in Slot Feet Armor for Priest Healing in TBC Classic Phase 3
+Boots of the Divine Light aren't a huge upgrade over Soul-Strider Boots, but grant you some additional healing power and Stamina, combined with a gem bonus that is great for activating Insightful Earthstorm Diamond Insightful Earthstorm Diamond.
+
+Archbishop's Slippers are mainly a catch-up item, so they can be a worthwhile pick-up if you never obtained Soul-Strider Boots.
+Rank	Item	Source
+BiS	Boots of the Divine Light Boots of the Divine Light	Drop: Trash Mobs (Hyjal Summit / Black Temple)
+Great	Soul-Strider Boots Soul-Strider Boots	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Viable	Archbishop's Slippers Archbishop's Slippers	Drop: Anetheron (Hyjal Summit)
+Viable	Boots of the Long Road Boots of the Long Road	Profession: Tailoring - BoP only
+Best in Slot Neck Jewelry for Priest Healing in TBC Classic Phase 3
+Nadina's Pendant of Purity is a very slightly better version of Lord Sanguinar's Claim, but both of them are perfectly fine options for Phase 3. As most guilds chose to prioritize DPS on the Verdant Sphere Verdant Sphere drop, Nadina's Pendant isn't anywhere as contested in comparison.
+Rank	Item	Source
+BiS	Nadina's Pendant of Purity Nadina's Pendant of Purity	Drop: Mother Shahraz (Black Temple)
+BiS	Lord Sanguinar's Claim Lord Sanguinar's Claim	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Great	Vindicator's Pendant of Salvation Vindicator's Pendant of Salvation	Vendor: Honor Points (Season 3)
+Great	Archaic Charm of Presence Archaic Charm of Presence	Drop: Doomwalker (World Boss)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Great	Emberspur Talisman Emberspur Talisman	Drop: Nightbane (Karazhan)
+Great	Teeth of Gruul Teeth of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+Best in Slot Ring Jewelry for Priest Healing in TBC Classic Phase 3
+Blessed Band of Karabor is an incredible ring that will be highly sought after by most healers. Since it has a good amount of healing power combined with decent sustain stats, as well as nearly 2% haste, and is also not Unique, you won't replace it with anything else until the next expansion. However, there are a few similar alternatives in Phase 4 and Phase 5, so not getting two isn't the end of the world.
+
+Band of the Eternal Restorer has around 84.6 to 87.3 average healing power when accounting for the proc, which means it's about equal to Coral Band of the Revived and is a fairly great ring, especially considering it's simply a reputation reward.
+Rank	Item	Source
+BiS	Blessed Band of Karabor Blessed Band of Karabor	Drop: Trash Mobs (Black Temple)
+Great	Band of the Eternal Restorer Band of the Eternal Restorer	Quest: Restorer's Covenant Restorer's Covenant (The Scale of the Sands Exalted)
+Great	Coral Band of the Revived Coral Band of the Revived	Drop: Lady Vashj (Serpentshrine Cavern)
+Viable	Violet Signet of the Grand Restorer Violet Signet of the Grand Restorer	Quest: Eminence Among the Violet Eye Eminence Among the Violet Eye (The Violet Eye Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Viable	Ring of Calming Waves Ring of Calming Waves	Drop: High Warlord Naj'entus (Black Temple)
+Viable	Ring of Flowing Light Ring of Flowing Light	Drop: Doom Lord Kazzak (World Boss)
+Viable	Jade Ring of the Everliving Jade Ring of the Everliving	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Trinkets for Priest Healing in TBC Classic Phase 3
+Essence of the Martyr remains the best option for throughput, and can be combined with Direbrew Hops on bosses for which you don't need any mana regeneration trinkets. They both have 133.5 average healing power, assuming the encounter is over right as the cooldown ends, meaning realistically they can be worth even more than that on a given fight.
+
+Memento of Tyrande has 118 static healing power and 15.2/16.3/17.5 average MP5 at 24/30/40 cpm, respectively. Due to Direbrew Hops being available earlier than expected, it's a rather unimportant upgrade unless you missed out on the Brewfest. While it's certainly better in terms of value, the main use case for throughput trinkets is encounters on which you aren't struggling with mana at all, or at least not enough to warrant using a regeneration trinket, so having an additional 15.2 to 17.5 MP5 isn't really spectacular.
+
+Eye of Gruul is a good option for any situation in which you are mainly casting Circle of Healing as the 2% proc chance is per target hit, not per cast. This means on encounters that primarily consist of CoH spam, the trinket can technically be worth up to 140-145 MP5 on average, therefore it's solid for the majority of the T6 trash, and also most T6 boss encounters. While that value is fairly unrealistic for most fights, around 30 to 40% CoH usage is when EoG will generally provide more value than Blue Dragon, though you can also combine them, of course.
+
+Darkmoon Card: Blue Dragon is not quite as good as Eye of Gruul for CoH-heavy bosses, but still provides a decent amount of MP5 even when you are mainly casting single-target heals. With T6 BiS gear (assuming T5 4P set), it's worth 54/66/86 MP5 on average with 24/30/40 casts per minute, respectively, regardless of what spells you are casting specifically.
+Rank	Item	Source
+Throughput BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (Badges of Justice)
+Throughput BiS	Direbrew Hops Direbrew Hops	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Throughput BiS	Memento of Tyrande Memento of Tyrande	Drop: Illidan Stormrage (Black Temple)
+Regen BiS (CoH)	Eye of Gruul Eye of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Regen BiS	Darkmoon Card: Blue Dragon Darkmoon Card: Blue Dragon	Quest: Darkmoon Beast Deck Darkmoon Beast Deck
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Earring of Soulful Meditation is mostly a PvP trinket, but it's also most likely the next best thing if you don't have access to at least two of the five previously mentioned trinkets. In T6 BiS gear (T5 4P), it's worth 80.4 average healing power and 20.59 MP5 if you continue casting during the entire proc, or 68.66 MP5 if you spend the entire proc outside of the five-second rule.
+
+Ashtongue Talisman of Acumen is a very situational trinket since its value heavily depends on your playstyle. As it still provides roughly the same value as Direbrew Hops when you're having 4 Renews up at all times during an encounter, you'd need to consistently keep up even more than that for it to be worth using. If you average about 4.5/5/5.5 Renews rolling, the estimated value would be around 157/183/200 healing power on average, respectively. Realistically, this will only be the case if you are not specced into Circle of Healing.
+Rank	Item	Source
+Great	Earring of Soulful Meditation Earring of Soulful Meditation	Drop: The Lurker Below (Serpentshrine Cavern)
+Situational	Ashtongue Talisman of Acumen Ashtongue Talisman of Acumen	Vendor: Okuno (Ashtongue Deathsworn Exalted)
+Viable	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Classic - Naxxramas)
+Viable	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Opera Event (Karazhan)
+Viable	Scarab of the Infinite Cycle Scarab of the Infinite Cycle	Drop: Aeonus (The Black Morass)
+
+Best in Slot Weapons for Priest Healing in TBC Classic Phase 3
+Crystal Spire of Karabor is by far the best Phase 3 weapon and should generally be your #1 priority if you're a CoH priest, since the only items you could potentially want to replace it with are the Kil'jaeden weapons.
+
+The third equip effect can proc on any of the targets healed by multi-target healing spells such as Circle of Healing or Chain Heal, which is particularly great for priests since the CoH coefficient is fairly low. This means if you heal a party in which everyone is under 50% HP, on average, it'll be as if you had an additional 936 healing power for that cast, though, of course, that's a somewhat rare scenario.
+
+While this effect provides slightly more value for CoH than for Chain Heal, it's best to simply give this weapon to your best shaman or priest first, and then the remaining ones. As it cannot proc off Heal over Time effects and isn't as useful on tank healers, Restoration Druids and Holy Paladins should ideally have lower priority on the weapon.
+
+This proc is also affected by the talents Spiritual Healing, Gift of Nature, and Purification, which make it 198-242 for those three classes.
+
+Apart from the Crystal Spire, Phase 3 adds a load of new weapons that are all fairly great in case you haven't gotten Lightfathom Scepter in the previous phase. Hammer of Atonement, Apostle of Argus, and Staff of Immaculate Recovery in particular should all be relatively uncontested.
+Rank	Item	Source
+BiS	Crystal Spire of Karabor Crystal Spire of Karabor	Drop: Illidan Stormrage (Black Temple)
+Great	Vengeful Gladiator's Salvation Vengeful Gladiator's Salvation	Vendor: Arena Points (Season 3)
+Great	Hammer of Atonement Hammer of Atonement	Drop: Kaz'rogal (Hyjal Summit)
+Great	Lightfathom Scepter Lightfathom Scepter	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Weapon Recommendations
+
+Rank	Item	Source
+Great	Apostle of Argus Apostle of Argus	Drop: Archimonde (Hyjal Summit)
+Great	Merciless Gladiator's Salvation Merciless Gladiator's Salvation	Vendor: Arena Points (Season 2)
+Great	Staff of Immaculate Recovery Staff of Immaculate Recovery	Drop: Gurtogg Bloodboil (Black Temple)
+Viable	Ethereum Life-Staff Ethereum Life-Staff	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Viable	Light's Justice Light's Justice	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Offhands for Priest Healing in TBC Classic Phase 3
+Scepter of Purification is hands down the best pick in Phase 3, as it has the highest healing power and mana regeneration stats out of all currently available offhands, along with a decent bit of Stamina.
+
+While Touch of Inspiration is not as good as the other Phase 3 option, it's still better than all offhands from the previous phase and fairly uncontested, since only Restoration Druids and healing Priests generally use offhands.
+Rank	Item	Source
+BiS	Scepter of Purification Scepter of Purification	Drop: Archimonde (Hyjal Summit)
+Great	Touch of Inspiration Touch of Inspiration	Drop: Essence of Anger (Black Temple)
+Great	Talisman of the Sun King Talisman of the Sun King	Drop: Al'ar (Tempest Keep: The Eye)
+Viable	Windcaller's Orb Windcaller's Orb	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Viable	Tears of Heaven Tears of Heaven	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Wands for Priest Healing in TBC Classic Phase 3
+While all three wand options from the last phase were fairly equal in terms of value, Naaru-Blessed Life Rod is easily the strongest wand in Phase 3. Keep in mind that it's a shadow damage wand, so you should remember not to use it on raid bosses, as it will use up Improved Shadow Bolt stacks.
+Rank	Item	Source
+BiS	Naaru-Blessed Life Rod Naaru-Blessed Life Rod	Drop: Essence of Anger (Black Temple)
+Great	Luminescent Rod of the Naaru Luminescent Rod of the Naaru	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Great	Flawless Wand of Healing	World Drop
+Great	Blue Diamond Witchwand Blue Diamond Witchwand	Drop: Opera Event (Karazhan)
+Wowhead
+Wowhead is the composite author encompassing general-interest guides and news, as well as representing many wonderful past and present writers.
+1 - 3 of 3
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+1
+
+	
+By eXe9 (3,850 – 21·13) on 2022/02/06 (Burning Crusade)	
+	
+Looks like we are missing Wristbands of Divine Influence from BT - Shade of Akama
+
+0
+
+	
+
+Baelko on 2022/02/08 (Burning Crusade)
+You're right, added them.
+
+1
+
+	
+By Heliconvan (7,888 – 3·9·16) <Rare Premium User> on 2022/02/12 (Burning Crusade)	
+	
+Something is wrong with the way the gear planner calculates mp5. For the T5 4P set, MP5 under the 'spell' section is shown as 148, but the 507 int, 366 spirit and 73mp5 in the set grants 188 mp5 inside the 5 second rule (and 457 mp5 while not). The summary above the gear planner states 275 I5SR and 673 O5SR - what's the basis of those numbers please?
+
+Thanks
+
+0
+
+	
+
+Baelko on 2022/02/16 (Burning Crusade)
+The summary above the gear planner lists the fully buffed stats including consumes since those are the stats you really want to compare when you're deciding between the two sets. I'll add a "Fully buffed:" before it to make it clearer.
+
+-1
+
+	
+By Eleana (1,577 – 5·14) on 2022/01/26 (Burning Crusade)	
+	
+Veteran's Pendant of Salvation deserves to be mentioned for necklaces with its high stamina (especially good for encounters like Naj if you are currently wearing a no-stam neck). The honor neck offers 30 stam, 13 int, 5 mp5, and 62 healing power if you choose to socket it with a teardrop living ruby.
+
+1
+
+	
+
+Baelko on 2022/01/26 (Burning Crusade)
+Stamina should hardly be a factor at this point, unless you're very undergeared, especially considering you can always self-pws pretty easily, but it's a decent necklace so I've added it.
+1 - 3 of 3
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Priest Healing Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+            Best In Slot Gear in Phase 4
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Wands
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Priest Healing Best in Slot (BiS) Phase 4 Gear Guide
+By Wowhead
+Updated: 2026/02/26
+Welcome to Wowhead's Best in Slot Gear list from Phase 4 Zul'Aman for Priest Healing in The Burning Crusade Classic. This guide will list the recommended gear for Priest Healing to acquire while they progress during the fourth phase of The Burning Crusade Classic, and contains gear sourced from Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Priest Healing in Phase 4
+Healer gearing always heavily depends on playstyle, situation, and raid environment, so treat the BiS list below as a guideline rather than a gospel. Trinkets, for example, are always situational, so you should have several and swap them based on the encounter.
+
+Phase 4 Priest BiS consists of two different sets. The difference between the sets is fairly small, so if you don't feel like swapping around often, you can just choose one and stick to it.
+
+The Tier 5 Avatar Raiment set is still the go-to for most Priests as the 4-piece set bonus amounts to a decent amount of additional healing and frees up global cooldowns, with Renew being one of our main filler casts. This set, of course, is also much easier to obtain than the alternative due to T6 tokens being heavily sought after.
+
+The Tier 6 Vestments of Absolution set has higher healing power and regen stats than T5 4P but significantly worse set bonuses. Depending on how well you utilize Renew, these stat gains can realistically be outshadowed by the T5 bonuses, but this set is still a perfectly viable option. However, it's worth mentioning that, unlike the other set, you can swap to Swiftheal Mantle Swiftheal Mantle for higher haste without missing out on anything important, which is a big perk of the T6 setup.
+
+Priest Healers looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Priest Healing Gems & Enchants
+Should Priest Healing Choose Aldor or Scryer for BiS in TBC Classic Phase 4?
+Although the Greater Inscription of Faith Greater Inscription of Faith enchant is moderately better than Greater Inscription of the Oracle Greater Inscription of the Oracle, the choice between The Aldor and The Scryers is fairly unimportant for healers, as both Zandalar Signet of Serenity Zandalar Signet of Serenity and Resilience of the Scourge Resilience of the Scourge are virtually identical to the Aldor enchant in terms of value.
+
+The choice technically also affects whether Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration will proc a healing power buff or a direct heal on your target in Phase 5, but as you'll likely already have Brooch of Nature's Mercy Brooch of Nature's Mercy by then, this is also not really impactful.
+
+In conclusion, if you care about the slight stat advantage, you should opt for the Aldor, but if you'd like to choose the Scryers, you should go for it, as the shoulder enchant won't ever make a noticeable difference.
+
+If you need to grind reputation with the Aldor or the Scryers, or any of the other factions that offer BiS gear for Priest Healing, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Priest Healing in TBC Classic Phase 4
+Cowl of Absolution is what you'll want to use if you want the additional healing power and mana regeneration from the T6 4P set. As we share our tier token with Warlocks and Paladins, they'll usually take a while to get.
+
+Cowl of the Avatar is your go-to earlier in the phase, and still a great option later on if you opt for the T5 4P set, as it helps you access the strong Avatar Raiment set bonuses.
+
+Cowl of Benevolence isn't quite as good as Cowl of Absolution, but can be used as a placeholder, as it might take a while before it's your turn to receive tier tokens.
+Rank	Item	Source
+BiS	Cowl of Absolution Cowl of Absolution	Drop: Archimonde (Hyjal Summit)
+BiS	Cowl of the Avatar Cowl of the Avatar	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Cowl of Benevolence Cowl of Benevolence	Drop: Teron Gorefiend (Black Temple)
+Viable	Powerheal 4000 Lens Powerheal 4000 Lens	Profession: Engineering - BoP only
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Viable	Hood of the Third Eye Hood of the Third Eye	Drop: Hex Lord Malacrass (Zul'Aman)
+Viable	Light-Collar of the Incarnate Light-Collar of the Incarnate	Drop: Prince Malchezaar (Karazhan)
+Viable	Crown of the Sun Crown of the Sun	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Shoulder Armor for Priest Healing in TBC Classic Phase 4
+Mantle of Absolution again has higher healing power and sustain in exchange for less useful set bonuses. If you've also got access to the crafted shoulders, you'd ideally use T6 on encounters that primarily consist of loose casting, rather than chain-casting.
+
+Depending on your playstyle, Mantle of the Avatar is still a strong contender in this phase, as the Renew and Greater Heal bonuses are amazing, even in Phase 4.
+
+Swiftheal Mantle is technically the highest value item for GCD-capped situations in this slot, so if you are still a Tailor, it's definitely worth crafting. Keep in mind that it does not require Tailoring to be used, which means you can swap it for a different profession after crafting it.
+Rank	Item	Source
+BiS	Mantle of Absolution Mantle of Absolution	Drop: Mother Shahraz (Black Temple)
+BiS	Mantle of the Avatar Mantle of the Avatar	Drop: Void Reaver (Tempest Keep: The Eye)
+BiS	Swiftheal Mantle Swiftheal Mantle	Profession: Tailoring - BoP only
+Great	Primal Mooncloth Shoulders Primal Mooncloth Shoulders	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Viable	Light-Mantle of the Incarnate Light-Mantle of the Incarnate	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Back Armor for Priest Healing in TBC Classic Phase 4
+Shroud of the Highborne is an amazing cloak that grants you a whole 2% haste as well as decent other stats, which is why it's not replaced until the next expansion. However, some more hardcore guilds might choose to give it to caster DPS instead, since it's technically their best cloak by a tiny margin.
+
+Cloak of Ancient Rituals is your next best option, and also fairly easy to obtain due to being a Zul'Aman drop. Both Sunshower Light Cloak and Shroud of Forgiveness are still viable options and roughly on par with each other.
+Rank	Item	Source
+BiS	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+Great	Cloak of Ancient Rituals Cloak of Ancient Rituals	Drop: Hex Lord Malacrass (Zul'Aman)
+Good	Sunshower Light Cloak Sunshower Light Cloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Good	Shroud of Forgiveness Shroud of Forgiveness	Drop: Gurtogg Bloodboil (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Good	Cloak of Swift Reprieve Cloak of Swift Reprieve	Vendor: G'eras (Badges of Justice)
+Viable	Shroud of the Final Stand Shroud of the Final Stand	Drop: Trash Mobs (Black Temple)
+Viable	Stainless Cloak of the Pure Hearted Stainless Cloak of the Pure Hearted	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Chest Armor for Priest Healing in TBC Classic Phase 4
+Same as with the other tier pieces, whether you'll want to use Vestments of Absolution or Vestments of the Avatar mainly depends on the set you're going for as a whole.
+Rank	Item	Source
+BiS	Vestments of Absolution Vestments of Absolution	Drop: Illidan Stormrage (Black Temple)
+BiS	Vestments of the Avatar Vestments of the Avatar	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Great	Robes of Heavenly Purpose Robes of Heavenly Purpose	Drop: Nalorakk (Zul'Aman)
+Great	Primal Mooncloth Robe Primal Mooncloth Robe	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Viable	Robes of the Incarnate Robes of the Incarnate	Drop: Magtheridon (Magtheridon's Lair)
+Viable	Garments of Temperance Garments of Temperance	Drop: Gurtogg Bloodboil (Black Temple)
+
+Best in Slot Wrist Armor for Priest Healing in TBC Classic Phase 4
+Like with the other haste options, Swiftheal Wraps are always your best bet for additional healing throughput and safety. It's worth mentioning that they're a crafted BoE item, which means that you can get them almost immediately if you are willing to spend enough gold.
+
+Bracers of Martyrdom can be worth swapping to in situations where you can make use of the additional sustain.
+Rank	Item	Source
+Throughput BiS	Swiftheal Wraps Swiftheal Wraps	Profession: Tailoring - can be purchased on the Auction House
+Regen BiS	Bracers of Martyrdom Bracers of Martyrdom	Drop: Rage Winterchill (Hyjal Summit)
+Great	Wristguards of Tranquil Thought Wristguards of Tranquil Thought	Vendor: G'eras (Badges of Justice)
+Great	Wristbands of Divine Influence Wristbands of Divine Influence	Drop: Shade of Akama (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Great	Vindicator's Mooncloth Cuffs Vindicator's Mooncloth Cuffs	Vendor: Honor Points (Season 3)
+Great	Bindings of the Timewalker Bindings of the Timewalker	Vendor: Alurmi (Keepers of Time Exalted)
+Great	Wraps of Purification Wraps of Purification	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Great	Bands of Indwelling Bands of Indwelling	Drop: Maiden of Virtue (Karazhan)
+
+Best in Slot Hand Armor for Priest Healing in TBC Classic Phase 4
+Gloves of Absolution offer slightly higher healing power and stats than the alternatives but have far worse set bonuses.
+
+Gloves of the Avatar remain one of the best items in this slot if you'd like to keep the T5 set bonuses at the cost of some healing power and mana regeneration.
+
+Light-Blessed Bonds are a new alternative to Gloves of Absolution, with slightly higher healing power at the cost of some MP5 and Stamina. If your raid tends to chainpull, the latter will likely provide more value, but if you feel you cannot make use of the extra sustain, you can pick the other gloves.
+Rank	Item	Source
+BiS	Gloves of Absolution Gloves of Absolution	Drop: Azgalor (Hyjal Summit)
+BiS	Gloves of the Avatar Gloves of the Avatar	Drop: Leotheras the Blind (Serpentshrine Cavern)
+BiS	Light-Blessed Bonds Light-Blessed Bonds	Vendor: G'eras (Badges of Justice)
+Great	Gloves of Unfailing Faith Gloves of Unfailing Faith	Drop: Essence of Anger (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Viable	Gloves of Saintly Blessings Gloves of Saintly Blessings	Drop: Attumen the Huntsman (Karazhan)
+Viable	Handwraps of the Incarnate Handwraps of the Incarnate	Drop: The Curator (Karazhan)
+
+Best in Slot Waist Armor for Priest Healing in TBC Classic Phase 4
+Angelista's Sash is by far the best choice for encounters in which you are chain-casting the majority of the time and could use the additional throughput. Apart from that, there's a version of it for every armor type, so it's a very uncontested drop.
+
+Belt of Divine Guidance is essentially a Belt of the Long Road with slightly more Intellect and Stamina. If you find yourself not being GCD-locked often on an encounter and would rather have the additional sustain, this is a decent swap.
+Rank	Item	Source
+Throughput BiS	Angelista's Sash Angelista's Sash	Drop: Kaz'rogal (Hyjal Summit)
+Regen BiS	Belt of Divine Guidance Belt of Divine Guidance	Drop: High Nethermancer Zerevor (Black Temple)
+Great	Belt of the Long Road Belt of the Long Road	Profession: Tailoring - can be purchased on the Auction House
+Great	Primal Mooncloth Belt Primal Mooncloth Belt	Profession: Tailoring (Mooncloth Tailoring) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Good	Cord of Braided Troll Hair Cord of Braided Troll Hair	Drop: First Timed Chest (Zul'Aman)
+
+Best in Slot Leg Armor for Priest Healing in TBC Classic Phase 4
+While Achromic Trousers of the Naaru provide a large amount of haste, you lose a whole 86 healing power and 16.6 MP5 when using them over Leggings of Eternity, which is the worst trade-off out of all haste items we've been using up until this point.
+
+However, most players consider haste the most impactful healing stat, which is why the new legs will still be a popular choice, although both practically provide the same EP even when using the GCD-capped haste rating stat weight. In the end, the choice between the two mostly comes down to personal preference, though swapping between them depending on the fight is also an option.
+
+Breeches of Absolution and Breeches of the Avatar can both be worth using if you'd like to pick Swiftheal Mantle Swiftheal Mantle as your off-set piece, rather than Leggings of Eternity.
+Rank	Item	Source
+BiS - Haste	Achromic Trousers of the Naaru Achromic Trousers of the Naaru	Vendor: G'eras (Badges of Justice)
+BiS - Balanced	Leggings of Eternity Leggings of Eternity	Drop: Archimonde (Hyjal Summit)
+Great	Breeches of Absolution Breeches of Absolution	Drop: The Illidari Council (Black Temple)
+Great	Breeches of the Avatar Breeches of the Avatar	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Great	Gilded Trousers of Benediction Gilded Trousers of Benediction	Drop: Doomwalker (World Boss)
+Viable	Pantaloons of Repentance Pantaloons of Repentance	Drop: Netherspite (Karazhan)
+
+Best in Slot Feet Armor for Priest Healing in TBC Classic Phase 4
+Boots of the Divine Light aren't a huge upgrade over Soul-Strider Boots, but grant you some additional healing power and Stamina, combined with a gem bonus that is great for activating Insightful Earthstorm Diamond Insightful Earthstorm Diamond.
+Rank	Item	Source
+BiS	Boots of the Divine Light Boots of the Divine Light	Drop: Trash Mobs (Black Temple / Hyjal Summit)
+Great	Soul-Strider Boots Soul-Strider Boots	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Good	Two-toed Sandals Two-toed Sandals	Drop: Zul'jin (Zul'Aman)
+Viable	Archbishop's Slippers Archbishop's Slippers	Drop: Anetheron (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Viable	Boots of the Long Road Boots of the Long Road	Profession: Tailoring - BoP only
+
+Best in Slot Neck Jewelry for Priest Healing in TBC Classic Phase 4
+As you might have guessed, the large amount of spell haste on Brooch of Nature's Mercy puts it a mile ahead of all other necklace options for us. Similar to Shroud of the Highborne, certain caster DPS will also be after this neck, but luckily, everyone should be able to get it eventually with Zul'Aman being a 3-day lockout 10-man instance.
+
+Until then, both Nadina's Pendant of Purity and Lord Sanguinar's Claim are still fine options for Phase 4.
+Rank	Item	Source
+BiS	Brooch of Nature's Mercy Brooch of Nature's Mercy	Drop: Akil'zon (Zul'Aman)
+Great	Vindicator's Pendant of Reprieve Vindicator's Pendant of Reprieve	Vendor: Honor Points (Season 3)
+Great	Nadina's Pendant of Purity Nadina's Pendant of Purity	Drop: Mother Shahraz (Black Temple)
+Great	Lord Sanguinar's Claim Lord Sanguinar's Claim	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Good	Archaic Charm of Presence Archaic Charm of Presence	Drop: Doomwalker (World Boss)
+Good	Emberspur Talisman Emberspur Talisman	Drop: Nightbane (Karazhan)
+Good	Teeth of Gruul Teeth of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+Best in Slot Ring Jewelry for Priest Healing in TBC Classic Phase 4
+Blessed Band of Karabor is an incredible ring that will be highly sought after by most healers. Since it has a good amount of healing power combined with decent sustain stats, as well as nearly 2% haste, and is also not Unique, you won't replace it with anything else until the next expansion. However, there are a few similar alternatives in Phases 4 and 5, so not getting two isn't the end of the world.
+
+Signet of the Quiet Forest is a slightly worse version of Blessed Band of Karabor, but it's still a great placeholder considering most guilds are still far away from having two Karabor rings for every healer.
+
+Band of the Eternal Restorer has around 84.6 to 87.3 average healing power when accounting for the proc, which means it's about equal to Coral Band of the Revived and is a fairly great ring, especially considering it's simply a reputation reward.
+Rank	Item	Source
+BiS	Blessed Band of Karabor Blessed Band of Karabor	Drop: Trash Mobs (Black Temple)
+Great	Signet of the Quiet Forest Signet of the Quiet Forest	Drop: Third Timed Chest (Zul'Aman)
+Good	Band of the Eternal Restorer Band of the Eternal Restorer	Quest: Restorer's Covenant Restorer's Covenant (The Scale of the Sands Exalted)
+Good	Coral Band of the Revived Coral Band of the Revived	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Viable	Violet Signet of the Grand Restorer Violet Signet of the Grand Restorer	Quest: Eminence Among the Violet Eye Eminence Among the Violet Eye (The Violet Eye Exalted)
+Viable	Ring of Calming Waves Ring of Calming Waves	Drop: High Warlord Naj'entus (Black Temple)
+Viable	Ring of Flowing Light Ring of Flowing Light	Drop: Doom Lord Kazzak (World Boss)
+Viable	Jade Ring of the Everliving Jade Ring of the Everliving	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Trinkets for Priest Healing in TBC Classic Phase 4
+Essence of the Martyr remains the best option for throughput, and can be combined with Direbrew Hops on bosses for which you don't need any mana regeneration trinkets. They both have 133.5 average healing power, assuming the encounter is over right as the cooldown ends, meaning realistically they can be worth even more than that on a given fight.
+
+Memento of Tyrande has 118 static healing power and 15.2/16.3/17.5 average MP5 at 24/30/40 cpm, respectively. Due to Direbrew Hops being available earlier than expected, it's a rather unimportant upgrade unless you missed out on the Brewfest. While it's certainly better in terms of value, the main use case for throughput trinkets is encounters on which you aren't struggling with mana at all, or at least not enough to warrant using a regeneration trinket, so having an additional 15.2 to 17.5 MP5 isn't really spectacular.
+
+Eye of Gruul is a good option for any situation in which you are mainly casting Circle of Healing as the 2% proc chance is per target hit, not per cast. This means on encounters that primarily consist of CoH spam, the trinket can technically be worth up to 140-145 MP5 on average, therefore it's solid for the majority of the T6 trash, and also most T6 boss encounters. While that value is fairly unrealistic for most fights, around 30 to 40% CoH usage is when EoG will generally provide more value than Blue Dragon, though you can also combine them, of course.
+
+Darkmoon Card: Blue Dragon is not quite as good as Eye of Gruul for CoH-heavy bosses, but still provides a decent amount of MP5 even when you are mainly casting single-target heals. With T6 BiS gear (assuming T5 4P set), it's worth 54/66/86 MP5 on average with 24/30/40 casts per minute, respectively, regardless of what spells you are casting specifically.
+Rank	Item	Source
+Throughput BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (Badges of Justice)
+Throughput BiS	Direbrew Hops Direbrew Hops	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Throughput BiS	Memento of Tyrande Memento of Tyrande	Drop: Illidan Stormrage (Black Temple)
+Regen BiS (CoH)	Eye of Gruul Eye of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Regen BiS	Darkmoon Card: Blue Dragon Darkmoon Card: Blue Dragon	Quest: Darkmoon Beast Deck Darkmoon Beast Deck
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Earring of Soulful Meditation is mostly a PvP trinket, but it's also most likely the next best thing if you don't have access to at least two of the five previously mentioned trinkets. In T6 BiS gear (T5 4P), it's worth 80.4 average healing power and 20.59 MP5 if you continue casting during the entire proc, or 68.66 MP5 if you spend the entire proc outside of the five-second rule.
+
+Battlemaster's Alacrity is worth roughly 102 HEP when GCD-capped, which puts it below most other trinket options. However, you can potentially swap to it during trash pulls while your on-use trinkets are on cooldown. The on-use effect can also occasionally come in handy, and it's worth mentioning that this trinket is not unique.
+
+Ashtongue Talisman of Acumen is a very situational trinket since its value heavily depends on your playstyle. As it still provides roughly the same value as Direbrew Hops when you're having 4 Renews up at all times during an encounter, you'd need to consistently keep up even more than that for it to be worth using. If you average about 4.5/5/5.5 Renews rolling, the estimated value would be around 157/183/200 healing power on average, respectively. Realistically, this will only be the case if you are not specced into Circle of Healing.
+Rank	Item	Source
+Great	Earring of Soulful Meditation Earring of Soulful Meditation	Drop: The Lurker Below (Serpentshrine Cavern)
+Great	Battlemaster's Alacrity Battlemaster's Alacrity	Vendor: G'eras (Badges of Justice)
+Situational	Ashtongue Talisman of Acumen Ashtongue Talisman of Acumen	Vendor: Okuno (Ashtongue Deathsworn Exalted)
+Viable	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Classic - Naxxramas)
+Viable	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Opera Event (Karazhan)
+Viable	Scarab of the Infinite Cycle Scarab of the Infinite Cycle	Drop: Aeonus (The Black Morass)
+Viable	Tome of Diabolic Remedy Tome of Diabolic Remedy	Drop: Hex Lord Malacrass (Zul'Aman)
+
+Best in Slot Weapons for Priest Healing in TBC Classic Phase 4
+Crystal Spire of Karabor is still by far the best weapon in Phase 4, and should generally be your #1 priority if you're a CoH priest, since the only items you could potentially want to replace it with are the Kil'jaeden weapons.
+
+The third equip effect can proc on any of the targets healed by multi-target healing spells such as Circle of Healing or Chain Heal, which is particularly great for priests since the CoH coefficient is fairly low. This means if you heal a party in which everyone is under 50% HP, on average, it'll be as if you had an additional 936 healing power for that cast, though, of course, that's a somewhat rare scenario.
+
+While this effect provides slightly more value for CoH than for Chain Heal, it's best to simply give this weapon to your best shaman or priest first, and then the remaining ones. As it cannot proc off Heal over Time effects and isn't as useful on tank healers, Restoration Druids and Holy Paladins should ideally have lower priority on the weapon. This proc is also affected by the talents Spiritual Healing, Gift of Nature, and Purification, which make it 198-242 for those three classes.
+
+Dark Blessing is easy to obtain, provides a decent amount of spell haste rating, and is your best alternative if you do not yet have the Crystal Spire.
+Rank	Item	Source
+BiS	Crystal Spire of Karabor Crystal Spire of Karabor	Drop: Illidan Stormrage (Black Temple)
+Great	Dark Blessing Dark Blessing	Drop: Zul'jin (Zul'Aman)
+Great	Vengeful Gladiator's Salvation Vengeful Gladiator's Salvation	Vendor: Arena Points (Season 3)
+Great	Hammer of Atonement Hammer of Atonement	Drop: Kaz'rogal (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Great	Lightfathom Scepter Lightfathom Scepter	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Apostle of Argus Apostle of Argus	Drop: Archimonde (Hyjal Summit)
+Great	Merciless Gladiator's Salvation Merciless Gladiator's Salvation	Vendor: Arena Points (Season 2)
+Great	Staff of Immaculate Recovery Staff of Immaculate Recovery	Drop: Gurtogg Bloodboil (Black Temple)
+Viable	Ethereum Life-Staff Ethereum Life-Staff	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Viable	Light's Justice Light's Justice	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Offhands for Priest Healing in TBC Classic Phase 4
+Scepter of Purification is hands down the best pick in Phase 4, as it has the highest healing power and mana regeneration stats out of all currently available offhands, along with a decent bit of Stamina.
+
+While Touch of Inspiration is not as good as the other Phase 4 option, it's still better than all offhands from previous phases and fairly uncontested, since only Restoration Druids and healing Priests generally use offhands.
+Rank	Item	Source
+BiS	Scepter of Purification Scepter of Purification	Drop: Archimonde (Hyjal Summit)
+Great	Touch of Inspiration Touch of Inspiration	Drop: Essence of Anger (Black Temple)
+Great	Talisman of the Sun King Talisman of the Sun King	Drop: Al'ar (Tempest Keep: The Eye)
+Good	Voodoo Shaker Voodoo Shaker	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Viable	Windcaller's Orb Windcaller's Orb	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+Viable	Tears of Heaven Tears of Heaven	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Wands for Priest Healing in TBC Classic Phase 4
+While all three wand options from the last phase were fairly equal in terms of value, Naaru-Blessed Life Rod is easily the strongest wand in Phase 4. Keep in mind that it's a shadow damage wand, so you should remember not to use it on raid bosses, as it will use up Improved Shadow Bolt stacks.
+Rank	Item	Source
+BiS	Naaru-Blessed Life Rod Naaru-Blessed Life Rod	Drop: Essence of Anger (Black Temple)
+Great	Luminescent Rod of the Naaru Luminescent Rod of the Naaru	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Great	Carved Witch Doctor's Stick Carved Witch Doctor's Stick	Vendor: G'eras (Badges of Justice)
+Great	Flawless Wand of Healing	Drop: World Drop
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+Rank	Item	Source
+Great	Blue Diamond Witchwand Blue Diamond Witchwand	Drop: Opera Event (Karazhan)
+
+Wowhead
+Wowhead is the composite author encompassing general-interest guides and news, as well as representing many wonderful past and present writers.
+1 - 1 of 1
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+1
+
+	
+By xCoyote (4,055 – 13·16) on 2022/04/26 (Burning Crusade)	
+	
+How is there no mentioning of Fetish of the Primal Gods Fetish of the Primal Gods? Shouldn't it be high on the offhand list?
+1 - 1 of 1
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+4.4/5 (6 Votes)
+TBCC Priest Healing Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+            Best In Slot Gear in Phase 5
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Wands
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Priest Healing Best in Slot (BiS) Phase 5 Gear Guide
+By Wowhead
+Updated: 2026/02/26
+Welcome to Wowhead's Best in Slot Gear list from Phase 5 Sunwell Plateau for Priest Healing in The Burning Crusade Classic. This guide will list the recommended gear for Priest Healing to acquire while they progress during the fifth and final phase of The Burning Crusade Classic, which contains gear sourced from Sunwell Plateau, Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Priest Healing in Phase 5
+Healer gearing always heavily depends on playstyle, situation, and raid environment, so treat the BiS list below as a guideline rather than a gospel.
+
+Unlike the previous phases, the only slots that are really up for debate in Phase 5 are the profession-related items. While Enchanting and Engineering are still solid choices, Alchemy and Tailoring have some new crafted options that can make those two professions worth considering.
+
+As the actual BiS is fairly straightforward, the only thing that's really arguable is how to gem it. Although there are many different ways to gem in Phase 5, opting for a +healing setup and downranking properly (CoH 4, Renew 10, FH8) will likely be the way to go for most players in Sunwell Plateau, as it provides more sustain than spirit-heavy gemming when used correctly and also allows for upranking when needed to match the throughput of haste-heavy gemming. However, if you're certain mana is absolutely not an issue, you can choose to primarily gem Quick Lionseye Quick Lionseye while activating your metagem through two purple gems.
+
+The same concept holds true for trinket choices in Phase 5. Unlike the other healer classes, Priests have access to several incredibly strong sustain trinkets, such as Darkmoon Card: Blue Dragon Darkmoon Card: Blue Dragon, Eye of Gruul Eye of Gruul, and potentially even Redeemer's Alchemist Stone Redeemer's Alchemist Stone, which is why it's going to be hard to justify using anything other than two regeneration trinkets until the content is on farm, and most likely even afterwards.
+
+However, if you're playing Discipline, it's actually viable to keep using your four-piece Avatar Raiment in Sunwell. While you do miss out on a decent amount of haste and have lower healing on all other spells, the remaining stats are all fairly close to the ones of the regular set, and you gain 273/346/368 HPS on Renew 8/10/12, which is pretty significant as it's your most used spell. Another benefit is the fact that it's a lot easier to assemble, as most priests have the full T5 set by now, and the Sunwell cowl, shawl, and robes are all fairly close in value, so you can pick any of them as your off-piece.
+
+Priest Healers looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Priest Healing Gems & Enchants
+Should Priest Healing Choose Aldor or Scryer for BiS in TBC Classic Phase 5?
+Although the Greater Inscription of Faith Greater Inscription of Faith enchant is moderately better than Greater Inscription of the Oracle Greater Inscription of the Oracle, the choice between The Aldor and The Scryers is fairly unimportant for healers, as both Zandalar Signet of Serenity Zandalar Signet of Serenity and Resilience of the Scourge Resilience of the Scourge are virtually identical to the Aldor enchant in terms of value.
+
+The choice technically also affects whether Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration will proc a healing power buff (35 to 41 HEP) or a direct heal (11 to 13 raw HPS) on your target in Phase 5, but as you likely already have Brooch of Nature's Mercy Brooch of Nature's Mercy by now, this is also not really impactful.
+
+In conclusion, if you care about the slight stat advantage, you should opt for the Aldor, but if you'd like to choose the Scryers, you should go for it, as the shoulder enchant won't ever make a noticeable difference.
+
+If you need to grind reputation with the Aldor or the Scryers, or any of the other factions that offer BiS gear for Priest Healing, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Priest Healing in TBC Classic Phase 5
+Given it's a Kil'jaeden drop, Cowl of Light's Purity is by far the strongest option in this slot and significantly better than any alternative, as well as relatively uncontested.
+
+While it's not anywhere as powerful as the Cowl, Powerheal 9000 Lens is a solid placeholder option if you have Engineering and happen to come across the pattern.
+Rank	Item	Source
+BiS	Cowl of Light's Purity Cowl of Light's Purity	Drop: Kil'jaeden (Sunwell Plateau)
+Great	Powerheal 9000 Lens Powerheal 9000 Lens	Profession: Engineering - BoP only
+Good	Cowl of Absolution Cowl of Absolution	Drop: Archimonde (Hyjal Summit)
+Good	Cowl of the Avatar Cowl of the Avatar	Drop: Lady Vashj (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Good	Cowl of Benevolence Cowl of Benevolence	Drop: Teron Gorefiend (Black Temple)
+Viable	Powerheal 4000 Lens Powerheal 4000 Lens	Profession: Engineering - BoP only
+Viable	Hood of the Third Eye Hood of the Third Eye	Drop: Hex Lord Malacrass (Zul'Aman)
+
+Best in Slot Shoulder Armor for Priest Healing in TBC Classic Phase 5
+Shawl of Wonderment is the only new shoulder option and again a massive upgrade over all alternatives of the previous phase. As the caster DPS item that it can be exchanged for isn't exceptional, this should also only be sought after by Priest healers and Restoration Druids.
+Rank	Item	Source
+BiS	Shawl of Wonderment Shawl of Wonderment	Drop: Lady Sacrolash & Grand Warlock Alythess (Sunwell Plateau)
+Great	Mantle of Absolution Mantle of Absolution	Drop: Mother Shahraz (Black Temple)
+Great	Mantle of the Avatar Mantle of the Avatar	Drop: Void Reaver (Tempest Keep: The Eye)
+Great	Swiftheal Mantle Swiftheal Mantle	Profession: Tailoring - BoP only
+Best in Slot Back Armor for Priest Healing in TBC Classic Phase 5
+Shroud of the Highborne is an amazing cloak that grants you a whole 2% haste as well as decent other stats, which is why it's not replaced until the next expansion.
+
+Cloak of Ancient Rituals is your next best haste option and also fairly easy to obtain due to being a Zul'Aman drop.
+
+Sunshower Light Cloak, Shroud of Forgiveness, and Shroud of Redeemed Souls are, of course, still viable options and all roughly equal in value.
+Rank	Item	Source
+BiS	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+Great	Cloak of Ancient Rituals Cloak of Ancient Rituals	Drop: Hex Lord Malacrass (Zul'Aman)
+Great	Sunshower Light Cloak Sunshower Light Cloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Great	Shroud of Forgiveness Shroud of Forgiveness	Drop: Gurtogg Bloodboil (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Great	Shroud of Redeemed Souls Shroud of Redeemed Souls	Drop: Lady Sacrolash & Grand Warlock Alythess (Sunwell Plateau)
+Good	Cloak of Swift Reprieve Cloak of Swift Reprieve	Vendor: G'eras (Badges of Justice)
+Viable	Shroud of the Final Stand Shroud of the Final Stand	Drop: Trash Mobs (Black Temple)
+Viable	Stainless Cloak of the Pure Hearted Stainless Cloak of the Pure Hearted	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Chest Armor for Priest Healing in TBC Classic Phase 5
+While the spirit on Robes of Faltered Light technically makes them slightly more preferable over Robe of Eternal Light, the former can be exchanged into Robes of Ghostly Hatred Robes of Ghostly Hatred, which are very strong for casters. Considering this, if you still have Tailoring you should simply settle for the crafted robe to allow for easier loot distribution.
+Rank	Item	Source
+BiS	Robes of Faltered Light Robes of Faltered Light	Drop: M'uru (Sunwell Plateau)
+BiS	Robe of Eternal Light Robe of Eternal Light	Profession: Tailoring - BoP only
+Great	Vestments of Absolution Vestments of Absolution	Drop: Illidan Stormrage (Black Temple)
+Great	Vestments of the Avatar Vestments of the Avatar	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Great	Gown of Spiritual Wonder Gown of Spiritual Wonder	Vendor: Smith Hauthaa / Anwehu (Badges of Justice)
+Good	Robes of Heavenly Purpose Robes of Heavenly Purpose	Drop: Nalorakk (Zul'Aman)
+
+Best in Slot Wrist Armor for Priest Healing in TBC Classic Phase 5
+Cuffs of Absolution aren't quite as impactful as the other Phase 5 upgrades, but still superior to Swiftheal Wraps in every regard. Don't forget that the tokens are still just as contested as they were in Phase 3.
+Rank	Item	Source
+BiS	Cuffs of Absolution Cuffs of Absolution	Drop: Kalecgos, Lady Sacrolash, & Grand Warlock Alythess (Sunwell Plateau)
+Great	Swiftheal Wraps Swiftheal Wraps	Profession: Tailoring - can be purchased on the Auction House
+Great	Bracers of Martyrdom Bracers of Martyrdom	Drop: Rage Winterchill (Hyjal Summit)
+Good	Wristguards of Tranquil Thought Wristguards of Tranquil Thought	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Good	Wristbands of Divine Influence Wristbands of Divine Influence	Drop: Shade of Akama (Black Temple)
+Good	Guardian's Mooncloth Cuffs Guardian's Mooncloth Cuffs	Vendor: Honor Points (Season 4)
+
+Best in Slot Hand Armor for Priest Healing in TBC Classic Phase 5
+While Handguards of the Dawn are by far the strongest available item in this slot, they'll also be heavily sought after by various casters as they can be exchanged into their BiS gloves.
+
+Hands of Eternal Light are a fair bit worse, but still a good placeholder if you're willing to spend some gold on them.
+Rank	Item	Source
+BiS	Handguards of the Dawn Handguards of the Dawn	Drop: Kil'jaeden (Sunwell Plateau)
+Great	Hands of Eternal Light Hands of Eternal Light	Profession: Tailoring - can be purchased on the Auction House
+Good	Gloves of Absolution Gloves of Absolution	Drop: Azgalor (Hyjal Summit)
+Good	Gloves of the Avatar Gloves of the Avatar	Drop: Leotheras the Blind (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Good	Light-Blessed Bonds Light-Blessed Bonds	Vendor: G'eras (Badges of Justice)
+Good	Gloves of Unfailing Faith Gloves of Unfailing Faith	Drop: Essence of Anger (Black Temple)
+
+Best in Slot Waist Armor for Priest Healing in TBC Classic Phase 5
+Belt of Absolution isn't a massive upgrade over Angelista's Sash, but the added socket, healing power, spirit, and MP5 make it worth going for nonetheless.
+Rank	Item	Source
+BiS	Belt of Absolution Belt of Absolution	Drop: Brutallus, Lady Sacrolash, & Grand Warlock Alythess (Sunwell Plateau)
+Great	Angelista's Sash Angelista's Sash	Drop: Kaz'rogal (Hyjal Summit)
+Great	Belt of Divine Guidance Belt of Divine Guidance	Drop: High Nethermancer Zerevor (Black Temple)
+Good	Belt of the Long Road Belt of the Long Road	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Good	Cord of Braided Troll Hair Cord of Braided Troll Hair	Drop: First Timed Chest (Zul'Aman)
+
+Best in Slot Leg Armor for Priest Healing in TBC Classic Phase 5
+Even though Pantaloons of Growing Strife Pantaloons of Growing Strife might look good for us at a glance, considering the value of haste goes down a fair bit in Phase 5, you should opt for Pantaloons of Calming Strife. As the caster item it can be transmuted into is decent, this drop might also prove to be slightly tricky to obtain in most guilds.
+
+Adorned Supernal Legwraps are roughly as good as Leggings of Eternity and Achromic Trousers of the Naaru, and therefore most likely not worth spending badges on.
+Rank	Item	Source
+BiS	Pantaloons of Calming Strife Pantaloons of Calming Strife	Drop: Kalecgos (Sunwell Plateau)
+Great	Leggings of Eternity Leggings of Eternity	Drop: Archimonde (Hyjal Summit)
+Great	Achromic Trousers of the Naaru Achromic Trousers of the Naaru	Vendor: G'eras (Badges of Justice)
+Great	Adorned Supernal Legwraps Adorned Supernal Legwraps	Vendor: Smith Hauthaa / Anwehu (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Good	Breeches of Absolution Breeches of Absolution	Drop: The Illidari Council (Black Temple)
+Good	Breeches of the Avatar Breeches of the Avatar	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+Best in Slot Feet Armor for Priest Healing in TBC Classic Phase 5
+Boots of Absolution are the best of the three new tier items, and also the best choice for this slot by a large margin.
+
+Going into Sunwell, Boots of the Divine Light are still the strongest option, although Slippers of Dutiful Mending are practically equal in HEP to them.
+Rank	Item	Source
+BiS	Boots of Absolution Boots of Absolution	Drop: Brutallus, Lady Sacrolash, & Grand Warlock Alythess (Sunwell Plateau)
+Great	Boots of the Divine Light Boots of the Divine Light	Drop: Trash Mobs (Black Temple / Hyjal Summit)
+Great	Slippers of Dutiful Mending Slippers of Dutiful Mending	Vendor: Smith Hauthaa / Anwehu (Badges of Justice)
+Good	Soul-Strider Boots Soul-Strider Boots	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Good	Two-toed Sandals Two-toed Sandals	Drop: Zul'jin (Zul'Aman)
+Viable	Archbishop's Slippers Archbishop's Slippers	Drop: Anetheron (Hyjal Summit)
+Viable	Boots of the Long Road Boots of the Long Road	Profession: Tailoring - BoP only
+
+Best in Slot Neck Jewelry for Priest Healing in TBC Classic Phase 5
+Even in Phase 5, Brooch of Nature's Mercy is still superior to all other options despite being a 10-man raid drop, as its itemization is just perfect for us.
+
+Although Amulet of Flowing Life isn't considerably worse if you value the extra Stamina, the profession requirement is why it's not worth opting for.
+
+Other than these two, Brooch of the Highborne is the next best raid drop necklace, but generally not worth taking over other healers.
+Rank	Item	Source
+BiS	Brooch of Nature's Mercy Brooch of Nature's Mercy	Drop: Akil'zon (Zul'Aman)
+Great	Amulet of Flowing Life Amulet of Flowing Life	Profession: Jewelcrafting - BoP only
+Great	Guardian's Pendant of Reprieve Guardian's Pendant of Reprieve	Vendor: Honor Points (Season 4)
+Great	Brooch of the Highborne Brooch of the Highborne	Drop: Felmyst (Sunwell Plateau)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Good	Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration	Vendor: Eldara Dawnrunner (Shattered Sun Offensive Exalted)
+Good	Nadina's Pendant of Purity Nadina's Pendant of Purity	Drop: Mother Shahraz (Black Temple)
+Good	Lord Sanguinar's Claim Lord Sanguinar's Claim	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Ring Jewelry for Priest Healing in TBC Classic Phase 5
+Blessed Band of Karabor is an incredible ring that will be highly sought after by most healers. Since it has a good amount of healing power combined with decent sustain stats, as well as nearly 2% haste, and is also not unique, you won't replace it with anything else until the next expansion.
+
+Unless you've been lucky enough to already have two Blessed Bands at this point, you'll want to craft or buy a Ring of Flowing Life, since it's just as good as the Blessed Band and also BoE.
+
+Signet of the Quiet Forest and Band of Lucent Beams are slightly worse versions of the Blessed Band, so they're decent placeholders.
+Rank	Item	Source
+BiS	Blessed Band of Karabor Blessed Band of Karabor	Drop: Trash Mobs (Black Temple)
+BiS	Ring of Flowing Life Ring of Flowing Life	Profession: Jewelcrafting - can be purchased on the Auction House
+Great	Band of Lucent Beams Band of Lucent Beams	Drop: Kalecgos (Sunwell Plateau)
+Great	Signet of the Quiet Forest Signet of the Quiet Forest	Drop: Third Timed Chest (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Band of the Eternal Restorer has around 84.6 to 87.3 average healing power when accounting for the proc, which means it's about equal to Coral Band of the Revived and is a fairly good ring, especially considering it's simply a reputation reward.
+Rank	Item	Source
+Good	Band of the Eternal Restorer Band of the Eternal Restorer	Quest: Restorer's Covenant Restorer's Covenant (The Scale of the Sands Exalted)
+Good	Ring of Harmonic Beauty Ring of Harmonic Beauty	Drop: Trash Mobs (Sunwell Plateau)
+Good	Coral Band of the Revived Coral Band of the Revived	Drop: Lady Vashj (Serpentshrine Cavern)
+Good	Kharmaa's Ring of Fate Kharmaa's Ring of Fate	Drop: Kael'thas Sunstrider (Magisters' Terrace)
+Viable	Violet Signet of the Grand Restorer Violet Signet of the Grand Restorer	Quest: Eminence Among the Violet Eye Eminence Among the Violet Eye (The Violet Eye Exalted)
+
+Best in Slot Trinkets for Priest Healing in TBC Classic Phase 5
+Essence of the Martyr remains the best option for throughput, and can be combined with Direbrew Hops on bosses for which you don't need any mana regeneration trinkets. They both have 133.5 average healing power, assuming the encounter is over right as the cooldown ends, meaning realistically they can be worth even more than that on a given fight.
+
+Memento of Tyrande has 118 static healing power and 15.2/16.3/17.5 average MP5 at 24/30/40 CPM, respectively. Due to Direbrew Hops being available earlier than expected, it's a rather unimportant upgrade unless you missed out on the Brewfest. While it's certainly better in terms of value, the main use case for throughput trinkets is encounters on which you aren't struggling with mana at all, or at least not enough to warrant using a regeneration trinket, so having an additional 15.2 to 17.5 MP5 isn't really spectacular.
+
+Eye of Gruul is a good option for any situation in which you are mainly casting Circle of Healing as the 2% proc chance is per target hit, not per cast. This means on encounters that primarily consist of CoH spam, the trinket can technically be worth up to 140-145 MP5 on average, therefore it's solid for the majority of the T6 trash, and also most T6 boss encounters. While that value is fairly unrealistic for most fights, around 30 to 40% CoH usage is when EoG will generally provide more value than Blue Dragon, though you can also combine them, of course.
+
+Darkmoon Card: Blue Dragon is not quite as good as Eye of Gruul for CoH-heavy bosses, but still provides a decent amount of MP5 even when you are mainly casting single-target heals. With T6 BiS gear (assuming T5 4P set), it's worth 54/66/86 MP5 on average with 24/30/40 casts per minute, respectively, regardless of what spells you are casting specifically.
+
+Redeemer's Alchemist Stone has 119 static healing power and averages out to about 40 MP5 if you're using potions on cooldown. While that's still not quite as much as BD or EoG regenerate, the fact that you don't have to rely on procs for the extra sustain, as well as the extra healing power on this trinket make it another great option in Phase 5.
+Rank	Item	Source
+Throughput BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (Badges of Justice)
+Throughput BiS	Direbrew Hops Direbrew Hops	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Throughput BiS	Memento of Tyrande Memento of Tyrande	Drop: Illidan Stormrage (Black Temple)
+Regen BiS (CoH)	Eye of Gruul Eye of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Regen BiS	Darkmoon Card: Blue Dragon Darkmoon Card: Blue Dragon	Quest: Darkmoon Beast Deck Darkmoon Beast Deck
+Regen BiS	Redeemer's Alchemist Stone Redeemer's Alchemist Stone	Profession: Alchemy - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Glimmering Naaru Sliver has 119 static healing power and about 33 MP5 on average. The fact that the regeneration is entirely frontloaded could allow for some niche uses, but other than that, the long channel duration makes it a questionable choice on most bosses, despite it going down to around 6 seconds in full haste gear.
+Rank	Item	Source
+Great	Glimmering Naaru Sliver Glimmering Naaru Sliver	Drop: M'uru (Sunwell Plateau)
+Great	Earring of Soulful Meditation Earring of Soulful Meditation	Drop: The Lurker Below (Serpentshrine Cavern)
+Great	Battlemaster's Alacrity Battlemaster's Alacrity	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Weapons for Priest Healing in TBC Classic Phase 5
+Like in the previous phases, the new mainhand Hammer of Sanctification reigns supreme when combined with the Sunwell Plateau offhand drop. Keep in mind that it'll be heavily contested by all healers in your raid due to being a mace.
+
+Golden Staff of the Sin'dorei is only slightly worse (~20 HEP) than the Kil'jaeden mace combination, and given it's a staff, it's most likely the Sunwell weapon we'll end up with. Despite that, it's still an amazing weapon and technically even better than the Hammer of Sanctification if you do not have the new offhand as well.
+
+While Crystal Spire of Karabor is inferior to the two previously listed weapons when it comes to overall value, the fact that the proc happens precisely when the extra healing is needed makes it a much more competitive option than simple HEP comparisons make it out to be. This doesn't necessarily mean you shouldn't go for a Phase 5 weapon, but it's simply something to keep in mind when comparing the three options.
+Rank	Item	Source
+BiS	Hammer of Sanctification Hammer of Sanctification	Drop: Kil'jaeden (Sunwell Plateau)
+BiS	Golden Staff of the Sin'dorei Golden Staff of the Sin'dorei	Drop: Kil'jaeden (Sunwell Plateau)
+Great	Crystal Spire of Karabor Crystal Spire of Karabor	Drop: Illidan Stormrage (Black Temple)
+Great	Archon's Gavel Archon's Gavel	Drop: Lady Sacrolash (Sunwell Plateau)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Great	Brutal Gladiator's Salvation Brutal Gladiator's Salvation	Vendor: Arena Points (Season 4)
+Great	Dark Blessing Dark Blessing	Drop: Zul'jin (Zul'Aman)
+Great	Gavel of Naaru Blessings Gavel of Naaru Blessings	Vendor: Smith Hauthaa / Anwehu (Badges of Justice)
+Great	Hammer of Atonement Hammer of Atonement	Drop: Kaz'rogal (Hyjal Summit)
+Great	Lightfathom Scepter Lightfathom Scepter	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Apostle of Argus Apostle of Argus	Drop: Archimonde (Hyjal Summit)
+
+Best in Slot Offhands for Priest Healing in TBC Classic Phase 5
+Book of Highborne Hymns is the clear winner in Phase 5, as the Spirit and healing power loss compared to the previous offhand is made up for by the additional haste rating and MP5. The extra Stamina is also quite useful for Sunwell Plateau.
+Rank	Item	Source
+BiS	Book of Highborne Hymns Book of Highborne Hymns	Drop: Lady Sacrolash (Sunwell Plateau)
+Great	Scepter of Purification Scepter of Purification	Drop: Archimonde (Hyjal Summit)
+Good	Touch of Inspiration Touch of Inspiration	Drop: Essence of Anger (Black Temple)
+Good	Talisman of the Sun King Talisman of the Sun King	Drop: Al'ar (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Good	Voodoo Shaker Voodoo Shaker	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Wands for Priest Healing in TBC Classic Phase 5
+As always, the wand upgrade is very straightforward. In exchange for a small amount of Stamina, you gain some extra healing, haste rating, and even a socket, while your regeneration stays the same, so there is no reason to use anything other than Wand of Cleansing Light. For once, this is actually not a shadow damage wand, so you don't have to worry about using up Improved Shadow Bolt stacks if you ever end up wanding.
+Rank	Item	Source
+BiS	Wand of Cleansing Light Wand of Cleansing Light	Drop: Trash Mobs (Sunwell Plateau)
+Great	Naaru-Blessed Life Rod Naaru-Blessed Life Rod	Drop: Essence of Anger (Black Temple)
+Good	Luminescent Rod of the Naaru Luminescent Rod of the Naaru	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Good	Carved Witch Doctor's Stick Carved Witch Doctor's Stick	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+Rank	Item	Source
+Good	Flawless Wand of Healing	Drop: World Drop
+Good	Blue Diamond Witchwand Blue Diamond Witchwand	Drop: The Crone (Karazhan)
+
+Wowhead
+Wowhead is the composite author encompassing general-interest guides and news, as well as representing many wonderful past and present writers.
+1 - 4 of 4
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By prisnagka (952 – 10·7) on 2022/06/16 (Burning Crusade)	
+	
+Slight oversight: Wand of Cleansing Light has a red socket. Please consider adding the socket + red gem to the table.
+
+Thanks for a great guide!
+
+0
+
+	
+
+Baelko on 2022/06/27 (Burning Crusade)
+Corrected it and thank you! :)
+
+1
+
+	
+By Ctverecek (156 – 1·0) on 2022/05/30 (Burning Crusade)	
+	
+Can I ask about Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration (Aldor variant) - is that much beneath P5 Necks BiS list that isnt mentioned?
+
+0
+
+	
+
+Baelko on 2022/06/05 (Burning Crusade)
+Sorry, that was an oversight, added it to the table.
+
+1
+
+	
+By ymastachi (621 – 3·5) on 2022/06/06 (Burning Crusade)	
+	
+Hi, is Pantaloons of Calming Strife better than Leggings of Eternity ?
+
+1
+
+	
+
+Zoura on 2022/06/16 (Burning Crusade)
+Yes they are. :)
+
+1
+
+	
+By omninmo (335 – 1·2) on 2022/06/13 (Burning Crusade)	
+	
+Would you not consider Kharmaa's Ring of Fate Kharmaa's Ring of Fate with an epic red gem (for example, the one gained via MGT heroic questline) as an option to be included? Seems like it would rank at least like a "Viable" alternative? Greetings
+
+0
+
+	
+
+Zoura on 2022/06/16 (Burning Crusade)
+If you are a raider, no. You should easily have ZA ring by now and Hyjal ring atleast.
+
+0
+
+	
+
+Baelko on 2022/06/27 (Burning Crusade)
+Yeah, it's also a decent option, so I added it. I usually try to not go overboard on all the viable options, but as it's a P5 item including it is definitely the way to go.
+1 - 4 of 4
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+

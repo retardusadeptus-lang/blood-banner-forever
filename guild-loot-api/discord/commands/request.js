@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { enforceRoleAccess, respondRosterAutocomplete, escapeLike } = require('../utils/discordGuards');
 
@@ -206,8 +207,19 @@ module.exports = {
     }
 
     const insert = db.prepare(`
-      INSERT INTO bank_requests (player_id, item_wowhead_id, item_name, quantity, reason, status, request_group_id, requester_name)
-      VALUES (?, ?, ?, ?, ?, 'pending', ?, ?)
+      INSERT INTO bank_requests (
+        player_id,
+        item_wowhead_id,
+        item_name,
+        quantity,
+        reason,
+        status,
+        request_group_id,
+        requester_name,
+        requester_discord_user_id,
+        requester_discord_username
+      )
+      VALUES (?, ?, ?, ?, ?, 'pending', ?, ?, ?, ?)
     `);
 
     const requestGroupId = normalizedItems.length > 1 ? generateRequestGroupId() : null;
@@ -222,7 +234,9 @@ module.exports = {
           item.quantity,
           reason,
           requestGroupId,
-          player.name
+          player.name,
+          interaction.user.id,
+          interaction.user.globalName || interaction.user.username
         );
         createdIds.push(result.lastInsertRowid);
       });

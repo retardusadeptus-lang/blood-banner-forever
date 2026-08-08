@@ -1,0 +1,2871 @@
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+3.2/5 (15 Votes)
+TBCC Warrior DPS Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Best In Slot Gear in Pre-Raid
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrist
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Ranged
+        Phase 1 BiS Arms
+        Phase 1 BiS Fury
+        Phase 2 BiS
+            Arms
+            Fury
+        Phase 3 BiS
+            Arms
+            Fury
+        Phase 4 BiS
+            Arms
+            Fury
+        Phase 5 BiS
+            Arms
+            Fury
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Warrior DPS Pre-Raid Best in Slot (BiS) - TBC Classic
+By Beanna
+Updated: 2026/03/02
+In this Pre-Raid Best-in-Slot Gear List for Warrior DPS in The Burning Crusade Classic, we will list the recommended gear for Warrior DPS to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Warrior DPS Best in Slot Hub
+Pre-Raid Best In Slot Gear for Warrior DPS in Phase 1
+The best pre-raid gear for Arms and Fury Warriors is very similar, because there aren't many options and both primarily focus on reaching the Hit Cap and a high Critical Strike score to help your rage generation and secure a good Flurry uptime.
+Since Karazhan is a 10-man raid, your group composition may not always have a Balance Druid Druid or  Draenei to provide additional hit. For this reason, it is recommended to carry a variety of items to adjust your hit on the fly between 5%, 6%, and 9%.
+
+The main difference with gearing in Vanilla is the amount of crafted gear you will want to farm and/or purchase as early as possible. Both the Ragesteel and Fel Leather sets provide excellent stats without breaking the bank and will immediately kickstart your damage output at lvl 70.
+Your best weapons, Dragonmaw Dragonmaw for Fury and Lionheart Champion Lionheart Champion for Arms, both require Blacksmithing and will be a serious gold investment when you hit lvl 70. These fantastic weapons will later be upgraded in Phase 2 and remain your best weapons all the way to Phase 3, so they are well worth their initial cost.
+
+DPS Warriors looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Warrior DPS Gems & Enchants
+
+Should DPS Warriors Choose Aldor or Scryer for BiS in TBC Classic Phase 1?
+Both of the Shattrah factions offer similar shoulders enchants, with a marginal advantage for the Scryers one, providing more Critical Strike rating, more valuable than Attack Power.
+
+    The Aldor can give you access to Vindicator's Brand Vindicator's Brand, a powerful pre-raid off-hand weapon, provided you have the finances to boost this reputation to Exalted early on. On the flip side, the Aldor is also generally the most popular faction, which usually drives the prices for Mark of Sargeras Mark of Sargeras and Fel Armament Fel Armament up compared to the Scryers equivalents.
+    The Scryers' advantage primarily resides in its unique Blacksmithing plans, which will help you level Blacksmithing up to lvl 375 to craft your best weapons at a much lower cost. Sunfury Signet Sunfury Signet and Arcane Tome Arcane Tome are also usually cheaper than the Aldor equivalents, both contributing to saving you a decent amount of gold at the start of the expansion.
+
+In conclusion, neither faction will provide a real advantage after the beginning of Phase 1, and it's mostly a choice between an immediate power increase in the form of Vindicator's Brand Vindicator's Brand at a high cost, or saving gold to increase your reputation and level up Blacksmithing.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for DPS Warriors, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Pre Raid Best in Slot Head Armor for DPS Warrior in TBC Classic Phase 1
+Mask of the Deceiver is the best pre-raid helmet, providing excellent stats as well as an essential meta socket.
+However, because it requires 50 Badges of Justice, you may not be able to purchase it right away. In the meantime, Helm of Assassination, or the quest reward Helm of the Claw, are close alternatives that will let you invest your early Badges of Justice on higher priority items.
+
+If you can't afford a Relentless Earthstorm Diamond Relentless Earthstorm Diamond at the beginning of the expansion because of supply and demand on metagems, then your best pre-raid helmet without a meta socket is the Overlord's Helmet of Second Sight, obtained after a long quest chain.
+Rank	Item	Source
+Best	Mask of the Deceiver Mask of the Deceiver	Vendor: G'eras (50 Badges of Justice)
+Optional	Helm of Assassination Helm of Assassination	Drop: Harbinger Skyriss ( Heroic The Arcatraz)
+Easy To Obtain	Helm of the Claw Helm of the Claw	Quest:The Warlord's Hideout The Warlord's Hideout (The Steamvault)
+Easy To Obtain	Overlord's Helmet of Second Sight Overlord's Helmet of Second Sight	Quest:Teron Gorefiend, I am... Teron Gorefiend, I am.../Teron Gorefiend, I am... Teron Gorefiend, I am...
+Pre-Raid Best in Slot Shoulder Armor for DPS Warrior in TBC Classic Phase 1
+The Ragesteel Shoulders are by far the best pre-raid shoulders, so good in fact that they are basically equal to the T4 Warbringer Shoulderplates and other raid drops in Phase 1. The shoulders are also one of the least expensive parts of the Ragesteel set, which many Blacksmiths will craft to level up their profession, so they are a must-have.
+Rank	Item	Source
+Best	Ragesteel Shoulders Ragesteel Shoulders	Profession: Blacksmithing
+Optional	Spaulders of Slaughter Spaulders of Slaughter	Drop: Blood Guard Porung ( Heroic Shattered Halls)
+Hit Alternative	Mantle of Perenolde Mantle of Perenolde	Drop: Epoch Hunter ( Heroic Old Hillsbrad Foothills)
+Hit Alternative	Wastewalker Shoulderpads Wastewalker Shoulderpads	Drop: Avatar of the Martyred ( Heroic Auchenai Crypts)
+Pre-Raid Best in Slot Back Armor for DPS Warrior in TBC Classic Phase 1
+Vengeance Wrap is an incredibly strong cloak that will remain the best until Phase 3. It's a BoE Tailoring craft from a rare pattern drop, so it will likely be a big expense.
+Rank	Item	Source
+Best	Vengeance Wrap Vengeance Wrap	Profession: Tailoring
+Optional	Netherfury Cape Netherfury Cape	Drop: Warp Splinter ( Heroic The Botanica)
+Alternative	Blood Knight War Cloak Blood Knight War Cloak	Vendor: G'eras (25 Badges of Justice)
+Hit Alternative	Cloak of the Inciter Cloak of the Inciter	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Optional	Shroud of Frenzy Shroud of Frenzy	Drop: BoE World Drop
+Classic Option	Shroud of Dominion Shroud of Dominion	Drop: Sapphiron (Naxxramas)
+
+Pre-Raid Best in Slot Chest Armor for DPS Warrior in TBC Classic Phase 1
+Ragesteel Breastplate is the recommended pre-raid chest and another BoE Blacksmithing craft. The BoE world drop Chestguard of Exile is about equal, but usually much more expensive and not worth the investment if Ragesteel Breastplate is more affordable.
+Rank	Item	Source
+Best	Chestguard of Exile Chestguard of Exile	BoE World Drop
+Best	Ragesteel Breastplate Ragesteel Breastplate	Profession: Blacksmithing
+Optional	Doomplate Chestguard Doomplate Chestguard	Drop: Harbinger Skyriss (The Arcatraz)
+Easy To Obtain	The Exarch's Protector The Exarch's Protector	Quest:Everything Will Be Alright Everything Will Be Alright
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Hit Alternative	Chestplate of A'dal Chestplate of A'dal	Quest:Special Delivery to Shattrath City Special Delivery to Shattrath City
+
+Pre-Raid Best in Slot Wrist Armor for DPS Warrior in TBC Classic Phase 1
+The Black Felsteel Bracers are technically the best pre-raid bracers, but they are a ridiculously expensive craft for an item that is only a small upgrade over the alternatives and will be quickly replaced with raid drops.
+The Marshal's Plate Bracers, which you can farm the honor and marks in the pre-patch to buy as soon as you hit lvl 70, are a great alternative.
+Rank	Item	Source
+Best (Expensive)	Black Felsteel Bracers Black Felsteel Bracers	Profession: Blacksmithing
+Easy To Obtain	Marshal's Plate Bracers Marshal's Plate Bracers	PvP: 9785 Honor + 10 Warsong Gulch Mark of Honor Warsong Gulch Mark of Honor
+Optional	Nightfall Wristguards Nightfall Wristguards	Drop: Epoch Hunter ( Heroic Old Hillsbrad Foothills)
+Classic Option	Wristguards of Vengeance Wristguards of Vengeance	Drop: Anub'Rekhan (Naxxramas)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Easy To Obtain	Aged Leather Bindings Aged Leather Bindings	Quest:The Great Retribution The Great Retribution/Reclaiming Holy Grounds Reclaiming Holy Grounds
+
+Pre-Raid Best in Slot Hand Armor for DPS Warrior in TBC Classic Phase 1
+The Fel Leather Gloves and Ragesteel Gloves are equally as good and interchangeable, depending on whether you need the additional hit or not.
+Rank	Item	Source
+Best	Fel Leather Gloves Fel Leather Gloves	Profession: Leatherworking
+Best	Ragesteel Gloves Ragesteel Gloves	Profession: Blacksmithing
+Optional	Doomplate Gauntlets Doomplate Gauntlets	Drop: Keli'dan the Breaker (The Blood Furnace)
+Classic Option	Gauntlets of Annihilation Gauntlets of Annihilation	Drop: C'Thun (Ahn'Qiraj)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Easy To Obtain	Flesh Handler's Gauntlets Flesh Handler's Gauntlets	Quest: The Flesh Lies... The Flesh Lies...
+
+Pre-Raid Best in Slot Waist Armor for DPS Warrior in TBC Classic Phase 1
+Deathforge Girdle is the best pre-raid belt by a decent margin. In the meantime, you can buy the PvP Marshal's Plate Belt as soon as you hit lvl 70 if you farmed the honor and the marks for it during the pre-patch.
+Rank	Item	Source
+Best	Deathforge Girdle Deathforge Girdle	Drop: Talon King Ikiss ( Heroic Sethekk Halls)
+Optional	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus ( Heroic The Black Morass)
+Easy To Obtain	Marshal's Plate Belt Marshal's Plate Belt	PvP: 14815 Honor + 10 Arathi Basin Mark of Honor Arathi Basin Mark of Honor
+Classic Option	Girdle of the Mentor Girdle of the Mentor	Drop: Instructor Razuvious (Naxxramas)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Easy To Obtain	Rune-Engraved Belt Rune-Engraved Belt	Quest:Fel Embers Fel Embers (Alliance Only)
+Easy To Obtain	Shattrath's Champion Belt Shattrath's Champion Belt	Quest:How to Break Into the Arcatraz How to Break Into the Arcatraz
+
+Pre-Raid Best in Slot Leg Armor for DPS Warrior in TBC Classic Phase 1
+Midnight Legguards are the best pre-raid legs by a decent margin, but are highly contested in dungeon groups. Alternatively, the Clefthoof Hide Leggings and Shattrath Leggings are a close second choice, and both are easy-to-obtain quest rewards.
+Rank	Item	Source
+Best	Midnight Legguards Midnight Legguards	Drop: Quagmirran ( Heroic The Slave Pens)
+Best	Fel Leather Leggings Fel Leather Leggings	Profession: Leatherworking
+Great	Vanquisher's Legplates Vanquisher's Legplates	Drop: Pathaleon the Calculator ( Heroic The Mechanar)
+Easy to Obtain	Clefthoof Hide Leggings Clefthoof Hide Leggings	Quest:Showdown Showdown/Showdown Showdown
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Easy to Obtain	Shattrath Leggings Shattrath Leggings	Quest:Special Delivery to Shattrath City Special Delivery to Shattrath City
+
+Pre-Raid Best in Slot Feet Armor for DPS Warrior in TBC Classic Phase 1
+The Fel Leather Boots are the best pre-raid boots by a decent margin and, conveniently, also a relatively affordable BoE craft.
+Rank	Item	Source
+Best	Fel Leather Boots Fel Leather Boots	Profession: Leatherworking
+Hit Alternative	Boots of the Unjust Boots of the Unjust	Drop: Avatar of the Martyred ( Heroic Auchenai Crypts)
+Easy To Obtain	Sha'tari Wrought Greaves Sha'tari Wrought Greaves	Quest:Into the Heart of the Labyrinth Into the Heart of the Labyrinth
+Easy To Obtain	Marshal's Plate Greaves Marshal's Plate Greaves	PvP: 17850 Honor + Eye of the Storm Mark of Honor Eye of the Storm Mark of Honor
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Easy To Obtain	Farahlite Studded Boots Farahlite Studded Boots	Quest:A Fate Worse Than Death A Fate Worse Than Death
+
+Pre-Raid Best in Slot Neck Jewelry for DPS Warrior in TBC Classic Phase 1
+Adamantine Chain of the Unbroken is the best pre-raid neck and remains the best neck throughout all of Phase 1, better even than raid drops for Fury and Arms Warriors. Alternatively, the Haramad's Bargain necklace provides similar DPS stats minus the stamina, but requires grinding The Consortium reputation up to Exalted, which may take quite a long time.
+Rank	Item	Source
+Best	Adamantine Chain of the Unbroken Adamantine Chain of the Unbroken	Drop: Quagmirran ( Heroic The Slave Pens)
+Best	Haramad's Bargain Haramad's Bargain	Vendor: Paulsta'ats - Requires Exalted with The Consortium
+Hit Alternative	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+Easy To Obtain	Natasha's Choker Natasha's Choker	Quest:The Hound-Master The Hound-Master
+Pre-Raid Best in Slot Ring Jewelry for DPS Warrior in TBC Classic Phase 1
+Both the Shapeshifter's Signet and the Ring of Arathi Warlords are excellent rings, almost on par with Phase 1 raid drops, and fairly easy to obtain. The former requires being Exalted with the Lower City reputation, which you progress with every Auchindoun dungeon. The latter costs only 25  Badges of Justice and can be purchased right after your first trinket.
+
+The Band of Unnatural Forces from Naxxramas is still a relevant ring in TBC, only slightly worse than these two options.
+The Shaffar's Band of Brutality deserves a mention since it's also equal to the best pre-raid rings. However, because of its very small 2% drop chance, you should probably not count on it and go for more available options.
+Rank	Item	Source
+Best	Ring of Arathi Warlords Ring of Arathi Warlords	Vendor: G'eras (25 Badges of Justice)
+Best (Rare)	Shaffar's Band of Brutality Shaffar's Band of Brutality	Drop: Yor ( Heroic Mana-Tombs)
+Great	Band of Unnatural Forces Band of Unnatural Forces	Drop: Loatheb (Naxxramas)
+Easy to Obtain	Overseer's Signet Overseer's Signet	Quest:Shutting Down Manaforge Ara Shutting Down Manaforge Ara
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Great	Reavers' Ring Reavers' Ring	Drop: Reinforced Fel Iron Chest ( Heroic Hellfire Ramparts)
+Great	Weathered Band of the Swamplord Weathered Band of the Swamplord	Drop: Swamplord Musel'ek ( Heroic The Underbog)
+Great	A'dal's Command A'dal's Command	Vendor: Almaador - Requires Exalted with The Sha'tar
+Great	Shapeshifter's Signet Shapeshifter's Signet	Vendor: Nakodu - Requires Exalted with Lower City
+Easy to Obtain	Aggressor's Mark of the Sha'tar Aggressor's Mark of the Sha'tar	Quest:Battle of the Crimson Watch Battle of the Crimson Watch
+
+Pre-Raid Best in Slot Trinkets for DPS Warrior in TBC Classic Phase 1
+Badge of the Swarmguard from Ahn'Qiraj is by far the best trinket available outside of TBC raids, and will remain the best trinket for short encounters up to a minute and/or cleave all the way until Phase 4 of TBC. Armor Penetration is always the best stat for physical classes because your targets take exponential damage the lower their armor.
+
+Bosses in TBC have a lot more armor than in Vanilla, and armor reduction effects such as Sunder Armor, Expose Armor and Faerie Fire remove only about half of it, leaving plenty of armor to strip with Badge of the Swarmguard and Armor Penetration when it starts appearing as a stat on items later into the expansion.
+
+Furthermore, Blizzard announced that all raids will be released in their nerfed state for Anniversary TBC, which means lower bosses' health pool and even shorter encounters, making Badge of the Swarmguard all the more relevant.
+
+If you didn't acquire Badge of the Swarmguard from Ahn'Qiraj during Vanilla, you will be at a disadvantage throughout the majority of TBC and should start begging your guild leadership to raid Ahn'Qiraj again for it.
+
+The second-best trinket you can get your hands on outside of raids is the Bloodlust Brooch, available for 41  Badges of Justice and your most important purchase for your first few badges. While it doesn't have nearly the same burst potential as Badge of the Swarmguard, it's a more steady damage increase that will remain good in all situations throughout Phase 1.
+Slayer's Crest is basically Bloodlust Brooch with 10% less stats but still a strong third choice, closely followed by Abacus of Violent Odds with similar stats but a slightly less valuable haste on-use.
+
+If an encounter is so short that you may not be able to use two on-use trinkets back to back, then Hourglass of the Unraveller is a valid second trinket, as its proc has a chance to overlap with your on-use effect for exponential returns.
+Rank	Item	Source
+Best (Classic)	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Sartura (Ahn'Qiraj)
+Best	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Best (Classic)	Slayer's Crest Slayer's Crest	Drop: Sapphiron (Naxxramas)
+Best	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Passive	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+
+Pre-Raid Best in Slot Weapons for DPS Warrior in TBC Classic Phase 1
+Dual-Wield Weapons
+The Blacksmithing weapon Dragonmaw is by far the most powerful main-hand weapon for a Fury Warrior in Phase 1. Thanks to its incredible proc, this weapon and the follow-up upgrade in Phase 2 will last you until you acquire either Warglaives or Sunwell weapons in Phase 4! However, this weapon is quite expensive to craft and will require a major gold investment to level up Blacksmithing, craft Drakefist Hammer, and upgrade it to Dragonmaw as soon as possible.
+
+For your off-hand weapon, there are many options to pick from, depending on how much gold you are comfortable spending just for pre-raid gear that will eventually be replaced by Karazhan drops.
+
+If gold is no object, the best off-hand for Fury (and best main-hand for dual-wielding Arms Warriors) is technically Blinkstrike. However, this BoE world drop weapon usually sells for an obscene amount of gold that is hard to justify for an off-hand weapon that will underutilize its proc chance and only be a 1% upgrade. Your next best off-hand is Fel Edged Battleaxe, which is also an expensive weapon to craft for a temporary 0.5% damage increase. While most races will probably skip this weapon, it is worth noting that the axe remains competitive with Karazhan weapons for Orc Orcs only thanks to their Axe Specialization racial.
+
+The next option is Vindicator's Brand, only available once Exalted with the Aldor. Pushing your Aldor reputation to Exalted during the first couple of weeks of the expansion isn't exactly cheap either, so this weapon could also join the "too expensive" category alongside the BoE weapons above, considering it's a marginal DPS increase over heroic weapons.
+
+Most ilvl 115 blue weapons from heroics perform within a couple of DPS of each other, so you have plenty of options there. Most notably, Latro's Shifting Sword, Bloodskull Destroyer and Edge of the Cosmos are the best for Human Human, whereas Firebrand Battleaxe and The Harvester of Souls are the best for Orc Orc Warriors thanks to their respective racials.
+Finally, the blue PvP weapons Grand Marshal's Slicer or High Warlord's Cleaver are only slightly worse than heroics weapons, but guaranteed with a bit of grinding in battlegrounds if that's your preference.
+
+    Slow vs Fast Off-Hand
+
+    Starting from TBC, Whirlwind now hits with both of your weapons when dual-wielding, which incentivizes Fury Warriors to use a slow off-hand weapon for higher single-target and AoE damage. That being said, fast off-hand weapons remain fairly close for single-target DPS and provide some valuable quality-of-life advantages, mainly thanks to a steadier rage generation that ensures an easier rotation.
+
+    The main downside of using two slow weapons is the risk of syncing your swings and losing the essential benefits of the Heroic Strike queue feature. This is especially common in Phases 1 and 2, where 2.7 speed raid weapons will match your Dragonmaw speed, and require special attention to your swing timers to ensure your weapons stay out of sync, and manually desync with a macro when needed.
+
+Rank	Item	Source
+Best Main Hand	Dragonmaw Dragonmaw	Profession: Master Hammersmith Blacksmithing (BoP)
+Best Off Hand	Blinkstrike Blinkstrike	World Drop: The Outland
+Best Off Hand	Fel Edged Battleaxe Fel Edged Battleaxe	Profession: Blacksmithing
+Off-Hand Alternative	Vindicator's Brand Vindicator's Brand	Vendor: Quartermaster Endarin Requires Exalted with The Aldor
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Dual-Wield Weapon Recommendations
+Rank	Item	Source
+Orc Off-Hand	The Harvester of Souls The Harvester of Souls	Drop: Exarch Maladaar ( Heroic Auchenai Crypts)
+Orc Off-Hand	High Warlord's Cleaver High Warlord's Cleaver	PvP: 19125 Honor + 20 Eye of the Storm Mark of Honor Eye of the Storm Mark of Honor
+Orc Off-Hand	Firebrand Battleaxe Firebrand Battleaxe	Drop: Broggok ( Heroic The Blood Furnace)
+Human Off-Hand	Latro's Shifting Sword Latro's Shifting Sword	Drop: Aeonus (The Black Morass)
+Human Off-Hand	Bloodskull Destroyer Bloodskull Destroyer	Drop: Lieutenant Drake ( Heroic Old Hillsbrad Foothills)
+Human Off-Hand	Edge of the Cosmos Edge of the Cosmos	Drop: Pathaleon the Calculator ( Heroic The Mechanar)
+Human Off-Hand	Grand Marshal's Slicer Grand Marshal's Slicer	PvP: 19125 Honor + 20 Eye of the Storm Mark of Honor Eye of the Storm Mark of Honor
+
+Two-Hand Weapons
+As a Two-handed Arms Warrior throughout TBC, you will only want to consider two-handed Swords due to the Sword Specialization talent overshadowing other weapon types.
+Your best pre-raid weapon is Lionheart Champion, also an expensive Blacksmithing craft that will require leveling up your profession to lvl 375 and buying a lot of materials. This sword and the follow-up upgrade in Phase 2 will last you until Phase 3, and is on par with the best sword from raids in Phase 2.
+
+The next best sword is the rare Quantum Blade, with a miserable 3% drop chance, and still 5% worse than the Blacksmithing sword. Followed by Endbringer, 9% worse.
+
+    Some players may be tempted to craft the Deep Thunder mace instead for PvP, but be aware that Mace Specialization provides basically zero benefits to your damage in PvE, and you will lose ~7% of your damage by skipping Lionheart Champion. While that may not sound like much to some, 7% damage is the amount of DPS you gain from going from Phase 1 BiS to Phase 2 BiS. So you are essentially cancelling out an entire phase worth of raid upgrades if you show up to raid with a mace instead of a sword.
+
+Rank	Item	Source
+Best	Lionheart Champion Lionheart Champion	Profession: Master Swordsmith Blacksmithing (BoP)
+Optional	Quantum Blade Quantum Blade	Drop: Aeonus ( Heroic The Black Morass)
+Optional	Endbringer Endbringer	Drop: The Black Stalker ( Heroic The Underbog)
+Best in Slot Ranged Weapons for DPS Warrior in TBC Classic Phase 1
+Mama's Insurance is an easy-to-obtain quest reward with excellent stats and about on par with the Karazhan bow, so you are pretty much set for Phase 1 with this quest reward.
+Rank	Item	Source
+Best	Mama's Insurance Mama's Insurance	Quest:Declawing Doomclaw Declawing Doomclaw
+Hit Alternative	Veteran's Musket Veteran's Musket
+Marksman's Bow Marksman's Bow	Vendor: Logistics Officer Ulrike - Requires Exalted with Honor Hold
+Vendor: Quartermaster Urgronn - Requires Exalted with Thrallmar
+
+Beanna
+WoW Classic Warrior Expert
+Beanna always had a passion for teaching and writing guides, starting with the necromancer class in Diablo 2. He fell in love with World of Warcraft in 2004 and, after a couple years of experience as a tank in hardcore guilds, started once again writing guides for the feral druid specialization on various forum and class blogs.
+
+After Cataclysm and a few rank 1s under his belt, Beanna decided to travel back in time to play the Vanilla era of WoW all over again and master the warrior class. A journey punctuated by the occasional hardcore raiding phase in new MMO releases such as SW:TOR, WildStar and GW2 to scratch that competitive itch over the years, that eventually culminated as a main tank in <Dreamstate> for the release of Classic WoW.
+
+Invariably drawn to theorycrafting in every video game, Beanna stumbled upon a secretive, niche discord community dedicated to the warrior class in Vanilla aptly called Fight Club. Accidentally ending up becoming the main contributor of this no-longer-niche community of nearly 100k users, Beanna continues to provide accessible guides for new Warriors since 2019.
+1 - 10 of 10
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+7
+
+	
+By Gulanga (24,813 – 3·29·104) on 2021/06/08 (Burning Crusade)	
+	
+I'm surprised Chestplate of A'dal Chestplate of A'dal is not listed as a chest alternative.
+Granted it is that or Shattrath Leggings Shattrath Leggings as a reward choice, but with Clefthoof Hide Leggings Clefthoof Hide Leggings being so close I feel the chest might be the better option vs the listed Blackened Chestplate Blackened Chestplate which is slightly worse than A'Dal chest imo.
+
+-1
+
+	
+
+LilGazzi on 2026/02/11 (Burning Crusade)
+You can swap the legs and chests for eachother. But both sets are rewards from the same quests.
+
+6
+
+	
+By Chillnkill (1,819 – 5·11) on 2021/04/28 (Burning Crusade)	
+	
+goggles won't be obtainable until phase 2? why are they even listed then
+Last edited by Chillnkill on 2021/04/28
+
+3
+
+	
+By Gulanga (24,813 – 3·29·104) on 2021/06/15 (Burning Crusade)	
+	
+Some of the items here, like for example Sha'tari Wrought Greaves Sha'tari Wrought Greaves, have no reason to follow the gem colour.
+Why would we need the extra 3 resilience from the socket bonus?
+
+It makes me wonder if there has been a proper evaluation of the socket bonuses at all..
+
+2
+
+	
+
+Elrohim on 2026/01/26 (Burning Crusade)
+its just another neiro guide on wowhead...sad reality
+
+1
+
+	
+By thevenom (3,276 – 22·18) on 2026/04/16 (Burning Crusade)	
+	
+only one main hand and its dragonmaw? surely there is some alternative
+
+0
+
+	
+By ThePugKing21 (5,403 – 2·9·15) on 2021/07/20 (Burning Crusade)	
+	
+No gem is listed to socket into General's Plate Bracers General's Plate Bracers, what do you socket?
+
+0
+
+	
+
+LilGazzi on 2026/02/11 (Burning Crusade)
+Probably pure crit, just a guess, unless you need hit.
+
+-2
+
+	
+By yli164 (293 – 2·1) on 2021/06/23 (Burning Crusade)	
+	
+What’s up Pigeon!
+By Jabkha (2,242 – 6·7) on 2021/06/13 (Burning Crusade)	
+	
+By Gizmotechie22 (10,133 – 3·18·51) on 2021/06/17 (Burning Crusade)	
+	
+By Holendear (632 – 1·5) on 2021/04/28 (Burning Crusade)	
+	
+By effyouzion (7,422 – 2·10·20) on 2021/04/28 (Burning Crusade)	
+	
+1 - 10 of 10
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+4.3/5 (5 Votes)
+TBCC Warrior DPS Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS Arms
+            Best In Slot Gear in Phase 1
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Two-Handed Weapons
+                Main Hand Weapons
+                Off Hand Weapons
+                Ranged
+        Phase 1 BiS Fury
+        Phase 2 BiS
+            Arms
+            Fury
+        Phase 3 BiS
+            Arms
+            Fury
+        Phase 4 BiS
+            Arms
+            Fury
+        Phase 5 BiS
+            Arms
+            Fury
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Arms Warrior DPS Phase 1 Best in Slot (BiS) - TBC Classic
+By Beanna
+Updated: 2026/05/02
+This guide is Wowhead's Best in Slot Gear list from Karazhan, Gruul's Lair, and Magtheridon's Lair for $class $role in The Burning Crusade Classic. This guide will list the recommended gear for $class $role to acquire while they progress on the first few raids in The Burning Crusade Classic, and contains gear sourced from Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best-in-slot lists, including a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+DPS Warrior Best in Slot Guides
+Best In Slot Gear for Arms Warrior DPS in Phase 1
+Since Karazhan is a 10-man raid, your group composition may not always have a Balance Druid Druid or  Draenei to provide additional hit. For this reason, it is recommended to carry a variety of items to adjust your hit on the fly between 5%, 6%, and 9%.
+
+Additionally, Arms Warriors looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Arms Warrior Gems & Enchants
+Should Arms Warrior DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 1?
+Both of the Shattrah factions offer similar shoulders enchants, with a marginal advantage for the Scryers one, providing more Critical Strike rating, more valuable than Attack Power.
+
+    The Aldor can give you access to Vindicator's Brand Vindicator's Brand, a powerful pre-raid main-hand weapon, provided you have the finances to boost this reputation to Exalted early on. On the flip side, the Aldor is also generally the most popular faction, which usually drives the prices for Mark of Sargeras Mark of Sargeras and Fel Armament Fel Armament up compared to the Scryers equivalents.
+    The Scryers' advantage primarily resides in its unique Blacksmithing plans, which will help you level Blacksmithing up to lvl 375 to craft your best weapons at a much lower cost. Sunfury Signet Sunfury Signet and Arcane Tome Arcane Tome are also usually cheaper than the Aldor equivalents, both contributing to saving you a decent amount of gold at the start of the expansion.
+
+In conclusion, neither faction will provide a real advantage after the beginning of Phase 1, and it's mostly a choice between an immediate power increase in the form of Vindicator's Brand Vindicator's Brand at a high cost, or saving gold to increase your reputation and level up Blacksmithing.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Arms Warriors, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Arms Warrior in TBC Classic Phase 1
+The T4 Warbringer Battle-Helm is by far the best helmet for an Arms Warrior in Phase 1. The other raid drops in this phase don't come with a metagem, which makes them irrelevant.
+Rank	Item	Source
+Best	Warbringer Battle-Helm Warbringer Battle-Helm	Drop: Helm of the Fallen Defender Helm of the Fallen Defender from Prince Malchezaar (Karazhan)
+Best Pre-raid	Mask of the Deceiver Mask of the Deceiver	Vendor: G'eras (50 Badges of Justice)
+Best in Slot Shoulder Armor for Arms Warrior in TBC Classic Phase 1
+The Ripfiend Shoulderplates are on par with shoulders from the next phase and significantly stronger than anything available in Phase 1. However, they are a rare drop from the open World Boss Doom Lord Kazzak, which means they will only be available to a handful of privileged players.
+The T4 Warbringer Shoulderplates and Ragesteel Shoulders are equal, depending on whether you need the hit rating or not.
+Rank	Item	Source
+Best (World Boss)	Ripfiend Shoulderplates Ripfiend Shoulderplates	Drop: Doom Lord Kazzak (Hellfire Peninsula)
+Best	Ragesteel Shoulders Ragesteel Shoulders	Profession: Blacksmithing (BoE)
+Hit Alternative	Warbringer Shoulderplates Warbringer Shoulderplates	Drop: Pauldrons of the Fallen Defender Pauldrons of the Fallen Defender from High King Maulgar (Gruul's Lair)
+Hit Alternative	Bladed Shoulderpads of the Merciless Bladed Shoulderpads of the Merciless	Drop: Chess Event (Karazhan)
+Best in Slot Back Armor for Arms Warrior in TBC Classic Phase 1
+Black-Iron Battlecloak is the best cloak all the way up to Phase 3. Unfortunately, it drops from the open World Boss Doomwalker, which means it will only be available to a handful of privileged players.
+Vengeance Wrap, which you may have crafted for your pre-raid BiS already, remains the next best cloak and will also last you until Phase 3, so it is definitely a worthy investment.
+None of the raid cloaks from Phase 1 come close to Vengeance Wrap when it comes to raw DPS, but they are serviceable if you can't afford to craft the Tailoring cloak.
+Rank	Item	Source
+Best (World Boss)	Black-Iron Battlecloak Black-Iron Battlecloak	Drop: Doomwalker (Shadowmoon Valley)
+Best	Vengeance Wrap Vengeance Wrap	Profession: Tailoring (BoE)
+Optional	Cloak of the Pit Stalker Cloak of the Pit Stalker	Drop: Magtheridon (Magtheridon's Lair)
+Optional	Netherfury Cape Netherfury Cape	Drop: Warp Splinter (Heroic The Botanica)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+
+Rank	Item	Source
+Alternative	Blood Knight War Cloak Blood Knight War Cloak	Vendor: G'eras (25 Badges of Justice)
+Hit Alternative	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+
+Best in Slot Chest Armor for Arms Warrior in TBC Classic Phase 1
+Similarly to other World Boss drops in this phase, the Terrorweave Tunic from Doomwalker is the best chest by a decent margin. The next best chest for most players is the T4 Warbringer Breastplate.
+The Gladiator's Plate Chestpiece or expensive BoE Chestguard of Exile are mere sidegrades to the pre-raid BiS Ragesteel Breastplate, so not worth considering.
+Rank	Item	Source
+Best (World Boss)	Terrorweave Tunic Terrorweave Tunic	Drop: Doomwalker (Shadowmoon Valley)
+Best	Warbringer Breastplate Warbringer Breastplate	Drop: Chestguard of the Fallen Defender Chestguard of the Fallen Defender from Magtheridon (Magtheridon's Lair)
+Best Pre-raid	Ragesteel Breastplate Ragesteel Breastplate	Profession: Blacksmithing
+Best in Slot Wrist Armor for Arms Warrior in TBC Classic Phase 1
+The Bladespire Warbands are the best bracers for Phase 1 by a long shot, thanks to their superior item level and 2 gem sockets compared to the alternatives.
+The Bracers of Maliciousness from Karazhan are only a small upgrade to the PvP Marshal's Plate Bracers and worse than the Black Felsteel Bracers.
+Rank	Item	Source
+Best	Bladespire Warbands Bladespire Warbands	Drop: High King Maulgar (Gruul's Lair)
+Best Pre-raid	Black Felsteel Bracers Black Felsteel Bracers	Profession: Blacksmithing
+Alternative	Bracers of Maliciousness Bracers of Maliciousness	Drop: Maiden of Virtue (Karazhan)
+Easy To Obtain	Marshal's Plate Bracers Marshal's Plate Bracers	PvP: 11794 Honor + 20 Small Wooden Hammer Small Wooden Hammer
+Best in Slot Hand Armor for Arms Warrior in TBC Classic Phase 1
+Gauntlets of Martial Perfection are the best gloves in Phase 1 and all the way up to Phase 3, although only by a small margin over the Liar's Tongue Gloves.
+Grips of Deftness are a great alternative and only a couple of DPS worse than these coveted 25-man raid drops, so definitely worth keeping on your radar, even if they are leather.
+Rank	Item	Source
+Best	Gauntlets of Martial Perfection Gauntlets of Martial Perfection	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best	Liar's Tongue Gloves Liar's Tongue Gloves	Drop: Magtheridon (Magtheridon's Lair)
+Close Third	Grips of Deftness Grips of Deftness	Drop: Zone Drop in Karazhan
+Best in Slot Waist Armor for Arms Warrior in TBC Classic Phase 1
+The Girdle of the Endless Pit is the best belt for Phase 1, quickly followed by the Gronn-Stitched Girdle that is only slightly worse, but also much more contested since it's leather. No other raid drop this phase beats the pre-raid BiS Deathforge Girdle.
+Rank	Item	Source
+Best	Girdle of the Endless Pit Girdle of the Endless Pit	Drop: Magtheridon (Magtheridon's Lair)
+Alternative	Gronn-Stitched Girdle Gronn-Stitched Girdle	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best Pre-raid	Deathforge Girdle Deathforge Girdle	Drop: Talon King Ikiss ( Heroic Sethekk Halls)
+Best in Slot Leg Armor for Arms Warrior in TBC Classic Phase 1
+Similar to other World Boss drops, Scaled Greaves of the Marksman are the best legs available in Phase 1 by a decent margin, but will be reserved for a handful of lucky players competing with their guilds for control of World Bosses in the open. Furthermore, these legs being mail, they're also the best for many specializations and highly contested within your own raid.
+
+The next best legs are the Skulker's Greaves, no less contested because they are leather and BiS for many classes. If you are drowning in hit rating from other slots already, the Shattrath Leggings or T4 Warbringer Greaves are your best options.
+Rank	Item	Source
+Best (World Boss)	Scaled Greaves of the Marksman Scaled Greaves of the Marksman	Drop: Doom Lord Kazzak (Hellfire Peninsula)
+Best	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+Alternative	Warbringer Greaves Warbringer Greaves	Drop: Leggings of the Fallen Defender Leggings of the Fallen Defender from Gruul the Dragonkiller (Gruul's Lair)
+Best Pre-raid	Shattrath Leggings Shattrath Leggings	Quest:Special Delivery to Shattrath City Special Delivery to Shattrath City
+Best in Slot Feet Armor for Arms Warrior in TBC Classic Phase 1
+Ironstriders of Urgency are the best boots for Phase 1, although only by a small margin over the Rapscallion Boots and Edgewalker Longboots, which are all significant upgrades to the pre-raid BiS boots.
+Rank	Item	Source
+Best	Ironstriders of Urgency Ironstriders of Urgency	Drop: Nightbane (Karazhan)
+Alternative	Rapscallion Boots Rapscallion Boots	Drop: Shade of Aran (Karazhan)
+Hit Alternative	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+Best Pre-raid	Fel Leather Boots Fel Leather Boots	Profession: Leatherworking
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+
+Best in Slot Neck Jewelry for Arms Warrior in TBC Classic Phase 1
+The Adamantine Chain of the Unbroken remains the best neck for an Arms Warrior in Phase 1, only by a slight margin over Haramad's Bargain or Mithril Chain of Heroism.
+Rank	Item	Source
+Best	Adamantine Chain of the Unbroken Adamantine Chain of the Unbroken	Drop: Quagmirran ( Heroic The Slave Pens)
+Best	Mithril Chain of Heroism Mithril Chain of Heroism	Drop: Echo of Medivh (Karazhan)
+Best	Haramad's Bargain Haramad's Bargain	Vendor: Paulsta'ats - Requires Exalted with The Consortium
+Hit Alternative	Natasha's Choker Natasha's Choker	Quest:The Hound-Master The Hound-Master
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Hit Alternative	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+
+Best in Slot Ring Jewelry for Arms Warrior in TBC Classic Phase 1
+Ring of Reciprocity is the best ring in Phase 1; you know the deal by now, it's a World Boss drop, so it will be available only to a minority of players.
+The trusty Shapeshifter's Signet remains the next best ring for this phase, while your second ring will depend on your hit rating. Below the hit cap, Ring of a Thousand Marks is the best thanks to its superior item level and stats, whereas Mithril Band of the Unscarred and Ring of Arathi Warlords will be your go-to if you are over the hit cap.
+Rank	Item	Source
+Best (World Boss)	Ring of Reciprocity Ring of Reciprocity	Drop: Doom Lord Kazzak (World Boss)
+Best	Shapeshifter's Signet Shapeshifter's Signet	Vendor: Nakodu - Requires Exalted with Lower City
+Best	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+Best	Mithril Band of the Unscarred Mithril Band of the Unscarred	Drop: Netherspite (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Great	Ring of Arathi Warlords Ring of Arathi Warlords	Vendor: G'eras (25 Badges of Justice)
+Hit Alternative (Rare)	Shaffar's Band of Brutality Shaffar's Band of Brutality	Drop: Yor ( Heroic Mana-Tombs)
+
+Best in Slot Trinkets for Arms Warrior in TBC Classic Phase 1
+Dragonspine Trophy (DST) is the best trinket in the game and, despite only being a Phase 1 drop, will remain the best trinket up until Wrath of the Lich King for Arms Warriors. Due to the rage mechanic, Warrior naturally scales amazingly with haste for more attacks, leading to more rage, leading to more abilities, and exponential gains throughout the expansion. Warrior objectively benefits the most from DST when looking only at hard, cold DPS numbers, both in absolute and relative increases, compared to any other class and specialization.
+
+Badge of the Swarmguard from Ahn'Qiraj is the best trinket for short encounters up to a minute and/or cleave all the way until Phase 4 of TBC.
+Armor Penetration is always the best stat for physical classes because your targets take exponential damage the lower their armor. Bosses in TBC have a lot more armor than in Vanilla, and armor reduction effects such as Sunder Armor, Expose Armor and Faerie Fire remove only about half of it, leaving plenty of armor to strip with Badge of the Swarmguard and Armor Penetration when it starts appearing as a stat on items later into the expansion.
+Furthermore, Blizzard announced that all raids will be released in their nerfed state for Anniversary TBC, which means lower bosses' health pool and even shorter encounters, making Badge of the Swarmguard all the more relevant.
+
+Bloodlust Brooch is the third-best trinket in Phase 1 and is best suited for longer encounters, thanks to better passive stats while on cooldown. It catches up to Badge of the Swarmguard at around 3 minutes, but not many encounters may last that long in the nerfed raids. Nonetheless, it's a good alternative trinket to rotate on trash mobs while the Badge is on cooldown.
+Rank	Item	Source
+Game Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Sartura (Ahn'Qiraj)
+Best	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Alternative	Slayer's Crest Slayer's Crest	Drop: Sapphiron (Naxxramas)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Alternative	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar)
+Passive	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+
+Best in Slot Two-Handed Weapons for Arms Warrior in TBC Classic Phase 1
+As a Two-handed Arms Warrior throughout TBC, you will only want to consider two-handed Swords due to the Sword Specialization talent overshadowing other weapon types. While Orc Orcs can lower the gap with Poleaxe Specialization thanks to their Axe Specialization racial, it's still not enough to beat the amazing Sword Specialization talent.
+
+The Blacksmithing weapon Lionheart Champion is by far the most powerful two-hander for an Arms Warrior in Phase 1. Thanks to its incredible proc, this weapon and the follow-up upgrade in Phase 2 will remain competitive until Phase 3. However, this weapon is quite expensive to craft and will require a major gold investment to level up Blacksmithing, craft Lionheart Blade, and upgrade it to Lionheart Champion as soon as possible.
+
+The next best sword is the Gladiator's Greatsword, performing 2% worse than the Blacksmithing sword, followed by Despair, 3% worse and only slightly better than the non-upgraded Lionheart Blade. Gorehowl is on par with Gladiator's Greatsword for Orc Orcs only.
+
+    Some players may be tempted to craft the Deep Thunder mace instead for PvP, but be aware that Mace Specialization provides basically zero benefits to your damage in PvE, and you will lose ~7% of your damage by skipping Lionheart Champion. While that may not sound like much to some, 7% damage is the amount of DPS you gain from going from Phase 1 BiS to Phase 2 BiS. So you are essentially cancelling out an entire phase worth of raid upgrades if you show up to raid with a mace instead of a sword.
+
+Rank	Item	Source
+BiS	Lionheart Champion Lionheart Champion	Profession: Blacksmith (Master Swordsmith - BOP)
+Optional	Gladiator's Greatsword Gladiator's Greatsword	Vendor: 3750 Arena Points Arena Points
+Orc Alternative	Gorehowl Gorehowl	Drop: Prince Malchezaar (Karazhan)
+Alternative	Despair Despair	Drop: Julianne (Karazhan)
+Best in Slot Main Hand Weapons for Arms Warrior in TBC Classic Phase 1
+Arms Warrior can also be played as an alternative Dual-Wield build — often nicknamed "Kebab Warrior" — which some players may prefer for its more forgiving playstyle and familiar rotation similar to that of a Fury Warrior. While it performs worse than the traditional Arms playstyle with a two-handed weapon on paper (3%-5% lower damage), this easier-to-play rotation is a good alternative for players who struggle to use Slam efficiently, players with poor reaction time, or those with high latency.
+
+This build is mainly viable thanks to the powerful Sword Specialization talent and will naturally be played with two swords, a slow one for the main-hand and a fast one for the off-hand. The axe variant isn't too far behind for Orc Orc Warriors thanks to their Axe Specialization racial.
+The best main-hand sword for Phase 1 is the expensive world drop BoE Blinkstrike, which has a chance to grant an extra attack, synergizing particularly well with Sword Specialization and Windfury Totem. However, this weapon has historically been the most expensive BoE of TBC, so it might be an enormous investment for a weapon that is only 0.5% better than the Gladiator's Slicer or 0.8% better than Spiteblade and will be replaced in the next phase already.
+
+The Blacksmithing mace Dragonmaw is so powerful thanks to its insane haste proc that it's the best weapon after Spiteblade despite not even being a sword. It's an expensive weapon to craft but worth considering if you are unlucky with raid drops and Spiteblade keeps eluding you, depending on your server's economy and how much more expensive Blinkstrike sells for at the auction house.
+Rank	Item	Source
+Best (Expensive)	Blinkstrike Blinkstrike	World Drop: The Outland
+Best	Gladiator's Slicer Gladiator's Slicer	PvP: 2283 Arena Points Arena Points
+Best (World Boss)	Hope Ender Hope Ender	Drop: Doom Lord Kazzak (Hellfire Peninsula)
+Best	Spiteblade Spiteblade	Drop: Netherspite (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Main Hand Weapon Recommendations
+
+Rank	Item	Source
+Best Pre-raid	Dragonmaw Dragonmaw	Profession: Master Hammersmith Blacksmithing (BoP)
+Alternative	Vindicator's Brand Vindicator's Brand	Vendor: Quartermaster Endarin Requires Exalted with The Aldor
+
+Best in Slot Off Hand Weapons for Arms Warrior in TBC Classic Phase 1
+Dual-Wielding Arms performs best with a fast off-hand sword thanks to the Sword Specialization granting you an extra main-hand attack, even when the proc comes from your off-hand. A faster off-hand will ensure steady and reliable procs and perform ~1.2% better than a slow sword with identical stats on single target. Additionally, a fast weapon generally improves your playstyle, thanks to smoother rage generation to ensure an easier and more predictable rotation, and no reason to worry about your swing timers and synced weapons ever.
+On the flip side, a slower off-hand will generally perform better on AoE and cleave now that Whirlwind hits with both of your weapons in TBC, so you may want to equip a slow sword against trash mobs, if you can remember to swap weapons around throughout a raid. For a list of slow swords, see the main hand weapons above.
+
+The best fast sword off-hand in every phase is the Gladiator's Quickblade, so hopefully you like TBC arenas. Alternatively, the best PvE option is the surprisingly powerful pre-raid weapon Latro's Shifting Sword, with the fastest speed in the game. Latro's will remain the best off-hand for Phases 1 and 2 due to a lack of raid alternatives.
+
+The Blacksmithing one-handed sword Blazeguard is not an upgrade to Latro's and is not worth spending any gold on. And its Phase 2 evolution Blazefury is merely a 0.3% upgrade over Latro's.
+Rank	Item	Source
+Best	Gladiator's Quickblade Gladiator's Quickblade	PvP: 370Arena Points Arena Points
+Best	Latro's Shifting Sword Latro's Shifting Sword	Drop: Aeonus (The Black Morass)
+Best in Slot Ranged Weapons for Arms Warrior in TBC Classic Phase 1
+The World Boss drop Barrel-Blade Longrifle is less than a 1 DPS increase over the Hunter Hunter BiS Sunfury Bow of the Phoenix, which itself is only a 2 DPS increase over the easy-to-obtain Mama's Insurance. No reason to compete with other classes over such negligible DPS differences, so you can be happy with your green quest reward for the entire phase.
+Rank	Item	Source
+Best (World Boss)	Barrel-Blade Longrifle Barrel-Blade Longrifle	Drop: Doomwalker (Shadowmoon Valley)
+Best	Sunfury Bow of the Phoenix Sunfury Bow of the Phoenix	Drop: Prince Malchezaar (Karazhan)
+Best	Mama's Insurance Mama's Insurance	Quest:Declawing Doomclaw Declawing Doomclaw
+Beanna
+WoW Classic Warrior Expert
+Beanna always had a passion for teaching and writing guides, starting with the necromancer class in Diablo 2. He fell in love with World of Warcraft in 2004 and, after a couple years of experience as a tank in hardcore guilds, started once again writing guides for the feral druid specialization on various forum and class blogs.
+
+After Cataclysm and a few rank 1s under his belt, Beanna decided to travel back in time to play the Vanilla era of WoW all over again and master the warrior class. A journey punctuated by the occasional hardcore raiding phase in new MMO releases such as SW:TOR, WildStar and GW2 to scratch that competitive itch over the years, that eventually culminated as a main tank in <Dreamstate> for the release of Classic WoW.
+
+Invariably drawn to theorycrafting in every video game, Beanna stumbled upon a secretive, niche discord community dedicated to the warrior class in Vanilla aptly called Fight Club. Accidentally ending up becoming the main contributor of this no-longer-niche community of nearly 100k users, Beanna continues to provide accessible guides for new Warriors since 2019.
+1 - 11 of 11
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By Chillnkill (1,819 – 5·11) on 2021/04/28 (Burning Crusade)	
+	
+missing many amazing items..
+
+0
+
+	
+
+Gizmotechie22 on 2021/07/27 (Burning Crusade)
+Liar's Tongue Gloves, Xavian Stiletto, Veteran's Musket, Cloak of the Put Stalker, Malefic Mask of the Shadows and Bladed Shoulderpads of the Merciless just to name a few
+
+3
+
+	
+By Gulanga (24,813 – 3·29·104) on 2021/07/06 (Burning Crusade)	
+	
+First of all this is a great list, nice work.
+However having it rely on you having the 3% hit buff sort of negates the entire thing for Arms.
+Just saying "If you don't have it, add more +hit"- is kind of weird when you don't list enough +hit alternatives.
+Why not make a list that actually hits all the marks, including 9% hit, and then tell people to adjust down if they have a moonkin?
+This is supposed to be a BiS list, not a "BiS, but only if you have this specific raid comp"-list.
+Last edited by Gulanga on 2021/07/06
+
+2
+
+	
+
+Hydraaxon on 2021/07/07 (Burning Crusade)
+If you need Hit, you can Gem Hit, there's also a Well Fed food buff that grants Hit aswell, but having a Boomyboy is more valuable and it allows you to bring the same gear to raids and dungeon. There are Alternatives with Hit in every slot but Weapons and Trinket
+
+1
+
+	
+
+intuit on 2021/09/03 (Burning Crusade)
+Why was this voted down? ....and why was the original comment voted UP? "BiS" is the gearset(up) that allows for the most dps. That's 6%hit + raidbuffs. If you don't have the boomkin, you can adjust the gearset to do less dps by adding more hit, just as Hydraaxon said.
+
+2
+
+	
+By Thmbzy (188 – 1·1) on 2021/07/14 (Burning Crusade)	
+	
+Surprised not to see cloak of the Pit Stalker under cape options.
+
+-1
+
+	
+
+putts4 on 2021/10/12 (Burning Crusade)
+28 stam > 1 socket xD
+
+1
+
+	
+By Fiasco209 (2,456 – 5·9) on 2021/07/01 (Burning Crusade)	
+	
+Missing Aldor rep sword for OH options.
+
+1
+
+	
+By Gulanga (24,813 – 3·29·104) on 2021/07/06 (Burning Crusade)	
+	
+Just as a thought, how would Blazeguard Blazeguard be as an off hand choice for Fury?
+Since swords are the only non-mainhand weapon spec crafts.
+
+3
+
+	
+
+Hydraaxon on 2021/07/07 (Burning Crusade)
+Fast OH are not recommended, slower OH means more damage on Whirlwind and bigger uptime for Flurry for your MH If you're Blacksmith, being Hammersmith and crafting Dragonmaw Dragonmaw is by far a better option than using Blazeguard
+
+1
+
+	
+By SassyBeard (8,026 – 3·20·63) on 2021/07/24 (Burning Crusade)	
+	
+How soon do warriors replace DST?
+
+2
+
+	
+
+Thmbzy on 2021/07/29 (Burning Crusade)
+They don't. Nothing is better through phase 5. The only thing that comes close is Solarian's Sapphire, and if you have an arms warrior in your group it's irrelevant. This is mostly due to the internal CD on proc trinkets similar to DST.
+
+0
+
+	
+
+LilGazzi on 2025/12/30 (Burning Crusade)
+Solarian is not better, nor does it come close. It's just something you give all warriors that they snapshot in conjunction with 3p t2. DST is the best trinket in the game until p5, at which point it is arguably replaceable by Shard of Contempt AND Blackened Naaru Sliver. You can skip either one as well, it's very small upgrade from DST to BNS. SOC + DST is the low stress combo though, as one's from p1 and one's from a 5man dungeon.
+
+1
+
+	
+By Zanzo420 (3,792 – 10·18) on 2026/04/28 (Burning Crusade)	
+	
+Just thought I'd let you know you have the pvp bracer requirements as "Easy To Obtain Marshal's Plate Bracers Marshal's Plate Bracers PvP: 11794 Honor + 20 Small Wooden Hammer Small Wooden Hammer"... I'm pretty sure it doesn't cost 20 small wooden hammers lol
+
+0
+
+	
+By Ozyorkbourne (9,649 – 3·14·36) on 2021/04/28 (Burning Crusade)	
+	
+Is axe spec not worth then? Would have thought for orc arms warrior, Mooncleaver would have been the best PvE choice at 3.7 speed especially since we can reroll BS weaponsmith choice in TBC. Or just go Hammersmith right away and focus on the arena 2H axe?
+
+-1
+
+	
+
+Gulanga on 2021/06/08 (Burning Crusade)
+Keep in mind meta is about min/maxing, so 2h sword is better for PvE and 2h mace for PvP. That does NOT mean that 2h axes are somehow useless, as an orc especially not. Arms will not top the dps meters anyway so go with what you want.
+
+-1
+
+	
+
+NeoBladewing on 2021/07/02 (Burning Crusade)
+Personally, I'm going hammersmithing for PvP and axe spec for phase 1 PvE. Sword spec is the best, yeah, but you have to stay master swordsmith to get the best sword whereas axe spec both has a lot of good phase 1 options and makes up for the crit deficit this early on. As Gulanga said, though, it's mostly just personal preference. Go sword spec for minmax, but the other two options aren't non-viable by any stretch. You won't be competing for top with competent ranged DPS in the raid :P
+
+0
+
+	
+By h0r1z0n (618 – 1·3) on 2021/06/10 (Burning Crusade)	
+	
+Decapitator drops in Karazhan correct that pls
+
+0
+
+	
+
+Babyhoof <Rare Premium User> on 2021/06/14 (Burning Crusade)
+Apologies for the formatting error, I have now added the correct source for the weapon.
+
+-1
+
+	
+By capSAR (20,219 – 2·11·23) <Rare Premium User> on 2026/01/20 (Burning Crusade)	
+	
+Where is the 1h/OH weapon section for fury? I only see arms 2h weapons listed and only a tiny mention at the top of one-handers
+Last edited by capSAR on 2026/01/20
+
+1
+
+	
+
+Serenal <Rare Premium User> on 2026/01/21 (Burning Crusade)
+Hey, Beanna is creating a separate guide for Fury. I will add a link to it once it is published.
+
+0
+
+	
+
+Serenal <Rare Premium User> on 2026/02/02 (Burning Crusade)
+Here is the Fury guide: https://www.wowhead.com/tbc/guide/fury-warrior-dps-karazhan-best-in-slot-gear-burning-crusade-classic-wow
+
+-2
+
+	
+By KMC2 (1,144 – 2·9) on 2021/07/02 (Burning Crusade)	
+	
+Any reason why neither of these are hit capped?
+
+4
+
+	
+
+Ashbringirl on 2021/07/02 (Burning Crusade)
+It assumes you have a boomkin in your raid for the Improved Faerie Fire.
+
+2
+
+	
+
+dragonslayah on 2021/07/03 (Burning Crusade)
+The fury set can also get 3% hit from Precision in the fury talent tree.
+1 - 11 of 11
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase TwoClassesLevelingBest in SlotTier ListsRaidsAttunementsDungeonsReputationsProfessions
+Guides...
+Guide Contents
+Patch 2.5.6
+4.8/5 (8 Votes)
+TBCC Warrior DPS Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS Arms
+        Phase 1 BiS Fury
+        Phase 2 BiS
+            Arms
+                Best In Slot Gear in Phase 2
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Two-Handed Weapons
+                    Main Hand Weapons
+                    Off Hand Weapons
+                    Ranged
+            Fury
+        Phase 3 BiS
+            Arms
+            Fury
+        Phase 4 BiS
+            Arms
+            Fury
+        Phase 5 BiS
+            Arms
+            Fury
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Arms Warrior DPS Best in Slot (BiS) Phase 2 Gear Guide - TBC Classic
+By Beanna
+Updated: 2026/05/12
+Welcome to Wowhead's Best in Slot Gear list from Tempest Keep and Serpentshrine Cavern for Arms Warrior DPS in The Burning Crusade Classic. This guide will list the recommended gear for Arms Warrior DPS to acquire while they progress during the second phase of The Burning Crusade Classic, and contains gear sourced from Tempest Keep and Serpentshrine Cavern, plus other pieces from previous phases like Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best in slot lists, including a TBCC pre-patch list and a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Arms Warrior DPS Best in Slot HubArms Warrior DPS Pre-Raid Best in Slot
+Best In Slot Gear for Arms Warrior DPS in Phase 2
+In Phase 2 of TBCC, the best gear path for an Arms Warrior is to ignore the Tier 5 Set bonuses because the individual items will put you too far above the hit cap, and instead aim for the more contested leather off-set pieces such as Shoulderpads of the Stranger Shoulderpads of the Stranger, Gloves of the Searing Grip Gloves of the Searing Grip and Leggings of Murderous Intent Leggings of Murderous Intent that will cap your expertise for this phase.
+However, these leather pieces may be in very high demand in your raid group since they are also BiS for several other melee classes, and achieving a complete gear set may be difficult.
+
+Alternatively, aiming for 4 parts of the Tier 5 Set paired with only one leather off-set piece, such as the shoulders or the legs, is only a minor DPS difference and may be a more reasonable goal in the shorter phases of Anniversary TBC.
+
+    Dual-wielding "Kebab" Arms Warriors should refer to the Fury Warrior BiS Guide for more armor recommendations.
+
+Arms Warriors looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Arms Warrior Gems & Enchants
+
+Should Arms Warrior DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 2?
+Both of the Shattrah factions offer similar shoulders enchants, with a marginal advantage for the Scryers one, providing more Critical Strike rating, more valuable than Attack Power.
+The Scryers is also a less expensive reputation to max out, thanks to a lower demand for Sunfury Signet Sunfury Signet and Arcane Tome Arcane Tome compared to the more popular Aldor faction. As a nice bonus, the Scryers also unlocks access to unique Blacksmithing plans that may help you save some gold while leveling Blacksmithing up to lvl 375 to craft your best weapons.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Arms Warriors, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Arms Warrior in TBC Classic Phase 2
+Engineers will be able to craft the excellent Furious Gizmatic Goggles as soon as Phase 2 releases, which are a significant DPS upgrade over the T4 Warbringer Battle-Helm and on par with the T5 Destroyer Battle-Helm as a standalone item. Because they offer different amounts of hit rating, either can come out ahead depending on the rest of your gear set and how much you need to reach 5%/6%/9% hit.
+Rank	Item	Source
+Best	Destroyer Battle-Helm Destroyer Battle-Helm	Drop: Helm of the Vanquished Defender Helm of the Vanquished Defender from Lady Vashj (Serpentshrine Cavern)
+Best	Furious Gizmatic Goggles Furious Gizmatic Goggles	Profession: Engineering (BoP)
+P1 BiS	Warbringer Battle-Helm Warbringer Battle-Helm	Drop: Helm of the Fallen Defender Helm of the Fallen Defender from Prince Malchezaar (Karazhan)
+Best in Slot Shoulder Armor for Arms Warrior in TBC Classic Phase 2
+In an ideal gear setup, the Shoulderpads of the Stranger are the best shoulders for Arms Warrior, especially paired with the Gloves of the Searing Grip Gloves of the Searing Grip to reach the next expertise threshold with minimal stat loss. However, both leather pieces are quite contested since they are BiS for multiple melee classes, and the pair may take a while to complete.
+In the meantime, the Pauldrons of the Wardancer or the T5 Destroyer Shoulderblades (depending on your hit needs) may be easier to obtain.
+
+Kebab Warriors should instead aim for the T5 Destroyer Shoulderblades to activate the 4-part Tier 5 set bonuses, paired with the Kael'thas legs Leggings of Murderous Intent, similar to the BiS Fury Warrior gear set.
+Rank	Item	Source
+Best	Shoulderpads of the Stranger Shoulderpads of the Stranger	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Best	Destroyer Shoulderblades Destroyer Shoulderblades	Drop: Pauldrons of the Vanquished Defender Pauldrons of the Vanquished Defender from Void Reaver (Tempest Keep)
+Best (World Boss)	Ripfiend Shoulderplates Ripfiend Shoulderplates	Drop: Doom Lord Kazzak (World Boss)
+Great	Pauldrons of the Wardancer Pauldrons of the Wardancer	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Best in Slot Back Armor for Arms Warrior in TBC Classic Phase 2
+Black-Iron Battlecloak is the best cloak all the way up to Phase 3. Unfortunately, it drops from the open World Boss Doomwalker, which means it will only be available to a handful of privileged players.
+Vengeance Wrap, which you may have crafted for your pre-raid BiS already, remains the next best cloak and will also last you until Phase 3, so it is definitely a worthy investment.
+
+The new Thalassian Wildercloak and Razor-Scale Battlecloak are merely sidegrades to Phase 1 cloaks, and neither is an upgrade to Vengeance Wrap.
+Rank	Item	Source
+Best (World Boss)	Black-Iron Battlecloak Black-Iron Battlecloak	Drop: Doomwalker (World Boss)
+Best	Vengeance Wrap Vengeance Wrap	Profession: Tailoring (BoE)
+Optional	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep)
+Optional	Razor-Scale Battlecloak Razor-Scale Battlecloak	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Best in Slot Chest Armor for Arms Warrior in TBC Classic Phase 2
+The T5 Destroyer Breastplate and leather off-set Bloodsea Brigand's Vest are equally as strong options for the chest slot, depending on how much hit you need in your total gear set. The former will usually be preferred for a typical 6% hit set for its superior survival compared to the leather chest, or for dual-wielding "Kebab" Warriors for the T5 set bonuses.
+
+The Krakken-Heart Breastplate, despite its higher item level and item budget for being a Vashj drop, pales in comparison to the other Phase 2 chests due to a lack of gem sockets. While still an upgrade compared to your T4 chest, it is merely equal to the Terrorweave Tunic, except with more survival.
+
+Alternatively, and only once you have upgraded your Lionheart Executioner Lionheart Executioner to Twinblade of the Phoenix Twinblade of the Phoenix, you can change your Blacksmithing specialization to Armorsmith and craft the Bulwark of the Ancient Kings, which is equal to the other Phase 2 chests, and slightly better once every 30 minutes when you activate the Valor on-use. That being said, it's a lot of money to craft all tiers of the chest for a minor increase with such a long cooldown.
+Rank	Item	Source
+Best	Destroyer Breastplate Destroyer Breastplate	Drop: Chestguard of the Vanquished Defender Chestguard of the Vanquished Defender from Kael'thas Sunstrider (Tempest keep)
+Best	Bloodsea Brigand's Vest Bloodsea Brigand's Vest	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Best	Bulwark of the Ancient Kings Bulwark of the Ancient Kings	Profession: Armorsmith (BoP)
+Great	Krakken-Heart Breastplate Krakken-Heart Breastplate	Drop: Lady Vashj (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Great (World Boss)	Terrorweave Tunic Terrorweave Tunic	Drop: Doomwalker (World Boss)
+
+Best in Slot Wrist Armor for Arms Warrior in TBC Classic Phase 2
+Bracers of Eradication are the only upgrade for Phase 2, and only if you can make use of the hit rating in your current gear set. If you are using several parts of the T5 set, with more hit rating than the leather offset alternatives, then the Bladespire Warbands from last phase remain the best bracers.
+Rank	Item	Source
+Best	Bracers of Eradication Bracers of Eradication	The Lurker Below - Serpentshrine Cavern
+Best	Bladespire Warbands Bladespire Warbands	High King Maulgar - Gruul's Lair
+Optional	True-Aim Stalker Bands True-Aim Stalker Bands	Leotheras the Blind - Serpentshrine Cavern
+Best in Slot Hand Armor for Arms Warrior in TBC Classic Phase 2
+Gloves of the Searing Grip are the only upgrade to the already great Gauntlets of Martial Perfection from Phase 1, while the T5 Destroyer Gauntlets are only worse than the latter by a hair.
+Grips of Deftness are also a strong alternative and may even surpass Martial Perfection depending on your other expertise pieces.
+Rank	Item	Source
+Best	Gloves of the Searing Grip Gloves of the Searing Grip	Drop: Al'ar (Tempest Keep)
+Great	Gauntlets of Martial Perfection Gauntlets of Martial Perfection	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Optional	Destroyer Gauntlets Destroyer Gauntlets	Drop: Gloves of the Vanquished Defender Gloves of the Vanquished Defender from Leotheras the Blind (Serpentshrine Cavern)
+Optional	Grips of Deftness Grips of Deftness	Drop: Zone Drop (Karazhan)
+Best in Slot Waist Armor for Arms Warrior in TBC Classic Phase 2
+Belt of One-Hundred Deaths is the best belt for Phase 2 and will remain the best until Sunwell Plateau drops in the last phase of TBCC. It's a substantial upgrade over the more attainable Red Belt of Battle (Blacksmithing craft) and other alternatives that become available in the next phase.
+
+That being said, since it is also the BiS belt for every melee class, you should expect it to be highly contested and ask your guild to provide the Red Belt of Battle in the meantime.
+Rank	Item	Source
+Best	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Red Belt of Battle Red Belt of Battle	Profession: Blacksmithing
+Good	Girdle of the Endless Pit Girdle of the Endless Pit	Drop: Magtheridon (Magtheridon's Lair)
+Best in Slot Leg Armor for Arms Warrior in TBC Classic Phase 2
+Leggings of Murderous Intent are the best legs by a long shot, thanks to their superior item budget by virtue of being a Kael'thas drop, and the best off-set piece to pair with 4-parts Tier 5 in the remaining armor slots. However, these leggings are also the best for every physical damage dealer in Phase 2 and thus will be highly contested.
+
+Alternatively, the Greaves of the Bloodwarder are a good second choice and a lot less contested as a plate item. The T5 Destroyer Greaves are also on par, especially if you can use another off-set piece such as Shoulderpads of the Stranger, but the additional hit rating may be harder to fit for two-handed players.
+Rank	Item	Source
+Best	Leggings of Murderous Intent Leggings of Murderous Intent	Drop: Kael'thas Sunstrider (Tempest Keep)
+Great	Greaves of the Bloodwarder Greaves of the Bloodwarder	Drop: High Astromancer Solarian (Tempest Keep)
+Great	Destroyer Greaves Destroyer Greaves	Drop: Leggings of the Vanquished Defender Leggings of the Vanquished Defender from Fathom-Lord Karathress (Serpentshrine Cavern)
+Great (World Boss)	Scaled Greaves of the Marksman Scaled Greaves of the Marksman	Drop: Doom Lord Kazzak (Hellfire Peninsula)
+Best in Slot Feet Armor for Arms Warrior in TBC Classic Phase 2
+Warboots of Obliteration, despite not having any gem sockets, are already packed with all the stats an Arms Warrior could want and are the best boots for Phase 2, although not by a lot.
+
+Alternatively, the Cobra-Lash Boots and Star-Strider Boots are only worse than Warboots by a couple of DPS thanks to their gem sockets advantage. Both are a small upgrade to the Phase 1 BiS Ironstriders of Urgency by a couple of DPS.
+Rank	Item	Source
+Best	Warboots of Obliteration Warboots of Obliteration	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Optional	Cobra-Lash Boots Cobra-Lash Boots	Drop: Lady Vashj (Serpentshrine Cavern)
+Optional	Star-Strider Boots Star-Strider Boots	Drop: High Astromancer Solarian (Tempest Keep)
+Great	Ironstriders of Urgency Ironstriders of Urgency	Drop: Nightbane (Karazhan)
+Best in Slot Neck Jewelry for Arms Warrior in TBC Classic Phase 2
+Pendant of the Perilous, Choker of Animalistic Fury, and Telonicus's Pendant of Mayhem are all excellent necks within only a couple of DPS of each other. The former will be the best in slot for Phase 2, but may require a bit of luck since it's a low chance drop from trash mobs in Serpentshrine Cavern.
+
+    Braided Eternium Chain Braided Eternium Chain and its on-use granting an additional 28 critical strike rating (+1.26%) to the whole party for 30 minutes is a powerful necklace worth using in every melee group. While support classes such as Shaman Shaman or Druid Druid are better candidates to equip this support-oriented item, other party members should also carry this necklace in case theirs is on cooldown, and they can no longer buff the group. While yes, it will be a personal DPS loss to equip this blue necklace instead of your best one, not having the buff for you and your party would be a greater DPS loss.
+
+Rank	Item	Source
+Best	Pendant of the Perilous Pendant of the Perilous	Drop: Serpentshrine Cavern Trash Mobs
+Optional	Telonicus's Pendant of Mayhem Telonicus's Pendant of Mayhem	Quest: Verdant Sphere Verdant Sphere from Kael'thas Sunstrider (Tempest Keep)
+Optional	Choker of Animalistic Fury Choker of Animalistic Fury	Drrop: The Lurker Below (Serpentshrine Cavern)
+P1 Best	Adamantine Chain of the Unbroken Adamantine Chain of the Unbroken	Drop: Quagmirran (Heroic The Slave Pens)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Optional	Veteran's Pendant of Triumph Veteran's Pendant of Triumph	PvP: 6345 Honor Points Honor Points
+Hit Alternative	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+
+Best in Slot Ring Jewelry for Arms Warrior in TBC Classic Phase 2
+Phase 2 rings are essentially just sidegrades from the previous phase, basically equal to Mithril Band of the Unscarred but still a couple of DPS below Shapeshifter's Signet and Ring of Reciprocity.
+The only exception is the Band of the Ranger-General, which stands out thanks to its superior item budget due to being a Kael'thas drop, and packs excellent stats for a Fury Warrior, as well as all other physical damage dealers. Expect a lot of competition for this ring, which is already on par with the best rings of the next phase.
+Rank	Item	Source
+Best	Band of the Ranger-General Band of the Ranger-General	Drop; Kael'thas Sunstrider (Tempest Keep)
+Best (World Boss)	Ring of Reciprocity Ring of Reciprocity	Drop: Doom Lord Kazzak (World Boss)
+Best	Shapeshifter's Signet Shapeshifter's Signet	Vendor: Nakodu - Requires Exalted with Lower City
+Hit Alternative	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Great	Ancestral Ring of Conquest Ancestral Ring of Conquest	Drop: The Lurker Below (Serpentshrine Cavern)
+Hit Alternative	Ring of Lethality Ring of Lethality	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Great	Mithril Band of the Unscarred Mithril Band of the Unscarred	Drop: Netherspite (Karazhan)
+Hit Alternative	Shaffar's Band of Brutality Shaffar's Band of Brutality	Drop: Yor (Heroic Mana-Tombs)
+Great	Ring of Arathi Warlords Ring of Arathi Warlords	Vendor: G'eras (25 Badges of Justice)
+
+Best in Slot Trinkets for Arms Warrior in TBC Classic Phase 2
+Dragonspine Trophy (DST) is the best trinket in the game and, despite only being a Phase 1 drop, will remain the best trinket up until Wrath of the Lich King for Arms Warriors. Due to the rage mechanic, Warrior naturally scales amazingly with haste for more attacks, leading to more rage, leading to more abilities, and exponential gains throughout the expansion.
+
+Badge of the Swarmguard from Ahn'Qiraj is the best trinket for short encounters up to 1.5 minutes and/or cleave all the way until Phase 4 of TBC.
+Armor Penetration is always the best stat for physical classes because your targets take exponential damage the lower their armor. Bosses in TBC have a lot more armor than in Vanilla, and armor reduction effects such as Sunder Armor, Expose Armor, and Faerie Fire remove only about half of it, leaving plenty of armor to strip with Badge of the Swarmguard and Armor Penetration when it starts appearing as a stat on items later into the expansion.
+Furthermore, Blizzard announced that all raids will be released in their nerfed state for Anniversary TBC, which means lower bosses' health pool and even shorter encounters, making Badge of the Swarmguard all the more relevant.
+
+Bloodlust Brooch is an okay alternative on-use trinket for short encounters, that can be used in place of Badge for players without the AQ40 trinket, or paired with Badge for players without DST. While it's never as good as Badge for burst and cleave damage, it remains a good trinket to rotate on trash mobs while Badge is on cooldown.
+
+Finally, Phase 2 introduces Tsunami Talisman, a fully passive trinket with excellent stats but best suited for trash mobs or longer encounters over 2 minutes since it lacks the explosive DPS boost of on-use trinkets for short encounters.
+
+All of these trinkets shine in different situations and fight durations, paired with DST. The mark of a great DPS Warrior is to juggle all of them throughout the raid to maximize your burst damage output on trash mobs and to use the relevant secondary trinket for each boss encounter.
+
+    Solarian's Sapphire Solarian's Sapphire is not a great DPS trinket, but it's an important pick up nonetheless to boost the Attack Power provided by your Battle Shout. Paired with 3 parts of Tier 2 for an additional 30 AP in a special gearset to shout before engaging a boss, you can increase the attack power of your Battle Shout by 33% for the whole party, for a substantial ~2.7% DPS increase worth several upgrades.
+
+Rank	Item	Source
+Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Sartura (Ahn'Qiraj)
+Best	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Best	Tsunami Talisman Tsunami Talisman	Drop: Leotheras the Blind (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Situational	Solarian's Sapphire Solarian's Sapphire	Drop: High Astromancer Solarian (Tempest Keep)
+Good	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar)
+Good	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+
+Best in Slot Two-Handed Weapons for Arms Warrior in TBC Classic Phase 2
+As a Two-handed Arms Warrior throughout TBC, you will only want to consider two-handed Swords due to the Sword Specialization talent overshadowing other weapon types. While Orc Orcs can lower the gap with Poleaxe Specialization thanks to their Axe Specialization racial, it's still not enough to beat the amazing Sword Specialization talent.
+
+Phase 2 raids introduce the new Nether Vortex Nether Vortex that will let you upgrade your Blacksmithing weapon Lionheart Champion into its final form: Lionheart Executioner. Same amazing proc, more DPS!
+That being said, while LHE is an amazing sword that can be upgraded quickly at the start of Phase 2, it is not technically the best two-handed weapon of this phase. Twinblade of the Phoenix has it beat by only a couple of DPS thanks to its superior item budget and damage range as a Kael'thas drop, and will be your end goal for Phase 2.
+
+    Some players may be tempted to craft the Stormherald mace instead for PvP, but be aware that Mace Specialization provides basically zero benefits to your damage in PvE, and you will lose ~7% of your damage for not using a sword. While that may not sound like much to some, 7% damage is the amount of DPS you gain from going from Phase 1 BiS to Phase 2 BiS. So you are essentially cancelling out an entire phase worth of raid upgrades if you show up to raid with a mace instead of a sword.
+
+Rank	Item	Source
+Best	Twinblade of the Phoenix Twinblade of the Phoenix	Drop: Kael'thas Sunstrider (Tempest Keep)
+Best	Lionheart Executioner Lionheart Executioner	Profession: Master Swordsmith Blacksmith (BoP)
+Optional	Merciless Gladiator's Greatsword Merciless Gladiator's Greatsword	PVP Vendor
+Best in Slot Main Hand Weapons for Arms Warrior in TBC Classic Phase 2
+Arms Warrior can also be played as an alternative Dual-Wield build — often nicknamed "Kebab Warrior" — which some players may prefer for its more forgiving playstyle and familiar rotation similar to that of a Fury Warrior. While it performs worse than the traditional Arms playstyle with a two-handed weapon on paper (3%-5% lower damage), this easier-to-play rotation is a good alternative for players who struggle to use Slam efficiently, players with poor reaction time, or those with high latency.
+This build is mainly viable thanks to the powerful Sword Specialization talent and will naturally be played with two swords, a slow one for the main-hand and a fast one for the off-hand. The axe variant isn't too far behind for Orc Orc Warriors thanks to their Axe Specialization racial.
+
+The best main-hand sword for Phase 2 is Talon of Azshara thanks to its slower 2.7 speed that gives it a small advantage over the Season 2 Merciless Gladiator's Slicer. The expensive world drop BoE Blinkstrike remains competitive for another phase, only 0.5% worse than Talon when paired with a fast off-hand for more consistent procs.
+Rank	Item	Source
+Best	Talon of Azshara Talon of Azshara	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Best	Merciless Gladiator's Slicer Merciless Gladiator's Slicer	PvP: 2175 Arena Points Arena Points
+Great	Blinkstrike Blinkstrike	World Drop: The Outland
+Great	Gladiator's Slicer Gladiator's Slicer	PvP: TBD Arena Points Arena Points
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Main Hand Weapon Recommendations
+
+Rank	Item	Source
+Great	Hope Ender Hope Ender	Drop: Doom Lord Kazzak (Hellfire Peninsula)
+Great	Spiteblade Spiteblade	Drop: Netherspite (Karazhan)
+Great	Dragonstrike Dragonstrike	Profession: Master Hammersmith Blacksmithing (BoP)
+
+Best in Slot Off Hand Weapons for Arms Warrior in TBC Classic Phase 2
+Dual-Wielding Arms performs best with a fast off-hand sword thanks to the Sword Specialization granting you an extra main-hand attack, even when the proc comes from your off-hand. A faster off-hand will ensure steady and reliable procs and perform ~1.2% better than a slow sword with identical stats on single target. Additionally, a fast weapon generally improves your playstyle, thanks to smoother rage generation to ensure an easier and more predictable rotation, and no reason to worry about your swing timers and synced weapons ever.
+On the flip side, a slower off-hand will generally perform better on AoE and cleave now that Whirlwind hits with both of your weapons in TBC, so you may want to equip a slow sword against trash mobs, if you can remember to swap weapons around throughout a raid. For a list of slow swords, see the main hand weapons above.
+
+Similarly to Phase 1, the best fast sword off-hand for Phase 2 is the Season 2 Merciless Gladiator's Quickblade, a ~1% upgrade over the Season 1 Gladiator's Quickblade, so hopefully you like TBC arenas because there are no PvE raid alternatives until the next phase. Outside of arenas, the best off-hand remains the blue pre-raid weapon Latro's Shifting Sword for a lack of alternatives.
+Rank	Item	Source
+Best	Merciless Gladiator's Quickblade Merciless Gladiator's Quickblade	PvP: 370Arena Points Arena Points
+Great	Gladiator's Quickblade Gladiator's Quickblade	PvP: TBD Arena Points Arena Points
+Good	Latro's Shifting Sword Latro's Shifting Sword	Drop: Aeonus (The Black Morass)
+Good	Merciless Gladiator's Slicer Merciless Gladiator's Slicer	PvP: 2175 Arena Points Arena Points
+Best in Slot Ranged Weapons for Arms Warrior in TBC Classic Phase 2
+As per always, the highly contested Hunter Hunter BiS ranged weapons Serpent Spine Longbow or Sunfury Bow of the Phoenix, while technically BiS, are only a negligible 2-3 DPS upgrade over the completely free and easy-to-obtain Mama's Insurance, so they are not worth contesting.
+Rank	Item	Source
+Best	Serpent Spine Longbow Serpent Spine Longbow	Drop: Lady Vashj (Serpentshrine Cavern)
+Best	Sunfury Bow of the Phoenix Sunfury Bow of the Phoenix	Drop: Prince Malchezaar (Karazhan)
+Best	Mama's Insurance Mama's Insurance	Quest:Declawing Doomclaw Declawing Doomclaw
+Hit Alternative	Serpentshrine Shuriken Serpentshrine Shuriken	Drop: Zone Drop (Serpentshrine Cavern)
+
+Beanna
+WoW Classic Warrior Expert
+Beanna always had a passion for teaching and writing guides, starting with the necromancer class in Diablo 2. He fell in love with World of Warcraft in 2004 and, after a couple years of experience as a tank in hardcore guilds, started once again writing guides for the feral druid specialization on various forum and class blogs.
+
+After Cataclysm and a few rank 1s under his belt, Beanna decided to travel back in time to play the Vanilla era of WoW all over again and master the warrior class. A journey punctuated by the occasional hardcore raiding phase in new MMO releases such as SW:TOR, WildStar and GW2 to scratch that competitive itch over the years, that eventually culminated as a main tank in <Dreamstate> for the release of Classic WoW.
+
+Invariably drawn to theorycrafting in every video game, Beanna stumbled upon a secretive, niche discord community dedicated to the warrior class in Vanilla aptly called Fight Club. Accidentally ending up becoming the main contributor of this no-longer-niche community of nearly 100k users, Beanna continues to provide accessible guides for new Warriors since 2019.
+1 - 3 of 3
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+2
+
+	
+By thekrakenn (133 – 1) on 2021/09/09 (Burning Crusade)	
+	
+nothing about kebab / DW arms? maybe hit up Matohxl to write this guide lol
+
+-1
+
+	
+By Goofybag (2,960 – 6·11) on 2021/08/17 (Burning Crusade)	
+	
+Weapon section could use a few more options. Merciless Gladiator's Greatsword is great if you dont have BS, and Ethereum Nexus-Reaver is decent if you're an orc that can do world bosses.
+By Vannicavus (27,350 – 2·11·17) <Rare Premium User> on 2021/08/10 (Burning Crusade)	
+	
+1 - 3 of 3
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Warrior DPS Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS Arms
+        Phase 1 BiS Fury
+        Phase 2 BiS
+            Arms
+            Fury
+        Phase 3 BiS
+            Arms
+                Best In Slot Gear in Phase 3
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Two-Handed Weapons
+                    Main Hand Weapons
+                    Off Hand Weapons
+                    Ranged
+            Fury
+        Phase 4 BiS
+            Arms
+            Fury
+        Phase 5 BiS
+            Arms
+            Fury
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Arms Warrior DPS Best in Slot (BiS) Phase 3 Gear Guide
+By Beanna
+Updated: 2026/07/18
+Welcome to Wowhead's Best in Slot Gear list from Phase 3 Black Temple and Mount Hyjal for Arms Warrior DPS in The Burning Crusade Classic. This guide will list the recommended gear for Arms Warrior DPS to acquire while they progress during the third phase of The Burning Crusade Classic, and contains gear sourced from Black Temple and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+Best In Slot Gear for Arms Warrior DPS in Phase 3
+Phase 3 and the Black Temple raid introduce the legendary The Twin Blades of Azzinoth, wielded by Illidan himself, and its incredible set bonuses granting a 10-sec +450 haste proc every 45 seconds on top of a flat +200 AP bonus when fighting demons that already rivals Phase 5 weapons.
+This slow main-hand sword + fast off-hand sword combo just happens to be the ideal set of weapons for a dual-wielding "Kebab" Arms Warrior thanks to the Sword Specialization and, as a result, the dual-wield Arms build will theoretically surpass the two-handed "Slam" Arms build for the first time this phase (by ~2.5% DPS). However, I probably don't need to explain how rare and contested this iconic set of Legendary weapons is, and it's very unlikely to be assigned to an Arms Warrior considering Fury Warriors (and Rogues) will gain magnitudes more DPS from these weapons.
+
+On the other hand, the Two-Handed Arms Warrior Best In Slot gear set will be easier to obtain in Phase 3. First off, because its best weapon Cataclysm's Edge Cataclysm's Edge should be uncontested in your raid. But also because it conveniently avoids some of the most sought-after items this phase, such as Cursed Vision of Sargeras Cursed Vision of Sargeras, Choker of Endless Nightmares Choker of Endless Nightmares or Shadowmoon Destroyer's Drape Shadowmoon Destroyer's Drape, thanks to its lower hit requirement.
+
+Arms Warriors looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Arms Warrior Gems & Enchants
+
+
+
+Onslaught Battle-Helm
+Choker of Serrated Blades
+Onslaught Shoulderblades
+Cloak of Darkness
+Onslaught Breastplate
+Deadly Cuffs
+Onslaught Gauntlets
+Belt of One-Hundred Deaths
+Leggings of Divine Retribution
+Dreadboots of the Legion
+Stormrage Signet Ring
+Unstoppable Aggressor's Ring
+Dragonspine Trophy
+Tsunami Talisman
+Cataclysm's Edge
+Off Hand
+Barrel-Blade Longrifle
+Link
+Level70
+Should Arms Warrior DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 3?
+Both of the Shattrah factions offer similar shoulder enchants, with a marginal advantage for the Scryers one, providing more Critical Strike rating, more valuable than Attack Power.
+The Scryers is also a less expensive reputation to max out, thanks to a lower demand for Sunfury Signet Sunfury Signet and Arcane Tome Arcane Tome compared to the more popular Aldor faction, but that may vary based on your server's economy, so make sure to check your local Auction House. As a nice bonus, the Scryers also unlock access to unique Blacksmithing plans that may help you save some gold while leveling Blacksmithing up to level 375 to craft your best weapons.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Fury Warriors, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Arms Warrior in TBC Classic Phase 3
+While the Cursed Vision of Sargeras is a great helmet in a vacuum, its hit rating would be entirely wasted for a two-handed Arms Warrior. As a result, the T6 Onslaught Battle-Helm is the best helmet this phase, especially when it activates the 4-piece T6 set bonus increasing the damage of your Mortal Strike by 5%.
+Rank	Item	Source
+Best	Onslaught Battle-Helm Onslaught Battle-Helm	Drop: Helm of the Forgotten Protector Helm of the Forgotten Protector - Archimonde (Hyjal Summit)
+Hit Alternative	Cursed Vision of Sargeras Cursed Vision of Sargeras	Drop: Illidan Stormrage (Black Temple)
+Hit Alternative	Helm of the Illidari Shatterer Helm of the Illidari Shatterer	Drop: The Illidari Council (Black Temple)
+Great	Vengeful Gladiator's Plate Helm Vengeful Gladiator's Plate Helm	PvP: 1245 Arena Points Arena Points - Arena Vendor
+Great	Forest Prowler's Helm Forest Prowler's Helm	Drop: High Nethermancer Zerevor (Black Temple)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+P2 Best	Destroyer Battle-Helm Destroyer Battle-Helm	Drop: Helm of the Vanquished Defender Helm of the Vanquished Defender - Lady Vashj (Hyjal Summit)
+P2 Best	Furious Gizmatic Goggles Furious Gizmatic Goggles	Profession: Engineering (BoP)
+
+Best in Slot Shoulder Armor for Arms Warrior in TBC Classic Phase 3
+The T6 shoulders Onslaught Shoulderblades are the only real upgrade over Phase 2 shoulders thanks to the introduction of Armor Penetration on items starting from Phase 3.
+Rank	Item	Source
+Best	Onslaught Shoulderblades Onslaught Shoulderblades	Drop: Pauldrons of the Forgotten Protector Pauldrons of the Forgotten Protector - Mother Shahraz (Black Temple)
+Great	Shoulderpads of the Stranger Shoulderpads of the Stranger	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Great	Ripfiend Shoulderplates Ripfiend Shoulderplates	World Boss: Doom Lord Kazzak (Hellfire Peninsula)
+Great	Shoulders of the Hidden Predator Shoulders of the Hidden Predator	Drop: Shade of Akama (Black Temple)
+Great	Pauldrons of the Wardancer Pauldrons of the Wardancer	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+
+Rank	Item	Source
+Good	Swiftsteel Shoulders Swiftsteel Shoulders	Profession: Blacksmithing
+Good	Destroyer Shoulderblades Destroyer Shoulderblades	Drop: Pauldrons of the Vanquished Defender Pauldrons of the Vanquished Defender - Void Reaver (Tempest Keep)
+
+Best in Slot Back Armor for Arms Warrior in TBC Classic Phase 3
+The new Leatherworking craft Cloak of Darkness is the best cloak for Phase 3. DPS-wise, it's basically identical to Vengeance Wrap but with extra stamina and a slightly better socket bonus.
+The powerful Shadowmoon Destroyer's Drape packs a lot of stats but, because the hit rating is essentially wasted for a two-handed Arms Warrior in a BiS gear set, it's not the highest priority unless you lack hit rating in other slots.
+Rank	Item	Source
+Best	Cloak of Darkness Cloak of Darkness	Profession: Leatherworking
+Best	Vengeance Wrap Vengeance Wrap	Profession: Tailoring
+Hit Alternative	Shadowmoon Destroyer's Drape Shadowmoon Destroyer's Drape	Drop: Teron Gorefiend (Black Temple)
+Great	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep)
+Best in Slot Chest Armor for Arms Warrior in TBC Classic Phase 3
+The T6 DPS chest Onslaught Breastplate is the best chest for a Fury Warrior thanks to its very high Armor Penetration score, but the Midnight Chestguard is a very close second choice thanks to its superior item budget. However, the T6 chest definitely pulls ahead once factoring in the T6 set bonuses, so it is best not to contest the leather chest that will ultimately be replaced.
+
+The S3 Arena chest Vengeful Gladiator's Plate Chestpiece is also a great alternative for once in PvE, since it's the only other chest with Armor Penetration this phase and despite wasting some item budget on resilience.
+
+Bulwark of the Ancient Kings is also a decent choice once you no longer need to remain a Master Swordsmith to wield Lionheart Executioner and can respec to Armorsmith instead. It is about equal to the T6 chest with its +150 Strength for 15 seconds on-use every 30 minutes, and only equal to the T5 chest without.
+Rank	Item	Source
+Best	Onslaught Breastplate Onslaught Breastplate	Drop: Chestguard of the Forgotten Protector Chestguard of the Forgotten Protector - Illidan Stormrage (Black Temple)
+Great	Midnight Chestguard Midnight Chestguard	Drop: Archimonde (Hyjal Summit)
+Great	Vengeful Gladiator's Plate Chestpiece Vengeful Gladiator's Plate Chestpiece	PvP: 1550 Arena Points Arena Points - Arena Vendor
+Good	Bulwark of the Ancient Kings Bulwark of the Ancient Kings	Profession: Armorsmith
+P2 Best	Destroyer Breastplate Destroyer Breastplate	Drop: Chestguard of the Vanquished Defender Chestguard of the Vanquished Defender - Kael'thas Sunstrider (Tempest Keep)
+Best in Slot Wrist Armor for Arms Warrior in TBC Classic Phase 3
+Phase 3 introduces a lot of new ilvl 141 bracers, both from raid drops and crafting professions, and all of them perform within 1-5 DPS of each other, so they are all pretty much equal. But more importantly, the best bracers of Phase 3 Deadly Cuffs are merely a 4 DPS increase over the Phase 2 BiS Bracers of Eradication and Phase 1 BiS Bladespire Warbands thanks to epic gems, which perfectly illustrates how inconsequential the bracer upgrades are this phase.
+
+While you could get the Bindings of Lightning Reflexes crafted from a leatherworker early on and be set for this phase, I wouldn't recommend wasting your raid's Heart of Darkness Heart of Darkness for a minuscule DPS increase over bracers from the previous phases.
+Rank	Item	Source
+Best	Deadly Cuffs Deadly Cuffs	Drop: Rage Winterchill (Hyjal Summit)
+Best	Bindings of Lightning Reflexes Bindings of Lightning Reflexes	Profession: Leatherworking
+Best	Bladespire Warbands Bladespire Warbands	Drop: High King Maulgar (Gruul's Lair)
+Best	Furious Shackles Furious Shackles	Drop: Rage Winterchill (Hyjal Summit)
+Hit Alternative	Bracers of Eradication Bracers of Eradication	Drop: The Lurker Below (Serpentshrine Cavern)
+Best in Slot Hand Armor for Arms Warrior in TBC Classic Phase 3
+The T6 gloves Onslaught Gauntlets are the best gloves for an Arms Warrior, not only as a standalone item thanks to a higher item budget and ideal stats distribution, but also thanks to the T6 set bonuses.
+The Grips of Silent Justice are also an excellent option thanks to a large amount of Armor Penetration, but ultimately, the hit rating they provide would go to waste by putting you over the hit cap in a full BiS gear set.
+Rank	Item	Source
+Best	Onslaught Gauntlets Onslaught Gauntlets	Drop: Gloves of the Forgotten Protector Gloves of the Forgotten Protector - Azgalor (Hyjal Summit)
+Hit Alternative	Grips of Silent Justice Grips of Silent Justice	Drop: Shade of Akama (Black Temple)
+P2 Best	Gloves of the Searing Grip Gloves of the Searing Grip	Drop: Al'ar (Tempest Keep)
+Great	Grips of Damnation Grips of Damnation	Drop: Essence of Anger (Black Temple)
+Great	Fists of Mukoa Fists of Mukoa	Drop: High Warlord Naj'entus (Black Temple)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Hit Alternative	Pillager's Gauntlets Pillager's Gauntlets	Drop: Black Temple (Black Temple)
+P1 Best	Gauntlets of Martial Perfection Gauntlets of Martial Perfection	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+Best in Slot Waist Armor for Arms Warrior in TBC Classic Phase 3
+Belt of One-Hundred Deaths remains the best belt for this phase by a significant margin. Phase 3 introduces a couple of new ilvl 141 belts that fill the gap between 100D and Red Belt of Battle from last phase, but ultimately are only small upgrades.
+Rank	Item	Source
+Best	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Don Alejandro's Money Belt Don Alejandro's Money Belt	Drop: Anetheron (Hyjal Summit)
+Great	Boneweave Girdle Boneweave Girdle	Drop: Essence of Anger (Black Temple)
+P2 Best	Red Belt of Battle Red Belt of Battle	Profession: Blacksmithing
+Great	Shadow-walker's Cord Shadow-walker's Cord	Drop: Shade of Akama (Black Temple)
+Best in Slot Leg Armor for Arms Warrior in TBC Classic Phase 3
+The Leggings of Divine Retribution are by far the best legs for Phase 3 thanks to a combination of high Strength, Critical Strike Rating, and a monstrous amount of Armor Penetration. As a result, the leggings are the second biggest upgrade this phase, after weapons, obviously, and the go-to offset piece to combine with your 4-part T6 set.
+
+The T6 legs Onslaught Greaves are the second best legs, but, with merely a third of the Armor Penetration, they can't compete. Then, the Bow-stitched Leggings and Legguards of Endless Rage are third choices, although still decent upgrades to the Phase 2 legs.
+Rank	Item	Source
+Best	Leggings of Divine Retribution Leggings of Divine Retribution	Drop: Gurtogg Bloodboil (Black Temple)
+Great	Onslaught Greaves Onslaught Greaves	Drop: Leggings of the Forgotten Protector Leggings of the Forgotten Protector - The Illidari Council (Black Temple)
+Great	Bow-stitched Leggings Bow-stitched Leggings	Drop: Azgalor (Hyjal Summit)
+Great	Legguards of Endless Rage Legguards of Endless Rage	Drop: Archimonde (Hyjal Summit)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Good	Shady Dealer's Pantaloons Shady Dealer's Pantaloons	Drop: Azgalor (Hyjal Summit)
+Good	Vengeful Gladiator's Plate Legguards Vengeful Gladiator's Plate Legguards	PvP: 1550 Arena Points Arena Points - Arena Vendor
+P2 Best	Leggings of Murderous Intent Leggings of Murderous Intent	Drop: Kael'thas Sunstrider (Tempest Keep)
+
+Best in Slot Feet Armor for Arms Warrior in TBC Classic Phase 3
+Dreadboots of the Legion are the best boots this phase by a solid margin. Although the Shadowmaster's Boots are a close second choice, they are also BiS for most physical damage dealers within your raid, so it would be best not to contest them and stick to plate.
+
+In third position, the Softstep Boots of Tracking are a decent upgrade to your Phase 2 boots despite the odd stats distribution, because they don't waste any item budget on Stamina. They sit exactly at the midpoint between Dreadboots and Warboots of Obliteration, and are worth considering if uncontested.
+Rank	Item	Source
+Best	Dreadboots of the Legion Dreadboots of the Legion	Drop: Essence of Anger (Black Temple)
+Best	Shadowmaster's Boots Shadowmaster's Boots	Drop: Mother Shahraz (Black Temple)
+Great	Softstep Boots of Tracking Softstep Boots of Tracking	Drop: Teron Gorefiend (Black Temple)
+P2 Best	Warboots of Obliteration Warboots of Obliteration	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Good	Ironstriders of Urgency Ironstriders of Urgency	Drop: Nightbane (Karazhan)
+Best in Slot Neck Jewelry for Arms Warrior in TBC Classic Phase 3
+Choker of Serrated Blades and Choker of Endless Nightmares are both significant upgrades to Phase 2 necks and perform within a couple of DPS of each other. The former is best overall for an Arms Warrior thanks to large amount of Armor Penetration, while the latter is a strong choice if you need the hit rating, but ultimately would put you over the hit cap in a complete BiS gear set.
+
+The PvP neck Vindicator's Pendant of Triumph, which you can very quickly acquire with a bit of honor grind, is an excellent catch-up necklace equal to the best neck from last phase, and is a must-buy as soon as the phase drops if you have been unlucky with drops.
+Rank	Item	Source
+Best	Choker of Serrated Blades Choker of Serrated Blades	Drop: Black Temple Trash Mobs
+Hit Alternative	Choker of Endless Nightmares Choker of Endless Nightmares	Drop: Supremus (Black Temple)
+P2 Best	Pendant of the Perilous Pendant of the Perilous	Drop: Serpentshrine Cavern Trash Mobs
+Great	Vindicator's Pendant of Triumph Vindicator's Pendant of Triumph	PvP: 6345 Honor Points Honor Points - Faction Capital
+Best in Slot Ring Jewelry for Arms Warrior in TBC Classic Phase 3
+Phase 3 brings with it a host of ring options, although similarly to Phase 2, there is "One ring to rule them all": the Stormrage Signet Ring. Thanks to its superior item level, the infamous Illidan ring stands above the competition and is already equal to Phase 5 (SWP) rings thanks to a massive amount of stats, but especially Armor Penetration. On the flip side, because it's an Attack Power ring and not Strength, it also happens to be the best ring for half of your raid, so expect competition to be fierce.
+
+For your second ring slot, you will want the less contested Unstoppable Aggressor's Ring. The stats are self-explanatory.
+
+Multiple choices are available in third position, all performing within 1-3 DPS of each other and are interchangeable.
+The Band of the Eternal Champion, which, before reaching Exalted with the Scales of the Sand (Hyjal Summit reputation), is a mediocre Agility ring, but eventually becomes a strong contender once it gains a +160 AP proc for 10 seconds in its final form, especially for encounters where you use Bloodlust on pull to capitalize on similar procs.
+
+Similarly to necks, the PvP ring Vindicator's Band of Triumph, which you can very quickly acquire with a bit of honor grind, is a fantastic catch-up ring that beats most Phase 2 rings and is a must-buy as soon as the phase drops.
+Rank	Item	Source
+Best	Stormrage Signet Ring Stormrage Signet Ring	Drop: Illidan Stormrage (Black Temple)
+Best	Unstoppable Aggressor's Ring Unstoppable Aggressor's Ring	Drop: Gurtogg Bloodboil (Black Temple)
+Great	Band of the Eternal Champion Band of the Eternal Champion	Quest:Champion's Covenant Champion's Covenant - Requires Exalted with the Scales of the Sand
+Hit Alternative	Band of the Ranger-General Band of the Ranger-General	Drop: Kael'thas Sunstrider (Tempest Keep)
+Great	Vindicator's Band of Triumph Vindicator's Band of Triumph	PvP: 12695 Honor Points Honor Points + 5 Alterac Valley Mark of Honor Alterac Valley Mark of Honor - Faction Capital
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Great	Shapeshifter's Signet Shapeshifter's Signet	Vendor: Nakodu - Requires Exalted with Lower City
+Great	Band of Devastation Band of Devastation	Drop: Black Temple Trash Mobs
+
+Best in Slot Trinkets for Arms Warrior in TBC Classic Phase 3
+Dragonspine Trophy (DST) is the best trinket in the game and, despite only being a Phase 1 drop, will remain the best trinket up until Wrath of the Lich King for Arms Warriors. Due to the rage mechanic, Warrior naturally scales amazingly with haste for more attacks, leading to more rage, leading to more abilities, and exponential gains throughout the expansion.
+
+As for your second trinket, the choice is entirely dependent on the encounter ahead and fight duration.
+
+    Badge of the Swarmguard from Ahn'Qiraj only gets better with more Armor Penetration now available on your gear as your DPS increases exponentially the closer to 0 armor your target is. Badge is the best trinket for cleave and encounters shorter than 2 minutes.
+    Madness of the Betrayer is a new trinket for Phase 3 with a +300 Armor Penetration proc for 10 seconds. Thanks to a good 1 PPM and no ICD, you can expect a theoretical average uptime of 50%, which makes Madness an excellent passive trinket that will outshine Badge of the Swarmguard for encounters longer than 2 minutes or for trash packs in general. It's the perfect fall-back trinket to default to when Badge is on CD.
+    Tsunami Talisman is another excellent passive trinket from Phase 2, only a couple of DPS below Madness, that you would use in the same situations.
+    Bloodlust Brooch and Empty Mug of Direbrew are severely outclassed at this stage of the game. They will perform slightly better than passive trinkets for encounters below 1 minute or for trash packs if you have lots of downtimes.
+
+Rank	Item	Source
+Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Sartura (Ahn'Qiraj)
+Best	Madness of the Betrayer Madness of the Betrayer	Drop: The Illidari Council (Black Temple)
+Best	Tsunami Talisman Tsunami Talisman	Drop: Leotheras the Blind - Serpentshrine Cavern (Leotheras the Blind)
+Good	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Good	Empty Mug of Direbrew Empty Mug of Direbrew	Drop: Coren Direbrew (Blackrock Depths) Only during Brewfest
+Good	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+
+Best in Slot Two-Handed Weapons for Arms Warrior in TBC Classic Phase 2
+As a Two-handed Arms Warrior throughout TBC, you will only want to consider two-handed Swords due to the Sword Specialization talent overshadowing other weapon types. While Orc Orcs can lower the gap with Poleaxe Specialization thanks to their Axe Specialization racial, it's still not enough to beat the amazing Sword Specialization talent.
+
+Cataclysm's Edge, thanks to its inflated item level for being an Archimonde drop and a massive amount of Armor Penetration, is a big upgrade over P2 BiS Twinblade of the Phoenix but also over the S3 Arena Vengeful Gladiator's Greatsword.
+The Soul Cleaver axe is a decent second choice for Orcs paired with Poleaxe Specialization, and will be a significant upgrade over Phase 2 and Phase 3 weapons, besides Cataclysm's Edge, which remains your end goal.
+
+As always, maces are never a viable option due to Mace Specialization being completely worthless in PvE. As a result, Torch of the Damned performs worse than Phase 1 and pre-raid BiS swords despite great stats on paper. Womp womp.
+Rank	Item	Source
+Best	Cataclysm's Edge Cataclysm's Edge	Drop: Archimonde (Hyjal Summit)
+Great (Orc)	Soul Cleaver Soul Cleaver	Drop: Teron Gorefiend (Black Temple)
+Great	Vengeful Gladiator's Greatsword Vengeful Gladiator's Greatsword	Arena Points Arena Points - PVP Vendor
+P2 Best	Twinblade of the Phoenix Twinblade of the Phoenix	Drop: Kael'thas Sunstrider (Tempest Keep)
+Best in Slot Main Hand Weapons for Arms Warrior in TBC Classic Phase 3
+Arms Warrior can also be played as an alternative Dual-Wield build — often nicknamed "Kebab Warrior" — which some players may prefer for its more forgiving playstyle and familiar rotation similar to that of a Fury Warrior. While it performs worse than the traditional Arms playstyle with a two-handed weapon on paper (3%-5% lower damage), this easier-to-play rotation is a good alternative for players who struggle to use Slam efficiently, players with poor reaction time, or those with high latency.
+This build is mainly viable thanks to the powerful Sword Specialization talent and will naturally be played with two swords, a slow one for the main-hand and a fast one for the off-hand.
+
+Phase 3 and the Black Temple raid introduce the legendary The Twin Blades of Azzinoth, wielded by Illidan himself, and its incredible set bonuses granting a 10-sec +450 haste proc every 45 seconds on top of a flat +200 AP bonus when fighting demons that already rivals Phase 5 weapons.
+This slow main-hand sword + fast off-hand sword combo just happens to be the ideal set of weapons for a dual-wielding "Kebab" Warrior and, as a result, the dual-wield Arms build will theoretically surpass the two-handed "Slam" Arms build for the first time this phase (by ~2.5% DPS). However, I probably don't need to explain how rare and contested this iconic set of Legendary weapons is, and it's very unlikely to be assigned to an Arms Warrior considering Fury Warriors (and Rogues) will gain magnitudes more DPS from these weapons.
+
+Outside of the Warglaives, the best weapons for Phase 3 are the S3 Arena weapons. Indeed, arena weapons this phase benefit from a higher DPS than weapons available in PvE raids thanks to a higher item level. The S3 Vengeful Gladiator's Slicer is the best slow sword for your main-hand and a decent upgrade over Blade of Infamy, the best main-hand sword available outside of PvP.
+Rank	Item	Source
+Best All Game	Warglaive of Azzinoth Warglaive of Azzinoth	Drop: Illidan Stormrage (Black Temple)
+Great	Vengeful Gladiator's Slicer Vengeful Gladiator's Slicer	PvP: 2175 Arena Points Arena Points - Arena Vendor
+Great	Blade of Infamy Blade of Infamy	Drop: Anetheron (Anetheron)
+Good	Talon of Azshara Talon of Azshara	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Good	Merciless Gladiator's Slicer Merciless Gladiator's Slicer	PvP: 870 Honor Points Honor Points - Arena Vendor
+Best in Slot Off Hand Weapons for Arms Warrior in TBC Classic Phase 3
+Dual-Wielding Arms performs best with a fast off-hand sword thanks to the Sword Specialization granting you an extra main-hand attack, even when the proc comes from your off-hand. A faster off-hand will ensure steady and reliable procs and perform ~1% better than a slow sword with identical stats on single target. Additionally, a fast weapon generally improves your playstyle, thanks to smoother rage generation to ensure an easier and more predictable rotation, and no reason to worry about your swing timers and synced weapons ever.
+On the flip side, a slower off-hand will generally perform better on AoE and cleave now that Whirlwind hits with both of your weapons in TBC, so you may want to equip a slow sword against trash mobs, if you can remember to swap weapons around throughout a raid. For a list of slow swords, see the main hand weapons above.
+
+Similarly to main-hand weapons, the fast Warglaive of Azzinoth is the best off-hand individually but especially when wielded alongside the main-hand for the powerful set bonuses.
+Outside of the legendary sword, the best off-hand is the Blade of Savagery thanks to its superior speed that beats the S3 Arena Vengeful Gladiator's Quickblade only by a couple of DPS.
+Rank	Item	Source
+Best All Game	Warglaive of Azzinoth Warglaive of Azzinoth	Drop: Illidan Stormrage (Black Temple)
+Great	Blade of Savagery Blade of Savagery	Drop: Mother Shahraz (Black Temple)
+Great	Vengeful Gladiator's Quickblade Vengeful Gladiator's Quickblade	PvP: 930 Arena Points Arena Points - Arena Vendor
+Good	Merciless Gladiator's Quickblade Merciless Gladiator's Quickblade	PvP: 370 Arena Points Arena Points - Arena Vendor
+Good	Vengeful Gladiator's Slicer Vengeful Gladiator's Slicer	PvP: 2175 Arena Points Arena Points - Arena Vendor
+Best in Slot Ranged Weapons for Arms Warrior in TBC Classic Phase 3
+As always, the ranged weapon slot is pretty insignificant for a Warrior since it carries so few stats. The Phase 1 Barrel-Blade Longrifle receives a nice indirect buff with the addition of epic gems thanks to its two gem sockets, and shoots (pun not intended) to the first position for Phase 3.
+Alternatively, the new Twisted Blades of Zarak is equal to the Serpent Spine Longbow and only a couple of DPS behind the world boss gun. All things considered, the delta between Phase 3 and Phase 1 ranged weapons is merely 7 DPS total.
+Rank	Item	Source
+Best	Barrel-Blade Longrifle Barrel-Blade Longrifle	World Boss: Doomwalker (Shadowmoon Valley)
+Best	Twisted Blades of Zarak Twisted Blades of Zarak	Drop: Teron Gorefiend (Black Temple)
+Best	Serpent Spine Longbow Serpent Spine Longbow	Drop: Lady Vashj (Serpentshrine Cavern)
+Great	Vengeful Gladiator's War Edge Vengeful Gladiator's War Edge	PvP: 830 Arena Points Arena Points - Arena Vendor
+Great	Sunfury Bow of the Phoenix Sunfury Bow of the Phoenix	Drop: Prince Malchezaar (Karazhan)
+Beanna
+WoW Classic Warrior Expert
+Beanna always had a passion for teaching and writing guides, starting with the necromancer class in Diablo 2. He fell in love with World of Warcraft in 2004 and, after a couple years of experience as a tank in hardcore guilds, started once again writing guides for the feral druid specialization on various forum and class blogs.
+
+After Cataclysm and a few rank 1s under his belt, Beanna decided to travel back in time to play the Vanilla era of WoW all over again and master the warrior class. A journey punctuated by the occasional hardcore raiding phase in new MMO releases such as SW:TOR, WildStar and GW2 to scratch that competitive itch over the years, that eventually culminated as a main tank in <Dreamstate> for the release of Classic WoW.
+
+Invariably drawn to theorycrafting in every video game, Beanna stumbled upon a secretive, niche discord community dedicated to the warrior class in Vanilla aptly called Fight Club. Accidentally ending up becoming the main contributor of this no-longer-niche community of nearly 100k users, Beanna continues to provide accessible guides for new Warriors since 2019.
+1 - 5 of 5
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By yodagreatmaster (2,293 – 10·11) on 2022/01/29 (Burning Crusade)	
+	
+the one hand and right hand maces disappear from your chart between phase 2 and 3. why?
+
+1
+
+	
+By Keilink (4,209 – 8·10) on 2022/01/31 (Burning Crusade)	
+	
+Is it really worth to lose crit for hast pieces like Swiftsteel Shoulders and Band of Devastation?
+Since hast is not really addressed in the Stats chapter of your guide it sounds kind of weird.
+Last edited by Keilink on 2022/01/31
+
+1
+
+	
+By 2187458 (3,567 – 7·9) on 2022/02/24 (Burning Crusade)	
+	
+Are none of the PvP throwing weapons worth using?
+
+1
+
+	
+By AzureShadow42 (12,619 – 2·21·67) on 2022/03/09 (Burning Crusade)	
+	
+Why are Season 3 pieces and Vindicator pieces not included anywhere in these lists? Many of them are better than a lot of the optional pieces that aren't BiS
+
+-1
+
+	
+By RichardSM (31,172 – 2·14·26) <Rare Premium User> on 2022/01/28 (Burning Crusade)	
+	
+I think you're missing the point of the Improved Execute talent and T6 set bonus. Any extra rage beyond that which was used to cast Execute is converted into damage, so anything which reduces the rage cost directly means more damage during the last 20% of the boss.
+Last edited by RichardSM on 2022/01/28
+
+1
+
+	
+
+Babyhoof <Rare Premium User> on 2022/02/17 (Burning Crusade)
+This is true, but because Execute is such a small amount of our overall damage (and isn't used almost ever in cleave situations) the bonus has very little value.
+1 - 5 of 5
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Warrior DPS Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS Arms
+        Phase 1 BiS Fury
+        Phase 2 BiS
+            Arms
+            Fury
+        Phase 3 BiS
+            Arms
+            Fury
+        Phase 4 BiS
+            Arms
+                Best In Slot Gear in Phase 4
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Weapons
+                    Ranged
+            Fury
+        Phase 5 BiS
+            Arms
+            Fury
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Arms Warrior DPS Best in Slot (BiS) Phase 4 Gear Guide
+By Babyhoof
+Updated: 2026/02/11
+Babyhoof
+Offline on Twitch
+Follow:
+Welcome to Wowhead's Best in Slot Gear list from Phase 4 Zul'Aman for Arms Warrior DPS in The Burning Crusade Classic. This guide will list the recommended gear for Arms Warrior DPS to acquire while they progress during the fourth phase of The Burning Crusade Classic, and contains gear sourced from Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+Best In Slot Gear for Arms Warrior DPS in Phase 4
+Phase 4 will be similar to Phase 3, offering both a Two-Hand and Duel-Wield builds. The builds all have some differences, but the main difference is that you can opt into the 4-set or only 2. Tier 6 comes with 2 unique set bonuses.
+
+The 2 set bonus, Reduced Cleave Cost, acts as a small rage reduction that stacks with our talent, Improved Execute. A minor gain at best, this bonus helps smooth out our execute phase when not under the effects of cooldowns, and in limited rage scenarios. The 4 set bonus, Improved Mortal Strike and Bloodthirst, is much Stronger for Arms than it is for Fury. Mortal Strike makes up a larger percentage of our Damage, and the lack of hit on some Tier pieces means that using them is the preferred option when in a raid with a Boomkin or other source of Improved Faerie Fire.
+
+Arms Warriors looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Arms Warrior Gems & Enchants
+
+Should Arms Warrior DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 4?
+Both of the Shattrah Factions are close in DPS for Warriors, although the Scryer shoulder Enchant is slightly better for personal DPS. However, the difference is minimal, and Aldor comes with a bonus of having an extremely strong MH/OH in Vindicator's Brand Vindicator's Brand. Aldor is also usually more expensive to gain reputation with, due to its status as the most popular faction, and it also has a major downside in the form of a much more expensive Blacksmithing Plan for when you level your professions. In conclusion, although Scryer has a slight numerical advantage, neither faction will make an extreme difference to your personal gameplay.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Arms Warriors, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Arms Warrior in TBC Classic Phase 4
+Cursed Vision of Sargeras is BiS by a solid margin, but can be quite contested as it is BiS for both BM/MM Hunters, Ret Paladins, and Enh Shamans. Do not build sets around these items' Hit Rating unless you can guarantee you will get it. In addition, as Arms has a hard hit cap as opposed to the soft hit cap of Fury, this item can be substantially reduced in DPS gain if the hit is not utilized. Make sure you know your character and gear progression before you take this item!
+
+Both of the other helm options are competitive when taking into account building around either 4Set or Offpieces. Helm of the Illidari Shatterer is almost a warrior exclusive item, and its high Hit Rating can help with making up for missing pieces, while Onslaught Battle-Helm, although wanted by some hunter and shaman specs, can be used to create a moderately strong 4 set bonus.
+
+Both Furious Gizmatic Goggles and Destroyer Battle-Helm remain independently strong items, although you should seek to pick up any of the three Tier 6 helms as an upgrade eventually.
+Rank	Item	Source
+Best	Cursed Vision of Sargeras Cursed Vision of Sargeras	Drop: Illidan Stormrage (Black Temple)
+Best	Helm of the Illidari Shatterer Helm of the Illidari Shatterer	Drop: The Illidari Council (Black Temple)
+Best 4-Set	Onslaught Battle-Helm Onslaught Battle-Helm	Drop: Helm of the Forgotten Protector - Archimonde (Hyjal Summit)
+Optional	Destroyer Battle-Helm Destroyer Battle-Helm	Drop: Helm of the Vanquished Defender - Lady Vashj (Hyjal Summit)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Crafted Optional	Furious Gizmatic Goggles Furious Gizmatic Goggles	Profession: Engineering (BoP)
+Optional	Warbringer Battle-Helm Warbringer Battle-Helm	Drop: Helm of the Fallen Defender - Prince Malchezaar (Karazhan)
+
+Best in Slot Shoulder Armor for Arms Warrior in TBC Classic Phase 4
+Tier 6 only has one true competitive shoulder option - Onslaught Shoulderblades. Strong stats, a healthy level of Armor Penetration, and two sockets round out one of the strongest shoulders available in TBC. And to top it all off, they even look fantastic!
+Rank	Item	Source
+Best	Onslaught Shoulderblades Onslaught Shoulderblades	Drop: Pauldrons of the Forgotten Protector - Mother Shahraz (Black Temple)
+Crafted Best	Swiftsteel Shoulders Swiftsteel Shoulders	Profession: Blacksmithing
+Optional	Shoulderpads of the Stranger Shoulderpads of the Stranger	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Optional	Destroyer Shoulderblades Destroyer Shoulderblades	Drop: Pauldrons of the Vanquished Defender: Void Reaver (Tempest Keep)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Pauldrons of the Wardancer Pauldrons of the Wardancer	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+Best in Slot Back Armor for Arms Warrior in TBC Classic Phase 4
+Vengeance Wrap finally becomes inferior in terms of an easy-access crafted item with the introduction of Cloak of Darkness. Effectively a Vengeance Wrap with Stamina, this cloak replaces Wrap as our easy cloak of choice.
+
+Our BiS cloak, however, is the strong Shadowmoon Destroyer's Drape. Adding some Hit Rating to the potent formula of Critical Strike + Attack Power on the cloak allows easier gearing and smoother rage generation. However, ZA adds a close competitor, especially on 6200 Armor bosses, in Dory's Embrace.
+Rank	Item	Source
+Best	Shadowmoon Destroyer's Drape Shadowmoon Destroyer's Drape	Drop: Teron Gorefiend (Black Temple)
+Crafted Best	Cloak of Darkness Cloak of Darkness	Profession: Leatherworking
+Best	Dory's Embrace Dory's Embrace	60 Badge of Justice Badge of Justice
+Optional	Vengeance Wrap Vengeance Wrap	Profession: Tailoring
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+
+Rank	Item	Source
+Optional	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep)
+Optional	Razor-Scale Battlecloak Razor-Scale Battlecloak	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+
+Best in Slot Chest Armor for Arms Warrior in TBC Classic Phase 4
+Our Tier 6 Chest is our strongest available item in this slot. The only other notable upgrade is Midnight Chestguard, but it is decently inferior to T6, and is wanted by other classes.
+Rank	Item	Source
+Best	Onslaught Breastplate Onslaught Breastplate	Drop: Chestguard of the Forgotten Protector - Illidan Stormrage (Black Temple)
+Optional	Midnight Chestguard Midnight Chestguard	Drop: Archimonde (Hyjal Summit)
+Optional	Destroyer Breastplate Destroyer Breastplate	Drop: Chestguard of the Vanquished Defender: Kael'thas Sunstrider (Tempest keep)
+Optional	Bloodsea Brigand's Vest Bloodsea Brigand's Vest	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Optional	Krakken-Heart Breastplate Krakken-Heart Breastplate	Drop: Lady Vashj (Serpentshrine Cavern)
+
+Best in Slot Wrist Armor for Arms Warrior in TBC Classic Phase 4
+Tier 6 brings a wide variety of bracers - some crafted, others raid drops. Our best item is Deadly Cuffs, but special consideration should be given to Bindings of Lightning Reflexes. Bindings of Lightning Reflexes are remarkably easy to obtain due to being a crafted item, and are only a few DPS behind Deadly Cuffs.
+
+ZA brings two more bracer options, although neither is better than raid options - both Master Assassin Wristwraps and Eternium Rage-shackles can be acquired rather easily, however, especially with the new badge drop system.
+Rank	Item	Source
+Best	Deadly Cuffs Deadly Cuffs	Drop: Rage Winterchill (Hyjal Summit)
+Optional	Insidious Bands Insidious Bands	Drop: Teron Gorefiend (Black Temple)
+Crafted	Bindings of Lightning Reflexes Bindings of Lightning Reflexes	Profession: Leatherworking
+Optional	Master Assassin Wristwraps Master Assassin Wristwraps	60 Badge of Justice Badge of Justice
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Optional	Bracers of Eradication Bracers of Eradication	Drop: The Lurker Below (Serpentshrine Cavern)
+Optional	Bladespire Warbands Bladespire Warbands	Drop: High King Maulgar (Gruul's Lair)
+Optional	Furious Shackles Furious Shackles	Drop: Rage Winterchill (Hyjal Summit)
+Easy to Obtain	Eternium Rage-shackles Eternium Rage-shackles	60 Badge of Justice Badge of Justice
+
+Best in Slot Hand Armor for Arms Warrior in TBC Classic Phase 4
+Grips of Silent Justice are our best individual item, with a high level of both Strength and Armor Penetration. If using a 4-set Tier 6 setup, then Onslaught Gauntlets should be used.
+Rank	Item	Source
+Best	Grips of Silent Justice Grips of Silent Justice	Drop: Shade of Akama (Black Temple)
+Optional	Onslaught Gauntlets Onslaught Gauntlets	Drop: Gloves of the Forgotten Protector - Azgalor (Hyjal Summit)
+Optional	Pillager's Gauntlets Pillager's Gauntlets	Drop: Black Temple (Black Temple)
+Optional	Gauntlets of Martial Perfection Gauntlets of Martial Perfection	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Optional	Gloves of the Searing Grip Gloves of the Searing Grip	Drop: Al'ar (Tempest Keep)
+Optional	Destroyer Gauntlets Destroyer Gauntlets	Drop: Gloves of the Vanquished Defender: Leotheras the Blind (Serpentshrine Cavern)
+
+Best in Slot Waist Armor for Arms Warrior in TBC Classic Phase 4
+Belt of One-Hundred Deaths remains our primary belt option in this tier. Although a couple of new belts are introduced, the lack of sockets, poor itemization, or heavy competition makes them inferior to our current belts. The only exception, however, is Bladeangel's Money Belt, which comes out with the new ZA patch.
+Rank	Item	Source
+Best	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentshrine Cavern)
+Optional	Bladeangel's Money Belt Bladeangel's Money Belt	Drop: Nalorakk (Zul'Aman)
+Optional	Red Belt of Battle Red Belt of Battle	Profession: Blacksmithing
+Optional	Girdle of the Endless Pit Girdle of the Endless Pit	Drop: Magtheridon (Magtheridon's Lair)
+Best in Slot Leg Armor for Arms Warrior in TBC Classic Phase 4
+Leggings of Divine Retribution take the crown as our BiS leg option for the next two phases. A combination of high Strength, Critical Strike Rating, and a disgusting level of Armor Penetration, no other leggings even come close to these until Sunwell.
+
+A few other options do exist, however. Onslaught Greaves, although substantially worse than the former, can act as an interim item, while both Legguards of Endless Rage and Shady Dealer's Pantaloons suffer from a lack of Armor Penetration to be better.
+Rank	Item	Source
+Best	Leggings of Divine Retribution Leggings of Divine Retribution	Drop: Gurtogg Bloodboil (Black Temple)
+Optional	Onslaught Greaves Onslaught Greaves	Drop: Leggings of the Forgotten Protector - The Illidari Council (Black Temple)
+Optional	Shady Dealer's Pantaloons Shady Dealer's Pantaloons	Drop: Azgalor (Hyjal Summit)
+Optional	Legguards of Endless Rage Legguards of Endless Rage	Drop: Archimonde (Hyjal Summit)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Optional	Leggings of Murderous Intent Leggings of Murderous Intent	Drop: Kael'thas Sunstrider (Tempest Keep)
+Optional	Greaves of the Bloodwarder Greaves of the Bloodwarder	Drop: High Astromancer Solarian (Tempest Keep)
+Optional	Destroyer Greaves Destroyer Greaves	Drop: Leggings of the Vanquished Defender - Fathom-Lord Karathress (Serpentshrine Cavern)
+
+Best in Slot Feet Armor for Arms Warrior in TBC Classic Phase 4
+Dreadboots of the Legion are an easy choice, especially with the new epic gems - Pick them up early and wear them for a while. The only other notable options are both leather and BiS for several other Classes.
+Rank	Item	Source
+Best	Dreadboots of the Legion Dreadboots of the Legion	Drop: Essence of Anger (Black Temple)
+Optional	Warboots of Obliteration Warboots of Obliteration	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Optional	Ironstriders of Urgency Ironstriders of Urgency	Drop: Nightbane (Karazhan)
+Best in Slot Neck Jewelry for Arms Warrior in TBC Classic Phase 4
+Two necks present themselves as competitors in this phase: Choker of Serrated Blades and Choker of Endless Nightmares. Due to Arms Warriors' preference for items without Hit, the former is a clear winner - Armor Penetration is our strongest Stat by far, and should be prioritized wherever possible!
+Rank	Item	Source
+Best	Choker of Endless Nightmares Choker of Endless Nightmares	Drop: Supremus (Black Temple)
+Best	Choker of Serrated Blades Choker of Serrated Blades	Drop: Black Temple Trash Mobs
+Optional	Pendant of the Perilous Pendant of the Perilous	Drop: Serpentshrine Cavern Trash Mobs
+Optional	Telonicus's Pendant of Mayhem Telonicus's Pendant of Mayhem	Quest: Verdant Sphere Verdant Sphere off Kael'thas Sunstrider (Tempest Keep)]
+Best in Slot Ring Jewelry for Arms Warrior in TBC Classic Phase 4
+T6 brings with it a host of ring options, although similarly to T5, there is "One ring to rule them all" - the infamous Stormrage Signet Ring. A strong contender for BiS all game, the large variety of stats on this ring makes it a powerful item, and the excess of ARP helps bring Warrior DPS into its own, due to our almost 100% Physical damage makeup. ZA also brings a close alternative to this ring with Signet of Primal Wrath.
+
+If you don't get both of the two rings above, it's preferred to pair one with Unstoppable Aggressor's Ring, but the others mentioned in the list below can also be used if either rings are not available.
+Rank	Item	Source
+Best	Stormrage Signet Ring Stormrage Signet Ring	Drop: Illidan Stormrage (Black Temple)
+Best	Signet of Primal Wrath Signet of Primal Wrath	Drop: Timed Event Chest - Zul'Aman
+Best	Unstoppable Aggressor's Ring Unstoppable Aggressor's Ring	Drop: Gurtogg Bloodboil (Black Temple)
+Optional	Band of Devastation Band of Devastation	Drop: Black Temple Trash Mobs
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Optional	Band of the Ranger-General Band of the Ranger-General	Drop; Kael'thas Sunstrider (Tempest Keep)
+Optional	Band of the Eternal Champion Band of the Eternal Champion	Quest:Champion's Covenant Champion's Covenant - Requires Exalted with the Scales of the Sand
+Optional	Vindicator's Band of Triumph Vindicator's Band of Triumph	Arena Points Arena Points - Arena Vendor
+Optional	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Trinkets for Arms Warrior in TBC Classic Phase 4
+Dragonspine Trophy remains our trinket of choice, but Madness of the Betrayer provides a strong 2nd trinket option. With the proc rate being a consistent 1PPM, this trinket is a minor upgrade over Tsunami Talisman. ZA also provides a flat upgrade to Bloodlust Brooch with Berserker's Call, which is slightly better than Madness, but comes with all the pros and cons of being an on-use vs a proc trinket.
+
+As we've talked about in our previous BiS guides, an often overlooked trinket is Badge of the Swarmguard Badge of the Swarmguard. With the scarcity of Armor Penetration early in the game, this trinket can be incredibly powerful on cleave fights, due to the high amount of the valuable stat it gives. However, the lack of a passive stat on the trinket can mean that it suffers from being useless outside of its active windows, and may not be suitable for longer fights.
+Rank	Item	Source
+Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Best	Berserker's Call Berserker's Call	Drop: Zul'jin (Zul'Aman)
+Best	Madness of the Betrayer Madness of the Betrayer	Drop: The Illidari Council (Black Temple)
+Best	Tsunami Talisman Tsunami Talisman	Drop: Leotheras the Blind - Serpentshrine Cavern (Leotheras the Blind)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Easy to Obtain	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Optional	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+Classic Option	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Sartura (Ahn'Qiraj)
+
+Best in Slot Weapons for Arms Warrior in TBC Classic Phase 4
+Two Hand Weapons
+All Two Handers are vastly outclassed in this tier (and most of the next!) by Cataclysm's Edge. This monster of a sword features high DPS, 335 ArP, and 75 strength to top it all off. Soul Cleaver can also be a strong option if this sword doesn't drop, especially for orcs.
+Rank	Item	Source
+Best	Cataclysm's Edge Cataclysm's Edge	Drop: Archimonde (Hyjal Summit)
+Best	Soul Cleaver Soul Cleaver	Drop: Teron Gorefiend (Black Temple)
+Best	Twinblade of the Phoenix Twinblade of the Phoenix	Drop: Kael'thas Sunstrider (Tempest Keep)
+Optional	Vengeful Gladiator's Greatsword Vengeful Gladiator's Greatsword	Arena Points Arena Points - PVP Vendor
+Duel-Wield Weapons
+The Arrival of Black Temple brings with it our Best Weapons for the rest of the game; The Twin Blades of Azzinoth. These weapons obliterate any other option available to us, and the set bonus is merely the icing on the cake with the immense power of Haste Rating on warriors. If you have any favour with your guild, convince them to give you these items - they are the single most powerful upgrades in TBC.
+
+Aside from Arena Weapons and the Warglaives, we still seek to use swords wherever possible due to our preferred talent build, although Orcs can use Double Axes instead due to their racial passive. Blade of Infamy provides a small upgrade from the OH weapons of T5. Blade of Savagery also provides a strong alternative to glaives, with heavy stats and a fast speed for extra Sword Spec Procs.
+Rank	Item	Source
+Best Pair	Warglaive of Azzinoth Warglaive of Azzinoth
+Warglaive of Azzinoth Warglaive of Azzinoth	Drop: Illidan Stormrage (Black Temple)
+Orc Best - Non Legendary	Vengeful Gladiator's Cleaver Vengeful Gladiator's Cleaver	Arena Points Arena Points - Arena Vendor
+Best - Non Legendary	Vengeful Gladiator's Slicer Vengeful Gladiator's Slicer	Arena Points Arena Points - Arena Vendor
+Optional	Talon of Azshara Talon of Azshara	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Duel-Wield Weapon Recommendations
+
+Rank	Item	Source
+Optional	Blade of Infamy Blade of Infamy	Drop: Anetheron (Hyjal Summit)
+Optional	Blade of Savagery Blade of Savagery	Drop: Mother Shahraz (Black Temple)
+Orc Optional	Netherbane Netherbane	Drop: Al'ar (Tempest Keep)
+Optional	Merciless Gladiator's Slicer Merciless Gladiator's Slicer	Honor Points Honor Points - Arena Vendor
+
+Best in Slot Ranged Weapons for Arms Warrior in TBC Classic Phase 4
+A couple of very minor upgrades are present in T6. One of them is Hunter BiS; however, it will not be advised here. The remaining item, Twisted Blades of Zarak, is effectively an Serpent Spine Longbow without Stamina, so if you have the opportunity to scoop up one, do! Barrel-Blade Longrifle also sees a small increase in power with the introduction of Epic Gems.
+
+The main weapon of note, however, is the new Ancient Amani Longbow, which becomes extremely strong when high levels of Armor Penetration are available, such as when you possess a large amount of T6 Gear.
+Rank	Item	Source
+Best	Ancient Amani Longbow Ancient Amani Longbow	Drop: Zul'jin (Zul'Aman)
+Best	Twisted Blades of Zarak Twisted Blades of Zarak	Drop: Teron Gorefiend (Black Temple)
+Best	Serpent Spine Longbow Serpent Spine Longbow	Drop: Lady Vashj (Serpentshrine Cavern)
+Best	Barrel-Blade Longrifle Barrel-Blade Longrifle	Drop: Doomwalker (World Boss)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ranged Weapon Recommendations
+
+Rank	Item	Source
+Optional	Sunfury Bow of the Phoenix Sunfury Bow of the Phoenix	Drop: Prince Malchezaar (Karazhan)
+Babyhoof
+WoW Classic Warrior Expert
+Babyhoof has been playing WoW for almost their entire life, and has been hooked ever since she watched her parents venture into Molten Core as a child. Since she began her own characters, Babyhoof has played across a variety of skill levels and in a range of versions of WoW, from Classic to Retail. Her experience includes multiple region firsts during Classic and TBC with guilds such as <Overclock>, and several years experience in various positions of leadership.
+
+She has appeared on several streams and podcasts to discuss the game, usually involving her favourite class, Warrior. Currently, she plays in the guild <Progress> in Classic and the guild <SQUAWK> on Anniversary Classic.
+1 - 4 of 4
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+1
+
+	
+By 2187458 (3,567 – 7·9) on 2022/03/23 (Burning Crusade)	
+	
+can we have a 6% hit bis set for those of us who run with a balance druid?
+
+0
+
+	
+
+Pewpewarrowz on 2022/03/24 (Burning Crusade)
+Just use different bracers/cloak and there you have it. 6% Hit options (Cloak of Darkness/Dory's Embrace + Any of the reccomended bracers Bladespire would be my pick for the 2 socket options)
+
+1
+
+	
+
+2187458 on 2022/04/08 (Burning Crusade)
+Thanks, I'm partial to Furious Shackles and Dory's Embrace for higher strength and more armor penetration, personally.
+
+1
+
+	
+By Bigairbrucey (6,701 – 1·10·15) on 2022/03/25 (Burning Crusade)	
+	
+Executioner not bis for enchiladas? Or did I just blow 800g on the wrong enchant?
+
+0
+
+	
+
+RichardSM <Rare Premium User> on 2022/03/29 (Burning Crusade)
+Adds 840 ArP and it procs fairly often, about the same as Mongoose, so I'd say it's worth it. Most of us will be running 35%+ crit in raids already so you have to balance the ~3% Mongoose gives you with the ArP.
+
+1
+
+	
+By psuffix (5,314 – 1·7·12) on 2022/04/05 (Burning Crusade)	
+	
+Vengeful Gladiator's Plate Chestpiece Vengeful Gladiator's Plate Chestpiece is a better chest than three of the optional ones listed and is easily accessible by everyone.
+
+1
+
+	
+By Darksword (600 – 2) on 2022/05/05 (Burning Crusade)	
+	
+Is it not useful to twist in Solarian's Sapphire Solarian's Sapphire for the additional 70 attack power?
+1 - 4 of 4
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Warrior DPS Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS Arms
+        Phase 1 BiS Fury
+        Phase 2 BiS
+            Arms
+            Fury
+        Phase 3 BiS
+            Arms
+            Fury
+        Phase 4 BiS
+            Arms
+            Fury
+        Phase 5 BiS
+            Arms
+                Best In Slot Gear in Phase 5
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Weapons
+                    Ranged
+            Fury
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Arms Warrior DPS Best in Slot (BiS) Phase 5 Gear Guide
+By Babyhoof
+Updated: 2026/02/27
+Babyhoof
+Offline on Twitch
+Follow:
+Welcome to Wowhead's Best in Slot Gear list from Phase 5 Sunwell Plateau for Fury Warrior DPS in The Burning Crusade Classic. This guide will list the recommended gear for Fury Warrior DPS to acquire while they progress during the fifth and final phase of The Burning Crusade Classic, which contains gear sourced from Sunwell Plateau, Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+Best In Slot Gear for Arms Warrior DPS in Phase 5
+As we approach the final phase of TBC, we get our final best-in-slot guide for Atms Warrior. The gear is so powerful that nearly everything will be replaced from the previous phase, minus Warglaives of Azzinoth, should you be opting into a dual-wield Arms build, and have been lucky enough to obtain them! Since Arms Warrior more traditionally wields two-handed weapons, however, those options will be listed above the one-handed.
+
+The 2 set bonus, Reduced Cleave Cost, acts as a small rage reduction that stacks with our talent, Improved Execute. A minor gain at best, this bonus helps smooth out our execute phase when not under the effects of cooldowns, and in limited rage scenarios.
+
+The 4 set bonus, Improved Mortal Strike and Bloodthirst, is deceptively strong. Although Bloodthirst feels like it deals a large amount of damage, its cooldown and non-benefit from haste cause it to become a smaller amount of damage than anticipated when more than one target is present. However, it remains ok on a single target, and ending up with this bonus by accident is not a huge problem.
+
+Although Crit gems (such as Smooth Lionseye Smooth Lionseye) have dominated the past few phases of gemming, more strength-focused gemming can begin to outscale (and in some cases already has) stacking Critical Strike Rating. I recommend using a simulator to accurately figure out which form of gem is strongest for you based on your kill times/group composition/gear, etc. If in doubt, then the versatile Inscribed Pyrestone Inscribed Pyrestone can be useful as a compromise between the two ideologies of gemming.
+
+Arms Warriors looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Arms Warrior Gems & Enchants
+Should Arms Warrior DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 5?
+Both of the Shattrah Factions are close in DPS for Warriors, although the Scryer shoulder Enchant is slightly better for personal DPS. However, the difference is minimal, and Aldor comes with an added bonus of having an extremely strong MH/OH in Vindicator's Brand Vindicator's Brand. Aldor is also usually more expensive to gain reputation with, due to its status as the most popular faction, and it also has a major downside in the form of a much more expensive Blacksmithing Plan for when you level your professions. In conclusion, although Scryer has a slight numerical advantage, neither faction will make an extreme difference to your personal gameplay.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Arms Warriors, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Arms Warrior in TBC Classic Phase 5
+Coif of Alleria is our BiS item for P5, although Crown of Anasterian is not that far behind and is only contested by other warriors, as opposed to a much larger variety of classes.
+
+If you kept your goggles from Phase 2, you can use them to create Mayhem Projection Goggles once you loot the pattern from trash - this is a very small upgrade from P4 items, however, and should not be a priority if you are tight on gold.
+Rank	Item	Source
+Best	Coif of Alleria Coif of Alleria	Drop: Kil'jaeden (Sunwell Plateau)
+Best	Crown of Anasterian Crown of Anasterian	Drop: Kil'jaeden (Sunwell Plateau)
+Crafted Optional	Mayhem Projection Goggles Mayhem Projection Goggles	Profession: Engineering (BoP)
+Optional	Cursed Vision of Sargeras Cursed Vision of Sargeras	Drop: Illidan Stormrage (Black Temple)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Optional	Helm of the Illidari Shatterer Helm of the Illidari Shatterer	Drop: Illidan Stormrage (Black Temple)
+Optional	Onslaught Battle-Helm Onslaught Battle-Helm	Drop: Helm of the Forgotten Protector - Archimonde (Hyjal Summit)
+Crafted Optional	Furious Gizmatic Goggles Furious Gizmatic Goggles	Profession: Engineering (BoP)
+
+Best in Slot Shoulder Armor for Arms Warrior in TBC Classic Phase 5
+SWP has 4 very viable shoulder options, with 3 of them pulling ahead. Onslaught Shoulderblades continue to excel, especially when combined with the 3 pieces of SWP T6, although on any fight with cleave, the value of the 4-set is lessened (Felmyst, M'uru, and Kil'Jaeden). Demontooth Shoulderpads and Mantle of the Golden Forest are both very close to each other in stat value, with Demontooth slightly edging out its competitor. In addition, Pauldrons of Berserking becomes better as more SWP gear is acquired, due to the lessening value of ArP on 6200 armor bosses with full BiS, and the rising value of haste.
+Rank	Item	Source
+Best	Pauldrons of Berserking Pauldrons of Berserking	Vendor: Yrma - Transmuted
+Pauldrons of Perseverance Pauldrons of Perseverance + Sunmote Sunmote - Grand Warlock Alythess /Lady Sacrolash (Sunwell Plateau)
+Best	Demontooth Shoulderpads Demontooth Shoulderpads	Vendor: Yrma - Transmuted
+Shoulderpads of Vehemence Shoulderpads of Vehemence + Sunmote Sunmote - Grand Warlock Alythess /Lady Sacrolash (Sunwell Plateau)
+Best	Mantle of the Golden Forest Mantle of the Golden Forest	Drop: Grand Warlock Alythess /Lady Sacrolash (Sunwell Plateau)
+Best	Onslaught Shoulderblades Onslaught Shoulderblades	Drop: Pauldrons of the Forgotten Protector - Mother Shahraz (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+
+Rank	Item	Source
+Crafted Option	Swiftsteel Shoulders Swiftsteel Shoulders	Profession: Blacksmithing (BoP)
+
+Best in Slot Back Armor for Arms Warrior in TBC Classic Phase 5
+The only new cloak introduced of any value, Cloak of Unforgivable Sin, blows all other cloak options out of the water.
+Rank	Item	Source
+Best	Cloak of Unforgivable Sin Cloak of Unforgivable Sin	Drop: Kil'jaeden (Sunwell Plateau)
+Optional	Shadowmoon Destroyer's Drape Shadowmoon Destroyer's Drape	Drop: Teron Gorefiend (Black Temple)
+Optional	Dory's Embrace Dory's Embrace	60 Badge of Justice Badge of Justice
+Crafted Best	Cloak of Darkness Cloak of Darkness	Profession: Leatherworking
+Best in Slot Chest Armor for Arms Warrior in TBC Classic Phase 5
+While Bladed Chaos Tunic is roughly equal to Hard Khorium Battleplate, it has the major advantage of not requiring a professions slot, allowing you to use the much more potent JC neck instead. However, with the level of competition on Bladed Chaos Tunic, expect to use Hard Khorium Battleplate for a long time.
+
+Unlike most other slots, the plate off-piece item Warharness of Reckless Fury is quite substantially worse than the other options. It can be used as a temporary stopgap, but you should try to get either of the above chests as soon as possible.
+Rank	Item	Source
+Best	Bladed Chaos Tunic Bladed Chaos Tunic	Vendor: Yrma - Transmuted
+Harness of Carnal Instinct Harness of Carnal Instinct + Sunmote Sunmote - M'uru (Sunwell Plateau)
+Best	Hard Khorium Battleplate Hard Khorium Battleplate	Profession: Blacksmithing (BoP)
+Optional	Warharness of Reckless Fury Warharness of Reckless Fury	M'uru (Sunwell Plateau)
+Optional	Onslaught Breastplate Onslaught Breastplate	Drop: Chestguard of the Forgotten Protector - Illidan Stormrage (Black Temple)
+Optional	Midnight Chestguard Midnight Chestguard	Drop: Archimonde (Hyjal Summit)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+PvP Optional	Vengeful Gladiator's Plate Chestpiece Vengeful Gladiator's Plate Chestpiece	Arena Points Arena Points Arena Vendor
+
+Best in Slot Wrist Armor for Arms Warrior in TBC Classic Phase 5
+As with all "off-tier" slots, SWP brings a new tier item that vastly eclipses any other option, to the point of almost being triple-digit DPS upgrades in some cases.
+Rank	Item	Source
+Best	Onslaught Bracers Onslaught Bracers	Drop: Bracers of the Forgotten Protector - Kalecgos (Sunwell Plateau)
+Optional	Deadly Cuffs Deadly Cuffs	Drop: Rage Winterchill (Hyjal Summit)
+Crafted Best	Bindings of Lightning Reflexes Bindings of Lightning Reflexes	Profession: Leatherworking
+Optional	Bracers of Eradication Bracers of Eradication	Drop: The Lurker Below (Serpentshrine Cavern)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Optional	Master Assassin Wristwraps Master Assassin Wristwraps	60 Badge of Justice Badge of Justice
+Optional	Bladespire Warbands Bladespire Warbands	Drop: High King Maulgar (Gruul's Lair)
+Optional	Furious Shackles Furious Shackles	Drop: Rage Winterchill (Hyjal Summit)
+Easy to Obtain	Eternium Rage-shackles Eternium Rage-shackles	60 Badge of Justice Badge of Justice
+
+Best in Slot Hand Armor for Arms Warrior in TBC Classic Phase 5
+Two main options are present in SWP, both within a couple of DPS of each other, but with wildly different acquisition methods. Gloves of Immortal Dusk are a crafted BoE that require a large amount of sunmotes, while Thalassian Ranger Gauntlets are a drop from Kil'Jaeden, and are decently contested by other specs. As with some other slots, an option that isn't contested, but is slightly lower DPS, is available in Borderland Paingrips.
+Rank	Item	Source
+Best	Thalassian Ranger Gauntlets Thalassian Ranger Gauntlets	Drop: Kil'jaeden (Sunwell Plateau)
+Best	Gloves of Immortal Dusk Gloves of Immortal Dusk	Profession: Leatherworking (BoE)
+Optional	Borderland Paingrips Borderland Paingrips	Drop: Kil'jaeden (Sunwell Plateau)
+Optional	Grips of Silent Justice Grips of Silent Justice	Drop: Shade of Akama (Black Temple)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Optional	Onslaught Gauntlets Onslaught Gauntlets	Drop: Gloves of the Vanquished Defender: Leotheras the Blind (Serpentshrine Cavern)
+
+Best in Slot Waist Armor for Arms Warrior in TBC Classic Phase 5
+Belt of One-Hundred Deaths is king no longer - a warm welcome to Onslaught Belt, our belt of choice for the rest of the game. If needed (in a full BiS setup), this is one of the slots where a Rigid Lionseye Rigid Lionseye should be gemmed.
+Rank	Item	Source
+Best	Onslaught Belt Onslaught Belt	Drop: Belt of the Forgotten Protector - Brutallus (Sunwell Plateau)
+Best	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentshrine Cavern)
+Optional	Bladeangel's Money Belt Bladeangel's Money Belt	Drop: Nalorakk (Zul'Aman)
+Optional	Red Belt of Battle Red Belt of Battle	Profession: Blacksmithing (BoE)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Optional	Girdle of the Endless Pit Girdle of the Endless Pit	Drop: Magtheridon (Magtheridon's Lair)
+Optional	Chain of Unleashed Rage Chain of Unleashed Rage	60 Badge of Justice Badge of Justice
+
+Best in Slot Leg Armor for Arms Warrior in TBC Classic Phase 5
+Sunwell presents two major options, each with its own benefits and downsides. Leggings of the Immortal Night has a substantial amount of ArP, and lends itself well during the initial transition from a large part of the BT gear. However, it is a lot more highly contested. The other option, Felfury Legplates, is almost completely uncontested, and sims slightly better in a full BiS setup, but the lack of hit can present major gearing options.
+Rank	Item	Source
+Best	Felfury Legplates Felfury Legplates	Drop: Brutallus (Sunwell Plateau)
+Best	Leggings of the Immortal Night Leggings of the Immortal Night	Drop: Felmyst (Sunwell Plateau)
+Optional	Leggings of Divine Retribution Leggings of Divine Retribution	Drop: Gurtogg Bloodboil (Black Temple)
+Optional	Shady Dealer's Pantaloons Shady Dealer's Pantaloons	Drop: Azgalor (Hyjal Summit)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Optional	Legguards of Endless Rage Legguards of Endless Rage	Drop: Archimonde (Hyjal Summit)
+Optional	Onslaught Greaves Onslaught Greaves	Drop: Leggings of the Forgotten Protector - The Illidari Council (Black Temple)
+
+Best in Slot Feet Armor for Arms Warrior in TBC Classic Phase 5
+Once again, the only useful new boot option is the new Onslaught Treads, forming the 3rd item in our SWP tier.
+Rank	Item	Source
+Best	Onslaught Treads Onslaught Treads	Drop: Boots of the Forgotten Protector - Felmyst (Sunwell Plateau)
+Optional	Dreadboots of the Legion Dreadboots of the Legion	Drop: Essence of Anger (Black Temple)
+Optional	Warboots of Obliteration Warboots of Obliteration	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Optional	Ironstriders of Urgency Ironstriders of Urgency	Drop: Nightbane (Karazhan)
+Best in Slot Neck Jewelry for Arms Warrior in TBC Classic Phase 5
+Once again, two necks present themselves as competitors in this phase: Hard Khorium Choker and Clutch of Demise. While Hard Khorium Choker is quite substantially superior, it suffers from the requirement of having JC as a profession, locking out other options, while Clutch of Demise doesn't.
+Rank	Item	Source
+Crafted Best	Hard Khorium Choker Hard Khorium Choker	Profession: Jewelcrafting (BoP)
+Best	Clutch of Demise Clutch of Demise	Drop: Brutallus (Sunwell Plateau)
+Optional	Choker of Endless Nightmares Choker of Endless Nightmares	Drop: Supremus (Black Temple)
+Optional	Choker of Serrated Blades Choker of Serrated Blades	Drop: Black Temple Trash Mobs
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Optional	Pendant of the Perilous Pendant of the Perilous	Drop: Serpentshrine Cavern Trash Mobs
+Optional	Telonicus's Pendant of Mayhem Telonicus's Pendant of Mayhem	Quest: Verdant Sphere Verdant Sphere off Kael'thas Sunstrider (Tempest Keep)]
+
+Best in Slot Ring Jewelry for Arms Warrior in TBC Classic Phase 5
+Three strong competitive ring options are present - Stormrage Signet Ring remains strong, especially with the high levels of hit that you drop in SWP, while newcomers Band of Ruinous Delight and Hard Khorium Band provide strong upgrades to the other P4 rings.
+Rank	Item	Source
+Best	Band of Ruinous Delight Band of Ruinous Delight	Drop: Grand Warlock Alythess /Lady Sacrolash (Sunwell Plateau)
+Best	Hard Khorium Band Hard Khorium Band	Profession: Jewelcrafting( BoE)
+Best	Stormrage Signet Ring Stormrage Signet Ring	Drop: Illidan Stormrage (Black Temple)
+Optional	Angelista's Revenge Angelista's Revenge	Vendor: Smith Hauthaa (60 Badges of Justice)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Optional	Signet of Primal Wrath Signet of Primal Wrath	Drop: Timed Event Chest - Zul'Aman
+Optional	Unstoppable Aggressor's Ring Unstoppable Aggressor's Ring	Drop: Gurtogg Bloodboil (Black Temple)
+Optional	Band of Devastation Band of Devastation	Drop: Black Temple Trash Mobs
+Optional	Band of the Ranger-General Band of the Ranger-General	Drop; Kael'thas Sunstrider (Tempest Keep)
+Optional	Band of the Eternal Champion Band of the Eternal Champion	Quest:Champion's Covenant Champion's Covenant - Requires Exalted with the Scales of the Sand
+Optional	Vindicator's Band of Triumph Vindicator's Band of Triumph	PvP Vendor - Season 3
+Optional	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Trinkets for Arms Warrior in TBC Classic Phase 5
+DST finally sees a worthy opponent - the formidable Blackened Naaru Sliver. The only trinket in the game better than DST, it is rightfully contested by almost all physical DPS. However, Shard of Contempt provides a large amount of expertise, smoothing out our rotation, and is very easy to obtain, being a high drop chance from a Heroic Dungeon.
+Rank	Item	Source
+Best	Blackened Naaru Sliver Blackened Naaru Sliver	Drop: M'uru (Sunwell Plateau)
+Best	Shard of Contempt Shard of Contempt	Drop: Priestess Delrissa (Heroic Magisters' Terrace)
+Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Optional	Berserker's Call Berserker's Call	Drop: Zul'jin (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Optional	Madness of the Betrayer Madness of the Betrayer	Drop: The Illidari Council (Black Temple)
+Optional	Tsunami Talisman Tsunami Talisman	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Easy to Obtain	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Optional	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+Classic Option	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Sartura (Ahn'Qiraj)
+
+Best in Slot Weapons for Arms Warrior in TBC Classic Phase 5
+Two Hand Weapons
+Welcome to the weapon you'll use until WotLK - it's Apolyon, the Soul-Render time. High DPS, stats, and three sockets make this an obscene weapon for those still slamming.
+Rank	Item	Source
+Best	Apolyon, the Soul-Render Apolyon, the Soul-Render	Drop: Kil'jaeden (Sunwell Plateau)
+Best	Cataclysm's Edge Cataclysm's Edge	Drop: Archimonde (Hyjal Summit)
+Best	Soul Cleaver Soul Cleaver	Drop: Teron Gorefiend (Black Temple)
+Best	Twinblade of the Phoenix Twinblade of the Phoenix	Drop: Kael'thas Sunstrider (Tempest Keep)
+Duel-Wield Weapons
+The Arrival of Black Temple brings with it our Best Weapons for the rest of the game; The legendary, iconic The Twin Blades of Azzinoth. These weapons obliterate any other option available to us, and the set bonus is merely the icing on the cake with the immense power of Haste Rating on warriors. If you have any favour with your guild, convince them to give you these items - they are the single most powerful upgrades in TBC.
+
+Outside of the Warglaives, Dragonstrike remains our easy and strong option, although S4 Weapons and Muramasa are both slightly better than our old faithful dragon mace.
+
+Aside from Arena Weapons and the Warglaives, Muramasa can be used as an offhand, as well as the fist weapon from trash. If not, you can also use Blade of Infamy
+Rank	Item	Source
+Best Pair	Warglaive of Azzinoth Warglaive of Azzinoth
+Warglaive of Azzinoth Warglaive of Azzinoth	Drop: Illidan Stormrage (Black Temple)
+Optional	Brutal Gladiator's Slicer Brutal Gladiator's Slicer	Arena Points Arena Points - Arena Vendor
+Optional	Brutal Gladiator's Cleaver Brutal Gladiator's Cleaver	Arena Points Arena Points - Arena Vendor
+Optional	Muramasa Muramasa	Drop: M'uru (Sunwell Plateau)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Optional MH	Dragonstrike Dragonstrike	Profession: Master Hammersmith (BoP)
+Optional	Blade of Infamy Blade of Infamy	Drop: Anetheron (Hyjal Summit)
+Optional OH	Dragonscale-Encrusted Longblade Dragonscale-Encrusted Longblade	Drop: Kalecgos (Sunwell Plateau)
+Optional	Talon of Azshara Talon of Azshara	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+
+Best in Slot Ranged Weapons for Arms Warrior in TBC Classic Phase 5
+A couple of very minor upgrades are present in T6. One of them is Hunter BiS; however, it will not be advised here. Of the remaining weapons, use what you need - if you are Armor Penetration capped, then don't equip one of the ArP bows.
+Rank	Item	Source
+Best	Golden Bow of Quel'Thalas Golden Bow of Quel'Thalas	Drop: Grand Warlock Alythess /Lady Sacrolash (Sunwell Plateau)
+Best	Crossbow of Relentless Strikes Crossbow of Relentless Strikes	Vendor: Smith Hauthaa (150 Badges of Justice)
+Optional	Ancient Amani Longbow Ancient Amani Longbow	Drop: Zul'jin (Zul'Aman)
+Optional	Twisted Blades of Zarak Twisted Blades of Zarak	Drop: Teron Gorefiend (Black Temple)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ranged Weapon Recommendations
+
+Rank	Item	Source
+Optional	Serpent Spine Longbow Serpent Spine Longbow	Drop: Lady Vashj (Serpentshrine Cavern)
+Optional	Barrel-Blade Longrifle Barrel-Blade Longrifle	Drop: Doomwalker (World Boss)
+Optional	Sunfury Bow of the Phoenix Sunfury Bow of the Phoenix	Drop: Prince Malchezaar (Karazhan)
+
+Babyhoof
+WoW Classic Warrior Expert
+Babyhoof has been playing WoW for almost their entire life, and has been hooked ever since she watched her parents venture into Molten Core as a child. Since she began her own characters, Babyhoof has played across a variety of skill levels and in a range of versions of WoW, from Classic to Retail. Her experience includes multiple region firsts during Classic and TBC with guilds such as <Overclock>, and several years experience in various positions of leadership.
+
+She has appeared on several streams and podcasts to discuss the game, usually involving her favourite class, Warrior. Currently, she plays in the guild <Progress> in Classic and the guild <SQUAWK> on Anniversary Classic.
+1 - 5 of 5
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+2
+
+	
+By Ossumm (3,392 – 4·10) on 2022/06/17 (Burning Crusade)	
+	
+With phases 4 and 5, Sunstrider Warboots and Skullshatter Warboots are both better plate options than Ironstriders.
+
+1
+
+	
+By 2187458 (3,567 – 7·9) on 2022/06/18 (Burning Crusade)	
+	
+You use Hard Khorium Choker yet neglect to use Stone of Blades or Crimson Sun anywhere in the same build.
+
+1
+
+	
+By lillcheeze (483 – 2·5) on 2022/06/21 (Burning Crusade)	
+	
+S4 pvp gear should be added as well. Only weapons seem to be listed.
+Neck, rings, set pcs are all competitive in relation to P4 gear
+
+1
+
+	
+By Bigairbrucey (6,701 – 1·10·15) on 2022/07/05 (Burning Crusade)	
+	
+I like the season 4 legs over some Brutal Gladiator's Plate Legguards Brutal Gladiator's Plate Legguards of these options. 2 weeks in a 2 man team will get them for you
+
+0
+
+	
+By Kazukio (5,842 – 2·18·28) on 2022/05/12 (Burning Crusade)	
+	
+Thanks for the guide. Angelista's In the Jewelry section should be listed as only 60 badges though, not 150.
+1 - 5 of 5
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+

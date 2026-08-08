@@ -1,0 +1,2692 @@
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+3/5 (8 Votes)
+TBCC Holy Paladin Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Best In Slot Gear Pre-Raid
+                Aldor or Scryer?
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrist
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Off Hands and Shields
+                Librams
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Holy Paladin Healing Pre-Raid Best in Slot (BiS) - TBC Classic
+By Wowhead
+Updated: 2026/01/27
+In this Pre-Raid Best-in-Slot Gear List for Holy Paladin Healing in The Burning Crusade Classic, we will list the recommended gear for Holy Paladin Healing to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Holy Paladin Healing Best in Slot Hub
+
+Best In Slot Gear for Holy Paladin Healing Pre-Raid
+There are three different ways to approach your pre-raid best in slot (BiS) gear. You can either use no profession-required gear, you can use the tailoring items, or you can use the leatherworking items, all based on your needs. It is important to note the cost of using the crafted gear, especially relative to the longevity of the gear itself. While they are very strong for the pre-raid gear, they quickly lose potency in Phase 1 and are nearly completely replaceable in Phase 2. Another important thing to consider is the lower survivability of wearing cloth or leather gear compared to plate, which is much better itemized in TBC Classic and offers no competition amongst the other class healers. Finally, Holy Paladins have a unique gear path compared to other healers throughout TBC. Intellect and Spell Crit grant a lot more power due to the playstyle and talents available to Holy Paladins, and should be considered when looking at upgrades.
+
+Holy Paladin Gems & Enchants
+Should Holy Paladin Healers Choose Aldor or Scryer for BiS in TBC Classic Pre-Raid?
+The quick answer is that this is entirely preference-based, but the difference is rather small and will not make or break end-game content. Choosing either faction will ultimately be fine in the long run, so do not be dismayed if you went with your least preferred option.
+
+The Aldor shoulder enchant is Greater Inscription of Faith Greater Inscription of Faith compared to The Scryers getting Greater Inscription of the Oracle Greater Inscription of the Oracle. The difference here is +11 healing power gained while losing 2 mana per 5. While the Greater Inscription of Faith is superior from an overall Healing, it's not a large enough margin to definitively say The Aldor is better and worth changing from The Scryers if you have already gone that route. Alternatively, The Scyers offers the better enchant from a Spell Crit perspective, with Greater Inscription of the Orb Greater Inscription of the Orb compared to The Aldors Greater Inscription of Discipline Greater Inscription of Discipline.
+
+The last point of contention is which proc of the Shattered Sun Pendant of Restoration (available once Exalted with Shattered Sun Offensive) is superior for Holy paladins. This is a bit of future planning, as these necklace procs won't be available until the last content phase for TBC Classic, Phase 5.
+
+In conclusion, The Aldor offers the most benefit from a healing perspective, with the better healing shoulder enchant and necklace proc in phase 5 compared to The Scryers.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Holy Paladins, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Holy Paladin in TBC Classic Pre-Raid
+Helmet of the Steadfast Champion is the recommended pre-raid BiS head armor for Holy Paladins, combining strong stats and sockets. Whitemend Hood is a fine alternative for Tailors due to the powerful set bonus, increasing healing by up to 10% of your total Intellect, stacking with the Holy Guidance talent, however, a Helmet with a Meta Gem slot is ideal. Storm Master's Helmet is a great option, which offers significantly more Intellect and Crit at the cost of Healing.
+Rank	Item	Source
+BiS	Helmet of the Steadfast Champion Helmet of the Steadfast Champion	G'eras, Shattrath City - 50
+Option	Whitemend Hood Whitemend Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Storm Master's Helmet Storm Master's Helmet	G'eras, Shattrath City - 50
+Option	Hallowed Crown Hallowed Crown	Drop: Harbinger Skyriss (The Arcatraz)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+Rank	Item	Source
+Option	Moonglade Cowl Moonglade Cowl	Drop: High Botanist Freywinn (The Botanica)
+Option	Living Dragonscale Helm Living Dragonscale Helm	Profession: Leatherworking (Can be Purchased on the Auction House)
+Option	Headdress of the Tides Headdress of the Tides	Drop: Ghaz'an (The Underbog)
+Option	Metallic Headband of Simm'onz Metallic Headband of Simm'onz	Quest: Forge Camp: Annihilated Forge Camp: Annihilated (Nagrand)
+Option	Redemption Headpiece Redemption Headpiece	Drop: Thaddius (Classic - Naxxramas)
+
+
+Best in Slot Shoulder Armor for Holy Paladin in TBC Classic Pre-Raid
+Hallowed Pauldrons are the recommended pre-raid BiS shoulder armor, allowing you to utilize the gem slots to gain more Intellect. Primal Mooncloth Shoulders are a strong option from a raw Healing perspective; however, they require you to be a Tailor to equip them and are swiftly replaced within the Phase 1 raids. The Shoulder pieces that carry gem slots will provide more overall value, saving you a profession slot (and a good amount of gold)!
+Rank	Item	Source
+BiS	Hallowed Pauldrons Hallowed Pauldrons	Drop: Grandmaster Vorpil (Shadow Labyrinth)
+Option	Moonglade Shoulders Moonglade Shoulders	Drop: Warlord Kalithresh (The Steamvault)
+Option	Pauldrons of Sufferance Pauldrons of Sufferance	Drop: Epoch Hunter (Old Hillsbrad)
+Option	Primal Mooncloth Shoulders Primal Mooncloth Shoulders	Profession: Tailoring (Primal Mooncloth Tailoring) - BoP only
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+Rank	Item	Source
+Option	Justice Bearer's Pauldrons Justice Bearer's Pauldrons	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	Mantle of the Sea Wolf Mantle of the Sea Wolf	Drop: Tavarok (Heroic Mana-Tombs)
+Option	Vestia's Pauldrons of Inner Grace Vestia's Pauldrons of Inner Grace	Drop: Cache of the Legion (The Mechanar)
+Option	Pauldrons of Wild Magic Pauldrons of Wild Magic	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest: The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered (Shadowmoon Valley)
+Option	Redemption Spaulders Redemption Spaulders	Drop: Shared Boss Drop (Classic - Naxxramas)
+
+
+Best in Slot Back Armor for Holy Paladin in TBC Classic Pre-Raid
+Light-Touched Stole of Altruism is the best cloak option pre-raid, offering a nice amount of Intellect and Healing. Avian Cloak of Feathers is a good second option, which is easy to obtain.
+Rank	Item	Source
+BiS	Light-Touched Stole of Altruism Light-Touched Stole of Altruism	Drop: Exarch Maladaar (Heroic Auchenai Crypts)
+Option	Avian Cloak of Feathers Avian Cloak of Feathers	Drop: Talon King Ikiss (Sethekk Halls)
+Option	Bishop's Cloak Bishop's Cloak	Vendor: G'eras (Badges of Justice)
+Option	Lifegiving Cloak Lifegiving Cloak	Drop: World Drop
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Cloak of Suturing is another good option, which you may have already obtained in Classic, or you can work towards Bishop's Cloak, purchased using Justice Points.
+Rank	Item	Source
+Option	Cloak of Suturing Cloak of Suturing	Drop: Patchwerk (Classic - Naxxramas)
+Option	White Remedy Cape White Remedy Cape	Profession: Tailoring - can be purchased on the Auction House
+Option	Cloak of the Everliving Cloak of the Everliving	Drop: Watchkeeper Gargolmar (Heroic Hellfire Ramparts)
+
+
+Best in Slot Chest Armor for Holy Paladin in TBC Classic Pre-Raid
+Windhawk Haubert is the recommended pre-raid BiS chest armor, continuing the trend of utilizing strong armor pieces that carry a lot of Intellect and Spell Crit, whilst offering Gem slots. Hallowed Garments remains a great option for those without the option to use crafted gear.
+Rank	Item	Source
+BiS	Windhawk Hauberk Windhawk Hauberk	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Hallowed Garments Hallowed Garments	Drop: Murmur (Shadow Labyrinth)
+Option	Netherstrike Breastplate Netherstrike Breastplate	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Anchorite's Robes Anchorite's Robes	Vendor: Quartermaster Endarin (The Aldor - Honored)
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Primal Mooncloth Robe are a strong option from a raw Healing perspective; however, they require you to be a Tailor to equip them and is swiftly replaced within the Phase 1 raids. The Chest pieces that carry additional gem slots will provide more overall value, saving you a profession slot (and a good amount of gold)!
+Rank	Item	Source
+Option	Primal Mooncloth Robe Primal Mooncloth Robe	Profession: Tailoring (Primal Mooncloth Tailoring) - BoP only
+Option	Moonglade Robe Moonglade Robe	Drop: Nethermancer Sepethrea (The Mechanar)
+Option	Raiments of Divine Authority Raiments of Divine Authority	Drop: Keli'dan the Breaker (The Blood Furnace)
+Option	Void Slayer's Tunic Void Slayer's Tunic	Quest: Dimensius the All-Devouring Dimensius the All-Devouring (Netherstorm)
+Option	Living Crystal Breastplate Living Crystal Breastplate	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Raiments of Nature's Breath Raiments of Nature's Breath	Drop: Reinforced Fel Iron Chest (Heroic Hellfire Ramparts)
+Option	Robe of Effervescent Light Robe of Effervescent Light	Drop: Keli'dan the Breaker (Heroic The Blood Furnace)
+Option	Earthpeace Breastplate Earthpeace Breastplate	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Harness of the Deep Currents Harness of the Deep Currents	Drop: Murmur (Shadow Labyrinth)
+Option	Redemption Tunic Redemption Tunic	Drop: Four Horsemen Chest (Classic - Naxxramas)
+
+
+Best in Slot Wrist Armor for Holy Paladin in TBC Classic Pre-Raid
+Windhawk Bracers is the recommended pre-raid BiS wrist armor if you are a Leatherworker due to the stat coverage and the gem slot, but Bindings of the Timewalker and Blessed Bracers are so close and do not require a specific profession or crafting cost, though the reputation grind for The Keepers of Time could be a barrier for some.
+Rank	Item	Source
+BiS	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+BiS	Blessed Bracers Blessed Bracers	Profession: Blacksmithing (Can be Purchased on the Auction House)
+BiS	Bindings of the Timewalker Bindings of the Timewalker	Reputation: Keepers of Time Revered
+Option	Bands of the Benevolent Bands of the Benevolent	Drop: Talon King Ikiss (Heroic Sethekk Halls)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+Rank	Item	Source
+Option	General's Lamellar Bracers General's Lamellar Bracers	Vendor: Honor Points (PvP)
+Option	Virtue Bearer's Vambraces Virtue Bearer's Vambraces	Drop: Broggok (Heroic The Blood Furnace)
+Option	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+Option	Bracelets of Royal Redemption Bracelets of Royal Redemption	Drop: Emperor Vek'nilash (Classic - Ahn'Qiraj)
+Option	Shattrath Wraps Shattrath Wraps	Quest: The Soul Devices The Soul Devices (Shadow Labyrinth)
+Option	Primal Surge Bracers Primal Surge Bracers	Drop: Aeonus (The Black Morass)
+Option	Lucid Dream Bracers Lucid Dream Bracers	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Option	Redemption Wristguards Redemption Wristguards	Drop: Anub'Rekhan, Grand Widow Faerlina, & Gluth (Classic - Naxxramas)
+
+Best in Slot Hand Armor for Holy Paladin in TBC Classic Pre-Raid
+Life Bearer's Gauntlets are the recommended pre-raid BiS hands armor as they grant a nice amount of Intellect and Spell Crit.
+Rank	Item	Source
+BiS	Life Bearer's Gauntlets Life Bearer's Gauntlets	Drop: Reinforced Fel Iron Chest (Heroic Hellfire Ramparts)
+Option	Prismatic Mittens of Mending Prismatic Mittens of Mending	Drop: Commander Sarannis (The Botanica)
+Option	Fathomheart Gauntlets Fathomheart Gauntlets	Drop: Warlord Kalithresh (The Steamvault)
+Option	Natural Mender's Wraps Natural Mender's Wraps	Drop: Avatar of the Martyred (Auchenai Crypts)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+There are a handful of great alternatives that can be picked up through normal dungeons. Alternatively, if you wish to spend the gold to obtain the high Healing option, you may wish to grab a pair of Gloves of the Living Touch.
+Rank	Item	Source
+Option	Gloves of the Living Touch Gloves of the Living Touch	Profession: Leatherworking (Can be Purchased on the Auction House)
+Option	Cryo-mitts Cryo-mitts	Quest: Someone Else's Hard Work Pays Off Someone Else's Hard Work Pays Off (Terokkar Forest)
+Option	Hallowed Handwraps Hallowed Handwraps	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Option	Bloody Surgeon's Mitts Bloody Surgeon's Mitts	Drop: Broggok (The Blood Furnace)
+
+Best in Slot Waist Armor for Holy Paladin in TBC Classic Pre-Raid
+Windhawk Belt is the recommended pre-raid BiS waist armor, continuing the trend of utilizing the strong Leatherworking recipes while keeping in mind the drawbacks of crafted gear. Girdle of Many Blessings serves as a decent alternative for those who are unable to access gear locked behind professions.
+
+Primal Mooncloth Belt is the recommended pre-raid BiS waist armor for those who value high Healing. Overall, there aren't many Waist options that come with Gem sockets, without picking up a crafted piece.
+Rank	Item	Source
+BiS	Windhawk Belt Windhawk Belt	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Girdle of Many Blessings Girdle of Many Blessings	Drop: Rokmar the Crackler (Heroic The Slave Pens)
+Option	Cord of Sanctification Cord of Sanctification	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Primal Mooncloth Belt Primal Mooncloth Belt	Profession: Tailoring (Primal Mooncloth Tailoring) - BoP only
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+Rank	Item	Source
+Option	Girdle of Divine Blessing Girdle of Divine Blessing	Drop: World Drop
+Option	Netherstrike Belt Netherstrike Belt	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Wave-Song Girdle Wave-Song Girdle	Drop: Exarch Maladaar (Auchenai Crypts)
+Option	A'dal's Gift A'dal's Gift	Quest: How to Break Into the Arcatraz How to Break Into the Arcatraz
+Option	General's Lamellar Belt General's Lamellar Belt	Vendor: Honor Points (PvP)
+Option	Stillwater Girdle Stillwater Girdle	Drop: Nexus-Prince Shaffar (Mana-Tombs)
+Option	Grasp of the Old God Grasp of the Old God	Drop: C'Thun (Ahn'Qiraj)
+Option	Akama's Sash Akama's Sash	Quest: Akama's Promise Akama's Promise (Shadowmoon Valley)
+Option	Redemption Girdle Redemption Girdle	Drop: Shared Boss Drop (Classic - Naxxramas)
+
+
+Best in Slot Legs Armor for Holy Paladin in TBC Classic Pre-Raid
+Pontifex Kilt are the recommended pre-raid BiS leg armor, granting well-rounded stats.
+
+Whitemend Pants are a great alternative when paired with the Head, gaining the set bonus. Stormsong Kilt are also a great option due to the high Intellect and Spell Crit granted; however, these pants will be highly sought after by DPS players.
+Rank	Item	Source
+BiS	Pontifex Kilt Pontifex Kilt	Drop: Warlord Kalithresh (Heroic The Steamvault)
+Option	Whitemend Pants Whitemend Pants	Profession: Tailoring - can be purchased on the Auction House
+Option	Stormsong Kilt Stormsong Kilt	Drop: The Black Stalker (Heroic The Underbog)
+Option	Cassock of the Loyal Cassock of the Loyal	Drop: Hungarfen (Heroic The Underbog)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+Rank	Item	Source
+Option	Oceansong Kilt Oceansong Kilt	Drop: Reinforced Fel Iron Chest (Heroic Hellfire Ramparts)
+Option	Kamaei's Cerulean Skirt Kamaei's Cerulean Skirt	Drop: World Drop
+Option	Starcaller's Plated Legguards Starcaller's Plated Legguards	Quest: Dimensius the All-Devouring Dimensius the All-Devouring (Netherstorm)
+Option	Hallowed Trousers Hallowed Trousers	Drop: Talon King Ikiss (Sethekk Halls)
+Option	Pants of the Naaru Pants of the Naaru	Quest: Special Delivery to Shattrath City Special Delivery to Shattrath City (Netherstorm)
+
+
+Best in Slot Feet Armor for Holy Paladin in TBC Classic Pre-Raid
+Slippers of Serenity is the recommended pre-raid BiS feet armor, mainly due to the Gem sockets enabling additional Healing or Intellect depending on your preference.
+Rank	Item	Source
+BiS	Slippers of Serenity Slippers of Serenity	Drop: Exarch Maladaar (Auchenai Crypts)
+Option	Boots of the Pious Boots of the Pious	Drop: Pathaleon the Calculator (Heroic The Mechanar)
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Boots of the Watchful Heart Boots of the Watchful Heart	Drop: Captain Skarloc (Heroic Old Hillsbrad Foothills)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+Rank	Item	Source
+Option	Jeweled Boots of Sanctification Jeweled Boots of Sanctification	Drop: Warbringer O'mrogg (The Shattered Halls)
+Option	Wavefury Boots Wavefury Boots	Drop: Rokmar the Crackler (Heroic The Slave Pens)
+Option	Curate's Boots Curate's Boots	Alliance Only Quest: Fel Embers Fel Embers (Hellfire Peninsula)
+Option	Redemption Boots Redemption Boots	Drop: Shared Boss Drop (Classic - Naxxramas)
+
+
+Best in Slot Neck Jewelry for Holy Paladin in TBC Classic Pre-Raid
+Necklace of Eternal Hope is the recommended pre-raid BiS neck item, purchased through Badges of Justice.
+Rank	Item	Source
+BiS	Necklace of Eternal Hope Necklace of Eternal Hope	Vendor: G'eras, Shattrath City - 25
+Option	Karja's Medallion Karja's Medallion (Aldor only)	Quest: Shutting Down Manaforge Ara Shutting Down Manaforge Ara/Shutting Down Manaforge Ara Shutting Down Manaforge Ara (Netherstorm)
+Option	Natasha's Guardian Cord Natasha's Guardian Cord	Quest: The Hound-Master The Hound-Master (Blade's Edge Mountain)
+Option	Amulet of the Fallen God Amulet of the Fallen God	Quest: The Savior of Kalimdor The Savior of Kalimdor (Classic - Ahn'Qiraj)
+Best in Slot Ring Jewelry for Holy Paladin in TBC Classic Pre-Raid
+Ring of Convalescence (Alliance) / Ancestral Band (Horde) and Band of Halos are the recommended pre-raid BiS rings, although all of the following rings are very strong. Band of the Crystalline Void is another great option, but it is an extremely rare item. Ring of Cryptic Dreams is also another great option, which favors Intellect and Spell Crit.
+Rank	Item	Source
+BiS	Band of Halos Band of Halos	Vendor: G'eras, Shattrath City - 25
+BiS	Ring of Convalescence Ring of Convalescence (Alliance) / Ancestral Band Ancestral Band (Horde)	Reputation: Honor Hold / Thrallmar Revered
+Option	Band of the Crystalline Void Band of the Crystalline Void	Drop: Yor (Heroic Mana-Tombs)
+Option	Ring of Cryptic Dreams Ring of Cryptic Dreams	Vendor: G'eras, Shattrath City - 25
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+Rank	Item	Source
+Option	Celestial Jewel Ring Celestial Jewel Ring	Quest: Hitting the Motherlode Hitting the Motherlode (Netherstorm)
+Option	Ring of Fabled Hope Ring of Fabled Hope	Drop: The Black Stalker (Heroic The Underbog)
+Option	Cosmic Lifeband Cosmic Lifeband	Drop: Nethermancer Sepethrea (The Mechanar)
+Option	Spiritualist's Mark of the Sha'tar Spiritualist's Mark of the Sha'tar	Quest: Battle of the Crimson Watch Battle of the Crimson Watch (Shadowmoon Valley)
+Option	Azure Moonstone Ring Azure Moonstone Ring	Profession: Jewelcrafting - can be purchased on the Auction House
+Option	Ring of the Martyr Ring of the Martyr	Drop: Princess Huhuran (Classic - Ahn'Qiraj)
+Option	Keeper's Ring of Piety Keeper's Ring of Piety	Quest: Hero of the Brood Hero of the Brood (Heroic Caverns of Time)
+
+Best in Slot Trinkets for Holy Paladin in TBC Classic Pre-Raid
+Essence of the Martyr is the best pre-raid BiS trinket you can pick up, followed by Lower City Prayerbook. Eye of the Dead and Rejuvenating Gem are still extremely strong and remain competitive throughout Phase 1.
+Rank	Item	Source
+BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras, Shattrath City - 41
+BiS	Lower City Prayerbook Lower City Prayerbook	Reputation: Lower City Revered
+Option	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Naxxramas)
+Option	Rejuvenating Gem Rejuvenating Gem	Drop: The Lesser Dragon Bosses (Blackwing Lair)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+Rank	Item	Source
+Option	Scarab of the Infinite Cycle Scarab of the Infinite Cycle	Drop: Aeonus (The Black Morass)
+Option	Oshu'gun Relic Oshu'gun Relic	Quest: Gava'xi Gava'xi (Nagrand)
+Option	Auslese's Light Channeler Auslese's Light Channeler	Drop: Broggok (The Blood Furnace)
+Option	Shiffar's Nexus-Horn Shiffar's Nexus-Horn	Drop: Harbinger Skyriss (The Arcatraz)
+
+Best in Slot Weapons for Holy Paladin in TBC Classic Pre-Raid
+While Gladiator's Salvation is the best pre-raid option, it is hard to obtain via PvP. Hand of Eternity is a great BoE pre-raid option available through buying or crafting via Blacksmithing. However, there are better options in raid, and the gold investment might not be worth it. Shockwave Truncheon is a cheaper alternative and still very solid. Keep in mind that Heroic dungeons might be very challenging early on.
+Rank	Item	Source
+BiS	Gladiator's Salvation Gladiator's Salvation	Vendor: Arena Points (Season 1)
+BiS	Hand of Eternity Hand of Eternity	Profession: Blacksmithing - can be purchased on the Auction House
+BiS	Shockwave Truncheon Shockwave Truncheon	Drop: Murmur (Heroic Shadow Labyrinth)
+Option	Gavel of Pure Light Gavel of Pure Light	Vendor: Almaador (The Sha'tar Exalted)
+
+If you don't have access to the recommendations above, or prefer a two-handed weapon, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Option	The Ancient Scepter of Sue-Min The Ancient Scepter of Sue-Min	Drop: World Drop
+Option	Hammer of the Twisting Nether Hammer of the Twisting Nether	Drop: Kel'Thuzad (Classic - Naxxramas)
+Option	Hammer of the Penitent Hammer of the Penitent	Drop: Mechano-Lord Capacitus (The Mechanar)
+Option	Dathrohan's Ceremonial Hammer Dathrohan's Ceremonial Hammer	Drop: Captain Skarloc (Heroic Old Hillsbrad Foothills)
+Option	Lightsworn Hammer Lightsworn Hammer	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Option	The Essence Focuser The Essence Focuser	Drop: World Drop
+
+
+
+
+Best in Slot Off Hands and Shields for Holy Paladin in TBC Classic Pre-Raid
+Light-Bearer's Faith Shield is the recommended pre-raid BiS offhand. It is worth picking up a Shield in general, as it can be Enchanted. Shield of Condemnation is a great option if you managed to grab one in Classic.
+Rank	Item	Source
+BiS	Light-Bearer's Faith Shield Light-Bearer's Faith Shield	Vendor: G'eras, Shattrath City - 33
+Option	Shield of Condemnation Shield of Condemnation	Drop: Kel'Thuzad - (Classic - Naxxramas)
+Option	Stormshield of Renewal Stormshield of Renewal	Drop: The Black Stalker (Heroic The Underbog)
+Option	Mazthoril Honor Shield Mazthoril Honor Shield	Vendor: G'eras, Shattrath City - 33
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+Rank	Item	Source
+Option	Crystal Pulse Shield Crystal Pulse Shield	Drop: World Drop
+Option	Sapphiron's Right Eye Sapphiron's Right Eye	Drop: Sapphiron (Naxxramas)
+Option	Windcaller's Orb Windcaller's Orb	Reputation: Cenarion Expedition Exalted)
+Option	Swamplight Lantern Swamplight Lantern	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Tears of Heaven Tears of Heaven	Vendor: G'eras, Shattrath City - 25
+Option	Faol's Signet of Cleansing Faol's Signet of Cleansing	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Option	Lamp of Peaceful Repose Lamp of Peaceful Repose	Drop: Dalliah the Doomsayer (The Arcatraz)
+Option	Netherwing Spiritualist's Charm Netherwing Spiritualist's Charm	Quest: Ally of the Netherwing Ally of the Netherwing (Shadowmoon Valley)
+
+
+Best in Slot Librams for Holy Paladin in TBC Classic Pre-Raid
+For Librams, you'll want to carry both Libram of the Lightbringer and Libram of Light to allow you to swap pending the encounter. As a Holy Paladin's primary role is to Tank heal using Holy Light, you will likely see the most use out of Libram of the Lightbringer. Furthermore, Libram of Light can only be obtained in the Classic raid, Naxxramas, which may not be an option for some players.
+
+Blessed Book of Nagrand is the best alternative Flash of Light Libram if you have been unable to pick up the BiS one from Naxxramas.
+Rank	Item	Source
+BiS	Libram of the Lightbringer Libram of the Lightbringer	Drop: Commander Sarannis (The Botanica)
+BiS	Libram of Light Libram of Light	Drop: Noth the Plaguebringer (Naxxramas)
+Option	Blessed Book of Nagrand Blessed Book of Nagrand	Quest: The Ultimate Bloodsport The Ultimate Bloodsport (Nagrand)
+Wowhead
+Wowhead is the composite author encompassing general-interest guides and news, as well as representing many wonderful past and present writers.
+1 - 9 of 9
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+9
+
+	
+By Gordolfo (9,319 – 1·17·25) on 2021/07/06 (Burning Crusade)	
+	
+Hammer of the Penitent Hammer of the Penitent from The Mechanar wing of Tempest Keep (normal). It is much better than Mogor's Anointing Club Mogor's Anointing Club. Why is not even listed?
+Last edited by Gordolfo on 2021/07/06
+
+5
+
+	
+By PicaCho (7,619 – 1·17·16) <Rare Premium User> on 2021/06/12 (Burning Crusade)	
+	
+Sucks that good stuff cant be plate.
+
+2
+
+	
+
+Nobleshield on 2021/06/18 (Burning Crusade)
+Yeah that's the worst part about the earlier games, you're gimping yourself by wanting to, you know, actually look like a Paladin and not a Priest. It's ridiculous, and something that wasn't properly fixed until Wrath.
+
+5
+
+	
+By thelostsandwich (1,206 – 11·9) on 2026/02/11 (Burning Crusade)	
+	
+Bindings of the Timewalker Reputation: Keepers of Time Revered 
+
+Think these require exalted.
+
+-1
+
+	
+
+Najanah on 2026/02/13 (Burning Crusade)
+The guide is 4 years old lol, it is exalted not revered, I also got thrown off
+
+4
+
+	
+By Velious (3,176 – 7·10) on 2021/07/07 (Burning Crusade)	
+	
+May I suggest adding this item as a great optional Pre-Raid head slot: Headdress of the Tides Headdress of the Tides
+
+3
+
+	
+By AgentZee (1,484 – 5·8) on 2021/07/22 (Burning Crusade)	
+	
+Why in the world of warcraft would a healer not want Enchant Cloak - Subtlety, in this day and age?
+Last edited by AgentZee on 2021/07/22
+
+1
+
+	
+By Iceolation (6,488 – 1·14·18) on 2021/06/06 (Burning Crusade)	
+	
+in the non crafted set the main hand is linked to a blacksmithing item
+
+1
+
+	
+
+Dunraven <Rare Premium User> on 2021/06/06 (Burning Crusade)
+Sorry -- I should've been more specific with what that means. The non-crafted set is for items that do not require you to be a specific profession to use, meaning you can buy from the AH or have someone craft for you, such as the gloves or weapon listed in that set. I apologize for any confusion with that!
+
+0
+
+	
+
+Iceolation on 2021/06/08 (Burning Crusade)
+oh no worries, ty for clearing that up :)
+
+1
+
+	
+By McHildinger (106 – 0) on 2021/09/14 (Burning Crusade)	
+	
+The Moonglade Cowl drops from Warp Splinter (wrong boss listed in guide)
+
+1
+
+	
+By capSAR (20,219 – 2·11·23) <Rare Premium User> on 2026/04/02 (Burning Crusade)	
+	
+Shouldn't honor pieces be in here? They're very easy to obtain with the changes to honor gains now and the gear is solid. Lots of stats, spell crit, sockets
+
+-1
+
+	
+By Libramar (3,532 – 15·26) on 2026/03/17 (Burning Crusade)	
+	
+No mention of Aegis of the Vindicator from Mag'Theridon? What is this
+
+0
+
+	
+
+freebase47 on 2026/03/23 (Burning Crusade)
+This is a list of PRE-RAID BiS items. It would not make sense to include raid loot.
+1 - 9 of 9
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Holy Paladin Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+            Best In Slot Gear in Phase 1
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrist
+                Hand
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Librams
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Holy Paladin Healing Phase 1 Best in Slot (BiS) - TBC Classic
+By Wowhead
+Updated: 2026/02/01
+In this Pre-Raid Best-in-Slot Gear List for Holy Paladin Healing in The Burning Crusade Classic, we will list the recommended gear for Holy Paladin Healing to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Holy Paladin Healing Best in Slot Hub
+
+Best In Slot Gear for Holy Paladin Healer in Phase 1
+There are different ways to approach gearing for the Holy Paladin in Phase 1 of TBCC. World Bosses have a lot of very strong pieces for the Paladin Healer, but will be considerably challenging to obtain, considering these bosses are non-instanced and will be heavily contested. There are also strong pieces through specific professions with Mooncloth Tailoring and Tribal Leatherworking, but these are only usable if you are trained in these professions, as the items are bound to the player upon creation, and not tradeable.
+
+Finally, should you not have access to these professions or World Bosses, then there's the more traditional route of gearing from Raids and Dungeons. It's important to note the differences first for healing: total Healing Power, Intellect/Mana, Spell Crit, and Mp5. Then compare the survivability stats, such as total health/Stamina and Armor. The difference in gear sets is much smaller than in the pre-raid phase and will become even smaller in Phase 2. Whichever route you choose to follow from the items listed will all be comparable, with only a marginal difference.
+
+Holy Paladins looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Holy Paladin Gems & Enchants
+Should Holy Paladin Healers Choose Aldor or Scryer for BiS in TBC Classic Phase 1?
+The quick answer is that this is entirely preference-based, but the difference is rather small and will not make or break end-game content. Choosing either faction will ultimately be fine in the long run, so do not be dismayed if you went with your least preferred option.
+
+The Aldor shoulder enchant is Greater Inscription of Faith Greater Inscription of Faith compared to The Scryers getting Greater Inscription of the Oracle Greater Inscription of the Oracle. The difference here is +11 healing power gained while losing 2 mana per 5. While the Greater Inscription of Faith is superior from an overall Healing, it's not a large enough margin to definitively say The Aldor is better and worth changing from The Scryers if you have already gone that route. Alternatively, The Scyers offers the better enchant from a Spell Crit perspective, with Greater Inscription of the Orb Greater Inscription of the Orb compared to The Aldors Greater Inscription of Discipline Greater Inscription of Discipline.
+
+There is no gear seriously worth buying from either faction; however, there are the Pattern: Silver Spellthread Pattern: Silver Spellthread and Pattern: Golden Spellthread Pattern: Golden Spellthread from The Aldor if you are a tailor, so that provides another nod in favor of choosing them.
+
+The last point of contention is which proc of the Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration is superior for Holy paladins. This is a bit of future planning, as these necklace procs won't be available until the last content phase for The Burning Crusade Classic, Phase 5. The Aldor's version gives Light's Salvation, while The Scryers gives Arcane Surge. While both effects are nice bonuses, the former will typically win out due to our tank healing and mixed usage of Holy Light and Flash of Light, where Holy Light will likely see more use near the end of the expansion. The additional healing added to a max rank cast of this spell will be a lot more beneficial due to the healing coefficient bonus.
+
+In conclusion, The Aldor offers the most benefit from a healing perspective, with the better healing shoulder enchant and necklace proc in phase 5 compared to The Scryers.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Holy Paladins, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+
+Best in Slot Head Armor for Holy Paladin in TBC Classic Phase 1
+Justicar Diadem is the easiest and best option for the Phase 1 head slot, offering great stats through Intellect, Spell Crit, and Healing, whilst also offering a meta gem socket.
+Rank	Item	Source
+BiS	Justicar Diadem Justicar Diadem	Drop: Tier Token from Prince Malchezaar (Karazhan)
+Option	Fathom-Helm of the Deeps Fathom-Helm of the Deeps	Drop: Doomwalker (World Boss in Shadowmoon Valley)
+Option	Helmet of the Steadfast Champion Helmet of the Steadfast Champion	G'eras, Shattrath City - 50
+Option	Whitemend Hood Whitemend Hood	Profession: Tailoring (BoE - Requires 350 Tailoring for Set Bonus)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Fathom-Helm of the Deeps is a very strong contender for the Phase 1 BiS head slot as it offers a high amount of Healing; however, it requires access to world bosses to obtain.
+Rank	Item	Source
+Option	Cowl of Nature's Breath Cowl of Nature's Breath	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Headdress of the High Potentate Headdress of the High Potentate	Drop: Chess Event - Karazhan
+
+Best in Slot Shoulder Armor for Holy Paladin in TBC Classic Phase 1
+Justicar Pauldrons is recommended for Phase 1 BiS due to the addition of gem sockets, allowing higher potential Intellect.
+Rank	Item	Source
+BiS	Justicar Pauldrons Justicar Pauldrons	Drop: Tier Token from High King Maulgar (Gruul's Lair)
+Option	Pauldrons of the Justice-Seeker Pauldrons of the Justice-Seeker	Drop: Shade of Aran (Karazhan)
+Option	Primal Mooncloth Shoulders Primal Mooncloth Shoulders	Profession: Mooncloth Tailoring (BoP)
+Option	Dragon-Quake Shoulderguards Dragon-Quake Shoulderguards	Drop: The Curator (Karazhan)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Pauldrons of the Justice-Seeker is a great alternative should you be waiting a while to obtain your Tier Token.
+Rank	Item	Source
+Option	Forest Wind Shoulderpads Forest Wind Shoulderpads	Drop: The Curator (Karazhan)
+
+Best in Slot Back Armor for Holy Paladin in TBC Classic Phase 1
+Stainless Cloak of the Pure Hearted is recommended for Phase 1 BiS, combining a good amount of Healing, MP5, and Intellect.
+Rank	Item	Source
+BiS	Stainless Cloak of the Pure Hearted Stainless Cloak of the Pure Hearted	Drop: Prince Malchezaar (Karazhan)
+Option	Avian Cloak of Feathers Avian Cloak of Feathers	Drop: Talon King Ikiss (Sethekk Halls)
+Option	Light-Touched Stole of Altruism Light-Touched Stole of Altruism	Drop: Exarch Maladaar (Heroic Auchenai Crypts)
+Option	Red Riding Hood's Cloak Red Riding Hood's Cloak	Drop: The Big Bad Wolf
+The Opera Event (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+Rank	Item	Source
+Option	Lifegiving Cloak Lifegiving Cloak	Drop: World Drop
+Option	White Remedy Cape White Remedy Cape	Profession: Tailoring (BoE)
+
+Best in Slot Chest Armor for Holy Paladin in TBC Classic Phase 1
+Justicar Chestpiece is recommended for Phase 1 BiS, as the set piece once again provides the best stats with Healing, Intellect, Spell Crit, and MP5.
+Rank	Item	Source
+BiS	Justicar Chestpiece Justicar Chestpiece	Drop: Magtheridon (Magtheridon's Lair)
+Option	Windhawk Hauberk Windhawk Hauberk	Profession: Tribal Leatherworking (BoP)
+Option	Breastplate of the Lightbinder Breastplate of the Lightbinder	Drop: Terestian Illhoof (Karazhan)
+Quest	Earthblood Chestguard Earthblood Chestguard	Drop: Netherspite (Karazhan)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Whilst Primal Mooncloth Robe is the highest Healing option, it's not worth prioritising Tailoring as a Holy Paladin to pick this up, when you can grab items with better stat coverage, such as Intellect and Spell Crit.
+Rank	Item	Source
+Option	Hallowed Garments Hallowed Garments	Drop: Murmur (Shadow Labyrinth)
+Option	Primal Mooncloth Robe Primal Mooncloth Robe	Profession: Mooncloth Tailoring (BoP)
+
+Best in Slot Wrist Armor for Holy Paladin in TBC Classic Phase 1
+Windhawk Bracers are recommended BiS, but require you to be a Tribal Leatherworker. The addition of the gem slot, along with the desirable stats, has them edging out their competitors. However, Blessed Bracers and Bindings of the Timewalker are so close and do not require a specific profession or crafting cost. The former will take priority due to also having +Spell Crit.
+Rank	Item	Source
+BiS	Windhawk Bracers Windhawk Bracers	Profession: Tribal Leatherworking (BoP)
+BiS	Blessed Bracers Blessed Bracers	Profession: Blacksmithing (BoE)
+BiS	Bindings of the Timewalker Bindings of the Timewalker	Vendor: Alurmi - Requires Exalted with Keepers of Time
+Option	Bracers of Justice Bracers of Justice	Drop: Maiden of Virtue (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+Rank	Item	Source
+Option	Whirlwind Bracers Whirlwind Bracers	Drop: Attumen the Huntsman (Karazhan)[/color]
+Quest	Bands of Indwelling Bands of Indwelling	Drop: Maiden of Virtue (Karazhan)
+
+Best in Slot Hand Armor for Holy Paladin in TBC Classic Phase 1
+Gauntlets of Renewed Hope offers gem sockets and stats; however, Justicar Gloves offers more Crit at the cost of gem sockets, and allows you to reach the Tier 4 set bonuses. The choice here is entirely up to you based on your preferred setup.
+Rank	Item	Source
+BiS	Justicar Gloves Justicar Gloves	Drop: The Curator (Karazhan)
+BiS	Gauntlets of Renewed Hope Gauntlets of Renewed Hope	Drop: Attumen the Huntsman (Karazhan)
+Option	Gloves of Centering Gloves of Centering	Drop: Maiden of Virtue (Karazhan)
+Option	Mitts of the Treemender Mitts of the Treemender	Drop: Maiden of Virtue (Karazhan)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+Rank	Item	Source
+Option	Life Bearer's Gauntlets Life Bearer's Gauntlets	Drop: Reinforced Fel Iron Chest (Heroic Hellfire Ramparts)
+Option	Gloves of the Living Touch Gloves of the Living Touch	Profession: Leatherworking (BoE)
+
+Best in Slot Waist Armor for Holy Paladin in TBC Classic Phase 1
+If you have Tribal Leatherworking, Windhawk Belt is recommended for Phase 1 BiS, one of the few remaining Leatherworking pieces still winning out. Should you choose not to go with crafting gear, Girdle of Truth will be your next best option.
+Rank	Item	Source
+BiS	Windhawk Belt Windhawk Belt	Profession: Tribal Leatherworking (BoP)
+BiS	Girdle of Truth Girdle of Truth	Drop: Netherspite (Karazhan)
+Option	Cord of Nature's Sustenance Cord of Nature's Sustenance	Drop: Terestian Illhoof (Karazhan)
+Option	Girdle of Many Blessings Girdle of Many Blessings	Drop: Rokmar the Crackler (Heroic The Slave Pens)
+
+
+If you don't have access to the recommendation above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Whilst Primal Mooncloth Belt is the highest Healing option, it's not worth prioritising Tailoring as a Holy Paladin to pick this up, when you can grab items with better stat coverage, such as Intellect and Spell Crit.
+Rank	Item	Source
+Option	Cord of Sanctification Cord of Sanctification	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Primal Mooncloth Belt Primal Mooncloth Belt	Profession: Mooncloth Tailoring (BoP)
+
+Best in Slot Leg Armor for Holy Paladin in TBC Classic Phase 1
+Legplates of the Innocent is the recommended phase 1 BiS leg armor, as they carry perfect stats for Holy Paladins!
+Rank	Item	Source
+BiS	Legplates of the Innocent Legplates of the Innocent	Drop: Chess Event - Karazhan
+Option	Heart-Flame Leggings Heart-Flame Leggings	Drop: Chess Event - Karazhan
+Option	Earthsoul Leggings Earthsoul Leggings	Drop: Chess Event - Karazhan
+Option	Justicar Leggings Justicar Leggings	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+The Chess Event in Karazhan offers three different Healer legs, so if you do not get the Plate version, the Mail and Leather ones will be great placeholders. Whilst Gilded Trousers of Benediction offer the highest healing option, they should be deprioritized as they lack a lot of Intellect compared to the other options from Karazhan.
+Rank	Item	Source
+Option	Pantaloons of Repentance Pantaloons of Repentance	Drop: Netherspite (Karazhan)
+BiS	Pontifex Kilt Pontifex Kilt	Drop: Warlord Kalithresh (Heroic The Steamvault)
+Option	Gilded Trousers of Benediction Gilded Trousers of Benediction	Drop: Doomwalker (World Boss in Shadowmoon Valley)
+Option	Whitemend Pants Whitemend Pants	Profession: Tailoring (BoE)
+
+Best in Slot Feet Armor for Holy Paladin in TBC Classic Phase 1
+Boots of Valiance are recommended Phase 1 BiS with great stats for a Holy Paladin; however, if you wish to prioritize gem sockets, Forestlord Striders will be the direct alternative.
+Rank	Item	Source
+BiS	Boots of Valiance Boots of Valiance	Drop: Moroes (Karazhan)
+BiS	Forestlord Striders Forestlord Striders	Drop: Chess Event - Karazhan
+Option	Gold-Leaf Wildboots Gold-Leaf Wildboots	Doom Lord Kazzak - World Boss, Hellfire Peninsula
+Option	Slippers of Serenity Slippers of Serenity	Drop: Exarch Maladaar (Auchenai Crypts)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Gold-Leaf Wildboots are a very strong alternative, which sacrifices Intellect and Crit for more Healing, but unfortunately come with the added challenge of being world boss loot.
+Rank	Item	Source
+Option	Boots of the Pious Boots of the Pious	Drop: Pathaleon the Calculator (Heroic The Mechanar)
+Option	Boots of the Incorrupt Boots of the Incorrupt	Drop: Shade of Aran (Karazhan)
+
+Best in Slot Neck Jewelry for Holy Paladin in TBC Classic Phase 1
+Archaic Charm of Presence is recommended Phase 1 BiS, but unfortunately, it's from a world boss! Necklace of Eternal Hope will remain as the more realistic BiS option should world bosses not be available to you.
+Rank	Item	Source
+BiS	Archaic Charm of Presence Archaic Charm of Presence	Drop: Doomwalker (World Boss in Shadowmoon Valley
+BiS	Necklace of Eternal Hope Necklace of Eternal Hope	Vendor: G'eras (25 Badges of Justice)
+Option	Teeth of Gruul Teeth of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Shining Chain of the Afterworld Shining Chain of the Afterworld	Drop: Netherspite (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Whilst Emberspur Talisman is the highest healing option, it unfortunately lacks in Intellect, ranking it lower than some of the alternatives with slightly less Healing power.
+Rank	Item	Source
+Option	Emberspur Talisman Emberspur Talisman	Drop: Nightbane (Karazhan)
+Option	Karja's Medallion Karja's Medallion	Quest:Shutting Down Manaforge Ara Shutting Down Manaforge Ara/Shutting Down Manaforge Ara Shutting Down Manaforge Ara (Aldor Only)
+Option	Natasha's Guardian Cord Natasha's Guardian Cord	Quest:The Hound-Master The Hound-Master - Blade's Edge Mountains
+Option	Amulet of the Fallen God Amulet of the Fallen God	Quest:The Savior of Kalimdor The Savior of Kalimdor (Ahn'Qiraj)
+WoW Classic
+
+Best in Slot Ring Jewelry for Holy Paladin in TBC Classic Phase 1
+Naaru Lightwarden's Band and Violet Signet of the Grand Restorer are two perfectly well-rounded options for Holy Paladins, making them the preferred picks for these slots.
+Rank	Item	Source
+BiS	Naaru Lightwarden's Band Naaru Lightwarden's Band	Quest: The Fall of Magtheridon The Fall of Magtheridon/The Fall of Magtheridon The Fall of Magtheridon (Magtheridon's Lair)
+BiS	Violet Signet of the Grand Restorer Violet Signet of the Grand Restorer	Quest: Eminence Among the Violet Eye Eminence Among the Violet Eye - Requires Exalted with The Violet Eye
+Option	Ring of Flowing Light Ring of Flowing Light	Drop: Doom Lord Kazzak (World Boss in Hellfire Peninsula)
+Option	Band of Halos Band of Halos	Vendor: G'eras, Shattrath City - 25
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Whilst Ring of Flowing Light and Jade Ring of the Everliving are the highest Healing options, they lack in vital stats, primarily Intellect. Ring of Flowing Light, in particular, at least provides some Spell Crit, but is a difficult item to get your hands on, obtained from a world boss.
+Rank	Item	Source
+Option	Ring of Convalescence Ring of Convalescence
+Ancestral Band Ancestral Band	Vendor: Logistics Officer Ulrike - Requires Revered with Honor Hold
+Vendor: Quartermaster Urgronn - Requires Revered with Thrallmar
+Option	Ring of Fabled Hope Ring of Fabled Hope	Drop: The Black Stalker (Heroic The Underbog)
+Option	Band of the Crystalline Void Band of the Crystalline Void	Drop: Yor (Heroic Mana-Tombs)
+Option	Jade Ring of the Everliving Jade Ring of the Everliving	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Trinkets for Holy Paladin in TBC Classic Phase 1
+Essence of the Martyr and Pendant of the Violet Eye are the recommended Phase 1 BiS trinkets.
+Rank	Item	Source
+BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (41 Badges of Justice)
+BiS	Pendant of the Violet Eye Pendant of the Violet Eye	Drop: Shade of Aran (Karazhan)
+Option	Lower City Prayerbook Lower City Prayerbook	Vendor: Nakodu - Requires Revered with Lower City
+Option	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Opera Event - Karazhan
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Lower City Prayerbook remains as a very strong trinket and will most certainly come in handy should an encounter be extraneous on your Mana. You should not go out of your way to obtain the Classic Trinkets. Should you already have them, then they are solid trinkets to use until you can obtain one of your upgrades.
+Rank	Item	Source
+Option	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Naxxramas)
+WoW Classic
+Option	Rejuvenating Gem Rejuvenating Gem	Drop: Lesser Dragon Bosses in Blackwing Lair
+WoW Classic
+Option	Scarab of the Infinite Cycle Scarab of the Infinite Cycle	Drop: Aeonus (The Black Morass)
+Option	Eye of Gruul Eye of Gruul	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+Weapons and Off-hands for Holy Paladin Healing TBC Classic Phase 1
+Light's Justice is the recommended phase 1 BiS weapon, boasting the highest +Healing and Intellect. You'll pair this with Aegis of the Vindicator as your Shield, combining strong +Healing boosted by a hefty chunk of Intellect, paired with the sustain from the MP5 and the advantage of wearing a shield which you are able to enchant, over an Off-hand item.
+Rank	Item	Source
+Best 1 Hand	Light's Justice Light's Justice	Prince Malchezaar - Karazhan
+Best Shield	Aegis of the Vindicator Aegis of the Vindicator	Magtheridon - Magtheridon's Lair
+Option	Gladiator's Salvation Gladiator's Salvation	Vendor: Arena Points (Season 1)
+Option	Shard of the Virtuous Shard of the Virtuous	Drop: Maiden of Virtue Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon and Off-hand Recommendations
+
+Gladiator's Salvation is a close second for those who enjoy PVP.
+Option 1 Handers
+Rank	Item	Source
+Option	Hand of Eternity Hand of Eternity	Profession: Blacksmithing (BoE)
+Option	Shockwave Truncheon Shockwave Truncheon	Drop: Murmur Shadow Labyrinth Heroic)
+Option	The Ancient Scepter of Sue-Min The Ancient Scepter of Sue-Min	World Drop: The Outland
+Option	Gavel of Pure Light Gavel of Pure Light	Vendor: Almaador - Requires Exalted with The Shat'tar
+Option Offhands and Shields
+The difference between the best option and Light-Bearer's Faith Shield is extremely minor, making it a powerful second option. Aran's Soothing Sapphire is a powerful option as well, as it grants a lot of Intellect, but you unfortunately cannot enchant it, unlike a Shield.
+Rank	Item	Source
+Option	Light-Bearer's Faith Shield Light-Bearer's Faith Shield	Vendor: G'eras, Shattrath City - 33
+Option	Aran's Soothing Sapphire Aran's Soothing Sapphire	Drop: Shade of Aran (Karazhan)
+Option	Shield of Condemnation Shield of Condemnation	Drop: Kel'Thuzad (Naxxramas)
+WoW Classic
+Option	Stormshield of Renewal Stormshield of Renewal	Drop: The Black Stalker (Heroic The Underbog)
+Option	Triptych Shield of the Ancients Triptych Shield of the Ancients	Drop: Chess Event - Karazhan
+
+Librams for Holy Paladin Healing TBC Classic Phase 1
+Libram of Souls Redeemed is the recommended Phase 1 BiS Libram; however, you will want to keep a hold of the other Librams depending on the circumstances of your raid and the encounter.
+
+If your target does not have Blessing of Light, you will want to switch to one of the other options listed below. Libram of the Lightbringer will prove to be an extremely strong Libram that you will want to keep a hold of, as Holy Light becomes a Holy Paladin's primary spell in TBC.
+Rank	Item	Source
+BiS	Libram of Souls Redeemed Libram of Souls Redeemed	Drop: Opera Event - Karazhan
+Option	Libram of the Lightbringer Libram of the Lightbringer	Drop: Commander Sarannis (The Botanica)
+Option	Libram of Light Libram of Light	Drop: Noth the Plaguebringer (Naxxramas)
+WoW Classic
+Option	Blessed Book of Nagrand Blessed Book of Nagrand	Quest: The Ultimate Bloodsport The Ultimate Bloodsport
+Wowhead
+Wowhead is the composite author encompassing general-interest guides and news, as well as representing many wonderful past and present writers.
+1 - 5 of 5
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+7
+
+	
+By Homeless0alien (356 – 3·2) on 2021/06/26 (Burning Crusade)	
+	
+You have Lifegiving Cloak Lifegiving Cloak as higher than Stainless Cloak of the Pure Hearted Stainless Cloak of the Pure Hearted in the back slot BiS which it almost certainly is not. The trade off is 7 healing power (accounting for the power gained from the Holy Guidance of the increased int on the raid drop) vs 2MP5, 20 armour, 0.1% crit, and 21 stamina. I think most will agree thats worth it, check wowtbc.gg for further proof.
+
+2
+
+	
+By Wixman1234 (14,282 – 1·23·36) on 2021/08/15 (Burning Crusade)	
+	
+This BiS list looks like it was made by someone who never plays paladin. YOU NEED SPELL CRIT. The more crit you have, the better off you are. Why? ILLUMINATION. Gives back 60% of the mana you used to cast your spell when it crits. Pauldrons of the Justice Seeker are far superior to the T4 shoulders for that very reason... and so on... they may have lower raw healing numbers, but when you're critting 25% of the time, it greatly increases both your effective healing throughput AND your healing duration capabilities.
+Last edited by Wixman1234 on 2021/08/15
+
+1
+
+	
+By Chaos1812 (3,903 – 12·14) on 2021/07/24 (Burning Crusade)	
+	
+Badge of Justice Ring should be added here to the list of things to get with badges and also should be prioritized over the Thrallmar/Honor Hold Rep Ring.
+
+1
+
+	
+By Eighter (3,990 – 3·11) <Rare Premium User> on 2026/03/02 (Burning Crusade)	
+	
+Where's the recommendations for P1 BiS offhands?
+
+0
+
+	
+By christian588 (742 – 3·3) on 2021/08/09 (Burning Crusade)	
+	
+How is libram of souls redeemed BiS? You're rarely gonna have enough paladins in a raid to be buffing BoL in any comp that's remotely close to ideal.
+1 - 5 of 5
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+3.2/5 (9 Votes)
+TBCC Holy Paladin Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+            Best In Slot Gear in Phase 2
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrist
+                Hand
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Librams
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Holy Paladin Healing Best in Slot (BiS) Phase 2 Gear Guide - TBC Classic
+By Wowhead
+Updated: 2026/05/12
+Welcome to Wowhead's Best in Slot Gear list from Tempest Keep and Serpentshrine Cavern for Holy Paladin Healing in The Burning Crusade Classic. This guide will list the recommended gear for Holy Paladin Healing to acquire while they progress during the second phase of The Burning Crusade Classic, and contains gear sourced from Tempest Keep and Serpentshrine Cavern, plus other pieces from previous phases like Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best in slot lists, including a TBCC pre-patch list and a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Holy Paladin Healing Best in Slot HubHoly Paladin Healing Pre-Raid Best in Slot
+Best In Slot Gear for Holy Paladin Healer in Phase 2
+Holy Paladins looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Holy Paladin Gems & Enchants
+Should Holy Paladin Healers Choose Aldor or Scryer for BiS in TBC Classic Phase 2?
+The quick, TL;DR answer is that The Aldor faction is better for PvE, but the difference is rather small and will not make or break end-game content. Choosing either faction will ultimately be fine in the long run, so do not be dismayed if you went with The Scryers instead. The Aldor shoulder enchant is Greater Inscription of Faith Greater Inscription of Faith, compared to The Scryers getting Greater Inscription of the Oracle Greater Inscription of the Oracle. The difference here is +11 healing power gained while losing 2 mana per 5. While the Aldor variant is superior, the margin isn't large enough to definitively say the former is better and worth switching from the latter if you have already gone that route.
+
+There is no gear seriously worth buying from either faction; however, there are the Pattern: Silver Spellthread Pattern: Silver Spellthread and Pattern: Golden Spellthread Pattern: Golden Spellthread from The Aldor if you are a tailor, so that provides another nod in favor of choosing them.
+
+The last point of contention is which proc of the Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration is superior for Holy paladins. This is a bit of future planning, as these necklace procs won't be available until the last content phase for The Burning Crusade Classic, Phase 5. The Aldor's version gives Light's Salvation, while The Scryers gives Arcane Surge. While both effects are nice bonuses, the former will typically win out due to our tank healing and mixed usage of Holy Light and Flash of Light, where Holy Light will likely see more use near the end of the expansion. The additional healing added to a max rank cast of this spell will be a lot more beneficial due to the healing coefficient bonus.
+
+In conclusion, both short-term and long-term, The Aldor will edge out as the better faction to pick for Holy Paladins.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Holy Paladins, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Holy Paladin in TBC Classic Phase 2
+Crystalforge Greathelm is the recommended option for your head slot in Phase 2. The combination of strong main stats, secondary stats, and a meta slot, the tier 5 helm covers it all. If you are an engineer, Justicebringer 2000 Specs is another great choice, and you can get it as soon as phase 2 launches.
+Rank	Item	Source
+Best	Crystalforge Greathelm Crystalforge Greathelm	Drop: Helm of the Vanquished Champion - Lady Vashj (Serpentshrine Cavern)
+Optional - Crafted	Justicebringer 2000 Specs Justicebringer 2000 Specs	Profession: Engineering Engineering (BoP)
+Optional - World Boss	Fathom-Helm of the Deeps Fathom-Helm of the Deeps	Drop: Doomwalker (World Boss)
+Optional	Justicar Diadem Justicar Diadem	Drop: Prince Malchezaar (Karazhan)
+Best in Slot Shoulder Armor for Holy Paladin in TBC Classic Phase 2
+Crystalforge Pauldrons are the recommended best-in-slot shoulders for Phase 2, though you could use the Coral-Barbed Shoulderpads if they happen to fall to you first without having to lose much loot priority on the T5 shoulders.
+Rank	Item	Source
+Best	Crystalforge Pauldrons Crystalforge Pauldrons	Drop: Pauldrons of the Vanquished Champion - Void Reaver (Tempest Keep)
+Optional	Coral-Barbed Shoulderpads Coral-Barbed Shoulderpads	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Optional	Justicar Pauldrons Justicar Pauldrons	Drop: Pauldrons of the Fallen Champion - High King Maulgar (Gruul's Lair)
+Best in Slot Back Armor for Holy Paladin in TBC Classic Phase 2
+Sunshower Light Cloak takes over as the best in slot cloak for phase 2. It sees a massive jump in raw healing throughput while maintaining nice stats, though the spirit is largely wasted on paladins and would see more benefit on other healing classes, such as priests, as a prime example.
+Rank	Item	Source
+Best	Sunshower Light Cloak Sunshower Light Cloak	Drops from Kael'thas Sunstrider
+Optional	Stainless Cloak of the Pure Hearted Stainless Cloak of the Pure Hearted	Drop: Prince Malchezaar (Karazhan)
+Optional	Avian Cloak of Feathers Avian Cloak of Feathers	Drop: Talon King Ikiss (Sethekk Halls)
+Best in Slot Chest Armor for Holy Paladin in TBC Classic Phase 2
+Following the theme of the head and shoulders, the T5 Crystalforge Chestpiece continues to be the strongest piece for the chest slot, nearly improving upon the T4 Justicar Chestpiece in all aspects.
+Rank	Item	Source
+Best	Crystalforge Chestpiece Crystalforge Chestpiece	Drop: Chestguard of the Vanquished Champion - Kael'thas Sunstrider (Tempest Keep)
+Optional	Justicar Chestpiece Justicar Chestpiece	Drop: : Chestguard of the Fallen Champion - Magtheridon (Magtheridon)
+Optional - Crafted	Windhawk Hauberk Windhawk Hauberk	Profession: Leatherworking (BoP)
+Best in Slot Wrist Armor for Holy Paladin in TBC Classic Phase 2
+Blackfathom Warbands are solid bracers that have a nice amount of stats and healing power, though they are lacking in the secondary stats. These bracers also offer a nice alternative to the crafted options.
+Rank	Item	Source
+Best	Blackfathom Warbands Blackfathom Warbands	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Optional - Crafted	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking Leatherworking (BoP)
+Optional - Crafted BoE	Blessed Bracers Blessed Bracers	Profession: Blacksmithing Blacksmithing (BoP)
+Best in Slot Hand Armor for Holy Paladin in TBC Classic Phase 2
+Glorious Gauntlets of Crestfall are easily the best item for the hand slot, combining a large amount of healing power and Spell Crit, strong stats, and two gem slots. The bonus of being plate is the cherry on top, helping minimize the competition on these gloves. Truly glorious indeed!
+Rank	Item	Source
+Best	Glorious Gauntlets of Crestfall Glorious Gauntlets of Crestfall	Drop: Lady Vashj (Serpentshrine Cavern)
+Optional	Worldstorm Gauntlets Worldstorm Gauntlets	Drop: High Astromancer Solarian (Tempest Keep)
+Optional	Crystalforge Gloves Crystalforge Gloves	Drop: Gloves of the Vanquished Champion - Leotheras the Blind (Serpentshrine Cavern)
+Best in Slot Waist Armor for Holy Paladin in TBC Classic Phase 2
+Girdle of Fallen Stars is going to be the best in slot waist item for Phase 2, mainly due to the two gem slots associated with it over the Girdle of the Righteous Path. Again, the trend here is getting away from the idea that the crafted gear is the end-all, be-all, and instead offering up alternative solutions.
+Rank	Item	Source
+Best	Girdle of Fallen Stars Girdle of Fallen Stars	Drop: Tempest Keep Trash Mobs
+Optional	Girdle of the Righteous Path Girdle of the Righteous Path	Drop: High Astromancer Solarian (Tempest Keep)
+Optional - Crafted	Windhawk Belt Windhawk Belt	Profession: Leatherworking (BoP)
+Best in Slot Leg Armor for Holy Paladin in TBC Classic Phase 2
+Sunhawk Leggings are the choice for leg armor in Phase 2, offering up a nice bump in stats over the world boss loot Gilded Trousers of Benediction.
+Rank	Item	Source
+Best	Sunhawk Leggings Sunhawk Leggings	Drop: Kael'thas Sunstrider (Tempest Keep)
+Optional - World Boss	Gilded Trousers of Benediction Gilded Trousers of Benediction	Drop: Doomwalker (World Boss)
+Optional	Crystalforge Leggings Crystalforge Leggings	Drop: Leggings of the Vanquished Champion - Fathom-Lord Karathress (Serpentshrine Cavern)
+Best in Slot Feet Armor for Holy Paladin in TBC Classic Phase 2
+Boots of Courage Unending is the best option for Phase 2, though the Gold-Leaf Wildboots will still win out in a purely throughput situation.
+Rank	Item	Source
+Best	Boots of Courage Unending Boots of Courage Unending	Drop: Serpentshrine Cavern Trash Mobs
+Optional - World Boss	Gold-Leaf Wildboots Gold-Leaf Wildboots	Drop: Doom Lord Kazzak (World Boss)
+Optional	Orca-Hide Boots Orca-Hide Boots	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Best in Slot Neck Jewelry for Holy Paladin in TBC Classic Phase 2
+Lord Sanguinar's Claim is the Phase 2 best-in-slot neck item, though it comes in the form of a quest, much like the ring from Magtheridon. The positive is that the quest item is a guaranteed drop each week, so keep that in mind when waiting for this necklace.
+Rank	Item	Source
+Best	Lord Sanguinar's Claim Lord Sanguinar's Claim	Verdant Sphere Verdant Sphere from Kael'thas Sunstrider
+Optional - World Boss	Archaic Charm of Presence Archaic Charm of Presence	Drops from Doomwalker
+Optional	Necklace of Eternal Hope Necklace of Eternal Hope	Vendor: 25 x Badge of Justice
+Best in Slot Ring Jewelry for Holy Paladin in TBC Classic Phase 2
+Coral Band of the Revived is a great addition for the ring slot in Phase 2. While it can't topple the throne of Ring of Flowing Light, it helps bridge the gap for those who are unable to kill world bosses. Naaru Lightwarden's Band remains a very solid and easy-to-obtain option for another ring slot.
+Rank	Item	Source
+Best	Coral Band of the Revived Coral Band of the Revived	Drop: Lady Vashj (Serpentshrine Cavern)
+Best	Naaru Lightwarden's Band Naaru Lightwarden's Band	Quest:The Fall of Magtheridon The Fall of Magtheridon (Magtheridon's Lair)
+Optional	Jade Ring of the Everliving Jade Ring of the Everliving	Drop: Prince Malchezaar (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Optional	Phoenix-Ring of Rebirth Phoenix-Ring of Rebirth	Drop: Al'ar (Tempest Keep)
+
+Best in Slot Trinkets for Holy Paladin in TBC Classic Phase 2
+Rank	Item	Source
+BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (41 Badges of Justice)
+BiS	Pendant of the Violet Eye Pendant of the Violet Eye	Drop: Shade of Aran (Karazhan)
+Option	Lower City Prayerbook Lower City Prayerbook	Vendor: Nakodu - Requires Revered with Lower City
+Option	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Opera Event - Karazhan
+Best in Slot Weapons for Holy Paladin Healing in Phase 2
+For Phase 2, Lightfathom Scepter Lightfathom Scepter takes over the top spot as the best healing one-handed weapon in the game, with a nice bump in healing power, primary stats, and secondary stats.
+Rank	Item	Source
+Best	Lightfathom Scepter Lightfathom Scepter	Drop: Lady Vashj (Serpentshrine Cavern)
+Optional	Light's Justice Light's Justice	Drop: Prince Malchezaar (Karazhan)
+Optional	Shard of the Virtuous Shard of the Virtuous	Drop: Maiden of Virtue
+Optional	Hand of Eternity Hand of Eternity	Profession: Blacksmithing Blacksmithing
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Optional	Shockwave Truncheon Shockwave Truncheon	Drop: Murmur (Heroic Shadow Labyrinth)
+
+Best in Slot Shields and Offhands for Holy Paladin Healing in Phase 2
+Determining whether you want to use a shield or an offhand can be a bit of a personal decision. Offhands will typically have more throughput, as shown by Talisman of the Sun King this phase, though Aegis of the Vindicator offers the armor stats of a shield. Because Talisman of the Sun King has Stamina while the shield does not, the recommended best in slot this phase is the offhand.
+Rank	Item	Source
+Best - Offhand	Talisman of the Sun King Talisman of the Sun King	Drop: Al'ar (Tempest Keep)
+Best - Shield	Aegis of the Vindicator Aegis of the Vindicator	Magtheridon - Magtheridon's Lair
+Optional - Offhand	Tears of Heaven Tears of Heaven	Vendor: G'eras (25 Badges of Justice)
+Optional - Shield	Light-Bearer's Faith Shield Light-Bearer's Faith Shield	Vendor: G'eras (33 Badges of Justice)
+Librams for Holy Paladin Healing TBC Classic Phase 2
+Libram of Souls Redeemed is the recommended Phase 2 BiS libram.
+Rank	Item	Source
+BiS	Libram of Souls Redeemed Libram of Souls Redeemed	Drop: Opera Event - Karazhan
+Optional	Libram of Light Libram of Light	Drop: Noth the Plaguebringer (Naxxramas)
+WoW Classic
+Optional	Libram of the Lightbringer Libram of the Lightbringer	Drop: Commander Sarannis (The Botanica)
+Optional	Blessed Book of Nagrand Blessed Book of Nagrand	Quest: The Ultimate Bloodsport The Ultimate Bloodsport
+Wowhead
+Wowhead is the composite author encompassing general-interest guides and news, as well as representing many wonderful past and present writers.
+1 - 12 of 12
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+10
+
+	
+By Tjc4life22 (9,334 – 2·14·13) on 2021/08/10 (Burning Crusade)	
+	
+This guide is a bit wrong. The Pendant of the Violet Eye stays BiS as a trinket even through phase 5 because the sheer amount of int (giving healing from the intellect with talent, spell crit, and huge amount of mana per 5 when used). The Pheonix-Ring of Rebirth provides better stats than the Coral Band of the Revived (mana per 5 over spirit for holy pallies, more intellect again for only losing about 16-17 bonus healing because of holy pally talent).
+
+-1
+
+	
+
+Dunraven <Rare Premium User> on 2021/08/10 (Burning Crusade)
+Thanks so much for your feedback! The Pendant of the Violet Eye is not BiS, or even recommended, as it only provides 14 healing power through Intellect and anywhere from 30-35 mana per 5 when used to its max potential. There are just better options out there for trinkets.
+
+-2
+
+	
+
+Dunraven <Rare Premium User> on 2021/08/10 (Burning Crusade)
+Regarding the rings, The Pheonix-Ring of Rebirth is a nice ring and provides better sustain over the Coral Band of the Revived, providing the additional mp5 and a little more intellect, but as a catch-all ring, the Coral Band of the Revived is better in my opinion, having almost 17 more healing power and the stamina as well, though I would recommend passing this ring to spirit users first, of course. Thanks again for your comment; I appreciate it!
+
+8
+
+	
+By Sherkrieg (1,372 – 19·13) on 2021/10/17 (Burning Crusade)	
+	
+This guide is pretty poorly researched, definitely not created by anyone playing holy paladin - maybe not even playing the game?
+
+1. Almost all healers know that the Insightful Earthstorm diamond is bis over the Bracing Earthstorm. It works out at around 15 -35mp5 due to its frequent procs. The 2% threat drop is basically inconsequential from the Bracing Earthstorm. I would say that if you are spamming Super Mana Pots/Dark runes on cooldown - you probably don't need the Insightful procs- but lets be honest most people play the game casually and would prefer the free mana regen.
+
+2. This guide literally doesn't even mention the 4-set Tier 5 bonus that you give up by taking Sunhawk Leggings over Tier 5. In 4/5 Tier 5 with Vashj gloves you easily reach 25% crit in raids, and mp5 becomes less relevant as a lot of your regen now comes from Illumination (critting your heals). The tier bonus is really nice, it seems every time it procs it comes in to give you a clutch -0.5second, often 1.5sec cast Holy Light (Stacks with Light's Grace). Furthermore, all of your Resto shamans should get priority on the legs over you, further making the item less available.
+
+Girdle of Fallen Stars (belt) again, whilst marginally better than the Plate belt from Solarian - is going to be going to your shamans first. The plate piece also matches your gear so is +99 cool points (worth more imo ofc)
+
+3. The guide doesn't even mention the Hyjal rings . These are better than all the other ring options and it should be used with the Magtheridon Head Ring. (Naaru Lightwarden's) - Unless you are a World boss killer.
+
+4. The gem slots. Do yourself a favor and actually check your gem bonuses, don't just shove reds into everything. The Epic Gem from SP Heroic and Ramps / SHH Heroic, are very close in value to Teardrop Living Rubies. When you get good socket bonuses (e.g. gloves and t5 chest) they out-value these slots. You also will need 2 blues/2yellows (or 2 purple/2 orange) to get your Insightful Earthstorm active. I would recommend you put your orange/purples in your chest and your Epic Heroic gems into your Vashj gloves as they won't be replaced for a long-time. (Better than tier 6!).
+
+GL Holy paladins, I hope you get your power ranger gear soon.
+
+0
+
+	
+
+Folla on 2021/10/17 (Burning Crusade)
+A guide for P2 not mentioning P3 rings.. hmm, I wonder why.
+
+2
+
+	
+
+Antiristo on 2021/10/25 (Burning Crusade)
+Hyjal reputation starter rings are already available after killing Vashj + Kael and completing quest Vials of Eternity.
+
+7
+
+	
+By Todesrolle (2,289 – 6·8) on 2026/05/26 (Burning Crusade)	
+	
+How is Talisman of the Sun King better then Aegis of the Vindicator. Aegis of the Vindicator has 9 more int with the enchant which gives 3 spellpower, so only 3 less then Talisman of the Sun King, but also extra 135 mana and 0.1% crit. Also Aegis of the Vindicator has 5 more mp5.
+
+Natasha's Guardian Cord is not mentioned here as an optional thing for neck.
+
+5
+
+	
+By Libramar (3,532 – 15·26) on 2026/06/04 (Burning Crusade)	
+	
+Missing a few key pieces, and I'm sure my list is incomplete.
+Top 3 ring: Band of Eternity Band of Eternity
+At LEAST optional libram Libram of Absolute Truth Libram of Absolute Truth
+Very few raids bring enough paladins to have Blessing of Light on everyone, so calling Libram of Souls Redeemed Libram of Souls Redeemed BiS is iffy
+There's no mention of using 4 pieces of Crystalforge, which can situationally be insanely good. (helm, shoulders, legs, chest most likely)
+Trinkets are subject to some debate, Ribbon of Sacrifice Ribbon of Sacrifice shines over Pendant of the Violet Eye Pendant of the Violet Eye in shorter fights where mana pool isn't an issue, or tanks have spiky damage phases. Later in the phase the fights will be short enough and/or you'll have enough MP5 & spell crit where mana pool is a lot less needed.
+Aegis of the Vindicator Aegis of the Vindicator is the BiS offhand, full stop, since you can add the +12 intellect enchant. You gain 9 int, 5 MP5, and 5k armor and lose 6 healing power and some stamina by using it over Talisman of the Sun King Talisman of the Sun King. This is a no-brainer.
+
+5
+
+	
+By Cholera (6,855 – 2·26·41) on 2026/06/15 (Burning Crusade)	
+	
+How is Girdle of Fallen Stars Girdle of Fallen Stars better than Girdle of the Righteous Path Girdle of the Righteous Path? It seems to me that at best the former is an option to the latter which should be BiS by my account.
+Girdle of the Righteous Path Girdle of the Righteous Path offers about ~1.2% additional crit in exchange for a negligible -15 mana and -4 healing and -10 mp5 (which is generally not what we look for anyway), and this assumes you socket Brilliant Dawnstone Brilliant Dawnstone into Girdle of Fallen Stars Girdle of Fallen Stars.
+Am I missing something?
+
+Edit: typo
+Last edited by Cholera on 2026/07/01
+
+3
+
+	
+By Kactus04 (7,602 – 1·22·49) on 2021/09/04 (Burning Crusade)	
+	
+To me, the stats on Talisman of the Sun King aren't worth it over the badge offhand Tears of Heaven.
+
+3
+
+	
+
+Calthaza on 2021/09/19 (Burning Crusade)
+Or the shield from Mag, which can also be enchanted with Intellect.
+
+3
+
+	
+By Libramar (3,532 – 15·26) on 2026/04/22 (Burning Crusade)	
+	
+should add the 25 badge neck Necklace of Eternal Hope Necklace of Eternal Hope as an 'optional' for neck pieces. slightly higher than Emberspur Talisman Emberspur Talisman imo (but still leave Emberspur Talisman Emberspur Talisman as an optional, later in phase when mana pool is less necessary, this outpaces almost everything besides Lord Sanguinar's Claim Lord Sanguinar's Claim)
+Last edited by Libramar on 2026/06/04
+
+1
+
+	
+By Bobbystarkk (3,627 – 1·6·8) on 2021/08/10 (Burning Crusade)	
+	
+you have Glorious Gauntlets of Crestfall being dropped by Leotheras the Blind but it drops from Vashj. just a minor mishap there but great guide
+
+0
+
+	
+
+Dunraven <Rare Premium User> on 2021/08/10 (Burning Crusade)
+You are absolutely correct; good eye! This has been corrected. Thank you!
+
+1
+
+	
+By MagicSuxxx (2,127 – 1·13·15) on 2021/08/16 (Burning Crusade)	
+	
+Girdle of Fallen Stars drops from TK trash mobs, not SSC.
+
+Thanks for the guide !
+
+0
+
+	
+
+Dunraven <Rare Premium User> on 2021/08/16 (Burning Crusade)
+Thank you! This has been corrected!
+
+1
+
+	
+By Kactus04 (7,602 – 1·22·49) on 2021/09/04 (Burning Crusade)	
+	
+You have Glorious Gauntlets of Crestfall being from a token when they are non-tier and are a straight drop from Lady Vashj
+
+0
+
+	
+
+Dunraven <Rare Premium User> on 2021/09/05 (Burning Crusade)
+Fixed; thank you!
+
+1
+
+	
+By Ulme (448 – 1·3) on 2021/10/04 (Burning Crusade)	
+	
+Note that Direbrew Hops Direbrew Hops have same stats like Essence of the Martyr Essence of the Martyr and its way more easy to get. U can simply save 41Badge of Justice Badge of Justice.
+By nortondesde (13,660 – 1·5·13) on 2026/05/15 (Burning Crusade)	
+	
+1 - 12 of 12
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Holy Paladin Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+            Best In Slot Gear in Phase 3
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Librams
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Holy Paladin Healing Best in Slot (BiS) Phase 3 Gear Guide
+By Wowhead
+Updated: 2026/02/19
+Welcome to Wowhead's Best in Slot Gear list from Phase 3 Black Temple and Mount Hyjal for Holy Paladin Healing in The Burning Crusade Classic. This guide will list the recommended gear for Holy Paladin Healing to acquire while they progress during the third phase of The Burning Crusade Classic, and contains gear sourced from Black Temple and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Holy Paladin Healing in Phase 3
+Truthfully, there isn't a strictly BiS setup as everyone has different play-styles and/or different guilds (i.e., focusing on speed clears vs progression) which require different gearing, like stacking haste and +healing gems for a quick Flash of Light spamming build, whereas others will stack more Intellect and spell crit for Holy Light sustainability. Choose the playstyle that suits you and your guild the most and go with that.
+
+The Tier 6 Holy set bonuses are solid, with 5% increased Holy Light crit at 2-piece definitely worth using, and 5% increased Flash of Light healing at 4-piece as decent-ish. The pieces are statted nicely, too. Don't expect to be a high priority because Protection Paladin and Warlock sets are stronger, and because there are offset plate alternatives, but Holy is definitely far from the bottom.
+
+Holy Paladin Healers looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Holy Paladin Healing Gems & Enchants
+Should Holy Paladin Healing Choose Aldor or Scryer for BiS in TBC Classic Phase 3?
+The quick, TL;DR answer is that The Aldor faction is better for PvE, but the difference is rather small and will not make or break end-game content. Choosing either faction will ultimately be fine in the long run, so do not be dismayed if you went with The Scryers instead.
+
+The Aldor shoulder enchant is Greater Inscription of Faith Greater Inscription of Faith compared to the Scryers getting Greater Inscription of the Oracle Greater Inscription of the Oracle. The difference here is 11 healing power gained while losing 2 MP5. While the Aldor enchant is superior, it's not a large enough margin to definitively say they are better and worth changing from the Scryers if you have already gone that route.
+
+There is no gear worth buying from either faction; however, there are Pattern: Silver Spellthread Pattern: Silver Spellthread and Pattern: Golden Spellthread Pattern: Golden Spellthread available from The Aldor if you are a Tailor, so that provides another nod in favor of choosing the Aldor.
+
+The last point of contention is which proc of the Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration (buyable once Exalted with Shattered Sun Offensive) is superior for Holy paladins. This is a bit of future planning, as these necklace procs won't be available until the last content phase for The Burning Crusade Classic, Phase 5.
+
+For the Aldor version, the proc granted is Light's Salvation, increasing +healing by 220 for 10 seconds. For the Scryers version, the proc granted is Arcane Surge, adding a direct heal for around 620 to 690, and is capable of being a critical heal around 980.
+
+While both effects are nice bonuses, the Aldor's proc will typically win out due to our tank healing and mixed usage of Holy Light and Flash of Light, where Holy Light will likely see more use during end-game content in Sunwell Plateau. The additional +healing added to a max rank Holy Light will be a lot more beneficial due to the healing coefficient bonus. The Scryer's proc will not benefit as much, as it is a static heal amount not affected by your +healing level, and can only proc off of Paladin's casted heals, whereas it can proc off of other healers' healing over time spells, creating more value for them compared to Paladins.
+
+In conclusion, The Aldor offers the most benefit from a better shoulder enchant, Tailoring patterns, and necklace proc in phase 5 compared to The Scryers.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Holy Paladins, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Holy Paladin Healing in TBC Classic Phase 3
+Lightbringer Greathelm is the recommended option for your head slot in Phase 3. With a great combination of strong main stats, secondary stats, and a meta slot, the Tier 6 helm covers it all.
+Rank	Item	Source
+BiS	Lightbringer Greathelm Lightbringer Greathelm	Drop: Archimonde (Hyjal Summit)
+Option	Crown of Empowered Fate Crown of Empowered Fate	Drop: Essence of Anger (Black Temple)
+Option	Helm of Soothing Currents Helm of Soothing Currents	Drop: High Warlord Naj'entus (Black Temple)
+Option	Crystalforge Greathelm Crystalforge Greathelm	Drop: Lady Vashj (Serpentshrine Cavern)
+Best in Slot Shoulder Armor for Holy Paladin Healing in TBC Classic Phase 3
+Lightbringer Pauldrons is the recommended BiS shoulders for Phase 3, continuing the trend of using Tier 6.
+Rank	Item	Source
+BiS	Lightbringer Pauldrons Lightbringer Pauldrons	Drop: Mother Shahraz (Black Temple)
+Option	Glimmering Steel Mantle Glimmering Steel Mantle	Drop: Anetheron (Hyjal Summit)
+Option	Crystalforge Pauldrons Crystalforge Pauldrons	Drop: Void Reaver (Tempest Keep: The Eye)
+Best in Slot Back Armor for Holy Paladin Healing in TBC Classic Phase 3
+Shroud of the Highborne introduces haste into the Holy playstyle, though this cloak will be highly contested, so using Shroud of the Final Stand instead will be fine until enough drops have gone around.
+Rank	Item	Source
+BiS - Haste	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+BiS - Non-Haste	Shroud of the Final Stand Shroud of the Final Stand	Drop: Trash Mobs (Black Temple)
+Option	Sunshower Light Cloak Sunshower Light Cloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Shroud of Forgiveness Shroud of Forgiveness	Drop: Gurtogg Bloodboil (Black Temple)
+Best in Slot Chest Armor for Holy Paladin Healing in TBC Classic Phase 3
+Following the theme of the head and shoulders, the T6 Lightbringer Chestpiece continues to be the strongest piece for the chest slot, nearly improving upon the T5 Crystalforge Chestpiece in all aspects.
+Rank	Item	Source
+BiS	Lightbringer Chestpiece Lightbringer Chestpiece	Drop: Illidan Stormrage (Black Temple)
+Option	Savior's Grasp Savior's Grasp	Drop: Archimonde (Hyjal Summit)
+Option	Crystalforge Chestpiece Crystalforge Chestpiece	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Best in Slot Wrist Armor for Holy Paladin Healing in TBC Classic Phase 3
+Blessed Adamantite Bracers is the Phase 3 recommended wrist item, offering solid stats and being plate, meaning little to no competition amongst the other healers. Dawnsteel Bracers has haste included for anyone wanting to experiment with high haste builds.
+Rank	Item	Source
+BiS	Blessed Adamantite Bracers Blessed Adamantite Bracers	Drop: Rage Winterchill (Hyjal Summit)
+Option	Howling Wind Bracers Howling Wind Bracers	Drop: Rage Winterchill (Hyjal Summit)
+Option	Dawnsteel Bracers Dawnsteel Bracers	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Blackfathom Warbands Blackfathom Warbands	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Best in Slot Hand Armor for Holy Paladin Healing in TBC Classic Phase 3
+Glorious Gauntlets of Crestfall remain extremely viable in Phase 3 and are recommended as the best in slot, though there are some builds that might see a swap for the T6 4-piece bonus, using the T6 gloves instead of the T6 legs, which remains an option to consider.
+Rank	Item	Source
+BiS	Glorious Gauntlets of Crestfall Glorious Gauntlets of Crestfall	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Lightbringer Gloves Lightbringer Gloves	Drop: Azgalor (Hyjal Summit)
+Option	Worldstorm Gauntlets Worldstorm Gauntlets	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Option	Botanist's Gloves of Growth Botanist's Gloves of Growth	Drop: Teron Gorefiend (Black Temple)
+Best in Slot Waist Armor for Holy Paladin Healing in TBC Classic Phase 3
+Girdle of Hope is going to be the best in slot waist item for Phase 3, offering great stats, two gem slots, and being plate for minimal loot competition. Win-win-win!
+Rank	Item	Source
+BiS	Girdle of Hope Girdle of Hope	Drop: Azgalor (Hyjal Summit)
+Option	Girdle of Fallen Stars Girdle of Fallen Stars	Drop: Trash Mobs (Tempest Keep: The Eye)
+Option	Girdle of the Righteous Path Girdle of the Righteous Path	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Best in Slot Leg Armor for Holy Paladin Healing in TBC Classic Phase 3
+Lightbringer Leggings completes the T6 4-piece bonus for those interested in the set, though you could swap the legs and hands as mentioned previously or just skip the 4-piece bonus altogether, depending on your playstyle and loot luck.
+Rank	Item	Source
+BiS	Lightbringer Leggings Lightbringer Leggings	Drop: The Illidari Council (Black Temple)
+Option	Leggings of Eternity Leggings of Eternity	Drop: Archimonde (Hyjal Summit)
+Option	Kilt of Immortal Nature Kilt of Immortal Nature	Drop: Shade of Akama (Black Temple)
+Option	Sun-touched Chain Leggings Sun-touched Chain Leggings	Drop: Kaz'rogal (Hyjal Summit)
+Best in Slot Feet Armor for Holy Paladin Healing in TBC Classic Phase 3
+Pearl Inlaid Boots is the best option for Phase 3, following the same pattern as the belt and bracers, as a plate option for little to no loot competition amongst the other healers.
+Rank	Item	Source
+BiS	Pearl Inlaid Boots Pearl Inlaid Boots	Drop: High Warlord Naj'entus (Black Temple)
+Option	Boots of Courage Unending Boots of Courage Unending	Drop: Trash Mobs (Serpentshrine Cavern)
+Option	Boots of the Divine Light Boots of the Divine Light	Drop: Trash Mobs (Hyjal Summit)
+Option - World Boss	Gold-Leaf Wildboots Gold-Leaf Wildboots	Drop: Doom Lord Kazzak (World Boss)
+Best in Slot Neck Jewelry for Holy Paladin Healing in TBC Classic Phase 3
+Nadina's Pendant of Purity is the Phase 3 best in slot neck item, introducing a combination of high +healing, spell crit, and MP5 for a very well-founded healing necklace.
+Rank	Item	Source
+BiS	Nadina's Pendant of Purity Nadina's Pendant of Purity	Drop: Mother Shahraz (Black Temple)
+Option	Lord Sanguinar's Claim Lord Sanguinar's Claim	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option - World Boss	Archaic Charm of Presence Archaic Charm of Presence	Drop: Doomwalker (World Boss)
+Option	Emberspur Talisman Emberspur Talisman	Drop: Nightbane (Karazhan)
+Best in Slot Ring Jewelry for Holy Paladin Healing in TBC Classic Phase 3
+There are a few different ring options in Phase 3. Blessed Band of Karabor is a strong haste healing ring and isn't Unique (so you can wear two!), but will be highly contested amongst the other healers, meaning it is a bit unrealistic to expect two. Ring of Calming Waves isn't a terrible consolation prize, however, and then Band of the Eternal Restorer is available through The Scale of the Sands reputation, which is immensely helpful as it's practically free.
+Rank	Item	Source
+BiS - Haste	Blessed Band of Karabor Blessed Band of Karabor	Drop: Trash Mobs (Black Temple)
+BiS - Non-Haste	Ring of Calming Waves Ring of Calming Waves	Drop: High Warlord Naj'entus (Black Temple)
+BiS - Reputation	Band of the Eternal Restorer Band of the Eternal Restorer	Quest: Restorer's Covenant Restorer's Covenant (Scale of the Sands Exalted)
+Option	Coral Band of the Revived Coral Band of the Revived	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option - World Boss	Ring of Flowing Light Ring of Flowing Light	Drop: Doom Lord Kazzak (World Boss)
+Option	Naaru Lightwarden's Band Naaru Lightwarden's Band	Drop: Magtheridon (Magtheridon's Lair)
+Option	Jade Ring of the Everliving Jade Ring of the Everliving	Drop: Prince Malchezaar (Karazhan)
+Option	Phoenix-Ring of Rebirth Phoenix-Ring of Rebirth	Drop: Al'ar (Tempest Keep: The Eye)
+
+Best in Slot Trinkets for Holy Paladin Healing in TBC Classic Phase 3
+The only change for Phase 3 regarding trinkets is the inclusion of Memento of Tyrande, offering up very strong static healing on top of some additional MP5.
+Rank	Item	Source
+BiS	Memento of Tyrande Memento of Tyrande	Drop: Illidan Stormrage (Black Temple)
+BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (Badges of Justice)
+BiS	Direbrew Hops Direbrew Hops	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Option	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Opera Event (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Classic - Naxxramas)
+Option	Lower City Prayerbook Lower City Prayerbook	Vendor: Nakodu (Lower City Revered)
+Option	Rejuvenating Gem Rejuvenating Gem	Drop: Flamegor, Firemaw, & Ebonroc (Classic - Blackwing Lair)
+
+Best in Slot Weapons for Holy Paladin Healing in TBC Classic Phase 3
+For Phase 3, Crystal Spire of Karabor takes over the top spot as the best healing one-handed weapon in the game, the major caveat being how highly contested it will be. Vengeful Gladiator's Salvation and Hammer of Atonement are the next best options and may be easier to obtain.
+Rank	Item	Source
+BiS - Highly Contested	Crystal Spire of Karabor Crystal Spire of Karabor	Drop: Illidan Stormrage (Black Temple)
+Option	Vengeful Gladiator's Salvation Vengeful Gladiator's Salvation	Vendor: Arena Points (Season 3)
+Option	Hammer of Atonement Hammer of Atonement	Drop: Kaz'rogal (Hyjal Summit)
+Option	Lightfathom Scepter Lightfathom Scepter	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Weapon Recommendations
+
+Rank	Item	Source
+Option	Merciless Gladiator's Salvation Merciless Gladiator's Salvation	Vendor: Arena Points (Season 2)
+Option	Light's Justice Light's Justice	Drop: Prince Malchezaar (Karazhan)
+Option	Gladiator's Salvation Gladiator's Salvation	Vendor: Honor Points (Season 1)
+Option	Shard of the Virtuous Shard of the Virtuous	Drop: Maiden of Virtue (Karazhan)
+Option	Hand of Eternity Hand of Eternity	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Shockwave Truncheon Shockwave Truncheon	Drop: Murmur (Heroic Shadow Labyrinth)
+
+Best in Slot Offhands for Holy Paladin Healing in TBC Classic Phase 3
+For Phase 3, it's best to wear a shield over using an offhand, and the two newly introduced shields are nearly identical, so picking which one to use should be a personal decision, or just whichever drops first that you can get.
+Rank	Item	Source
+BiS - Shield	Felstone Bulwark Felstone Bulwark	Drop: Supremus (Black Temple)
+BiS - Shield	Bastion of Light Bastion of Light	Drop: Anetheron (Hyjal Summit)
+BiS - Offhand	Scepter of Purification Scepter of Purification	Drop: Archimonde (Hyjal Summit)
+Option	Vengeful Gladiator's Redoubt Vengeful Gladiator's Redoubt	Vendor: Arena Points (Season 3)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Merciless Gladiator's Redoubt Merciless Gladiator's Redoubt	Vendor: Arena Points (Season 2)
+Option	Aegis of the Vindicator Aegis of the Vindicator	Drop: Magtheridon (Magtheridon's Lair)
+Option	Talisman of the Sun King Talisman of the Sun King	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Tears of Heaven Tears of Heaven	Vendor: G'eras (Badges of Justice)
+Option	Light-Bearer's Faith Shield Light-Bearer's Faith Shield	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Librams for Holy Paladin Healing in TBC Classic Phase 3
+For your libram, use whichever suits your playstyle and raid composition.
+Rank	Item	Source
+BiS - Blessing of Light	Libram of Souls Redeemed Libram of Souls Redeemed	Drop: Opera Event (Karazhan)
+BiS - Flash of Light	Libram of Light Libram of Light	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+BiS - Holy Light	Libram of Absolute Truth Libram of Absolute Truth	Drop: The Lurker Below (Serpentshrine Cavern)
+BiS - Holy Light	Libram of the Lightbringer Libram of the Lightbringer	Drop: Commander Sarannis (The Botanica)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Libram Recommendations
+
+Rank	Item	Source
+Option - Flash of Light	Blessed Book of Nagrand Blessed Book of Nagrand	Quest: The Ultimate Bloodsport The Ultimate Bloodsport
+
+Wowhead
+Wowhead is the composite author encompassing general-interest guides and news, as well as representing many wonderful past and present writers.
+1 - 3 of 3
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+1
+
+	
+By Vilepickle (414 – 1·1) on 2022/01/23 (Burning Crusade)	
+	
+While it's nice to see a BIS list, I'd like to see this made by someone who is actively playing a holy paladin at a high level because this list wrong on several slots and doesn't adequately communicate the power of haste as a stat. Also missing some pretty significant items like Scarab Brooch, which I believe has been ignored by average holy paladin players because of guides like this ignoring it even though it is incredibly powerful still. Recommending a gear set with 0 haste as "one way to gear" in the current healer meta is a good way to invalidate the holy paladin raid slot even further and have your tank be dead.
+
+Based on the shoutouts this guide was eyeballed by a top parsing priest player that doesn't know what holy paladins are supposed to be doing or wants to parse over paladins, a bottom percentile holy paladin, and authored by a ret main. Hoping to see some improvement in the future, as these have been off in the past but this is pretty far from the mark here. Hoping not to be disrespectful but I know some people and classes use these guides and while some of this information is accurate it seems to need work.
+Last edited by Vilepickle on 2022/01/23
+
+1
+
+	
+
+Sifv on 2022/01/23 (Burning Crusade)
+I mean realistically the few places you can say that the list is wrong in several slots is all down to preference really. I mean Light Club has 2 BiS lists. 1 that is very similar to this, minus a few pieces that I would never use (IE, Pendant of the Violet Eye, or Alchemist Stone) and then a haste build using all the haste stuff. I would say you are just being really nitpicky about a BiS list. Anyone looking at and using wowhead as their only source wouldnt know the different between a haste set, crit set, +heal set, etc. Its a jumping point.
+
+2
+
+	
+
+Dunraven <Rare Premium User> on 2022/01/25 (Burning Crusade)
+I don't think you're being disrespectful at all. I 100% appreciate the feedback and constructive criticism.
+
+0
+
+	
+
+unkle520 on 2022/03/26 (Burning Crusade)
+https://seventyupgrades.com/character/kwXJqf269iF98SXDfC1QqL/set/je6af11hAqk4UtQgbGXCBP is my bis list <we do not run light in my raid> and i am playing at a very high lvl parsing 99s in almost every encounter. https://classic.warcraftlogs.com/character/us/benediction/e%c3%b1ti
+
+1
+
+	
+By Safmoon (1,419 – 1·6) on 2022/02/12 (Burning Crusade)	
+	
+one question to the BiS Gems for the belt girdle-of-hope, would it be not BiS to use 2 luminous-pyrestone gems + Socket-Bonus, 2 x 22AddHeal vs 2 x 11AddHeal + 2x5 Int + Bonus 3Int, it means 22 AddHeal agains 13! Int, for Holypala would be at least minimum better from my point of view :-)
+
+-2
+
+	
+By barb0sabtv (564 – 1·4) on 2022/02/08 (Burning Crusade)	
+	
+the gems are not good and then you have the intel which increases your healing and adds the crit which will have an impact on your regeneration
+
+0
+
+	
+
+unkle520 on 2022/03/26 (Burning Crusade)
+if ur having mana issues gems aren't ur problem
+1 - 3 of 3
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Holy Paladin Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+            Best In Slot Gear in Phase 4
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Librams
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Holy Paladin Healing Best in Slot (BiS) Phase 4 Gear Guide
+By Wowhead
+Updated: 2026/02/15
+Welcome to Wowhead's Best in Slot Gear list from Phase 4 Zul'Aman for Holy Paladin Healing in The Burning Crusade Classic. This guide will list the recommended gear for Holy Paladin Healing to acquire while they progress during the fourth phase of The Burning Crusade Classic, and contains gear sourced from Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+Best In Slot Gear for Holy Paladin Healing in Phase 4
+With Phase 4 and the introduction of Zul'Aman and new badge gear, nothing changes from the Phase 3 best-in-slot guide. The new gear just isn't strong enough, which makes sense as this Phase is more designed as a catch-up phase.
+
+The gear-set below is an idea of one way to gear as a Holy Paladin. Truthfully, there isn't a strictly BiS setup as everyone has different play-styles and/or different guilds (i.e., focusing on speed clears vs progression), which require different gearing, like stacking haste and +healing gems for a quick Flash of Light spamming build, whereas others will stack more intellect and spell crit for Holy Light sustainability. Choose what play-style suits you and your guild the most and go with that.
+
+The tier 6 Holy set bonuses are solid, with 5% increased Holy Light crit at 2-piece definitely worth using, and 5% increased Flash of Light healing at 4-piece as decent-ish. The pieces are statted nicely, too. Don't expect very top priority because Protection Paladin and Warlock sets are stronger, and because there are offset Plate alternatives, but Holy is definitely far from the bottom.
+
+It's important to note that the epic gems arrive in this phase, so plan accordingly. Regarding meta gems, depending on your play-style, you'll want to either use Bracing Earthstorm Diamond Bracing Earthstorm Diamond and stack +healing gems or use Insightful Earthstorm Diamond Insightful Earthstorm Diamond and the appropriate gems to ensure meta activation.
+
+Holy Paladin Healers looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Holy Paladin Healing Gems & Enchants
+Should Holy Paladin Healing Choose Aldor or Scryer for BiS in TBC Classic Phase 4?
+The quick, TL;DR answer is that The Aldor faction is better for PvE, but the difference is rather small and will not make or break end-game content. Choosing either faction will ultimately be fine in the long run, so do not be dismayed if you went with The Scryers instead.
+
+The Aldor shoulder enchant is Greater Inscription of Faith Greater Inscription of Faith compared to the Scryers getting Greater Inscription of the Oracle Greater Inscription of the Oracle. The difference here is 11 healing power gained while losing 2 MP5. While the Aldor enchant is superior, it's not a large enough margin to definitively say they are better and worth changing from the Scryers if you have already gone that route.
+
+There is no gear worth buying from either faction; however, there are Pattern: Silver Spellthread Pattern: Silver Spellthread and Pattern: Golden Spellthread Pattern: Golden Spellthread available from The Aldor if you are a Tailor, so that provides another nod in favor of choosing the Aldor.
+
+The last point of contention is which proc of the Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration (buyable once Exalted with Shattered Sun Offensive) is superior for Holy paladins. This is a bit of future planning, as these necklace procs won't be available until the last content phase for The Burning Crusade Classic, Phase 5.
+
+For the Aldor version, the proc granted is Light's Salvation, increasing +healing by 220 for 10 seconds. For the Scryers version, the proc granted is Arcane Surge, adding a direct heal for around 620 to 690, and is capable of being a critical heal around 980.
+
+While both effects are nice bonuses, the Aldor's proc will typically win out due to our tank healing and mixed usage of Holy Light and Flash of Light, where Holy Light will likely see more use during end-game content in Sunwell Plateau. The additional +healing added to a max rank Holy Light will be a lot more beneficial due to the healing coefficient bonus. The Scryer's proc will not benefit as much, as it is a static heal amount not affected by your +healing level, and can only proc off of Paladin's casted heals, whereas it can proc off of other healers' healing over time spells, creating more value for them compared to Paladins.
+
+In conclusion, The Aldor offers the most benefit from a better shoulder enchant, Tailoring patterns, and necklace proc in Phase 5 compared to The Scryers.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Holy Paladin Healing in TBC Classic Phase 4
+Lightbringer Greathelm is the recommended option for your head slot in Phase 4. With a great combination of strong main stats, secondary stats, and a meta slot, the Tier 6 helm covers it all.
+Rank	Item	Source
+BiS	Lightbringer Greathelm Lightbringer Greathelm	Drop: Archimonde (Hyjal Summit)
+Option	Crown of Empowered Fate Crown of Empowered Fate	Drop: Essence of Anger (Black Temple)
+Option	Helm of Soothing Currents Helm of Soothing Currents	Drop: High Warlord Naj'entus (Black Temple)
+Option	Crystalforge Greathelm Crystalforge Greathelm	Drop: Lady Vashj (Serpentshrine Cavern)
+Best in Slot Shoulder Armor for Holy Paladin Healing in TBC Classic Phase 4
+Lightbringer Pauldrons is the recommended BiS shoulders for Phase 4, continuing the trend of using Tier 6.
+Rank	Item	Source
+BiS	Lightbringer Pauldrons Lightbringer Pauldrons	Drop: Mother Shahraz (Black Temple)
+Option	Glimmering Steel Mantle Glimmering Steel Mantle	Drop: Anetheron (Hyjal Summit)
+Option	Crystalforge Pauldrons Crystalforge Pauldrons	Drop: Void Reaver (Tempest Keep: The Eye)
+Best in Slot Back Armor for Holy Paladin Healing in TBC Classic Phase 4
+Shroud of the Highborne Shroud of the Highborne introduces haste into the Holy playstyle, though this cloak will be highly contested, so using Shroud of the Final Stand Shroud of the Final Stand instead will be fine until enough drops have gone around.
+
+Shroud of the Highborne introduces haste into the Holy playstyle, though this cloak will be highly contested, so using Shroud of the Final Stand instead will be fine until enough drops have gone around.
+Rank	Item	Source
+BiS - Haste	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+BiS - Non-Haste	Shroud of the Final Stand Shroud of the Final Stand	Drop: Trash Mobs (Black Temple)
+Optional - Haste	Cloak of Ancient Rituals Cloak of Ancient Rituals	Drop: Hex Lord Malacrass (Zul'Aman)
+Option	Sunshower Light Cloak Sunshower Light Cloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Shroud of Forgiveness Shroud of Forgiveness	Drop: Gurtogg Bloodboil (Black Temple)
+
+Best in Slot Chest Armor for Holy Paladin Healing in TBC Classic Phase 4
+Following the theme of the head and shoulders, the T6 Lightbringer Chestpiece continues to be the strongest piece for the chest slot, nearly improving upon the T5 Crystalforge Chestpiece in all aspects.
+Rank	Item	Source
+BiS	Lightbringer Chestpiece Lightbringer Chestpiece	Drop: Illidan Stormrage (Black Temple)
+Option	Savior's Grasp Savior's Grasp	Drop: Archimonde (Hyjal Summit)
+Option	Crystalforge Chestpiece Crystalforge Chestpiece	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Best in Slot Wrist Armor for Holy Paladin Healing in TBC Classic Phase 4
+Blessed Adamantite Bracers is the Phase 4 recommended wrist item, offering solid stats and being plate, meaning little to no competition amongst the other healers. Dawnsteel Bracers has haste included for anyone wanting to experiment with high haste builds.
+Rank	Item	Source
+BiS	Blessed Adamantite Bracers Blessed Adamantite Bracers	Drop: Rage Winterchill (Hyjal Summit)
+Option	Howling Wind Bracers Howling Wind Bracers	Drop: Rage Winterchill (Hyjal Summit)
+Option	Dawnsteel Bracers Dawnsteel Bracers	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Blackfathom Warbands Blackfathom Warbands	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Best in Slot Hand Armor for Holy Paladin Healing in TBC Classic Phase 4
+Glorious Gauntlets of Crestfall remain extremely viable in Phase 4 and are recommended as the best in slot, though some builds might see a swap for the T6 4-piece bonus, using the T6 gloves instead of the T6 legs, which remains an option to consider.
+Rank	Item	Source
+BiS	Glorious Gauntlets of Crestfall Glorious Gauntlets of Crestfall	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Lightbringer Gloves Lightbringer Gloves	Drop: Azgalor (Hyjal Summit)
+Option	Worldstorm Gauntlets Worldstorm Gauntlets	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Option	Botanist's Gloves of Growth Botanist's Gloves of Growth	Drop: Teron Gorefiend (Black Temple)
+Best in Slot Waist Armor for Holy Paladin Healing in TBC Classic Phase 4
+Girdle of Hope is going to be the best in slot waist item for Phase 4, offering great stats, two gem slots, and being plate for minimal loot competition. Win-win-win! Girdle of Stromgarde's Hope offers a decent substitution in the meantime.
+Rank	Item	Source
+BiS	Girdle of Hope Girdle of Hope	Drop: Azgalor (Hyjal Summit)
+Best	Girdle of Stromgarde's Hope Girdle of Stromgarde's Hope	Drop: Hex Lord Malacrass (Zul'Aman)
+Option	Girdle of Fallen Stars Girdle of Fallen Stars	Drop: Trash Mobs (Tempest Keep: The Eye)
+Option	Girdle of the Righteous Path Girdle of the Righteous Path	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Best in Slot Leg Armor for Holy Paladin Healing in TBC Classic Phase 4
+Lightbringer Leggings completes the T6 4-piece bonus for those interested in the set, though you could swap the legs and hands as mentioned previously or just skip the 4-piece bonus altogether, depending on your playstyle and loot luck.
+Rank	Item	Source
+BiS	Lightbringer Leggings Lightbringer Leggings	Drop: The Illidari Council (Black Temple)
+Option	Leggings of Eternity Leggings of Eternity	Drop: Archimonde (Hyjal Summit)
+Option	Kilt of Immortal Nature Kilt of Immortal Nature	Drop: Shade of Akama (Black Temple)
+Option	Sun-touched Chain Leggings Sun-touched Chain Leggings	Drop: Kaz'rogal (Hyjal Summit)
+Best in Slot Feet Armor for Holy Paladin Healing in TBC Classic Phase 4
+Pearl Inlaid Boots is the best option for Phase 4, following the same pattern as the belt and bracers, as a plate option for little to no loot competition amongst the other healers.
+Rank	Item	Source
+BiS	Pearl Inlaid Boots Pearl Inlaid Boots	Drop: High Warlord Naj'entus (Black Temple)
+Option	Boots of Courage Unending Boots of Courage Unending	Drop: Trash Mobs (Serpentshrine Cavern)
+Option	Boots of the Divine Light Boots of the Divine Light	Drop: Trash Mobs (Hyjal Summit)
+Option - World Boss	Gold-Leaf Wildboots Gold-Leaf Wildboots	Drop: Doom Lord Kazzak (World Boss)
+Best in Slot Neck Jewelry for Holy Paladin Healing in TBC Classic Phase 4
+Nadina's Pendant of Purity is the Phase 4 best-in-slot neck item, introducing a combination of high +healing, spell crit, and MP5 for a very well-founded healing necklace.
+Rank	Item	Source
+BiS	Nadina's Pendant of Purity Nadina's Pendant of Purity	Drop: Mother Shahraz (Black Temple)
+Option	Lord Sanguinar's Claim Lord Sanguinar's Claim	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option - World Boss	Archaic Charm of Presence Archaic Charm of Presence	Drop: Doomwalker (World Boss)
+Option	Emberspur Talisman Emberspur Talisman	Drop: Nightbane (Karazhan)
+Best in Slot Ring Jewelry for Holy Paladin Healing in TBC Classic Phase 4
+There are a few different ring options in Phase 4. Blessed Band of Karabor is a strong haste healing ring and isn't Unique (so you can wear two!), but will be highly contested amongst the other healers, meaning it is a bit unrealistic to expect two. Ring of Calming Waves isn't a terrible consolation prize, however, and then Band of the Eternal Restorer is available through The Scale of the Sands reputation, which is immensely helpful as it's practically free.
+Rank	Item	Source
+BiS - Haste	Blessed Band of Karabor Blessed Band of Karabor	Drop: Trash Mobs (Black Temple)
+BiS - Non-Haste	Ring of Calming Waves Ring of Calming Waves	Drop: High Warlord Naj'entus (Black Temple)
+BiS - Reputation	Band of the Eternal Restorer Band of the Eternal Restorer	Quest: Restorer's Covenant Restorer's Covenant (Scale of the Sands Exalted)
+Option	Coral Band of the Revived Coral Band of the Revived	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Optional - Haste	Signet of the Quiet Forest Signet of the Quiet Forest	Drop: Zul'Aman Timed Event - 3rd Chest
+Option - World Boss	Ring of Flowing Light Ring of Flowing Light	Drop: Doom Lord Kazzak (World Boss)
+Option	Naaru Lightwarden's Band Naaru Lightwarden's Band	Drop: Magtheridon (Magtheridon's Lair)
+Option	Jade Ring of the Everliving Jade Ring of the Everliving	Drop: Prince Malchezaar (Karazhan)
+Option	Phoenix-Ring of Rebirth Phoenix-Ring of Rebirth	Drop: Al'ar (Tempest Keep: The Eye)
+
+Best in Slot Trinkets for Holy Paladin Healing in TBC Classic Phase 4
+No change for trinkets in Phase 4, we'll still seek out Memento of Tyrande, offering up very strong static healing on top of some additional MP5.
+Rank	Item	Source
+BiS	Memento of Tyrande Memento of Tyrande	Drop: Illidan Stormrage (Black Temple)
+BiS	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (Badges of Justice)
+BiS	Direbrew Hops Direbrew Hops	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Option	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Opera Event (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Classic - Naxxramas)
+Option	Lower City Prayerbook Lower City Prayerbook	Vendor: Nakodu (Lower City Revered)
+Option	Rejuvenating Gem Rejuvenating Gem	Drop: Flamegor, Firemaw, & Ebonroc (Classic - Blackwing Lair)
+
+Best in Slot Weapons for Holy Paladin Healing in TBC Classic Phase 4
+For Phase 4, Crystal Spire of Karabor maintains over the top spot as the best healing one-handed weapon in the game, the major caveat being how highly contested it will be. Vengeful Gladiator's Salvation and Hammer of Atonement are the next best options and may be easier to obtain.
+Rank	Item	Source
+BiS - Highly Contested	Crystal Spire of Karabor Crystal Spire of Karabor	Drop: Illidan Stormrage (Black Temple)
+Option	Vengeful Gladiator's Salvation Vengeful Gladiator's Salvation	Vendor: Arena Points (Season 3)
+Option	Hammer of Atonement Hammer of Atonement	Drop: Kaz'rogal (Hyjal Summit)
+Optional	Dark Blessing Dark Blessing	Drop: Zul'jin (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Weapon Recommendations
+
+Rank	Item	Source
+Option	Lightfathom Scepter Lightfathom Scepter	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Merciless Gladiator's Salvation Merciless Gladiator's Salvation	Vendor: Arena Points (Season 2)
+Option	Light's Justice Light's Justice	Drop: Prince Malchezaar (Karazhan)
+Option	Gladiator's Salvation Gladiator's Salvation	Vendor: Honor Points (Season 1)
+Option	Shard of the Virtuous Shard of the Virtuous	Drop: Maiden of Virtue (Karazhan)
+Option	Hand of Eternity Hand of Eternity	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Shockwave Truncheon Shockwave Truncheon	Drop: Murmur (Heroic Shadow Labyrinth)
+
+Best in Slot Offhands for Holy Paladin Healing in TBC Classic Phase 4
+For Phase 4, it's best to wear a shield over using an off-hand, and the two Phase 3 shields are nearly identical, so picking which one to use should be a personal decision, or just whichever drops first that you can get.
+Rank	Item	Source
+BiS - Shield	Felstone Bulwark Felstone Bulwark	Drop: Supremus (Black Temple)
+BiS - Shield	Bastion of Light Bastion of Light	Drop: Anetheron (Hyjal Summit)
+BiS - Offhand	Scepter of Purification Scepter of Purification	Drop: Archimonde (Hyjal Summit)
+Optional - Shield	Enamelled Disc of Mojo Enamelled Disc of Mojo	Drop: Jan'alai (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Vengeful Gladiator's Redoubt Vengeful Gladiator's Redoubt	Vendor: Arena Points (Season 3)
+Option	Merciless Gladiator's Redoubt Merciless Gladiator's Redoubt	Vendor: Arena Points (Season 2)
+Option	Aegis of the Vindicator Aegis of the Vindicator	Drop: Magtheridon (Magtheridon's Lair)
+Option	Talisman of the Sun King Talisman of the Sun King	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Tears of Heaven Tears of Heaven	Vendor: G'eras (Badges of Justice)
+Option	Light-Bearer's Faith Shield Light-Bearer's Faith Shield	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Librams for Holy Paladin Healing in TBC Classic Phase 4
+For librams, use whichever suits your playstyle and raid composition.
+Rank	Item	Source
+BiS - Blessing of Light	Libram of Souls Redeemed Libram of Souls Redeemed	Drop: Opera Event (Karazhan)
+BiS - Flash of Light	Libram of Light Libram of Light	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+BiS - Holy Light	Libram of Absolute Truth Libram of Absolute Truth	Drop: The Lurker Below (Serpentshrine Cavern)
+Optional - Holy Light	Libram of Mending Libram of Mending	20x Badge of Justice Badge of Justice
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Libram Recommendations
+
+Rank	Item	Source
+BiS - Holy Light	Libram of the Lightbringer Libram of the Lightbringer	Drop: Commander Sarannis (The Botanica)
+Option - Flash of Light	Blessed Book of Nagrand Blessed Book of Nagrand	Quest: The Ultimate Bloodsport The Ultimate Bloodsport
+
+Wowhead
+Wowhead is the composite author encompassing general-interest guides and news, as well as representing many wonderful past and present writers.
+1 - 4 of 4
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+2
+
+	
+By Safmoon (1,419 – 1·6) on 2022/03/21 (Burning Crusade)	
+	
+Foots for 60 Badges and Neck from ZA are missing: Treads of the Life Path Treads of the Life Path (a new BiS Foot for HPalas), Implacable Guardian Sabatons Implacable Guardian Sabatons (optional)
+and Neck from ZA Brooch of Nature's Mercy Brooch of Nature's Mercy (optional, top3)
+
+1
+
+	
+By Forioss (6,719 – 2·8·7) <Rare Premium User> on 2022/03/22 (Burning Crusade)	
+	
+In the BIS chart at the top, is there some reason you sometimes use +healing gems and sometimes you don't?
+Last edited by Forioss on 2022/03/22
+
+0
+
+	
+
+Alecksandria on 2022/03/23 (Burning Crusade)
+from my experience, if it has a red socket hole and a +healing bonus (on a 1 or 2 socket hole item) it is a net gain in stats to toss a red and something else in, otherwise you're either losing +healing or other stats
+
+1
+
+	
+By yorad (1,248 – 1·6) on 2022/03/25 (Burning Crusade)	
+	
+Scarab Brooch from vanilla is still very powerful in TBC for tank healing and arguably BiS on several fights. Anetheron for example is typically 1:30ish so Brooch will be up for 1/3 of the whole fight. Its use can be timed with heavy tank damage phases on fights like Illidan P2 and Bloodboil to gain massive value from holy lights. No other healing trinket is anywhere near as powerful as that but it does vary from fight to fight. Going forward into WotLK, Brooch will become a niche trinket but it will still have its uses (especially if you are a legendary mace user).
+
+1
+
+	
+By Ulme (448 – 1·3) on 2022/04/04 (Burning Crusade)	
+	
+Why ist best feet enchant Boar speed no Enchant Boots - Vitality?
+1 - 4 of 4
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Holy Paladin Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+            Best In Slot Gear in Phase 5
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Librams
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Holy Paladin Healing Best in Slot (BiS) Phase 5 Gear Guide
+By Wowhead
+Updated: 2026/02/28
+Welcome to Wowhead's Best in Slot Gear list from Phase 5 Sunwell Plateau for Holy Paladin Healing in The Burning Crusade Classic. This guide will list the recommended gear for Holy Paladin Healing to acquire while they progress during the fifth and final phase of The Burning Crusade Classic, which contains gear sourced from Sunwell Plateau, Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+Best In Slot Gear for Holy Paladin Healing in Phase 5
+Phase 5 introduces the Sunwell Plateau raid, easily the most challenging content in The Burning Crusade Classic. Similar to how the original Naxxramas raid had only a small percentage of guilds clearing it, the original Sunwell Plateau was notorious for its difficulty.
+
+As I've said in previous phases, there is no true "one size fits all" for gearing. The gear-set below is an idea of one way to gear as a Holy Paladin, focusing on sustain over haste. Truthfully, there isn't a strictly BiS setup as everyone has different play-styles and/or different guilds (i.e., focusing on speed clears vs progression), which require different gearing, like stacking haste and +healing gems for a quick Flash of Light spamming build, whereas others will stack more intellect and spell crit for Holy Light sustainability. Choose what play-style suits you and your guild the most and go with that.
+
+Regarding the gem slots, you can tailor these to your specific needs. The gear set below is just an example of matching the socket bonuses with an emphasis on bonus healing from teardrop cuts. Experimenting with different setups will be key in fine-tuning your gear. Also, a reminder that Quick Lionseye Quick Lionseye will become available if that is something that interests you.
+
+Profession-specific gear is not included in this set, but if you are an alchemist, using the Redeemer's Alchemist Stone is recommended. If you are a blacksmith, using the Sunblessed Breastplate would mean less competition against your shaman for the mail chest. Jewelcrafters can make the Amulet of Flowing Life. Also, if you want to maintain the four-piece bonus of the tier 6 armor, you can use the Lightbringer Pauldrons over the Spaulders of the Thalassian Savior.
+
+If you want to experiment with a higher haste set, you can include items such as Gauntlets of the Soothed Soul, Kilt of Spiritual Reconstruction, and Noble Judicator's Chestguard.
+
+Holy Paladin Healers looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Holy Paladin Healing Gems & Enchants
+Should Holy Paladin Healing Choose Aldor or Scryer for BiS in TBC Classic Phase 5?
+The quick, TL;DR answer is that The Aldor faction is better for PvE, but the difference is rather small and will not make or break end-game content. Choosing either faction will ultimately be fine in the long run, so do not be dismayed if you went with The Scryers instead.
+
+The Aldor shoulder enchant is Greater Inscription of Faith Greater Inscription of Faith compared to the Scryers getting Greater Inscription of the Oracle Greater Inscription of the Oracle. The difference here is 11 healing power gained while losing 2 MP5. While the Aldor enchant is superior, it's not a large enough margin to definitively say they are better and worth changing from the Scryers if you have already gone that route.
+
+There is no gear worth buying from either faction; however, there are Pattern: Silver Spellthread Pattern: Silver Spellthread and Pattern: Golden Spellthread Pattern: Golden Spellthread available from The Aldor if you are a Tailor, so that provides another nod in favor of choosing the Aldor.
+
+The last point of contention is which proc of the Shattered Sun Pendant of Restoration Shattered Sun Pendant of Restoration (buyable once Exalted with Shattered Sun Offensive) is superior for Holy paladins. This is a bit of future planning, as these necklace procs won't be available until the last content phase for The Burning Crusade Classic, Phase 5.
+
+For the Aldor version, the proc granted is Light's Salvation, increasing +healing by 220 for 10 seconds. For the Scryers version, the proc granted is Arcane Surge, adding a direct heal for around 620 to 690, and is capable of being a critical heal around 980.
+
+While both effects are nice bonuses, the Aldor's proc will typically win out due to our tank healing and mixed usage of Holy Light and Flash of Light, where Holy Light will likely see more use during end-game content in Sunwell Plateau. The additional +healing added to a max rank Holy Light will be a lot more beneficial due to the healing coefficient bonus. The Scryer's proc will not benefit as much, as it is a static heal amount not affected by your +healing level, and can only proc off of Paladin's casted heals, whereas it can proc off of other healers' healing over time spells, creating more value for them compared to Paladins.
+
+In conclusion, The Aldor offers the most benefit from a better shoulder enchant, Tailoring patterns, and necklace proc in Phase 5 compared to The Scryers.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Holy Paladin Healing in TBC Classic Phase 5
+Helm of Burning Righteousness is the recommended option for your head slot in Phase 5. It has great stats, and it's a plate piece, so you will not be competing against other healers. If you are an engineer, you can use Justicebringer 3000 Specs as a stopgap until the better head item drops.
+Rank	Item	Source
+Best	Helm of Burning Righteousness Helm of Burning Righteousness	Drop: Kil'jaeden (Sunwell Plateau)
+Optional -- Haste	Shroud of Chieftain Ner'zhul Shroud of Chieftain Ner'zhul	Vendor: Yrma - Trade Cowl of Gul'dan Cowl of Gul'dan and Sunmote Sunmote - Kil'jaeden (Sunwell Plateau)
+Optional -- Crafted	Justicebringer 3000 Specs Justicebringer 3000 Specs	Profession: Engineering Engineering (BoP)
+Option	Lightbringer Greathelm Lightbringer Greathelm	Drop: Archimonde (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Crown of Empowered Fate Crown of Empowered Fate	Drop: Essence of Anger (Black Temple)
+Option	Helm of Soothing Currents Helm of Soothing Currents	Drop: High Warlord Naj'entus (Black Temple)
+Option	Crystalforge Greathelm Crystalforge Greathelm	Drop: Lady Vashj (Serpentshrine Cavern)
+
+Best in Slot Shoulder Armor for Holy Paladin Healing in TBC Classic Phase 5
+Spaulders of the Thalassian Savior is the recommended best-in-slot shoulders for Phase 5, continuing the trend of using the plate pieces.
+Rank	Item	Source
+Best	Spaulders of the Thalassian Savior Spaulders of the Thalassian Savior	Drop: Lady Sacrolash / Grand Warlock Alythess (Sunwell Plateau)
+Optional -- Haste	Equilibrium Epaulets Equilibrium Epaulets	Drop: Lady Sacrolash / Grand Warlock Alythess (Sunwell Plateau)
+Optional	Lightbringer Pauldrons Lightbringer Pauldrons	Drop: Mother Shahraz (Black Temple)
+Option	Glimmering Steel Mantle Glimmering Steel Mantle	Drop: Anetheron (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Crystalforge Pauldrons Crystalforge Pauldrons	Drop: Void Reaver (Tempest Keep: The Eye)
+
+Best in Slot Back Armor for Holy Paladin Healing in TBC Classic Phase 5
+Shroud of Redeemed Souls is the only healing cloak that drops in Sunwell Plateau and is the recommended Phase 5 option.
+Rank	Item	Source
+Best	Shroud of Redeemed Souls Shroud of Redeemed Souls	Drop: Lady Sacrolash / Grand Warlock Alythess (Sunwell Plateau)
+Optional -- Haste	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+Optional -- Non-Haste	Shroud of the Final Stand Shroud of the Final Stand	Drop: Trash Mobs (Black Temple)
+Optional -- Haste	Cloak of Ancient Rituals Cloak of Ancient Rituals	Drop: Hex Lord Malacrass (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Optional	Sunshower Light Cloak Sunshower Light Cloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Optional	Shroud of Forgiveness Shroud of Forgiveness	Drop: Gurtogg Bloodboil (Black Temple)
+
+Best in Slot Chest Armor for Holy Paladin Healing in TBC Classic Phase 5
+Garments of Serene Shores is the recommended Phase 5 best-in-slot chest item, being the only mail piece recommended. If you are a Blacksmithing Blacksmithing, Sunblessed Breastplate isn't too far off and is fairly inexpensive to craft.
+Rank	Item	Source
+Best	Garments of Serene Shores Garments of Serene Shores	Drop: M'uru (Sunwell Plateau)
+Optional -- Crafted	Sunblessed Breastplate Sunblessed Breastplate	Profession: Blacksmithing Blacksmithing (BoP)
+Optional -- Haste	Noble Judicator's Chestguard Noble Judicator's Chestguard	Vendor: Yrma - Trade Heroic Judicator's Chestguard Heroic Judicator's Chestguard and Sunmote Sunmote - M'uru (Sunwell Plateau)
+Optional	Lightbringer Chestpiece Lightbringer Chestpiece	Drop: Illidan Stormrage (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Optional	Savior's Grasp Savior's Grasp	Drop: Archimonde (Hyjal Summit)
+Optional	Crystalforge Chestpiece Crystalforge Chestpiece	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Wrist Armor for Holy Paladin Healing in TBC Classic Phase 5
+Lightbringer Bracers is one of the three new tier 6.5 pieces that release with Sunwell Plateau. The T6.5 pieces are very strong and overbudgeted, so competition will be fierce, but thankfully, three tokens drop per boss kill.
+Rank	Item	Source
+Best	Lightbringer Bracers Lightbringer Bracers	Drop: Bracers of the Forgotten Conqueror - Kalecgos and Grand Warlock Alythess/Lady Sacrolash (Sunwell Plateau)
+Option	Blessed Adamantite Bracers Blessed Adamantite Bracers	Drop: Rage Winterchill (Hyjal Summit)
+Option	Howling Wind Bracers Howling Wind Bracers	Drop: Rage Winterchill (Hyjal Summit)
+Option	Dawnsteel Bracers Dawnsteel Bracers	Profession: Blacksmithing - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Blackfathom Warbands Blackfathom Warbands	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+Best in Slot Hand Armor for Holy Paladin Healing in TBC Classic Phase 5
+Sunblessed Gauntlets are the best in slot phase 5 gloves and are crafted, meaning no competition for an item drop, though these do require Sunmote Sunmote, which may be limited initially. Gauntlets of the Soothed Soul may also be used and should be an easy pick up as they are plate armor.
+Rank	Item	Source
+Best -- Crafted	Sunblessed Gauntlets Sunblessed Gauntlets	Profession: Blacksmithing Blacksmithing (BoE)
+Best -- Haste	Gauntlets of the Soothed Soul Gauntlets of the Soothed Soul	Drop: M'uru (Sunwell Plateau)
+Optional	Glorious Gauntlets of Crestfall Glorious Gauntlets of Crestfall	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Lightbringer Gloves Lightbringer Gloves	Drop: Azgalor (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Worldstorm Gauntlets Worldstorm Gauntlets	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Option	Botanist's Gloves of Growth Botanist's Gloves of Growth	Drop: Teron Gorefiend (Black Temple)
+
+Best in Slot Waist Armor for Holy Paladin Healing in TBC Classic Phase 5
+Lightbringer Belt is the Phase 5 best-in-slot waist, continuing the trend of the T6.5 pieces being extremely strong, though a bit contested.
+Rank	Item	Source
+Best	Lightbringer Belt Lightbringer Belt	Drop: Belt of the Forgotten Conqueror - Brutallus and Grand Warlock Alythess/Lady Sacrolash (Sunwell Plateau)
+Optional	Girdle of Stromgarde's Hope Girdle of Stromgarde's Hope	Drop: Hex Lord Malacrass (Zul'Aman)
+Option	Girdle of Fallen Stars Girdle of Fallen Stars	Drop: Trash Mobs (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Girdle of the Righteous Path Girdle of the Righteous Path	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+
+Best in Slot Leg Armor for Holy Paladin Healing in TBC Classic Phase 5
+Legplates of the Holy Juggernaut falls in line with some of our other plate pieces, having no competition and offering good sustain stats.
+Rank	Item	Source
+Best	Legplates of the Holy Juggernaut Legplates of the Holy Juggernaut	Drop: Kalecgos (Sunwell Plateau)
+Optional -- Haste	Kilt of Spiritual Reconstruction Kilt of Spiritual Reconstruction	Vendor:Yrma - Trade Chain Links of the Tumultuous Storm Chain Links of the Tumultuous Storm and Sunmote Sunmote - Felmyst (Sunwell Plateau)
+Optional	Lightbringer Leggings Lightbringer Leggings	Drop: The Illidari Council (Black Temple)
+Option	Leggings of Eternity Leggings of Eternity	Drop: Archimonde (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Kilt of Immortal Nature Kilt of Immortal Nature	Drop: Shade of Akama (Black Temple)
+Option	Sun-touched Chain Leggings Sun-touched Chain Leggings	Drop: Kaz'rogal (Hyjal Summit)
+
+Best in Slot Feet Armor for Holy Paladin Healing in TBC Classic Phase 5
+Lightbringer Treads is the best option for phase 4, following the same pattern as the belt and bracers, as being a plate option for little to no loot competition amongst the other healers.
+Rank	Item	Source
+Best	Lightbringer Treads Lightbringer Treads	Drop: Boots of the Forgotten Conqueror - Felmyst and Grand Warlock Alythess/Lady Sacrolash (Sunwell Plateau)
+Optional	Pearl Inlaid Boots Pearl Inlaid Boots	Drop: High Warlord Naj'entus (Black Temple)
+Option	Boots of Courage Unending Boots of Courage Unending	Drop: Trash Mobs (Serpentshrine Cavern)
+Option	Boots of the Divine Light Boots of the Divine Light	Drop: Trash Mobs (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option - World Boss	Gold-Leaf Wildboots Gold-Leaf Wildboots	Drop: Doom Lord Kazzak (World Boss)
+
+Best in Slot Neck Jewelry for Holy Paladin Healing in TBC Classic Phase 5
+Nadina's Pendant of Purity is the Phase 5 best-in-slot neck item for those that do not have Jewelcrafting Jewelcrafting, otherwise Amulet of Flowing Life takes the top spot.
+Rank	Item	Source
+BiS	Nadina's Pendant of Purity Nadina's Pendant of Purity	Drop: Mother Shahraz (Black Temple)
+Best -- Crafted	Amulet of Flowing Life Amulet of Flowing Life	Profession: Jewelcrafting Jewelcrafting (BoP)
+Optional -- Haste	Brooch of the Highborne Brooch of the Highborne	Drop: Felmyst (Sunwell Plateau)
+Option	Lord Sanguinar's Claim Lord Sanguinar's Claim	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option - World Boss	Archaic Charm of Presence Archaic Charm of Presence	Drop: Doomwalker (World Boss)
+Option	Emberspur Talisman Emberspur Talisman	Drop: Nightbane (Karazhan)
+
+Best in Slot Ring Jewelry for Holy Paladin Healing in TBC Classic Phase 4
+For Phase 5, the recommended rings are the crafted Ring of Flowing Life (though this is dependent on the design dropping and obtaining x5 Sunmote Sunmote so not exactly a freebie) and the Black Temple trash drop Blessed Band of Karabor, though due to its contested nature and RNG with being a trash drop, continuing to use Ring of Calming Waves in the meantime is perfectly acceptable.
+Rank	Item	Source
+Best -- Crafted	Ring of Flowing Life Ring of Flowing Life	Profession: Jewelcrafting Jewelcrafting
+Best -- Haste	Blessed Band of Karabor Blessed Band of Karabor	Drop: Trash Mobs (Black Temple)
+Optional -- Haste	Band of Lucent Beams Band of Lucent Beams	Drop: Kalecgos (Sunwell Plateau)
+Optional -- Non-Haste	Ring of Calming Waves Ring of Calming Waves	Drop: High Warlord Naj'entus (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Optional -- Reputation	Band of the Eternal Restorer Band of the Eternal Restorer	Quest: Restorer's Covenant Restorer's Covenant (Scale of the Sands Exalted)
+Optional -- Haste	Signet of the Quiet Forest Signet of the Quiet Forest	Drop: Zul'Aman Timed Event - 3rd Chest
+Optional	Coral Band of the Revived Coral Band of the Revived	Drop: Lady Vashj (Serpentshrine Cavern)
+Option - World Boss	Ring of Flowing Light Ring of Flowing Light	Drop: Doom Lord Kazzak (World Boss)
+Option	Naaru Lightwarden's Band Naaru Lightwarden's Band	Drop: Magtheridon (Magtheridon's Lair)
+Option	Jade Ring of the Everliving Jade Ring of the Everliving	Drop: Prince Malchezaar (Karazhan)
+Option	Phoenix-Ring of Rebirth Phoenix-Ring of Rebirth	Drop: Al'ar (Tempest Keep: The Eye)
+
+Best in Slot Trinkets for Holy Paladin Healing in TBC Classic Phase 5
+The only change in Phase 5 is the addition of Glimmering Naaru Sliver and for alchemists, Redeemer's Alchemist Stone. Either of these two trinkets should be used in tandem with Memento of Tyrande.
+Rank	Item	Source
+Best	Glimmering Naaru Sliver Glimmering Naaru Sliver	Drop: M'uru (Sunwell Plateau)
+Best -- Crafted	Redeemer's Alchemist Stone Redeemer's Alchemist Stone	Profession: Alchemy Alchemy (BoP)
+Best	Memento of Tyrande Memento of Tyrande	Drop: Illidan Stormrage (Black Temple)
+Optional	Essence of the Martyr Essence of the Martyr	Vendor: G'eras (41 Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Optional	Direbrew Hops Direbrew Hops	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Optional	Ribbon of Sacrifice Ribbon of Sacrifice	Drop: Opera Event (Karazhan)
+Option	Eye of the Dead Eye of the Dead	Drop: Sapphiron (Classic - Naxxramas)
+Option	Lower City Prayerbook Lower City Prayerbook	Vendor: Nakodu (Lower City Revered)
+Option	Rejuvenating Gem Rejuvenating Gem	Drop: Flamegor, Firemaw, & Ebonroc (Classic - Blackwing Lair)
+
+Best in Slot Weapons for Holy Paladin Healing in TBC Classic Phase 5
+For Phase 5, Hammer of Sanctification takes the top spot as the best weapon in the game. Since it drops from Kil'jaeden, this is basically the prize for beating TBCC. This should be awarded to the player, not the class, since progression is over at this point.
+Rank	Item	Source
+Best - Highly Contested	Hammer of Sanctification Hammer of Sanctification	Drop: Kil'jaeden (Sunwell Plateau)
+Optional	Archon's Gavel Archon's Gavel	Drop: Lady Sacrolash/Grand Warlock Alythess (Sunwell Plateau)
+Optional -- Highly Contested	Crystal Spire of Karabor Crystal Spire of Karabor	Drop: Illidan Stormrage (Black Temple)
+Optional -- Easier to Obtain	Hammer of Atonement Hammer of Atonement	Drop: Kaz'rogal (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Weapon Recommendations
+
+Rank	Item	Source
+Optional -- Badges	Gavel of Naaru Blessings Gavel of Naaru Blessings	Vendor: Smith Hauthaa (150 Badges of Justice)
+Optional	Lightfathom Scepter Lightfathom Scepter	Drop: Lady Vashj (Serpentshrine Cavern)
+Optional	Dark Blessing Dark Blessing	Drop: Zul'jin (Zul'Aman)
+Option	Light's Justice Light's Justice	Drop: Prince Malchezaar (Karazhan)
+Option	Shard of the Virtuous Shard of the Virtuous	Drop: Maiden of Virtue (Karazhan)
+Option	Hand of Eternity Hand of Eternity	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Shockwave Truncheon Shockwave Truncheon	Drop: Murmur (Heroic Shadow Labyrinth)
+
+Best in Slot Offhands and Shields for Holy Paladin Healing in TBC Classic Phase 5
+For Phase 5, Aegis of Angelic Fortune is the shiny new shield that takes the top spot. If no other healers need Book of Highborne Hymns and you want to gear as fast as possible, this would be your choice.
+Rank	Item	Source
+Best - Shield	Aegis of Angelic Fortune Aegis of Angelic Fortune	Drop: M'uru (Sunwell Plateau)
+Best - Offhand Haste	Book of Highborne Hymns Book of Highborne Hymns	Drop: Lady Sacrolash/Lady Sacrolash (Sunwell Plateau)
+Optional -- Shield	Felstone Bulwark Felstone Bulwark	Drop: Supremus (Black Temple)
+Optional -- Shield	Bastion of Light Bastion of Light	Drop: Anetheron (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Optional -- Offhand	Scepter of Purification Scepter of Purification	Drop: Archimonde (Hyjal Summit)
+Optional -- Shield	Enamelled Disc of Mojo Enamelled Disc of Mojo	Drop: Jan'alai (Zul'Aman)
+Option	Aegis of the Vindicator Aegis of the Vindicator	Drop: Magtheridon (Magtheridon's Lair)
+Option	Talisman of the Sun King Talisman of the Sun King	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Tears of Heaven Tears of Heaven	Vendor: G'eras (25 Badges of Justice)
+Option	Light-Bearer's Faith Shield Light-Bearer's Faith Shield	Vendor: G'eras (35 Badges of Justice)
+
+Best in Slot Librams for Holy Paladin Healing in TBC Classic Phase 5
+For librams, use whichever suits your playstyle and raid composition.
+Rank	Item	Source
+BiS - Blessing of Light	Libram of Souls Redeemed Libram of Souls Redeemed	Drop: Opera Event (Karazhan)
+BiS - Flash of Light	Libram of Light Libram of Light	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+BiS - Holy Light	Libram of Absolute Truth Libram of Absolute Truth	Drop: The Lurker Below (Serpentshrine Cavern)
+Optional - Holy Light	Libram of Mending Libram of Mending	Vendor: G'eras (20 Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Libram Recommendations
+
+Rank	Item	Source
+BiS - Holy Light	Libram of the Lightbringer Libram of the Lightbringer	Drop: Commander Sarannis (The Botanica)
+Option - Flash of Light	Blessed Book of Nagrand Blessed Book of Nagrand	Quest: The Ultimate Bloodsport The Ultimate Bloodsport
+
+Wowhead
+Wowhead is the composite author encompassing general-interest guides and news, as well as representing many wonderful past and present writers.
+1 - 2 of 2
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+1
+
+	
+By BeastControl17 (4,539 – 8·16) on 2022/05/19 (Burning Crusade)	
+	
+t6 4p not worth it?
+
+0
+
+	
+
+Bewater on 2022/05/22 (Burning Crusade)
+I'm no pro but I'd say no. I've found myself using holy light more than flash of light on bosses.
+
+1
+
+	
+By Halasuwa (3,330 – 7·13) on 2022/06/18 (Burning Crusade)	
+	
+Lightbringer Treads is the best option for phase 4, following the same pattern as the belt and bracers as being a plate option for little to no loot competition amongst the other healers.
+
+Kinda misleading for a T-piece which are contested (bis) for pretty much all the classes and specs included.
+1 - 2 of 2
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+

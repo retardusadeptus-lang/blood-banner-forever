@@ -26,7 +26,10 @@ export default function DiscordBotConfigTab({
   onUnclaimClaim,
   roster,
   specsByName,
-  getDisplayFromId
+  getDisplayFromId,
+  scoringConfig,
+  setScoringConfig,
+  bnetAuthState
 }) {
   const updateRoleList = (field, rawText) => {
     setConfig(prev => ({
@@ -38,6 +41,10 @@ export default function DiscordBotConfigTab({
   const requestText = toEditorText(config?.request_roles);
   const signupText = toEditorText(config?.signup_roles);
   const benchText = toEditorText(config?.bench_roles);
+
+  const updateScoringField = (field, value) => {
+    setScoringConfig?.({ ...(scoringConfig || {}), [field]: value });
+  };
 
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
@@ -54,6 +61,40 @@ export default function DiscordBotConfigTab({
         >
           {isSaving ? 'Saving...' : hasUnsavedChanges ? 'Save Config' : 'No Changes'}
         </button>
+      </div>
+
+      <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+        <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider mb-4">Global Score Weighting Weights</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 mb-1">Parse Multiplier</label>
+            <input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig?.parseWeight ?? ''} onChange={e => updateScoringField('parseWeight', e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 mb-1">Support Multiplier</label>
+            <input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig?.supportMulti ?? ''} onChange={e => updateScoringField('supportMulti', e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 mb-1">Consumables (+)</label>
+            <input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig?.consBonus ?? ''} onChange={e => updateScoringField('consBonus', e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 mb-1">Enchants (+)</label>
+            <input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig?.enchantBonus ?? ''} onChange={e => updateScoringField('enchantBonus', e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 mb-1">Gems (+)</label>
+            <input type="number" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig?.gemBonus ?? ''} onChange={e => updateScoringField('gemBonus', e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-slate-500 mb-1">Attendance Multiplier</label>
+            <input type="number" step="0.1" className="w-full bg-slate-900 text-white border border-slate-700 rounded p-2 focus:outline-none" value={scoringConfig?.attWeight ?? ''} onChange={e => updateScoringField('attWeight', e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-red-500 mb-1">AFK Penalty (-)</label>
+            <input type="number" step="0.1" className="w-full bg-slate-900 text-red-400 font-bold border border-red-900 rounded p-2 focus:outline-none" value={scoringConfig?.afkPenalty ?? ''} onChange={e => updateScoringField('afkPenalty', e.target.value)} />
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -89,6 +130,37 @@ export default function DiscordBotConfigTab({
           />
           <p className="text-[11px] text-slate-500 mt-2">Controls access to /raid bench. Empty list means unrestricted.</p>
         </div>
+      </div>
+
+      <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+        <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Your Battle.net Profile</h3>
+        {bnetAuthState?.authenticated ? (
+          <div className="space-y-2">
+            <div className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2">
+              <p className="text-sm font-semibold text-cyan-300">Logged in as: {bnetAuthState.user?.battletag || 'Unknown'}</p>
+              <p className="text-xs text-slate-400 mt-1">Blizzard ID: {bnetAuthState.user?.blizzardId || 'N/A'}</p>
+            </div>
+            {Array.isArray(bnetAuthState.claimedCharacters) && bnetAuthState.claimedCharacters.length > 0 ? (
+              <div className="space-y-2">
+                <p className="text-xs text-slate-400">Your Claimed Roster Characters:</p>
+                {bnetAuthState.claimedCharacters.map(claim => {
+                  const rosterEntry = Array.isArray(roster) ? roster.find(player => Number(player.id) === Number(claim.rosterId)) : null;
+                  const specDisplay = rosterEntry ? getDisplayFromId?.(rosterEntry.spec_id) : null;
+                  const color = specsByName?.[specDisplay]?.color || '#e2e8f0';
+                  return (
+                    <div key={claim.rosterId} className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2">
+                      <p className="text-xs font-semibold text-slate-100" style={{ color }}>{claim.rosterName || `Character ${claim.rosterId}`}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="text-xs text-slate-400">No roster characters claimed yet. Use the Claim button to link your Battle.net account to a roster character.</p>
+            )}
+          </div>
+        ) : (
+          <p className="text-sm text-slate-500">Not logged in with Battle.net. Use the "Log in with Battle.net" button in the header.</p>
+        )}
       </div>
 
       <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">

@@ -1,0 +1,3329 @@
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase TwoClassesLevelingBest in SlotTier ListsRaidsAttunementsDungeonsReputationsProfessions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Elemental Shaman Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Best In Slot Gear in Pre-Raid
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Totems
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Elemental Shaman DPS Pre-Raid Best in Slot (BiS) - TBC Classic
+By Woah
+Updated: 2026/08/01
+In this Pre-Raid Best-in-Slot Gear List for Elemental Shaman DPS in The Burning Crusade Classic, we will list the recommended gear for Elemental Shaman DPS to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Elemental Shaman DPS Best in Slot Hub
+
+Best In Slot Gear for Elemental Shaman DPS in Pre-Raid in Phase 3
+This guide gets an update as we get into Phase 3. As we potentially anticipate loot changes in Heroic dungeons in this Phase, this guide will also get updated to accommodate that once we get confirmation on that.
+
+For now, the main updates you'll see will include PvP gear from Season 2, crafted gear from Serpentshrine Cavern, and Engineering Goggles for those who opt into that profession. It should be noted that technically the Season 3 weapon is better than Season 2, but it is much easier to obtain the Season 2 weapon, and it is still incredibly powerful, which is why it's preferred in this article.
+
+The best pre-raid gear is a mix of gear from Leatherworking, Badges of Justice, dungeons, and a couple of BoE pieces crafted by Tailors. You may want to use gems such as Shining Fire Opal Shining Fire Opal and Veiled Noble Topaz Veiled Noble Topaz to get as close to the Spell Hit cap (12% from talents and Totem of Wrath + 4% from gear) as possible, without going over and wasting stats in the process.
+
+Elemental Shamans looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Elemental Shaman Gems & Enchants
+
+Gadgetstorm Goggles
+Eye of the Night
+Pauldrons of Wild Magic
+Shawl of Shifting Probabilities
+Netherstrike Breastplate
+Netherstrike Bracers
+Mana-Etched Gloves
+Belt of Blasting
+Spellstrike Pants
+Sigil-Laced Boots
+Ring of Cryptic Dreams
+Cobalt Band of Tyrigosa
+Dark Iron Smoking Pipe
+Icon of the Silver Crescent
+Merciless Gladiator's Gavel
+Mazthoril Honor Shield
+Totem of the Void
+Link
+Level70
+Should Elemental Shaman DPS Choose Aldor or Scryer for BiS in TBC Classic Pre-Raid?
+Shamans can pick either of the Aldor or the Scryers without much penalty. The Aldor shoulder enchant is slightly better, but the difference is minuscule from the Scryers enchant when considering your full gear stat bonuses. In general, it is best to pick based on which faction is cheaper to buy reputation materials for, as Aldor, for example, can often be extremely expensive due to having the favored shoulder enchant for most specializations.
+
+    Aldor offer a very slightly superior shoulder enchant for DPS.
+    Aldor also offers a decent staff at Revered, Auchenai Staff Auchenai Staff. This is okay for starters, but Main-Hand/Off-Hand combinations are better at level 70.
+    Scryers offers one of the best rings, Seer's Signet Seer's Signet, at Exalted, and a powerful trinket, Scryer's Bloodgem Scryer's Bloodgem at Revered, although you probably will not need its high Spell Hit due to getting so much of it from talents.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Elemental Shamans, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+The Engineering-only goggles, Gadgetstorm Goggles, will be your best option for those who opt into this profession. It is also relatively not too expensive to craft either, making it a quicker option compared to the best non-crafted option.
+
+Storm Master's Helmet, Hood of Oblivion, and Incanter's Cowl are the best pre-raid helmets, due to their meta gem sockets and good stats.
+Rank	Item	Source
+Best - Crafted
+(Engineer Only)	Gadgetstorm Goggles Gadgetstorm Goggles	Profession: Engineering (BoP)
+Best - Non Crafted	Storm Master's Helmet Storm Master's Helmet	Vendor: G'eras (Badges of Justice)
+Great	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Hood of Oblivion Hood of Oblivion	Drop: Harbinger Skyriss (The Arcatraz)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+
+Rank	Item	Source
+Option	Incanter's Cowl Incanter's Cowl	Drop: Pathaleon the Calculator (The Mechanar)
+Option	Lightning Crown Lightning Crown	Drop: World Drop
+Option	Shamanistic Helmet of Second Sight Shamanistic Helmet of Second Sight	Quest: Teron Gorefiend, I am... Teron Gorefiend, I am...
+
+Best in Slot Shoulder Armor for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+Pauldrons of Wild Magic are the go-to shoulders, having high spell damage and spell crit. The BiS shoulders can be hard to get pre-raid due to coming from a heroic dungeon, so feel free to use Spaulders of the Torn-heart, which come from a leveling quest reward.
+Rank	Item	Source
+Best	Pauldrons of Wild Magic Pauldrons of Wild Magic	Drop: Quagmirran (Heroic The Slave Pens)
+Great	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest: The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+Option	Mana-Etched Spaulders Mana-Etched Spaulders	Drop: Quagmirran (Heroic The Slave Pens)
+Best in Slot Back Armor for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+Shawl of Shifting Probabilities is a great all-rounder cloak with no spell hit, making it a great choice when trying to avoid hitting Elemental Shaman's low Spell Hit Rating Cap.
+Rank	Item	Source
+Best	Shawl of Shifting Probabilities Shawl of Shifting Probabilities	Vendor: G'eras (Badges of Justice)
+Option	Illidari Cloak Illidari Cloak of Nature's Wrath	Drop: World Drop
+Option	Sethekk Oracle Cloak Sethekk Oracle Cloak	Drop: Talon King Ikiss (Sethekk Halls)
+Best in Slot Chest Armor for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+Netherstrike Breastplate has all the stats you want, 3 sockets, and enables the Netherstrike Armor set bonus, making it the best pre-raid chest. Windhawk Hauberk is a strong alternative if you are Tribal, and is one of the best chests for healing, making it the best all-rounder option!
+Rank	Item	Source
+Best	Netherstrike Breastplate Netherstrike Breastplate	Profession: Dragonscale Leatherworking (BoP)
+Best	Windhawk Hauberk Windhawk Hauberk	Profession: Tribal Leatherworking (BoP)
+Option	Mana-Etched Vestments Mana-Etched Vestments	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Will of Edward the Odd Will of Edward the Odd	Drop: World Drop
+Best in Slot Wrist Armor for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+Netherstrike Bracers are also part of the Dragonscale Leatherworking set and have a very balanced set of stats. You can also use Windhawk Bracers, which are much better for the occasional healing and shared best in slot with Restoration, but the set bonus makes Netherstrike superior once you can assemble it in full.
+Rank	Item	Source
+Best	Netherstrike Bracers Netherstrike Bracers	Profession: Dragonscale Leatherworking - BoP only
+Best	Windhawk Bracers Windhawk Bracers	Profession: Tribal Leatherworking - BoP only
+Option	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+Best in Slot Hand Armor for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+Mana-Etched Gloves and Earth Mantle Handwraps have a good amount of spell damage and spell crit, as well as 2 sockets, making them the best pre-raid gloves available.
+Rank	Item	Source
+Best	Mana-Etched Gloves Mana-Etched Gloves	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Best	Earth Mantle Handwraps Earth Mantle Handwraps	Drop: Mekgineer Steamrigger (The Steamvault)
+Option	Gloves of Pandemonium Gloves of Pandemonium	Drop: World Drop
+Option	Thundercaller's Gauntlets Thundercaller's Gauntlets	Drop: World Drop
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Grips of the Void Grips of the Void	Quest: Enraged Spirits of Air Enraged Spirits of Air
+
+Best in Slot Waist Armor for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+Belt of Blasting will be your best option and will carry into Phase 3 raiding until you replace it with Tier 6 gear. It could also carry into Sunwell depending on drop rates too!
+
+Besides that, Both Netherstrike Belt and Girdle of Ruination are very competitive pieces, with the ultimate choice coming down to whether you are a Leatherworking who can use the Netherstrike Armor set. You can also consider using Windhawk Belt if healing is a big part of your duties, as it is one of the best in-slot pieces available and doubles as one of the best Restoration Shaman belts.
+Rank	Item	Source
+Best	Belt of Blasting Belt of Blasting	Profession: Tailoring (BoE)
+Best - Set Bonus	Netherstrike Belt Netherstrike Belt	Profession: Dragonscale Leatherworking - BoP only
+Best - Set Bonus	Windhawk Belt Windhawk Belt	Profession: Tribal Leatherworking - BoP only
+Great	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Sash of Sealed Fate Sash of Sealed Fate	Drop: World Drop
+
+Best in Slot Leg Armor for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+Spellstrike Pants have great throughput stats and three sockets, making them great for Elemental Shamans, although it is generally not worth it to go Tailoring for the Spellstrike Infusion set bonus.
+Rank	Item	Source
+Best	Spellstrike Pants Spellstrike Pants	Profession: Tailoring (BoE)
+Great	Stormsong Kilt Stormsong Kilt	Drop: The Black Stalker (Heroic The Underbog)
+Option	Tempest Leggings Tempest Leggings
+Kurenai Kilt Kurenai Kilt	Vendor: Provisioner Nasela / Trader Narasu (The Mag'har / Kurenai Revered)
+Option	Pantaloons of Flaming Wrath Pantaloons of Flaming Wrath	Drop: Blood Guard Porung (The Shattered Halls)
+Best in Slot Feet Armor for Elemental Shaman in TBC Classic Pre-Raid in Phase 3[/color]
+Sigil-Laced Boots have great stats and two sockets, making them the best boots available still in Phase 3 in terms of Pre-Raid BiS.
+Rank	Item	Source
+Best	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Shattrath Jumpers Shattrath Jumpers	Quest: Into the Heart of the Labyrinth Into the Heart of the Labyrinth
+Best in Slot Neck Jewelry for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+Eye of the Night is the best necklace you can get and is relatively not that expensive on the Auction House. These necks provide a party wide buff that only completes your role as the utility class. Elemental Shamans provide the totems, typically are expected to provide Drums of Battle Drums of Battle, so being that strong utility class, you should also be the necklace buffer for your raid!
+
+Brooch of Heightened Potential is strong and easy to get. Alternatively, you can also get Natasha's Ember Necklace, which is easily obtainable as it is a leveling quest reward.
+Rank	Item	Source
+Best + Party Buff	Eye of the Night Eye of the Night	Profession: Jewelcrafting (BoE)
+Best	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+Option	Natasha's Ember Necklace Natasha's Ember Necklace	Quest: The Hound-Master The Hound-Master
+Option	Torc of the Sethekk Prophet Torc of the Sethekk Prophet	Quest: Brother Against Brother Brother Against Brother (Sethekk Halls)
+Best in Slot Ring Jewelry for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+Ring of Unrelenting Storms and Seer's Signet are the best rings available for Elemental Shamans in Phase 3, sporting high spell damage and spell crit.
+
+It should be noted how easy it is to get Band of Eternity Band of Eternity, as it only requires completing a quest for your required Mount Hyjal Attunement, where you just need to kill and loot Lady Vashj and Kael'thas Sunstrider once. The most optimal route would be to get Seer's Signet as you'll want Exalted with the Scryers anyway, and then just look to secure an easy spot in Tier 5 raids, to get this ring mentioned earlier, as Elemental shamans are in high demand and want.
+Rank	Item	Source
+Best	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+Best	Ring of Cryptic Dreams Ring of Cryptic Dreams	Vendor: G'eras (Badges of Justice)
+Best	Cobalt Band of Tyrigosa Cobalt Band of Tyrigosa	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Great	Band of Dominion Band of Dominion	Drop: World Drop
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Ashyen's Gift Ashyen's Gift	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+Option	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+
+Best in Slot Trinkets for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+In TBC, most trinkets offer passive bonuses on top of their unique, cooldown-bound powers. This makes many trinkets useful for their passive benefits alone, but there are still many powerful on-use effects to consider when picking a trinket.
+
+Icon of the Silver Crescent and Quagmirran's Eye are your best pre-raid trinkets, with Icon of the Silver Crescent serving as an extra DPS cooldown with its on-use effect. Phase 3 of TBC Anniversary will line up with Brewfest, meaning players can get their hands on Dark Iron Smoking Pipe, which is the exact same trinket as Icon, and you can wear it WITH Icon. Making it a great trinket combination.
+
+It should also be noted that Classic-era trinkets, such as Mark of the Champion and Neltharion's Tear, are still extremely powerful in TBC and can be used for a long time; especially Mark of the Champion, which stays your best trinket when fighting Demons and Undead.
+Rank	Item	Source
+Best	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Best - Seasonal	Empty Mug of Direbrew Empty Mug of Direbrew	Drop: Coren Direbrew (Blackrock Depths - Brewfest Event)
+Best	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Best - Demons/Undead	Mark of the Champion Mark of the Champion	Drop: Kel'Thuzad (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	Xi'ri's Gift Xi'ri's Gift	Vendor: Quartermaster Endarin (The Sha'tar Revered)
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Shiffar's Nexus-Horn Shiffar's Nexus-Horn	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+
+Best in Slot Weapons for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+Staves and other two-handed weapons generally grant less total spell damage than an MH+OH combo, and also lack the extra armor and block a shield provides. Thus, we would strongly recommend you avoid two-handed weapons unless the amount of stats on the weapon is way better than what you are currently using.
+
+Going into Phase 3, the Season 2 weapon, Merciless Gladiator's Gavel is your best pre-raid weapon in terms of obtaining a powerful weapon as fast as possible, but technically the Season 3 iteration, Vengeful Gladiator's Gavel Vengeful Gladiator's Gavel is obviously stronger, but will take at least two weeks to obtain once the season starts, and requires a raiting, whereas the previous season can be obtained in one. For the sake of getting into the raids faster, we'll be listing the Season 2 weapon in the list, but wanted to clarify about Season 3 as well.
+Rank	Item	Source
+Best	Merciless Gladiator's Gavel Merciless Gladiator's Gavel	Vendor: Arena Points (PvP)
+Best	Gavel of Unearthed Secrets Gavel of Unearthed Secrets	Vendor: Almaador (Lower City Exalted)
+Great	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Runesong Dagger Runesong Dagger	Drop: Warbringer O'mrogg (The Shattered Halls)
+Best in Slot Offhands for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+Whenever possible, try to use shields if they have comparable stats to the off-hands at your disposal, as that will make any physical damage that comes your way much more manageable. We will be listing some of the best off-hand options below as well, since sometimes you just cannot get a good shield to drop.
+Rank	Item	Source
+Best	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Best	Mazthoril Honor Shield Mazthoril Honor Shield	Vendor: G'eras (Badges of Justice)
+Option	Draenei Honor Guard Shield Draenei Honor Guard Shield	Drop: World Drop
+Option	Sapphiron's Left Eye Sapphiron's Left Eye	Drop: Sapphiron (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Like trinkets, if you could get Sapphiron's Left Eye in Classic, it will last you for a long time!
+Rank	Item	Source
+Option	Lamp of Peaceful Radiance Lamp of Peaceful Radiance	Drop: Harbinger Skyriss (The Arcatraz)
+
+Best in Slot Totems for Elemental Shaman in TBC Classic Pre-Raid in Phase 3
+The best totem you can get for your relic slot is Totem of the Void, which provides a very large bonus to your core damage spells.
+Rank	Item	Source
+Best	Totem of the Void Totem of the Void	Drop: Cache of the Legion (The Mechanar)
+Option	Totem of the Storm Totem of the Storm	Drop: World Drop
+Option	Totem of the Pulsing Earth Totem of the Pulsing Earth	Vendor: G'eras (Badges of Justice)
+Woah
+MoP Restoration/Elemental Shaman Guide Writer
+Woah has written over 275 guides for Wowhead since WoW Classic was released in 2019, with a particular focus on Shaman class guides. Shaman has been his main class since the start of Classic and also since WoW's initial launch in 2004.
+
+Currently playing in Gehennas EU Horde with Progress's 25-man alt/gold runs, Woah is looking to do some 10-man alt running on the side with a second shaman in Mists of Pandaria!
+1 - 15 of 15
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+5
+
+	
+By FreeFragger (2,863 – 4·7) on 2026/02/01 (Burning Crusade)	
+	
+Totem of the Void does drop from Cache of the Legion, but that is not in Botanica. It's from Mechanar (which you can see if you click on it)
+
+1
+
+	
+By jaaba (1,198 – 11·33) on 2021/06/19 (Burning Crusade)	
+	
+The Mana-Etched Vestments option for the chest slot is a Heroic only Old Hillsbrad Foothills drop.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/06/19 (Burning Crusade)
+Had missed the skull on that one, thanks! :)
+
+1
+
+	
+By Hazeel (509 – 5·4) on 2021/06/20 (Burning Crusade)	
+	
+what about Pantaloons of Flaming Wrath?
+
+I feel they seem to be insanely strong :
+Binds when picked up
+Legs Cloth
+136 Armor
++28 Intellect
+Durability 65 / 65
+Requires Level 70
+Equip: Improves spell critical strike rating by 42 (1.90% @ L70).
+Equip: Increases damage and healing done by magical spells and effects by up to 33.
+
+i feel they are extremely powerfull.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/06/21 (Burning Crusade)
+They are good for sure, but the lack of sockets makes them worse than the three listed options. I'll add them as the 4th :)
+
+1
+
+	
+By TriksterHD (4,888 – 8·14) on 2021/07/06 (Burning Crusade)	
+	
+Surely Brooch of Heightened Potential is better than Natasha's Ember Necklace?
+
+0
+
+	
+
+Woah <Guide Author> on 2021/07/10 (Burning Crusade)
+Depends whether you need Spell Hit or not, since Elemental gains a huge amount baseline from talents, but it does have better stats overall, I'll swap them, thanks!
+
+1
+
+	
+By Cipralex (428 – 1) on 2021/07/09 (Burning Crusade)	
+	
+You could add Draenei Honor Guard Shield Draenei Honor Guard Shield as a cheap and rly powerfull pre BIS option :)
+
+0
+
+	
+
+Woah <Guide Author> on 2021/07/10 (Burning Crusade)
+True, missed that one, thanks! :)
+
+1
+
+	
+By moggeman (16,139 – 1·23·11) on 2021/07/12 (Burning Crusade)	
+	
+cost for General's Mail Bracers is wrong.. is should be 11794 honor not 9199
+
+0
+
+	
+
+Woah <Guide Author> on 2021/07/12 (Burning Crusade)
+You're right, fixed, thanks!
+
+1
+
+	
+By nannerup (473 – 7·5) on 2021/08/06 (Burning Crusade)	
+	
+I feel option Grips of the Void Grips of the Void should also be mentioned as a good option for the gloves slot.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/09/05 (Burning Crusade)
+Sure, added! Although in general there are good, easy to get quest rewards for just about every slot, so it would be rather overwhelming were I to list them all :)
+
+1
+
+	
+By contraband19 (918 – 3·2) on 2021/10/02 (Burning Crusade)	
+	
+Thundercaller's Gaunlets are as good as these for Pre-Raid I feel, are mail, and can be bought pretty cheap from the AH!:
+
+Thundercaller's Gauntlets Thundercaller's Gauntlets
+
+Dust your hands off be ready for raid in no time.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/11/05 (Burning Crusade)
+Looks fine, and since they are mail they must be very cheap, indeed, thanks for the input!
+
+1
+
+	
+By Moltof68 (18,163 – 2·9·15) on 2022/01/04 (Burning Crusade)	
+	
+When do you plan on adding phase 3 bis lists?
+
+0
+
+	
+
+Woah <Guide Author> on 2022/01/09 (Burning Crusade)
+Its been done for a a few weeks now, think the admins did not post it yet because of no P3 release date announcement, but it should go out very soon hopefully!
+
+1
+
+	
+By Skolex (108 – 1) on 2026/03/10 (Burning Crusade)	
+	
+Wouldn't Band of Frigid Elements Band of Frigid Elements be among the Pre-Raid BiS rings - if not the Pre-Raid BiS ring?
+
+1
+
+	
+By Iaijutsu (1,243 – 10·5) on 2026/03/21 (Burning Crusade)	
+	
+A correctly-gemmed Tidefury Shoulderguards Tidefury Shoulderguards comes very close to the shoulder options listed once you factor in gem bonus and crit/mana from the additional +int. It's worth considering as a 4th option.
+
+0
+
+	
+By Licster (6,989 – 1·21·14) on 2021/05/25 (Burning Crusade)	
+	
+Natural Alignment Crystal I think would be a worthy mention for the trinket slot
+
+0
+
+	
+
+Woah <Guide Author> on 2021/05/25 (Burning Crusade)
+Big cooldown, big Mana cost increase, and only gives 250 SP in TBC, Natural Alignment Crystal Natural Alignment Crystal is just not what it used to be at 70 unfortunately :(
+
+0
+
+	
+By Dethluster (1,499 – 1·6·19) on 2021/05/31 (Burning Crusade)	
+	
+I'm curious about this list, as looking at all the best pieces have 0 hit rating, I get that shaman's have 9% hit rating from talents and totem of wrath, but there's still 7% hit missing. Wouldn't a BIS list contain at least some options that get you that 7%?
+
+0
+
+	
+
+Voault on 2021/06/01 (Burning Crusade)
+you also get another 3 from guidance in the resto tree, putting you at 12%. At that point, Crit is so important for our mana regen and throughput, it becomes more useful than hit in a lot of cases.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/06/02 (Burning Crusade)
+Spell Hit is more of a "cap" on how much Spell Hit is useful than a number that must absolutely be reached or your DPS will be 0. If you find some strong pieces with Spell Hit on them feel free to use them, but its not a big deal to be under Spell Hit cap if using high level gear with high stats on your slots.
+
+0
+
+	
+By bastion251 (861 – 7·12) on 2021/11/05 (Burning Crusade)	
+	
+Why is it that i can never find a Pre raid bis list that takes into account Fresh 70's ? One that I don't know only uses Normal mode dungeons, Quest items and the like. Not the Profession's BS that most people don't even have. Like for this sham list. You have an Engineering helm. Leatherworking set and Tailor made epics. A new player who is fresh wont have access to most of that list. Nor most of the alternatives. Especially on smaller servers where prices are insane.
+
+How about a fresh 70 list that does not have profession requirements, Exalted Requirements , or PVP requirements? Ya know things that take FOREVER to get done. Something they can work on while they are working on the Rep, Or Profession's or the pvp. Don't get me wrong the absolute BIS list should stay. But the pre raid you have looks like the phase 1 bis you have . Lots of epics. Lots of time to get them and lots of gold to achieve.
+
+Just my 2 cents. For what ever that's worth.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/11/05 (Burning Crusade)
+That is why we list many options for each gear slot. If having the ideal best in slot listed on the gear planner is impossible for you, just scroll down through each gear piece section and go through the list until you find an item you have, or can get easily :)
+
+-2
+
+	
+By benedekf (17,002 – 4·14·39) on 2021/08/02 (Burning Crusade)	
+	
+Please mention in the guide that the Hood of Oblivion Hood of Oblivion is part of the warlock dungeon set Oblivion Raiment.
+Please don't roll need against a warlock on this item, only if you asked him/her before. Imagine how frustrating is when one of your set items finally drops, and someone with a different class gets it.
+
+0
+
+	
+
+nannerup on 2021/08/06 (Burning Crusade)
+I don't agree - everyone is entitled to roll on loot that's an upgrade, let alone BiS for them
+
+0
+
+	
+
+Woah <Guide Author> on 2021/09/05 (Burning Crusade)
+Also, it should be common sense to pass a set for the class that can use its bonuses unless they were rude to you or something :)
+1 - 15 of 15
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Elemental Shaman Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+            Best In Slot Gear in Phase 1
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Totems
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Elemental Shaman DPS Phase 1 Best in Slot (BiS) - TBC Classic
+By Woah
+Updated: 2026/02/19
+Welcome to Wowhead's Best in Slot Gear list from Karazhan, Gruul's Lair, and Magtheridon's Lair for Elemental Shaman DPS in The Burning Crusade Classic. This guide will list the recommended gear for Elemental Shaman DPS to acquire while they progress on the first few raids in The Burning Crusade Classic, and contains gear sourced from Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best-in-slot lists, including a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Elemental Shaman DPS Best in Slot Guides
+
+Best In Slot Gear for Elemental Shaman DPS in Phase 1
+In Phase 1, there are a couple of different gear setups that are very good. Most slots are still just one best item, but a few have alternatives that won't meaningfully change your throughput. Ideally, you will want to use the Tier 4 Head and Shoulder pieces, alongside the best off-set gear available. Using other options listed below is also fine, as there are multiple pieces with very similar stats, but try to get at least 2 pieces of Tier 4 for the set bonus.
+
+You may want to use gems such as Shining Fire Opal Shining Fire Opal and Veiled Noble Topaz Veiled Noble Topaz to get as close to the Spell Hit cap (12% from talents and Totem of Wrath + 4% from gear) as possible, without going over and wasting stats in the process.
+
+Elemental Shamans looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Elemental Shaman Gems & Enchants
+Should Elemental Shaman DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 1?
+Shamans can pick either of the Aldor or the Scryers without much penalty. The Aldor shoulder enchant is slightly better, but the difference is minuscule from the Scryers enchant when considering your full gear stat bonuses. In general, it is best to pick based on which faction is cheaper to buy reputation materials for, as Aldor, for example, can often be extremely expensive due to having the favored shoulder enchant for most specializations.
+
+    Aldor offer a very slightly superior shoulder enchant for DPS.
+    Aldor also offers a decent staff at Revered, Auchenai Staff Auchenai Staff. This is okay for starters, but Main-Hand/Off-Hand combinations are better at level 70.
+    Scryers offers one of the best rings, Seer's Signet Seer's Signet, at Exalted, and a powerful trinket, Scryer's Bloodgem Scryer's Bloodgem at Revered, although you probably will not need its high Spell Hit due to getting so much of it from talents.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Elemental Shamans, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Elemental Shaman in TBC Classic Phase 1
+Cyclone Faceguard is the best Phase 1 helmet, sporting great stats and a meta socket allowing you to use the almighty Chaotic Skyfire Diamond Chaotic Skyfire Diamond.
+Rank	Item	Source
+BiS	Cyclone Faceguard Cyclone Faceguard	Drop: Prince Malchezaar (Karazhan)
+Option	Storm Master's Helmet Storm Master's Helmet	Vendor: G'eras (Badges of Justice)
+Option	Hood of Oblivion Hood of Oblivion	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Incanter's Cowl Incanter's Cowl	Drop: Pathaleon the Calculator (The Mechanar)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Alternatively, you can get Storm Master's Helmet, Hood of Oblivion, or Incanter's Cowl for a more easily attainable meta socket.
+
+Spellstrike Hood has great baseline stats and 3 sockets, which makes it another very strong option, but it is generally not worth it to go Tailoring for the Spellstrike Infusion bonus, as it averages out to 20 spell power, when you can get 24 spell power from ring enchants.
+Rank	Item	Source
+Option	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Lightning Crown Lightning Crown	Drop: World Drop
+Option	Big Bad Wolf's Head Big Bad Wolf's Head	Drop: The Big Bad Wolf (Karazhan)
+
+Best in Slot Shoulder Armor for Elemental Shaman in TBC Classic Phase 1
+Cyclone Shoulderguards are the go-to shoulders, having high spell damage and spell crit, as well as 2 sockets with a good socket color bonus. They also enable your T4 (2) Set bonus, Improved Wrath of Air Totem, which gives a massive spell damage benefit to your group!
+Rank	Item	Source
+BiS	Cyclone Shoulderguards Cyclone Shoulderguards	Drop: High King Maulgar (Gruul's Lair)
+Option	Pauldrons of Wild Magic Pauldrons of Wild Magic	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest: The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+Best in Slot Back Armor for Elemental Shaman in TBC Classic Phase 1
+Brute Cloak of the Ogre-Magi is a great all-rounder cloak with no spell hit, making it a great choice when trying to avoid hitting Elemental Shaman Shaman's low spell hit cap. Alternatively, Ruby Drape of the Mysticant is a strong spell hit cloak, and Ancient Spellcloak of the Highborne is very similar to the best in slot cloak, but because it drops from Doom Lord Kazzak, it can be much harder to get.
+Rank	Item	Source
+BiS	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+Option	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+Option	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+Best in Slot Chest Armor for Elemental Shaman in TBC Classic Phase 1
+Netherstrike Breastplate has all the stats you want, 3 sockets, and enables the Netherstrike Armor set bonus, which is still great to have in T4. Windhawk Hauberk is even better when discounting the Netherstrike set bonus, and is a great alternative if you are Tribal. It is also one of the best chests for healing, making it the best all-rounder option! Cyclone Chestguard is a great alternative, as is the Will of Edward the Odd, if you are not a Leatherworker.
+Rank	Item	Source
+BiS	Netherstrike Breastplate Netherstrike Breastplate	Profession: Leatherworking (Dragonscale) - BoP only
+BiS	Windhawk Hauberk Windhawk Hauberk	Profession: Leatherworking (Tribal) - BoP only
+Option	Cyclone Chestguard Cyclone Chestguard	Drop: Magtheridon (Magtheridon's Lair)
+Option	Will of Edward the Odd Will of Edward the Odd	Drop: World Drop
+Best in Slot Wrist Armor for Elemental Shaman in TBC Classic Phase 1
+Netherstrike Bracers are also part of the Dragonscale Leatherworking set and have a very balanced set of stats. You can also use Windhawk Bracers, which are much better when not counting the Netherstrike set bonus, and have even more value if you ever have to heal, as they are shared best in slot with Restoration. If you do not want to go Leatherworking, Bracers of Havok and General's Mail Bracers are great alternatives, although you will have to PvP a bit for the last one.
+Rank	Item	Source
+BiS	Netherstrike Bracers Netherstrike Bracers	Profession: Leatherworking (Dragonscale) - BoP only
+BiS	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking (Tribal) - BoP only
+Option	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+PvP	General's Mail Bracers General's Mail Bracers	Vendor: 9199 Honor Points + 20 Warsong Gulch Mark of Honor Warsong Gulch Mark of Honor (PvP)
+Best in Slot Hand Armor for Elemental Shaman in TBC Classic Phase 1
+Soul-Eater's Handwraps can be difficult to acquire, but are the best option with an impressive amount of spell damage, spell critical strike, and two sockets. Alternatively, Handwraps of Flowing Thought or Tier 4 are good options, especially if using them allows you to hit an extra set bonus.
+Rank	Item	Source
+BiS	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Option	Cyclone Handguards Cyclone Handguards	Drop: The Curator (Karazhan)
+Best in Slot Waist Armor for Elemental Shaman in TBC Classic Phase 1
+Both Netherstrike Belt and Girdle of Ruination are very competitive pieces, with the ultimate choice coming down to whether you are a Leatherworker who can use the Netherstrike Armor set.
+
+You can also consider using Windhawk Belt if healing is a big part of your duties, as it is one of the best in slot pieces available and doubles as one of the best Restoration Shaman belts.
+Rank	Item	Source
+BiS	Netherstrike Belt Netherstrike Belt	Profession: Leatherworking (Dragonscale) - BoP only
+BiS	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+BiS	Windhawk Belt Windhawk Belt	Profession: Leatherworking (Tribal) - BoP only
+Option	Belt of Divine Inspiration Belt of Divine Inspiration	Drop: High King Maulgar (Gruul's Lair)
+Best in Slot Leg Armor for Elemental Shaman in TBC Classic Phase 1
+Spellstrike Pants have great throughput stats and three sockets, making them great for Elemental Shamans, but it is unlikely to be worth it to go Tailoring just for the Spellstrike Infusion set bonus. Leggings of the Seventh Circle are a strong alternative, but can be hard to come by due to coming from a World Boss. Finally, Tempest Leggings / Kurenai Kilt are strong budget options, which just require a reputation grind.
+Rank	Item	Source
+BiS	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+Option	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+Option	Stormsong Kilt Stormsong Kilt	Drop: The Black Stalker (Heroic The Underbog)
+Option	Tempest Leggings Tempest Leggings
+Kurenai Kilt Kurenai Kilt	Vendor: Provisioner Nasela / Trader Narasu (The Mag'har / Kurenai Revered)
+Best in Slot Feet Armor for Elemental Shaman in TBC Classic Phase 1
+Boots of Foretelling have great stats and two sockets, making them the best boots available.
+Rank	Item	Source
+BiS	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+Option	Windshear Boots Windshear Boots	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+Best in Slot Neck Jewelry for Elemental Shaman in TBC Classic Phase 1
+Adornment of Stolen Souls is the best neck, sporting high spell damage and spell crit in one neat package.
+Rank	Item	Source
+BiS	Adornment of Stolen Souls Adornment of Stolen Souls	Drop: Prince Malchezaar (Karazhan)
+Option	Brooch of Unquenchable Fury Brooch of Unquenchable Fury	Drop: Moroes (Karazhan)
+Option	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+Best in Slot Ring Jewelry for Elemental Shaman in TBC Classic Phase 1
+Ring of Unrelenting Storms and Seer's Signet are the best rings available for Elemental Shamans in Phase 1, sporting high spell damage and spell crit.
+Rank	Item	Source
+BiS	Ring of Unrelenting Storms Ring of Unrelenting Storms	Drop: Trash (Karazhan)
+BiS	Ring of Recurrence Ring of Recurrence	Drop: Chess Event (Karazhan)
+Option	Violet Signet of the Archmage Violet Signet of the Archmage	Vendor: Archmage Leryda (The Violet Eye Exalted)
+Option	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Band of Dominion Band of Dominion	Drop: World Drop
+
+Best in Slot Trinkets for Elemental Shaman in TBC Classic Phase 1
+In TBC, most trinkets offer passive bonuses on top of their unique, cooldown-bound powers. This makes many trinkets useful for their passive benefits alone, but there are still many powerful on-use effects to consider when picking a trinket.
+
+The Lightning Capacitor and Icon of the Silver Crescent are your best trinkets, with The Lightning Capacitor benefitting from your frequent spell crits and overload crits and Icon of the Silver Crescent having high spell damage, which you can further power up as a DPS cooldown.
+Rank	Item	Source
+BiS	The Lightning Capacitor The Lightning Capacitor	Drop: Terestian Illhoof (Karazhan)
+BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Option	Mark of the Champion Mark of the Champion	Drop: Kel'Thuzad (Classic - Naxxramas)
+Option	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+It should also be noted that Classic-era trinkets, such as Mark of the Champion and Neltharion's Tear are still extremely powerful in TBC and can be used for a long time, especially Mark of the Champion, which stays your best trinket when fighting demons and undead.
+Rank	Item	Source
+Option	Xi'ri's Gift Xi'ri's Gift	Vendor: Almaador (The Sha'tar Revered)
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Shiffar's Nexus-Horn Shiffar's Nexus-Horn	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+
+Best in Slot Weapons for Elemental Shaman in TBC Classic Phase 1
+Staves and other two-handed weapons generally grant less total spell damage than a Main-Hand/Off-Hand combination, and also lack the extra armor and block a shield provides. Thus, we would strongly recommend that you avoid two-handed weapons unless the amount of stats on the weapon is way better than what you are currently using.
+
+Nathrezim Mindblade is your chase weapon, as Talon of the Tempest comes from a World Boss, making it extremely difficult to get.
+Rank	Item	Source
+BiS	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+BiS	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+PvP	Gladiator's Gavel Gladiator's Gavel	Vendor: Arena Points (Season 1)
+Option	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Notably, while Gladiator's Gavel is a great weapon that has no RNG involved in its acquisition, it can only be bought with Arena Points, which must be obtained over the course of several weeks.
+Rank	Item	Source
+Option	Gavel of Unearthed Secrets Gavel of Unearthed Secrets	Vendor: Nakodu (Lower City Exalted)
+
+Best in Slot Offhands for Elemental Shaman in TBC Classic Phase 1
+Whenever possible, try to use shields if they have comparable stats to the off-hands at your disposal, as that will make any physical damage that comes your way much more manageable. We will be listing some of the best off-hand options below as well, since sometimes you just cannot get a good shield to drop. Like trinkets, if you could get Sapphiron's Left Eye in Classic, it will last you for a long time!
+Rank	Item	Source
+BiS	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+BiS	Mazthoril Honor Shield Mazthoril Honor Shield	Vendor: G'eras (Badges of Justice)
+Option	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+Option	Sapphiron's Left Eye Sapphiron's Left Eye	Drop: Sapphiron (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+
+Rank	Item	Source
+Option	Talisman of Nightbane Talisman of Nightbane	Drop: Nightbane (Karazhan)
+
+Best in Slot Totems for Elemental Shaman in TBC Classic Phase 1
+The best totem you can get for your relic slot is Totem of the Void, which provides a very large bonus to your core damage spells.
+Rank	Item	Source
+BiS	Totem of the Void Totem of the Void	Drop: Cache of the Legion (The Mechanar)
+Option	Totem of the Storm Totem of the Storm	Drop: World Drop
+Option	Totem of the Pulsing Earth Totem of the Pulsing Earth	Vendor: G'eras (Badges of Justice)
+Woah
+MoP Restoration/Elemental Shaman Guide Writer
+Woah has written over 275 guides for Wowhead since WoW Classic was released in 2019, with a particular focus on Shaman class guides. Shaman has been his main class since the start of Classic and also since WoW's initial launch in 2004.
+
+Currently playing in Gehennas EU Horde with Progress's 25-man alt/gold runs, Woah is looking to do some 10-man alt running on the side with a second shaman in Mists of Pandaria!
+1 - 12 of 12
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+7
+
+	
+By Lohmarn (3,365 – 21·17) on 2021/04/28 (Burning Crusade)	
+	
+Love my elemental shaman from BC. The Lightning Capacitor was BiS throughout the entire expansion lol. It was such a great trinket...
+
+0
+
+	
+
+JigglyJeffory on 2021/04/28 (Burning Crusade)
+The trinket procs also count as Shaman Lightning Bolts, which can double from echo of the elements. That's what makes this trinket so good for specifically elemental shaman.
+
+3
+
+	
+By Generalfrisk (8,001 – 3·19·20) on 2021/06/22 (Burning Crusade)	
+	
+How come Stormsong Kilt Stormsong Kilt from Heroic Underbog isn't included on this list? It's at worst comparable to the Nagrand - Revered Leggings
+Last edited by Generalfrisk on 2021/06/22
+
+1
+
+	
+
+Woah <Guide Author> on 2021/06/24 (Burning Crusade)
+Those are great, indeed, added them above the Nagrand legs, cheers! No idea why I had not listed them to begin with, since they are in the pre-raid guide, probably just a typo :(
+
+0
+
+	
+
+Generalfrisk on 2021/06/25 (Burning Crusade)
+Awesome! :D I think the gems listed may still be for the Nagrand legs though, not sure how the formatting works for these guides
+
+1
+
+	
+
+Woah <Guide Author> on 2021/06/26 (Burning Crusade)
+Forgot to change the gems, it is fixed now thanks :)
+
+2
+
+	
+By doogyplum (647 – 2·5) on 2021/06/25 (Burning Crusade)	
+	
+Couple things I see wrong
+
+Talents and Totem = 12% hit, 16% is cap vs lvl 73 mob, so you need 4% to cap (if Horde). The gear you have chosen doesn't even hit cap.
+
+You also have Spell Pen to cloak enchant, you should have the reduced threat enchant.
+Spell Pen doesn't do anything for PVE. While mobs have 8 spell resist for ever level they are above you, this resistance cannot be reduced with spell pen, or curse of elements.
+Last edited by doogyplum on 2021/06/25
+
+0
+
+	
+
+Generalfrisk on 2021/06/25 (Burning Crusade)
+This isn't the first time I've seen +Spell Pen to cloak as the recommended enchant. I think it comes down to preference, as for most guilds a Shaman has no chance of pulling threat on a boss, so for the times you find yourself in PvP it's better to have +Spell pen. You're right that in a strictly PvE situation reduced threat is technically best. As far as not being hit capped in this gear, the issue is in gemming and not the gear itself.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/06/26 (Burning Crusade)
+The reduced threat enchant is a very minor thing and you can easily use it instead of spell pen, sure, will add it alongside it as an alternative option. Spell pen is great for any PvP situations you might find yourself in. Spell Hit adjustments, as pointed out by Generalfrisk above, should be fixed with gems rather than gear, as you want to always be using the best / most stats gear possible, I'll swap some gems on the gear planner to showcase how you can go along with this, but it will always depend on whether you are Ally / Horde and your current gear, of course. Thanks for feedback!
+
+1
+
+	
+By vicioushunter (7,631 – 1·26·49) on 2021/06/21 (Burning Crusade)	
+	
+It is very odd this guide has an Aldor exalted enchant on shoulders and Scryer's exalted ring.
+
+I'd personally go with the shield for the first BOJ item because of the lack of other crit spell shields and the insane 4,400 armor on it. While you can have other trinkets with similar effects and they don't affect your armor rating for questing and wpvp.
+Last edited by vicioushunter on 2021/06/21
+
+0
+
+	
+
+Woah <Guide Author> on 2021/06/21 (Burning Crusade)
+If those are your priorities, then for sure yeah! For dungeons and raids the trinket is usually the biggest upgrade :) and you're right with the enchant / ring thing haha, its because they are so close..I'll swap shoulders to Scryer enchant for consistency's sake!
+
+0
+
+	
+
+Generalfrisk on 2021/06/23 (Burning Crusade)
+Wouldn't Ring of Recurrence and Aldor Shoulder Enchant be the better option?
+
+1
+
+	
+
+Woah <Guide Author> on 2021/06/23 (Burning Crusade)
+After checking it out, it would, indeed, gonna change it up in both the gear planner and the overall list, thanks for the heads up!
+
+1
+
+	
+By Generalfrisk (8,001 – 3·19·20) on 2021/06/30 (Burning Crusade)	
+	
+Talon of the Tempest Talon of the Tempest is probably worth a mention. Can definitely argue that it's better than Nathrezim Mindblade Nathrezim Mindblade even though Talon is significantly less accessible
+
+1
+
+	
+
+Woah <Guide Author> on 2021/07/01 (Burning Crusade)
+It is better, for sure, but almost no one will see that, ever :( I'll add it up for completion's sake.
+
+1
+
+	
+By TriksterHD (4,888 – 8·14) on 2021/07/09 (Burning Crusade)	
+	
+What if instead of going LW / Enchant you went LW / Tailor and used both the Spellstrike head and pants for the set bonus and the the T4 shoulders and hands for that set bonus? Would it be any better?
+
+0
+
+	
+
+Woah <Guide Author> on 2021/07/10 (Burning Crusade)
+Marginally so if you are starting from a 0 gear standpoint, and Tailor would be useless going into Tier 5+ where the crafted gear is pointless since you can get better from the new raids. So LW / Enchant is a longer term play with extra value from drums / ring enchants even when the crafted gear is bad. You will be able to do some nice Tier 5+ crafted gear with LW if you want, as long as you have the new Nethers :)
+
+0
+
+	
+
+vikefan727 on 2021/08/14 (Burning Crusade)
+there are still a few bis items that are tailoring crafted in T5 ERA IE belt of blasting
+
+0
+
+	
+
+Woah <Guide Author> on 2021/09/05 (Burning Crusade)
+Luckily belt of blasting is BoE so you can just buy it or have a friend make it :)
+
+1
+
+	
+By Kreder (176 – 0) on 2021/08/02 (Burning Crusade)	
+	
+It's worth mentioning that the meta gem requires you to have 2 blue gems in your gear and there aren't any blue gems listed in the BIS gear list
+
+0
+
+	
+
+Woah <Guide Author> on 2021/08/08 (Burning Crusade)
+They are meant to go on chest, as I put in the gear planner, but you are totally right, forgot to change them in the stand-alone slot by slot guide accordingly :)
+
+1
+
+	
+By c0mm0n (813 – 5·6) on 2021/09/20 (Burning Crusade)	
+	
+Why u list the breastplate with slot matching gems in the recap but then with 3 SP gems in the chest section 🤔
+
+0
+
+	
+
+Woah <Guide Author> on 2021/09/20 (Burning Crusade)
+Three reds are optimal if considering the chest on its own, but the recap has to take into account the meta gem requirements, and the chest is one of the best slots to fit in non-red gems :)
+
+1
+
+	
+By ShamanRage (604 – 1·4) on 2022/03/16 (Burning Crusade)	
+	
+Why isn't Gladiator's War Staff on here as an alternative?
+
+2
+
+	
+
+Woah <Guide Author> on 2022/03/17 (Burning Crusade)
+Citing the guide: "Staves and other two-handed weapons generally grant less total spell damage than a MH+OH combo, and also lack the extra armor and block a shield provides. Thus, we would strongly recommend you to avoid two-handed weapons unless the amount of stats on the weapon is way better than what you are currently using." which is why I did not list any 2h weapons, but you can use it if you have it, its pretty good other than having no armor!
+
+0
+
+	
+
+ShamanRage on 2022/03/17 (Burning Crusade)
+As a PvE Elemental Shaman, do I really need the armour? It's pretty difficult to find people to do heroics, so I thought the Glad War Staff would be a decent alternative to the Mazthoril Shield (since it costs badges). I'm also looking to do mainly PvP, but would like to get into some raids, so I thought the hit bonus would help. I currently have 20.2% spell crit. Thank you for the speedy response, by the way!
+
+1
+
+	
+By DracikOnRohlik (526 – 5) on 2025/03/27 (Burning Crusade)	
+	
+Personally i think it would be worth mentioning the Malecific girdle, from terestian Illhoof, as it is a pretty decent option, before you acquire the netherstrike set:)
+Last edited by DracikOnRohlik on 2025/03/27
+
+0
+
+	
+By Stoichkov (4,393 – 8·25) on 2021/11/16 (Burning Crusade)	
+	
+Ring of Recurrence Ring of Recurrence drops from the chess event, not from Medivh.
+
+1
+
+	
+
+Woah <Guide Author> on 2021/11/16 (Burning Crusade)
+The Echo of Medivh is who you face in the chess event, hence the mention :) but if that's confusing can remove the link and directly call it chess, thanks!
+By benedekf (17,002 – 4·14·39) on 2021/08/02 (Burning Crusade)	
+	
+1 - 12 of 12
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Elemental Shaman Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+            Best In Slot Gear in Phase 2
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Shields & Offhands
+                Totems
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Elemental Shaman DPS Best in Slot (BiS) Phase 2 Gear Guide - TBC Classic
+By Woah
+Updated: 2026/05/12
+Welcome to Wowhead's Best in Slot Gear list from Tempest Keep and Serpentshrine Cavern for Elemental Shaman DPS in The Burning Crusade Classic. This guide will list the recommended gear for Elemental Shaman DPS to acquire while they progress during the second phase of The Burning Crusade Classic, and contains gear sourced from Tempest Keep and Serpentshrine Cavern, plus other pieces from previous phases like Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best in slot lists, including a TBCC pre-patch list and a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Elemental Shaman DPS Best in Slot HubElemental Shaman DPS Pre-Raid Best in Slot
+
+Best In Slot Gear for Elemental Shaman DPS in Phase 2
+In Phase 2 there are a couple of different gear setups that are very good. Most slots are still just one best item, but a few have alternatives that won't meaningfully change your throughput. Ideally, you will still want to use the Tier 4 Head and Shoulder pieces for the powerful 2-piece set bonus, alongside the best off-set gear available, as Tier 5 has very weak set bonuses. Using other options listed below is also fine, as there are multiple pieces with very similar stats, but try to get at least 2 pieces of Tier 4 for the set bonus.
+
+Elemental Shamans looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Elemental Shaman Gems & Enchants
+Should Elemental Shaman DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 2?
+Shamans can pick both The Aldor or The Scryers without much penalty. The Aldor shoulder enchant is slightly better, but the difference is minuscule from the Scryers enchant when considering your full gear stat bonuses. In general, it is best to pick based on which faction is cheaper to buy reputation materials for, as Aldor, for example, can often be extremely expensive due to having the favored shoulder enchant for most specializations.
+
+    Aldor offers a very slightly superior shoulder enchant for DPS.
+    Aldor also offers a decent staff at Revered, Auchenai Staff Auchenai Staff. This is okay for starters, but most 1h + Off-Hand combos at 70 are better.
+    Scryers offers one of the best rings, Seer's Signet Seer's Signet, at Exalted, and a powerful trinket, Scryer's Bloodgem Scryer's Bloodgem, although you probably will not need its high Spell Hit due to getting so much of it from talents.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Elemental Shamans, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Elemental Shaman in TBC Classic Phase 2
+Cyclone Faceguard is still the best Phase 2 helmet for raid dps when you are playing in a caster group due to Tier 4's strong two-piece bonus.
+
+Cataclysm Headpiece is a great helmet for personal DPS, as is Gadgetstorm Goggles. Alternatively, you can get Storm Master's Helmet for a more easily attainable meta socket.
+Rank	Item	Source
+BiS	Cyclone Faceguard Cyclone Faceguard	Drop: Prince Malchezaar (Karazhan)
+BiS	Cataclysm Headpiece Cataclysm Headpiece	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Gadgetstorm Goggles Gadgetstorm Goggles	Profession: Engineering - BoP only
+Option	Storm Master's Helmet Storm Master's Helmet	Vendor: G'eras (50 Badges of Justice)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Lightning Crown Lightning Crown	Drop: World Drop
+Option	Big Bad Wolf's Head Big Bad Wolf's Head	Drop: The Big Bad Wolf (Karazhan)
+
+Best in Slot Shoulder Armor for Elemental Shaman in TBC Classic Phase 2
+Similar to the head, Cyclone Shoulderguards are also still the go-to shoulders when in a caster group, due to the tier bonus, Improved Wrath of Air Totem, which gives a massive spell damage benefit to your group!
+
+For personal DPS, Cataclysm Shoulderpads and Mantle of the Elven Kings are the favored choices.
+Rank	Item	Source
+BiS	Cyclone Shoulderguards Cyclone Shoulderguards	Drop: High King Maulgar (Gruul's Lair)
+BiS	Cataclysm Shoulderpads Cataclysm Shoulderpads	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Mantle of the Elven Kings Mantle of the Elven Kings	Drop: Trash Mobs (Tempest Keep: The Eye)
+Option	Pauldrons of Wild Magic Pauldrons of Wild Magic	Drop: Quagmirran (Heroic The Slave Pens)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest: The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+
+Best in Slot Back Armor for Elemental Shaman in TBC Classic Phase 2
+Brute Cloak of the Ogre-Magi is a great all-rounder cloak with no spell hit, making it a great choice when trying to avoid hitting Elemental Shaman's low spell hit cap. Royal Cloak of the Sunstriders is a similar option, although much harder to get because of its source.
+
+Alternatively, Ruby Drape of the Mysticant is a strong spell hit cloak, and Ancient Spellcloak of the Highborne is very similar to the BiS cloak, but because it drops from Doom Lord Kazzak, it can be much harder to get.
+Rank	Item	Source
+BiS	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+Option	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+Option	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+Best in Slot Chest Armor for Elemental Shaman in TBC Classic Phase 2
+Cataclysm Chestpiece has all the stats you want and 3 sockets, making it one of the best chests in Phase 2. Vestments of the Sea-Witch are also incredibly powerful, although their high amount of spell hit might take you over the cap, depending on the rest of your gear.
+
+Netherstrike Breastplate is also still great, and enables the Netherstrike Armor set bonus. Windhawk Hauberk is even better when discounting the Netherstrike set bonus, and is a great alternative if you are Tribal. It is also one of the best chests for healing, making it the best all-rounder option!
+Rank	Item	Source
+BiS	Cataclysm Chestpiece Cataclysm Chestpiece	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+BiS	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Netherstrike Breastplate Netherstrike Breastplate	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Windhawk Hauberk Windhawk Hauberk	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Option	Cyclone Chestguard Cyclone Chestguard	Drop: Magtheridon (Magtheridon's Lair)
+Option	Will of Edward the Odd Will of Edward the Odd	Drop: World Drop
+
+Best in Slot Wrist Armor for Elemental Shaman in TBC Classic Phase 2
+Mindstorm Wristbands are the ideal wrists, with high stats and no spell hit. Alternatively, Netherstrike Bracers are part of the Dragonscale Leatherworking set and have a very balanced set of stats, including a socket.
+
+You can also use Windhawk Bracers, which are much better when not counting the Netherstrike set bonus, and have even more value if you ever have to heal, as they are shared best in slot with Restoration.
+Rank	Item	Source
+BiS	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Netherstrike Bracers Netherstrike Bracers	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	General's Mail Bracers General's Mail Bracers	Vendor: Honor Points (Season 2)
+
+Best in Slot Hand Armor for Elemental Shaman in TBC Classic Phase 2
+Soul-Eater's Handwraps are still the best gloves available, due to their impressive spell damage, spell critical strike, and two sockets. Alternatively, Cataclysm Handgrips or Handwraps of Flowing Thought are also good options.
+Rank	Item	Source
+BiS	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+Option	Cataclysm Handgrips Cataclysm Handgrips	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Option	Cyclone Handguards Cyclone Handguards	Drop: The Curator (Karazhan)
+Best in Slot Waist Armor for Elemental Shaman in TBC Classic Phase 2
+Nothing really gets close to Belt of Blasting, which has a crazy amount of stats and two sockets, which is extremely uncommon on belts! Cord of Screaming Terrors is a decent alternative, as are the crafted Netherstrike Belt and Girdle of Ruination.
+Rank	Item	Source
+BiS	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Option	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Netherstrike Belt Netherstrike Belt	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+You can also consider using Windhawk Belt if healing is a big part of your duties, as it is one of the best in slot pieces available and doubles as one of the best Restoration Shaman belts.
+Rank	Item	Source
+Option	Windhawk Belt Windhawk Belt	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Belt of Divine Inspiration Belt of Divine Inspiration	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Leg Armor for Elemental Shaman in TBC Classic Phase 2
+Cataclysm Leggings and Spellstrike Pants have similar throughput stats, after sockets are counted in, and share the best Tier 5 leg ranking, even if you are not a Tailor for the Spellstrike Infusion set bonus. Leggings of the Seventh Circle are a strong alternative, but can be hard to come by due to coming from a World Boss.
+Rank	Item	Source
+BiS	Cataclysm Leggings Cataclysm Leggings	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+BiS	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+Option	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+Option	Stormsong Kilt Stormsong Kilt	Drop: The Black Stalker (Heroic The Underbog)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Finally, Tempest Leggings / Kurenai Kilt are strong budget options, which just require a reputation grind.
+Rank	Item	Source
+Option	Tempest Leggings Tempest Leggings
+Kurenai Kilt Kurenai Kilt	Vendor: Provisioner Nasela / Trader Narasu (The Mag'har / Kurenai Revered)
+
+Best in Slot Feet Armor for Elemental Shaman in TBC Classic Phase 2
+Velvet Boots of the Guardian lack sockets, but more than make up for it with a huge amount of spell damage and spell crit. Boots of Blasting are a good alternative, as are Hurricane Boots and Boots of Foretelling, should you happen to be either a Tailor or Leatherworker. The patterns for both of these, however, drop from bosses and trash mobs in the Tier 5 raids, so you will still have to raid and obtain the pattern to craft these. And since they are both Bind-on-Pickup, it means there is just another additional (and expensive!) step versus just winning a roll for Velvet Boots of the Guardian or being awarded them.
+Rank	Item	Source
+BiS	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+Option	Hurricane Boots Hurricane Boots	Profession: Leatherworking - BoP only
+Option	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Windshear Boots Windshear Boots	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+
+Best in Slot Neck Jewelry for Elemental Shaman in TBC Classic Phase 2
+The Sun King's Talisman is the best neck in Tier 5, sporting high spell damage and spell crit in one neat package. Adornment of Stolen Souls, from the previous phase, is a similar version, which is easier to get, but also has less spell damage.
+Rank	Item	Source
+BiS	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Adornment of Stolen Souls Adornment of Stolen Souls	Drop: Prince Malchezaar (Karazhan)
+Option	Brooch of Unquenchable Fury Brooch of Unquenchable Fury	Drop: Moroes (Karazhan)
+Option	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+Best in Slot Ring Jewelry for Elemental Shaman in TBC Classic Phase 2
+Ring of Unrelenting Storms, Band of Eternity, and Ring of Endless Coils are the best rings available for Elemental Shamans in Phase 2, sporting high spell damage and spell crit. Ring of Recurrence is a decent alternative, and Seer's Signet can be used as well, assuming you are a Scryer.
+Rank	Item	Source
+BiS	Ring of Unrelenting Storms Ring of Unrelenting Storms	Drop: Trash Mobs (Karazhan)
+BiS	Band of Eternity Band of Eternity	Quest: Sage's Pledge Sage's Pledge
+BiS	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Dreamcrystal Band Dreamcrystal Band	Zone Drop: Depleted Ring Depleted Ring (Blade's Edge Mountains) & 50x Apexis Shard Apexis Shard
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Band of Frigid Elements Band of Frigid Elements	Drop: Anzu (Sethekk Halls)
+Option	Ring of Recurrence Ring of Recurrence	Drop: Echo of Medivh (Karazhan)
+Option	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Path of the Violet Mage Path of the Violet Mage (The Violet Eye Exalted)
+Option	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+Option	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Band of Dominion Band of Dominion	Drop: World Drop
+
+Best in Slot Trinkets for Elemental Shaman in TBC Classic Phase 2
+In TBC, most trinkets offer passive bonuses on top of their unique, cooldown-bound powers. This makes many trinkets useful for their passive benefits alone, but there are still many powerful on-use effects to consider when picking a trinket.
+
+The Lightning Capacitor and Icon of the Silver Crescent are your best trinkets, with The Lightning Capacitor benefitting from your frequent spell crits and overload crits and Icon of the Silver Crescent having high spell damage, which you can further power up as a DPS cooldown.
+
+It should also be noted that Classic-era trinkets, such as Mark of the Champion and Neltharion's Tear, are still extremely powerful in TBC and can be used for a long time, especially Mark of the Champion, which stays your best trinket when fighting Demons and Undead.
+Rank	Item	Source
+Special	Mark of the Champion Mark of the Champion	Drop: Kel'Thuzad (Classic - Naxxramas)
+BiS	The Lightning Capacitor The Lightning Capacitor	Drop: Terestian Illhoof (Karazhan)
+BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (41 Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Sextant of Unstable Currents is a fine alternative, but its damage contribution can be quite random.
+Rank	Item	Source
+Option	Sextant of Unstable Currents Sextant of Unstable Currents	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Xi'ri's Gift Xi'ri's Gift	Vendor: Almaador (The Sha'tar Revered)
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Shiffar's Nexus-Horn Shiffar's Nexus-Horn	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+
+Best in Slot Weapons for Elemental Shaman in TBC Classic Phase 2
+Typically, staves generally grant less total spell damage than an MH+OH combo, and also lack the extra armor and block a shield provides, making an MH+OH generally superior if its stats are comparable to the best two-handed weapon available. However, The Nexus Key is the exception, and is the best weapon in Tier 5, having the highest amount of Intellect, critical strike, and spell damage in a single package.
+
+Outside of this special circumstance, we'll look again to the one-hand + off-hand combo for Elemental Shamans. Merciless Gladiator's Gavel is a great weapon that has no RNG involved in its acquisition, but it can only be bought with Arena Points, which must be obtained over the course of several weeks, but can be obtained in 2 at a minimum.
+
+Nathrezim Mindblade is still a great weapon, as is Talon of the Tempest. Gladiator's Gavel can now be obtained without rating requirements and for discounted Arena points, making it much easier to get than it used to be!
+Rank	Item	Source
+BiS	The Nexus Key The Nexus Key	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Merciless Gladiator's Gavel Merciless Gladiator's Gavel	Vendor: Arena Points (Season 2)
+Option	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+Option	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Weapon Recommendations
+
+Rank	Item	Source
+Option	Gladiator's Gavel Gladiator's Gavel	Vendor: Arena Points (Season 1)
+Option	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Gavel of Unearthed Secrets Gavel of Unearthed Secrets	Vendor: Nakodu (Lower City Exalted)
+
+Best in Slot Shields & Offhands for Elemental Shaman in TBC Classic Phase 2
+Whenever possible, try to use shields if they have comparable stats to the offhands at your disposal, as that will make any physical damage that comes your way much more manageable. We will be listing some of the best offhand options below as well, since sometimes you just cannot get a good shield to drop. Like trinkets, if you could get Sapphiron's Left Eye in Classic, it will last you for a long time!
+Rank	Item	Source
+BiS	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Option	Mazthoril Honor Shield Mazthoril Honor Shield	Vendor: G'eras (35 Badges of Justice)
+Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (25 Badges of Justice)
+Option	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Sapphiron's Left Eye Sapphiron's Left Eye	Drop: Sapphiron (Classic - Naxxramas)
+Option	Talisman of Nightbane Talisman of Nightbane	Drop: Nightbane (Karazhan)
+
+Best in Slot Totems for Elemental Shaman in TBC Classic Phase 2
+The best totem you can get for your relic slot is still Totem of the Void, which provides a very large bonus to your core damage spells.
+Rank	Item	Source
+BiS	Totem of the Void Totem of the Void	Drop: Cache of the Legion (The Mechanar)
+Option	Totem of the Storm Totem of the Storm	Drop: World Drop
+Option	Totem of the Pulsing Earth Totem of the Pulsing Earth	Vendor: G'eras (Badges of Justice)
+Woah
+MoP Restoration/Elemental Shaman Guide Writer
+Woah has written over 275 guides for Wowhead since WoW Classic was released in 2019, with a particular focus on Shaman class guides. Shaman has been his main class since the start of Classic and also since WoW's initial launch in 2004.
+
+Currently playing in Gehennas EU Horde with Progress's 25-man alt/gold runs, Woah is looking to do some 10-man alt running on the side with a second shaman in Mists of Pandaria!
+1 - 5 of 5
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+1
+
+	
+By Jabish (1,101 – 1·4·7) on 2021/08/11 (Burning Crusade)	
+	
+Hi! I'm curious why you list the Potent Fire Opal from [H] AC, but not the Glowing Tanzanite from [H] BM. There's also the Infused Amethyst from nightbane quest, and PvP red/orange gems. Not sure if the yellow pvp crit gem would be worth it. Let me know what you think! Best, Bistotems (Netherwind)
+Last edited by Jabish on 2021/08/11
+
+1
+
+	
+
+Woah <Guide Author> on 2021/08/12 (Burning Crusade)
+Heya Jabish, the listed epic gems on the gear planner are just examples of what you can do if you want to take it to the next level, but the benefit vs effort ratio is small enough that they are not really worth "recommending" exhaustively, lest people think they absolutely have to have those gems to be viable. Think of epic gems as a minor freebie if you happen to have gotten them while running heroics or doing PvP but they are generally not worth chasing. You can only get one Nightbane gem per character and I already used mine in T4 so recommending that is even more sketchy, cheers!
+
+1
+
+	
+By Hocken (331 – 1·0) on 2021/08/21 (Burning Crusade)	
+	
+Dreamcrystal Band (Ogri'la) and Band of Frigid Elements (Anzu) become available in P2. These are relatively easy to get and will be the best rings before you get the Lady Vashj/Kara trash rings.
+
+0
+
+	
+
+Woah <Guide Author> on 2021/08/28 (Burning Crusade)
+Good point, will add them to the list!
+
+1
+
+	
+By Cridi (3,102 – 7·8) on 2021/08/21 (Burning Crusade)	
+	
+btw The Lightning Capacitor will be BiS till Ulduar WOTLK cause of the skaling with crit + Metasocketcrit. + Later, with more haste, you cast more bolts for more crits and it even loads faster. Also it can prog from the second attack elemental focus, when it crits. And with Elemental Mastery and chainlightning it will always prog for big burst dmg in pvp battlegrounds. So to all elementalshamans out there: Always put this thing on P1 or Softlock nr.1 best item for elemental shamans to get in tbc that early
+Last edited by Cridi on 2021/08/21
+
+1
+
+	
+By CullenDoom (2,626 – 6·8) on 2021/09/20 (Burning Crusade)	
+	
+Hi. Similar question as I asked on the resto guide.
+
+If I get a Dark Iron Smoking Pipe Dark Iron Smoking Pipe, which trinkets should I be using? I'm not sure if this one stacks with Icon of the Silver Crescent Icon of the Silver Crescent. Should I keep The Lightning Capacitor The Lightning Capacitor perma-equipped and swap the cooldowns on the other two? Only downside is you can't swap the trinkets mid-combat.
+
+1
+
+	
+
+Woah <Guide Author> on 2021/09/22 (Burning Crusade)
+They do not stack, but you can use one after the other. The Smoking Pipe is exactly equal to the Icon of the Silver Crescent, and Lightning Capacitor is slightly above in the BiS list, therefore keep Lightning Capacitor and swap the other two when you can to keep both of them on cooldown as much as possible, have fun!
+
+1
+
+	
+By TriksterHD (4,888 – 8·14) on 2021/10/06 (Burning Crusade)	
+	
+Should the Ring of Eternity be added to the BiS rings seeing as you can get hold of that now for getting the Mount Hyjal attunement done? Looks to me like it's better than Ring of Recurrence and maybe better than Ring of Unrelenting Storms too.
+
+1
+
+	
+
+Woah <Guide Author> on 2021/10/13 (Burning Crusade)
+Yeah for sure, adding it right now!
+
+0
+
+	
+
+Thundercrack <Rare Premium User> on 2021/10/18 (Burning Crusade)
+And this is considered better than Ring of Endless Coils Ring of Endless Coils?
+
+0
+
+	
+
+Woah <Guide Author> on 2021/12/26 (Burning Crusade)
+About on par due to trading a lot of Intellect for a bit of Spell Power and Spell Crit.
+1 - 5 of 5
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Elemental Shaman Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+            Best In Slot Gear in Phase 3
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Totems
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Elemental Shaman DPS Best in Slot (BiS) Phase 3 Gear Guide
+By Woah
+Updated: 2026/07/26
+Welcome to Wowhead's Best in Slot Gear list from Phase 3 Black Temple and Mount Hyjal for Elemental Shaman DPS in The Burning Crusade Classic. This guide will list the recommended gear for Elemental Shaman DPS to acquire while they progress during the third phase of The Burning Crusade Classic, and contains gear sourced from Black Temple and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Elemental Shaman DPS in Phase 3
+In Phase 3, Elemental Shamans finally get strong tier set bonuses, and getting four pieces of the set should be one of your main priorities. Your physical DPS counterpart, the Enhancment Shaman, will also not look to wear any tier as their bis, eliminating some players from competition. Ideally, you will want your off-set piece to be the legs, as Leggings of Channeled Elements Leggings of Channeled Elements are the strongest off-piece available, but crafting Mantle of Nimble Thought Mantle of Nimble Thought is also a good option, especially if competition for the legs in your guild is high.
+
+The Skull of Gul'dan The Skull of Gul'dan is the best-in-slot trinket for Elemental Shamans, as it is for every caster, but it is generally a small priority upgrade due to its high spell hit, which easily ends up wasted due to Elemental's multiple spell hit talents. Because of this, we'll recommend opting out of obtaining this initially, and look into out previous phase BiS trinkets.
+
+Elemental Shamans looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Elemental Shaman Gems & Enchants
+
+
+An example of our Best in Slot gearset is shown below, with some more "realistic" or "ideal" pieces put in over true BiS, as mentioned earlier:
+
+
+Skyshatter Headguard
+The Sun King's Talisman
+Skyshatter Mantle
+Cloak of the Illidari Council
+Skyshatter Breastplate
+Bracers of Nimble Thought
+Skyshatter Gauntlets
+Flashfire Girdle
+Leggings of Channeled Elements
+Slippers of the Seacaller
+Ring of Ancient Knowledge
+Ring of Ancient Knowledge
+The Lightning Capacitor
+Icon of the Silver Crescent
+Zhar'doom, Greatstaff of the Devourer
+Off Hand
+Totem of Ancestral Guidance
+Link
+Level70
+Should Elemental Shaman DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 3?
+Shamans can pick either of the Aldor or the Scryers without much penalty. The Aldor shoulder enchant is slightly better, but the difference is minuscule from the Scryers enchant when considering your full gear stat bonuses. In general, it is best to pick based on which faction is cheaper to buy reputation materials for, as Aldor, for example, can often be extremely expensive due to having the favored shoulder enchant for most specializations.
+
+    Aldor offer a very slightly superior shoulder enchant for DPS.
+    Aldor also offers a decent staff at Revered, Auchenai Staff Auchenai Staff. This is okay for starters, but Main Hand / Offhand combinations are better at level 70.
+    Scryers offers one of the best rings, Seer's Signet Seer's Signet, at Exalted, and a powerful trinket, Scryer's Bloodgem Scryer's Bloodgem at Revered, although you probably will not need its high spell hit due to getting so much of it from talents.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Elemental Shamans, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Elemental Shaman in TBC Classic Phase 3
+Skyshatter Headguard is the best Phase 3 helmet, a strong piece on its own, but is taken over by Cowl of the Illidari High Lord for enabling the Tier 6 set bonuses. Cyclone Faceguard is still a great helmet to boost your party members, but your personal gain from using Tier 6 with its superior stats and set bonuses should result in higher raid DPS, overall.
+Rank	Item	Source
+Best	Skyshatter Headguard Skyshatter Headguard	Drop: Archimonde (Hyjal Summit)
+Great	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+Option	Cyclone Faceguard Cyclone Faceguard	Drop: Prince Malchezaar (Karazhan)
+Option	Cataclysm Headpiece Cataclysm Headpiece	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Gadgetstorm Goggles Gadgetstorm Goggles	Profession: Engineering - BoP only
+Option	Storm Master's Helmet Storm Master's Helmet	Vendor: G'eras (Badges of Justice)
+Option	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Lightning Crown Lightning Crown	Drop: World Drop
+Option	Big Bad Wolf's Head Big Bad Wolf's Head	Drop: The Big Bad Wolf (Karazhan)
+
+Best in Slot Shoulder Armor for Elemental Shaman in TBC Classic Phase 3
+The Skyshatter Mantle is also an excellent piece that also happens to enable your Tier 6 set bonuses, making its acquisition a priority. Mantle of Nimble Thought and Hatefury Mantle are decent alternatives, especially Mantle of Nimble Thought, which can be used as the preferred off-piece if getting off-piece legs is too hard with your group.
+
+If staying on the party buffing route, use Cyclone Shoulderguards to enable the Improved Wrath of Air Totem tier bonus.
+Rank	Item	Source
+Best	Skyshatter Mantle Skyshatter Mantle	Drop: Mother Shahraz (Black Temple)
+Best	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+Option	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+Option	Cyclone Shoulderguards Cyclone Shoulderguards	Drop: High King Maulgar (Gruul's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Cataclysm Shoulderpads Cataclysm Shoulderpads	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Mantle of the Elven Kings Mantle of the Elven Kings	Drop: Trash Mobs (Tempest Keep: The Eye)
+Option	Pauldrons of Wild Magic Pauldrons of Wild Magic	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest: The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+
+Best in Slot Back Armor for Elemental Shaman in TBC Classic Phase 3
+While Shroud of the Highborne is theoretically the best cloak available, its stats are healer-focused, and we would recommend using the similarly powerful Cloak of the Illidari Council instead to avoid drama, at least until no healers need it. Alternatively, Brute Cloak of the Ogre-Magi is a great all-rounder cloak with no spell hit, making it a great choice when trying to avoid hitting Elemental Shaman's low spell hit cap. Royal Cloak of the Sunstriders is a similar option.
+Rank	Item	Source
+Best	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+Best	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: The Illidari Council (Black Temple)
+Great	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+Great	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+Option	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+
+Best in Slot Chest Armor for Elemental Shaman in TBC Classic Phase 3
+Skyshatter Breastplate has a ton of stats, 3 sockets, and enables your Tier 6 set bonuses, making it the best chest in Phase 3. Alternatively, Chestguard of Relentless Storms wastes no budget on spell hit and requires no gems to be very powerful, but is slightly weaker than Skyshatter Breastplate even before considering the potential set bonus benefits.
+Rank	Item	Source
+Best	Skyshatter Breastplate Skyshatter Breastplate	Drop: Illidan Stormrage (Black Temple)
+Great	Chestguard of Relentless Storms Chestguard of Relentless Storms	Drop: Trash Mobs (Hyjal Summit / Black Temple)
+Great	Cataclysm Chestpiece Cataclysm Chestpiece	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Netherstrike Breastplate is also still good, and enables the Netherstrike Armor set bonus. Windhawk Hauberk is even better when discounting the Netherstrike set bonus, and is a great alternative if you are Tribal. It is also one of the best chests for healing, making it a fine all-rounder option.
+Rank	Item	Source
+Option	Netherstrike Breastplate Netherstrike Breastplate	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Windhawk Hauberk Windhawk Hauberk	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Cyclone Chestguard Cyclone Chestguard	Drop: Magtheridon (Magtheridon's Lair)
+Option	Will of Edward the Odd Will of Edward the Odd	Drop: World Drop
+
+Best in Slot Wrist Armor for Elemental Shaman in TBC Classic Phase 3
+Bracers of Nimble Thought are the ideal wrists by a wide margin, with high stats and no spell hit. Alternatively, Cuffs of Devastation and Mindstorm Wristbands are strong on their own. Bands of the Coming Storm are a free item as they're mail, meaning your only competition would be another Elemental Shaman
+Rank	Item	Source
+Best	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring (BoE)
+Great	Cuffs of Devastation Cuffs of Devastation	Drop: Rage Winterchill (Hyjal Summit)
+Great	Bands of the Coming Storm Bands of the Coming Storm	Drop: Supremus (Black Temple)
+Option	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Netherstrike Bracers are part of the Dragonscale Leatherworking set and have a very balanced set of stats, including a socket.
+
+You can also use Windhawk Bracers, which are much better when not counting the Netherstrike set bonus, and have even more value if you ever have to heal, as they are shared best in slot with Restoration.
+Rank	Item	Source
+Option	Netherstrike Bracers Netherstrike Bracers	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Bracers of Havok Bracers of Havok	Drop: World Drop
+
+Best in Slot Hand Armor for Elemental Shaman in TBC Classic Phase 3
+Skyshatter Gauntlets are strong and enable your Tier 6 bonuses, making them the best choice, but if you happen to get access to Botanist's Gloves of Growth after healers are done with them, know that they are also very strong, especially when all of Skyshatter's spell hit is going to waste. The same logic applies to Spiritwalker Gauntlets.
+
+Soul-Eater's Handwraps are still great gloves, due to their high spell damage, spell critical strike, and two sockets.
+Rank	Item	Source
+Best	Skyshatter Gauntlets Skyshatter Gauntlets	Drop: Azgalor (Hyjal Summit)
+Great	Botanist's Gloves of Growth Botanist's Gloves of Growth	Drop: Teron Gorefiend (Black Temple)
+Option	Spiritwalker Gauntlets Spiritwalker Gauntlets	Drop: Shade of Akama (Black Temple)
+Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Alternatively, Cataclysm Handgrips or Handwraps of Flowing Thought are also decent options.
+Rank	Item	Source
+Option	Cataclysm Handgrips Cataclysm Handgrips	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Option	Cyclone Handguards Cyclone Handguards	Drop: The Curator (Karazhan)
+
+Best in Slot Waist Armor for Elemental Shaman in TBC Classic Phase 3
+Nothing really gets close to Flashfire Girdle, which has a crazy amount of stats and no spell hit, making it an almost perfect item for Elemental Shamans. Waistwrap of Infinity is a good alternative, as are Belt of Blasting, Cord of Screaming Terrors, and Netherstrike Belt.
+Rank	Item	Source
+Best	Flashfire Girdle Flashfire Girdle	Drop: Shade of Akama (Black Temple)
+Great	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+Option	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Option	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+You can also consider using Windhawk Belt, especially if healing is a part of your duties occasionally.
+Rank	Item	Source
+Option	Netherstrike Belt Netherstrike Belt	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+Option	Windhawk Belt Windhawk Belt	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Belt of Divine Inspiration Belt of Divine Inspiration	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Leg Armor for Elemental Shaman in TBC Classic Phase 3
+Leggings of Channeled Elements is the favored off-piece due to its excellent stats and three sockets. Because it can be hard to get due to competition from cloth users, you might want to consider using Skyshatter Legguards, which are only slightly worse and also contribute to the Tier 6 set bonuses.
+
+Alternatively, Cataclysm Leggings and Spellstrike Pants have strong throughput stats, after sockets are counted in, and even if you are not a Tailor for the Spellstrike Infusion set bonus.
+Rank	Item	Source
+Best	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+Best	Skyshatter Legguards Skyshatter Legguards	Drop: The Illidari Council (Black Temple)
+Option	Cataclysm Leggings Cataclysm Leggings	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Leggings of the Seventh Circle are also a strong alternative, but can be hard to come by due to coming from a World Boss.
+Rank	Item	Source
+Option	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+Option	Stormsong Kilt Stormsong Kilt	Drop: The Black Stalker (Heroic The Underbog)
+Option	Tempest Leggings Tempest Leggings
+Kurenai Kilt Kurenai Kilt	Vendor: Provisioner Nasela / Trader Narasu (The Mag'har / Kurenai Revered)
+
+Best in Slot Feet Armor for Elemental Shaman in TBC Classic Phase 3
+Slippers of the Seacaller are the best feet options in Phase 3, but also likely to be heavily contested, so consider using the similar Naturewarden's Treads or Boots of Oceanic Fury instead!
+
+Alternatively, Velvet Boots of the Guardian lack sockets, but more than make up for it with a high amount of spell damage and spell crit.
+Rank	Item	Source
+Best	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+Best	Naturewarden's Treads Naturewarden's Treads	Drop: Reliquary of the Lost (Black Temple)
+Great	Boots of Oceanic Fury Boots of Oceanic Fury	Drop: High Warlord Naj'entus (Black Temple)
+Option	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Boots of Blasting are also a fine alternative, as are Hurricane Boots or Boots of Foretelling.
+Rank	Item	Source
+Option	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+Option	Hurricane Boots Hurricane Boots	Profession: Leatherworking - BoP only
+Option	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+Option	Windshear Boots Windshear Boots	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+
+Best in Slot Neck Jewelry for Elemental Shaman in TBC Classic Phase 3
+The Sun King's Talisman is still the best neck in Tier 6, sporting high spell damage and spell crit in one neat package. Translucent Spellthread Necklace would be better, but it wastes a lot of budget on unnecessary spell hit.
+
+Adornment of Stolen Souls is a good alternative, which is easier to get, but also has fewer stats overall.
+Rank	Item	Source
+Best	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Great	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Reliquary of the Lost (Black Temple)
+Option	Adornment of Stolen Souls Adornment of Stolen Souls	Drop: Prince Malchezaar (Karazhan)
+Option	Brooch of Unquenchable Fury Brooch of Unquenchable Fury	Drop: Moroes (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Best in Slot Ring Jewelry for Elemental Shaman in TBC Classic Phase 3
+Ring of Ancient Knowledge is the best ring available in Tier 6, and you can use two of them! Good alternatives include Band of the Eternal Sage, Ring of Captured Storms, Ring of Unrelenting Storms, and Ring of Endless Coils.
+Rank	Item	Source
+Best	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+Best	Band of the Eternal Sage Band of the Eternal Sage	Quest: (Quest #10472) (The Scale of the Sands Exalted)
+Great	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+Great	Ring of Unrelenting Storms Ring of Unrelenting Storms	Drop: Trash Mobs (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Dreamcrystal Band Dreamcrystal Band	Zone Drop: Depleted Ring Depleted Ring (Blade's Edge Mountains) & 50x Apexis Shard Apexis Shard
+Option	Band of Frigid Elements Band of Frigid Elements	Drop: Anzu (Heroic Sethekk Halls)
+Option	Ring of Recurrence Ring of Recurrence	Drop: Echo of Medivh (Karazhan)
+Option	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Path of the Violet Mage Path of the Violet Mage (The Violet Eye Exalted)
+Option	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+Option	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Band of Dominion Band of Dominion	Drop: World Drop
+
+Best in Slot Trinkets for Elemental Shaman in TBC Classic Phase 3
+In TBC, most trinkets offer passive bonuses on top of their unique, cooldown-bound powers. This makes many trinkets useful for their passive benefits alone, but there are still many powerful on-use effects to consider when picking a trinket.
+
+The Skull of Gul'dan is the best in slot trinket for Elemental Shamans, as it is for every caster, but it is generally a small priority upgrade due to its high spell hit, which easily ends up wasted due to Elemental's multiple spell hit talents.
+
+Thus, The Lightning Capacitor and Icon of the Silver Crescent (or Dark Iron Smoking Pipe, the Brewfest caster trinket) are your best trinkets, with The Lightning Capacitor benefitting from your frequent spell crits and overload crits and Icon of the Silver Crescent having high spell damage, which you can further power up as a DPS cooldown. Sextant of Unstable Currents is a fine alternative, but its damage contribution can be quite random.
+
+It should also be noted that Classic-era trinkets, such as Mark of the Champion and Neltharion's Tear, are still extremely powerful in TBC and can be used for a long time, especially Mark of the Champion, which stays your best trinket when fighting Demons and Undead.
+Rank	Item	Source
+Best -
+Undead/Demons	Mark of the Champion Mark of the Champion	Quest: The Fall of Kel'Thuzad The Fall of Kel'Thuzad (Classic - Naxxramas)
+Best	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+Best	The Lightning Capacitor The Lightning Capacitor	Drop: Terestian Illhoof (Karazhan)
+Best	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Best - Seasonal	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Situational	Darkmoon Card: Crusade Darkmoon Card: Crusade	Quest: Darkmoon Blessings Deck Darkmoon Blessings Deck
+Option	Sextant of Unstable Currents Sextant of Unstable Currents	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Xi'ri's Gift Xi'ri's Gift	Vendor: Almaador (The Sha'tar Revered)
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Shiffar's Nexus-Horn Shiffar's Nexus-Horn	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+
+Best in Slot Weapons for Elemental Shaman in TBC Classic Phase 3
+Staves and other two-handed weapons generally grant less total spell damage than an MH+OH combo, and also lack the extra armor and block a shield provides, making an MH+OH generally superior if its stats are comparable to the best two-handed weapon available.
+
+Zhar'doom, Greatstaff of the Devourer is the ultimate Phase 3 weapon, sporting a huge amount of all throughput stats except spell hit, which makes it perfect for Elemental Shamans. Because it is a highly sought-after item, you might want to consider PvPing for the Season 3 Vengeful Gladiator's Gavel or hoping for The Maelstrom's Fury or, to a lesser extent, Hammer of Judgement.
+Rank	Item	Source
+Best	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+Great	The Maelstrom's Fury The Maelstrom's Fury	Drop: High Warlord Naj'entus (Black Temple)
+Great	Vengeful Gladiator's Gavel Vengeful Gladiator's Gavel	Vendor: Arena Points (Season 3)
+Option	Hammer of Judgement Hammer of Judgement	Drop: Trash Mobs (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+The Nexus Key is much easier to get, and so is Merciless Gladiator's Gavel, due to being the old season PvP weapon, which means it is discounted and requires no rating, making them good temporary weapons until you can get one of the new ones.
+Rank	Item	Source
+Option	The Nexus Key The Nexus Key	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Merciless Gladiator's Gavel Merciless Gladiator's Gavel	Vendor: Arena Points (Season 2)
+Option	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+Option	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+Option	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Gavel of Unearthed Secrets Gavel of Unearthed Secrets	Vendor: Nakodu (Lower City Exalted)
+
+Best in Slot Offhands for Elemental Shaman in TBC Classic Phase 3
+Whenever possible, try to use shields if they have comparable stats to the offhands at your disposal, as that will make any physical damage that comes your way much more manageable. We will be listing some of the best offhand options below as well, since sometimes you just cannot get a good shield to drop.
+
+Antonidas's Aegis of Rapt Concentration and Chronicle of Dark Secrets are the two best options in Tier 6, with the shield being particularly powerful due to not wasting stats on spell hit and having no competition from other casters in your raid other than Protection Paladins.
+Rank	Item	Source
+Best	Antonidas's Aegis of Rapt Concentration Antonidas's Aegis of Rapt Concentration	Drop: Archimonde (Hyjal Summit)
+Best	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+Option	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Option	Mazthoril Honor Shield Mazthoril Honor Shield	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Option	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+Option	Talisman of Nightbane Talisman of Nightbane	Drop: Nightbane (Karazhan)
+
+Best in Slot Totems for Elemental Shaman in TBC Classic Phase 3
+A new best totem finally arrives in Phase 3: Totem of Ancestral Guidance, which provides a very large bonus to your core damage spells. Until you get this, you'll continue to rock the previous best totem from The Mechanar: Totem of the Void.
+Rank	Item	Source
+Best	Totem of Ancestral Guidance Totem of Ancestral Guidance	Drop: Teron Gorefiend (Black Temple)
+Great	Totem of the Void Totem of the Void	Drop: Cache of the Legion (The Mechanar)
+Option	Totem of the Storm Totem of the Storm	Drop: World Drop
+Option	Totem of the Pulsing Earth Totem of the Pulsing Earth	Vendor: G'eras (Badges of Justice)
+Woah
+MoP Restoration/Elemental Shaman Guide Writer
+Woah has written over 275 guides for Wowhead since WoW Classic was released in 2019, with a particular focus on Shaman class guides. Shaman has been his main class since the start of Classic and also since WoW's initial launch in 2004.
+
+Currently playing in Gehennas EU Horde with Progress's 25-man alt/gold runs, Woah is looking to do some 10-man alt running on the side with a second shaman in Mists of Pandaria!
+1 - 5 of 5
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By Halasuwa (3,330 – 7·13) on 2022/01/23 (Burning Crusade)	
+	
+Any reason Bands of the Coming Storm Bands of the Coming Storm are not included in the Wrist section?
+
+At the very worst they are still on par with the ones from A'lar, and given they are absolutely an Ele shaman (mail caster) item, the competition is non-existent.
+Last edited by Halasuwa on 2022/01/23
+
+1
+
+	
+
+Woah <Guide Author> on 2022/01/23 (Burning Crusade)
+True, I'll add them in, although hopefully you will be able to get the crafted bracers quickly as well :)
+
+2
+
+	
+By wowtunus (4,247 – 4·8) on 2022/01/22 (Burning Crusade)	
+	
+Skull of Gul'dan is still BiS though, no matter how you slice it.
+
+0
+
+	
+
+PregnantOrc on 2022/01/23 (Burning Crusade)
+It's hard to argue against it. 12 passive SP and the on use effects have the same CD with Gul'dan giving a higher amount of tasty haste. Not a priority upgrade but Gul'dans certainly seems to edge it out
+
+0
+
+	
+
+Woah <Guide Author> on 2022/01/23 (Burning Crusade)
+Its mostly because every caster under the sun is going rabid for it and Zhar'doom is way more of an upgrade since it wastes no budget on Spell Hit, so I talk about it in the trinket section but don't list it for the BiS specifically to avoid people driving their guild leaders mad :D, still if that is confusing for people I can add it up, but not thinking of actively recommending it because its just not that absurd of an upgrade relative to how much trouble it is to get.
+
+0
+
+	
+
+panthyren on 2022/01/23 (Burning Crusade)
+Why call it a bis list if you're making concessions for contested gear?
+
+2
+
+	
+
+Woah <Guide Author> on 2022/01/23 (Burning Crusade)
+It is the ages old discussion of "theoretical best in slot" vs "reasonable best in slot", especially when the whole raid's benefit is taken into account, which is how gear will be distributed unless you (the Ele) are the GM / RL / IRL friend and so on. I have made plenty of "bind bis" lists before but over time realized that it is better to give realistic expectations to people in the TL:DR lists and talk about dream items in the text instead to avoid needless drama with some people trying to argue with their RLs that they should get <small upgrade super contested item XYZ> because it is on Wowhead's list. Hope this explanation gives you some insight into the reasoning here! Will add some more Skull-explaining text to make it clear that it is bis, but not worth dying for.
+
+0
+
+	
+
+Woah <Guide Author> on 2022/02/26 (Burning Crusade)
+I most decidedly do not main a lock or mage .. but if you are interested in a more detailed number-crunching article on why skull is not that amazing for elemental check out https://tbc.wowhead.com/news/skull-of-guldan-loot-priority-in-burning-crusade-classic-325970, there are just better things to chase from a raid-optimizing perspective!
+
+1
+
+	
+By Totemhappi (289 – 1·4) on 2022/01/27 (Burning Crusade)	
+	
+Just curious, is there a reason that Darkmoon Card: Crusade Darkmoon Card: Crusade is not included in the list of trinkets? A raw 80 spell power (even if it has ramp-up) seems pretty good. If we're considering neltharion's tear still, why would we not consider this? IIRC, don't overload procs mean that this will charge up to full way faster than with other classes?
+Last edited by Totemhappi on 2022/01/27
+
+0
+
+	
+
+Woah <Guide Author> on 2022/01/27 (Burning Crusade)
+If you can ensure full uptime it can be pretty good for sure, can add it as a boss-dependent trinket!
+
+0
+
+	
+
+Totemhappi on 2022/01/28 (Burning Crusade)
+The thing procs per hit, not per cast. Even outside of bosses. If you chain lightning on a pull that's an instant 3 stacks, 6 if it overloads, and that's 48 spell power right there.
+
+1
+
+	
+By InteceptorPF (931 – 3·5) on 2022/01/28 (Burning Crusade)	
+	
+On boots category,you show Purple/Orange combo gems suggestion but on top of the page you show 2 epic red gems.What is the correct suggestion?
+
+0
+
+	
+
+Woah <Guide Author> on 2022/01/28 (Burning Crusade)
+Good find, ideally you'd use double reds but orange / purple are not hugely far behind if you cannot afford Crimson Spinels, edited the gems on boot section to make it equal to the gear planner, cheers!
+
+1
+
+	
+By Westie91 (14,091 – 1·8·10) on 2022/02/23 (Burning Crusade)	
+	
+Out of curiosity, why has none of the pvp gear been put in the lists? The S3 neck, feet and wrists are certainly better than some of the gear in the lists, and it’s relatively easy to obtain.
+Last edited by Westie91 on 2022/02/23
+
+1
+
+	
+
+Woah <Guide Author> on 2022/02/26 (Burning Crusade)
+Mostly because PvP is not everyone's cup of tea and it could be seen as pressuring PvErs to PvP for gear, which would not be the intention at all, especially as none of it is best in slot. Regardless, the best thing about PvP gear is that you just buy the gear outright at the end of your grind, no RNG required, so its really nice to cover unlucky drop slots!
+1 - 5 of 5
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Elemental Shaman Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+            Best In Slot Gear in Phase 4
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Totems
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Elemental Shaman DPS Best in Slot (BiS) Phase 4 Gear Guide
+By Woah
+Updated: 2026/02/12
+Welcome to Wowhead's Best in Slot Gear list from Phase 4 Zul'Aman for Elemental Shaman DPS in The Burning Crusade Classic. This guide will list the recommended gear for Elemental Shaman DPS to acquire while they progress during the fourth phase of The Burning Crusade Classic, and contains gear sourced from Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Elemental Shaman DPS in Phase 4
+Elemental Shaman's Tier 6 bonuses are strong, and getting four pieces of the set should be one of your main priorities. Ideally, you will want your off-set piece to be the legs, as Leggings of Channeled Elements Leggings of Channeled Elements are the strongest off-piece available, and you can also simply get Pantaloons of Arcane Annihilation Pantaloons of Arcane Annihilation for badges as a reliable alternative.
+
+The Skull of Gul'dan The Skull of Gul'dan is the best in slot trinket for Elemental Shamans, as it is for every caster, but it is generally a small priority upgrade due to its high spell hit, which easily ends up wasted due to Elemental's multiple spell hit talents.
+
+Elemental Shamans looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Elemental Shaman Gems & Enchants
+Should Elemental Shaman DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 4?
+Shamans can pick either of the Aldor or the Scryers without much penalty. The Aldor shoulder enchant is slightly better, but the difference is minuscule from the Scryers enchant when considering your full gear stat bonuses. In general, it is best to pick based on which faction is cheaper to buy reputation materials for, as Aldor, for example, can often be extremely expensive due to having the favored shoulder enchant for most specializations.
+
+    Aldor offer a very slightly superior shoulder enchant for DPS.
+    Aldor also offers a decent staff at Revered, Auchenai Staff Auchenai Staff. This is okay for starters, but Main Hand / Offhand combinations are better at level 70.
+    Scryers offers one of the best rings, Seer's Signet Seer's Signet, at Exalted, and a powerful trinket, Scryer's Bloodgem Scryer's Bloodgem at Revered, although you probably will not need its high spell hit due to getting so much of it from talents.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Elemental Shamans, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Elemental Shaman in TBC Classic Phase 4
+Skyshatter Headguard is the best Phase 4 helmet, a strong piece on its own, but taken over Cowl of the Illidari High Lord for enabling the Tier 6 set bonuses.
+
+Cyclone Faceguard is still a great helmet to boost your party members, but your personal gain from using Tier 6 with its superior stats and set bonuses should result in higher raid DPS, overall.
+Rank	Item	Source
+BiS	Skyshatter Headguard Skyshatter Headguard	Drop: Archimonde (Hyjal Summit)
+Option	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+Option	Cyclone Faceguard Cyclone Faceguard	Drop: Prince Malchezaar (Karazhan)
+Option	Cataclysm Headpiece Cataclysm Headpiece	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Gadgetstorm Goggles Gadgetstorm Goggles	Profession: Engineering - BoP only
+Option	Storm Master's Helmet Storm Master's Helmet	Vendor: G'eras (Badges of Justice)
+Option	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Lightning Crown Lightning Crown	Drop: World Drop
+Option	Big Bad Wolf's Head Big Bad Wolf's Head	Drop: The Big Bad Wolf (Karazhan)
+
+Best in Slot Shoulder Armor for Elemental Shaman in TBC Classic Phase 4
+The Skyshatter Mantle is also an excellent piece that also happens to enable your Tier 6 set bonuses, making its acquisition a priority. Mantle of Nimble Thought and Hatefury Mantle are decent alternatives, but Mantle of Nimble Thought requires Tailoring, which is not a favored profession to have.
+Rank	Item	Source
+BiS	Skyshatter Mantle Skyshatter Mantle	Drop: Mother Shahraz (Black Temple)
+Option	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+Option	Pauldrons of the Furious Elements Pauldrons of the Furious Elements	Vendor: G'eras (Badges of Justice)
+Option (Tailoring)	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+If you are staying on the party buffing route, use Cyclone Shoulderguards to enable the Improved Wrath of Air Totem tier bonus.
+Rank	Item	Source
+Option	Cyclone Shoulderguards Cyclone Shoulderguards	Drop: High King Maulgar (Gruul's Lair)
+Option	Cataclysm Shoulderpads Cataclysm Shoulderpads	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Mantle of the Elven Kings Mantle of the Elven Kings	Drop: Trash Mobs (Tempest Keep: The Eye)
+Option	Pauldrons of Wild Magic Pauldrons of Wild Magic	Drop: Quagmirran (Heroic The Slave Pens )
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest: The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+
+Best in Slot Back Armor for Elemental Shaman in TBC Classic Phase 4
+While Shroud of the Highborne is theoretically the best cloak available, its stats are healer-focused, and we would recommend using the similarly powerful Cloak of the Illidari Council instead to avoid drama, at least until no healers need it.
+
+Alternatively, Shadowcaster's Drape, Cloak of Arcane Alacrity, and Brute Cloak of the Ogre-Magi are great all-rounder cloaks with no spell hit, making them a great choice when trying to avoid hitting Elemental Shaman's low spell hit cap.
+Rank	Item	Source
+BiS	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: The Illidari Council (Black Temple)
+Option	Shadowcaster's Drape Shadowcaster's Drape	Drop: First Timed Chest (Zul'Aman)
+Option	Cloak of Arcane Alacrity Cloak of Arcane Alacrity	Vendor: G'eras (Badges of Justice)
+Option	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+Option	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+
+Best in Slot Chest Armor for Elemental Shaman in TBC Classic Phase 4
+Skyshatter Breastplate has a ton of stats, 3 sockets, and enables your Tier 6 set bonuses, making it the best chest in Phase 4. Alternatively, Hauberk of the Furious Elements and Chestguard of Relentless Storms waste no budget on spell hit and require no gems to be powerful, but are weaker than Skyshatter Breastplate when considering the potential set bonus benefits.
+Rank	Item	Source
+BiS	Skyshatter Breastplate Skyshatter Breastplate	Drop: Illidan Stormrage (Black Temple)
+Option	Hauberk of the Furious Elements Hauberk of the Furious Elements	Vendor: G'eras (Badges of Justice)
+Option	Chestguard of Relentless Storms Chestguard of Relentless Storms	Drop: Trash Mobs (Hyjal Summit / Black Temple)
+Option	Cataclysm Chestpiece Cataclysm Chestpiece	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Netherstrike Breastplate is also still good, and enables the Netherstrike Armor set bonus. Windhawk Hauberk is even better when discounting the Netherstrike set bonus, and is a great alternative if you are Tribal. It is also one of the best chests for healing, making it a fine all-rounder option.
+Rank	Item	Source
+Option	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Netherstrike Breastplate Netherstrike Breastplate	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Windhawk Hauberk Windhawk Hauberk	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Cyclone Chestguard Cyclone Chestguard	Drop: Magtheridon (Magtheridon's Lair)
+Option	Will of Edward the Odd Will of Edward the Odd	Drop: World Drop
+
+Best in Slot Wrist Armor for Elemental Shaman in TBC Classic Phase 4
+Bracers of Nimble Thought are the ideal wrists by a wide margin, with high stats and no spell hit. Alternatively, Cuffs of Devastation and Mindstorm Wristbands are strong on their own.
+Rank	Item	Source
+BiS	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring - can be purchased on the Auction House
+Option	Cuffs of Devastation Cuffs of Devastation	Drop: Rage Winterchill (Hyjal Summit)
+Option	Bands of the Coming Storm Bands of the Coming Storm	Drop: Supremus (Black Temple)
+Option	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Netherstrike Bracers are part of the Dragonscale Leatherworking set and have a very balanced set of stats, including a socket.
+
+You can also use Windhawk Bracers, which are much better when not counting the Netherstrike set bonus, and have even more value if you ever have to heal, as they are shared best in slot with Restoration.
+Rank	Item	Source
+Option	Netherstrike Bracers Netherstrike Bracers	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Bracers of Havok Bracers of Havok	Drop: World Drop
+
+Best in Slot Hand Armor for Elemental Shaman in TBC Classic Phase 4
+Skyshatter Gauntlets are strong and enable your Tier 6 bonuses, making them the best choice, but if you happen to get access to Botanist's Gloves of Growth after healers are done with them, know that they are also very strong, especially when all of Skyshatter's spell hit is going to waste.
+Rank	Item	Source
+BiS	Skyshatter Gauntlets Skyshatter Gauntlets	Drop: Azgalor (Hyjal Summit)
+Option	Botanist's Gloves of Growth Botanist's Gloves of Growth	Drop: Teron Gorefiend (Black Temple)
+Option	Studious Wraps Studious Wraps	Vendor: G'eras (Badges of Justice)
+Option	Grips of Nature's Wrath Grips of Nature's Wrath	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Soul-Eater's Handwraps are still great gloves, due to their high spell damage, spell critical strike, and two sockets. Alternatively, Cataclysm Handgrips or Handwraps of Flowing Thought are also decent options.
+Rank	Item	Source
+Option	Spiritwalker Gauntlets Spiritwalker Gauntlets	Drop: Shade of Akama (Black Temple)
+Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+Option	Cataclysm Handgrips Cataclysm Handgrips	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Option	Cyclone Handguards Cyclone Handguards	Drop: The Curator (Karazhan)
+
+Best in Slot Waist Armor for Elemental Shaman in TBC Classic Phase 4
+Nothing really gets close to Flashfire Girdle, which has a crazy amount of stats and no spell hit, making it an almost perfect item for Elemental Shamans. Waistwrap of Infinity is a good alternative, as are Belt of Blasting and Belt of the Crescent Moon.
+Rank	Item	Source
+BiS	Flashfire Girdle Flashfire Girdle	Drop: Shade of Akama (Black Temple)
+Option	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+Option	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Option	Belt of the Crescent Moon Belt of the Crescent Moon	Drop: Kaz'rogal (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Starfire Waistband Starfire Waistband	Vendor: G'eras (Badges of Justice)
+Option	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Netherstrike Belt Netherstrike Belt	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+Option	Windhawk Belt Windhawk Belt	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Belt of Divine Inspiration Belt of Divine Inspiration	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Leg Armor for Elemental Shaman in TBC Classic Phase 4
+Leggings of Channeled Elements are the favored off-piece due to their excellent stats and three sockets. Because it can be hard to get due to competition from cloth users, you might want to consider using Pantaloons of Arcane Annihilation, or even Skyshatter Legguards, which are only slightly worse and also contribute to the Tier 6 set bonuses.
+Rank	Item	Source
+BiS	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+BiS	Pantaloons of Arcane Annihilation Pantaloons of Arcane Annihilation	Vendor: G'eras (Badges of Justice)
+BiS	Skyshatter Legguards Skyshatter Legguards	Drop: The Illidari Council (Black Temple)
+Option	Avalanche Leggings Avalanche Leggings	Drop: Halazzi (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Alternatively, Avalanche Leggings, Cataclysm Leggings, and Spellstrike Pants have strong throughput stats, after sockets are counted in, and even if you are not a Tailor for the Spellstrike Infusion set bonus. Leggings of the Seventh Circle are also a strong alternative, but can be hard to come by due to coming from a World Boss.
+Rank	Item	Source
+Option	Cataclysm Leggings Cataclysm Leggings	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+Option	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+Option	Stormsong Kilt Stormsong Kilt	Drop: The Black Stalker (Heroic The Underbog)
+Option	Tempest Leggings Tempest Leggings
+Kurenai Kilt Kurenai Kilt	Vendor: Provisioner Nasela / Trader Narasu (The Mag'har / Kurenai Revered)
+
+Best in Slot Feet Armor for Elemental Shaman in TBC Classic Phase 4
+Slippers of the Seacaller are the best feet options in Phase 4, but also likely to be heavily contested, so consider using the similar Naturewarden's Treads, Footpads of Madness, or Boots of Oceanic Fury instead!
+Rank	Item	Source
+BiS	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+BiS	Naturewarden's Treads Naturewarden's Treads	Drop: Reliquary of the Lost (Black Temple)
+BiS	Footpads of Madness Footpads of Madness	Drop: Jan'alai (Zul'Aman)
+Option	Boots of Oceanic Fury Boots of Oceanic Fury	Drop: High Warlord Naj'entus (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Treads of Booming Thunder, Velvet Boots of the Guardian, and Boots of Blasting are also fine alternatives, not too far behind the top four.
+Rank	Item	Source
+Option	Treads of Booming Thunder Treads of Booming Thunder	Vendor: G'eras (Badges of Justice)
+Option	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+Option	Hurricane Boots Hurricane Boots	Profession: Tailoring - BoP only
+Option	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+Option	Windshear Boots Windshear Boots	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+
+Best in Slot Neck Jewelry for Elemental Shaman in TBC Classic Phase 4
+Brooch of Nature's Mercy is technically the best neck available, but also has very high healer stats we cannot use, so it can be nice to pass on the first few. Because Zul'Aman only has a 3-day lockout, it should be easy enough to farm a lot of them for your whole group over time.
+
+Loop of Cursed Bones and The Sun King's Talisman are still great alternatives, sporting high spell damage and other useful stats.
+Rank	Item	Source
+BiS	Brooch of Nature's Mercy Brooch of Nature's Mercy	Drop: Akil'zon (Zul'Aman)
+BiS	Loop of Cursed Bones Loop of Cursed Bones	Drop: Zul'jin (Zul'Aman)
+Option	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Reliquary of the Lost (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Adornment of Stolen Souls Adornment of Stolen Souls	Drop: Prince Malchezaar (Karazhan)
+Option	Brooch of Unquenchable Fury Brooch of Unquenchable Fury	Drop: Moroes (Karazhan)
+Option	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Best in Slot Ring Jewelry for Elemental Shaman in TBC Classic Phase 4
+Ring of Ancient Knowledge is the best ring available in Tier 6, and you can use two of them! Good alternatives include Band of the Eternal Sage, Mana Attuned Band, Ring of Captured Storms, Ring of Unrelenting Storms, and Ring of Endless Coils.
+Rank	Item	Source
+BiS	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+BiS	Band of the Eternal Sage Band of the Eternal Sage	Quest: (Quest #10472) (The Scale of the Sands Exalted)
+Option	Mana Attuned Band Mana Attuned Band	Drop: Third Timed Chest (Zul'Aman)
+Option	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Ring of Unrelenting Storms Ring of Unrelenting Storms	Drop: Trash Mobs (Karazhan)
+Option	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Dreamcrystal Band Dreamcrystal Band	Zone Drop: Depleted Ring Depleted Ring (Blade's Edge Mountains) & 50x Apexis Shard Apexis Shard
+Option	Band of Frigid Elements Band of Frigid Elements	Drop: Anzu (Heroic Sethekk Halls)
+Option	Ring of Recurrence Ring of Recurrence	Drop: Echo of Medivh (Karazhan)
+Option	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Path of the Violet Mage Path of the Violet Mage (The Violet Eye Exalted)
+Option	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+Option	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Band of Dominion Band of Dominion	Drop: World Drop
+
+Best in Slot Trinkets for Elemental Shaman in TBC Classic Phase 4
+In TBC, most trinkets offer passive bonuses on top of their unique, cooldown-bound powers. This makes many trinkets useful for their passive benefits alone, but there are still many powerful on-use effects to consider when picking a trinket.
+
+The Skull of Gul'dan is the best in slot trinket for Elemental Shamans, as it is for every caster, but it is generally a small priority upgrade due to its high spell hit, which easily ends up wasted due to Elemental's multiple spell hit talents.
+
+Thus, The Lightning Capacitor and Hex Shrunken Head are your best trinkets, with The Lightning Capacitor benefiting from your frequent spell crits and overload crits and Hex Shrunken Head having high spell damage, which you can further power up as a DPS cooldown.
+
+It should also be noted that Classic-era trinkets, such as Mark of the Champion and Neltharion's Tear, are still extremely powerful in TBC and can be used for a long time, especially Mark of the Champion, which stays your best trinket when fighting Demons and Undead.
+Rank	Item	Source
+Special	Mark of the Champion Mark of the Champion	Quest: The Fall of Kel'Thuzad The Fall of Kel'Thuzad (Classic - Naxxramas)
+BiS (Small Upgrade)	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+BiS	The Lightning Capacitor The Lightning Capacitor	Drop: Terestian Illhoof (Karazhan)
+BiS	Hex Shrunken Head Hex Shrunken Head	Drop: Hex Lord Malacrass (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Icon of the Silver Crescent, or Dark Iron Smoking Pipe, the Brewfest caster trinket, are fine alternatives that are quite easy to obtain.
+Rank	Item	Source
+Option	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Option	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Option	Darkmoon Card: Crusade Darkmoon Card: Crusade	Quest: Darkmoon Blessings Deck Darkmoon Blessings Deck
+Option	Sextant of Unstable Currents Sextant of Unstable Currents	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Xi'ri's Gift Xi'ri's Gift	Vendor: Almaador (The Sha'tar Revered)
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Shiffar's Nexus-Horn Shiffar's Nexus-Horn	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+
+Best in Slot Weapons for Elemental Shaman in TBC Classic Phase 4
+Staves and other two-handed weapons generally grant less total spell damage than an MH+OH combo, and also lack the extra armor and block a shield provides, making an MH+OH generally superior if its stats are comparable to the best two-handed weapon available.
+
+Zhar'doom, Greatstaff of the Devourer is the ultimate Phase 4 weapon, sporting a huge amount of all throughput stats except spell hit, which makes it perfect for Elemental Shamans. Because it is a highly sought-after item, you might want to consider PvPing for the Season 3 Vengeful Gladiator's Gavel or hoping for The Maelstrom's Fury or, to a lesser extent, Wub's Cursed Hexblade.
+Rank	Item	Source
+BiS	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+Option	The Maelstrom's Fury The Maelstrom's Fury	Drop: High Warlord Naj'entus (Black Temple)
+Option	Vengeful Gladiator's Gavel Vengeful Gladiator's Gavel	Vendor: Arena Points (Season 3)
+Option	Wub's Cursed Hexblade Wub's Cursed Hexblade	Drop: Jan'alai (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+The Nexus Key is much easier to get, and so is Merciless Gladiator's Gavel, due to being the old season PvP weapon, which means it is discounted and requires no rating, making them good temporary weapons until you can get one of the new ones.
+Rank	Item	Source
+Option	Hammer of Judgement Hammer of Judgement	Drop: Trash Mobs (Hyjal Summit)
+Option	Amani Divining Staff Amani Divining Staff	Drop: Second Timed Chest (Zul'Aman)
+Option	The Nexus Key The Nexus Key	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Merciless Gladiator's Gavel Merciless Gladiator's Gavel	Vendor: Arena Points (Season 2)
+Option	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+Option	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+Option	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Gavel of Unearthed Secrets Gavel of Unearthed Secrets	Vendor: Nakodu (Lower City Exalted)
+
+Best in Slot Offhands for Elemental Shaman in TBC Classic Phase 4
+Whenever possible, try to use shields if they have comparable stats to the offhands at your disposal, as that will make any physical damage that comes your way much more manageable. We will be listing some of the best offhand options below as well, since sometimes you just cannot get a good shield to drop.
+
+Antonidas's Aegis of Rapt Concentration and Fetish of the Primal Gods are the two best options available, and the Fetish can be easily obtainable with Badges of Justice.
+Rank	Item	Source
+BiS	Antonidas's Aegis of Rapt Concentration Antonidas's Aegis of Rapt Concentration	Drop: Archimonde (Hyjal Summit)
+BiS	Fetish of the Primal Gods Fetish of the Primal Gods	Vendor: G'eras (Badges of Justice)
+Option	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+Option	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Mazthoril Honor Shield Mazthoril Honor Shield	Vendor: G'eras (Badges of Justice)
+Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Option	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+Option	Talisman of Nightbane Talisman of Nightbane	Drop: Nightbane (Karazhan)
+
+Best in Slot Totems for Elemental Shaman in TBC Classic Phase 4
+The best totem you can get for your relic slot is Totem of Ancestral Guidance, which provides a very large bonus to your core damage spells. Alternatively, you can get Skycall Totem, which can be equal or better with good RNG, but suffers heavily from any downtime.
+Rank	Item	Source
+BiS	Totem of Ancestral Guidance Totem of Ancestral Guidance	Drop: Teron Gorefiend (Black Temple)
+BiS	Skycall Totem Skycall Totem	Vendor: G'eras (Badges of Justice)
+Option	Totem of the Void Totem of the Void	Drop: Cache of the Legion (The Mechanar)
+Option	Totem of the Storm Totem of the Storm	Drop: World Drop
+Woah
+MoP Restoration/Elemental Shaman Guide Writer
+Woah has written over 275 guides for Wowhead since WoW Classic was released in 2019, with a particular focus on Shaman class guides. Shaman has been his main class since the start of Classic and also since WoW's initial launch in 2004.
+
+Currently playing in Gehennas EU Horde with Progress's 25-man alt/gold runs, Woah is looking to do some 10-man alt running on the side with a second shaman in Mists of Pandaria!
+1 - 5 of 5
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+1
+
+	
+By Jertrix (438 – 2·1) on 2022/03/30 (Burning Crusade)	
+	
+Could you add Avalanche Leggings Avalanche Leggings to the list? They have better stats than some of the items listed there. Or is there a reason they are not listed.
+
+0
+
+	
+
+Woah <Guide Author> on 2022/03/31 (Burning Crusade)
+Added them now, just had not gotten to it before, thanks!
+
+1
+
+	
+By BillyEyelash (775 – 2·7) on 2022/04/11 (Burning Crusade)	
+	
+Is Cloak of Arcane Alacrity Cloak of Arcane Alacrity not better than some of the other cloaks here? Seems like it would fall just above the Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi because of the haste.
+Last edited by BillyEyelash on 2022/04/11
+
+0
+
+	
+
+Woah <Guide Author> on 2022/04/27 (Burning Crusade)
+It is, yeah, added it now!
+
+0
+
+	
+By BisEleGrob (739 – 3) on 2022/03/23 (Burning Crusade)	
+	
+Is there a reason that Belt of the Crescent Moon Belt of the Crescent Moon is not included in the waist slot in the BiS list? It seems like a lot of focus for elemental shamans is placed on spell haste now (including primarily healing items with spell haste and lower spell damage over traditional DPS caster gear). I am wearing 4 pieces of Tier 6 right now and am well over the spell hit cap with my talents, so I think it is time to replace my Cord of Screaming Terrors Cord of Screaming Terrors with this belt despite the fact that the Cord has more spell damage with gems. Thoughts?
+Last edited by BisEleGrob on 2022/03/23
+
+0
+
+	
+
+Woah <Guide Author> on 2022/03/23 (Burning Crusade)
+You lose some SP from the gems and general raw stats on Cord but still looks worth it, just not quite as good as the top two listed. Go ahead and swap, I'll edit it in the guide for clarity purposes, cheers!
+
+0
+
+	
+
+BisEleGrob on 2022/03/26 (Burning Crusade)
+Thanks! I also think that Starfire Waistband (https://tbc.wowhead.com/item=33559/starfire-waistband) should be included as a "Great" item in the waist slot. What do you think?
+
+0
+
+	
+
+Woah <Guide Author> on 2022/03/28 (Burning Crusade)
+Looks pretty comparable to the belts on the middle of the table, gonna add it up, thanks! :)
+
+-1
+
+	
+By Norjak (12,432 – 1·11·16) on 2022/03/29 (Burning Crusade)	
+	
+Grips of Nature's Wrath Grips of Nature's Wrath (available from the Badge vendor in Phase 4) are missing from this list.
+Last edited by Norjak on 2022/03/29
+
+0
+
+	
+
+Woah <Guide Author> on 2022/03/31 (Burning Crusade)
+Not listed because, for the same amount of badges, you can get Studious Wraps Studious Wraps, which are even better for PvE DPS. Added them in after Studious for completion's sake regardless, thanks!
+
+-2
+
+	
+
+Wixman1234 on 2022/04/22 (Burning Crusade)
+For people that like to RP and/or be purists, the all-mail set, those gloves are pretty decent.
+
+-1
+
+	
+
+Pewpewarrowz on 2022/04/23 (Burning Crusade)
+This is a bis list not a RP list, get that cringe outa here ;d
+
+-2
+
+	
+By Roybeezy (136 – 1·0) on 2022/04/08 (Burning Crusade)	
+	
+Hello! I would like to suggest an edit. Quagmirran's Eye Quagmirran's Eye should be placed above Hex Shrunken Head Hex Shrunken Head in terms of "best in slot" order. I have personally tested this in game over the last few weeks, swapping the trinkets between raids to determine if this is the case, and indeed, it is. This also held true for Icon of the Silver Crescent Icon of the Silver Crescent last phase. If you're looking strictly at sims, this trinket will consistently perform 30-40 dps higher than either of those two trinkets. I currently hold many top ranking parses for Elemental Shaman, and I would not have made this comment without making sure my information is correct. Thank you for your time, and if you can prove what I have said wrong, please do! I would genuinely like to see where I am missing something here!
+Last edited by Roybeezy on 2022/04/08
+
+1
+
+	
+
+Woah <Guide Author> on 2022/04/27 (Burning Crusade)
+Quag is great, but also very inconsistent, which naturally makes it great for having good parses..if you are lucky. Also, Spell Haste value with current gear profiles is extremely high, and sims just average out the expected Spell Haste from the trinket, which makes it look much better than it actually is in practice as you could have to move during the 6 second proc, or get Chain Lightning off cooldown, etc. Overall, it is just the kind of trinket that is likely to look better in sims than it actually is in actual fighting, but thanks for the suggestion!
+1 - 5 of 5
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Elemental Shaman Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+            Best In Slot Gear in Phase 5
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Totems
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Elemental Shaman DPS Best in Slot (BiS) Phase 5 Gear Guide
+By Woah
+Updated: 2026/02/22
+Welcome to Wowhead's Best in Slot Gear list from Phase 5 Sunwell Plateau for Elemental Shaman DPS in The Burning Crusade Classic. This guide will list the recommended gear for Elemental Shaman DPS to acquire while they progress during the fifth and final phase of The Burning Crusade Classic, which contains gear sourced from Sunwell Plateau, Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Elemental Shaman DPS in Phase 5
+Elemental Shaman's Tier 6 bonuses are strong, and getting four pieces of the set should be one of your main priorities, with three of them being the new tier pieces in Sunwell Plateau. Ideally, you will want your remaining piece to be the shoulders, as it is the slot where you have the least to gain by switching to a Sunwell Plateau gear piece.
+
+The Skull of Gul'dan The Skull of Gul'dan is a best in slot trinket for Elemental Shamans, as it is for every caster, but it is generally a small priority upgrade due to its high spell hit, which easily ends up wasted due to Elemental's multiple spell hit talents.
+
+Elemental Shamans looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Elemental Shaman Gems & Enchants
+Should Elemental Shaman DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 5?
+Shamans can pick either of the Aldor or the Scryers without much penalty. The Aldor shoulder enchant is slightly better, but the difference is minuscule from the Scryers enchant when considering your full gear stat bonuses. In general, it is best to pick based on which faction is cheaper to buy reputation materials for, as Aldor, for example, can often be extremely expensive due to having the favored shoulder enchant for most specializations.
+
+    Aldor offer a very slightly superior shoulder enchant for DPS.
+    Aldor also offers a decent staff at Revered, Auchenai Staff Auchenai Staff. This is okay for starters, but Main Hand / Offhand combinations are better at level 70.
+    Scryers offers one of the best rings, Seer's Signet Seer's Signet, at Exalted, and a powerful trinket, Scryer's Bloodgem Scryer's Bloodgem at Revered, although you probably will not need its high spell hit due to getting so much of it from talents.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Elemental Shamans, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Elemental Shaman in TBC Classic Phase 5
+Cowl of Gul'dan and Dark Conjuror's Collar are the best Phase 5 helmets available.
+
+Lightning Etched Specs and Skyshatter Headguard are fine alternatives, and Skyshatter can help you get the Tier 6 set bonuses while transitioning to Sunwell Plateau gear.
+Rank	Item	Source
+BiS	Cowl of Gul'dan Cowl of Gul'dan	Drop: Kil'jaeden (Sunwell Plateau)
+BiS	Dark Conjuror's Collar Dark Conjuror's Collar	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Lightning Etched Specs Lightning Etched Specs	Profession: Engineering - BoP only
+Option	Skyshatter Headguard Skyshatter Headguard	Drop: Archimonde (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+Option	Cyclone Faceguard Cyclone Faceguard	Drop: Prince Malchezaar (Karazhan)
+Option	Cataclysm Headpiece Cataclysm Headpiece	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Gadgetstorm Goggles Gadgetstorm Goggles	Profession: Engineering - BoP only
+Option	Storm Master's Helmet Storm Master's Helmet	Vendor: G'eras (Badges of Justice)
+Option	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Lightning Crown Lightning Crown	Drop: World Drop
+Option	Big Bad Wolf's Head Big Bad Wolf's Head	Drop: The Big Bad Wolf (Karazhan)
+
+Best in Slot Shoulder Armor for Elemental Shaman in TBC Classic Phase 5
+Skyshatter Mantle is an excellent piece that also happens to enable your Tier 6 set bonuses, making its acquisition a priority.
+
+Amice of the Convoker and Erupting Epaulets are stronger standalone items, but not by enough of a margin that it is worth losing the Tier 6 bonuses to use them. Mantle of Nimble Thought and Hatefury Mantle are also decent alternatives, but Mantle of Nimble Thought requires Tailoring, which is not a favored profession to have.
+Rank	Item	Source
+BiS	Skyshatter Mantle Skyshatter Mantle	Drop: Mother Shahraz (Black Temple)
+Option	Amice of the Convoker Amice of the Convoker	Drop: Lady Sacrolash & Grand Warlock Alythess (Sunwell Plateau)
+Option	Erupting Epaulets Erupting Epaulets	Vendor: Yrma
+Drop: Equilibrium Epaulets Equilibrium Epaulets from Eredar Twins (Sunwell Plateau) & Sunmote Sunmote
+Option	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+If staying on the party buffing route, use Cyclone Shoulderguards to enable the Improved Wrath of Air Totem tier bonus.
+Rank	Item	Source
+Option	Pauldrons of the Furious Elements Pauldrons of the Furious Elements	Vendor: G'eras (Badges of Justice)
+Option	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+Option	Cyclone Shoulderguards Cyclone Shoulderguards	Drop: High King Maulgar (Gruul's Lair)
+Option	Cataclysm Shoulderpads Cataclysm Shoulderpads	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Mantle of the Elven Kings Mantle of the Elven Kings	Drop: Trash Mobs (Tempest Keep: The Eye)
+Option	Pauldrons of Wild Magic Pauldrons of Wild Magic	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest: The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+
+Best in Slot Back Armor for Elemental Shaman in TBC Classic Phase 5
+Tattered Cape of Antonidas is by far the best cloak available, with the second-best option being the healer-focused Shroud of the Highborne. Cloak of the Illidari Council is a close contender to the healing cloak, and a better fit for Elemental Shamans to avoid drama, at least until no healers need it.
+
+Alternatively, Shadowcaster's Drape, Cloak of Arcane Alacrity, and Brute Cloak of the Ogre-Magi are great all-rounder cloaks with no spell hit, making them a great choice when trying to avoid hitting Elemental Shaman's low spell hit cap.
+Rank	Item	Source
+BiS	Tattered Cape of Antonidas Tattered Cape of Antonidas	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: The Illidari Council (Black Temple)
+Option	Shadowcaster's Drape Shadowcaster's Drape	Drop: First Timed Chest (Zul'Aman)
+Option	Cloak of Arcane Alacrity Cloak of Arcane Alacrity	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+Option	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+Option	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss) - can be purchased on the Auction House
+
+Best in Slot Chest Armor for Elemental Shaman in TBC Classic Phase 5
+Sunfire Robe is technically the best chest available, but requires Tailoring to craft and is bind on pickup, which is a major downside. Thus, for most players, Garments of Crashing Shores will be the best chest available, slightly above Fel Conquerer Raiments.
+
+Alternatively, Skyshatter Breastplate has a ton of stats, 3 sockets, and enables your Tier 6 set bonuses.
+Rank	Item	Source
+BiS	Sunfire Robe Sunfire Robe	Profession: Tailoring - BoP only
+BiS	Garments of Crashing Shores Garments of Crashing Shores	Vendor: Yrma
+Drop: Garments of Serene Shores Garments of Serene Shores from M'uru (Sunwell Plateau) & Sunmote Sunmote
+Option	Fel Conquerer Raiments Fel Conquerer Raiments	Drop: M'uru (Sunwell Plateau)
+Option	Skyshatter Breastplate Skyshatter Breastplate	Drop: Illidan Stormrage (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Hauberk of Whirling Fury, Hauberk of the Furious Elements, and Chestguard of Relentless Storms waste no budget on spell hit, making them strong options when still gearing up.
+Rank	Item	Source
+Option	Hauberk of Whirling Fury Hauberk of Whirling Fury	Vendor: G'eras (Badges of Justice)
+Option	Hauberk of the Furious Elements Hauberk of the Furious Elements	Vendor: G'eras (Badges of Justice)
+Option	Chestguard of Relentless Storms Chestguard of Relentless Storms	Drop: Trash Mobs (Hyjal Summit / Black Temple)
+Option	Cataclysm Chestpiece Cataclysm Chestpiece	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Netherstrike Breastplate Netherstrike Breastplate	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Windhawk Hauberk Windhawk Hauberk	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Cyclone Chestguard Cyclone Chestguard	Drop: Magtheridon (Magtheridon's Lair)
+Option	Will of Edward the Odd Will of Edward the Odd	Drop: World Drop
+
+Best in Slot Wrist Armor for Elemental Shaman in TBC Classic Phase 5
+Skyshatter Bands are the best wrists available, especially as they also contribute towards your Tier 6 bonus.
+
+Bracers of Nimble Thought are also strong, as they sport high stats and no spell hit. Alternatively, Cuffs of Devastation and Bands of the Coming Storm are decent on their own.
+Rank	Item	Source
+BiS	Skyshatter Bands Skyshatter Bands	Drop: Kalecgos (Sunwell Plateau)
+Option	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring - can be purchased on the Auction House
+Option	Cuffs of Devastation Cuffs of Devastation	Drop: Rage Winterchill (Hyjal Summit)
+Option	Bands of the Coming Storm Bands of the Coming Storm	Drop: Supremus (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Netherstrike Bracers are part of the Dragonscale Leatherworking set and have a very balanced set of stats, including a socket. You can also use Windhawk Bracers, which are much better when not counting the Netherstrike set bonus, and have even more value if you ever have to heal, as they are also strong for Restoration.
+Rank	Item	Source
+Option	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Netherstrike Bracers Netherstrike Bracers	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Windhawk Bracers Windhawk Bracers	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+
+Best in Slot Hand Armor for Elemental Shaman in TBC Classic Phase 5
+Gauntlets of the Ancient Shadowmoon, Gloves of Tyri's Power, and Handguards of Defiled Worlds are all excellent Sunwell Plateau gloves, any of which can be used as best in slot. Sunfire Handwraps are also very strong and, being bind on equip, do not require you to have Tailoring yourself.
+Rank	Item	Source
+BiS	Gauntlets of the Ancient Shadowmoon Gauntlets of the Ancient Shadowmoon	Drop: Trash Mobs (Sunwell Plateau)
+BiS	Gloves of Tyri's Power Gloves of Tyri's Power	Vendor: Yrma
+Drop: Handguards of the Dawn Handguards of the Dawn from Kil'jaeden (Sunwell Plateau) & Sunmote Sunmote
+BiS	Handguards of Defiled Worlds Handguards of Defiled Worlds	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Sunfire Handwraps Sunfire Handwraps	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Skyshatter Gauntlets are good alternatives and enable your Tier 6 bonuses. Enslaved Doomguard Soulgrips or Botanist's Gloves of Growth are also good, especially when all of Skyshatter's Spell Hit is going to waste. The same logic applies to Spiritwalker Gauntlets.
+Rank	Item	Source
+Option	Enslaved Doomguard Soulgrips Enslaved Doomguard Soulgrips	Vendor: G'eras (Badges of Justice)
+Option	Skyshatter Gauntlets Skyshatter Gauntlets	Drop: Azgalor (Hyjal Summit)
+Option	Botanist's Gloves of Growth Botanist's Gloves of Growth	Drop: Teron Gorefiend (Black Temple)
+Option	Studious Wraps Studious Wraps	Vendor: G'eras (Badges of Justice)
+Option	Grips of Nature's Wrath Grips of Nature's Wrath	Vendor: G'eras (Badges of Justice)
+Option	Spiritwalker Gauntlets Spiritwalker Gauntlets	Drop: Shade of Akama (Black Temple)
+Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+Option	Cataclysm Handgrips Cataclysm Handgrips	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Option	Cyclone Handguards Cyclone Handguards	Drop: The Curator (Karazhan)
+
+Best in Slot Waist Armor for Elemental Shaman in TBC Classic Phase 5
+Skyshatter Cord is the best belt available in Phase 5, as it has both very high stats and also contributes towards your Tier 6 bonuses.
+
+Flashfire Girdle and Aftershock Waistguard are also very strong and can easily be used until you have your tier piece.
+Rank	Item	Source
+BiS	Skyshatter Cord Skyshatter Cord	Drop: Brutallus (Sunwell Plateau)
+Option	Flashfire Girdle Flashfire Girdle	Drop: Shade of Akama (Black Temple)
+Option	Aftershock Waistguard Aftershock Waistguard	Vendor: G'eras (Badges of Justice)
+Option	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Option	Belt of the Crescent Moon Belt of the Crescent Moon	Drop: Kaz'rogal (Hyjal Summit)
+Option	Starfire Waistband Starfire Waistband	Vendor: G'eras (Badges of Justice)
+Option	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Netherstrike Belt Netherstrike Belt	Profession: Leatherworking (Dragonscale Leatherworking) - BoP only
+Option	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+Option	Windhawk Belt Windhawk Belt	Profession: Leatherworking (Tribal Leatherworking) - BoP only
+Option	Belt of Divine Inspiration Belt of Divine Inspiration	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Leg Armor for Elemental Shaman in TBC Classic Phase 5
+Chain Links of the Tumultuous Storm and Leggings of Calamity are the best legs available, but Breeches of Natural Aggression are not very far behind.
+Rank	Item	Source
+BiS	Chain Links of the Tumultuous Storm Chain Links of the Tumultuous Storm	Drop: Felmyst (Sunwell Plateau)
+BiS	Leggings of Calamity Leggings of Calamity	Drop: Brutallus (Sunwell Plateau)
+Option	Breeches of Natural Aggression Breeches of Natural Aggression	Drop: Kalecgos (Sunwell Plateau)
+Option	Rushing Storm Kilt Rushing Storm Kilt	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Leggings of Channeled Elements is also a fine option if you lack any of the above, and Skyshatter Legguards is a good option, especially if it allows you to reach the Tier 6 set bonuses.
+Rank	Item	Source
+Option	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+Option	Pantaloons of Arcane Annihilation Pantaloons of Arcane Annihilation	Vendor: G'eras (Badges of Justice)
+Option	Skyshatter Legguards Skyshatter Legguards	Drop: The Illidari Council (Black Temple)
+Option	Avalanche Leggings Avalanche Leggings	Drop: Halazzi (Zul'Aman)
+Option	Cataclysm Leggings Cataclysm Leggings	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+Option	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss) - can be purchased on the Auction House
+Option	Stormsong Kilt Stormsong Kilt	Drop: The Black Stalker (Heroic The Underbog)
+Option	Tempest Leggings Tempest Leggings
+Kurenai Kilt Kurenai Kilt	Vendor: Provisioner Nasela / Trader Narasu (The Mag'har / Kurenai Revered)
+
+Best in Slot Feet Armor for Elemental Shaman in TBC Classic Phase 5
+Skyshatter Treads are the best feet options, and also contribute towards your Tier 6 set, but Slippers of the Seacaller, Naturewarden's Treads, Footpads of Madness, and Boots of Oceanic Fury are also fine alternatives.
+Rank	Item	Source
+BiS	Skyshatter Treads Skyshatter Treads	Drop: Felmyst (Sunwell Plateau)
+Option	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+Option	Naturewarden's Treads Naturewarden's Treads	Drop: Reliquary of the Lost (Black Temple)
+Option	Footpads of Madness Footpads of Madness	Drop: Jan'alai (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Boots of Oceanic Fury Boots of Oceanic Fury	Drop: High Warlord Naj'entus (Black Temple)
+Option	Treads of Booming Thunder Treads of Booming Thunder	Vendor: G'eras (Badges of Justice)
+Option	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+Option	Hurricane Boots Hurricane Boots	Profession: Tailoring - BoP only
+Option	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+Option	Windshear Boots Windshear Boots	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+
+Best in Slot Neck Jewelry for Elemental Shaman in TBC Classic Phase 5
+Pendant of Sunfire is technically the best neck available, but requires you to be a Jewelcrafter, as it is bind on pickup. Thus, Amulet of Unfettered Magics is most likely your best in slot.
+
+Brooch of Nature's Mercy is also very strong, but it also has very high healer stats we cannot use, so it can be nice to pass on the first few, especially if you can get Guardian's Pendant of Subjugation or Loop of Cursed Bones instead.
+Rank	Item	Source
+BiS	Pendant of Sunfire Pendant of Sunfire	Profession: Jewelcrafting - BoP only
+BiS	Amulet of Unfettered Magics Amulet of Unfettered Magics	Drop: Lady Sacrolash & Grand Warlock Alythess (Sunwell Plateau)
+Option	Guardian's Pendant of Subjugation Guardian's Pendant of Subjugation	Vendor: Honor Points (Season 4)
+Option	Brooch of Nature's Mercy Brooch of Nature's Mercy	Drop: Akil'zon (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Loop of Cursed Bones Loop of Cursed Bones	Drop: Zul'jin (Zul'Aman)
+Option	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Reliquary of the Lost (Black Temple)
+Option	Adornment of Stolen Souls Adornment of Stolen Souls	Drop: Prince Malchezaar (Karazhan)
+Option	Brooch of Unquenchable Fury Brooch of Unquenchable Fury	Drop: Moroes (Karazhan)
+Option	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+
+Best in Slot Ring Jewelry for Elemental Shaman in TBC Classic Phase 5
+Ring of Omnipotence, Loop of Forged Power, and Ring of Ancient Knowledge are the best rings available in Phase 5. Make sure to check whether you can make use of the extra spell hit on the Loop, though.
+Rank	Item	Source
+BiS	Ring of Omnipotence Ring of Omnipotence	Drop: M'uru (Sunwell Plateau)
+BiS	Loop of Forged Power Loop of Forged Power	Profession: Jewelcrafting - can be purchased on the Auction House
+BiS	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+Option	Band of the Eternal Sage Band of the Eternal Sage	Quest: Sage's Covenant Sage's Covenant (The Scale of the Sands Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Mana Attuned Band Mana Attuned Band	Drop: Third Timed Chest (Zul'Aman)
+Option	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+Option	Ring of Unrelenting Storms Ring of Unrelenting Storms	Drop: Trash Mobs (Karazhan)
+Option	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Dreamcrystal Band Dreamcrystal Band	Zone Drop: Depleted Ring Depleted Ring (Blade's Edge Mountains) & 50x Apexis Shard Apexis Shard
+Option	Band of Frigid Elements Band of Frigid Elements	Drop: Anzu (Heroic Sethekk Halls)
+Option	Ring of Recurrence Ring of Recurrence	Drop: Echo of Medivh (Karazhan)
+Option	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Path of the Violet Mage Path of the Violet Mage (The Violet Eye Exalted)
+Option	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+Option	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Band of Dominion Band of Dominion	Drop: World Drop
+
+Best in Slot Trinkets for Elemental Shaman in TBC Classic Phase 5
+In TBC, most trinkets offer passive bonuses on top of their unique, cooldown-bound powers. This makes many trinkets useful for their passive benefits alone, but there are still many powerful on-use effects to consider when picking a trinket.
+
+The Skull of Gul'dan is one of the best in slot trinkets for Elemental Shamans, as it is for every caster, but it is generally a small priority upgrade due to its high spell hit, which easily ends up wasted due to Elemental's multiple spell hit talents.
+
+Thus, Shifting Naaru Sliver, The Lightning Capacitor, and Hex Shrunken Head are generally your best trinkets, with the Sliver sporting both high stats and an extremely powerful on use effect, Capacitor benefitting from your frequent spell crits and overload crits, and Shrunken Head having high spell damage, which you can further power up as a DPS cooldown.
+
+It should also be noted that Classic-era trinkets, such as Mark of the Champion and Neltharion's Tear, are still extremely powerful in TBC and can be used for a long time, especially Mark of the Champion, which stays your best trinket when fighting Demons and Undead.
+Rank	Item	Source
+BiS	Shifting Naaru Sliver Shifting Naaru Sliver	Drop: M'uru (Sunwell Plateau)
+BiS	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+BiS	The Lightning Capacitor The Lightning Capacitor	Drop: Terestian Illhoof (Karazhan)
+BiS	Hex Shrunken Head Hex Shrunken Head	Drop: Hex Lord Malacrass (Zul'Aman)
+Special	Mark of the Champion Mark of the Champion	Drop: Kel'Thuzad (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Icon of the Silver Crescent, or Dark Iron Smoking Pipe, the Brewfest caster trinket, are fine alternatives that are quite easy to obtain.
+Rank	Item	Source
+Option	Sorcerer's Alchemist Stone Sorcerer's Alchemist Stone	Profession: Alchemy - BoP only
+Option	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Option	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Option	Darkmoon Card: Crusade Darkmoon Card: Crusade	Quest: Darkmoon Blessings Deck Darkmoon Blessings Deck
+Option	Sextant of Unstable Currents Sextant of Unstable Currents	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Xi'ri's Gift Xi'ri's Gift	Vendor: Almaador (The Sha'tar Revered)
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Shiffar's Nexus-Horn Shiffar's Nexus-Horn	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+
+Best in Slot Weapons for Elemental Shaman in TBC Classic Phase 5
+Staves and other two-handed weapons generally grant less total spell damage than an MH+OH combo, and also lack the extra armor and block a shield provides, making an MH+OH generally superior if its stats are comparable to the best two-handed weapon available.
+
+Sunflare is the best weapon in this phase, with Reign of Misery being a strong alternative.
+
+Zhar'doom, Greatstaff of the Devourer is still great, or you might also want to consider PvPing for Season 4's Brutal Gladiator's Gavel.
+Rank	Item	Source
+BiS	Sunflare Sunflare	Drop: Kil'jaeden (Sunwell Plateau)
+Option	Reign of Misery Reign of Misery	Drop: Brutallus (Sunwell Plateau)
+Option	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+Option	Brutal Gladiator's Gavel Brutal Gladiator's Gavel	Vendor: Arena Points (Season 4)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Scryer's Blade of Focus is new in Phase 5, easily available from the Badge of Justice Vendor, and is stronger than nearly every weapon from earlier phases.
+Rank	Item	Source
+Option	Scryer's Blade of Focus Scryer's Blade of Focus	Vendor: G'eras (Badges of Justice)
+Option	The Maelstrom's Fury The Maelstrom's Fury	Drop: High Warlord Naj'entus (Black Temple)
+Option	Vengeful Gladiator's Gavel Vengeful Gladiator's Gavel	Vendor: Arena Points (Season 3)
+Option	Wub's Cursed Hexblade Wub's Cursed Hexblade	Drop: Jan'alai (Zul'Aman)
+Option	Hammer of Judgement Hammer of Judgement	Drop: Trash Mobs (Hyjal Summit)
+Option	Amani Divining Staff Amani Divining Staff	Drop: Second Timed Chest (Zul'Aman)
+Option	The Nexus Key The Nexus Key	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Merciless Gladiator's Gavel Merciless Gladiator's Gavel	Vendor: Honor Points (Season 2)
+Option	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss) - can be purchased on the Auction House
+Option	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+Option	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+Option	Gavel of Unearthed Secrets Gavel of Unearthed Secrets	Vendor: Nakodu (Lower City Exalted)
+
+Best in Slot Offhands for Elemental Shaman in TBC Classic Phase 5
+Whenever possible, try to use shields if they have comparable stats to the offhands at your disposal, as that will make any physical damage that comes your way much more manageable. We will be listing some of the best offhand options below as well, since sometimes you just cannot get a good shield to drop.
+
+Heart of the Pit is the best in slot off-hand item, but Antonidas's Aegis of Rapt Concentration and Fetish of the Primal Gods are also great, and the Fetish can be easily obtainable for just a few badges.
+Rank	Item	Source
+BiS	Heart of the Pit Heart of the Pit	Drop: Brutallus (Sunwell Plateau)
+Option	Antonidas's Aegis of Rapt Concentration Antonidas's Aegis of Rapt Concentration	Drop: Archimonde (Hyjal Summit)
+Option	Fetish of the Primal Gods Fetish of the Primal Gods	Vendor: G'eras (Badges of Justice)
+Option	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Option	Mazthoril Honor Shield Mazthoril Honor Shield	Vendor: G'eras (Badges of Justice)
+Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Option	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+Option	Talisman of Nightbane Talisman of Nightbane	Drop: Nightbane (Karazhan)
+
+Best in Slot Totems for Elemental Shaman in TBC Classic Phase 5
+The best totem you can get for your relic slot is Totem of Ancestral Guidance, which provides a very large bonus to your core damage spells. Alternatively, you can get Skycall Totem, which can be equal or better with good RNG, but suffers heavily from any downtime.
+Rank	Item	Source
+BiS	Totem of Ancestral Guidance Totem of Ancestral Guidance	Drop: Teron Gorefiend (Black Temple)
+BiS	Skycall Totem Skycall Totem	Vendor: G'eras (Badges of Justice)
+Option	Totem of the Void Totem of the Void	Drop: Cache of the Legion (The Mechanar)
+Option	Totem of the Storm Totem of the Storm	Drop: World Drop
+Woah
+MoP Restoration/Elemental Shaman Guide Writer
+Woah has written over 275 guides for Wowhead since WoW Classic was released in 2019, with a particular focus on Shaman class guides. Shaman has been his main class since the start of Classic and also since WoW's initial launch in 2004.
+
+Currently playing in Gehennas EU Horde with Progress's 25-man alt/gold runs, Woah is looking to do some 10-man alt running on the side with a second shaman in Mists of Pandaria!
+1 - 2 of 2
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+1
+
+	
+By Gooberino (4,645 – 1·5·10) on 2022/05/13 (Burning Crusade)	
+	
+Annihilator Holo-Gogs are listed as 3rd BIS but the recipe can only be learned by priests, mages, warlocks. This item is not applicable to shamans
+
+0
+
+	
+
+Woah <Guide Author> on 2022/05/15 (Burning Crusade)
+You're totally right, thanks for catching this typo, changed them to the Shaman ones!
+
+1
+
+	
+By dodgemoe92 (692 – 2·3) on 2022/05/23 (Burning Crusade)	
+	
+Why are Teardrop Crimson Spinels listed as the BiS gems for the chest pieces? Was this improperly linked from the resto choices?
+
+22 Healing + 8 SP should not be better than 12 SP
+
+1
+
+	
+
+Woah <Guide Author> on 2022/05/23 (Burning Crusade)
+It was a mass-replace typo indeed, gonna swap them all to 12 SP in the code behind the scenes, thanks for the tip!
+1 - 2 of 2
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+

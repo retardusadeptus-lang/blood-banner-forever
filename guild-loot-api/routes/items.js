@@ -26,6 +26,8 @@ function buildItemRoutes({ db, tokenRedemptionService }) {
   router.post('/items', (req, res) => {
     try {
       const body = req.body || {};
+      const sourceValue = body.source ?? body.zone ?? '';
+      const sourceTypeValue = body.source_type ?? body.boss ?? '';
       const result = db.prepare(`
         INSERT INTO items (name, slot, phase, source, source_type, wowhead_id, drop_chance, rarity)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -33,9 +35,9 @@ function buildItemRoutes({ db, tokenRedemptionService }) {
         String(body.name || '').trim(),
         String(body.slot || '').trim(),
         String(body.phase || '').trim(),
-        String(body.source || '').trim(),
-        String(body.source_type || '').trim(),
-        body.wowhead_id || null,
+        String(sourceValue || '').trim(),
+        String(sourceTypeValue || '').trim(),
+        body.itemId ?? body.wowhead_id ?? null,
         body.drop_chance || null,
         body.rarity || null
       );
@@ -48,19 +50,26 @@ function buildItemRoutes({ db, tokenRedemptionService }) {
   router.put('/items/:id', (req, res) => {
     try {
       const body = req.body || {};
+      const existing = db.prepare('SELECT * FROM items WHERE id = ?').get(req.params.id);
+      if (!existing) return res.status(404).json({ error: 'Item not found' });
+
+      const sourceValue = body.source !== undefined ? body.source : existing.source ?? '';
+      const sourceTypeValue = body.source_type !== undefined ? body.source_type : existing.source_type ?? '';
+      const wowheadIdValue = body.itemId !== undefined ? body.itemId : (body.wowhead_id !== undefined ? body.wowhead_id : existing.wowhead_id ?? null);
+
       db.prepare(`
         UPDATE items
         SET name = ?, slot = ?, phase = ?, source = ?, source_type = ?, wowhead_id = ?, drop_chance = ?, rarity = ?
         WHERE id = ?
       `).run(
-        String(body.name || '').trim(),
-        String(body.slot || '').trim(),
-        String(body.phase || '').trim(),
-        String(body.source || '').trim(),
-        String(body.source_type || '').trim(),
-        body.wowhead_id || null,
-        body.drop_chance || null,
-        body.rarity || null,
+        String(body.name !== undefined ? body.name : existing.name).trim(),
+        String(body.slot !== undefined ? body.slot : existing.slot ?? '').trim(),
+        String(body.phase !== undefined ? body.phase : existing.phase ?? '').trim(),
+        String(sourceValue || '').trim(),
+        String(sourceTypeValue || '').trim(),
+        wowheadIdValue || null,
+        body.drop_chance !== undefined ? body.drop_chance : existing.drop_chance ?? null,
+        body.rarity !== undefined ? body.rarity : existing.rarity ?? null,
         req.params.id
       );
       res.json({ ok: true });

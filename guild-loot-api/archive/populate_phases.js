@@ -6,7 +6,8 @@ const Database = require('better-sqlite3');
 const path = require('path');
 const aggregatedBisData = require('./aggregated_bis_with_ids.json');
 
-const db = new Database('C:/Users/Steve/Projects/wow-loot-dashboard/guild-loot-api/mydb.db');
+const dbPath = path.join(__dirname, '..', 'mydb.db');
+const db = new Database(dbPath);
 
 // Phase order — earliest phase wins
 const PHASE_ORDER = ['Pre-BiS', 'T4', 'T5', 'T6', 'ZA', 'SWP'];

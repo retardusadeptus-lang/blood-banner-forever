@@ -1,0 +1,2378 @@
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase TwoClassesLevelingBest in SlotTier ListsRaidsAttunementsDungeonsReputationsProfessions
+Guides...
+Guide Contents
+Patch 2.5.6
+3.2/5 (17 Votes)
+TBCC Rogue Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Pre-Raid Best In Slot Gear in Phase 1
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Ranged Weapons
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Rogue DPS Pre-Raid Best in Slot (BiS) - TBC Classic
+By Simonize
+Updated: 2026/01/27
+In this Pre-Raid Best-in-Slot Gear List for Rogue DPS in The Burning Crusade Classic, we will list the recommended gear for Rogue DPS to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Rogue DPS Best in Slot Hub
+Pre-Raid Best In Slot Gear for Rogue DPS in Phase 1
+There are a lot of great gear options for rogues before entering your first raid. With a plethora of quest rewards, crafted items, and dungeon drops, you shouldn't have too much trouble getting your rogue ready to go. I suggest you focus on trying to pick up whatever pieces of Wastewalker Armor that you can. This is a very powerful item set, and you will still be using two pieces of it in your Phase 1 Best In Slot setup!
+
+Rogues looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Rogue DPS Gems & Enchants
+Should Rogue DPS Choose Aldor or Scryer TBC Classic Phase 1?
+For rogues, choosing your Shattrath faction either The Aldor or The Scryers doesn't make that big of a difference in terms of raid performance. The main longstanding benefit will be the shoulder enchants from these factions. Greater Inscription of Vengeance Greater Inscription of Vengeance from the former is very slightly better than Greater Inscription of the Blade Greater Inscription of the Blade from the latter, but it is such a minuscule difference that you are unlikely to ever notice it. You will do just fine choosing whichever faction you prefer.
+
+    Aldor offer a very slightly superior shoulder enchant for PvE damage dealing.
+    Aldor offers a decent sword at Exalted, Vindicator's Brand Vindicator's Brand. This is good for starters, but it is already outclassed by other phase 1 weapons.
+    Scryers offer Plans: Enchanted Adamantite Belt Plans: Enchanted Adamantite Belt which can make leveling Blacksmithing Blacksmithing much cheaper.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+Overall, picking Aldor will benefit you more, however, in a Pre-Raid setting.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Rogues, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Pre-Raid Best in Slot Head Armor for Rogue in TBC Classic Phase 1
+You definitely want to use four pieces of the Wastewalker set, which leaves you with one of your primary armor slots where you can use a non-set item. You'll want to use Wastewalker Helm as your best head option, Pre-Raid.
+Rank	Item	Source
+Best	Wastewalker Helm Wastewalker Helm	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Optional	Mask of the Deceiver Mask of the Deceiver	Vendor: G'eras (50 Badges of Justice)
+Optional	Helm of the Claw Helm of the Claw	Quest:The Warlord's Hideout The Warlord's Hideout
+Pre-Raid Best in Slot Shoulder Armor for Rogue in TBC Classic Phase 1
+Wastewalker Shoulderpads is the second piece of the Wastewalker set that you will be using. Unlike the helmet, this item stands alone as the best Pre-Raid shoulder armor you can get - the powerful set bonuses make it that much better.
+Rank	Item	Source
+Best	Wastewalker Shoulderpads Wastewalker Shoulderpads	Drop: Avatar of the Martyred (Auchenai Crypts)[/span]
+Alliance Only Option	Expedition Scout's Epaulets Expedition Scout's Epaulets	Quest:Fel Embers Fel Embers
+Optional	Blackened Leather Spaulders Blackened Leather Spaulders
+Talbuk Hide Spaulders Talbuk Hide Spaulders	Vendor: Trader Narasu - Requires Revered with The Kurenai
+Vendor: Provisioner Nasela - Requires Revered with The Mag'har
+Pre-Raid Best in Slot Back Armor for Rogue in TBC Classic Phase 1
+Vengeance Wrap is definitely the best cloak option - lots of Attack Power, some Critical Strike, and a red socket to boot! However, it is quite expensive to craft and not that far ahead of the next best option, Auchenai Death Shroud. An easy-to-get alternative to these would be Delicate Green Poncho - it's a bit worse, but no sweat at all to get this quest reward.
+Rank	Item	Source
+Best	Vengeance Wrap Vengeance Wrap	Profession: Tailoring
+Optional	Auchenai Death Shroud Auchenai Death Shroud	Drop: Avatar of the Martyred (Heroic Auchenai Crypts)
+Optional	Blood Knight War Cloak Blood Knight War Cloak	Vendor: G'eras (25 Badges of Justice)
+Optional	Delicate Green Poncho Delicate Green Poncho	Quest:Bring Me The Egg! Bring Me The Egg!
+Pre-Raid Best in Slot Chest Armor for Rogue in TBC Classic Phase 1
+Wastewalker Tunic is recommended for chest armor. Using Primalstrike Vest and the full Primal Intent set is very slightly better, but is not recommended. It's incredibly expensive and doesn't carry over as BiS for Phase 1, so it'll get replaced in the long run.
+Rank	Item	Source
+Best	Wastewalker Tunic Wastewalker Tunic	Drop: Keli'dan the Breaker (Heroic The Blood Furnace)
+Best	Primalstrike Vest Primalstrike Vest	Profession: Elemental Leatherworking (BoP)
+Optional	Hauberk of Karabor Hauberk of Karabor	Quest:Varedis Must Be Stopped Varedis Must Be Stopped - The Aldor
+Quest: Varedis Must Be Stopped Varedis Must Be Stopped - The Scryers
+Pre-Raid Best in Slot Wrist Armor for Rogue in TBC Classic Phase 1
+Nightfall Wristguards is our best option, as even though Primalstrike Bracers with its set is technically better, it is not best in Phase 1, and the minuscule DPS difference is not worth the gold in our opinion.
+Rank	Item	Source
+Best	Nightfall Wristguards Nightfall Wristguards	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Optional	Primalstrike Bracers Primalstrike Bracers	Profession: Elemental Leatherworking (BoP)
+Optional	Spymistress's Wristguards Spymistress's Wristguards	Quest:The Soul Devices The Soul Devices
+Pre-Raid Best in Slot Hand Armor for Rogue in TBC Classic Phase 1
+Fel Leather Gloves can be used as a non-set item if you're getting your four-piece bonus of Wastewalker set in other slots.
+Rank	Item	Source
+Best	Fel Leather Gloves Fel Leather Gloves	Profession: Leatherworking
+Optional - Set Bonus	Wastewalker Gloves Wastewalker Gloves	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Optional	Gloves of the Nether-Stalker Gloves of the Nether-Stalker	Quest: Dealing with the Overmaster Dealing with the Overmaster
+Pre-Best in Slot Waist Armor for Rogue in TBC Classic Phase 1
+Girdle of the Deathdealer is the recommended belt to be using for preraid gear, and it is also your Phase 1 Best In Slot belt! As with the other pieces of Primalstrike, we've gone over why we recommend not crafting this in the long run, due to pricing and not lasting in the long run.
+Rank	Item	Source
+Best	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus (Heroic The Black Morass)
+Best	Primalstrike Belt Primalstrike Belt	Profession: Elemental Leatherworking (BoP)
+Scryer Only Option	Socrethar's Girdle Socrethar's Girdle	Quest:Turning Point Turning Point
+Optional	Naaru Belt of Precision Naaru Belt of Precision	Quest:How to Break Into the Arcatraz How to Break Into the Arcatraz
+Pre-Raid Best in Slot Leg Armor for Rogue in TBC Classic Phase 1
+Wastewalker Leggings are definitely what you want for PvE damage dealing. This is the 4th piece of the set that you will use to unlock both the two-piece and four-piece bonuses for your character. Fel Leather Leggings are another powerful alternative you can use, but you would need to swap to another piece of Wastewalker to maintain the 4-piece bonus. Despite having the very attractive expertise stat, Clefthoof Hide Leggings are the "worst" of these options - but they are a nice and easy quest reward!
+Rank	Item	Source
+Best	Wastewalker Leggings Wastewalker Leggings	Drop: Nexus-Prince Shaffar (Heroic Mana-Tombs)
+Optional	Fel Leather Leggings Fel Leather Leggings	Profession: Leatherworking
+Optional	Clefthoof Hide Leggings Clefthoof Hide Leggings	Quest:Showdown Showdown
+Pre-Raid Best in Slot Feet Armor for Rogue in TBC Classic Phase 1
+Fel Leather Boots are exceptional for PvE damage dealing. Not only are they easy to get as a craftable bind on equip item, but the pure offensive stats make them better than any pre-raid alternative as well!
+Rank	Item	Source
+Best	Fel Leather Boots Fel Leather Boots	Profession: Leatherworking
+Optional	Felboar Hide Shoes Felboar Hide Shoes	Quest:The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+Pre-Raid Best in Slot Neck Jewelry for Rogue in TBC Classic Phase 1
+Choker of Vile Intent is the best available necklace, and luckily it is easy to get as well - only 25 Badge of Justice Badge of Justice. When you have the buff from Braided Eternium Chain active, it is about equivalent to the former necklace for you, but also provides a benefit to everyone in your party. I suggest bringing both to raids and rotating when it's on-use available. Your group members will certainly thank you for the extra power boost! These two necklaces are also part of your best Phase 1 set, as they do not have meaningful upgrades until Black Temple!
+Rank	Item	Source
+Best	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (25 Badges of Justice)
+Best	Braided Eternium Chain Braided Eternium Chain	Profession: Jewelcrafting
+Optional	Earthen Mark of Razing Earthen Mark of Razing	Quest:Gurok the Usurper Gurok the Usurper
+Classic Option	Prestor's Talisman of Connivery Prestor's Talisman of Connivery	Drop: Nefarian (Blackwing Lair)
+Pre-Raid Best in Slot Ring Jewelry for Rogue in TBC Classic Phase 1
+Shaffar's Band of Brutality and Shapeshifter's Signet are the best two rings to pair together. The other alternatives are all very close to each other and very powerful in their own right.
+Rank	Item	Source
+Best	Shaffar's Band of Brutality Shaffar's Band of Brutality	Drop: Yor (Heroic Mana-Tombs)
+Best	Shapeshifter's Signet Shapeshifter's Signet	Vendor: Nakodu - Requires Exalted with Lower City
+Best	Slayer's Mark of the Redemption Slayer's Mark of the Redemption	Quest:Dissension Amongst the Ranks... Dissension Amongst the Ranks...
+Best - Aldor Only	Kaylaan's Signet Kaylaan's Signet	Quest:Deathblow to the Legion Deathblow to the Legion
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Optional	Band of Anguish Band of Anguish	Quest:News of Victory News of Victory
+Optional	Ravenclaw Band Ravenclaw Band	Drop: Talon King Ikiss (Sethekk Halls)
+
+Pre-Raid Best in Slot Trinkets for Rogue in TBC Classic Phase 1
+Mark of the Champion from Classic is still the best choice when you are facing undead or demon targets. The rest of the options are listed in order of power level. There are many different trinkets in The Burning Crusade, all with their little niche uses. Mark of the Champion is extremely powerful for very short engagements - if you keep fighting beyond about 40 to 50 seconds, this trinket is much worse compared to the other options.
+Rank	Item	Source
+Best - Undead / Demons	Mark of the Champion Mark of the Champion	Drop: Quest Reward from The Phylactery of Kel'Thuzad The Phylactery of Kel'Thuzad (Naxxramas)
+Best	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (41 Badges of Justice)
+Best	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar)
+Classic Option	Slayer's Crest Slayer's Crest	Drop: Sapphiron (Naxxramas)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Classic Option	Kiss of the Spider Kiss of the Spider	Drop: Maexxna (Naxxramas)
+Optional	Hourglass of the Unraveller Hourglass of the Unraveller	Drop: Temporus (The Black Morass)
+Classic Option - Niche	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Sartura (Ahn'Qiraj)
+
+Pre-Raid Best in Slot Weapons for Rogue in TBC Classic Phase 1
+Main Hand Weapons
+Dragonmaw and Blinkstrike are all exceptional choices for your mainhand weapon as a rogue if you won't be getting the PvP weapon. If you choose to use the former, you will want to switch your talents from the normal 20/41/0 to 16/45/0 for PvE damage dealing.
+
+Vindicator's Brand is an easy-to-get alternative, but it is noticeably worse than the top 3 options. Using it will result in about a 2% damage loss for your character compared to the better options.
+
+Note: Arena weapons are technically Pre-Raid BiS, but are not listed here due to our lists focusing on a more "realistic" option for gearing before entering a raid. However, they will be on our Phase 1 BiS list guides.
+
+Daggers are listed, but the talent specializations are not competitive with swords, and will put you at a significant damage disadvantage.
+Rank	Item	Source
+Best	Dragonmaw Dragonmaw	Profession: Master Hammersmith Blacksmithing (BoP)
+Best	Blinkstrike Blinkstrike	World Drop: The Outland
+Best - Dagger	The Night Blade The Night Blade	World Drop: The Outland
+Cheapest Option - Aldor Only	Vindicator's Brand Vindicator's Brand	Vendor: Quartermaster Endarin - Requires Exalted with The Aldor
+Off Hand Weapons
+Latro's Shifting Sword is the best choice for our Offhand, having a 1.4 speed, Agility, Expertise, and Hit!
+
+Daggers are listed, but the talent specializations are not competitive with swords, and will put you at a disadvantage. A player using a Combat Daggers build should choose a fast offhand dagger, whereas a player using an Assassination Mutilate build should choose a second slow offhand dagger from the Main Hand section above.
+Rank	Item	Source
+Best	Latro's Shifting Sword Latro's Shifting Sword	Aeonus - The Black Morass
+Best - Dagger	Searing Sunblade Searing Sunblade	Vendor: G'eras (50 Badges of Justice)
+Pre-Raid Best in Slot Ranged Weapons for Rogue in TBC Classic Phase 1
+Veteran's Musket / Marksman's Bow are the best picks for PvE damage dealing. Either of these will last you all the way into Phase 2, so they are definitely worth the reputation grind!
+Rank	Item	Source
+Best	Veteran's Musket Veteran's Musket
+Marksman's Bow Marksman's Bow	Vendor: Logistics Officer Ulrike - Requires Exalted with Honor Hold
+Vendor: Quartermaster Urgronn - Requires Exalted with Thrallmar
+Optional	Mama's Insurance Mama's Insurance	Quest:Declawing Doomclaw Declawing Doomclaw
+Optional	Mark V's Throwing Star Mark V's Throwing Star	Quest:Mark V is Alive! Mark V is Alive!
+
+Simonize
+World of Warcraft Classic Rogue Expert
+Simonize has written Classic World of Warcraft Rogue guides for The Burning Crusade, Wrath of the Lich King, and Season of Discovery. He streams on Twitch, posts to YouTube, and hosts his own Discord server, all related to World of Warcraft Classic.
+1 - 10 of 10
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+4
+
+	
+By Uwansumknowledge (3,243 – 7·10) on 2021/04/28 (Burning Crusade)	
+	
+Thanks for the content Simonize! Appreciate all the hard work you put into making these guides!
+
+Do you know if daggers are even viable in TBC? I haven't found any good answers or guides that incorporate dagger builds.
+
+4
+
+	
+
+Simonize <Guide Author> on 2021/04/28 (Burning Crusade)
+Hi Uwansumknowledge, The best figures I have currently put dagger builds (mutilate or combat daggers) behind swords by between 4.5 - 9.5% depending on the phase when they need to apply Improved Expose Armor. If the rogue doesn't have to apply Improved Expose Armor, mutilate is still 4.5 - 9.5% behind but Combat Daggers is only 1.5 - 3.5% behind with best gear, depending on the phase. This does not account for Warglaives - the sword builds are using the next best non-Warglaive option.
+
+4
+
+	
+By Aidene (781 – 4·2) on 2026/03/01 (Burning Crusade)	
+	
+Not giving some dungeon options for weapons is disappointing. Only gold buyers got the cash for those weapons.
+
+3
+
+	
+By Zigzagarn (448 – 1·5) on 2021/04/28 (Burning Crusade)	
+	
+I'm curious why you linked Dragonmaw when its Dragonstrike is the best mace, or is the recipe not available in P1?
+
+-1
+
+	
+
+Kraizeboi on 2021/04/28 (Burning Crusade)
+It had upgrades like the other BS weapons, which was added on raid tiers, think it was 4 in total or 3, but ended at BT atleast.
+
+7
+
+	
+
+Simonize <Guide Author> on 2021/04/29 (Burning Crusade)
+Hi Zigzagarn, Dragonstrike is not included in a preraid list because it requires Nether Vortex to craft. These are first obtainable in Serpentshrine Cavern and Tempest Keep. You won't be able to upgrade the Blacksmithing weapon all the way to Dragonstrike during phase 1 because the Nether Vortexes won't be available.
+
+2
+
+	
+By Matikzz (4,831 – 7·26) on 2026/02/22 (Burning Crusade)	
+	
+Coming back to this guide and using it for TBC Anniversary, I have one suggestion I'd like to make; Adding Handgrips of Assassination Handgrips of Assassination to the list since there is a modest chance that these will drop while rogues are farming Latros sword/Hourglass trinket, and they are much better than the Optional quest reward gloves listed here.
+
+1
+
+	
+By iJYDx (596 – 2·2) on 2021/08/11 (Burning Crusade)	
+	
+What about Coilfang Needler for ranger?
+
+1
+
+	
+
+Simonize <Guide Author> on 2021/10/13 (Burning Crusade)
+Coilfang Needler is worse than the options listed here, and since some are quest rewards they are really easy and reliable to get.
+
+1
+
+	
+By Synbad (425 – 3·2) on 2021/10/03 (Burning Crusade)	
+	
+idk how to get that tunic xD
+
+1
+
+	
+By 7rinity (10,795 – 1·24·78) <Rare Premium User> on 2022/06/03 (Burning Crusade)	
+	
+Why does it suggest a scope at the bottom when they only affect ranged attacks?
+
+1
+
+	
+
+Mehv on 2026/01/20 (Burning Crusade)
+If you must shoot, at least hit it as hard as you can.
+
+0
+
+	
+
+Eiandri on 2026/04/23 (Burning Crusade)
+Very missleading yes. Looked up on Icyveins and wowtbc, none of them have the enchant listed. And considering the scopt cost ALLOT it's all wasted.
+
+1
+
+	
+By didemo (737 – 1·8) on 2026/03/03 (Burning Crusade)	
+	
+Why is Mask of Veiled Death not in the list? It has:
+
++19 hit rating
++30 crit rating
++ 80 AP
+
+1
+
+	
+By IllusionIV (649 – 4) on 2026/03/09 (Burning Crusade)	
+	
+I would like to suggest thoses one as wrist aswell that are really good option imho
+Shackles of Quagmirran Shackles of Quagmirran
+By taron0 (1,436 – 19·12) on 2021/06/16 (Burning Crusade)	
+	
+1 - 10 of 10
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+3.8/5 (12 Votes)
+TBCC Rogue Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+            Best In Slot Gear in Phase 1
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Ranged Weapons
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Rogue DPS Phase 1 Best in Slot (BiS) - TBC Classic
+By Simonize
+Updated: 2026/03/25
+Welcome to Wowhead's Best in Slot Gear list from Karazhan, Gruul's Lair, and Magtheridon's Lair for Rogue DPS in The Burning Crusade Classic. This guide will list the recommended gear for Rogue DPS to acquire while they progress on the first few raids in The Burning Crusade Classic, and contains gear sourced from Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best-in-slot lists, including a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Rogue DPS Best in Slot Guides
+Best In Slot Gear for Rogue DPS in Phase 1
+In Phase 1, there are a couple of different gear setups that are very good. Most slots are still just one best item, but a few have alternatives that won't meaningfully change your damage output. You are going to want to use two or three pieces of the Netherblade set and two pieces of the Wastewalker Armor set. The recommended pieces are listed below, but as long as you stick to two pieces per set, you won't be too far behind. Be sure to read on to know what you need to get on your Rogue, and what is a little more flexible.
+
+Below is an example gear set that doesn't use items from world bosses. The handful of items from world bosses are only very, very slightly better than this setup - you'll do just fine if you skip those items.
+
+Rogues looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Should Rogue DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 1?
+For Rogues, choosing your Shattrath faction either The Aldor or The Scryers doesn't make that big of a difference in terms of raid performance. The main longstanding benefit will be the shoulder enchants from these factions. Greater Inscription of Vengeance Greater Inscription of Vengeance from The Aldor is very slightly better than Greater Inscription of the Blade Greater Inscription of the Blade from The Scryers, but it is such a minuscule difference that you are unlikely to ever notice it. You will do just fine choosing whichever faction you prefer.
+
+    Aldor offer a very slightly superior shoulder enchant for PvE damage dealing.
+    Aldor offers a decent sword at Exalted, Vindicator's Brand Vindicator's Brand. This is okay for starters, butit is already outclassed by other phase 1 weapons.
+    Scryers offer Plans: Enchanted Adamantite Belt Plans: Enchanted Adamantite Belt, which can make leveling Blacksmithing Blacksmithing much cheaper.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Rogues, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Rogue in TBC Classic Phase 1
+Netherblade Facemask is the first of two pieces of the Netherblade Tier set that you'll want to be using on your Rogue for your Phase 1 best-in-slot gear set. The helmets without meta gem sockets are noticeably worse due to the powerful Relentless Earthstorm Diamond Relentless Earthstorm Diamond that can be used.
+
+Rank	Item	Source
+BiS	Netherblade Facemask Netherblade Facemask	Drop: Prince Malchezaar (Karazhan)
+Option	Wastewalker Helm Wastewalker Helm	Drop: Epoch Hunter (Heroic)
+Option	Cowl of Defiance Cowl of Defiance	Drop: Netherspite
+Option	Malefic Mask of the Shadows Malefic Mask of the Shadows	Drop: High King Maulgar
+Best in Slot Shoulder Armor for Rogue in TBC Classic Phase 1
+Wastewalker Shoulderpads is the first of two pieces of the Wastewalker Armor set that you will be using. In fact, Wastewalker Shoulderpads stands alone as a very powerful shoulder armor, on par with the other options. The added benefit of the powerful set bonuses makes this easily the best piece of Wastewalker Armor - you don't want to swap this one out.
+Rank	Item	Source
+BiS	Wastewalker Shoulderpads Wastewalker Shoulderpads	Drop: Avatar of the Martyred (Auchenai Crypts Heroic)
+Option	Netherblade Shoulderpads Netherblade Shoulderpads	Drop: High King Maulgar (Gruul's Lair)
+Option	Bladed Shoulderpads of the Merciless Bladed Shoulderpads of the Merciless	Drop: Dust Covered Chest (Chess Event in Karazhan))
+Best in Slot Back Armor for Rogue in TBC Classic Phase 1
+Drape of the Dark Reavers is a great cloak and is far ahead of anything else available. Drape of the Dark Reavers will last you quite a while as well - in Phase 2, you could get Thalassian Wildercloak Thalassian Wildercloak, but the two are not meaningfully different from each other. Your first real upgrade above Drape of the Dark Reavers comes in Black Temple!
+Rank	Item	Source
+BiS	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+Option	Vengeance Wrap Vengeance Wrap	Crafted (Tailoring)
+Option	Auchenai Death Shroud Auchenai Death Shroud	Drop: Avatar of the Martyred (Auchenai Crypts Heroic)
+Option	Cloak of the Pit Stalker Cloak of the Pit Stalker	Drop: Magtheridon (Magtheridon's Lair)
+Best in Slot Chest Armor for Rogue in TBC Classic Phase 1
+Terrorweave Tunic is a strong non-set item to use to complement your 2-piece Netherblade and 2-piece Wastewalker Armor, and is not noticeably different in performance compared to using Skulker's Greaves or Grips of Deftness as your one non-set item. If you choose to use Terroweave Tunic, you'll want to have Netherblade Helm and Legs with Wastewalker Armor Shoulders and Hands.
+Rank	Item	Source
+BiS	Netherblade Chestpiece Netherblade Chestpiece	Drop: Magtheridon (Magtheridon's Lair)
+BiS	Terrorweave Tunic Terrorweave Tunic	Drop: Doomwalker (World Boss)
+Option	Wastewalker Tunic Wastewalker Tunic	Drop: Keli'dan the Breaker (Blood Furnace Heroic)
+Best in Slot Wrist Armor for Rogue in TBC Classic Phase 1
+Nightfall Wristguards is your best in slot wrist for Phase 1, but the alternative Spymistress's Wristguards is not far behind. If you can't manage to snag the heroic dungeon drop, you'll do fine with the easy-to-get quest reward.
+Rank	Item	Source
+BiS	Nightfall Wristguards Nightfall Wristguards	Drop: Epoch Hunter (Old Hillsbrad Foothills Heroic)
+Option	Spymistress's Wristguards Spymistress's Wristguards	The Soul Devices The Soul Devices
+Best in Slot Hand Armor for Rogue in TBC Classic Phase 1
+Grips of Deftness is a strong non-set item to use to complement your 2-piece Netherblade and 2-piece Wastewalker Armor, and is not noticeably different in performance compared to using Skulker's Greaves or [Terrorweave Tunic[/b] as your one non-set item. If you choose to use Grips of Deftness, you'll want to have Netherblade Chest and Legs with Wastewalker Armor Shoulders and Helm.
+Rank	Item	Source
+BiS	Wastewalker Gloves Wastewalker Gloves	Drop: Warchief Kargath Bladefist (The Shattered Halls Heroic)
+BiS	Grips of Deftness Grips of Deftness	Drop: Trash in Karazhan
+Option	Netherblade Gloves Netherblade Gloves	Drop: The Curator (Karazhan)
+Option	Gloves of Dexterous Manipulation Gloves of Dexterous Manipulation	Drop: Attumen the Huntsman (Karazhan)
+Best in Slot Waist Armor for Rogue in TBC Classic Phase 1
+Girdle of the Deathdealer is the best in slot belt for Rogues in Phase 1. Gronn-Stitched Girdle is a pretty close second-best, and Girdle of Treachery is a little bit behind that as third best.
+Rank	Item	Source
+BiS	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus (Black Morass Heroic)
+Option	Gronn-Stitched Girdle Gronn-Stitched Girdle	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Girdle of Treachery Girdle of Treachery	Drop: Dust Covered Chest (Chess Event in Karazhan)
+Best in Slot Leg Armor for Rogue in TBC Classic Phase 1
+Skulker's Greaves is a strong non-set item to use to complement your 2-piece Netherblade and 2-piece Wastewalker Armor, and is not noticeably different in performance compared to using Grips of Deftness or Terrorweave Tunic as your one non-set item. If you choose to use Skulker's Greaves, you'll want to have Netherblade Chest and Helm with Wastewalker Armor Shoulders and Hands.
+Rank	Item	Source
+BiS	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+BiS	Netherblade Breeches Netherblade Breeches	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Wastewalker Leggings Wastewalker Leggings	Drop: Nexus-Prince Shaffar (Mana-Tombs Heroic)
+Best in Slot Feet Armor for Rogue in TBC Classic Phase 1
+Edgewalker Longboots are really great Rogue boots. They are so good that they are Phase 2's best-in-slot as well! Nothing in Serpentshrine Cavern or Tempest Keep beats these boots!
+Rank	Item	Source
+BiS	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+Option	Fel Leather Boots Fel Leather Boots	Crafted (Leatherworking)
+Best in Slot Neck Jewelry for Rogue in TBC Classic Phase 1
+Choker of Vile Intent is the best available necklace, and luckily, it is easy to get as well - only 25 Badge of Justice. When you have the buff from Braided Eternium Chain active, it is about equivalent to Choker of Vile Intent for you, but also provides a benefit to everyone in your party. I suggest bringing both to raids and rotating on Braided Eternium Chain when it is available. Your group members will certainly thank you for the extra power boost!
+Rank	Item	Source
+BiS	Choker of Vile Intent Choker of Vile Intent	25x Badge of Justice Badge of Justice
+BiS	Braided Eternium Chain Braided Eternium Chain	Crafted (Jewelcrafting)
+Option	Worgen Claw Necklace Worgen Claw Necklace	Drop: Attumen the Huntsman (Karazhan)
+Best in Slot Ring Jewelry for Rogue in TBC Classic Phase 1
+Ring of a Thousand Marks, Ring of Reciprocity, and Garona's Signet Ring are the best available rings for a Rogue in Phase 1. Any two of those three rings will be great, and which two you choose will not have a noticeable impact on your character's damage output. There are a few alternatives, each slightly worse than the one above.
+Rank	Item	Source
+BiS	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+BiS	Garona's Signet Ring Garona's Signet Ring	Drop: The Curator (Karazhan)
+BiS	Ring of Reciprocity Ring of Reciprocity	Drop: Doom Lord Kazzak (World Boss)
+Option	Shaffar's Band of Brutality Shaffar's Band of Brutality	Drop: Yor (Mana-Tombs Heroic)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Violet Signet of the Master Assassin Violet Signet of the Master Assassin	Exalted with The Violet Eye
+Option	Ring of the Recalcitrant Ring of the Recalcitrant	The Fall of Magtheridon The Fall of Magtheridon (Loot Magtheridon's Head Magtheridon's Head from Magtheridon's Lair)
+
+Best in Slot Trinkets for Rogue in TBC Classic Phase 1
+Dragonspine Trophy is an absolutely exceptional trinket for Rogues; the massive haste bonus synergizes extremely well with Combat Potency and Sword Specialization. This is the single best trinket in the entire expansion for Rogues - it will never be replaced throughout The Burning Crusade. Rogues aren't the only ones that will be clamouring for this trinket, though, so you may have to pick from the alternatives listed below. Mark of the Champion from WoW Classic remains a top choice against Undead or Demon targets, and the rest of the options are listed in order of power level - each one a little bit worse than the one above it.
+
+Badge of the Swarmguard from WoW Classic has some niche use for very short engagements like trash fights. It is exceptionally powerful, arguably the best trinket available - only if you are fighting for about 40 seconds. If your combat drags on much longer, Badge of the Swarmguard becomes worse and worse compared to the other options here.
+Rank	Item	Source
+BiS	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+BiS	Mark of the Champion Mark of the Champion	Drop: Kel'Thuzad (Naxxramas)
+BiS	Bloodlust Brooch Bloodlust Brooch	41x Badge of Justice Badge of Justice
+Option	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (Mechanar)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	Romulo's Poison Vial Romulo's Poison Vial	Drop: Julianne (Karazhan)
+Option	Kiss of the Spider Kiss of the Spider	Drop: Maexxna (Naxxramas)
+
+Best in Slot Main-Hand Weapons for Rogue in TBC Classic Phase 1
+Phase 1 of The Burning Crusade is a special time for Rogues. It is special because there are so many options for good mainhand weapons, such as Dragonmaw, Gladiator's Slicer, Blinkstrike, and Hope Ender are all exceptional choices for your mainhand weapon as a Rogue. The first three choices are so close that they are not meaningfully different. The final two are only slightly worse than the top three.
+
+If you choose to use Dragonmaw, you will want to switch your talents from the normal 20/41/0 to 16/45/0 for PvE damage dealing.
+
+Dagger weapons are listed for readers who want to play within the constraints of only using daggers. Daggers and dagger talent specializations are not competitive with sword and sword specializations in Burning Crusade. You will put yourself at a significant disadvantage in terms of damage output by choosing to play with daggers and dagger specializations.
+Rank	Item	Source
+BiS	Dragonmaw Dragonmaw	Crafted (Master Hammersmith Blacksmithing)
+BiS	Gladiator's Slicer Gladiator's Slicer	Vendor: Arena Points (Season 1)
+BiS	Blinkstrike Blinkstrike	World Drop
+Option	Spiteblade Spiteblade	Drop: Netherspite (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Option	Hope Ender Hope Ender	Drop: Doom Lord Kazzak (World Boss)
+Option - Dagger	Gladiator's Shanker Gladiator's Shanker	Vendor: Arena Points (Season 1)
+Option - Dagger	Malchazeen Malchazeen	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Offhands for Rogue in TBC Classic Phase 1
+Latro's Shifting Sword and Gladiator's Quickblade are both exceptional choices for PvE damage dealing on your Rogue and are not meaningfully different from each other. The secondary stats on Latro's Shifting Sword are superior, and the faster weapon speed makes a big difference with Combat Potency and Sword Specialization talents - enough to make up for the large weapon DPS difference.
+
+Dagger weapons are listed for readers who want to play within the constraints of only using daggers. Daggers and dagger talent specializations are not competitive with sword and sword specializations in Burning Crusade. You will put yourself at a significant disadvantage in terms of damage output by choosing to play with daggers and dagger specializations. A player using a Combat Daggers build should choose a fast offhand dagger, whereas a player using an Assassination Mutilate build should choose a second slow offhand dagger from the Main Hand section above.
+Rank	Item	Source
+BiS	Gladiator's Quickblade Gladiator's Quickblade	Vendor: Arena Points (Season 1)
+BiS	Latro's Shifting Sword Latro's Shifting Sword	Drop: Aeonus (Black Morass)
+Option - Dagger	Gladiator's Shiv Gladiator's Shiv	Vendor: Arena Points (Season 1)
+Option - Dagger	Searing Sunblade Searing Sunblade	50x Badge of Justice Badge of Justice
+Best in Slot Ranged Weapons for Rogue in TBC Classic Phase 1
+Veteran's Musket  / Marksman's Bow  from your preraid best in slot set are joined by Barrel-Blade Longrifle and Sunfury Bow of the Phoenix as ranged slot options that are not meaninfully different in performance. Any one of these three ranged slot items will be virtually identical in terms of PvE damage output.
+
+While the Stabilized Eternium Scope is technically the best scope to put on your ranged slot item, it is pretty insignificant for a Rogue. The bonus only applies to ranged attacks, and the Rogue will only very rarely use their ranged weapon to actually attack with it.
+Rank	Item	Source
+BiS	Veteran's Musket Veteran's Musket / Marksman's Bow Marksman's Bow	Vendor: Logistics Officer Ulrike / Quartermaster Urgronn (Honor Hold / Thrallmar Exalted)
+BiS	Barrel-Blade Longrifle Barrel-Blade Longrifle	Drop: Doomwalker (World Boss)
+BiS	Sunfury Bow of the Phoenix Sunfury Bow of the Phoenix	Drop: Prince Malchezaar (Karazhan)
+Simonize
+World of Warcraft Classic Rogue Expert
+Simonize has written Classic World of Warcraft Rogue guides for The Burning Crusade, Wrath of the Lich King, and Season of Discovery. He streams on Twitch, posts to YouTube, and hosts his own Discord server, all related to World of Warcraft Classic.
+1 - 1 of 1
+ 
+Subject
+	
+Posted
+	
+Author
+	
+Replies
+Best in Slot Pre-Raid Gear Recommendations for Burning Crusade Classic
+	On 2021/05/31	perculia	7
+1 - 1 of 1
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Rogue Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+            Best In Slot Gear in Phase 2
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Ranged Weapons
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Rogue DPS Best in Slot (BiS) Phase 2 Gear Guide - TBC Classic
+By Simonize
+Updated: 2026/05/12
+Welcome to Wowhead's Best in Slot Gear list from Tempest Keep and Serpentshrine Cavern for Rogue DPS in The Burning Crusade Classic. This guide will list the recommended gear for Rogue DPS to acquire while they progress during the second phase of The Burning Crusade Classic, and contains gear sourced from Tempest Keep and Serpentshrine Cavern, plus other pieces from previous phases like Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best in slot lists, including a TBCC pre-patch list and a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Rogue DPS Best in Slot HubRogue DPS Pre-Raid Best in Slot
+Best In Slot Gear for Rogue DPS in Phase 2
+In Phase 2, you will want to use the four-piece bonus of the rogue tier set, Deathmantle. This is undoubtedly a very powerful bonus, and randomly making your finishing moves free makes your rotation a little more dynamic and varied - very fun if you ask me! There are two good offset pieces to choose from to complement the tier set, either Bloodsea Brigand's Vest or Shoulderpads of the Stranger.
+
+The Shoulderpads of the Stranger setup is a bit starved for hit rating, but makes up for it with other stats. If you choose Shoulderpads of the Stranger, you'll want to switch most of your Glinting Noble Topaz Glinting Noble Topaz to Rigid Dawnstone Rigid Dawnstone. The gems shown here are for the recommended Bloodsea Brigand's Vest setup.
+
+Below is an example sgear set that uses Bloodsea Brigand's Vest. I recommend this choice because it is more flexible on gem slots and hit rating while gearing up compared to the Shoulderpads of the Stranger setup. There is no noticeable difference in performance between the two offset piece choices.
+
+For more information on Rogue Enchants and Gems for their BiS gear, take a look at our guide below:
+
+Should Rogue Choose Aldor or Scryer for BiS in TBC Classic Phase 2?
+Just like in Phase 1, choosing your Shattrath faction either The Aldor or The Scryers doesn't make that big of a difference in terms of raid performance. The main longstanding benefit will be the shoulder enchants from these factions. Greater Inscription of Vengeance Greater Inscription of Vengeance from The Aldor is very slightly better than Greater Inscription of the Blade Greater Inscription of the Blade from The Scryer's, but it is such a minuscule difference that you are unlikely to ever notice it. You will do just fine choosing whichever faction you prefer.
+
+    Aldor offer a very slightly superior shoulder enchant for PvE damage dealing.
+    Aldor offers a decent sword at Exalted, Vindicator's Brand Vindicator's Brand. This is a great starting weapon for fresh rogues.
+    Scryers offer Plans: Enchanted Adamantite Belt Plans: Enchanted Adamantite Belt, which can make leveling Blacksmithing Blacksmithing much cheaper.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Rogue in TBC Classic Phase 2
+Deathmantle Helm is definitely what you want to be using for your head slot in Phase 2. Getting the four-piece bonus on the Deathmantle set is a substantial boost to your character's damage output. If you are an Engineer, you can craft Deathblow X11 Goggles as a placeholder until you can acquire the superior Deathmantle Helm.
+
+Recommended BiS Helm Enchant: Glyph of Ferocity, requires Revered reputation with Cenarion Expedition.
+
+Rank	Item	Source
+BiS	Deathmantle Helm Deathmantle Helm	Drop: Lady Vashj (Serpenshrine Cavern)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+
+Other Head Armor Recommendations
+Rank	Item	Source
+Option	Deathblow X11 Goggles Deathblow X11 Goggles	Profession: Engineering
+Option	Netherblade Facemask Netherblade Facemask	Drop: Netherspite (Karazhan
+
+Best in Slot Shoulder Armor for Rogue in TBC Classic Phase 2
+For shoulders, you can choose to use either Deathmantle Shoulderpads or Shoulderpads of the Stranger, and there isn't a meaningful difference in performance. Depending on which shoulder you choose, you will want to use either Bloodsea Brigand's Vest or Deathmantle Chestguard in your chest slot to be sure you maintain the 4-piece bonus of Deathmantle.
+
+Might of the Scourge from Sapphiron in Naxxramas in WoW Classic is still your best shoulder enchant, with Greater Inscription of Vengeance from being Exalted with The Aldor reputation coming in as a very close second.
+Rank	Item	Source
+BiS	Deathmantle Shoulderpads Deathmantle Shoulderpads	Drop: Void Reaver (Tempest Keep: The Eye)
+BiS	Shoulderpads of the Stranger Shoulderpads of the Stranger	Drop: Hydross the Unstable (Serpenshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+
+Rank	Item	Source
+Option	Netherblade Shoulderpads Netherblade Shoulderpads	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Back Armor for Rogue in TBC Classic Phase 2
+Drape of the Dark Reavers is a great cloak and is about on par with Thalassian Wildercloak, but the two are not meaningfully different from each other. If you can compensate for the lost hit rating by switching gems, you could eke out just a little bit more damage by using Thalassian Wildercloak.
+Rank	Item	Source
+BiS	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+
+Rank	Item	Source
+Option	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Vengeance Wrap Vengeance Wrap	Drop: Avatar of the Martyred (Auchenai Crypts Heroic)
+
+Best in Slot Chest Armor for Rogue in TBC Classic Phase 2
+For chest armor, you can use either Bloodsea Brigand's Vest or Deathmantle Chestguard, and there isn't a meaningful difference in performance so long as you swap your shoulder slot as well. If you choose Bloodsea Brigand's Vest, then it is Deathmantle Shoulderpads for the shoulders, and if you choose Deathmantle Chestguard for the chest, then it is Shoulderpads of the Stranger for the shoulders.
+Recommended BiS Chest Enchant: Exceptional Stats
+
+Rank	Item	Source
+BiS	Bloodsea Brigand's Vest Bloodsea Brigand's Vest	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+BiS	Deathmantle Chestguard Deathmantle Chestguard	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Option	Terrorweave Tunic Terrorweave Tunic	Drop: Doomwalker (World Boss)
+Option	Netherblade Chestpiece Netherblade Chestpiece	Drop: Magtheridon (Magtheridon's Lair)
+
+Best in Slot Wrist Armor for Rogue in TBC Classic Phase 2
+Vambraces of Ending are a decent upgrade over the Phase 1 best-in-slot bracers, Nightfall Wristguards. You may want to keep Spymistress's Wristguards around as you are gearing up in Phase 2 since you will often be starved for hit rating and may want to swap between Spymistress's Wristguards and Nightfall Wristguards depending on which particular upgrades you get in the beginning of Phase 2.
+
+Recommended BiS Bracer Enchant: Enchanter Bracer - Assault
+Rank	Item	Source
+BiS	Vambraces of Ending Vambraces of Ending	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+
+Rank	Item	Source
+Option	Shard-bound Bracers Shard-bound Bracers	Reputation: Exalted with Ogri'la
+Option	Nightfall Wristguards Nightfall Wristguards	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Spymistress's Wristguards Spymistress's Wristguards	Quest: The Soul Devices The Soul Devices
+
+Best in Slot Hand Armor for Rogue in TBC Classic Phase 2
+Deathmantle Handguards are an easy choice here because they are both individually the strongest item in the slot, and they help access the very powerful four-piece bonus for the Deathmantle set.
+
+Recommended BiS Glove Enchant: Enchant Gloves - Superior Agility
+Rank	Item	Source
+BiS	Deathmantle Handguards Deathmantle Handguards	Drop: Leotheras the Blind (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Gloves of the Searing Grip Gloves of the Searing Grip	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Grips of Deftness Grips of Deftness	Drop: Karazhan Trash Mobs
+Option	Netherblade Gloves Netherblade Gloves	Drop: The Curator (Karazhan)
+
+Best in Slot Waist Armor for Rogue in TBC Classic Phase 2
+Belt of One-Hundred Deaths is really quite exceptional and is far and away the best belt you can get in Phase 2. Even when we progress to Phase 3, Belt of One-Hundred Deaths will still be the best belt, and still be ahead of the competition by a good margin. This belt doesn't get replaced until you can get Slayer's Belt from Sunwell Plateau!
+Rank	Item	Source
+BiS	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Belt of Deep Shadow Belt of Deep Shadow	Profession: Leatherworking
+Option	Girdle of the Deathdealer Girdle of the Deathdealer	Drop: Aeonus (The Black Morass Heroic)
+
+Best in Slot Leg Armor for Rogue in TBC Classic Phase 2
+Deathmantle Legguards are the choice for leg armor in Phase 2. Leggings of Murderous Intent are just a teeny tiny improvement in terms of the individual item, but they do not help access the powerful four set bonus of Deathmantle so we stick with the tier set for this slot.
+
+Recommended BiS Leg Armor: Nethercobra Leg Armor
+Rank	Item	Source
+BiS	Deathmantle Legguards Deathmantle Legguards	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Leggings of Murderous Intent Leggings of Murderous Intent	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Netherblade Breeches Netherblade Breeches	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+
+Best in Slot Feet Armor for Rogue in TBC Classic Phase 2
+Edgewalker Longboots from Karazhan are still the best boots - nothing new in Phase 2 surpasses these amazing boots. You'll finally replace them in Phase 3 with Shadowmaster's Boots in Black Temple.
+
+Recommended BiS Feet Enchant: Enchant Boots - Cat's Swiftness
+Rank	Item	Source
+BiS	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Boots of Utter Darkness Boots of Utter Darkness	Crafted (Leatherworking)
+Option	Fel Leather Boots Fel Leather Boots	Crafted (Leatherworking)
+
+Best in Slot Neck Jewelry for Rogue in TBC Classic Phase 2
+Choker of Vile Intent and Telonicus's Pendant of Mayhem are about on-par for power level. If you can compensate for the lost hit rating by changing gems, you'll gain a very small advantage using Telonicus's Pendant of Mayhem.
+
+When you have the buff from Braided Eternium Chain active, it is about equivalent to Choker of Vile Intent for you, but also provides a benefit to everyone in your party. I suggest bringing both to raids and rotating on Braided Eternium Chain when it is available. Your group members will certainly thank you for the extra power boost!
+Rank	Item	Source
+BiS	Choker of Vile Intent Choker of Vile Intent	25x Badge of Justice Badge of Justice
+BiS	Braided Eternium Chain Braided Eternium Chain	Crafted (Jewelcrafting)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Worgen Claw Necklace Worgen Claw Necklace	Drop: Attumen the Huntsman (Karazhan)
+Option	Telonicus's Pendant of Mayhem Telonicus's Pendant of Mayhem	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Ring Jewelry for Rogue in TBC Classic Phase 2
+The two new rings Band of the Ranger-General and Ring of Lethality in Phase 2 surpass the best rings from Phase 1 and are definitely what you want to be using. That being said, the ring slots are not major upgrades and are less significant than tier set, weapon, or trinket upgrades.
+
+Recommended BiS Ring Enchant: Enchant Ring - Stats > Enchant Ring - Striking - Only Enchanters may apply Ring Enchants on their own rings.
+Rank	Item	Source
+BiS	Ring of Lethality Ring of Lethality	Drop: Hydross the Unstable (Serpentshrine Cavern)
+BiS	Band of the Ranger-General Band of the Ranger-General	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Ring of Reciprocity Ring of Reciprocity	Drop: Doom Lord Kazzak (World Boss)
+Option	Ring of a Thousand Marks Ring of a Thousand Marks	Drop: Prince Malchezaar (Karazhan)
+Option	Garona's Signet Ring Garona's Signet Ring	Drop: The Curator (Karazhan)
+
+Best in Slot Trinkets for Rogue in TBC Classic Phase 2
+Dragonspine Trophy is an absolutely exceptional trinket for rogues; the massive haste bonus synergizes extremely well with Combat Potency and Sword Specialization. This is the single best trinket in the entire expansion for rogues - it will never be replaced throughout The Burning Crusade. Rogues aren't the only ones that will be clamouring for this trinket, though, so you may have to pick from the alternatives listed below. Warp-Spring Coil is a strong second-best trinket that will have very little competition from other players since it is only usable by rogues.
+
+Tsunami Talisman is really not very remarkable, having a chance to trigger only on critical strikes. This means you will often be waiting a while for this trinket to trigger, making it only very slightly better than Bloodlust Brooch.
+
+Badge of the Swarmguard from WoW Classic has some powerful niche use for very short engagements like trash fights. It is exceptionally powerful, arguably the best trinket availabl,e but ]only if[] you are fighting for about 40 seconds or less. If your combat drags on much longer, Badge of the Swarmguard becomes worse and worse compared to the other options here.
+Rank	Item	Source
+BiS	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+BiS	Warp-Spring Coil Warp-Spring Coil	Drop: Void Reaver (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	Bloodlust Brooch Bloodlust Brooch	41x Badge of Justice Badge of Justice
+Option	Tsunami Talisman Tsunami Talisman	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Abacus of Violent Odds Abacus of Violent Odds	Drop: Pathaleon the Calculator (The Mechanar Heroic)
+Option	Romulo's Poison Vial Romulo's Poison Vial	Drop: Julianne (Karazhan)
+Option	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Sartura (Naxxramas)
+
+Best in Slot Main-Hand Weapons for Rogue in TBC Classic Phase 2
+For Phase 2, Talon of Azshara is ki, ng, and nothing else is particularly close. Dragonstrike and Merciless Gladiator's Slicer are about on par with each other, but a big step down from the Talon of Azshara. As you go further down the list, the weapons are worse and worse.
+
+If you choose to use one of the main hand mace options, you will want to switch your talents from the normal 20/41/0 to 16/45/0 for PvE damage dealing. Same thing with the Talon of the Phoenix - but instead of Mace Specialization you'll want Fist Weapon Specialization. For Human rogues, you might as well just pretend Talon of the Phoenix isn't on the list because you won't be able to benefit from your very powerful expertise bonus racials Sword Specialization and Mace Specialization, making it a very bad choice.
+
+Dagger weapons are listed for readers who want to play within the constraints of only using daggers. Daggers and dagger talent specializations are not competitive with swords and sword specializations in Burning Crusade. You will put yourself at a disadvantage in terms of damage output by choosing to play with daggers and dagger specializations.
+
+Recommended BiS Weapon Enchants: Enchant Weapon - Mongoose
+Rank	Item	Source
+BiS	Talon of Azshara Talon of Azshara	Drop: Morogrim Tidewalker (Serpenshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Option	Dragonstrike Dragonstrike	Crafted (Master Hammersmith Blacksmithing)
+Option	Merciless Gladiator's Slicer Merciless Gladiator's Slicer	Vendor: PvP Arena Points (Season 2)
+Option	Talon of the Phoenix Talon of the Phoenix	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Dragonmaw Dragonmaw	Crafted (Master Hammersmith Blacksmithing)
+Option	Rod of the Sun King Rod of the Sun King	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Gladiator's Slicer Gladiator's Slicer	Vendor: PvP Arena Points (Season 1)
+Option - Dagger	Fang of Vashj Fang of Vashj	Drop: Lady Vashj (Serpentshrine Cavern)
+Option - Dagger	Heartrazor Heartrazor	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+
+Best in Slot Offhands for Rogue in TBC Classic Phase 2
+Merciless Gladiator's Quickblade is a step up from the two offhand sword options from Phase 1, Latro's Shifting Sword and Gladiator's Quickblade. Until you can snag a Latro's Shifting Sword for your offhand, either of the Phase 1 options is an exceptional choice for PvE damage dealing on your rogue, aRoguet meaningfully different from each other. The secondary stats on Latro's Shifting Sword are superior, and the faster weapon speed makes a big difference with Combat Potency and Sword Specialization talents - enough to make up for the large weapon DPS difference between these two.
+
+Dagger weapons are listed for readers who want to play within the constraints of only using daggers. Daggers and dagger talent specializations are not competitive with swords and sword specializations in Burning Crusade. You will put yourself at a disadvantage in terms of damage output by choosing to play with daggers and dagger specializations. A player using a Combat Daggers build should choose a fast offhand dagger, whereas a player using an Assassination Mutilate build should choose a second slow offhand dagger from the Main Hand section above.
+
+Recommended BiS Weapon Enchants: Enchant Weapon - Mongoose
+Rank	Item	Source
+BiS	Merciless Gladiator's Quickblade Merciless Gladiator's Quickblade	Vendor: Arena Points (Season 2)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Gladiator's Quickblade Gladiator's Quickblade	Vendor: Arena Points (Season 1)
+Option	Latro's Shifting Sword Latro's Shifting Sword	Drop: Aeonus (The Black Morass)
+Option - Dagger	Merciless Gladiator's Shiv Merciless Gladiator's Shiv	Vendor: Arena Points (Season 2)
+Option - Dagger	Searing Sunblade Searing Sunblade	Vendor: 50x Badge of Justice Badge of Justice
+
+Best in Slot Ranged Weapons for Rogue in TBC Classic Phase 2
+Arcanite Steam-Pistol comes in ahead of the Phase 1 ranged slot options for rogues, but is really only a small upgrade. Overall, the ranged slot is not very significant for rogues, as we just rely on it for a few extra stats. Arcanite Steam-Pistol will last you all the way until Phase 5 - nothing in Phase 3 or 4 really surpasses the great stats on it.
+
+Recommended BiS Scope: Stabilized Eternium Scope
+Rank	Item	Source
+BiS	Arcanite Steam-Pistol Arcanite Steam-Pistol	Drop: Al'ar (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Veteran's Musket Veteran's Musket / Marksman's Bow Marksman's Bow	Vendor: Logistics Officer Ulrike / Quartermaster Urgronn (Honor Hold / Thrallmar Exalted)
+Option	Barrel-Blade Longrifle Barrel-Blade Longrifle	Drop: Doomwalker (World Boss)
+Option	Sunfury Bow of the Phoenix Sunfury Bow of the Phoenix	Drop: Prince Malchezaar (Karazhan)
+
+Simonize
+World of Warcraft Classic Rogue Expert
+Simonize has written Classic World of Warcraft Rogue guides for The Burning Crusade, Wrath of the Lich King, and Season of Discovery. He streams on Twitch, posts to YouTube, and hosts his own Discord server, all related to World of Warcraft Classic.
+1 - 6 of 6
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+5
+
+	
+By FriendlyFacts (3,169 – 1·9·34) on 2021/08/10 (Burning Crusade)	
+	
+Patch 2.5.2 Content will include Ogri'la and Shard-bound Bracers Shard-bound Bracers, which is an intermediate upgrade (105.16EP) between Nightfall Wristguards (98.56EP) and Vambraces of Ending (123.92EP).
+
+3
+
+	
+By Morghun (1,077 – 3·5) on 2021/09/05 (Burning Crusade)	
+	
+Why do you recommend to use orange gems when not hitcapped?
+
+0
+
+	
+
+Simonize <Guide Author> on 2021/10/10 (Burning Crusade)
+Hi Morghun, this gear set assumes Improved Faerie Fire is active and reaches the level 72 hit cap in order to maximize total damage dealt in a raid, thats boss and trash. Going for the level 73 (boss) hit cap ends up wasting a lot of stats whenever you are attacking something level 72 or below. If you only care about boss damage OR you do not have Improved Faerie Fire, you should absolutely swap many of the orange gems into +8 hit Rigid Dawnstone.
+
+1
+
+	
+By Vannicavus (27,350 – 2·11·17) <Rare Premium User> on 2021/08/10 (Burning Crusade)	
+	
+Question on the Weapons list.. I have no idea about rogue dps at all, never played one. I am asking purely from a Raid Leader standpoint when it comes to planning loot. Say our Rogue wanted to use the Dragonstrike mace, which is a Main Hand only item. In your list you have the Talon listed for MH but it is a one-hand, meaning it could be used for either. whats the benefit / downfall of using a Dragonstrike MH / Talon OH? I notice all your OH choices are the super fast 1.5-ish speeds, is that due to the energy regen potential or something?
+Thank you! :)
+
+3
+
+	
+
+Tycam on 2021/08/10 (Burning Crusade)
+Combat potency, sword specialization and poisons all are percentage based procs which make faster weapons better at proccing them.
+
+3
+
+	
+
+Simonize <Guide Author> on 2021/08/11 (Burning Crusade)
+Tycam is right. Rogues want a slow mainhand weapon and a fast offhand weapon. It is absolutely miserable to use a slow offhand weapon as a rogue, a very very bad idea. The offhand NEEDS to be fast and the mainhand NEEDS to be slow.
+
+1
+
+	
+By Eldanar81 (2,403 – 6·7) on 2021/10/05 (Burning Crusade)	
+	
+Please correct the price for Searing Sunblade, it's 50 badges, not 41. Thanks.
+
+0
+
+	
+
+Simonize <Guide Author> on 2021/10/10 (Burning Crusade)
+Got it, thank you!
+
+1
+
+	
+By Jaquesante (3,868 – 15·28) on 2021/11/09 (Burning Crusade)	
+	
+With the discovery of the strength of weapon damage, might Crystalforged Trinket Crystalforged Trinket be a viable trinket if none of the others have been obtained?
+
+0
+
+	
+
+Simonize <Guide Author> on 2021/12/17 (Burning Crusade)
+The new understanding of how +weapon damage work makes this trinket stronger, but it was really really bad to start with. It's still really bad and definitely worse than things like Bloodlust Brooch, Hourglass of the Unraveller, Romulo's, Dragonspine, Warp-Spring Coil, etc.
+By Pzyy (13,027 – 2·23·37) on 2021/09/21 (Burning Crusade)	
+	
+1 - 6 of 6
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Rogue Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+            Best In Slot Gear in Phase 3
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Ranged Weapons
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Rogue DPS Best in Slot (BiS) Phase 3 Gear Guide
+By Simonize
+Updated: 2026/02/14
+Welcome to Wowhead's Best in Slot Gear list from Phase 3 Black Temple and Mount Hyjal for Rogue DPS in The Burning Crusade Classic. This guide will list the recommended gear for Rogue DPS to acquire while they progress during the third phase of The Burning Crusade Classic, and contains gear sourced from Black Temple and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Rogue DPS in Phase 3
+In Phase 3, Rogues see a pretty substantial power boost thanks to another very well itemized tier set, the Slayer's Armor. Both bonuses on this set are very good, with the two-piece being even more powerful than the four-piece bonus. All pieces of the set are strong individual items as well, and Cursed Vision of Sargeras Cursed Vision of Sargeras is the only non-set item that is better than the set item equivalent in that slot.
+
+Some lucky few of us Rogues may even be able to obtain the exceptionally powerful Legendary weapons, The Twin Blades of Azzinoth. These are the best weapons available for Rogues for the remainder of the expansion, and upgrading to these weapons is about as much damage gain as upgrading every single piece of armor from Phase 2 best in slot to Phase 3 best in slot combined.
+
+Rogues looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Rogue Gems & Enchants
+Should Rogue DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 3?
+Just like in Phases 1 and 2, choosing your Shattrath faction, either The Aldor or The Scryers, doesn't make that big of a difference in terms of raid performance. The main longstanding benefit will be the shoulder enchants from these factions. Greater Inscription of Vengeance Greater Inscription of Vengeance from the Aldor is very slightly better than Greater Inscription of the Blade Greater Inscription of the Blade from the Scryers, but it is such a minuscule difference that you are unlikely ever to notice it. You will do just fine choosing whichever faction you prefer.
+
+    Aldor offer a very slightly superior shoulder enchant for PvE damage dealing.
+    Aldor offers a decent sword at Exalted, Vindicator's Brand Vindicator's Brand. This is a great starting weapon for fresh Rogues.
+    Scryers offer Plans: Enchanted Adamantite Belt Plans: Enchanted Adamantite Belt which can make leveling Blacksmithing much cheaper.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Rogues, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Rogue DPS in TBC Classic Phase 3
+Cursed Vision of Sargeras is the best helmet both in looks and in terms of beneficial stats for damage dealing, making it an exceptional helmet. It is a medium upgrade compared to the second-best helmet, the Slayer's Helm. Cursed Vision happens to be the only non-Slayer's Armor set item in the primary five gear slots that is an upgrade over the tier set pieces. If you can't get Cursed Vision, you'll want to use all five pieces of Slayer's Armor.
+Rank	Item	Source
+BiS	Cursed Vision of Sargeras Cursed Vision of Sargeras	Drop: Illidan Stormrage (Black Temple)
+Option	Slayer's Helm Slayer's Helm	Drop: Archimonde (Hyjal Summit)
+Option	Deathmantle Helm Deathmantle Helm	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Deathblow X11 Goggles Deathblow X11 Goggles	Profession: Engineering - BoP only
+Best in Slot Shoulder Armor for Rogue DPS in TBC Classic Phase 3
+You really want to get Slayer's Shoulderpads for your shoulder slot. These shoulders are really strong and are a medium upgrade over the second-best option, Swiftstrike Shoulders, which is a Leatherworker-only crafted item. Slayer's Shoulderpads will be used for the rest of the expansion, as even with access to Sunwell Plateau, these shoulders will be part of your BiS setup for PvE.
+Rank	Item	Source
+BiS	Slayer's Shoulderpads Slayer's Shoulderpads	Drop: Mother Shahraz (Black Temple)
+Option	Swiftstrike Shoulders Swiftstrike Shoulders	Profession: Leatherworking - BoP only
+Option	Mantle of Darkness Mantle of Darkness	Drop: High Warlord Naj'entus (Black Temple)
+Option	Deathmantle Shoulderpads Deathmantle Shoulderpads	Drop: Void Reaver (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Shoulderpads of the Stranger Shoulderpads of the Stranger	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Option	Razorfury Mantle Razorfury Mantle	Drop: Kaz'rogal (Hyjal Summit)
+
+Best in Slot Back Armor for Rogue DPS in TBC Classic Phase 3
+Shadowmoon Destroyer's Drape is a strong cloak and is a medium upgrade over your best choices from Phase 2, either Thalassian Wildercloak or Drape of the Dark Reavers. If you can't manage to get Shadowmoon Destroyer's Drape in Phase 3, you can look forward to a nearly equivalent cloak from Zul'Aman when that releases, the Cloak of Fiends Cloak of Fiends.
+Rank	Item	Source
+BiS	Shadowmoon Destroyer's Drape Shadowmoon Destroyer's Drape	Drop: Teron Gorefiend (Black Temple)
+Option	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+Best in Slot Chest Armor for Rogue DPS in TBC Classic Phase 3
+There are a couple of options that are all very large upgrades over the best choices from Phase 2, but the clear winner is the piece from Slayer's Armor. Slayer's Chestguard is not only a medium upgrade over the second-best Midnight Chestguard, but it also helps you activate the very powerful bonuses from the tier set. You will absolutely want to get both the 2-set and 4-set bonuses from Slayer's Armor.
+Rank	Item	Source
+BiS	Slayer's Chestguard Slayer's Chestguard	Drop: Illidan Stormrage (Black Temple)
+Option	Midnight Chestguard Midnight Chestguard	Drop: Archimonde (Hyjal Summit)
+Option	Nether Shadow Tunic Nether Shadow Tunic	Drop: Supremus (Black Temple)
+Option	Bloodsea Brigand's Vest Bloodsea Brigand's Vest	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Option	Deathmantle Chestguard Deathmantle Chestguard	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Wrist Armor for Rogue DPS in TBC Classic Phase 3
+Wrists are a slot with a few different options, with the best being a large upgrade over the best choice from Phase 2. Insidious Bands are your best option and are a small upgrade over the two alternatives, Swiftstrike Bracers or Deadly Cuffs.
+Rank	Item	Source
+BiS	Insidious Bands Insidious Bands	Drop: Teron Gorefiend (Black Temple)
+Option	Swiftstrike Bracers Swiftstrike Bracers	Profession: Leatherworking - can be purchased on the Auction House
+Option	Deadly Cuffs Deadly Cuffs	Drop: Rage Winterchill (Hyjal Summit)
+Option	Vambraces of Ending Vambraces of Ending	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Best in Slot Hand Armor for Rogue DPS in TBC Classic Phase 3
+Slayer's Handguards are an easy choice for gloves because they are both individually the strongest item in the slot, and they help access the very powerful bonuses for the Slayer's Armor set.
+Rank	Item	Source
+BiS	Slayer's Handguards Slayer's Handguards	Drop: Azgalor (Hyjal Summit)
+Option	Grips of Damnation Grips of Damnation	Drop: Essence of Anger (Black Temple)
+Option	Deathmantle Handguards Deathmantle Handguards	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Best in Slot Waist Armor for Rogue DPS in TBC Classic Phase 3
+Belt of One-Hundred Deaths is really quite exceptional, and the new options available in Phase 3 do not beat it. Belt of One-Hundred Deaths is a large upgrade over the second-best option, Shadow-walker's Cord.
+Rank	Item	Source
+BiS	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Shadow-walker's Cord Shadow-walker's Cord	Drop: Shade of Akama (Black Temple)
+Option	Belt of Deep Shadow Belt of Deep Shadow	Profession: Leatherworking - can be purchased on the Auction House
+Option	Don Alejandro's Money Belt Don Alejandro's Money Belt	Drop: Anetheron (Hyjal Summit)
+Best in Slot Leg Armor for Rogue DPS in TBC Classic Phase 3
+Slayer's Legguards are again an easy choice for the leg slot as the individually strongest item, a large upgrade compared to the best choice from Phase 2, and helping access the very powerful set bonuses for the Slayer's Armor.
+Rank	Item	Source
+BiS	Slayer's Legguards Slayer's Legguards	Drop: The Illidari Council (Black Temple)
+Option	Shady Dealer's Pantaloons Shady Dealer's Pantaloons	Drop: Azgalor (Hyjal Summit)
+Option	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+Option	Deathmantle Legguards Deathmantle Legguards	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Best in Slot Feet Armor for Rogue DPS in TBC Classic Phase 3
+Edgewalker Longboots from Karazhan are finally replaced in Phase 3 with the boots from Mother Shahraz, Shadowmaster's Boots. These long-awaited boots are a medium upgrade compared to the good old Edgewalkers.
+Rank	Item	Source
+BiS	Shadowmaster's Boots Shadowmaster's Boots	Drop: Mother Shahraz (Black Temple)
+Option	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+Best in Slot Neck Jewelry for Rogue DPS in TBC Classic Phase 3
+Choker of Endless Nightmares is the best neck available and is a medium upgrade compared to the second-best necklace, which is Choker of Serrated Blades, and a large upgrade compared to the best option from Phase 2.
+
+It is still good to swap out Choker of Endless Nightmares for Braided Eternium Chain when you can provide the critical strike chance buff for your party. It will be an individual DPS loss, but an overall gain in DPS for your team.
+Rank	Item	Source
+BiS	Choker of Endless Nightmares Choker of Endless Nightmares	Drop: Supremus (Black Temple)
+Option	Choker of Serrated Blades Choker of Serrated Blades	Drop: Trash Mobs (Hyjal Summit)
+Option	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (Badges of Justice)
+Option	Braided Eternium Chain Braided Eternium Chain	Profession: Jewelcrafting - can be purchased on the Auction House
+Best in Slot Ring Jewelry for Rogue DPS in TBC Classic Phase 3
+There are three new ring options in Phase 3, and luckily, one of the best ones is also very reliable to get. Band of the Eternal Champion is a reputation reward from reaching exalted with The Scale of the Sands, which you will quickly earn from completing the Hyjal Summit raid a few times. Stormrage Signet Ring is the best ring available this phase, and will last you all the way until the end of the game. The best ring options from Phases 4 and 5 are roughly on par with the Stormrage Signet Ring.
+
+Stormrage Signet Ring is a large upgrade over the best options from Phase 2, Band of the Eternal Champion is a medium upgrade, and Ring of Deceitful Intent isn't much of an upgrade at all, only very slightly ahead of the Phase 2 options.
+
+If you are looking to gain hit rating because it is lacking in other gear slots, or maybe you don't have Improved Faerie Fire in your raid, swapping gems for more hit rating is your best choice. If you don't want to do that, swapping out Band of the Eternal Champion for Band of the Ranger-General or Ring of Deceitful Intent is the next best way to gain hit rating.
+Rank	Item	Source
+BiS	Stormrage Signet Ring Stormrage Signet Ring	Drop: Illidan Stormrage (Black Temple)
+BiS	Band of the Eternal Champion Band of the Eternal Champion	Quest: Champion's Covenant Champion's Covenant (The Scale of the Sands Exalted)
+Option	Ring of Deceitful Intent Ring of Deceitful Intent	Drop: Shade of Akama (Black Temple)
+Option	Ring of Lethality Ring of Lethality	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Band of the Ranger-General Band of the Ranger-General	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Trinkets for Rogue DPS in TBC Classic Phase 3
+Dragonspine Trophy is an absolutely exceptional trinket for Rogues; the massive haste bonus synergizes extremely well with Combat Potency and Sword Specialization. This is the single best trinket in the entire expansion for Rogues - it will never be replaced throughout TBC. Rogues aren't the only ones that will be clamouring for this trinket, so you may have to pick from the alternatives listed below. Warp-Spring Coil is a strong second-best trinket that will have very little competition from other players since it is only usable by Rogues.
+
+Phase 3 brings two new trinket options for Rogues in Madness of the Betrayer from the The Illidari Council and Ashtongue Talisman of Lethality from reaching Exalted with the Ashtongue Deathsworn. Neither of these trinkets is particularly remarkable, and both fall short of the options already available to Rogues in Phase 2. If you don't have Dragonspine Trophy and Warp-Spring Coil already, you can reliably obtain the Ashtongue Talisman of Lethality as a reputation reward in Phase 3 until you can get your hands on either of the two best options.
+Rank	Item	Source
+BiS	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+BiS	Warp-Spring Coil Warp-Spring Coil	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Madness of the Betrayer Madness of the Betrayer	Drop: High Nethermancer Zerevor (Black Temple)
+Option	Ashtongue Talisman of Lethality Ashtongue Talisman of Lethality	Vendor: Okuno (Ashtongue Deathsworn Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Badge of the Swarmguard, from Classic, and Bloodlust Brooch are both very strong options to be used on short (50 seconds or less) combat engagements such as trash pulls, especially if you are able to use Blade Flurry to hit two targets at once. If you've got time to wait for the 30-second equip cooldown, one of these two is definitely worth equipping for short combats, even if you have the best passive trinkets at the top of this list.
+Rank	Item	Source
+Option	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (Badges of Justice)
+Option	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Sartura (Classic - Ahn'Qiraj)
+
+Best in Slot Weapons for Rogue DPS in TBC Classic Phase 3
+If you're lucky, you may be able to get one of the most coveted Legendary weapons in all of World of Warcraft, the Warglaive of Azzinoth. A set of The Twin Blades of Azzinoth is as much of a damage upgrade for a Rogue as it is to upgrade every single piece of BiS armor from Phase 2 to the BiS option in Phase 3 combined. These glaives are the best available weapons for a Rogue in the entire expansion. You can only kill Illidan Stormrage once per week, though, so even if you are promised the first set of glaives, it is very possible you won't see them for many months of raiding!
+
+Short of the legendary warglaives, you're looking at Vengeful Gladiator's Slicer as a medium upgrade from Talon of Azshara. Blade of Infamy is essentially just a side-grade on par with the Talon, so no real need to get this sword if you already have Talon of Azshara.
+
+Dagger weapons are listed for readers who want to play within the constraints of only using daggers. Daggers and dagger talent specializations are not competitive with swords and sword specializations in TBC. You will put yourself at a disadvantage in terms of damage output by choosing to play with daggers.
+Rank	Item	Source
+BiS	Warglaive of Azzinoth Warglaive of Azzinoth	Drop: Illidan Stormrage (Black Temple)
+Option	Vengeful Gladiator's Slicer Vengeful Gladiator's Slicer	Vendor: Arena Points (Season 3)
+Option	Blade of Infamy Blade of Infamy	Drop: Anetheron (Hyjal Summit)
+BiS - Dagger	Shard of Azzinoth Shard of Azzinoth	Drop: Illidan Stormrage (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Rank	Item	Source
+Option	Talon of Azshara Talon of Azshara	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Option	Dragonstrike Dragonstrike	Profession: Blacksmithing - BoP only
+Option	Merciless Gladiator's Slicer Merciless Gladiator's Slicer	Vendor: Arena Points (Season 2)
+Option - Dagger	Vengeful Gladiator's Shanker Vengeful Gladiator's Shanker	Vendor: Arena Points (Season 3)
+
+Best in Slot Offhands for Rogue in TBC Classic Phase 3
+As it is with the main hand options above, the Warglaive of Azzinoth is far and away the best option available and will remain the best possible weapon for the rest of the expansion. Of course, not everyone will be able to obtain the massively powerful Legendary weapons, so considering the next best option is a good idea. Blade of Savagery is exceptionally well-itemized for Rogues and is the second-best option in Phase 3, 4, and 5 - none of the new swords in later phases will surpass Blade of Savagery as an offhand option.
+
+Dagger weapons are listed for readers who want to play within the constraints of only using daggers. Daggers and dagger talent specializations are not competitive with swords and sword specializations in TBC. You will put yourself at a disadvantage in terms of damage output by choosing to play with daggers. A player using a Combat Daggers build should choose a fast offhand dagger, whereas a player using an Assassination Mutilate build should choose a second slow offhand dagger from the Main Hand section above.
+Rank	Item	Source
+BiS	Warglaive of Azzinoth Warglaive of Azzinoth	Drop: Illidan Stormrage (Black Temple)
+BiS	Blade of Savagery Blade of Savagery	Drop: Mother Shahraz (Black Temple)
+Option	Vengeful Gladiator's Quickblade Vengeful Gladiator's Quickblade	Vendor: Arena Points (Season 3)
+BiS - Dagger	Vengeful Gladiator's Shiv Vengeful Gladiator's Shiv	Vendor: Arena Points (Season 3)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Merciless Gladiator's Quickblade Merciless Gladiator's Quickblade	Vendor: Arena Points (Season 2)
+Option - Dagger	Tracker's Blade Tracker's Blade	Drop: Rage Winterchill (Hyjal Summit)
+
+Best in Slot Ranged Weapons for Rogue in TBC Classic Phase 3
+Twisted Blades of Zarak is the only new ranged slot option worth considering from Phase 3, and it comes in just barely behind the Arcanite Steam-Pistol from Phase 2 in performance. The best thing that could be said about the Twisted Blades is that it allows use of Deadly Throw, which is useful for some encounters, combined with the interrupt bonus on PvP gloves like Vengeful Gladiator's Leather Gloves Vengeful Gladiator's Leather Gloves. Outside of access to Deadly Throw, there is really not much difference to note between any of these options for the ranged slot - they are all very similar in value.
+Rank	Item	Source
+BiS	Arcanite Steam-Pistol Arcanite Steam-Pistol	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Twisted Blades of Zarak Twisted Blades of Zarak	Drop: Teron Gorefiend (Black Temple)
+Option	Barrel-Blade Longrifle Barrel-Blade Longrifle	Drop: Doomwalker (World Boss)
+Option	Sunfury Bow of the Phoenix Sunfury Bow of the Phoenix	Drop: Prince Malchezaar (Karazhan)
+Simonize
+World of Warcraft Classic Rogue Expert
+Simonize has written Classic World of Warcraft Rogue guides for The Burning Crusade, Wrath of the Lich King, and Season of Discovery. He streams on Twitch, posts to YouTube, and hosts his own Discord server, all related to World of Warcraft Classic.
+1 - 2 of 2
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By blueair187 (1,843 – 6·7) on 2022/01/19 (Burning Crusade)	
+	
+Where does the Mark of the Champion stack up on the trinkets? Hard to believe its not on the list if you don't have a DST.
+
+1
+
+	
+
+Charak on 2022/01/23 (Burning Crusade)
+Mark is weaker than Brooch. But if you have neither WSC/DST, and happen to have a mark sure as a secondary its fine until you get enough rep to buy the ashtongue trinket
+
+1
+
+	
+
+Simonize <Guide Author> on 2022/02/03 (Burning Crusade)
+What Charak said is correct - Brooch is stronger than it seems because that burst of much higher attack power can be stacked with cooldowns like Blade Flurry, Haste Potion, or Adrenaline Rush to get much higher value from it. I'd say Brooch is generally on-par with Mark of the Champion on longer fights, and Brooch is definitely better on shorter fights.
+
+1
+
+	
+By euleul (198 – 1·1) on 2022/02/06 (Burning Crusade)	
+	
+Simonize , what about the hit rating, only 266 + 20 spicy hot tabulk = 286 , need 316, won't there be too many misses? less procs from all procs
+
+2
+
+	
+
+Simonize <Guide Author> on 2022/02/09 (Burning Crusade)
+There are instructions about the hit rating and gemming right above the gear embed near the top of the guide. Different players with different goals and different buffs or debuffs available in their raid will want to reach different amounts of hit rating - there is no single number for hit rating that is "the cap" for every rogue everywhere.
+1 - 2 of 2
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Rogue Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+            Best In Slot Gear in Phase 4
+                Aldor vs Scryer
+                Head
+                Shoulders
+                Back
+                Chest
+                Wrists
+                Hands
+                Waist
+                Legs
+                Feet
+                Neck
+                Rings
+                Trinkets
+                Weapons
+                Offhands
+                Ranged Weapons
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Rogue DPS Best in Slot (BiS) Phase 4 Gear Guide
+By Simonize
+Updated: 2026/02/14
+Welcome to Wowhead's Best in Slot Gear list from Phase 4 Zul'Aman for Rogue DPS in The Burning Crusade Classic. This guide will list the recommended gear for Rogue DPS to acquire while they progress during the fourth phase of The Burning Crusade Classic, and contains gear sourced from Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Rogue DPS in Phase 4
+In Phase 4, Rogues do not have many changes in their best in slot gearing compared to Phase 3. Zul'Aman and the new Badge of Justice Badge of Justice gear bring a total of one definite upgrade and three situational items or close alternatives. The main upgrade piece is the Signet of Primal Wrath Signet of Primal Wrath, while the close alternatives are Nyn'jah's Tabi Boots Nyn'jah's Tabi Boots, Berserker's Call Berserker's Call, and Cloak of Fiends Cloak of Fiends.
+
+Rogues who do not have the full Phase 3 BiS may find several other upgrades that they can get before reaching best in slot, depending on which they already have.
+
+Rogues looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Rogue Gems & Enchants
+Should Rogue DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 4?
+Just like in previous phases, choosing your Shattrath faction, either The Aldor or The Scryers, doesn't make that big of a difference in terms of raid performance. The main longstanding benefit will be the shoulder enchants from these factions. Greater Inscription of Vengeance Greater Inscription of Vengeance from the Aldor is very slightly better than Greater Inscription of the Blade Greater Inscription of the Blade from the Scryers, but it is such a minuscule difference that you are unlikely ever to notice it. You will do just fine choosing whichever faction you prefer.
+
+    Aldor offer a very slightly superior shoulder enchant for PvE damage dealing.
+    Aldor offers a decent sword at Exalted, Vindicator's Brand Vindicator's Brand. This is a great starting weapon for fresh Rogues.
+    Scryers offer Plans: Enchanted Adamantite Belt Plans: Enchanted Adamantite Belt which can make leveling Blacksmithing much cheaper.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Rogues, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Rogue DPS in TBC Classic Phase 4
+Cursed Vision of Sargeras is the best helmet both in looks and in terms of beneficial stats for damage dealing, making it an exceptional helmet. It is a medium upgrade compared to the second-best helmet, the Slayer's Helm. Cursed Vision happens to be the only non-Slayer's Armor set item in the primary five gear slots that is an upgrade over the tier set pieces. If you can't get Cursed Vision, you'll want to use all five pieces of Slayer's Armor.
+Rank	Item	Source
+BiS	Cursed Vision of Sargeras Cursed Vision of Sargeras	Drop: Illidan Stormrage (Black Temple)
+Option	Slayer's Helm Slayer's Helm	Drop: Archimonde (Hyjal Summit)
+Option	Deathmantle Helm Deathmantle Helm	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Deathblow X11 Goggles Deathblow X11 Goggles	Profession: Engineering - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+The new Grimgrin Faceguard, unfortunately, lacks a meta socket, and the immense power of Relentless Earthstorm Diamond Relentless Earthstorm Diamond essentially disqualifies the Grimgrin from being good.
+Rank	Item	Source
+Option	Grimgrin Faceguard Grimgrin Faceguard	Drop: Zul'jin (Zul'Aman)
+
+Best in Slot Shoulder Armor for Rogue DPS in TBC Classic Phase 4
+You really want to get Slayer's Shoulderpads for your shoulder slot. These shoulders are really strong and are a medium upgrade over the second-best option, Swiftstrike Shoulders, which is a Leatherworker-only crafted item. Slayer's Shoulderpads will be used for the rest of the expansion, as even with access to Sunwell Plateau, these shoulders will be part of your BiS setup for PvE.
+Rank	Item	Source
+BiS	Slayer's Shoulderpads Slayer's Shoulderpads	Drop: Mother Shahraz (Black Temple)
+Option	Swiftstrike Shoulders Swiftstrike Shoulders	Profession: Leatherworking - BoP only
+Option	Mantle of Darkness Mantle of Darkness	Drop: High Warlord Naj'entus (Black Temple)
+Option	Deathmantle Shoulderpads Deathmantle Shoulderpads	Drop: Void Reaver (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Like most of the new leather items, Shoulderpads of Dancing Blades ranks quite poorly compared to what is already available, even behind options that were available in Phase 2.
+Rank	Item	Source
+Option	Shoulderpads of the Stranger Shoulderpads of the Stranger	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Option	Shoulderpads of Dancing Blades Shoulderpads of Dancing Blades	Drop: Halazzi (Zul'Aman)
+Option	Razorfury Mantle Razorfury Mantle	Drop: Kaz'rogal (Hyjal Summit)
+
+Best in Slot Back Armor for Rogue DPS in TBC Classic Phase 4
+Shadowmoon Destroyer's Drape is a strong cloak and is a medium upgrade over your best choices from Phase 2, either Thalassian Wildercloak or Drape of the Dark Reavers. The new Cloak of Fiends comes in as a close alternative to the best in slot.
+Rank	Item	Source
+BiS	Shadowmoon Destroyer's Drape Shadowmoon Destroyer's Drape	Drop: Teron Gorefiend (Black Temple)
+Option	Cloak of Fiends Cloak of Fiends	Drop: First Timed Chest (Zul'Aman)
+Option	Thalassian Wildercloak Thalassian Wildercloak	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Drape of the Dark Reavers Drape of the Dark Reavers	Drop: Shade of Aran (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Dory's Embrace is the new Badge of Justice reward cloak, and is not a good choice for Rogues, not even beating the Karazhan cloak.
+Rank	Item	Source
+Option	Dory's Embrace Dory's Embrace	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Chest Armor for Rogue DPS in TBC Classic Phase 4
+There are a couple of options that are all very large upgrades over the best choices from Phase 2, but the clear winner is the piece from Slayer's Armor. Slayer's Chestguard is not only a medium upgrade over the second-best Midnight Chestguard, but it also helps you activate the very powerful bonuses from the tier set. You will absolutely want to get both the 2-set and 4-set bonuses from Slayer's Armor.
+Rank	Item	Source
+BiS	Slayer's Chestguard Slayer's Chestguard	Drop: Illidan Stormrage (Black Temple)
+Option	Midnight Chestguard Midnight Chestguard	Drop: Archimonde (Hyjal Summit)
+Option	Nether Shadow Tunic Nether Shadow Tunic	Drop: Supremus (Black Temple)
+Option	Bloodsea Brigand's Vest Bloodsea Brigand's Vest	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Shadowtooth Trollskin Cuirass is a new option that is not great, but a decent pickup for fresh Rogues. It comes in just a little ahead of Deathmantle Chestguard.
+Rank	Item	Source
+Option	Shadowtooth Trollskin Cuirass Shadowtooth Trollskin Cuirass	Drop: Jan'alai (Zul'Aman)
+Option	Deathmantle Chestguard Deathmantle Chestguard	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Wrist Armor for Rogue DPS in TBC Classic Phase 4
+The Insidious Bands are your best option and are a small upgrade over the two alternatives, Swiftstrike Bracers or Deadly Cuffs. The new Master Assassin Wristwraps are slightly better than your options from Phase 2, but definitely worse than the options from Phase 3.
+Rank	Item	Source
+BiS	Insidious Bands Insidious Bands	Drop: Teron Gorefiend (Black Temple)
+Option	Swiftstrike Bracers Swiftstrike Bracers	Profession: Leatherworking - can be purchased on the Auction House
+Option	Deadly Cuffs Deadly Cuffs	Drop: Rage Winterchill (Hyjal Summit)
+Option	Master Assassin Wristwraps Master Assassin Wristwraps	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Vambraces of Ending Vambraces of Ending	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+
+Best in Slot Hand Armor for Rogue DPS in TBC Classic Phase 4
+Slayer's Handguards are an easy choice for gloves because they are both individually the strongest item in the slot, and they help access the very powerful bonuses for the Slayer's Armor set.
+
+Trickster's Stickyfingers are one of the weakest new items to be added in Phase 4, a fair bit behind the Deathmantle Handguards in power.
+Rank	Item	Source
+BiS	Slayer's Handguards Slayer's Handguards	Drop: Azgalor (Hyjal Summit)
+Option	Grips of Damnation Grips of Damnation	Drop: Essence of Anger (Black Temple)
+Option	Deathmantle Handguards Deathmantle Handguards	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Trickster's Stickyfingers Trickster's Stickyfingers	Vendor: G'eras (Badges of Justice)
+Best in Slot Waist Armor for Rogue DPS in TBC Classic Phase 4
+Belt of One-Hundred Deaths is really quite exceptional, and the new options available in Phase 4 don't come close. Belt of One-Hundred Deaths is a large upgrade over the second-best option, Belt of Deep Shadow.
+Rank	Item	Source
+BiS	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Belt of Deep Shadow Belt of Deep Shadow	Profession: Leatherworking - can be purchased on the Auction House
+Option	Shadow-walker's Cord Shadow-walker's Cord	Drop: Shade of Akama (Black Temple)
+Option	Don Alejandro's Money Belt Don Alejandro's Money Belt	Drop: Anetheron (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Bladeangel's Money Belt is a fine item, and the stats on it benefit a Rogue, but it simply does not have enough stats to compare to the much more valuable other options in this slot.
+Rank	Item	Source
+Option	Bladeangel's Money Belt Bladeangel's Money Belt	Drop: Nalorakk (Zul'Aman)
+
+Best in Slot Leg Armor for Rogue DPS in TBC Classic Phase 4
+Slayer's Legguards are again an easy choice for the leg slot as the individually strongest item, a large upgrade compared to the best choice from Phase 2, and helping access the very powerful set bonuses for the Slayer's Armor.
+Rank	Item	Source
+BiS	Slayer's Legguards Slayer's Legguards	Drop: The Illidari Council (Black Temple)
+Option	Shady Dealer's Pantaloons Shady Dealer's Pantaloons	Drop: Azgalor (Hyjal Summit)
+Option	Skulker's Greaves Skulker's Greaves	Drop: Netherspite (Karazhan)
+Option	Deathmantle Legguards Deathmantle Legguards	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Shallow-grave Trousers are about on par with Deathmantle Legguards for individual item stats, but they don't help you access any set bonuses like the Deathmantle Legguards do. I do not recommend spending Badge of Justice on these leggings unless you can't access any of the many superior items.
+Rank	Item	Source
+Option	Shallow-grave Trousers Shallow-grave Trousers	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Feet Armor for Rogue DPS in TBC Classic Phase 4
+Feet is one of the few slots that gets a noteworthy new item in Phase 4 for rogues. The Nyn'jah's Tabi Boots are about on par with Shadowmaster's Boots, the difference being that one boot has bonus hit rating and the other does not. A full best in slot setup will still use Shadowmaster's, but Nyn'jah's can slot in nicely while you are gearing up and lack hit in other slots.
+Rank	Item	Source
+BiS	Shadowmaster's Boots Shadowmaster's Boots	Drop: Mother Shahraz (Black Temple)
+BiS	Nyn'jah's Tabi Boots Nyn'jah's Tabi Boots	Vendor: G'eras (Badges of Justice)
+Option	Edgewalker Longboots Edgewalker Longboots	Drop: Moroes (Karazhan)
+Best in Slot Neck Jewelry for Rogue DPS in TBC Classic Phase 4
+Choker of Endless Nightmares is the best neck available and is a medium upgrade compared to the second-best necklace, which is Choker of Serrated Blades, and a large upgrade compared to the best option from Phase 2.
+
+It is still good to swap out Choker of Endless Nightmares for Braided Eternium Chain when you can provide the critical strike chance buff for your party. It will be an individual DPS loss, but an overall gain in DPS for your team.
+
+The new badge neck, Brooch of Deftness Brooch of Deftness, is not desirable for Rogues - it is slightly worse than the old badge neck, Choker of Vile Intent, and it costs more.
+Rank	Item	Source
+BiS	Choker of Endless Nightmares Choker of Endless Nightmares	Drop: Supremus (Black Temple)
+Option	Choker of Serrated Blades Choker of Serrated Blades	Drop: Trash Mobs (Hyjal Summit)
+Option	Choker of Vile Intent Choker of Vile Intent	Vendor: G'eras (Badges of Justice)
+Option	Braided Eternium Chain Braided Eternium Chain	Profession: Jewelcrafting - can be purchased on the Auction House
+Best in Slot Ring Jewelry for Rogue DPS in TBC Classic Phase 4
+The ring slot brings the only true upgrade for a rogue in Phase 4, with the Signet of Primal Wrath slightly edging out the Band of the Eternal Champion as your second-best ring. Stormrage Signet Ring remains the single best ring available in this phase.
+Rank	Item	Source
+BiS	Stormrage Signet Ring Stormrage Signet Ring	Drop: Illidan Stormrage (Black Temple)
+BiS	Signet of Primal Wrath Signet of Primal Wrath	Drop: Third Timed Chest (Zul'Aman)
+Option	Band of the Eternal Champion Band of the Eternal Champion	Quest: Champion's Covenant Champion's Covenant (The Scale of the Sands Exalted)
+Option	Ring of Deceitful Intent Ring of Deceitful Intent	Drop: Shade of Akama (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Ring of Lethality Ring of Lethality	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Option	Band of the Ranger-General Band of the Ranger-General	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Trinkets for Rogue DPS in TBC Classic Phase 4
+Dragonspine Trophy is an absolutely exceptional trinket for Rogues; the massive haste bonus synergizes extremely well with Combat Potency and Sword Specialization. This is the single best trinket in the entire expansion for Rogues - it will never be replaced throughout TBC. Rogues aren't the only ones that will be clamouring for this trinket, so you may have to pick from the alternatives listed below.
+
+Warp-Spring Coil, from Phase 2, and Berserker's Call, newly available in Phase 4, are strong, second-best trinkets that are about on par with each other, with different circumstances and situations favoring either one. Generally, Warp-Spring is best for bosses and longer fight durations, while Berserker's is better when you can activate it during a two-target Blade Flurry on shorter trash pulls. The attack power buff is guaranteed when you press it, whereas the buff from Warp-Spring Coil would only be a chance to occur during your burst damage windows.
+Rank	Item	Source
+BiS	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+BiS	Warp-Spring Coil Warp-Spring Coil	Drop: Void Reaver (Tempest Keep: The Eye)
+BiS	Berserker's Call Berserker's Call	Drop: Zul'jin (Zul'Aman)
+Option	Madness of the Betrayer Madness of the Betrayer	Drop: High Nethermancer Zerevor (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Badge of the Swarmguard, from Classic, and Bloodlust Brooch are both very strong options to be used on short (50 seconds or less) combat engagements such as trash pulls, especially if you can use Blade Flurry to hit two targets at once. If you've got time to wait for the 30-second equip cooldown, one of these two is definitely worth equipping for short combats, even if you have the best passive trinkets at the top of this list.
+Rank	Item	Source
+Option	Ashtongue Talisman of Lethality Ashtongue Talisman of Lethality	Vendor: Okuno (Ashtongue Deathsworn Exalted)
+Option	Bloodlust Brooch Bloodlust Brooch	Vendor: G'eras (Badges of Justice)
+Option	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Sartura (Classic - Ahn'Qiraj)
+
+Best in Slot Weapons for Rogue DPS in TBC Classic Phase 4
+If you're lucky, you may be able to get one of the most coveted Legendary weapons in all of World of Warcraft, the Warglaive of Azzinoth. A set of The Twin Blades of Azzinoth is as much of a damage upgrade for a Rogue as it is to upgrade every single piece of BiS armor from Phase 2 to the BiS option in Phase 4 combined. These glaives are the best available weapons for a Rogue in the entire expansion. You can only kill Illidan Stormrage once per week, though, so even if you are promised the first set of glaives, it is very possible you won't see them for many months of raiding!
+
+Short of the legendary warglaives, you're looking at Vengeful Gladiator's Slicer as a medium upgrade from Talon of Azshara. Blade of Infamy is essentially just a side-grade on par with the Talon, so no real need to get this sword if you already have Talon of Azshara.
+
+Dagger weapons are listed for readers who want to play within the constraints of only using daggers. Daggers and dagger talent specializations are not competitive with swords and sword specializations in TBC. You will put yourself at a disadvantage in terms of damage output by choosing to play with daggers.
+Rank	Item	Source
+BiS	Warglaive of Azzinoth Warglaive of Azzinoth	Drop: Illidan Stormrage (Black Temple)
+Option	Vengeful Gladiator's Slicer Vengeful Gladiator's Slicer	Vendor: Arena Points (Season 3)
+Option	Blade of Infamy Blade of Infamy	Drop: Anetheron (Hyjal Summit)
+BiS - Dagger	Shard of Azzinoth Shard of Azzinoth	Drop: Illidan Stormrage (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+The new sword in Phase 4, Heartless, is unfortunately quite lackluster, slightly worse than the Merciless Gladiator's Slicer for a main hand weapon.
+Rank	Item	Source
+Option	Talon of Azshara Talon of Azshara	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Option	Dragonstrike Dragonstrike	Profession: Blacksmithing - BoP only
+Option	Merciless Gladiator's Slicer Merciless Gladiator's Slicer	Vendor: Arena Points (Season 2)
+Option	Heartless Heartless	Drop: Hex Lord Malacrass (Zul'Aman)
+Option - Dagger	Vengeful Gladiator's Shanker Vengeful Gladiator's Shanker	Vendor: Arena Points (Season 3)
+
+Best in Slot Offhands for Rogue in TBC Classic Phase 4
+As it is with the main hand options above, the Warglaive of Azzinoth is far and away the best option available and will remain the best possible weapon for the rest of the expansion. Of course, not everyone will be able to obtain the massively powerful Legendary weapons, so considering the next best option is a good idea. Blade of Savagery is exceptionally well-itemized for Rogues and is the second-best option in Phase 4, 4, and 5 - none of the new swords in later phases will surpass Blade of Savagery as an offhand option.
+
+Dagger weapons are listed for readers who want to play within the constraints of only using daggers. Daggers and dagger talent specializations are not competitive with swords and sword specializations in TBC. You will put yourself at a disadvantage in terms of damage output by choosing to play with daggers. A player using a Combat Daggers build should choose a fast offhand dagger, whereas a player using an Assassination Mutilate build should choose a second slow offhand dagger from the Main Hand section above.
+Rank	Item	Source
+BiS	Warglaive of Azzinoth Warglaive of Azzinoth	Drop: Illidan Stormrage (Black Temple)
+BiS	Blade of Savagery Blade of Savagery	Drop: Mother Shahraz (Black Temple)
+Option	Vengeful Gladiator's Quickblade Vengeful Gladiator's Quickblade	Vendor: Arena Points (Season 3)
+BiS - Dagger	Vengeful Gladiator's Shiv Vengeful Gladiator's Shiv	Vendor: Arena Points (Season 3)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+The new offhand option from Zul'Aman is not very good. Akil'zon's Talonblade comes in just behind Merciless Gladiator's Quickblade.
+Rank	Item	Source
+Option	Merciless Gladiator's Quickblade Merciless Gladiator's Quickblade	Vendor: Arena Points (Season 2)
+Option	Akil'zon's Talonblade Akil'zon's Talonblade	Drop: Akil'zon (Zul'Aman)
+Option - Dagger	Tracker's Blade Tracker's Blade	Drop: Rage Winterchill (Hyjal Summit)
+
+Best in Slot Ranged Weapons for Rogue in TBC Classic Phase 4
+Ancient Amani Longbow adds another ranged weapon to the growing pile of ranged weapon options for rogues. Arcanite Steam-Pistol remains the best, and the others are all very similar in power level to each other.
+Rank	Item	Source
+BiS	Arcanite Steam-Pistol Arcanite Steam-Pistol	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Ancient Amani Longbow Ancient Amani Longbow	Drop: Second Timed Chest (Zul'Aman)
+Option	Twisted Blades of Zarak Twisted Blades of Zarak	Drop: Teron Gorefiend (Black Temple)
+Option	Barrel-Blade Longrifle Barrel-Blade Longrifle	Drop: Doomwalker (World Boss)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ranged Weapon Recommendations
+
+Rank	Item	Source
+Option	Sunfury Bow of the Phoenix Sunfury Bow of the Phoenix	Drop: Prince Malchezaar (Karazhan)
+
+Simonize
+World of Warcraft Classic Rogue Expert
+Simonize has written Classic World of Warcraft Rogue guides for The Burning Crusade, Wrath of the Lich King, and Season of Discovery. He streams on Twitch, posts to YouTube, and hosts his own Discord server, all related to World of Warcraft Classic.
+No comments have been posted yet.
+Be the first to add a comment to this page!
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Rogue Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+        Phase 1 BiS
+        Phase 2 BiS
+        Phase 3 BiS
+        Phase 4 BiS
+        Phase 5 BiS
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Rogue DPS Best in Slot (BiS) Phase 5 Gear Guide
+By Simonize
+Updated: 2026/02/24
+Welcome to Wowhead's Best in Slot Gear list from Phase 5 Sunwell Plateau for Rogue DPS in The Burning Crusade Classic. This guide will list the recommended gear for Rogue DPS to acquire while they progress during the fifth and final phase of The Burning Crusade Classic, which contains gear sourced from Sunwell Plateau, Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+Best In Slot Gear for Rogue DPS in Phase 5
+Phase 5 brings the absolute most powerful items in all of Burning Crusade. The challenge of the Sunwell Plateau raid is appropriate for the power of the items - these bosses won't fall easily. The Slayer's Bracers Slayer's Bracers, Slayer's Boots Slayer's Boots, and/or Slayer's Belt Slayer's Belt are so powerful that you will even use two of them during Wrath of the Lich King classic!
+
+Much of the leather gear from Sunwell is not only best in slot for rogues, but also for other physical DPS like Enhancement Shamans, Hunters, and Warriors. For the most part, these classes have mail or plate alternatives that aren't quite as good as the leather option, but still big upgrades over what they had in phase four. A raid trying to optimize their loot distribution for overall raid performance should think about sending the leather options to rogues, mail options to hunters and shamans, and plate options to warriors first. The sooner you give the leather options to the non-leather classes, the sooner your raid loot starts turning into Void Crystal Void Crystals instead of being upgrades for your players.
+
+Rogues looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Rogue Gems & Enchants
+
+Should Rogue DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 5?
+Just like in Phases 1, 2, 3, and 4, choosing your Shattrath faction either The Aldor or The Scryers doesn't make that big of a difference in terms of raid performance. The main longstanding benefit will be the shoulder enchants from these factions. Greater Inscription of Vengeance Greater Inscription of Vengeance from The Aldor is very slightly better than Greater Inscription of the Blade Greater Inscription of the Blade from The Scryers, but it is such a minuscule difference that you are unlikely to ever notice it. You will do just fine choosing whichever faction you prefer.
+
+    Aldor offer a very slightly superior shoulder enchant for PvE damage dealing.
+    Aldor offers a decent sword at Exalted, Vindicator's Brand Vindicator's Brand. This is a great starting weapon for fresh rogues.
+    Scryers offer Plans: Enchanted Adamantite Belt Plans: Enchanted Adamantite Belt which can make leveling Blacksmithing Blacksmithing much cheaper.
+    Scryers are usually the less popular faction, making their reputation turn-in items often cheaper than Aldor equivalents.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Rogues, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Rogue DPS in TBC Classic Phase 5
+Duplicitous Guise from Kil'jaeden is the best helmet, a strong upgrade over Cursed Vision of Sargeras. The new engineering goggles, Quad Deathblow X44 Goggles, come in just barely behind Cursed Vision; they are effectively on par.
+Rank	Item	Source
+Best	Duplicitous Guise Duplicitous Guise	Drops from Kil'jaeden (Sunwell Plataeu)
+Optional	Cursed Vision of Sargeras Cursed Vision of Sargeras	Drop: Illidan Stormrage (Black Temple)
+Optional	Quad Deathblow X44 Goggles Quad Deathblow X44 Goggles	Profession: Engineering - BoP only
+Optional	Slayer's Helm Slayer's Helm	Drop: Archimonde (Hyjal Summit)
+Best in Slot Shoulder Armor for Rogue DPS in TBC Classic Phase 5
+Slayer's Shoulderpads are still the choice for your shoulders in Phase 5. While Shoulderpads of Vehemence is an individually stronger item, it is the smallest per-slot upgrade of the old Slayer's set and is less significant than maintaining the four-piece bonus. So, we keep Slayer's Shoulderpads alongside the belt, bracers, and boots as our best in-slot setup. While you are gearing up in Sunwell, you should always swap pieces of Slayer's around to maintain the very strong four-piece bonus.
+Rank	Item	Source
+Best	Slayer's Shoulderpads Slayer's Shoulderpads	Drop: Mother Shahraz (Black Temple)
+Optional	Shoulderpads of Vehemence Shoulderpads of Vehemence	Drop: from Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+Optional	Swiftstrike Shoulders Swiftstrike Shoulders	Profession: Leatherworking - BoP only
+Best in Slot Back Armor for Rogue DPS in TBC Classic Phase 5
+Cloak of Unforgivable Sin is the clear winner this phase, but is only upgraded from Shadowmoon Destroyer's Drape in the previous phase.
+Rank	Item	Source
+Best	Cloak of Unforgivable Sin Cloak of Unforgivable Sin	Drop: Teron Gorefiend (Black Temple)
+Optional	Shadowmoon Destroyer's Drape Shadowmoon Destroyer's Drape	Drop: Teron Gorefiend (Black Temple)
+Optional	Cloak of Fiends Cloak of Fiends	Drop: First Timed Chest (Zul'Aman)
+Best in Slot Chest Armor for Rogue DPS in TBC Classic Phase 5
+There are two options for chest armor as a rogue in phase five. The Bladed Chaos Tunic is a strong contender and performs slightly better on low armor targets, while Carapace of Sun and Shadow is very close and even desired over the Chaos Tunic just slightly if you are not able to reach hit cap with the rest of your gear and gems. These two are effectively equal, and no matter your conditions, you won't notice a meaningful difference between them.
+
+If you happen to be a leatherworker, it may be a good idea to go for the much less contested Carapace of Sun and Shadow and be better positioned to acquire other hotly contested items instead.
+Rank	Item	Source
+Best	Bladed Chaos Tunic Bladed Chaos Tunic	Vendor: Yrma - Trade Harness of Carnal Instinct Harness of Carnal Instinct from M'uru & 1 Sunmote Sunmote (Sunwell Plateau)
+Best	Carapace of Sun and Shadow Carapace of Sun and Shadow	Profession: Leatherworking (BoP)
+Optional	Slayer's Chestguard Slayer's Chestguard	Drop: Illidan Stormrage (Black Temple)
+Best in Slot Wrist Armor for Rogue DPS in TBC Classic Phase 5
+All three pieces of Slayer's Armor from Sunwell are very powerful and substantial upgrades over your best option from phase four. The Bracer is no exception, although it is the weakest of the three in terms of upgrade magnitude - the boots are the biggest upgrade, and the belt is in the middle.
+Rank	Item	Source
+Best	Slayer's Bracers Slayer's Bracers	Drop: Kalecgos, Grand Warlock Alythess, & Lady Sacrolash (Sunwell Plateau)
+Optional	Insidious Bands Insidious Bands	Drop: Teron Gorefiend (Black Temple)
+Optional	Swiftstrike Bracers Swiftstrike Bracers	Profession: Leatherworking - Can be Purchased on the Auction House
+Optional	Deadly Cuffs Deadly Cuffs	Drop: Rage Winterchill (Hyjal Summit)
+Best in Slot Hand Armor for Rogue DPS in TBC Classic Phase 5
+The crafted Gloves of Immortal Dusk are your best option in phase five, slightly outperforming the Shadowed Gauntlets of Paroxysm. These gloves are crafted by Leatherworkers, and they are BoE, so anyone can use them, and you do not have to be a leatherworker. The pattern is a drop from within Sunwell, so you'll have to wait until someone on your server obtains the recipe.
+Rank	Item	Source
+Best	Gloves of Immortal Dusk Gloves of Immortal Dusk	Profession: Leatherworking
+Optional	Shadowed Gauntlets of Paroxysm Shadowed Gauntlets of Paroxysm	Drop: M'uru (Sunwell Plateau)
+Optional	Slayer's Handguards Slayer's Handguards	Drop: Azgalor (Hyjal Summit)
+Best in Slot Waist Armor for Rogue DPS in TBC Classic Phase 5
+Slayer's Belt is an easy choice as the best belt available in phase five. The belt is the second strongest single item upgrade among the three pieces of Slayer's Armor from Sunwell.
+Rank	Item	Source
+Best	Slayer's Belt Slayer's Belt	Belt of the Forgotten Vanquisher Belt of the Forgotten Vanquisher from Brutallus, Grand Warlock Alythess, & Lady Sacrolash (Sunwell Plateau)
+Optional	Belt of One-Hundred Deaths Belt of One-Hundred Deaths	Drop: Lady Vashj (Serpentshrine Cavern)
+Optional	Belt of Deep Shadow Belt of Deep Shadow	Profession: Leatherworking - Can be Purchased on the Auction House
+Best in Slot Leg Armor for Rogue DPS in TBC Classic Phase 5
+Leggings of the Immortal Night is the most absurdly powerful upgrade you can get this phase, and likely even the strongest single item upgrade from one phase to the next in the entire expansion. The magnitude of the upgrade here is about double that of most of the other upgrades you can get in Sunwell.
+Rank	Item	Source
+Best	Leggings of the Immortal Night Leggings of the Immortal Night	Drop: Felmyst (Sunwell Plateau)
+Optional	Slayer's Legguards Slayer's Legguards	Drop: The Illidari Council (Black Temple)
+Optional	Trousers of the Scryers' Retainer Trousers of the Scryers' Retainer	Vendor: Smith Hauthaa (100 Badges of Justice)
+Best in Slot Feet Armor for Rogue DPS in TBC Classic Phase 5
+The Slayer's Boots are the strongest piece of tier you can pick up for your rogue in Sunwell, coming in as the second-best single-item upgrade in all of Sunwell. Be careful not to go over your expertise cap with these boots and your old Belt of One-Hundred Deaths Belt of One-Hundred Deaths or Shard of Contempt Shard of Contempt trinket.
+
+Remember, the cap for bosses is 44 Expertise Rating for Humans and 63 for non-human rogues.
+Rank	Item	Source
+Best	Slayer's Boots Slayer's Boots	Drop: Felmyst, Grand Warlock Alythess, & Lady Sacrolash (Sunwell Plateau)
+Optional	Shadowmaster's Boots Shadowmaster's Boots	Drop: Mother Shahraz (Sunwell Plateau)
+Optional	Nyn'jah's Tabi Boots Nyn'jah's Tabi Boots	Vendor: G'eras (100 Badges of Justice)
+Best in Slot Neck Jewelry for Rogue DPS in TBC Classic Phase 5
+Hard Khorium Choker is technically the strongest neck available and a very good choice if you are a Jewelcrafter. However, the amount better that Hard Khorium Choker is over Clutch of Demise, which is just about the same as the benefit you gain from Enchant Ring - Strikingx2 as an Enchanter or the use of Explosive consumables as an Engineer. It is certainly not required to become a Jewelcrafter to deal optimal boss damage in phase five.
+
+It is still good to swap out your necklace for Braided Eternium Chain when you can provide the critical strike chance buff for your party. It will be an individual DPS loss, but definitely an overall gain in DPS for your team.
+Rank	Item	Source
+Best	Hard Khorium Choker Hard Khorium Choker	Profession: Jewelcrafting (BoP)
+Best	Clutch of Demise Clutch of Demise	Drop: Brutallus (Sunwell Plateau)
+Optional	Choker of Endless Nightmares Choker of Endless Nightmares	Drop: Supremus (Black Temple)
+Optional	Shattered Sun Pendant of Might Shattered Sun Pendant of Might	Vendor: Eldara Dawnrunner - Requires Exalted with Shattered Sun Offensive
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Optional	Braided Eternium Chain Braided Eternium Chain	Profession: Jewelcrafting - Can be Purchased on the Auction House
+
+Best in Slot Ring Jewelry for Rogue DPS in TBC Classic Phase 5
+The ring slot brings us three choices that are all pretty close in power level - Stormrage Signet Ring, Band of Ruinous Delight, and Hard Khorium Band. If you could make up the lost hit rating from not using the Stormrage ring, the other two would be good choices. However, in most setups of phase five best in slot, you are a bit starved for hit rating. That makes the ideal choice Stormrage + Ruinous Delight, with Stormrage + Hard Khorium Band only very slightly behind.
+
+Since the Hard Khorium Band is crafted and much more easily obtainable, it is recommended to get it and take a back seat on Band of Ruinous Delight in order to position yourself better for more important contested items in other slots.
+Rank	Item	Source
+Best	Stormrage Signet Ring Stormrage Signet Ring	Drop: Illidan Stormrage (Black Temple)
+Best	Band of Ruinous Delight Band of Ruinous Delight	Drop:Lady Sacrolash & Grand Warlock Alythess (Sunwell Plateau)
+Optional	Hard Khorium Band Hard Khorium Band	Profession: Jewelcrafting (BoP)
+Optional	Angelista's Revenge Angelista's Revenge	Vendor: Smith Hauthaa (60 Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Optional	Signet of Primal Wrath Signet of Primal Wrath	Drop: Third Timed Chest (Zul'Aman)
+Optional	Band of the Eternal Champion Band of the Eternal Champion	Quest: Champion's Covenant Champion's Covenant (The Scale of the Sands Exalted)
+
+Best in Slot Trinkets for Rogue DPS in TBC Classic Phase 5
+Dragonspine Trophy and Blackened Naaru Sliver are your two best trinkets for boss damage, and they aren't too bad for trash damage either. These are both very strong trinkets that are quite far ahead of the third and fourth options.
+
+As you gear up in Sunwell, you may still be using Warp-Spring Coil. With all the available passive armor penetration on your equipment, you may reach a point where part of the Warp-Spring's proc is wasted, and then it becomes much weaker. When you reach about 1000 passive armor penetration on your gear, Warp-Spring Coil, Shard of Contempt, and Berserker's Call are all about equal, and as you gain even more, Warp-Spring falls behind.
+
+If you want to use Shard of Contempt, you will need to be careful about going over your expertise cap. Expertise rating beyond the cap provides no damage benefit for your character and generally makes expertise items poor choices. Being exactly at the cap isn't very important, but it is important not to be over the cap to ensure you aren't wasting stats from your items. The expertise rating cap for human rogues is 44, and for non-human rogues is 63.
+
+Badge of the Swarmguard from WoW Classic remains as the strongest second trinket in the game for short combat engagements, outperforming even Dragonspine Trophy. DST catches up around 60 seconds of continuous combat and is slightly better the longer the fight goes beyond that. If you've got time to wait for the 30-second equip cooldown, Badge of the Swarmguard is definitely worth equipping for short combats even if you have the best trinkets at the top of this list.
+Rank	Item	Source
+Best	Blackened Naaru Sliver Blackened Naaru Sliver	Drop: M'uru (Sunwell Plateau)
+Best	Dragonspine Trophy Dragonspine Trophy	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Optional	Warp-Spring Coil Warp-Spring Coil	Drop: Void Reaver (Tempest Keep: The Eye)
+Optional	Shard of Contempt Shard of Contempt	Drop: Priestess Delrissa (Heroic Magisters' Terrace)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Optional	Berserker's Call Berserker's Call	Drop: Zul'jin (Zul'Aman)
+Optional	Badge of the Swarmguard Badge of the Swarmguard	Drop: Battleguard Sartura (Classic - Ahn'Qiraj)
+
+Best in Slot Weapons for Rogue DPS in TBC Classic Phase 5
+Main Hand Weapons for Rogue DPS in Phase 5
+If you're lucky, you may be able to get one of the most coveted legendary weapons in all of World of Warcraft, the Warglaive of Azzinoth. These glaives are the best available weapons for a rogue in the entire expansion. You can only kill Illidan Stormrage once per week, though, so even if you are promised the first set of Glaives, it is very possible you won't see them for many months of raiding!
+
+Short of the legendary warglaives, you're looking at Hand of the Deceiver for non-human rogues, and Muramasa for human rogues.
+
+Dagger weapons are listed for readers who want to play within the constraints of only using daggers. Daggers and dagger talent specializations are not competitive with swords and sword specializations in Burning Crusade. You will put yourself at a disadvantage in terms of damage output by choosing to play with daggers.
+Rank	Item	Source
+Best	Warglaive of Azzinoth Warglaive of Azzinoth	Drop: Illidan Stormrage (Black Temple)
+Optional - NonHuman	Hand of the Deceiver Hand of the Deceiver	Drop: Kil'jaeden (Sunwell Plateau)
+Optional - Human	Muramasa Muramasa	Drop: M'uru (Sunwell Plateau)
+Optional	Brutal Gladiator's Slicer Brutal Gladiator's Slicer	2625 Arena Points
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Main Hand Weapon Recommendations
+
+Rank	Item	Source
+Best - Dagger	Crux of the Apocalypse Crux of the Apocalypse	Drop: Kil'jaeden (Sunwell Plateau)
+Optional - Dagger	Brutal Gladiator's Shanker Brutal Gladiator's Shanker	2625 Arena Points
+
+Off Hand Weapons for Rogue DPS in Phase 5
+As it is with the main hand options above, the Warglaive of Azzinoth is far and away the best option available. Of course, not everyone will be able to obtain the massively powerful legendary weapons, so considering the next best option is a good idea. Blade of Savagery is exceptionally well-itemized for rogues and is the second-best option. The Dragonscale-Encrusted Longblade Dragonscale-Encrusted Longblade is close, but not quite as good.
+
+Dagger weapons are listed for readers who want to play within the constraints of only using daggers. Daggers and dagger talent specializations are not competitive with swords and sword specializations in Burning Crusade. You will put yourself at a disadvantage in terms of damage output by choosing to play with daggers. A player using a Combat Daggers build should choose a fast offhand dagger, whereas a player using an Assassination Mutilate build should choose a second slow offhand dagger from the Main Hand section above.
+Rank	Item	Source
+Best	Warglaive of Azzinoth Warglaive of Azzinoth	Drop: Illidan Stormrage (Black Temple)
+Optional	Blade of Savagery Blade of Savagery	Drop: Mother Shahraz (Black Temple)
+Optional	Dragonscale-Encrusted Longblade Dragonscale-Encrusted Longblade	Drop:Kalecgos (Sunwell Plateau)
+Optional	Brutal Gladiator's Quickblade Brutal Gladiator's Quickblade	1125 Arena Points
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+
+Rank	Item	Source
+Best - Dagger	Fang of Kalecgos Fang of Kalecgos	Drops from Kalecgos
+Optional - Dagger	Brutal Gladiator's Shiv Brutal Gladiator's Shiv	1125 Arena Points
+
+Best in Slot Ranged Weapons for Rogue in TBC Classic Phase 5
+For your ranged slot, both Golden Bow of Quel'Thalas and Thori'dal, the Stars' Fury perform equally well for a rogue with no meaningful difference between the two. Like pretty much every upgrade from Sunwell, these are a strong upgrade from your best option in phase four. They are not on the level of items like Bladed Chaos Tunic Bladed Chaos Tunic or Slayer's Boots Slayer's Boots in terms of upgrade magnitude for rogues.
+Rank	Item	Source
+Best	Golden Bow of Quel'Thalas Golden Bow of Quel'Thalas	Drop: Grand Warlock Alythess & Lady Sacrolash
+Best	Thori'dal, the Stars' Fury Thori'dal, the Stars' Fury	Drop: Kil'jaeden (Sunwell Plateau)
+Optional	Blade of Life's Inevitability Blade of Life's Inevitability	Drop: Sunwell Plateau Trash Mobs
+Optional	Crossbow of Relentless Strikes Crossbow of Relentless Strikes	Vendor: Smith Hauthaa (150 Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ranged Weapon Recommendations
+
+Rank	Item	Source
+Optional	Arcanite Steam-Pistol Arcanite Steam-Pistol	Drop: Al'ar (Tempest Keep: The Eye)
+Optional	Ancient Amani Longbow Ancient Amani Longbow	Drop: Second Timed Chest (Zul'Aman)
+
+Simonize
+World of Warcraft Classic Rogue Expert
+Simonize has written Classic World of Warcraft Rogue guides for The Burning Crusade, Wrath of the Lich King, and Season of Discovery. He streams on Twitch, posts to YouTube, and hosts his own Discord server, all related to World of Warcraft Classic.
+1 - 3 of 3
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+3
+
+	
+By blueair187 (1,843 – 6·7) on 2022/05/10 (Burning Crusade)	
+	
+If you dont have glaves and are taking the Hand of the Deceiver fist do you spec into fists or keep sword spec for the offhand?
+
+1
+
+	
+
+Dannera on 2022/05/10 (Burning Crusade)
+Pretty sure you specc both fist and sword
+
+1
+
+	
+
+FStranger on 2022/05/10 (Burning Crusade)
+Here's the Combat Hybrid spec from Simonize's Discord: https://tbc.wowhead.com/talent-calc/rogue/005320123-023305200005515002321051 Just replace Mace Spec with Fist Spec.
+
+1
+
+	
+
+Simonize <Guide Author> on 2022/05/11 (Burning Crusade)
+What FStranger linked is right - just swap Mace Spec for Sword Spec.
+
+3
+
+	
+By guterboyryan (7,706 – 2·15·35) on 2022/05/19 (Burning Crusade)	
+	
+Do we know if its worth to use 1 executioner once we get sliver and replace coil?
+Also do we know if the new weapon oil is better in offhand than deadly?
+
+1
+
+	
+
+Simonize <Guide Author> on 2022/06/13 (Burning Crusade)
+It is better to use double Mongoose regardless of trinkets. Righteous Weapon Coating is not good, you should stay with Adamantite Sharpening Stone in most situations, Deadly Poison only for fights where you attack the same target without interruptions for about 90+ seconds.
+
+3
+
+	
+By Inkadog (15,533 – 3·28·60) <Rare Premium User> on 2022/06/10 (Burning Crusade)	
+	
+Ancient Amani Longbow Drops from Second Timed Chest drops from Zul'Jin.
+
+1
+
+	
+
+Simonize <Guide Author> on 2022/06/13 (Burning Crusade)
+Thank you for that note, this is corrected now!
+1 - 3 of 3
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+

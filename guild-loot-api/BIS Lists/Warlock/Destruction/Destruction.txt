@@ -1,0 +1,3469 @@
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase TwoClassesLevelingBest in SlotTier ListsRaidsAttunementsDungeonsReputationsProfessions
+Guides...
+Guide Contents
+Patch 2.5.6
+3.7/5 (9 Votes)
+TBCC Warlock Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Affliction
+            Demonology
+            Destruction
+                Best In Slot Gear in Pre-Raid
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Weapons
+                    Offhands
+                    Wands
+        Phase 1 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 2 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 3 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 4 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 5 BiS
+            Affliction
+            Demonology
+            Destruction
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    AoE DPS Guide
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Destruction Warlock DPS Pre-Raid Best in Slot (BiS) - TBC Classic
+By Zephan
+Updated: 2026/08/02
+In this Pre-Raid Best-in-Slot Gear List for Destruction Warlock DPS in The Burning Crusade Classic, we will list the recommended gear for Destruction Warlock DPS to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Destruction Warlock DPS Best in Slot Hub
+
+Best In Slot Gear for Destruction Warlock DPS in Pre-Raid in Phase 3
+In Phase 3, a couple of additions will come to Pre-Raid BiS. The primary three changes will be Season 2 PvP gear, Engineering Goggles, and Phase 2 crafted belts. Outside of that, not much will change until Phase 4 badge gear. We'll discuss priority in Pre-Raid gear as well, as with pre-raid, you either want to get as powerful as possible before entering the raids, or you want to achieve the minimal amount of power that will get you into a raid.
+
+Due to the differences in specialization talents, variety of stats on gear, and bonuses from other players in the party, there's no single best set of gear appropriate for all situations. Hit chance plays an enormous role in determining the gear you want to use, as missing a piece of hit gear or having extra hit from talents, gems, or buffs will result in changing other pieces of gear to maintain that hit cap. You can learn more about stat caps and priorities by visiting the Warlock Stat Priority Guide, but some important things to consider:
+
+    Hit cap is determined by the level of the target, with level 73 raid bosses requiring +16% chance to hit, while level 70 trash requires only +3%. You should typically gear for bosses, but you may consider it worthwhile to have a specialized setup for clearing trash.
+    The amount of Hit gems you use, such as Veiled Noble Topaz Veiled Noble Topaz and Great Dawnstone Great Dawnstone.
+    Draenei grant 1% Hit to their group through Inspiring Presence.
+    Elemental Shamans provide Totem of Wrath, which provides 3% Hit.
+
+indicates items only relevant for Shadow Destruction Warlocks.
+indicates items only relevant for Fire Destruction Warlocks.
+
+Destruction Warlocks looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Destruction Warlock Gems & Enchants
+
+
+
+Destruction Holo-gogs
+Brooch of Heightened Potential
+Frozen Shadoweave Shoulders
+Cloak of the Necropolis
+Frozen Shadoweave Robe
+Bracers of Havok
+Mana-Etched Gloves
+Belt of Blasting
+Spellstrike Pants
+Frozen Shadoweave Boots
+Ashyen's Gift
+Seal of the Exorcist
+Icon of the Silver Crescent
+Quagmirran's Eye
+Merciless Gladiator's Spellblade
+Khadgar's Knapsack
+Doomfinger
+Link
+Level70
+Should Destruction Warlock DPS Choose Aldor or Scryer for BiS in TBC Classic Pre-Raid?
+There is not a huge difference between Aldor and Scryers for Destruction Warlocks. You should most likely base this on personal preference, such as elevator type, location, profession trainers, tabard style, etc. That being said, let us look at the differences that influence gearing choices. The Scryers have the better items: Scryer's Bloodgem Scryer's Bloodgem at Revered and Seer's Signet Seer's Signet at Exalted. Although these are quite good, there are better items available in both slots in Phase 1. They do, however, offer additional flexibility in your gearing choices as you can swap them in and out to increase/decrease your total hit as required.
+
+The Aldor has the better enchant, but there is a very small difference between the two; Greater Inscription of Discipline Greater Inscription of Discipline is about a 1-2 DPS increase compared to Greater Inscription of the Orb Greater Inscription of the Orb. And Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen is a special neck that changes proc based on faction alignment. This neck only becomes available by Phase 5, and in this phase, there will be better alternatives, so this is unlikely to affect your decision.
+
+Ultimately, The Scryers provide more early gearing flexibility, while The Aldor provide a very slightly better shoulder enchant. Whatever your choice is, it is the right one.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Destruction Warlocks, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+Destruction Holo-gogs will be the best option for your head slot in terms of Pre-Raid BiS. Available only to Engineers, it is comparable with Phase 2 raid gear, giving you a massive power upgrade. Outside of that, Spellstrike Hood is also powerful, but you may be better off crafting the Spellstrike Pants first, as this will last you longer, and then opt to go for another one of the heads listed here.
+Rank	Item	Source
+Best	Destruction Holo-gogs Destruction Holo-gogs	Profession: Engineering (BoP)
+Great	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Evoker's Helmet of Second Sight Evoker's Helmet of Second Sight	Quest: Teron Gorefiend, I am... Teron Gorefiend, I am...
+Option	Incanter's Cowl Incanter's Cowl	Drop: Pathaleon the Calculator (The Mechanar)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+The quest that rewards Mag'hari Ritualist's Horns is only available to members of the Horde.
+Rank	Item	Source
+Option - Seed Set	Hood of Oblivion Hood of Oblivion	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Mag'hari Ritualist's Horns Mag'hari Ritualist's Horns	Quest: Hero of the Mag'har Hero of the Mag'har
+
+Best in Slot Shoulder Armor for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+Frozen Shadoweave Shoulders is your best option if you are Shadow Destruction. Alternatively, Plagueheart Shoulderpads stands out as a Classic item that is still very good at level 70.
+Rank	Item	Source
+Best	Frozen Shadoweave Shoulders Frozen Shadoweave Shoulders	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Great	Plagueheart Shoulderpads Plagueheart Shoulderpads	Quest: Plagueheart Shoulderpads Plagueheart Shoulderpads (Classic - Naxxramas)
+Option	Mana-Etched Spaulders Mana-Etched Spaulders	Drop: Quagmirran (Heroic The Slave Pens)
+Option	Mantle of Three Terrors Mantle of Three Terrors	Drop: Chrono Lord Deja (The Black Morass)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+As Fire or non-tailor, you could go for the Mana-Etched Regalia 2-set bonus to get hit rating if needed.
+Rank	Item	Source
+Option	Spaulders of the Torn-heart Spaulders of the Torn-heart	Quest: The Cipher of Damnation - The Third Fragment Recovered The Cipher of Damnation - The Third Fragment Recovered
+
+Best in Slot Back Armor for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+Cloak of the Necropolis is the best; however, all the cloaks listed are fairly close in value. Cloak of the Devoured also stands out as a Classic item that is still very good at level 70. If you do not have any of the Classic cloaks, you can get Cloak of Entropy off the AH until you get Sethekk Oracle Cloak from Sethekk Halls.
+Rank	Item	Source
+Best	Sethekk Oracle Cloak Sethekk Oracle Cloak	Drop: Talon King Ikiss (Sethekk Halls)
+Best - Classic Option	Cloak of the Necropolis Cloak of the Necropolis	Drop: Sapphiron (Classic - Naxxramas)
+Classic Option	Cloak of the Devoured Cloak of the Devoured	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Cloak of Entropy Cloak of Entropy	Drop: World Drop
+Best in Slot Chest Armor for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+Frozen Shadoweave Robe is best in slot as Shadow. It does, however, require Tailoring with Shadoweave Specialization. As Fire, you will want Spellfire Robe, which requires Spellfire Tailoring; the set bonus this provides is also really good. If you do not have Tailoring, the best alternative is Plagueheart Robe from Classic, if you are so lucky to have it, or Robe of Oblivion if you do not.
+Rank	Item	Source
+Best	Frozen Shadoweave Robe Frozen Shadoweave Robe	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Best	Spellfire Robe Spellfire Robe	Profession: Tailoring (Spellfire Tailor) - BoP only
+Option	Robe of the Crimson Order Robe of the Crimson Order	Drop: World Drop
+Option	Plagueheart Robe Plagueheart Robe	Drop: Four Horsemen Chest (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+
+If you're in need of hit, you can look to get Auchenai Anchorite's Robe, or Mana-Etched Vestments combined with another piece for the 2-set bonus.
+Rank	Item	Source
+Option	Auchenai Anchorite's Robe Auchenai Anchorite's Robe	Quest: Everything Will Be Alright Everything Will Be Alright (Auchenai Crypts)
+Option	Mana-Etched Vestments Mana-Etched Vestments	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Option	Robe of Oblivion Robe of Oblivion	Drop: Murmur (Shadow Labyrinth)
+
+Best in Slot Wrist Armor for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+Rockfury Bracers stand out as a Classic item, which is still very good at level 70 if you can make use of the hit rating. If you do not need hit or do not have the bracers yet, go for Bracers of Havok, which are crafted and can be bought from the Auction House.
+Rank	Item	Source
+Best	Bracers of Havok Bracers of Havok	Profession: Tailoring (BoP)
+Best - Classic Option	Rockfury Bracers Rockfury Bracers	Quest: Stalwart's Battlegear Stalwart's Battlegear (Classic - Ahn'Qiraj)
+Option	Crimson Bracers of Gloom Crimson Bracers of Gloom	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+Best in Slot Hand Armor for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+If you are Fire, Spellfire Gloves is the best piece you can get, though it does require Spellfire Tailoring. Dark Storm Gauntlets is a good option if you already have these from Classic. Otherwise, if you don't have the AQ gloves, Gloves of Pandemonium is the best.
+Rank	Item	Source
+Best	Gloves of Pandemonium Gloves of Pandemonium	Drop: World Drop
+Best	Spellfire Gloves Spellfire Gloves	Profession: Tailoring (Spellfire Tailor) - BoP only
+Option	Dark Storm Gauntlets Dark Storm Gauntlets	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Mana-Etched Gloves Mana-Etched Gloves	Drop: Omor the Unscarred (Heroic Hellfire Ramparts)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+These options listed are great if you still need to reach the hit cap. The Mana-Etched Regalia 2-set bonus gives quite a lot of hit rating.
+Rank	Item	Source
+Option	Gloves of Oblivion Gloves of Oblivion	Drop: Warchief Kargath Bladefist (The Shattered Halls)
+Option	Manaspark Gloves Manaspark Gloves	Drop: Hungarfen (The Underbog)
+
+Best in Slot Waist Armor for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+Belt of Blasting will be the new pre-raid belt option, and will be something you can end up wearing through Phase 3 depending on your loot luck!
+
+Other than that, you could opt into Spellfire Belt for Fire Destruction if you have Spellfire Tailoring, or Girdle of Ruination , but if you're spending the gold on a belt, you should just go for the best option. If you have Eyestalk Waist Cord from back in Classic, you can use that. Outside of that, for much cheaper TBC options, check the toggler below for a couple more options.
+Rank	Item	Source
+Best	Belt of Blasting Belt of Blasting	Profession: Tailoring (BoE)
+Great	Girdle of Ruination Girdle of Ruination	Profession: Tailoring (BoE)
+Great	Spellfire Belt Spellfire Belt	Profession: Tailoring (Spellfire Tailor) - BoP only
+Option	Eyestalk Waist Cord Eyestalk Waist Cord	Drop: C'Thun (Classic - Ahn'Qiraj)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+If you don't or need the hit, Sash of Serpentra is quite good.
+Rank	Item	Source
+Option	A'dal's Gift A'dal's Gift	Quest: How to Break Into the Arcatraz How to Break Into the Arcatraz (The Arcatraz)
+Option	Sash of Serpentra Sash of Serpentra	Drop: Warlord Kalithresh (The Steamvault)
+
+Best in Slot Leg Armor for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+Spellstrike Pants will be your go-to option. Even though Breeches of the Occultist is technically the best option after Spellstrike, For some easier options from the four listed here, check the toggler below.
+Rank	Item	Source
+Best	Spellstrike Pants Spellstrike Pants	Profession: Tailoring (BoE)
+Best	Breeches of the Occultist Breeches of the Occultist	Drop: Aeonus (Heroic The Black Morass)
+Classic Option Option	Leggings of Polarity Leggings of Polarity	Drop: Thaddius (Classic - Naxxramas)
+Option	Fel Infused Leggings Fel Infused Leggings	Drop: Lord Kazzak (World Boss)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+You can use Leggings of Polarity or Fel Infused Leggings from back in Classic, or Trousers of Oblivion or Mana-Etched Pantaloons if you don't (or need the hit).
+Rank	Item	Source
+Option	Trousers of Oblivion Trousers of Oblivion	Drop: Talon King Ikiss (Sethekk Halls)
+Option	Mana-Etched Pantaloons Mana-Etched Pantaloons	Drop: The Black Stalker (Heroic The Underbog)
+
+Best in Slot Feet Armor for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+Frozen Shadoweave Boots is your best option as Shadow, but requires Shadoweaving Tailoring. If you aren't a Tailor, or you are Fire Destruction, and require hit, you can opt for Extravagant Boots of Malice. Although they don't have hit, Sigil-Laced Boots or Shattrath Jumpers are really solid picks.
+Rank	Item	Source
+Best	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Best	Extravagant Boots of Malice Extravagant Boots of Malice	Drop: Tavarok (Heroic Mana-Tombs)
+Option	Sigil-Laced Boots Sigil-Laced Boots	Drop: Harbinger Skyriss (The Arcatraz)
+Option	Shattrath Jumpers Shattrath Jumpers	Quest: Into the Heart of the Labyrinth Into the Heart of the Labyrinth (Shadow Labyrinth)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Plagueheart Sandals stand out as a Classic item that is still very good at level 70.
+Rank	Item	Source
+Option	Plagueheart Sandals Plagueheart Sandals	Quest: Plagueheart Sandals Plagueheart Sandals (Classic - Naxxramas)
+
+Best in Slot Neck Jewelry for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+Brooch of Heightened Potential or Hydra-fang Necklace are your best options before raiding, heroics, or PvP. All the other necks listed are decent alternatives if you already have them from Classic until you get the others.
+Rank	Item	Source
+Best	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+Best	Hydra-fang Necklace Hydra-fang Necklace	Drop: Ghaz'an (The Underbog - Heroic)
+Option	Amulet of Vek'nilash Amulet of Vek'nilash	Drop: Emperor Vek'nilash (Classic - Ahn'Qiraj)
+Option	Gem of Trapped Innocents Gem of Trapped Innocents	Drop: Kel'Thuzad (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+
+Rank	Item	Source
+Option	Choker of the Fire Lord Choker of the Fire Lord	Drop: Ragnaros (Classic - Molten Core)
+
+Best in Slot Ring Jewelry for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+Rings are great slot options to balance out the amount of hit you have, so you do not go over the cap. As such, which of these is the best for you is going to highly depend on the rest of your gear.
+Rank	Item	Source
+Best	Ashyen's Gift Ashyen's Gift	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+Best	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+Best	Seer's Signet Seer's Signet	Vendor: Quartermaster Enuril (The Scryers Exalted)
+Best	Seal of the Exorcist Seal of the Exorcist	Vendor: Spirit Sage Gartok / Spirit Sage Zran (50 Spirit Shard Spirit Shard)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Option	Ring of the Eternal Flame Ring of the Eternal Flame	Drop: Trash (Classic - Naxxramas)
+Option	Ring of the Fallen God Ring of the Fallen God	Quest: The Savior of Kalimdor The Savior of Kalimdor (Classic - Ahn'Qiraj)
+Option	Band of the Inevitable Band of the Inevitable	Drop: Noth the Plaguebringer (Classic - Naxxramas)
+Option	Seal of the Damned Seal of the Damned	Drop: Four Horsemen Chest (Classic - Naxxramas)
+
+Best in Slot Trinkets for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+There are several strong trinkets, which you may switch out depending on your needs. Against Demons or Undead, Mark of the Champion from Naxxramas is still very powerful, and Neltharion's Tear is similarly useful for Classic players who need the hit. Ideally, though, you won't need as much hit from your trinkets and can go for stronger DPS options instead.
+
+On TBC Anniversary, the Brewfest event will line up during Phase 3, making Dark Iron Smoking Pipe finally obtainable. This is identical to Icon, and you can wear both. You can also alternate between them when one is on cooldown.
+Rank	Item	Source
+Best	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (41 Badges of Justice)
+Best - Seasonal Option	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Best	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Great	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Option	Mark of the Champion Mark of the Champion	Quest: The Fall of Kel'Thuzad The Fall of Kel'Thuzad (Classic - Naxxramas)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+Option	The Restrained Essence of Sapphiron The Restrained Essence of Sapphiron	Drop: Sapphiron (Classic - Naxxramas)
+
+Best in Slot Weapons for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+Merciless Gladiator's Spellblade, the Season 2 PvP weapon, will be your best weapon to get in terms of power and accessibility. Previous season gear gets heavily discounted and can be obtained after a week of doing your required 10 Arena games. However, you technically can get the Season 3 weapon, Vengeful Gladiator's Spellblade Vengeful Gladiator's Spellblade, before entering raids, but it does require a 1700 rating and way more points. Although it arguably is not too challenging to achieve this rating in 5v5 Arenas, we still will put the previous season weapon on here, primarily in terms of access, But did want to note the reader of Season 3 as well.
+
+Illidari-Bane Mageblade is a great option versus Demon targets which you'll encounter a lot in Phase 3 Raids. Besides those targets, Blade of Wizardry and Stormcaller/Blade of the Archmage are the best options. The latter will be expensive, the former will require a hefty reputation grind.
+
+Two-handed staves provide a lot of stats, but generally not enough to outweigh the combination of competitively sourced one-hand/offhand combinations during Phase 1. Atiesh, Greatstaff of the Guardian is an outlier in that regard, however, due to the buffs it provides you and your party, increasing everyone's Spell Damage by 33. If you are one of the lucky few to have obtained the weapon in Classic, it will remain relevant until Phase 3.
+Rank	Item	Source
+Best	Merciless Gladiator's Spellblade Merciless Gladiator's Spellblade	Vendor: Arena Points (Season 2)
+Great	Stormcaller Stormcaller
+Blade of the Archmage Blade of the Archmage	Vendor: Quartermaster Urgronn / Logistics Officer Ulrike (Thrallmar / Honor Hold Exalted)
+Great	Blade of Wizardry Blade of Wizardry	Drop: World Drop
+Great	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Quest: Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+
+Rank	Item	Source
+Great - Demons	Illidari-Bane Mageblade Illidari-Bane Mageblade	Quest: Quenching the Blade Quenching the Blade
+Option	Greatsword of Horrid Dreams Greatsword of Horrid Dreams	Drop: Murmur (Shadow Labyrinth)
+
+Best in Slot Offhands for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+Fire Destruction gets all the goodies; Flametongue Seal is essentially a stronger version of the Shadow alternative.
+
+Khadgar's Knapsack should be your top pick as Shadow. Orb of the Soul-Eater is only 2 more shadow power, but you lose out on spell damage in case you use Immolate or against Shadow-immune targets. The offhands obtained in Classic also hold up fairly well once you reach level 70.
+Rank	Item	Source
+Best	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (25 Badges of Justice)
+Best	Lamp of Peaceful Radiance Lamp of Peaceful Radiance	Drop: Harbinger Skyriss (The Arcatraz)
+Best	Flametongue Seal Flametongue Seal	Vendor: G'eras (25 Badges of Justice)
+Option	Orb of the Soul-Eater Orb of the Soul-Eater	Vendor: G'eras (25 Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Sapphiron's Left Eye Sapphiron's Left Eye	Drop: Sapphiron (Classic - Naxxramas)
+Option	Royal Scepter of Vek'lor Royal Scepter of Vek'lor	Drop: Emperor Vek'lor (Classic - Ahn'Qiraj)
+
+Best in Slot Wands for Destruction Warlock in TBC Classic Pre-Raid in Phase 3
+The easiest-to-get wand in the game, and the best one at that for Fire Destruction Warlocks, is the Master Firestone.
+
+As a Shadow Destruction Warlock, however, you will still want to find a regular wand, sadly. Doomfinger or The Black Stalk are your best picks, unless you need hit rating. In that case, go for any of the other two. Doomfinger, Wand of Fates, and The Black Stalk are, however, also all really close in value.
+Rank	Item	Source
+Best	The Black Stalk The Black Stalk	Drop: The Black Stalker (Heroic The Underbog)
+Best	Master Firestone Master Firestone	Conjured: Create Firestone
+Best - Classic Option	Doomfinger Doomfinger	Drop: Kel'Thuzad (Classic - Naxxramas)
+Classic Option	Wand of Fates Wand of Fates	Drop: Patchwerk (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+
+Rank	Item	Source
+Option	Nether Core's Control Rod Nether Core's Control Rod	Drop: Dalliah the Doomsayer (The Arcatraz)
+
+Zephan
+World of Warcraft Classic Warlock Class Expert
+Zephan is renowned for his expertise as a Warlock theorycrafter and guide author. He has contributed extensively to Wowhead, where he has published a variety of in-depth guides covering Warlock leveling, PvE builds, and class-specific mechanics across different expansions, including WoW Classic, The Burning Crusade, Wrath of the Lich King, and Season of Discovery.
+
+Beyond his written contributions, Zephan is the founder and administrator of the Classic Warlock Discord, a central hub for Warlock players seeking to optimize their gameplay. This community is recognized for its collaborative approach to theorycrafting and strategy development.
+Tags: General PvE Dungeons Raiding
+1 - 11 of 11
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+5
+
+	
+By Dawoka (523 – 6) on 2021/07/14 (Burning Crusade)	
+	
+Thanks Zephan, very nice guide!
+Are you going to implement a T5 /Phase 2 Destro BIS List soon?
+Would be nice to see what gear of T4 content is needed in T5.
+have a good one!
+
+0
+
+	
+
+Zephan <Guide Author> on 2021/07/16 (Burning Crusade)
+I am working on that as we speak and it should be out well before Phase 2.
+
+3
+
+	
+By mkivtt (3,758 – 8·20) on 2021/06/11 (Burning Crusade)	
+	
+Super useful. You cover badges, enchants, gear, and I love the wowhead character doll showing all items in the slots. Thanks!
+
+3
+
+	
+By EdGrace (2,024 – 13·10) on 2022/09/24 (Burning Crusade)	
+	
+Why is Belt of Blasting listed as pre BiS if it comes out on phase 2?
+
+-2
+
+	
+
+Zephan <Guide Author> on 2022/09/26 (Burning Crusade)
+It's wotlk pre patch currently.
+
+0
+
+	
+
+dominikdaubi on 2024/10/02 (Burning Crusade)
+rly? :D prebis... and u using wotlk prepatch? oh man
+
+2
+
+	
+By Xanamor (758 – 7·5) on 2021/06/09 (Burning Crusade)	
+	
+Starlight Dagger Starlight Dagger is from heroic slave pens and is also a nice main-hand. You get a little more hit but lose 9sp over Greatsword of Horrid Dreams Greatsword of Horrid Dreams
+Last edited by Xanamor on 2021/06/09
+
+1
+
+	
+By zhake132 (8,000 – 1·20·65) on 2021/05/01 (Burning Crusade)	
+	
+Are there really no other 2-handed options beside Ateish, lol?
+
+1
+
+	
+
+Zephan <Guide Author> on 2021/05/02 (Burning Crusade)
+The main hand options are about as strong as the available staffs in Phase 1 and you can equip a off hand along them making MH +OH the choice of wep slots for Phase 1 as warlocks. The exception is Atiesh as this also provides a buff to the group.
+
+1
+
+	
+By Neilan (3,510 – 8·13) on 2021/05/17 (Burning Crusade)	
+	
+I think listing High Warlord's Dreadweave Mantle High Warlord's Dreadweave Mantle, Crimson Bracers of Gloom Crimson Bracers of Gloom, Extravagant Boots of Malice Extravagant Boots of Malice, and Sparking Arcanite Ring Sparking Arcanite Ring as optional would probably be good for fire destros. Especially the ring in general is really good for both specs i'm surprised its not on here. But the mana-etched shoulders aren't really viable as a hit option for fire as you wont be taking any other mana-etched to even get the set bonus. You would likely take Spellfire Gloves and Spellstrike Pants. The bracers and boots i listed are obviously from Heroics so it depends on how much people care to try and farm them. But i feel like mentioning them as options at least would be good.
+
+2
+
+	
+
+Zephan <Guide Author> on 2021/05/17 (Burning Crusade)
+I added them as optional items, thanks for the feedback. About Mana-Etched a lot of people will not have Spellfire from the get go, It is still a viable option whilst working on getting your full spellfire. Sparking is also from Heroic Old Hillsbrad if am not mistaken.
+
+0
+
+	
+
+inqwdd 25 days ago (Burning Crusade)
+I think that https://www.wowhead.com/tbc/item=35331/dreadweave-mantle more better then https://www.wowhead.com/tbc/item=22507/plagueheart-shoulderpads even with green gems. U can place in sockets runed blood garntet +7 spd and veiled flame spessarite +3 hit +4 spd. Ultimately u receieve 1 spd 1 hit and 3 int more one blue pvp item than on T6 shoulders. And PVP item easy to recieve.
+
+1
+
+	
+By nihilus23 (314 – 2·4) on 2021/05/18 (Burning Crusade)	
+	
+Hi, I was wondering how does pvp equipment or weapons like the Gladiator's War Staff factor into this list? Never really played TBC content (although i did level in azeroth at the time lol) so I have no idea if it is even worth going for or if the gear just isn't as good for pve stuff.. Thanks for the effort you put into this and the phase 1 BiS list!
+
+1
+
+	
+By Mastalock (16,837 – 3·16·54) on 2021/06/07 (Burning Crusade)	
+	
+Gladiator's War Staff Gladiator's War Staff may have something to say for 2H? Or is it not in yet?
+
+1
+
+	
+By GoreGore (2,841 – 20·15) on 2026/02/10 (Burning Crusade)	
+	
+Lol weapons are a world drop boe. Nax legendary, a weapon only good against demons and the main faction grind.
+Last edited by GoreGore on 2026/02/10
+
+1
+
+	
+By TgrClw (188 – 1·1) on 2026/03/14 (Burning Crusade)	
+	
+Great guide!
+
+If you are having trouble hitting the Spell Hit cap, one item that could be added to the list under "optional:"
+
+Princely Reign Leggings
+
++18 Spell Hit
+
+Also, they're somewhat easy to obtain, they drop in The Slave Pens. Albeit they have only a 9% chance of dropping.
+
+Princely Reign Leggings Princely Reign Leggings
+By dominikdaubi (400 – 1·2) on 2024/10/02 (Burning Crusade)	
+	
+1 - 11 of 11
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+4.7/5 (20 Votes)
+TBCC Warlock Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 1 BiS
+            Affliction
+            Demonology
+            Destruction
+                Best In Slot Gear in Phase 1
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    Weapons
+                    Offhands
+                    Wands
+        Phase 2 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 3 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 4 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 5 BiS
+            Affliction
+            Demonology
+            Destruction
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    AoE DPS Guide
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Destruction Warlock DPS Best in Slot (BiS) Phase 1 Gear Guide
+By Zephan
+Updated: 2026/04/15
+In this Pre-Raid Best-in-Slot Gear List for Warlock DPS in The Burning Crusade Classic, we will list the recommended gear for Warlock DPS to aim for when gearing up to raids in The Burning Crusade Classic, including gear sourced from Normal and Heroic Dungeons, professions, BoE World Drops, and reputations.
+
+
+Warlock DPS Best in Slot Hub
+
+Best In Slot Gear for Destruction Warlock DPS in Phase 1
+Due to the differences in specialization talents, variety of stats on gear, and bonuses from other players in the party, there's no single best set of gear appropriate for all situations. Hit chance plays an enormous role in determining the gear you want to use, as missing a piece of hit gear or having extra hit from talents, gems, or buffs will result in changing other pieces of gear to maintain that hit cap. You can learn more about stat caps and priorities by visiting the Warlock Stat Priority Guide, but some important things to consider:
+
+    Hit cap is determined by the level of the target, with level 73 raid bosses requiring +16% chance to hit, while level 70 trash requires only +3%. You should typically gear for bosses, but you may consider it worthwhile to have a specialized setup for clearing trash.
+    The amount of Hit gems you use, such as Veiled Noble Topaz Veiled Noble Topaz and Great Dawnstone Great Dawnstone.
+    Draenei grant 1% Hit to their group through Inspiring Presence.
+    Elemental Shamans provide Totem of Wrath, which provides 3% Hit.
+
+indicates items only relevant for Shadow Destruction Warlocks.
+indicates items only relevant for Fire Destruction Warlocks.
+
+Destruction Warlocks looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Destruction Warlock Gems & Enchants
+Should Destruction Warlock DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 1?
+There is not a huge difference between Aldor and Scryers for Destruction Warlocks. You should most likely base this on personal preference, such as elevator type, location, profession trainers, tabard style, etc.
+
+That being said, let us look at the differences that influence gearing choices. The Scryers have the better items: Scryer's Bloodgem Scryer's Bloodgem at Revered and Seer's Signet Seer's Signet at Exalted. Although these are quite good, there are better items available in both slots in Phase 1. They do, however, offer additional flexibility in your gearing choices as you can swap them in and out to increase/decrease your total hit as required.
+
+The Aldor has the better enchant, but there is a very small difference between the two; Greater Inscription of Discipline Greater Inscription of Discipline is about a 1-2 DPS increase compared to Greater Inscription of the Orb Greater Inscription of the Orb.
+
+Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen is a special neck that changes proc based on Faction alignment. This neck only becomes available by Phase 5, and in this Phase, there will be better alternatives, so this is unlikely to affect your decision.
+
+Ultimately, The Scryers provide more early gearing flexibility, while The Aldor provide a very slightly better shoulder enchant. Whatever your choice is, it is the right one.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Destruction Warlocks, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Destruction Warlock in TBC Classic Phase 1
+Voidheart Crown is our best in slot because Destruction Warlocks aim to get the Tier 4 set bonus, along with the Meta slot being quite powerful. You will aim for 4P T4 if you are Shadow, and as Fire, you can go for 2P T4 combined with the Spellfire Set.
+Rank	Item	Source
+BiS	Voidheart Crown Voidheart Crown	Drop: Prince Malchezaar (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Option	Spellstrike Hood Spellstrike Hood	Profession: Tailoring - can be purchased on the Auction House
+Option	Uni-Mind Headdress Uni-Mind Headdress	Drop: Netherspite (Karazhan)
+
+Best in Slot Shoulder Armor for Destruction Warlock in TBC Classic Phase 1
+Shoulders tend to be one of the go-to slots to reach our Tier 4 set bonus. The Tier 4 set bonus is a great damage boost for all locks. As such, you should aim to get Voidheart Mantle.
+Rank	Item	Source
+BiS	Voidheart Mantle Voidheart Mantle	Drop: High King Maulgar (Gruul's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+If you are playing Shadow, then Frozen Shadoweave Shoulders is a really solid piece to pick up until you get your T4 Shoulders. As Fire, unfortunately, you do not have a good alternative until you get your Tier 4 shoulders, and you will be running one of the pre-bis options.
+Rank	Item	Source
+Option	Frozen Shadoweave Shoulders Frozen Shadoweave Shoulders	Profession: Tailoring (Shadoweave Tailor) - BoP only
+
+Best in Slot Back Armor for Destruction Warlock in TBC Classic Phase 1
+Ruby Drape of the Mysticant is a great all-around piece with hit and spell damage, of use for all Warlocks. If you are hit capped, however, and can't make use of extra hit Ancient Spellcloak of the Highborne is going to be your best alternative.
+Rank	Item	Source
+BiS	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+BiS	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Option	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Chest Armor for Destruction Warlock in TBC Classic Phase 1
+As Shadow Destruction, you will want to go for Voidheart Robe in order to achieve your four-set bonus. If you are Fire, you will want Spellfire Robe for your three-piece Wrath of Spellfire bonus.
+Rank	Item	Source
+BiS	Voidheart Robe Voidheart Robe	Drop: Magtheridon (Magtheridon's Lair)
+BiS	Spellfire Robe Spellfire Robe	Profession: Tailoring (Spellfire Tailor) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+While waiting to get your T4 chest, Frozen Shadoweave Robe (if you are Shadow Destro) and Robe of the Elder Scribes are both good alternatives.
+Rank	Item	Source
+Option	Frozen Shadoweave Robe Frozen Shadoweave Robe	Profession: Tailoring (Shadoweave Tailor) - BoP only
+Option	Robe of the Elder Scribes Robe of the Elder Scribes	Drop: Nightbane (Karazhan)
+
+Best in Slot Wrist Armor for Destruction Warlock in TBC Classic Phase 1
+Bracers of Havok are easy to get as they are crafted and BoE, while providing great stats and a socket.
+Rank	Item	Source
+BiS	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Elementalist Bracelets Elementalist Bracelets of Shadow/Fiery Wrath	Drop: World Drop
+Option	Bands of Nefarious Deeds Bands of Nefarious Deeds	Drop: Maiden of Virtue (Karazhan)
+
+Best in Slot Hand Armor for Destruction Warlock in TBC Classic Phase 1
+Spellfire Gloves are by far the best gloves in phase 1 for Fire Destruction Warlocks, even if you do not reach the set bonus.
+
+You will want Voidheart Gloves in order to reach your 4 set bonus if you are Shadow Destro.
+Rank	Item	Source
+BiS	Spellfire Gloves Spellfire Gloves	Profession: Tailoring (Spellfire Tailor) - BoP only
+BiS	Voidheart Gloves Voidheart Gloves	Drop: The Curator (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+You could also go for Anger-Spark Gloves, if you can get your hands on them, and use T4 Pants instead to reach your bonus. If you need the hit, Handwraps of Flowing Thought are good and easier to get as an alternative. Soul-Eater's Handwraps are your best option if you do not need any additional hit.
+Rank	Item	Source
+Option	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss)
+Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+
+Best in Slot Waist Armor for Destruction Warlock in TBC Classic Phase 1
+Spellfire Belt is roughly 10 Spell Damage ahead of the next best belt for Fire Destruction Warlocks, ignoring the set bonus; with the set bonus, it becomes even better. Girdle of Ruination is a crafted Bind on Equip piece from a world drop recipe.
+Rank	Item	Source
+BiS	Spellfire Belt Spellfire Belt	Profession: Tailoring (Spellfire Tailor) - BoP only
+BiS	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Option	Belt of Divine Inspiration Belt of Divine Inspiration	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Leg Armor for Destruction Warlock in TBC Classic Phase 1
+Spellstrike Pants are really good and only beaten by Leggings of the Seventh Circle, which are significantly harder to get due to being dropped by a World Boss. Voidheart Leggings are a perfect piece to use if you are going for four pieces of the Voidheart Raiment set if you do not use Gloves to reach it.
+Rank	Item	Source
+BiS	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Leggings of the Seventh Circle are slightly stronger, though significantly harder to get and lack any set bonuses, while Voidheart Leggings can be used for the four-piece set bonus if you, for example, use the World Boss Gloves instead.
+Rank	Item	Source
+Option	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+Option	Voidheart Leggings Voidheart Leggings	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+Best in Slot Feet Armor for Destruction Warlock in TBC Classic Phase 1
+Frozen Shadoweave Boots have a great amount of Shadow damage and 2 socket slots, but require tailoring. If you are Fire or do not have tailoring, Boots of Foretelling is the best. Ruby Slippers are also a great option if you need the hit.
+Rank	Item	Source
+BiS	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailor) - BoP only
+BiS	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Ruby Slippers Ruby Slippers	Drop: The Crone (Karazhan)
+
+Best in Slot Neck Jewelry for Destruction Warlock in TBC Classic Phase 1
+There are plenty of valuable necklaces close in value. Brooch of Unquenchable Fury is the best neck option if you can make use of the hit fully. If you do not need hit rating, you will want to go for Adornment of Stolen Souls.
+Rank	Item	Source
+BiS	Brooch of Unquenchable Fury Brooch of Unquenchable Fury	Drop: Moroes (Karazhan)
+BiS	Adornment of Stolen Souls Adornment of Stolen Souls	Drop: Prince Malchezaar (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Ritssyn's Lost Pendant is very close in value to Adornment of Stolen Souls. Brooch of Heightened Potential is an easier-to-obtain alternative with solid hit rating.
+Rank	Item	Source
+Option	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+Option	Ritssyn's Lost Pendant Ritssyn's Lost Pendant	Drop: Trash (Karazhan)
+
+Best in Slot Ring Jewelry for Destruction Warlock in TBC Classic Phase 1
+Your rings are one of the best item slots to switch in order to reach, or avoid going over, the hit cap.
+
+Band of Crimson Fury and Ashyen's Gift are the two strongest rings in Phase 1 if you need the hit on them. Ring of Recurrence and Violet Signet of the Archmage are your best non-hit options. Violet Signet of the Archmage is the final version of the ring, but even the Friendly version of the ring is already a really solid non-hit option/alternative until you reach exalted.
+Rank	Item	Source
+BiS	Band of Crimson Fury Band of Crimson Fury	Quest: The Fall of Magtheridon The Fall of Magtheridon
+BiS	Ashyen's Gift Ashyen's Gift	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+BiS	Ring of Recurrence Ring of Recurrence	Drop: Chess Event (Karazhan)
+BiS	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Path of the Violet Mage Path of the Violet Mage (The Violet Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Ring of the Fallen God stands out as a Classic item, which is still very good for those who need the hit, still relevant at level 70. Sparking Arcanite Ring is also a solid option if you need hit and can be obtained outside of raiding.
+Rank	Item	Source
+Option	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Old Hillsbrad Foothills)
+Option	Ring of the Fallen God Ring of the Fallen God	Quest: The Savior of Kalimdor The Savior of Kalimdor
+
+Best in Slot Trinkets for Destruction Warlock in TBC Classic Phase 1
+Ideally, you won't need hit from your trinket slots, and you can go for Quagmirran's Eye and Icon of the Silver Crescent . Even though our DoTs and pet damage will not scale with the Haste proc from Quagmirran's Eye, a good chunk (60-80%) of our damage still comes from Shadow Bolt, which does majorly benefit from the proc.
+Rank	Item	Source
+BiS	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (The Slave Pens)
+BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+If you are facing Demons or Undead targets, you will want to equip Mark of the Champion if you have it. If you are under the hit cap, then Scryer's Bloodgem is going to give you a lot of value. Another hit option would be Neltharion's Tear.
+Rank	Item	Source
+Option	Mark of the Champion Mark of the Champion	Quest: The Fall of Kel'Thuzad The Fall of Kel'Thuzad
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+
+Best in Slot Weapons for Destruction Warlock in TBC Classic Phase 1
+Two-handed staves provide a lot of stats, but generally not enough to outweigh the combination of competitively sourced Main and offhands during Phase 1. Atiesh, Greatstaff of the Guardian is an outlier in that regard, however, due to the buffs it provides you and your party, increasing everyone's Spell Damage by 33. If you are one of the lucky few to have obtained the weapon in Classic, it will remain relevant until Phase 3.
+
+Talon of the Tempest is from a world boss and may be difficult to acquire, but there are plenty of strong alternatives obtainable inside raids.
+Rank	Item	Source
+BiS	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Quest: Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian
+BiS	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Weapon Recommendations
+
+Gladiator's Spellblade is another option for PvP-focused players, although it isn't quite as good. Illidari-Bane Mageblade is an option specifically against Demon-type enemies.
+Rank	Item	Source
+Option	Bloodmaw Magus-Blade Bloodmaw Magus-Blade	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Option	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+PvP	Gladiator's Spellblade Gladiator's Spellblade	Vendor: Arena Points (Season 1)
+Option	Illidari-Bane Mageblade Illidari-Bane Mageblade	Quest: Quenching the Blade Quenching the Blade
+Option	Blade of Wizardry Blade of Wizardry	Drop: World Drop - can be purchased on the Auction House
+Option	Eternium Runed Blade Eternium Runed Blade	Profession: Blacksmithing - can be purchased on the Auction House
+
+Best in Slot Offhands for Destruction Warlock in TBC Classic Phase 1
+As Fire, you want to get Flametongue Seal, which is similar to Khadgar's Knapsack, but has additional critical strike rating.
+
+For Shadow, Orb of the Soul-Eater has slightly more Shadow damage than Khadgar's Knapsack; however, it does not benefit our Immolate. As such, you still want to go for Khadgar's Knapsack.
+Rank	Item	Source
+BiS	Flametongue Seal Flametongue Seal	Vendor: G'eras (Badges of Justice)
+BiS	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Orb of the Soul-Eater Orb of the Soul-Eater	Vendor: G'eras (Badges of Justice)
+Option	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+
+Best in Slot Wands for Destruction Warlock in TBC Classic Phase 1
+Tirisfal Wand of Ascendancy is best if you need the hit; otherwise, if you are hit capped, Eredar Wand of Obliteration is the better option.
+Rank	Item	Source
+BiS	Tirisfal Wand of Ascendancy Tirisfal Wand of Ascendancy	Drop: Shade of Aran (Karazhan)
+BiS	Eredar Wand of Obliteration Eredar Wand of Obliteration	Drop: Magtheridon (Magtheridon's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+The Black Stalk is very close in power to the two best options.
+Rank	Item	Source
+Option	Nether Core's Control Rod Nether Core's Control Rod	Drop: Dalliah the Doomsayer (Arcatraz)
+Option	The Black Stalk The Black Stalk	Drop: The Black Stalker (Heroic The Underbog)
+Option	Master Firestone Master Firestone	Conjured: Create Firestone
+
+Zephan
+World of Warcraft Classic Warlock Class Expert
+Zephan is renowned for his expertise as a Warlock theorycrafter and guide author. He has contributed extensively to Wowhead, where he has published a variety of in-depth guides covering Warlock leveling, PvE builds, and class-specific mechanics across different expansions, including WoW Classic, The Burning Crusade, Wrath of the Lich King, and Season of Discovery.
+
+Beyond his written contributions, Zephan is the founder and administrator of the Classic Warlock Discord, a central hub for Warlock players seeking to optimize their gameplay. This community is recognized for its collaborative approach to theorycrafting and strategy development.
+Tags: PvE Dungeons Raiding
+1 - 17 of 17
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+6
+
+	
+By Voulentiq (130 – 2) on 2021/04/28 (Burning Crusade)	
+	
+Would it be possible for you to take Atiesh into account? How long is it worth gimping yourself for the benefit of the caster group? Is there any simulation existing for this yet?
+
+1
+
+	
+
+Zephan <Guide Author> on 2021/04/28 (Burning Crusade)
+Atiesh is for sure worthwhile especially for the group bonus it gives. You would be replacing it when you can get zhar'doom or archimonde sword + oh. And you could do the math in the discord or see it in a spreadsheet like my model https://docs.google.com/spreadsheets/d/1eID6utEy9LOaRUyhDhicQ5sNaPnJWKF64aetafDzRTE/edit?usp=sharing or jpaints
+
+0
+
+	
+
+Zephan <Guide Author> on 2021/04/28 (Burning Crusade)
+Added atiesh with a note about when it gets replaced
+
+0
+
+	
+
+Voulentiq on 2021/04/29 (Burning Crusade)
+Thank you so much! Thats what I have been looking for! Currently hat 26 Splinters
+
+0
+
+	
+
+IdontLikeUsernam on 2021/04/29 (Burning Crusade)
+It stacks with itself and therefore with multiple it should not be replaced.
+
+4
+
+	
+By Ediem (267 – 3) on 2021/04/27 (Burning Crusade)	
+	
+Thank you for the guide !
+Small question : since the Chaotic Skyfire Diamond seems to be available right from P1, would the spell strike hood (with it's lack of meta slot) loose in appeal ? Or is the set bonus that much better than +3% crit dmg ?
+Keeping in mind that the set will probably be really expensive to get at the beginning of the expansion.
+
+1
+
+	
+
+Zephan <Guide Author> on 2021/04/28 (Burning Crusade)
+Chaotic Skyfire Diamond was temporarily available in the Beta but was added in patch 2.3, this was intended to balance the change to Relentless Earthstorm Diamond as of 2.2 - that change being that the 3% increased critical damage no longer applies to spells. With it being removed from the beta and the blue post about item recipes etc. being locked to their relevant patch / phase it is my guess the Meta won't be available until later. If it is in it's worth going T4 helm for the meta slot
+
+3
+
+	
+By biglollol (7,018 – 1·19·16) on 2026/04/12 (Burning Crusade)	
+	
+I legit can't see Bracers of Havok Bracers of Havok be picked over Bands of Nefarious Deeds Bands of Nefarious Deeds in any situation.
+
+You lose 2 base spellpower and 10 intellect (0.122% crit). I assume you'd socket it with a Runed Living Ruby Runed Living Ruby?
+
+Does 7 spellpower really outweigh 100 mana and 0.122% crit chance?
+
+Even the +2 crit rating socket bonus is only 0.09% crit.
+
+Please help me understand lol
+
+2
+
+	
+By CAVANAW (1,599 – 3·6) on 2021/06/18 (Burning Crusade)	
+	
+The top section and the bottom section don't match in terms of which gems for each piece of gear. All runed living ruby on spellstrike below and blue, yellow, red up top.. etc.
+Last edited by CAVANAW on 2021/06/22
+
+0
+
+	
+
+Zephan <Guide Author> on 2021/06/19 (Burning Crusade)
+Items do match but gems indeed don't. The reason for this is that gemming should be done in function of the rest of your gear and hit requirements. Most often it is not worth it to go for the individual bonuses and the gem setups you want per your gear won't match that of someone else with different gear. The embed is very much just an example and nothing more.
+
+0
+
+	
+
+Zephan <Guide Author> on 2021/06/19 (Burning Crusade)
+On average the items with Spell Damage or Hit bonus for gems are worth gemming for and otherwise you ignore it to get either hit if you need it or spell damage if you don't. Exception being blue gems for CSD. See the gemming guide for options.
+
+2
+
+	
+By dolphingoat (1,439 – 2·4) on 2021/06/29 (Burning Crusade)	
+	
+"Any talent build with Ruin wants to use Chaotic Skyfire Diamond. This meta combined with ruin causes critical hits to deal 209% of normal damage."
+How do you get 209%? If Ruin affects metagems, shouldn't it be 206%? Or am I missing something?
+
+0
+
+	
+
+Zephan <Guide Author> on 2021/06/30 (Burning Crusade)
+You would think so initially but that is not how it works. CSD increases your critical strike damage by 3% this means 150% *1.03 = 154.5%. Ruins doubles your Critical Strike bonus, being the 54.5% that is more than your normal hit to 109% add back to that your normal damage and you get a total of 209% Damage on a Critical Hit. You can easly verify this in game if you play a warlock by using Immolate as the initial damage part of Immolate has no variance unlike other spells.
+
+1
+
+	
+By superhumanjesse (11,179 – 2·23·23) on 2021/07/06 (Burning Crusade)	
+	
+General's Silk Cuffs General's Silk Cuffs deserve a mention do they not? these are phase 1 bis(+17 armor +5 int, +22 stam, +11 resil, +10 crit -8 spell damage) if we're not counting the shadow/fire damage bracers from Servant's quarters.
+Last edited by superhumanjesse on 2021/07/06
+
+0
+
+	
+
+Zephan <Guide Author> on 2021/07/06 (Burning Crusade)
+Bracers of Havok are slightly better (unless talking about AoE in which case crit is really valuable) and easier to obtain. I mostly didn't list PvP items as for this phase there are better non PvP options for all slots or at least equal. They are indeed good bracers however.
+
+1
+
+	
+By NostalgiaSC (3,240 – 7·17) on 2026/02/21 (Burning Crusade)	
+	
+Shattrath Wraps are a great wrist alternative if you cant afford bracers of havok
+
+1
+
+	
+By lecterz0r (3,679 – 20·10) on 2026/03/28 (Burning Crusade)	
+	
+Where is the Gear planner, this guide sucks
+
+0
+
+	
+By Arccai (3,922 – 12·20) on 2021/05/02 (Burning Crusade)	
+	
+Interesting, i was certain frozen shadoweave was better, you seem to lose alot shadow damage by going T4 chest instead of it.
+Is it worth the 10 extra spellhit?
+Last edited by Arccai on 2021/05/02
+
+1
+
+	
+
+Zephan <Guide Author> on 2021/05/04 (Burning Crusade)
+You go T4 chest in order to get your T4 2 Set bonus which is roughly worth 40 Spell Damage. And the hit and extra socket slot also makes T4 chest better than FSW. That being said as shadow going FSW chest before T4 is def a good option.
+
+0
+
+	
+
+Arccai on 2021/05/07 (Burning Crusade)
+Thanks for reply, out of curioustiy tho, will sunfire robe be final bis in phase 4? based on alot of BIS guides, it is.
+
+0
+
+	
+By Dezderp (841 – 5·7) on 2021/06/05 (Burning Crusade)	
+	
+Would P1 fire destro want 2pc T4 from head/shoulders since we have confirmation of chaotic skyfire diamond? Then full spellfire set? Or is it better to forgo spellfire robe for t4 even though you'd sacrifice the set bonus of spellfire?
+
+Great guide thank you!
+
+1
+
+	
+
+Zephan <Guide Author> on 2021/06/05 (Burning Crusade)
+With CSD being in as fire you indeed want to get T4 Head for the meta and 2P bonus combined with spellfire set. I will be updating the guides soon to better reflect these changes
+
+0
+
+	
+By Vyro87 (1,871 – 8·7) on 2021/06/20 (Burning Crusade)	
+	
+what about Jewel of Infinite Possibilities Jewel of Infinite Possibilities from Nightbane ?
+Last edited by Vyro87 on 2021/06/20
+
+0
+
+	
+
+Zephan <Guide Author> on 2021/06/21 (Burning Crusade)
+It's a good OH but the badges OH are better and don't rely as much on RNG, you can postpone your badges OH if you get this one sooner. I might add it to the lists as an option.
+
+0
+
+	
+By ribbad1881 (2,410 – 18·11) on 2021/06/23 (Burning Crusade)	
+	
+What about the trinket from Magtheridon?
+
+0
+
+	
+
+Zephan <Guide Author> on 2021/06/23 (Burning Crusade)
+It is an okay trinket but not better than those listed.
+
+0
+
+	
+By bobbyslay (612 – 1·3) on 2021/06/26 (Burning Crusade)	
+	
+Great guide! I'm going fire destro, and since I had black stalk drop in heroic UB, I decided to do a comp around it. Really sweaty, but I think it might be very slightly better:
+
+https://tbc.wowhead.com/gear-planner/warlock/orc/A0YAgUBxI4p3AIWsIHx7AgBwWoNAcSeKbQBd-CB8e4VAVVhtOAB8dSB8ewZAVVYAfHUgfHuHYF7GeowAXfggfHVAfHuIQG9lhNgAfHsgfHWJIF66bQ0AfHWKQFVXhM0AfHUgfHsLAHBRDABweQ0AcroOAGwjjwBwXmH8kABwgm1NEQByVhIAcqY
+
+Main differences are the wand, the neckpiece, and making up the hit with great dawnstones instead of veiled noble topaz. Slightly better hit to sp/crit ratios.
+
+Again, thanks for the guide!
+bobby
+
+0
+
+	
+
+Zephan <Guide Author> on 2021/06/29 (Burning Crusade)
+The embed above is mainly an example. The best thing you can do for gearing is using a Spreadsheet as linked above and running the numbers for your specific situation. Things change based on your comp and available items.
+
+0
+
+	
+
+Zephan <Guide Author> on 2021/06/29 (Burning Crusade)
+In TBC a lot of different set-ups get real close to each other. This is especially true because of Gems.
+
+0
+
+	
+By Coronus (1,711 – 6·6) on 2021/06/29 (Burning Crusade)	
+	
+Was wondering where Inferno Waist Cord Inferno Waist Cord would fit in? Got it last night in Kara off a trash drop and it's good for fire destro if I am correct but didn't see it listed on pre bis or the bis page. Thoughts?
+Last edited by Coronus on 2021/06/29
+
+0
+
+	
+
+bobbyslay on 2021/06/29 (Burning Crusade)
+While it is a very nice piece, it does not replace spellfire belt because A: It has no gem slots and B: You would lose the spellfire set bonus.
+
+0
+
+	
+
+Zephan <Guide Author> on 2021/06/29 (Burning Crusade)
+It is as bobby says, It is a bit better than Girdle of Ruination Girdle of Ruination but doesn't beat Spellfire Belt Spellfire Belt even without accounting for the set bonus. If no one else needs it in your raid and you don't have tailoring it can be a nice upgrade still.
+
+0
+
+	
+
+Coronus on 2021/06/30 (Burning Crusade)
+Thanks! I had a feeling it wasn't better than Spellfire Belt Spellfire Belt but I wanted to know at least what it was better than. Appreciate the info!
+
+0
+
+	
+By shortleif (5,312 – 1·22·14) <Rare Premium User> on 2021/07/10 (Burning Crusade)	
+	
+Where would something like The Lightning Capacitor fit in? How good/bad is it compared to the listed trinkets.
+Last edited by shortleif on 2021/07/10
+
+1
+
+	
+
+Zephan <Guide Author> on 2021/07/10 (Burning Crusade)
+It is good for AoE to overcome AoE Cap (as long as the target isn't dead on proc), for a single target. However it is not worth it and should most likely always be prio for Shamans.
+
+0
+
+	
+
+shortleif <Rare Premium User> on 2021/07/10 (Burning Crusade)
+Thanks for the quick reply! All our shamans have it and it's now up to locks and mages. Personally I'm rocking Scryer's Bloodgem and Icon... aiming for a spot where I can more or less just swap Bloodgem with/without shaman.... How far down the list is this for a second trinket, if you don't have Eye and you have hit cap?
+
+0
+
+	
+By rezzax (12,950 – 1·19·47) on 2021/07/25 (Burning Crusade)	
+	
+Awesome guide, thanks :D
+
+-2
+
+	
+By DIIRII (3,812 – 9·12) on 2021/07/29 (Burning Crusade)	
+	
+Hi! Have questions about next phase. 2nd bonus t5 works just one time or each SB increase damage and last dmg can be 70%? (18\2.5~7)
+And Im have one wish - 'Imp must survive'. What about Void Star Talisman and another advice? It's about afli warlock build 41-8-12.
+Last edited by DIIRII on 2021/07/30
+1 - 17 of 17
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+4.7/5 (5 Votes)
+TBCC Warlock Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 1 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 2 BiS
+            Affliction
+            Demonology
+            Destruction
+                Best In Slot Gear in Phase 2
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    1H Weapons
+                    2H Weapons
+                    Offhands
+                    Wands
+        Phase 3 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 4 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 5 BiS
+            Affliction
+            Demonology
+            Destruction
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    AoE DPS Guide
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Destruction Warlock DPS Best in Slot (BiS) Phase 2 Gear Guide - TBC Classic
+By Zephan
+Updated: 2026/05/12
+Welcome to Wowhead's Best in Slot Gear list from Tempest Keep and Serpentshrine Cavern for Destruction Warlock DPS in The Burning Crusade Classic. This guide will list the recommended gear for Destruction Warlock DPS to acquire while they progress during the second phase of The Burning Crusade Classic, and contains gear sourced from Tempest Keep and Serpentshrine Cavern, plus other pieces from previous phases like Karazhan, Gruul's Lair, Magtheridon's Lair, heroic dungeons, early PvP grinding, professions, BoE World Drops, and reputations.
+
+We have created many different best in slot lists, including a TBCC pre-patch list and a pre-raid list, containing gear you can obtain without doing any raid content.
+
+
+Destruction Warlock DPS Best in Slot HubDestruction Warlock DPS Pre-Raid Best in Slot
+
+Best In Slot Gear for Destruction Warlock DPS in Phase 2
+Due to the differences in specialization talents, variety of stats on gear, and bonuses from other players in the party, there's no single best set of gear appropriate for all situations. Hit chance plays an enormous role in determining the gear you want to use, as missing a piece of hit gear or having extra hit from talents, gems, or buffs will result in changing other pieces of gear to maintain that hit cap. You can learn more about stat caps and priorities by visiting the Warlock Stat Priority Guide, but some important things to consider:
+
+    Hit cap is determined by the level of the target, with level 73 raid bosses requiring +16% chance to hit, while level 70 trash requires only +3%. You should typically gear for bosses, but you may consider it worthwhile to have a specialized setup for clearing trash.
+    The amount of Hit gems you use, such as Veiled Noble Topaz Veiled Noble Topaz and Great Dawnstone Great Dawnstone.
+    Draenei grant 1% Hit to their group through Inspiring Presence.
+    Elemental Shamans provide Totem of Wrath, which provides 3% Hit.
+
+Before we dive in, I should mention that when gearing in Phase 2, the four-piece set bonus of Corruptor Raiment only works on base damage. The value also drops off on multi-target fights, as you would need to Shadow Bolt multiple targets, which we can't. Also, once there is movement, you also get a lower uptime. All this combined makes it not worth getting.
+
+Secondly, Fire Destruction Warlocks may be wondering when it is worthwhile to break Wrath of Spellfire. A simple answer to this is that if you get either Vestments of the Sea-Witch Vestments of the Sea-Witch or Belt of Blasting Belt of Blasting, it is worthwhile to break the set.
+
+In the following guide, some items are marked with an icon, indicating they are only suitable for either Shadow or Fire:
+
+    Only relevant for Shadow Destruction warlocks.
+    Only relevant for Fire Destruction warlocks.
+
+Destruction Warlocks looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Destruction Warlock Gems & Enchants
+Should Destruction Warlock DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 2?
+There is not a huge difference between Aldor and Scryers for Destruction Warlocks. You should most likely base this on personal preference, such as elevator type, location, profession trainers, tabard style, etc.
+
+That being said, let us look at the differences that influence gearing choices. The Scryers have the better items: Scryer's Bloodgem Scryer's Bloodgem at Revered and Seer's Signet Seer's Signet at Exalted. Although these are quite good, there are better items available in both slots in Phase 1. They do, however, offer additional flexibility in your gearing choices as you can swap them in and out to increase/decrease your total hit as required.
+
+The Aldor has the better enchant, but there is a very small difference between the two; Greater Inscription of Discipline Greater Inscription of Discipline is about a 1-2 DPS increase compared to Greater Inscription of the Orb Greater Inscription of the Orb.
+
+Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen is a special neck that changes proc based on faction alignment. This neck only becomes available by Phase 5, and in this phase, there will be better alternatives, so this is unlikely to affect your decision.
+
+Ultimately, The Scryers provide more early gearing flexibility, while The Aldor provide a very slightly better shoulder enchant. Whatever your choice is, it is the right one.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Destruction Warlocks, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Destruction Warlock in TBC Classic Phase 2
+Destruction Holo-gogs is the best helm in this phase, but it requires Engineering. Hood of the Corruptor is slightly stronger than Voidheart Crown, but only if you can keep the two-piece bonus of Voidheart Raiment using other slots (typically shoulders and gloves).
+Rank	Item	Source
+BiS	Destruction Holo-gogs Destruction Holo-gogs	Profession: Engineering - BoP only
+BiS	Hood of the Corruptor Hood of the Corruptor	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Voidheart Crown Voidheart Crown	Drop: Prince Malchezaar (Karazhan)
+Option	Cowl of the Grand Engineer Cowl of the Grand Engineer	Drop: Void Reaver (Tempest Keep: The Eye)
+Best in Slot Shoulder Armor for Destruction Warlock in TBC Classic Phase 2
+Shoulders are a solid slot to keep Voidheart Mantle in order to keep your two-set bonus from Voidheart Raiment; you lose out the least stats compared to other pieces.
+
+If you already have the Tier 4 two-piece bonus but do not have Voidheart Mantle, you could opt for Mantle of the Corruptor or Mantle of the Elven Kings.
+Rank	Item	Source
+BiS	Voidheart Mantle Voidheart Mantle	Drop: High King Maulgar (Gruul's Lair)
+Option	Mantle of the Corruptor Mantle of the Corruptor	Drop: Void Reaver (Tempest Keep: The Eye)
+Option	Mantle of the Elven Kings Mantle of the Elven Kings	Drop: Trash Mobs (Tempest Keep: The Eye)
+Option	Illidari Shoulderpads Illidari Shoulderpads	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Option	Frozen Shadoweave Shoulders Frozen Shadoweave Shoulders	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+
+Best in Slot Back Armor for Destruction Warlock in TBC Classic Phase 2
+For the cloak slot, not a lot changes compared to Phase 1. Ruby Drape of the Mysticant and Ancient Spellcloak of the Highborne are still the two best options, depending on whether you need the hit or not.
+
+If you do not have either of the above, Brute Cloak of the Ogre-Magi and the new Royal Cloak of the Sunstriders are decent alternatives, provided you are hit capped.
+Rank	Item	Source
+BiS	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+BiS	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+Option	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+Best in Slot Chest Armor for Destruction Warlock in TBC Classic Phase 2
+Vestments of the Sea-Witch is the best chest in this phase, far ahead of all the alternatives.
+
+Robe of the Corruptor, Robe of Hateful Echoes, and Voidheart Robe (if you can not reach your two-set bonus elsewhere) are all good options if you can not get Vestments of the Sea-Witch.
+
+As Fire, Spellfire Robe and the Wrath of Spellfire three-set bonus is still strong. However, breaking the set is worthwhile if you get Vestments of the Sea-Witch.
+Rank	Item	Source
+BiS	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+Option	Robe of the Corruptor Robe of the Corruptor	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Spellfire Robe Spellfire Robe	Profession: Tailoring (Spellfire Tailoring) - BoP only
+Option	Robe of Hateful Echoes Robe of Hateful Echoes	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Option	Voidheart Robe Voidheart Robe	Drop: Magtheridon (Magtheridon's Lair)
+Option	Frozen Shadoweave Robe Frozen Shadoweave Robe	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+
+Best in Slot Wrist Armor for Destruction Warlock in TBC Classic Phase 2
+Mindstorm Wristbands from Al'ar are our new BiS bracers. If you were lucky enough to get Ravager's Cuffs with the suffix of your choice, these are about equal to / slightly worse, depending on the roll.
+
+Veteran's Silk Cuffs are also a solid pick if you PvP. If not, Bracers of Havok and Elementalist Bracelets with Shadow or Fire Affix are fine as well.
+Rank	Item	Source
+BiS	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+BiS	Ravager's Cuffs Ravager's Cuffs of Shadow/Fiery Wrath	Drop: Rokad the Ravager (Karazhan)
+Option	Veteran's Silk Cuffs Veteran's Silk Cuffs	Vendor: Honor Points (Season 2)
+Option	Bracers of Havok Bracers of Havok	Profession: Tailoring - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Option	Elementalist Bracelets Elementalist Bracelets of Shadow/Fiery Wrath	Drop: World Drop
+
+Best in Slot Hand Armor for Destruction Warlock in TBC Classic Phase 2
+It is recommended to use Voidheart Gloves in order to reach your two-piece set bonus for Voidheart Raiment, as you lose the least amount of stats compared to other item slots.
+
+As Fire, Spellfire Gloves is roughly equal in strength to Anger-Spark Gloves, ignoring the set bonus. With the set bonus, it is an obvious better choice.
+
+Anger-Spark Gloves are the strongest gloves stat-wise, but are a World Boss drop, so can be difficult to obtain.
+Rank	Item	Source
+Two-Piece	Voidheart Gloves Voidheart Gloves	Drop: The Curator (Karazhan)
+BiS	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss)
+BiS	Spellfire Gloves Spellfire Gloves	Profession: Tailoring (Spellfire Tailoring) - BoP only
+Option	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Option	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Option	Gauntlets of the Sun King Gauntlets of the Sun King	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Option	Gloves of the Corruptor Gloves of the Corruptor	Drop: Leotheras the Blind (Serpentshrine Cavern)
+
+Best in Slot Waist Armor for Destruction Warlock in TBC Classic Phase 2
+Once more, our strongest belt is a crafted one. Belt of Blasting is a strong upgrade over Girdle of Ruination. Cord of Screaming Terrors sits in between the two in terms of value,
+
+As Fire, Fire-Cord of the Magus is about equal in value to Spellfire Belt if you do not have Tailoring. Belt of Blasting is, however, still stronger and warrants breaking your Wrath of Spellfire set.
+Rank	Item	Source
+BiS	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Option	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Spellfire Belt Spellfire Belt	Profession: Tailoring (Spellfire Tailoring) - BoP only
+Option	Fire-Cord of the Magus Fire-Cord of the Magus	Drop: Trash Mobs (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Lurker's Cord (with the correct Suffix) and Belt of Divine Inspiration are both drops from the previous raid tier that are good options until you get the gold for Belt of Blasting.
+Rank	Item	Source
+Option	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+Option	Lurker's Cord Lurker's Cord of Shadow/Fiery Wrath	Drop: Hyakiss the Lurker (Karazhan)
+Option	Belt of Divine Inspiration Belt of Divine Inspiration	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Leg Armor for Destruction Warlock in TBC Classic Phase 2
+Leggings of the Corruptor, Leggings of the Seventh Circle, and Spellstrike Pants are all roughly equal in value. Most likely, you will already have one of the last two mentioned from the previous raid tier. As such, you should most likely let the Tier Five token go to another player.
+Rank	Item	Source
+BiS	Leggings of the Corruptor Leggings of the Corruptor	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+BiS	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+BiS	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+Option	Voidheart Leggings Voidheart Leggings	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Option	Trousers of the Astromancer Trousers of the Astromancer	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+
+Best in Slot Feet Armor for Destruction Warlock in TBC Classic Phase 2
+Boots of Blasting are the best. They are crafted through Tailoring and are BoP.
+
+Glider's Foot-Wraps, Boots of the Shifting Nightmare, Frozen Shadoweave Boots, and Velvet Boots of the Guardian are all about equal in value.
+Rank	Item	Source
+BiS	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+Option	Boots of the Shifting Nightmare Boots of the Shifting Nightmare	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Option	Glider's Foot-Wraps Glider's Foot-Wraps of Shadow/Fiery Wrath	Drop: Shadikith the Glider (Karazhan)
+Option	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Option	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+Option	Boots of Foretelling Boots of Foretelling	Drop: Maiden of Virtue (Karazhan)
+Option	Ruby Slippers Ruby Slippers	Drop: The Crone (Karazhan)
+
+Best in Slot Neck Jewelry for Destruction Warlock in TBC Classic Phase 2
+Eye of the Night is often forgotten, but it is effectively the strongest neck there is during the buff. If someone else is providing the buff or yours is on CD, you can use another neck. Chain of the Twilight Owl is also a superb buff-related necklace.
+
+If you are not assigned to either of the above buff necks, The Sun King's Talisman is best in slot.
+Rank	Item	Source
+Buff	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+BiS	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Buff	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+Option	Adornment of Stolen Souls Adornment of Stolen Souls	Drop: Prince Malchezaar (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Option	Ritssyn's Lost Pendant Ritssyn's Lost Pendant	Drop: Trash Mobs (Karazhan)
+Option	Veteran's Pendant of Conquest Veteran's Pendant of Conquest	Vendor: Honor Points (Season 2)
+Option	Brooch of Unquenchable Fury Brooch of Unquenchable Fury	Drop: Moroes (Karazhan)
+Option	Brooch of Heightened Potential Brooch of Heightened Potential	Drop: Blackheart the Inciter (Shadow Labyrinth)
+Option	Pendant of the Lost Ages Pendant of the Lost Ages	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+
+Best in Slot Ring Jewelry for Destruction Warlock in TBC Classic Phase 2
+Your rings are some of the item slots that are easiest to switch between in order to reach your hit cap or make sure not to go over.
+
+Ring of Endless Coils is one of the new rings introduced in Phase 2. This is now your strongest ring option. For the rest, there are not many changes from Phase 1.
+
+Band of Crimson Fury and Ashyen's Gift are the two strongest rings in Phase 2 if you need the hit on them.
+
+Band of Eternity, Ring of Recurrence, Violet Signet of the Archmage, and Band of Al'ar are your best non-hit options. Violet Signet of the Archmage is the final version of the ring, but even the Friendly version of the ring is already a really solid non-hit option/alternative until you reach exalted.
+Rank	Item	Source
+BiS	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+BiS	Band of Eternity Band of Eternity	Quest: Sage's Pledge Sage's Pledge
+BiS	Ring of Recurrence Ring of Recurrence	Drop: Chess Event (Karazhan)
+BiS	Band of Crimson Fury Band of Crimson Fury	Drop: Magtheridon (Magtheridon's Lair)
+BiS	Ashyen's Gift Ashyen's Gift	Vendor: Fedryen Swiftspear (Cenarion Expedition Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+If you were lucky enough to have gotten Ring of the Fallen God back in Classic, it is still a really solid hit ring option. Sparking Arcanite Ring is also a solid option if you need hit, and it can be obtained outside of raiding.
+Rank	Item	Source
+Option	Ring of the Fallen God Ring of the Fallen God	Drop: C'Thun (Classic - Ahn'Qiraj)
+Option	Violet Signet of the Archmage Violet Signet of the Archmage	Quest: Path of the Violet Mage Path of the Violet Mage (The Violet Eye Exalted)
+Option	Band of Al'ar Band of Al'ar	Drop: Al'ar (Tempest Keep: The Eye)
+Option	Sparking Arcanite Ring Sparking Arcanite Ring	Drop: Epoch Hunter (Heroic Old Hillsbrad Foothills)
+
+Best in Slot Trinkets for Destruction Warlock in TBC Classic Phase 2
+There are not a lot of changes for trinkets in this phase.
+
+If you are facing Demons or Undead targets, you will want to equip Mark of the Champion if you have it. If you are under hit cap, then Scryer's Bloodgem is going to give you a lot of value.
+
+However, ideally, you won't need as much hit from your trinket slots, and you can go for Quagmirran's Eye and Icon of the Silver Crescent instead. Even though our DoTs or Pet damage will not scale with the Haste proc from Quagmirran's Eye, a good chunk (60 to 80%) of our damage still comes from Shadow Bolt, which does majorly benefit from the proc.
+Rank	Item	Source
+Demons and Undead	Mark of the Champion Mark of the Champion	Quest: The Fall of Kel'Thuzad The Fall of Kel'Thuzad (Classic - Naxxramas)
+BiS	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+BiS	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Option	Scryer's Bloodgem Scryer's Bloodgem	Vendor: Quartermaster Enuril (The Scryers Revered)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Sextant of Unstable Currents is new this phase, but it is not a trinket that is going to compete with the best trinkets from the previous phase for single target. For AoE, however, it can be a solid choice. Another hit option would be Neltharion's Tear.
+Rank	Item	Source
+Option	Sextant of Unstable Currents Sextant of Unstable Currents	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Option	Neltharion's Tear Neltharion's Tear	Drop: Nefarian (Classic - Blackwing Lair)
+
+Best in Slot One-Handed Weapons for Destruction Warlock in TBC Classic Phase 2
+There are two new important weapons in Phase 2. Both are stronger than the World Boss alternative available from the first phase. Merciless Gladiator's Spellblade does require you to do a fair amount of arena. Fang of the Leviathan is roughly as strong and should be easier to obtain for most.
+
+Talon of the Tempest is close in value compared to the previous two mentioned. It is, however, a World Boss drop and as such will be hard to get your hands on.
+Rank	Item	Source
+BiS	Merciless Gladiator's Spellblade Merciless Gladiator's Spellblade	Vendor: Arena Points (Season 2)
+BiS	Fang of the Leviathan Fang of the Leviathan	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Option	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+Option	Bloodmaw Magus-Blade Bloodmaw Magus-Blade	Drop: Gruul the Dragonkiller (Gruul's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 1H Weapon Recommendations
+
+Rank	Item	Source
+Option	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Two-Handed Weapons for Destruction Warlock in TBC Classic Phase 2
+Staves in The Burning Crusade often do not compete with their one-hand+offhand counterparts. Merciless Gladiator's War Staff and The Nexus Key however, come relatively close.
+
+As for Atiesh, Greatstaff of the Guardian, the stats on the staff are good, though not as good as the best 1H+OH combinations in Phase 2. The real benefit from Atiesh is the buff it provides for the party. Increasing everyone's Spell Damage by 33. Considering the additional value from that, it is unbeaten for a long time.
+Rank	Item	Source
+BiS	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Quest: Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian (Classic - Naxxramas)
+Option	Merciless Gladiator's War Staff Merciless Gladiator's War Staff	Vendor: Arena Points (Season 2)
+Option	The Nexus Key The Nexus Key	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Best in Slot Offhands for Destruction Warlock in TBC Classic Phase 2
+Fathomstone is our new best offhand in the game.
+
+As Fire, you still want to get Flametongue Seal as it is basically Khadgar's Knapsack but with free crit rating.
+
+As Shadow, Orb of the Soul-Eater has slightly more Shadow damage than Khadgar's Knapsack; however, it does not benefit our Immolate. As such, you still want to go for Khadgar's Knapsack.
+Rank	Item	Source
+BiS	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+BiS	Flametongue Seal Flametongue Seal	Vendor: G'eras (Badges of Justice)
+Option	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Option	Orb of the Soul-Eater Orb of the Soul-Eater	Vendor: G'eras (Badges of Justice)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Option	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+
+Best in Slot Wands for Destruction Warlock in TBC Classic Phase 2
+Where in the previous phase all wands were about equal in strength, now Wand of the Forgotten Star stands out as the strongest.
+
+Until you have Wand of the Forgotten Star, you will want Tirisfal Wand of Ascendancy if you need the hit. The Black Stalk and Eredar Wand of Obliteration are both about equal in value and your best options if you are hit capped.
+Rank	Item	Source
+BiS	Wand of the Forgotten Star Wand of the Forgotten Star	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Option	Eredar Wand of Obliteration Eredar Wand of Obliteration	Drop: Magtheridon (Magtheridon's Lair)
+Option	Master Firestone Master Firestone	Conjured: Create Firestone
+Option	Tirisfal Wand of Ascendancy Tirisfal Wand of Ascendancy	Drop: Shade of Aran (Karazhan)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+Rank	Item	Source
+Option	The Black Stalk The Black Stalk	Drop: The Black Stalker (Heroic The Underbog)
+Option	Nether Core's Control Rod Nether Core's Control Rod	Drop: Dalliah the Doomsayer (The Arcatraz)
+
+Zephan
+World of Warcraft Classic Warlock Class Expert
+Zephan is renowned for his expertise as a Warlock theorycrafter and guide author. He has contributed extensively to Wowhead, where he has published a variety of in-depth guides covering Warlock leveling, PvE builds, and class-specific mechanics across different expansions, including WoW Classic, The Burning Crusade, Wrath of the Lich King, and Season of Discovery.
+
+Beyond his written contributions, Zephan is the founder and administrator of the Classic Warlock Discord, a central hub for Warlock players seeking to optimize their gameplay. This community is recognized for its collaborative approach to theorycrafting and strategy development.
+Tags: PvE Raiding
+1 - 5 of 5
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+7
+
+	
+By Celeby (663 – 1·1) on 2021/09/25 (Burning Crusade)	
+	
+Hey Zephan, whats better in your opinion Icon of the Silver Crescent + Quagmirrans Eye or Icon of the Silver Crescent + Dark Iron Smoking Pipe, since those 2 doesnt share cooldown and can be popped one after another during Heroism?
+
+Thanks!
+
+0
+
+	
+
+Eldhannas on 2022/01/09 (Burning Crusade)
+I think Icon+Pipe > Icon + Eye, especially on any encounter with forced movement or Stop DPS-mechanics like Submerge, Transition, Whirlwind, Flame patch etc. Better to have controll of the proc, than have it pop randomly. Besides, the Eye only gives like half a Shadowbolt extra per minute.
+
+3
+
+	
+By Eiandri (4,466 – 9·10) on 2021/09/13 (Burning Crusade)	
+	
+Slight typo. On main hand weapon Fang of the Leviathan it says that Leotheras the Blind is in Tempest Keep, when he actually is in Serpentshrine Cavern.
+
+3
+
+	
+By biogopher (6,485 – 1·20·13) on 2026/05/17 (Burning Crusade)	
+	
+Isnt Band of Eternity from Hyjal Rep? Do we have access to that?
+
+0
+
+	
+
+Serenal <Rare Premium User> on 2026/05/18 (Burning Crusade)
+It is available now, has been confirmed in-game.
+
+0
+
+	
+By Yogurt123 (191 – 1·3) on 2021/08/08 (Burning Crusade)	
+	
+Any chance the darkmoon card is an upgrade for the trinket slot?
+
+0
+
+	
+
+Nore85 on 2021/08/16 (Burning Crusade)
+Icon + Quag still parse better than Darkmoon Card
+By Darkon331 (1,200 – 5·8) on 2021/09/16 (Burning Crusade)	
+	
+1 - 5 of 5
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+4.5/5 (9 Votes)
+TBCC Warlock Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 1 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 2 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 3 BiS
+            Affliction
+            Demonology
+            Destruction
+                Best In Slot Gear in Phase 3
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    1H Weapons
+                    Offhands
+                    2H Weapons
+                    Wands
+        Phase 4 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 5 BiS
+            Affliction
+            Demonology
+            Destruction
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    AoE DPS Guide
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Destruction Warlock DPS Best in Slot (BiS) Phase 3 Gear Guide
+By Zephan
+Updated: 2026/08/02
+Welcome to Wowhead's Best in Slot Gear list from Phase 3 Black Temple and Mount Hyjal for Destruction Warlock DPS in The Burning Crusade Classic. This guide will list the recommended gear for Destruction Warlock DPS to acquire while they progress during the third phase of The Burning Crusade Classic, and contains gear sourced from Black Temple and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Destruction Warlock DPS in Phase 3
+When gearing, there is a multitude of different things to consider: different talent specializations, your currently equipped gear, and your raid composition all play a key part. Perhaps the biggest deciding factor of them all is Hit rating - having too much or too little Hit rating from either talents, gems, or buffs will result in you swapping in different pieces of gear or gems to reach the relevant Hit cap. You can learn more about stat caps and priorities by visiting the Warlock Stat Priority Guide, but here are some important things to note:
+
+    Hit cap is determined by the level of the target, with level 73 raid bosses requiring +16% chance to hit, while level 70 trash requires only +3%. You should typically gear for bosses, but you may consider it worthwhile to have a specialized setup for clearing trash.
+    The amount of Hit gems you use, such as Veiled Noble Topaz Veiled Noble Topaz and Great Dawnstone Great Dawnstone.
+    Draenei grant 1% Hit to their group through Inspiring Presence.
+    Elemental Shamans provide Totem of Wrath, which provides 3% Hit.
+
+The time of Malefic Raiment and wings has arrived! The biggest upgrade in this phase is the four-piece bonus of this set, which increases the damage of our Shadow Bolt and Incinerate by 6%. To put this in perspective, this is roughly equal to more than 100 Spell Power, or more than twice as good as four-piece Tier 4, or three-piece Spellfire! We will keep rocking this set until the end of times (of The Burning Crusade), although we switch up the item combination in Sunwell Plateau.
+
+There are a lot of high-ticket caster items this phase, which we aren't the only ones aiming for. I go in-depth about which items specifically, and the possible alternatives, in the descriptions of every equipment slot. The long and short of it is that you will want to prioritize getting The Skull of Gul'dan The Skull of Gul'dan, as that is the item that will last you the longest.
+
+Note: In the following guide, some items are marked with a icon, indicating they are only suitable for Fire.
+
+Destruction Warlocks looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Destruction Warlock Gems & Enchants
+This is what our theoretical Best in Slot setup would look like. This example assumes you are in the Caster Group with an Elemental Shaman Shaman, but not an Alliance for the additional Dranei racial buff. This setup can be unrealistic, however, but should we get more adjustments to loot on the Anniversary servers in Phase 3 as we did in Phase 2, then this could be more of a reality. You can venture further into your warlock gearing in the Warlock Classic Discord .
+
+
+Hood of the Malefic
+Translucent Spellthread Necklace
+Mantle of the Malefic
+Shroud of the Highborne
+Vestments of the Sea-Witch
+Bracers of Nimble Thought
+Gloves of the Malefic
+Anetheron's Noose
+Leggings of the Malefic
+Slippers of the Seacaller
+Ring of Ancient Knowledge
+Ring of Ancient Knowledge
+Mark of the Champion
+The Skull of Gul'dan
+Zhar'doom, Greatstaff of the Devourer
+Off Hand
+Wand of the Forgotten Star
+Link
+Level70
+Should Destruction Warlock DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 3?
+There is not a huge difference between Aldor and Scryers for Destruction Warlocks. You should most likely base this on personal preference, such as elevator type, location, profession trainers, tabard style, etc. That being said, let us look at the differences that influence gearing choices. The Scryers have the better items: Scryer's Bloodgem Scryer's Bloodgem at Revered and Seer's Signet Seer's Signet at Exalted. Although these are quite good, there are better items available in both slots in Phase 1. They do, however, offer additional flexibility in your gearing choices as you can swap them in and out to increase/decrease your total hit as required.
+
+The Aldor has the better enchant, but there is a very small difference between the two; Greater Inscription of Discipline Greater Inscription of Discipline is about a 1-2 DPS increase compared to Greater Inscription of the Orb Greater Inscription of the Orb. And Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen is a special neck that changes proc based on faction alignment. This neck only becomes available by Phase 5, and in this phase, there will be better alternatives, so this is unlikely to affect your decision.
+
+Ultimately, The Scryers provide more early gearing flexibility, while The Aldor provide a very slightly better shoulder enchant. Whatever your choice is, it is the right one.
+
+If you need to grind reputation with The Aldor or The Scryers, or any of the other factions that offer BiS gear for Destruction Warlocks, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Destruction Warlock in TBC Classic Phase 3
+You should aim for your four-piece Malefic Raiment as soon as possible. Hood of the Malefic is an excellent item for this (PLUS WINGS!). Cowl of the Illidari High Lord does have slightly better stats, however, due to the aforementioned bonus (and the lack of visuals), it loses out to the Tier 6 helmet.
+Rank	Item	Source
+Best	Hood of the Malefic Hood of the Malefic	Drop: Archimonde (Hyjal Summit)
+Best	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+Good	Destruction Holo-gogs Destruction Holo-gogs	Profession: Engineering - BoP only
+Good	Hood of the Corruptor Hood of the Corruptor	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Good	Voidheart Crown Voidheart Crown	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Shoulder Armor for Destruction Warlock in TBC Classic Phase 3
+The next item in your journey to four-piece Tier 6 goodness should be Mantle of the Malefic, offering the highest amount of Spell Hit with +21 with 2 sockets. The other three new viable shoulders this phase are really solid, too.
+Rank	Item	Source
+Best	Mantle of the Malefic Mantle of the Malefic	Drop: Mother Shahraz (Black Temple)
+Good	Blood-cursed Shoulderpads Blood-cursed Shoulderpads	Drop: Gurtogg Bloodboil (Black Temple)
+Good	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+Good	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+If you do not have access to Phase 3 loot, you can opt for Voidheart Mantle combined with the two-piece bonus. Mantle of the Corruptor or Mantle of the Elven Kings aren't bad choices either, as these have better base stats.
+Rank	Item	Source
+Mediocre	Voidheart Mantle Voidheart Mantle	Drop: High King Maulgar (Gruul's Lair)
+Mediocre	Mantle of the Corruptor Mantle of the Corruptor	Drop: Void Reaver (Tempest Keep: The Eye)
+Mediocre	Mantle of the Elven Kings Mantle of the Elven Kings	Drop: Trash Mobs (Tempest Keep: The Eye)
+
+Best in Slot Back Armor for Destruction Warlock in TBC Classic Phase 3
+Our new cloaks will all be coming from Black Temple. Nethervoid Cloak is technically the best value cloak of the new three. However, the issue is that it has a lot of Hit rating. Which you are unlikely to make use of due to the rest of your gear being high on Hit already. You might be able to make more use out of the Hit when starting to transition into Sunwell Plateau gear, as this gear is more Haste heavy instead of Hit heavy. Another benefit is that early on during Phase 3, when you do not have a lot of Hit from your other pieces yet, you are more likely to make full use of the Hit on the back. It also has the advantage of being a Trash drop, resulting in it being solo obtainable.
+
+Shroud of the Highborne and Cloak of the Illidari Council are the other two cloaks. Both of these are about equally good. Shroud of the Highborne technically has a minor edge in value (roughly 4 Spell Power worth in BiS), but it is a better option for healers. It also is something all caster DPS will seek out due to offering Haste, making it one of the most competative items in Phase 3. However, once all healers have the cloak, it should be fair game.
+Rank	Item	Source
+Best - Hit	Nethervoid Cloak Nethervoid Cloak	Drop: Trash Mobs (Black Temple)
+Best - Haste	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+Best - Crit	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: High Nethermancer Zerevor (Black Temple)
+Good	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Good	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+Good	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Good	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Chest Armor for Destruction Warlock in TBC Classic Phase 3
+Vestments of the Sea-Witch is still the best pick, especially if you already got it in the previous phase. If you have Leggings of Channeled Elements Leggings of Channeled Elements, you can opt to use Robe of the Malefic to reach your four-set bonus instead. It should also be something to consider should your raid team opt not to return to Serpentshrine Cavern once Phase 3 is out.
+Rank	Item	Source
+Best	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+Best - Alternate	Robe of the Malefic Robe of the Malefic	Drop: Illidan Stormrage (Black Temple)
+Good	Robes of Rhonin Robes of Rhonin	Drop: Archimonde (Hyjal Summit)
+Good	Robe of the Corruptor Robe of the Corruptor	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Good	Robe of the Shadow Council Robe of the Shadow Council	Drop: Teron Gorefiend (Black Temple)
+
+Best in Slot Wrist Armor for Destruction Warlock in TBC Classic Phase 3
+Bracers of Nimble Thought is hands down our new best pair of bracers. It being a crafted Bind on Equip is certainly a good perk, especially if you're in a guild!
+
+There are three other interesting new bracers in this phase. They are, however, all slightly worse than the crafted bracers.
+Rank	Item	Source
+Best	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring (BoE)
+Good	Focused Mana Bindings Focused Mana Bindings	Drop: Shade of Akama (Black Temple)
+Good	Cuffs of Devastation Cuffs of Devastation	Drop: Rage Winterchill (Hyjal Summit)
+PvP Option	Vindicator's Silk Cuffs Vindicator's Silk Cuffs	Vendor: Honor Points (Season 3)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Mediocre	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+Mediocre	Ravager's Cuffs Ravager's Cuffs of Shadow Wrath	Drop: Rokad the Ravager (Karazhan)
+
+Best in Slot Hand Armor for Destruction Warlock in TBC Classic Phase 3
+Gloves of the Malefic is going to be a core item to reach your four-piece bonus. Although Anger-Spark Gloves is roughly equal or a tad better pure stat-wise, it doesn't contribute to your Malefic Raiment set bonuses.
+Rank	Item	Source
+Best	Gloves of the Malefic Gloves of the Malefic	Drop: Azgalor (Hyjal Summit)
+Good	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss)
+Good	Spellfire Gloves Spellfire Gloves	Profession: Tailoring (Spellfire Tailoring) - BoP only
+Good	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Good	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Good	Gauntlets of the Sun King Gauntlets of the Sun King	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Good	Gloves of the Corruptor Gloves of the Corruptor	Drop: Leotheras the Blind (Serpentshrine Cavern)
+
+Best in Slot Waist Armor for Destruction Warlock in TBC Classic Phase 3
+Belt of Blasting is still a strong contender and, on paper, stronger than the new belts that become available in Phase 3. However, the "issue" is that a good chunk is due to the high amount of Hit rating, which is something this phase is already scattered with.
+
+Anetheron's Noose and Waistwrap of Infinity offer good itemization without hit. This is useful once you get your hands on more Phase 3 gear.
+Rank	Item	Source
+Best - Hit	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Best - Spell Power	Anetheron's Noose Anetheron's Noose	Drop: Anetheron (Hyjal Summit)
+Best - Haste	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+Good	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Good	Spellfire Belt Spellfire Belt	Profession: Tailoring (Spellfire Tailoring) - BoP only
+Good	Fire-Cord of the Magus Fire-Cord of the Magus	Drop: Trash Mobs (Tempest Keep: The Eye)
+
+Best in Slot Leg Armor for Destruction Warlock in TBC Classic Phase 3
+If you already have Vestments of the Sea-Witch Vestments of the Sea-Witch, you should opt for Leggings of the Malefic. This is to reach your four-piece bonus. However, Leggings of Channeled Elements is the go-to option if you have Robe of the Malefic Robe of the Malefic instead of Vestments of the Sea-Witch. Once again, consider if you will find yourself not going back into Serpentshrine Cavern if you do not already have Vestments.
+Rank	Item	Source
+Best Overall	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+Best - Hit	Leggings of Devastation Leggings of Devastation	Drop: Mother Shahraz (Black Temple)
+Best - Crit	Leggings of the Malefic Leggings of the Malefic	Drop: The Illidari Council (Black Temple)
+Good	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Good	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+Good	Leggings of the Corruptor Leggings of the Corruptor	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+Best in Slot Feet Armor for Destruction Warlock in TBC Classic Phase 3
+Slippers of the Seacaller has the highest value in this phase, and on the plus side, does not have Hit Rating on it. Blue Suede Shoes and Boots of Blasting have relatively similar value, with the former having more Spell Power and the latter having Crit.
+Rank	Item	Source
+Best	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+Good	Blue Suede Shoes Blue Suede Shoes	Drop: Kaz'rogal (Hyjal Summit)
+Good	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+Good	Boots of the Shifting Nightmare Boots of the Shifting Nightmare	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Mediocre	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring - BoP only
+Mediocre	Glider's Foot-Wraps Glider's Foot-Wraps of Shadow/Fiery Wrath	Drop: Shadikith the Glider (Karazhan)
+Mediocre	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+
+Best in Slot Neck Jewelry for Destruction Warlock in TBC Classic Phase 3
+Eye of the Night is often forgotten, but it is effectively the strongest neck there is during the buff. If someone else is providing the buff or yours is on CD, you can use another neck. Translucent Spellthread Necklace has the most valuable stats, assuming you are making use of the Hit rating. If you do not need the Hit, Hellfire-Encased Pendant (if Fire) and The Sun King's Talisman are solid alternatives.
+Rank	Item	Source
+Best	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Essence of Anger (Black Temple)
+Best	Hellfire-Encased Pendant Hellfire-Encased Pendant	Drop: Trash Mobs (Black Temple)
+Great	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Buff	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+Best in Slot Ring Jewelry for Destruction Warlock in TBC Classic Phase 3
+Ring of Ancient Knowledge is our new best ring. This ring is not unique, so you can equip two of them. These drop from the trash in Black Temple and can potentially be soloed depending on which bosses are already dead. By soloing this content, you can potentially get your rings faster. However, as before, every caster will want this item. So if you solely rely on your raid itself, it may take you a while before you see your second ring.
+
+Tip: To solo trash, you will need an ID that is cleared up to Mother Shahraz. In the original TBC, you could solo bigger packs, but these have gained a speed bonus in Classic. You can still solo the single mobs, but you can only do one at a time, and need Swiftness of Zanza Swiftness of Zanza to outpace them. It takes roughly 6 to 8 minutes per kill, and you will need to reset after 3 to 4 mobs, depending on the positioning. Be warned that this is rather slow and tedious.
+Here are two examples of it being done: Madarb, Offe.
+
+Until you get two Rings of Ancient Knowledge, Ring of Captured Storms and Band of the Eternal Sage are solid choices. Band of the Eternal Sage is the final version of the ring, but even the Friendly version of the ring is already a solid option until you reach Exalted. Similar to your cloak option, the rings will be highly contested by every other caster, so you should look at your other options as well.
+Rank	Item	Source
+Best x2	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+Second Best	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+Second Best	Band of the Eternal Sage Band of the Eternal Sage	Quest: (Quest #10472) (The Scale of the Sands Exalted)
+Good	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Good	Ring of Recurrence Ring of Recurrence	Drop: Chess Event (Karazhan)
+Good	Band of Crimson Fury Band of Crimson Fury	Drop: Magtheridon (Magtheridon's Lair)
+Good	Corruptor's Signet Corruptor's Signet	Drop: Shartuul (Blade's Edge Mountains)
+
+Best in Slot Trinkets for Destruction Warlock in TBC Classic Phase 3
+The Skull of Gul'dan is the biggest gain in DPS aside from Malefic Raiment four-piece bonus, especially when it comes to AoE DPS. It lasts the entire expansion and is the biggest upgrade in this phase. From all the items listed here, this should be your highest priority. Unfortunately, like your ring and cloak options, this too will be highly contested amongst every caster DPS in the game.
+
+Your other trinket of choice is going to depend on whether you are facing Demons or Undead targets, in which case you will want to equip Mark of the Champion. In all other cases, it is going to depend on whether you want to use on-use or passive trinkets. Icon of the Silver Crescent/Dark Iron Smoking Pipe and Quagmirran's Eye respectively.
+
+On TBC Anniversary, the Brewfest event will line up during Phase 3, making Dark Iron Smoking Pipe finally obtainable. This is identical to Icon, and you can wear both. You can also alternate between them when one is on cooldown.
+Rank	Item	Source
+Ultimate Best	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+Best	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+Best	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Best - Seasonal Option	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Best:
+Demons and Undead	Mark of the Champion Mark of the Champion	Quest: The Fall of Kel'Thuzad The Fall of Kel'Thuzad (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Good	Darkmoon Card: Crusade Darkmoon Card: Crusade	Quest: Darkmoon Blessings Deck Darkmoon Blessings Deck
+Good	Sextant of Unstable Currents Sextant of Unstable Currents	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+Best in Slot One-Handed Weapons for Destruction Warlock in TBC Classic Phase 3
+Tempest of Chaos combined with Chronicle of Dark Secrets Chronicle of Dark Secrets is a tad bit worse than Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer. However, it does have a couple of advantages. It sets you up for Sunwell Plateau, because in Phase 5, a lot of the gear will be more Haste-focused instead of Hit. Also, already having a 1H+OH sets you up for the BIS weapons of Phase 5.
+Rank	Item	Source
+Best	Tempest of Chaos Tempest of Chaos	Drop: Archimonde (Hyjal Summit)
+Good	Vengeful Gladiator's Spellblade Vengeful Gladiator's Spellblade	Vendor: Arena Points (Season 3)
+Good	The Maelstrom's Fury The Maelstrom's Fury	Drop: High Warlord Naj'entus (Black Temple)
+Good	Merciless Gladiator's Spellblade Merciless Gladiator's Spellblade	Vendor: Arena Points (Season 2)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 1H Weapon Recommendations
+
+Rank	Item	Source
+Good	Fang of the Leviathan Fang of the Leviathan	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Good	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+Mediocre	Bloodmaw Magus-Blade Bloodmaw Magus-Blade	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Mediocre	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Offhands for Destruction Warlock in TBC Classic Phase 3
+Chronicle of Dark Secrets is the best offhand, though if you are already over the Hit cap, unfortunately, a fair amount of the stat budget is wasted. Regardless, the stats on it are great, and it will be the best offhand available in this phase.
+Rank	Item	Source
+BiS	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+Good	Blind-Seers Icon Blind-Seers Icon	Drop: Shade of Akama (Black Temple)
+Good	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Mediocre	Flametongue Seal Flametongue Seal	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Mediocre	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Mediocre	Orb of the Soul-Eater Orb of the Soul-Eater	Vendor: G'eras (Badges of Justice)
+Mediocre	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+
+Best in Slot Two-Handed Weapons for Destruction Warlock in TBC Classic Phase 3
+The next big-ticket item is Zhar'doom, Greatstaff of the Devourer. Every caster DPS will be set on getting their hands on this staff, but it is particularly strong for Warlocks, generally providing a bigger DPS gain than it does for other classes. A significant reason for Zhar'doom being so strong is that the alternatives have a lot of Hit rating, which is already in abundance on Phase 3 gear.
+
+As for Atiesh, Greatstaff of the Guardian, the stats on the staff are good, but not quite as good as the combination of other weapons in this phase. The real benefit from Atiesh is the buff it provides for the party. Increasing everyone's Spell Damage by 33.
+Rank	Item	Source
+Best	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+Good	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Quest: Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian (Classic - Naxxramas)
+Best in Slot Wands for Destruction Warlock in TBC Classic Phase 3
+Where in the previous phase all wands were about equal in strength, now Wand of the Forgotten Star sticks out as the strongest.
+
+Until you have Wand of the Forgotten Star, you will want Wand of Prismatic Focus if you need the Hit. Otherwise, if you are Hit capped, The Black Stalk and Eredar Wand of Obliteration are both about equal in value and your best options. Your alternative options are also something to consider should you not go back to Tempest Keep once Phase 3 is out.
+Rank	Item	Source
+Best	Wand of the Forgotten Star Wand of the Forgotten Star	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Good	Wand of Prismatic Focus Wand of Prismatic Focus	Drop: Gurtogg Bloodboil (Black Temple)
+Good	Eredar Wand of Obliteration Eredar Wand of Obliteration	Drop: Magtheridon (Magtheridon's Lair)
+Good	Master Firestone Master Firestone	Conjured: Create Firestone
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+Rank	Item	Source
+Good	Tirisfal Wand of Ascendancy Tirisfal Wand of Ascendancy	Drop: Shade of Aran (Karazhan)
+Good	The Black Stalk The Black Stalk	Drop: The Black Stalker (Heroic The Underbog)
+Mediocre	Nether Core's Control Rod Nether Core's Control Rod	Drop: Dalliah the Doomsayer (The Arcatraz)
+
+Zephan
+World of Warcraft Classic Warlock Class Expert
+Zephan is renowned for his expertise as a Warlock theorycrafter and guide author. He has contributed extensively to Wowhead, where he has published a variety of in-depth guides covering Warlock leveling, PvE builds, and class-specific mechanics across different expansions, including WoW Classic, The Burning Crusade, Wrath of the Lich King, and Season of Discovery.
+
+Beyond his written contributions, Zephan is the founder and administrator of the Classic Warlock Discord, a central hub for Warlock players seeking to optimize their gameplay. This community is recognized for its collaborative approach to theorycrafting and strategy development.
+Tags: PvE Dungeons Raiding
+1 - 3 of 3
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+4
+
+	
+By Sniezny (462 – 3) on 2022/01/14 (Burning Crusade)	
+	
+If i'm not wrong, there will be no PvP haste neck and no haste gems for phase 3
+
+1
+
+	
+
+Zephan <Guide Author> on 2022/01/14 (Burning Crusade)
+They indeed got removed from the PTR. Items have been removed from the PTR before that still ended up in the game (see CSD). I am withholding from removing these until we have more information upon release, seeing as Blizzard hasn't made a formal statement. I did add a disclaimer about this upon release of the guides.
+
+0
+
+	
+
+Generalfrisk on 2022/01/18 (Burning Crusade)
+Confirmed, Haste neck not in game. Remains to be seen if Haste gems will be in the game but it seems highly unlikely
+
+1
+
+	
+By Tunng (151 – 1·0) on 2022/02/04 (Burning Crusade)	
+	
+Thank you for all the time and effort put into this list. My only issue that I see is that Translucent Spellthread Necklace seems to sim better (than Sunking's Talisman) for me, regardless of the hit rating, in every gearset I've put together.
+
+0
+
+	
+
+Zephan <Guide Author> on 2022/02/05 (Burning Crusade)
+If you can make use of the Hit it is indeed, bis. That is also what the guide and description say. You are right that sun kings aren't better aside from the hit but it is as good as equal, so you might as well use sun king and leave translucent to someone who can make use out of the hit.
+
+1
+
+	
+By Rayman (5,498 – 2·7·7) on 2022/03/18 (Burning Crusade)	
+	
+Thanks for making great guides for warlock.
+
+Regarding recommended weapon enchant.
+
+Does Enchant Weapon - Soulfrost actually sim better than Enchant Weapon - Major Spellpower if you keep immolate up in addition to spamming shadow bolt?
+
+And how big is the difference?
+
+If the difference is rather small you might want to add the +40 spell damage enchant as an alternative.
+
+0
+
+	
+
+NyriEN 17 days ago (Burning Crusade)
+It should. Shadow bolt is going to be 60-80% of your dps even if you keep Immolate up. Also do keep in mind that in phase 3 bis gear spamming Shadow bolt is slightly better than casting Immolate (in phase 2 its not yet the case. Dont know the precise point where Immolate falls off)
+1 - 3 of 3
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Warlock Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 1 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 2 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 3 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 4 BiS
+            Affliction
+            Demonology
+            Destruction
+                Best In Slot Gear in Phase 4
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    1H Weapons
+                    2H Weapons
+                    Offhands
+                    Wands
+        Phase 5 BiS
+            Affliction
+            Demonology
+            Destruction
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    AoE DPS Guide
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Destruction Warlock DPS Best in Slot (BiS) Phase 4 Gear Guide
+By Zephan
+Updated: 2026/02/19
+Welcome to Wowhead's Best in Slot Gear list from Phase 4 Zul'Aman for Destruction Warlock DPS in The Burning Crusade Classic. This guide will list the recommended gear for Destruction Warlock DPS to acquire while they progress during the fourth phase of The Burning Crusade Classic, and contains gear sourced from Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Destruction Warlock DPS in Phase 4
+When gearing, there is a multitude of different things to consider: different talent specializations, your currently equipped gear, and your raid composition all play a key part. Perhaps the biggest deciding factor of them all is hit rating - having too much or too little hit rating from either talents, gems, or buffs will result in you swapping in different pieces of gear or gems to reach the relevant hit cap. You can learn more about stat caps and priorities by visiting the Warlock Stat Priority Guide, but here are some important things to note:
+
+    The hit cap is determined by the level of the target, with level 73 raid bosses requiring +16% chance to hit, while level 70 trash requires only +3%. You should typically gear for bosses, but you may consider it worthwhile to have a specialized setup for clearing trash.
+    The amount of hit gems you use, such as Veiled Noble Topaz Veiled Noble Topaz and Great Dawnstone Great Dawnstone.
+    Draenei grant 1% hit to their group through Inspiring Presence.
+    Elemental Shamans provide Totem of Wrath, which provides 3% hit.
+
+The time of Malefic Raiment and wings has arrived! The biggest upgrade in this phase is the four-piece bonus of this set, which increases the damage of our Shadow Bolt and Incinerate by 6%. To put this in perspective, this is roughly equal to more than 100 spell power, or more than twice as good as four-piece Tier 4, or three-piece Spellfire! We will keep rocking this set until the end of times (of The Burning Crusade), although we switch up the item combination in Sunwell Plateau.
+
+There are a lot of high-ticket caster items this phase, which we aren't the only ones eyeing. I go in-depth about which items specifically, and the possible alternatives, in the descriptions of every equipment slot. In this phase specifically, the interesting items are Hex Shrunken Head Hex Shrunken Head, Brooch of Nature's Mercy Brooch of Nature's Mercy, Mana Attuned Band Mana Attuned Band, and Carved Witch Doctor's Stick Carved Witch Doctor's Stick.
+
+In the following guide, some items are marked with an icon, indicating they are only suitable for either Shadow or Fire:
+
+    Only relevant for Shadow Destruction warlocks.
+    Only relevant for Fire Destruction warlocks.
+
+Destruction Warlocks looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Destruction Warlock Gems & Enchants
+Should Destruction Warlock DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 4?
+There is not a huge difference between Aldor and Scryers for Destruction Warlocks. You should most likely base this on personal preference, such as elevator type, location, profession trainers, tabard style, etc.
+
+The Aldor has the better enchant, but there is a very small difference between the two; Greater Inscription of Discipline Greater Inscription of Discipline is about a 1-2 DPS increase compared to Greater Inscription of the Orb Greater Inscription of the Orb.
+
+Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen is a special neck that changes proc based on faction alignment. This neck only becomes available by Phase 5, and in this phase, there will be better alternatives, so this is unlikely to affect your decision.
+
+Ultimately, the Scryers provide more early gearing flexibility, while the Aldor provide a very slightly better shoulder enchant. Whatever your choice is, it is the right one.
+
+If you need to grind reputation with the Aldor or the Scryers, or any of the other factions that offer BiS gear for Destruction Warlocks, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Destruction Warlock in TBC Classic Phase 4
+You should aim for your four-piece Malefic Raiment as soon as possible. Hood of the Malefic is an excellent item for this (PLUS WINGS!). Cowl of the Illidari High Lord does have slightly better stats, however, due to the aforementioned bonus, it loses out to the Tier 6 helmet.
+
+Hood of Hexing is the new helmet available in this phase that drops in Zul'Aman. Whilst it has good stats, the lack of a meta gem slot and how good a fit the head slot is for getting your four-piece T6 bonus, makes this a bad option.
+Rank	Item	Source
+BiS	Hood of the Malefic Hood of the Malefic	Drop: Archimonde (Hyjal Summit)
+Good	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+Mediocre	Hood of Hexing Hood of Hexing	Drop: Hex Lord Malacrass (Zul'Aman)
+Mediocre	Destruction Holo-gogs Destruction Holo-gogs	Profession: Engineering - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Mediocre	Hood of the Corruptor Hood of the Corruptor	Drop: Lady Vashj (Serpentshrine Cavern)
+Mediocre	Voidheart Crown Voidheart Crown	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Shoulder Armor for Destruction Warlock in TBC Classic Phase 4
+The next item in your journey to four-piece Tier 6 goodness should be Mantle of the Malefic. The other three new viable shoulders this phase are really solid, too.
+
+The new shoulder available in this phase is Mantle of Ill Intent; however, it is a downgrade even compared to the alternatives from the previous phase.
+Rank	Item	Source
+BiS	Mantle of the Malefic Mantle of the Malefic	Drop: Mother Shahraz (Black Temple)
+Good	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+Good	Blood-cursed Shoulderpads Blood-cursed Shoulderpads	Drop: Gurtogg Bloodboil (Black Temple)
+Good	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+If you do not have access to Phase 4 loot, you can opt for Voidheart Mantle combined with the two-piece bonus. Mantle of the Corruptor or Mantle of the Elven Kings aren't bad choices either, as these have better base stats.
+Rank	Item	Source
+Mediocre	Voidheart Mantle Voidheart Mantle	Drop: High King Maulgar (Gruul's Lair)
+Mediocre	Mantle of the Corruptor Mantle of the Corruptor	Drop: Void Reaver (Tempest Keep: The Eye)
+Mediocre	Mantle of Ill Intent Mantle of Ill Intent	Drop: First Timed Chest (Zul'Aman)
+Mediocre	Mantle of the Elven Kings Mantle of the Elven Kings	Drop: Trash Mobs (Tempest Keep: The Eye)
+
+Best in Slot Back Armor for Destruction Warlock in TBC Classic Phase 4
+Nethervoid Cloak is technically the best value cloak of the top four (for Shadow Destruction Warlocks). However, the issue is that it has a lot of hit rating. Which you are unlikely to make use of due to the rest of your gear being high on hit already. You might be able to make more use out of the hit when starting to transition into Sunwell Plateau gear, as this gear is more haste-heavy instead of hit-heavy. Another benefit is that early on during Phase 4, when you do not have a lot of hit from your other pieces yet, you are more likely to make full use of the hit on the back. It also has the advantage of being a Trash drop, resulting in it being solo obtainable.
+
+Shroud of the Highborne, Shadowcaster's Drape, and Cloak of the Illidari Council are the other options. These are the more practical cloaks, all being roughly equal. Shroud of the Highborne technically has a minor edge in value (roughly 4 Spell Power worth in BIS), but it is a better option for healers. So if you want to keep Life Tapping without worrying about your health, you most likely should not opt for this. However, once all healers have the cloak, it should be fair game.
+Rank	Item	Source
+BiS	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+Good	Nethervoid Cloak Nethervoid Cloak	Drop: Trash Mobs (Black Temple)
+Good	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: High Nethermancer Zerevor (Black Temple)
+Good	Shadowcaster's Drape Shadowcaster's Drape	Drop: First Timed Chest (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Mediocre	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+Mediocre	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss)
+Mediocre	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Mediocre	Cloak of Arcane Alacrity Cloak of Arcane Alacrity	Vendor: G'eras (Badges of Justice)
+Mediocre	Cloak of Ancient Rituals Cloak of Ancient Rituals	Drop: Hex Lord Malacrass (Zul'Aman)
+Mediocre	Brute Cloak of the Ogre-Magi Brute Cloak of the Ogre-Magi	Drop: High King Maulgar (Gruul's Lair)
+
+Best in Slot Chest Armor for Destruction Warlock in TBC Classic Phase 4
+Vestments of the Sea-Witch is still the best pick, especially if you already got it in the previous phases. If you have Leggings of Channeled Elements Leggings of Channeled Elements, you can opt to use Robe of the Malefic to reach your four-set bonus instead.
+Rank	Item	Source
+BiS	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+BiS	Robe of the Malefic Robe of the Malefic	Drop: Illidan Stormrage (Black Temple)
+Good	Robes of Rhonin Robes of Rhonin	Drop: Archimonde (Hyjal Summit)
+Mediocre	Robe of the Corruptor Robe of the Corruptor	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Mediocre	Robe of Hateful Echoes Robe of Hateful Echoes	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Mediocre	Robe of Departed Spirits Robe of Departed Spirits	Drop: Halazzi (Zul'Aman)
+Mediocre	Robe of the Shadow Council Robe of the Shadow Council	Drop: Teron Gorefiend (Black Temple)
+
+Best in Slot Wrist Armor for Destruction Warlock in TBC Classic Phase 4
+Bracers of Nimble Thought is hands down our best pair of bracers. It being a crafted Bind on Equip is certainly a good perk.
+
+Runed Spell-cuffs is mostly a slightly worse, budget version of Bracers of Nimble Thought. Focused Mana Bindings is in between the two, but has the con of being heavy on hit rating.
+Rank	Item	Source
+BiS	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring - can be purchased on the Auction House
+Good	Focused Mana Bindings Focused Mana Bindings	Drop: Shade of Akama (Black Temple)
+Good	Runed Spell-cuffs Runed Spell-cuffs	Vendor: G'eras (Badges of Justice)
+Good	Cuffs of Devastation Cuffs of Devastation	Drop: Rage Winterchill (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Good	Fury of the Ursine Fury of the Ursine	Drop: Nalorakk (Zul'Aman)
+PvP	Vindicator's Silk Cuffs Vindicator's Silk Cuffs	Vendor: Honor Points (Season 3)
+Mediocre	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+Mediocre	Ravager's Cuffs Ravager's Cuffs of Shadow/Fiery Wrath	Drop: Rokad the Ravager (Karazhan)
+
+Best in Slot Hand Armor for Destruction Warlock in TBC Classic Phase 4
+Gloves of the Malefic is going to be a core item to reach your four-piece bonus. Anger-Spark Gloves is roughly equal or a tad better pure stat-wise, but doesn't contribute to your Malefic Raiment.
+Rank	Item	Source
+BiS	Gloves of the Malefic Gloves of the Malefic	Drop: Azgalor (Hyjal Summit)
+Good	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss)
+Good	Studious Wraps Studious Wraps	Vendor: G'eras (Badges of Justice)
+Good	Spellfire Gloves Spellfire Gloves	Profession: Tailoring (Spellfire Tailoring) - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Mediocre	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+Mediocre	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+Mediocre	Gauntlets of the Sun King Gauntlets of the Sun King	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Mediocre	Gloves of the Corruptor Gloves of the Corruptor	Drop: Leotheras the Blind (Serpentshrine Cavern)
+
+Best in Slot Waist Armor for Destruction Warlock in TBC Classic Phase 4
+Belt of Blasting is still a strong contender and, on paper, stronger than the new belts that became available in Phase 3. However, the "issue" is that a good chunk is due to the high amount of hit rating, which is something these phases are already littered with.
+
+Anetheron's Noose and Waistwrap of Infinity offer good itemization without hit. This is useful once you get your hands on more gear from Phase 3 and 4.
+Rank	Item	Source
+BiS	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+BiS	Anetheron's Noose Anetheron's Noose	Drop: Anetheron (Hyjal Summit)
+BiS	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+Good	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Good	Voodoo-woven Belt Voodoo-woven Belt	Vendor: G'eras (Badges of Justice)
+Good	Spellfire Belt Spellfire Belt	Profession: Tailoring (Spellfire Tailoring) - BoP only
+Good	Fire-Cord of the Magus Fire-Cord of the Magus	Drop: Trash Mobs (Tempest Keep: The Eye)
+
+Best in Slot Leg Armor for Destruction Warlock in TBC Classic Phase 4
+If you already have Vestments of the Sea-Witch Vestments of the Sea-Witch, you should opt for Leggings of the Malefic. This is to reach your four-piece bonus.
+
+Leggings of Channeled Elements is the go-to option if you have Robe of the Malefic Robe of the Malefic, instead of Vestments of the Sea-Witch.
+Rank	Item	Source
+BiS	Leggings of the Malefic Leggings of the Malefic	Drop: The Illidari Council (Black Temple)
+BiS	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+BiS	Leggings of Devastation Leggings of Devastation	Drop: Mother Shahraz (Black Temple)
+Good	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+Rank	Item	Source
+Good	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+Good	Leggings of the Corruptor Leggings of the Corruptor	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Mediocre	Pantaloons of Arcane Annihilation Pantaloons of Arcane Annihilation	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Feet Armor for Destruction Warlock in TBC Classic Phase 4
+Slippers of the Seacaller has the highest value in this phase, and on the plus side, does not have hit rating on it. If you do not have these yet, Footpads of Madness can function as a weaker alternative.
+
+Blue Suede Shoes and Boots of Blasting have relatively similar value, as long as you can make use of the hit rating on them.
+Rank	Item	Source
+BiS	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+Good	Footpads of Madness Footpads of Madness	Drop: Jan'alai (Zul'Aman)
+Good	Blue Suede Shoes Blue Suede Shoes	Drop: Kaz'rogal (Hyjal Summit)
+Good	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Good	Boots of the Shifting Nightmare Boots of the Shifting Nightmare	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Mediocre	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+Mediocre	Glider's Foot-Wraps Glider's Foot-Wraps of Shadow/Fiery Wrath	Drop: Shadikith the Glider (Karazhan)
+Mediocre	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+
+Best in Slot Neck Jewelry for Destruction Warlock in TBC Classic Phase 4
+Eye of the Night and Chain of the Twilight Owl are often forgotten, but effectively are the strongest necks there are during their buffs. If someone else is providing the buff or yours is on CD, you can use another neck.
+
+Translucent Spellthread Necklace has the most value of stats if you can make use of all the hit rating on it. However, most likely you will be better off with Brooch of Nature's Mercy, seeing as your gear will already be hit heavy. As you can see, Brooch of Nature's Mercy is a healing item on paper, but the haste makes it technically our best neck (if we can't make use of the hit on Translucent Spellthread Necklace). Healers will make use of this neck longer than warlocks, though. Luckily, Zul'Aman is only a 10-man and is on a three-day reset, meaning you should eventually be able to get it.
+Rank	Item	Source
+BiS	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Essence of Anger (Black Temple)
+BiS	Brooch of Nature's Mercy Brooch of Nature's Mercy	Drop: Akil'zon (Zul'Aman)
+Buff	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+Buff	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Good	Hellfire-Encased Pendant Hellfire-Encased Pendant	Drop: Trash Mobs (Black Temple)
+Good	Loop of Cursed Bones Loop of Cursed Bones	Drop: Zul'jin (Zul'Aman)
+Good	Vindicator's Pendant of Subjugation Vindicator's Pendant of Subjugation	Vendor: Honor Points (Season 3)
+Good	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+
+Best in Slot Ring Jewelry for Destruction Warlock in TBC Classic Phase 4
+Mana Attuned Band is our new best ring. It essentially has the same stats as our Ring of Ancient Knowledge, but with a bunch of hit rating on top.
+
+Ring of Ancient Knowledge is still great. this ring is not Unique, meaning you can equip two of them. These drop from the trash in Black Temple and can potentially be soloed depending on which bosses are already dead. By soloing this content, you can potentially get your rings faster. However, as before, every caster will want this item. So if you solely rely on your raid itself, it will take you a while before you see your second ring.
+
+To solo trash, you will need an ID that is cleared up to Mother Shahraz. In the original TBC, you could solo bigger packs, but these have gained a speed bonus in Classic. You can still solo the single mobs, but you can only do one at a time, and need Swiftness of Zanza Swiftness of Zanza to outpace them. It takes roughly 6 to 8 minutes per kill, and you will need to reset after 3 to 4 mobs, depending on the positioning. Be warned that this is rather slow and tedious. Here are two examples of it being done: Madarb, Offe.
+Rank	Item	Source
+BiS	Mana Attuned Band Mana Attuned Band	Drop: Third Timed Chest (Zul'Aman)
+BiS	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+BiS	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+Good	Band of the Eternal Sage Band of the Eternal Sage	Quest: (Quest #10472) (The Scale of the Sands Exalted)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Good	Signet of the Quiet Forest Signet of the Quiet Forest	Drop: Third Timed Chest (Zul'Aman)
+Mediocre	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+Mediocre	Ring of Recurrence Ring of Recurrence	Drop: Chess Event (Karazhan)
+Mediocre	Band of Crimson Fury Band of Crimson Fury	Drop: Magtheridon (Magtheridon's Lair)
+Mediocre	Corruptor's Signet Corruptor's Signet	Drop: Shartuul (Blade's Edge Mountains)
+
+Best in Slot Trinkets for Destruction Warlock in TBC Classic Phase 4
+Hex Shrunken Head gets to dangle from our ear this phase. Combined with The Skull of Gul'dan, this makes for a rather iconic pair. Luckily, as this item comes from Zul'Aman, it will be less contested compared to the Skull, due to dropping in a 10-man that is on a three-day lockout.
+
+The Skull of Gul'dan is the biggest gain in DPS aside from Malefic Raiment four-piece bonus, especially when it comes to AoE DPS. It lasts the entire expansion and is the biggest upgrade in these phases. From all the items listed here, this should be your highest priority.
+
+Your other trinket of choice is going to depend on whether you are facing Demons or Undead targets, in which case you will want to equip Mark of the Champion.
+Rank	Item	Source
+BiS	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+BiS	Hex Shrunken Head Hex Shrunken Head	Drop: Hex Lord Malacrass (Zul'Aman)
+Demons and Undead	Mark of the Champion Mark of the Champion	Quest: The Fall of Kel'Thuzad The Fall of Kel'Thuzad (Classic - Naxxramas)
+Good	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Good	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Good	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Mediocre	Darkmoon Card: Crusade Darkmoon Card: Crusade	Quest: Darkmoon Blessings Deck Darkmoon Blessings Deck
+Mediocre	Sextant of Unstable Currents Sextant of Unstable Currents	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+
+Best in Slot One-Handed Weapons for Destruction Warlock in TBC Classic Phase 4
+Tempest of Chaos combined with Chronicle of Dark Secrets Chronicle of Dark Secrets is a tad bit worse than Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer. However, it does have a couple of advantages. It sets you up for Sunwell Plateau, because in Phase 5, a lot of the gear will be more haste-focused instead of hit. Also, already having a 1H+OH sets you up for the BIS weapons of Phase 5.
+Rank	Item	Source
+BiS	Tempest of Chaos Tempest of Chaos	Drop: Archimonde (Hyjal Summit)
+Good	Vengeful Gladiator's Spellblade Vengeful Gladiator's Spellblade	Vendor: Arena Points (Season 3)
+Good	Blade of Twisted Visions Blade of Twisted Visions	Drop: Zul'jin (Zul'Aman)
+Good	Wub's Cursed Hexblade Wub's Cursed Hexblade	Drop: Jan'alai (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 1H Weapon Recommendations
+
+Rank	Item	Source
+Good	The Maelstrom's Fury The Maelstrom's Fury	Drop: High Warlord Naj'entus (Black Temple)
+Good	Merciless Gladiator's Spellblade Merciless Gladiator's Spellblade	Vendor: Arena Points (Season 2)
+Good	Fang of the Leviathan Fang of the Leviathan	Drop: Leotheras the Blind (Serpentshrine Cavern)
+Good	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss)
+Mediocre	Bloodmaw Magus-Blade Bloodmaw Magus-Blade	Drop: Gruul the Dragonkiller (Gruul's Lair)
+Mediocre	Nathrezim Mindblade Nathrezim Mindblade	Drop: Prince Malchezaar (Karazhan)
+
+Best in Slot Two-Handed Weapons for Destruction Warlock in TBC Classic Phase 4
+The next big-ticket item is Zhar'doom, Greatstaff of the Devourer. Every caster DPS will be set on getting their hands on this staff, but it is particularly strong for Warlocks, generally providing a bigger DPS gain than it does for other classes. A significant reason for Zhar'doom being so strong is that the alternatives have a lot of hit rating, which is already in abundance on Phase 4 gear.
+
+As for Atiesh, Greatstaff of the Guardian, the stats on the staff are good, but not quite as good as the combination of other weapons in this phase. The real benefit from Atiesh is the buff it provides for the party. Increasing everyone's Spell Damage by 33.
+Rank	Item	Source
+BiS	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+Good	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Quest: Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian (Classic - Naxxramas)
+Best in Slot Offhands for Destruction Warlock in TBC Classic Phase 4
+Chronicle of Dark Secrets is the best offhand, though if you are already over the hit cap, unfortunately, a fair amount of the stat budget is wasted. Regardless, the stats on it are great, and it will be the best offhand available in this phase.
+Rank	Item	Source
+BiS	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+Good	Blind-Seers Icon Blind-Seers Icon	Drop: Shade of Akama (Black Temple)
+Good	Fetish of the Primal Gods Fetish of the Primal Gods	Vendor: G'eras (Badges of Justice)
+Good	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Mediocre	Flametongue Seal Flametongue Seal	Vendor: G'eras (Badges of Justice)
+Mediocre	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Mediocre	Orb of the Soul-Eater Orb of the Soul-Eater	Vendor: G'eras (Badges of Justice)
+Mediocre	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+
+Best in Slot Wands for Destruction Warlock in TBC Classic Phase 4
+Carved Witch Doctor's Stick is the new wand that most of us will want to get our hands on. Luckily, it can be bought with for a few Badges of Justice. It has the benefit of not only being high on spell power but also has a blue socket slot with + 2 spell damage, which is perfect for our meta requirements.
+
+Wand of the Forgotten Star is still a strong contender; its relevancy mostly depends on how much hit you have. As Horde, you are more likely to make use of it for your boss set if you have it.
+Rank	Item	Source
+BiS	Carved Witch Doctor's Stick Carved Witch Doctor's Stick	Vendor: G'eras (Badges of Justice)
+BiS	Wand of the Forgotten Star Wand of the Forgotten Star	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Good	Wand of Prismatic Focus Wand of Prismatic Focus	Drop: Gurtogg Bloodboil (Black Temple)
+Good	Eredar Wand of Obliteration Eredar Wand of Obliteration	Drop: Magtheridon (Magtheridon's Lair)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+Rank	Item	Source
+Option	Master Firestone Master Firestone	Conjured: Create Firestone
+Good	Tirisfal Wand of Ascendancy Tirisfal Wand of Ascendancy	Drop: Shade of Aran (Karazhan)
+Good	The Black Stalk The Black Stalk	Drop: The Black Stalker (Heroic The Underbog)
+Mediocre	Nether Core's Control Rod Nether Core's Control Rod	Drop: Dalliah the Doomsayer (The Arcatraz)
+
+Zephan
+World of Warcraft Classic Warlock Class Expert
+Zephan is renowned for his expertise as a Warlock theorycrafter and guide author. He has contributed extensively to Wowhead, where he has published a variety of in-depth guides covering Warlock leveling, PvE builds, and class-specific mechanics across different expansions, including WoW Classic, The Burning Crusade, Wrath of the Lich King, and Season of Discovery.
+
+Beyond his written contributions, Zephan is the founder and administrator of the Classic Warlock Discord, a central hub for Warlock players seeking to optimize their gameplay. This community is recognized for its collaborative approach to theorycrafting and strategy development.
+1 - 2 of 2
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+4
+
+	
+By Helore (9,462 – 2·20·33) on 2022/04/01 (Burning Crusade)	
+	
+Now that Vindicator's Pendant of Subjugation has been added, where does it fall within this Phase BiS list?
+
+0
+
+	
+
+Ascar on 2022/04/14 (Burning Crusade)
+Below all the other options in the list. KT neck is still considerably better and both Zul'Aman necks are better than KT. It's preferable over the BT hit neck (Translucent Spellthread Necklace) if you can't use the hit. Similar single target performance with more dps on aoe.
+
+0
+
+	
+
+Zephan <Guide Author> on 2022/04/18 (Burning Crusade)
+Thanks for the heads up. The item has been added to the different guides.
+
+-3
+
+	
+By ShamgarPious (214 – 1) on 2022/03/29 (Burning Crusade)	
+	
+Where can I find P5 BiS lists?
+
+1
+
+	
+
+Loderanos on 2022/04/03 (Burning Crusade)
+It will be posted, when it's ready. :)
+1 - 2 of 2
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
+
+WoW
+RetailRetail
+ClassicClassic
+Burning CrusadeTBC
+Mists of PandariaMists
+···
+Diablo IVDiablo IV
+···
+slloyd9335 (811)
+NewsDatabaseToolsGuidesCommunityGo Ad-FreeMore
+Phase Two
+Classes
+Leveling
+Best in Slot
+Tier Lists
+Raids
+Attunements
+Dungeons
+Reputations
+Professions
+Guides...
+Guide Contents
+Patch 2.5.6
+TBCC Warlock Guide
+
+    Overview
+    Stats
+    Best in Slot Lists
+        Pre-Raid BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 1 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 2 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 3 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 4 BiS
+            Affliction
+            Demonology
+            Destruction
+        Phase 5 BiS
+            Affliction
+            Demonology
+            Destruction
+                Best In Slot Gear in Phase 5
+                    Aldor vs Scryer
+                    Head
+                    Shoulders
+                    Back
+                    Chest
+                    Wrists
+                    Hands
+                    Waist
+                    Legs
+                    Feet
+                    Neck
+                    Rings
+                    Trinkets
+                    1H Weapons
+                    2H Weapons
+                    Offhands
+                    Wands
+    Talents
+    Rotation
+    Consumables & Buffs
+    Enchants & Gems
+    Addons
+    Macros
+    AoE DPS Guide
+    PvP Overview
+    Arena
+
+Guide Info
+
+    Changelog
+
+Burning Crusade Classic Destruction Warlock DPS Best in Slot (BiS) Phase 5 Gear Guide
+By Zephan
+Updated: 2026/02/19
+Welcome to Wowhead's Best in Slot Gear list from Phase 5 Sunwell Plateau for Destruction Warlock DPS in The Burning Crusade Classic. This guide will list the recommended gear for Destruction Warlock DPS to acquire while they progress during the fifth and final phase of The Burning Crusade Classic, which contains gear sourced from Sunwell Plateau, Zul'Aman, Black Temple, and Mount Hyjal, plus other pieces from previous phases like Serpentshrine Cavern, Tempest Keep, heroic dungeons, arena PvP Gear, professions, BoE World Drops, and reputations.
+
+Best In Slot Gear for Destruction Warlock DPS in Phase 5
+When gearing, there is a multitude of different things to consider: different talent specializations, your currently equipped gear, and your raid composition all play a key part. Perhaps the biggest deciding factor of them all is hit rating - having too much or too little hit rating from either talents, gems, or buffs will result in you swapping in different pieces of gear or gems to reach the relevant hit cap. You can learn more about stat caps and priorities by visiting the Warlock Stat Priority Guide, but here are some important things to note:
+
+    The hit cap is determined by the level of the target, with level 73 raid bosses requiring +16% chance to hit, while level 70 trash requires only +3%. You should typically gear for bosses, but you may consider it worthwhile to have a specialized setup for clearing trash.
+    The amount of hit gems you use, such as Veiled Noble Topaz Veiled Noble Topaz and Great Dawnstone Great Dawnstone.
+    Draenei grant 1% hit to their group through Inspiring Presence.
+    Elemental Shamans provide Totem of Wrath, which provides 3% hit.
+
+The time of Malefic Raiment and wings is still here! This bonus flat-out increases our Shadow Bolt and Incinerate by 6%. To put this in perspective, this is roughly equal to 100 spell power, or more than twice as good as four-piece Tier 4, or three-piece Spellfire!
+
+In the current phase, the items we use to get out the four-piece bonus switch around slightly. Bracers of the Malefic Bracers of the Malefic, Belt of the Malefic Belt of the Malefic, and Boots of the Malefic Boots of the Malefic are the three new Tier 6 items. Not only are they great ways to get our set bonus, but they are also BIS independent of the set bonus.
+
+This means we only need one other piece from our previous Tier 6 options. On paper, Mantle of the Malefic Mantle of the Malefic is the best option for this, but Hood of the Malefic Hood of the Malefic is also really close. The best items used in combination with either are Dark Conjuror's Collar Dark Conjuror's Collar (in combination with T6 shoulders) or Amice of the Convoker Amice of the Convoker (together with T6 helm). Alternatively, you can also opt to keep using your Leggings of the Malefic Leggings of the Malefic and make use of both Amice of the Convoker and Dark Conjuror's Collar; the benefit is not needing Leggings of Calamity Leggings of Calamity, albeit at the cost of a bit of damage.
+
+In the following guide, some items are marked with an icon, indicating they are only suitable for either Shadow or Fire:
+
+    Only relevant for Shadow Destruction warlocks.
+    Only relevant for Fire Destruction warlocks.
+
+Destruction Warlocks looking to add Enchants and Gems to their BiS gear should take a look at our guide below:
+
+Destruction Warlock Gems & Enchants
+Should Destruction Warlock DPS Choose Aldor or Scryer for BiS in TBC Classic Phase 5?
+There is not a huge difference between Aldor and Scryers for Destruction Warlocks. You should most likely base this on personal preference, such as elevator type, location, profession trainers, tabard style, etc.
+
+The Aldor has the better enchant, but there is a very small difference between the two; Greater Inscription of Discipline Greater Inscription of Discipline is about a 1-2 DPS increase compared to Greater Inscription of the Orb Greater Inscription of the Orb.
+
+Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen is a special neck that changes proc based on faction alignment. This neck only became available in Phase 5, and there are stronger alternatives, so this is unlikely to affect your decision.
+
+Ultimately, the Scryers provide more early gearing flexibility, while the Aldor provide a very slightly better shoulder enchant. Whatever your choice is, it is the right one.
+
+If you need to grind reputation with the Aldor or the Scryers, or any of the other factions that offer BiS gear for Destruction Warlocks, take a look at our guides to learn the fastest way to reach the rank you'll need.
+
+Reputations Overview TBC Classic
+Best in Slot Head Armor for Destruction Warlock in TBC Classic Phase 5
+There are two predominant options when it comes to helm (and shoulder combinations). In theory, Dark Conjuror's Collar combined with Mantle of the Malefic Mantle of the Malefic is slightly stronger compared to Hood of the Malefic plus Amice of the Convoker Amice of the Convoker. In practice, the difference is negligible and won’t show up in your logs. The only other notable difference between the two combinations is a difference of 5 hit rating, which might be something to keep in mind based on the rest of your gear.
+
+This phase also introduces an upgrade for the Engineering goggles, the Annihilator Holo-Gogs. They are roughly equal in strength to Cowl of the Illidari High Lord, but do not have any hit rating, opening up other gearing possibilities. It can be a really strong option going into Phase 5 until you get Dark Conjuror's Collar from Kil'jaeden.
+Rank	Item	Source
+BiS	Dark Conjuror's Collar Dark Conjuror's Collar	Drop: Kil'jaeden (Sunwell Plateau)
+Good	Cowl of the Illidari High Lord Cowl of the Illidari High Lord	Drop: Illidan Stormrage (Black Temple)
+Good	Annihilator Holo-Gogs Annihilator Holo-Gogs	Profession: Engineering - BoP only
+Good	Hood of the Malefic Hood of the Malefic	Drop: Archimonde (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Head Armor Recommendations
+
+Rank	Item	Source
+Mediocre	Helm of Arcane Purity Helm of Arcane Purity	Vendor: Yrma
+Drop: Cowl of Light's Purity Cowl of Light's Purity from Kil'jaeden (Sunwell Plateau) & Sunmote Sunmote
+Mediocre	Destruction Holo-gogs Destruction Holo-gogs	Profession: Engineering - BoP only
+Mediocre	Hood of Hexing Hood of Hexing	Drop: Hex Lord Malacrass (Zul'Aman)
+
+Best in Slot Shoulder Armor for Destruction Warlock in TBC Classic Phase 5
+As stated before in the head section, here we have two choices. Either you use your shoulder slot or your head slot to reach your four-piece Malefic Raiment bonus in combination with the new Tier 6 off-pieces.
+
+Amice of the Convoker is stronger than Mantle of the Malefic if you would only look at shoulders; however, the combination of Mantle of the Malefic and Dark Conjuror's Collar Dark Conjuror's Collar is slightly stronger than Amice of the Convoker and Hood of the Malefic Hood of the Malefic.
+Rank	Item	Source
+BiS	Amice of the Convoker Amice of the Convoker	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+BiS	Mantle of the Malefic Mantle of the Malefic	Drop: Mother Shahraz (Black Temple)
+Good	Shoulderpads of Knowledge's Pursuit Shoulderpads of Knowledge's Pursuit	Vendor: Yrma
+Drop: Shawl of Wonderment Shawl of Wonderment from Eredar Twins (Sunwell Plateau) & Sunmote Sunmote
+Good	Hatefury Mantle Hatefury Mantle	Drop: Anetheron (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Shoulder Armor Recommendations
+
+Rank	Item	Source
+Good	Blood-cursed Shoulderpads Blood-cursed Shoulderpads	Drop: Gurtogg Bloodboil (Black Temple)
+Good	Mantle of Nimble Thought Mantle of Nimble Thought	Profession: Tailoring - BoP only
+Mediocre	Mantle of the Corruptor Mantle of the Corruptor	Drop: Void Reaver (Tempest Keep: The Eye)
+Mediocre	Illidari Shoulderpads Illidari Shoulderpads	Drop: Morogrim Tidewalker (Serpentshrine Cavern)
+Mediocre	Fel-tinged Mantle Fel-tinged Mantle	Drop: Vexallus (Magisters' Terrace)
+Mediocre	Mantle of Ill Intent Mantle of Ill Intent	Drop: First Timed Chest (Zul'Aman)
+
+Best in Slot Back Armor for Destruction Warlock in TBC Classic Phase 5
+There are not a lot of new goodies this phase when it comes to back options. Tattered Cape of Antonidas drops from Kil'jaeden and is a straight upgrade over the other haste cloaks already available.
+Rank	Item	Source
+BiS	Tattered Cape of Antonidas Tattered Cape of Antonidas	Drop: Kil'jaeden (Sunwell Plateau)
+Good	Nethervoid Cloak Nethervoid Cloak	Drop: Trash Mobs (Black Temple)
+Good	Cloak of the Illidari Council Cloak of the Illidari Council	Drop: High Nethermancer Zerevor (Black Temple)
+Good	Shroud of the Highborne Shroud of the Highborne	Drop: Illidan Stormrage (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Back Armor Recommendations
+
+Rank	Item	Source
+Good	Shadowcaster's Drape Shadowcaster's Drape	Drop: First Timed Chest (Zul'Aman)
+Mediocre	Ancient Spellcloak of the Highborne Ancient Spellcloak of the Highborne	Drop: Doom Lord Kazzak (World Boss) - can be purchased on the Auction House
+Mediocre	Ruby Drape of the Mysticant Ruby Drape of the Mysticant	Drop: Prince Malchezaar (Karazhan)
+Mediocre	Royal Cloak of the Sunstriders Royal Cloak of the Sunstriders	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Mediocre	Cloak of Ancient Rituals Cloak of Ancient Rituals	Drop: Hex Lord Malacrass (Zul'Aman)
+
+Best in Slot Chest Armor for Destruction Warlock in TBC Classic Phase 5
+This is where things get interesting. While Sunfire Robe is technically the best available stand-alone chest, it will be an expensive one as well. It requires Tailoring to craft, and the recipe drops from Sunwell Plateau trash. Most of this trash is commonly skipped. While the recipe is BoE and as such can be traded/sold on the Auction House, the craft itself is BoP. All this will result in a rather expensive chest that is ultimately not included in the best possible combination of gear, though it is incredibly close.
+
+In theory, Pendant of Sunfire Pendant of Sunfire combined with Fel Conquerer Raiments is slightly stronger than the combination of Sunfire Robe with Amulet of Unfettered Magics Amulet of Unfettered Magics. However, note that both depend on specific professions and are rare trash drop recipes. Due to Enchanting generally being taken as one profession, you will either be a Tailor and craft Sunfire Robe, or a Jewelcrafting and craft Pendant of Sunfire.
+
+Another honorable mention is Robes of Ghostly Hatred, which is a trade-in from the healer equivalent Robes of Faltered Light, and it should first go to them. All of these are notable upgrades over chests from previous phases.
+Rank	Item	Source
+BiS	Sunfire Robe Sunfire Robe	Profession: Tailoring - BoP only
+BiS	Fel Conquerer Raiments Fel Conquerer Raiments	Drop: M'uru (Sunwell Plateau)
+Good	Robes of Ghostly Hatred Robes of Ghostly Hatred	Vendor: Yrma
+Drop: Robes of Faltered Light Robes of Faltered Light from M'uru (Sunwell Plateau) & Sunmote Sunmote
+Good	Vestments of the Sea-Witch Vestments of the Sea-Witch	Drop: Lady Vashj (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Chest Armor Recommendations
+
+Rank	Item	Source
+Mediocre	Robes of Rhonin Robes of Rhonin	Drop: Archimonde (Hyjal Summit)
+Mediocre	Robe of the Malefic Robe of the Malefic	Drop: Illidan Stormrage (Black Temple)
+Mediocre	Tormented Demonsoul Robes Tormented Demonsoul Robes	Vendor: G'eras (Badges of Justice)
+Mediocre	Scarlet Sin'dorei Robes Scarlet Sin'dorei Robes	Drop: Kael'thas Sunstrider (Magisters' Terrace)
+Mediocre	Robe of the Corruptor Robe of the Corruptor	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Mediocre	Robe of Hateful Echoes Robe of Hateful Echoes	Drop: Hydross the Unstable (Serpentshrine Cavern)
+
+Best in Slot Wrist Armor for Destruction Warlock in TBC Classic Phase 5
+Bracers of the Malefic, yes, please. Not only is this a notable upgrade over Bracers of Nimble Thought, but it also opens up other item slots for upgrades due to fulfilling the Malefic Raiment four-piece requirement.
+Rank	Item	Source
+BiS	Bracers of the Malefic Bracers of the Malefic	Drop: Kalecgos, Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+Good	Bracers of Nimble Thought Bracers of Nimble Thought	Profession: Tailoring - can be purchased on the Auction House
+Mediocre	Focused Mana Bindings Focused Mana Bindings	Drop: Shade of Akama (Black Temple)
+Mediocre	Cuffs of Devastation Cuffs of Devastation	Drop: Rage Winterchill (Hyjal Summit)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wrist Armor Recommendations
+
+Rank	Item	Source
+Mediocre	Runed Spell-cuffs Runed Spell-cuffs	Vendor: G'eras (Badges of Justice)
+Mediocre	Fury of the Ursine Fury of the Ursine	Drop: Nalorakk (Zul'Aman)
+Mediocre	Guardian's Silk Cuffs Guardian's Silk Cuffs	Vendor: Honor Points (Season 4)
+Mediocre	Mindstorm Wristbands Mindstorm Wristbands	Drop: Al'ar (Tempest Keep: The Eye)
+Mediocre	Ravager's Cuffs Ravager's Cuffs of Shadow/Fiery Wrath	Drop: Rokad the Ravager (Karazhan)
+
+Best in Slot Hand Armor for Destruction Warlock in TBC Classic Phase 5
+Some of the biggest upgrades on a per-item basis will be in the glove slot, where there are three really solid options. The best option is Handguards of Defiled Worlds. Note that to replace Gloves of the Malefic, you will most likely already need to have one of the new Malefic Raiment off-pieces.
+
+Sunfire Handwraps is most likely the easier-to-get alternative as long as you have the funds to buy it, seeing as it is a crafted BoE. This leaves us with the third option, Gloves of Tyri's Power. Equal in strength to Sunfire Handwraps, but locked behind turning in Handguards of the Dawn, which is a healer item in the first place.
+Rank	Item	Source
+BiS	Handguards of Defiled Worlds Handguards of Defiled Worlds	Drop: Kil'jaeden (Sunwell Plateau)
+Good	Gloves of Tyri's Power Gloves of Tyri's Power	Vendor: Yrma
+Drop: Handguards of the Dawn Handguards of the Dawn from Kil'jaeden (Sunwell Plateau) & Sunmote Sunmote
+Good	Sunfire Handwraps Sunfire Handwraps	Profession: Tailoring - can be purchased on the Auction House
+Good	Anger-Spark Gloves Anger-Spark Gloves	Drop: Doomwalker (World Boss) - can be purchased on the Auction House
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Hand Armor Recommendations
+
+Rank	Item	Source
+Good	Studious Wraps Studious Wraps	Vendor: G'eras (Badges of Justice)
+Good	Gloves of the Malefic Gloves of the Malefic	Drop: Azgalor (Hyjal Summit)
+Good	Enslaved Doomguard Soulgrips Enslaved Doomguard Soulgrips	Vendor: G'eras (Badges of Justice)
+Good	Spellfire Gloves Spellfire Gloves	Profession: Tailoring (Spellfire Tailoring) - BoP only
+Mediocre	Gloves of Arcane Acuity Gloves of Arcane Acuity	Drop: Kael'thas Sunstrider (Magisters' Terrace)
+Mediocre	Soul-Eater's Handwraps Soul-Eater's Handwraps	Drop: Magtheridon (Magtheridon's Lair)
+Mediocre	Handwraps of Flowing Thought Handwraps of Flowing Thought	Drop: Attumen the Huntsman (Karazhan)
+
+Best in Slot Waist Armor for Destruction Warlock in TBC Classic Phase 5
+There is only one notable new belt: Belt of the Malefic. This is one of the key pieces for reaching 4-pieces of Malefic Raiment, allowing you to use non-set pieces which are significant upgrades in other slots.
+Rank	Item	Source
+BiS	Belt of the Malefic Belt of the Malefic	Drop: Brutallus (Sunwell Plateau)
+Good	Belt of Blasting Belt of Blasting	Profession: Tailoring - can be purchased on the Auction House
+Mediocre	Anetheron's Noose Anetheron's Noose	Drop: Anetheron (Hyjal Summit)
+Mediocre	Cord of Screaming Terrors Cord of Screaming Terrors	Drop: The Lurker Below (Serpentshrine Cavern)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Waist Armor Recommendations
+
+Rank	Item	Source
+Mediocre	Waistwrap of Infinity Waistwrap of Infinity	Drop: Supremus (Black Temple)
+Mediocre	Voodoo-woven Belt Voodoo-woven Belt	Vendor: G'eras (Badges of Justice)
+Mediocre	Girdle of Ruination Girdle of Ruination	Profession: Tailoring - can be purchased on the Auction House
+Mediocre	Spellfire Belt Spellfire Belt	Profession: Tailoring (Spellfire Tailoring) - BoP only
+Mediocre	Fire-Cord of the Magus Fire-Cord of the Magus	Drop: Trash Mobs (Tempest Keep: The Eye)
+
+Best in Slot Leg Armor for Destruction Warlock in TBC Classic Phase 5
+On a pure stat basis, pants are going to be one of the bigger upgrade slots, even if you can’t see them under your robe. That is, once you can replace your Leggings of the Malefic (assuming you are using them) due to obtaining one of your new Malefic Raiment off-pieces. Alternatively, you could keep on using Leggings of the Malefic to reach your four-piece bonus in combination with Dark Conjuror's Collar Dark Conjuror's Collar and Amice of the Convoker Amice of the Convoker. This is a slightly weaker setup, but depending on drop luck might be easier to obtain.
+
+Leggings of Calamity is the biggest upgrade, not only for your single-target DPS, but also notably for your AoE DPS, thanks to the high amount of haste and crit rating. Pantaloons of Growing Strife are strong too, but may be tricky to obtain as healers will be competing for the legs that are converted into these.
+Rank	Item	Source
+BiS	Leggings of Calamity Leggings of Calamity	Drop: Brutallus (Sunwell Plateau)
+Good	Pantaloons of Growing Strife Pantaloons of Growing Strife	Vendor: Yrma
+Drop: Pantaloons of Calming Strife Pantaloons of Calming Strife from Kalecgos (Sunwell Plateau) & Sunmote Sunmote
+Good	Leggings of Channeled Elements Leggings of Channeled Elements	Drop: Kaz'rogal (Hyjal Summit)
+Mediocre	Leggings of Devastation Leggings of Devastation	Drop: Mother Shahraz (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Leg Armor Recommendations
+
+If you were unlucky in the previous phases and could not get Leggings of the Malefic nor Leggings of Channeled Elements, you can buy Corrupted Soulcloth Pantaloons for Badges of Justice.
+Rank	Item	Source
+Mediocre	Leggings of the Malefic Leggings of the Malefic	Drop: The Illidari Council (Black Temple)
+Mediocre	Corrupted Soulcloth Pantaloons Corrupted Soulcloth Pantaloons	Vendor: G'eras (Badges of Justice)
+Mediocre	Leggings of the Seventh Circle Leggings of the Seventh Circle	Drop: Doom Lord Kazzak (World Boss) - can be purchased on the Auction House
+Mediocre	Spellstrike Pants Spellstrike Pants	Profession: Tailoring - can be purchased on the Auction House
+Mediocre	Leggings of the Corruptor Leggings of the Corruptor	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Mediocre	Pantaloons of Arcane Annihilation Pantaloons of Arcane Annihilation	Vendor: G'eras (Badges of Justice)
+
+Best in Slot Feet Armor for Destruction Warlock in TBC Classic Phase 5
+The final piece of our new Malefic Raiment off-pieces, but not the least, is Boots of the Malefic. On an item-to-item basis, it is one of the more valuable pieces to get, and it opens up other slots previously used for the Tier 6 set bonuses to be upgraded.
+Rank	Item	Source
+BiS	Boots of the Malefic Boots of the Malefic	Drop: Felmyst (Sunwell Plateau)
+Good	Slippers of the Seacaller Slippers of the Seacaller	Drop: High Warlord Naj'entus (Black Temple)
+Mediocre	Frozen Shadoweave Boots Frozen Shadoweave Boots	Profession: Tailoring (Shadoweave Tailoring) - BoP only
+Mediocre	Footpads of Madness Footpads of Madness	Drop: Jan'alai (Zul'Aman)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Feet Armor Recommendations
+
+Rank	Item	Source
+Mediocre	Boots of Blasting Boots of Blasting	Profession: Tailoring - BoP only
+Mediocre	Boots of Incantations Boots of Incantations	Vendor: G'eras (Badges of Justice)
+Mediocre	Boots of the Shifting Nightmare Boots of the Shifting Nightmare	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Mediocre	Blue Suede Shoes Blue Suede Shoes	Drop: Kaz'rogal (Hyjal Summit)
+Mediocre	Glider's Foot-Wraps Glider's Foot-Wraps of Shadow/FIery Wrath	Drop: Shadikith the Glider (Karazhan)
+Mediocre	Velvet Boots of the Guardian Velvet Boots of the Guardian	Drop: The Lurker Below (Serpentshrine Cavern)
+
+Best in Slot Neck Jewelry for Destruction Warlock in TBC Classic Phase 5
+When it comes to necks, the best option is going to depend on whether you go with the Jewelcrafting route or the Tailoring one. There are two item combinations of chest and neck slots that are oddly close in value compared with each other, but require different professions and recipes.
+
+The first, and strongest combination, is Pendant of Sunfire combined with Fel Conquerer Raiments Fel Conquerer Raiments, requiring Jewelcrafting. The other is Sunfire Robe Sunfire Robe and Amulet of Unfettered Magics, requiring Tailoring.
+Rank	Item	Source
+BiS	Pendant of Sunfire Pendant of Sunfire	Profession: Jewelcrafting - BoP only
+BiS	Amulet of Unfettered Magics Amulet of Unfettered Magics	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+Buff	Eye of the Night Eye of the Night	Profession: Jewelcrafting - can be purchased on the Auction House
+Good	Translucent Spellthread Necklace Translucent Spellthread Necklace	Drop: Essence of Anger (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Neck Jewelry Recommendations
+
+Rank	Item	Source
+Mediocre	Guardian's Pendant of Subjugation Guardian's Pendant of Subjugation	Vendor: Honor Points (Season 4)
+Mediocre	Sin'dorei Pendant of Conquest Sin'dorei Pendant of Conquest	Drop: Grand Warlock Alythess & Lady Sacrolash (Sunwell Plateau)
+Mediocre	Brooch of Nature's Mercy Brooch of Nature's Mercy	Drop: Akil'zon (Zul'Aman)
+Mediocre	Hellfire-Encased Pendant Hellfire-Encased Pendant	Drop: Trash Mobs (Black Temple)
+Mediocre	Loop of Cursed Bones Loop of Cursed Bones	Drop: Zul'jin (Zul'Aman)
+Mediocre	The Sun King's Talisman The Sun King's Talisman	Drop: Kael'thas Sunstrider (Tempest Keep: The Eye)
+Mediocre	Shattered Sun Pendant of Acumen Shattered Sun Pendant of Acumen	Vendor: Eldara Dawnrunner (Shattered Sun Offensive Exalted)
+Buff	Chain of the Twilight Owl Chain of the Twilight Owl	Profession: Jewelcrafting - can be purchased on the Auction House
+
+Best in Slot Ring Jewelry for Destruction Warlock in TBC Classic Phase 5
+The smallest gains we see are in rings; both Ring of Omnipotence and Loop of Forged Power are upgrades over previously available rings, but not by a wide margin. However, the nice thing is that the Loop is BoE, so it should be easier to acquire than previous rings.
+Rank	Item	Source
+BiS	Ring of Omnipotence Ring of Omnipotence	Drop: M'uru (Sunwell Plateau)
+BiS	Loop of Forged Power Loop of Forged Power	Profession: Jewelcrafting - can be purchased on the Auction House
+Good	Mana Attuned Band Mana Attuned Band	Drop: Third Timed Chest (Zul'Aman)
+Good	Ring of Captured Storms Ring of Captured Storms	Drop: High Warlord Naj'entus (Black Temple)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Ring Jewelry Recommendations
+
+Rank	Item	Source
+Good	Ring of Ancient Knowledge Ring of Ancient Knowledge	Drop: Trash Mobs (Black Temple)
+Mediocre	Band of the Eternal Sage Band of the Eternal Sage	Quest: (Quest #10472) (The Scale of the Sands Exalted)
+Mediocre	Fused Nethergon Band Fused Nethergon Band	Vendor: G'eras (Badges of Justice)
+Mediocre	Signet of the Quiet Forest Signet of the Quiet Forest	Drop: Third Timed Chest (Zul'Aman)
+Mediocre	Ring of Endless Coils Ring of Endless Coils	Drop: Lady Vashj (Serpentshrine Cavern)
+Mediocre	Ring of Recurrence Ring of Recurrence	Drop: Chess Event (Karazhan)
+
+Best in Slot Trinkets for Destruction Warlock in TBC Classic Phase 5
+Shifting Naaru Sliver together with The Skull of Gul'dan is the best possible single-target DPS combination. Note that you should not get rid of Hex Shrunken Head yet, as it can come in handy to switch into when either is on cooldown in between trash pulls.
+Rank	Item	Source
+BiS	Shifting Naaru Sliver Shifting Naaru Sliver	Drop: M'uru (Sunwell Plateau)
+BiS	The Skull of Gul'dan The Skull of Gul'dan	Drop: Illidan Stormrage (Black Temple)
+BiS	Hex Shrunken Head Hex Shrunken Head	Drop: Hex Lord Malacrass (Zul'Aman)
+Demons and Undead	Mark of the Champion Mark of the Champion	Quest: The Fall of Kel'Thuzad The Fall of Kel'Thuzad (Classic - Naxxramas)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Trinket Recommendations
+
+Rank	Item	Source
+Mediocre	Darkmoon Card: Crusade Darkmoon Card: Crusade	Quest: Darkmoon Blessings Deck Darkmoon Blessings Deck
+Mediocre	Icon of the Silver Crescent Icon of the Silver Crescent	Vendor: G'eras (Badges of Justice)
+Mediocre	Dark Iron Smoking Pipe Dark Iron Smoking Pipe	Drop: Coren Direbrew (Brewfest Seasonal Event)
+Mediocre	Sextant of Unstable Currents Sextant of Unstable Currents	Drop: Fathom-Lord Karathress (Serpentshrine Cavern)
+Mediocre	Quagmirran's Eye Quagmirran's Eye	Drop: Quagmirran (Heroic The Slave Pens)
+
+Best in Slot One-Handed Weapons for Destruction Warlock in TBC Classic Phase 5
+Sunflare combined with Heart of the Pit Heart of the Pit in the offhand is the best combination for the rest of the expansion. Both are Sunwell Plateau boss drops. Having had Tempest of Chaos combined with Chronicle of Dark Secrets Chronicle of Dark Secrets instead of Zhar'doom in the previous phases might start paying off right now and smooth the transition.
+Rank	Item	Source
+BiS	Sunflare Sunflare	Drop: Kil'jaeden (Sunwell Plateau)
+Good	Tempest of Chaos Tempest of Chaos	Drop: Archimonde (Hyjal Summit)
+Good	Brutal Gladiator's Spellblade Brutal Gladiator's Spellblade	Vendor: Arena Points (Season 4)
+Good	Vengeful Gladiator's Spellblade Vengeful Gladiator's Spellblade	Vendor: Arena Points (Season 3)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other 1H Weapon Recommendations
+
+Rank	Item	Source
+Good	The Maelstrom's Fury The Maelstrom's Fury	Drop: High Warlord Naj'entus (Black Temple)
+Good	Scryer's Blade of Focus Scryer's Blade of Focus	Vendor: G'eras (Badges of Justice)
+Good	Wub's Cursed Hexblade Wub's Cursed Hexblade	Drop: Jan'alai (Zul'Aman)
+Good	Blade of Twisted Visions Blade of Twisted Visions	Drop: Zul'jin (Zul'Aman)
+Good	Talon of the Tempest Talon of the Tempest	Drop: Doomwalker (World Boss) - can be purchased on the Auction House
+Good	Fang of the Leviathan Fang of the Leviathan	Drop: Leotheras the Blind (Serpentshrine Cavern)
+
+Best in Slot Two-Handed Weapons for Destruction Warlock in TBC Classic Phase 5
+Grand Magister's Staff of Torrents is the best two-handed option, though the one-handed weapons are better in Phase 5.
+Rank	Item	Source
+BiS	Grand Magister's Staff of Torrents Grand Magister's Staff of Torrents	Drop: Felmyst (Sunwell Plateau)
+Good	Zhar'doom, Greatstaff of the Devourer Zhar'doom, Greatstaff of the Devourer	Drop: Illidan Stormrage (Black Temple)
+Mediocre	Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian	Quest: Atiesh, Greatstaff of the Guardian Atiesh, Greatstaff of the Guardian (Classic - Naxxramas)
+Best in Slot Offhands for Destruction Warlock in TBC Classic Phase 5
+Heart of the Pit is generally going to be the best option, but Chronicle of Dark Secrets is still very strong if you need the hit rating.
+Rank	Item	Source
+BiS	Heart of the Pit Heart of the Pit	Drop: Brutallus (Sunwell Plateau)
+Good	Chronicle of Dark Secrets Chronicle of Dark Secrets	Drop: Rage Winterchill (Hyjal Summit)
+Good	Blind-Seers Icon Blind-Seers Icon	Drop: Shade of Akama (Black Temple)
+Good	Fetish of the Primal Gods Fetish of the Primal Gods	Vendor: G'eras (Badges of Justice)
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Offhand Recommendations
+
+Rank	Item	Source
+Good	Fathomstone Fathomstone	Drop: Hydross the Unstable (Serpentshrine Cavern)
+Mediocre	Flametongue Seal Flametongue Seal	Vendor: G'eras (Badges of Justice)
+Mediocre	Khadgar's Knapsack Khadgar's Knapsack	Vendor: G'eras (Badges of Justice)
+Mediocre	Orb of the Soul-Eater Orb of the Soul-Eater	Vendor: G'eras (Badges of Justice)
+Mediocre	Jewel of Infinite Possibilities Jewel of Infinite Possibilities	Drop: Netherspite (Karazhan)
+
+Best in Slot Wands for Destruction Warlock in TBC Classic Phase 5
+Wand of the Demonsoul is the new wand that most of us will want to get our hands on. It is one of the bigger, easier upgrades in this phase (aside from getting the item) as it doesn't have any hit rating to consider, and doesn't require you to get another item to work around your four-piece Malefic Raiment bonus.
+Rank	Item	Source
+BiS	Wand of the Demonsoul Wand of the Demonsoul	Drop: Trash Mobs (Sunwell Plateau)
+Good	Wand of the Forgotten Star Wand of the Forgotten Star	Drop: High Astromancer Solarian (Tempest Keep: The Eye)
+Good	Carved Witch Doctor's Stick Carved Witch Doctor's Stick	Vendor: G'eras (Badges of Justice)
+Mediocre	Wand of Prismatic Focus Wand of Prismatic Focus	Drop: Gurtogg Bloodboil (Black Temple)
+
+
+If you don't have access to the recommendations above, here are further options to choose from or farm:
+Other Wand Recommendations
+
+Rank	Item	Source
+Mediocre	Eredar Wand of Obliteration Eredar Wand of Obliteration	Drop: Magtheridon (Magtheridon's Lair)
+
+Zephan
+World of Warcraft Classic Warlock Class Expert
+Zephan is renowned for his expertise as a Warlock theorycrafter and guide author. He has contributed extensively to Wowhead, where he has published a variety of in-depth guides covering Warlock leveling, PvE builds, and class-specific mechanics across different expansions, including WoW Classic, The Burning Crusade, Wrath of the Lich King, and Season of Discovery.
+
+Beyond his written contributions, Zephan is the founder and administrator of the Classic Warlock Discord, a central hub for Warlock players seeking to optimize their gameplay. This community is recognized for its collaborative approach to theorycrafting and strategy development.
+Tags: PvE Dungeons Raiding
+1 - 3 of 3
+Add your comment|Sort: newest first, oldest first, highest rated|Filter by patch:
+
+1
+
+	
+By Loderanos (2,863 – 6·9) on 2022/05/06 (Burning Crusade)	
+	
+In the head section: you linked Helm of Arcane Purity to get Helm of Arcane Purity, which does not make sense :)
+Edit: Same with shoulders! :)
+Last edited by Loderanos on 2022/05/06
+
+1
+
+	
+
+Zephan <Guide Author> on 2022/05/07 (Burning Crusade)
+Thank you for the catch, and fixed!
+
+1
+
+	
+By WOWdoomer (752 – 8) on 2022/06/09 (Burning Crusade)	
+	
+Looks like this this puts a Horde warlock under hit cap even with a wrath totem. Would it make more sense to gem some hit gems to get to 164?
+
+-3
+
+	
+By ragef1st (859 – 6·5) on 2022/05/29 (Burning Crusade)	
+	
+Quagmirran's Eye is not "Mediocre"
+Its probably 4th BIS looking at destruction lock logs for sunwell right now
+https://classic.warcraftlogs.com/zone/rankings/1013#class=Warlock&spec=Destruction
+
+1
+
+	
+
+Zephan <Guide Author> on 2022/05/30 (Burning Crusade)
+Logs aren't the best indicator to determine BIS. If you sim you would see that Quags is more like 7th best and 40% behind the best option, hence the way it is listed, quag def isn't bad but it isn't quit as good anymore as it was in the early phases.
+1 - 3 of 3
+ 
+Contribute
+Please keep the following in mind when posting a comment:
+
+    Your comment must be in English or it will be removed.
+    Unsure how to post? Check out our handy guide!
+    You might want to proof-read your comments before posting them.
+    Please post questions on our forums for quicker reply.
+
+Post a Comment
+
+Up to 7,500 characters.7,500 characters remaining.
+
+    News
+    Database
+    Tools
+    Guides
+
+    Community
+    Go Ad-Free
+    More
+
+    WoW Guides
+    Class Guides
+    Delve Guides
+    Leveling Guides
+    Mythic+ Guides
+    Profession Guides
+    Raid Guides
+    Talent Calculator
+    Tier Lists
+    Midnight
+
+    MoP Classic Guides
+    Class Guides
+    Profession Guides
+    Dungeon Guides
+    Raid Guides
+    Quest Guides
+    Reputation Guides
+    Pet Battle Guides
+    Scenario Guides
+    Challenge Mode Guides
+    Talent Calculator
+    Tier Lists
+
+    WoW Classic Guides
+    Attunement Guide
+    Best in Slot Guides
+    Class Guides
+    Dungeon Guides
+    Leveling Guides
+    Profession Guides
+    PvP Guides
+    Quest Guides
+    Raid Guides
+    Reputation Guides
+
+    Diablo IV Guides
+    Lord of Hatred Expansion
+    Season 13
+    Endgame Tier List
+    Tier Lists
+    Barbarian Builds
+    Druid Builds
+    Necromancer Builds
+    Paladin Builds
+    Rogue Builds
+    Sorcerer Builds
+    Spiritborn Builds
+
+    Need Help?
+    User Tools
+    About Us
+    Advertise
+    Show Purposes
+    Random Page
+    Premium
+    Privacy Policy
+    Terms of Use
+
