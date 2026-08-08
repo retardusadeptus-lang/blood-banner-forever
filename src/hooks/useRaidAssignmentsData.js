@@ -1,7 +1,105 @@
 import { useEffect, useMemo, useState } from 'react';
-import { RAID_ZONES } from '../constants';
+import { DEFAULT_BOSS_ENCOUNTERS, RAID_ZONES } from '../constants';
 
 const RAID_ASSIGNMENTS_SYNC_INTERVAL_MS = 15000;
+
+function createPresetTargets(presetTargets = []) {
+  return presetTargets.flatMap((target) => {
+    return Array.from({ length: target.count || 1 }, (_, index) => ({
+      id: `preset-${String(target.name || 'target').toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${index + 1}`,
+      name: target.name,
+      markerId: null,
+    }));
+  });
+}
+
+function createPresetPhases(bossDefaults) {
+  const phaseCount = Number.isFinite(bossDefaults?.phaseCount)
+    ? bossDefaults.phaseCount
+    : (bossDefaults?.phases?.length || 1);
+
+  return Array.from({ length: Math.max(phaseCount, 1) }, (_, index) => ({
+    id: `preset-phase-${index + 1}`,
+    name: bossDefaults?.phases?.[index] || `Phase ${index + 1}`,
+    enabledBlocks: ['tanks', 'healers'],
+    tankAssignments: [],
+    healerAssignments: []
+  }));
+}
+
+function normalizeRaidAssignmentData(data) {
+  const next = JSON.parse(JSON.stringify(data || {}));
+  let changed = false;
+
+  Object.entries(DEFAULT_BOSS_ENCOUNTERS).forEach(([bossName, bossDefaults]) => {
+    const existingBoss = next?.[bossName];
+    if (!existingBoss || typeof existingBoss !== 'object') return;
+
+    const presetPhases = createPresetPhases(bossDefaults);
+    if (!Array.isArray(existingBoss.phases) || existingBoss.phases.length === 0) {
+      existingBoss.phases = presetPhases;
+      changed = true;
+    } else {
+      presetPhases.forEach((presetPhase, index) => {
+        const existingPhase = existingBoss.phases[index];
+        if (!existingPhase) {
+          existingBoss.phases.push(presetPhase);
+          changed = true;
+          return;
+        }
+
+        const currentName = String(existingPhase.name || '').trim();
+        const fallbackName = `Phase ${index + 1}`;
+        if (!currentName || currentName === fallbackName) {
+          existingPhase.name = presetPhase.name;
+          changed = true;
+        }
+      });
+    }
+
+    const presetTargets = createPresetTargets(bossDefaults?.targets || []);
+    if (!Array.isArray(existingBoss.targets) || existingBoss.targets.length === 0) {
+      existingBoss.targets = presetTargets;
+      changed = changed || presetTargets.length > 0;
+      return;
+    }
+
+    const existingTargetCounts = new Map();
+    existingBoss.targets.forEach((target) => {
+      const key = String(target?.name || '').trim().toLowerCase();
+      if (!key) return;
+      existingTargetCounts.set(key, (existingTargetCounts.get(key) || 0) + 1);
+    });
+
+    const requiredTargetCounts = new Map();
+    presetTargets.forEach((target) => {
+      const key = String(target?.name || '').trim().toLowerCase();
+      if (!key) return;
+      requiredTargetCounts.set(key, (requiredTargetCounts.get(key) || 0) + 1);
+    });
+
+    const missingTargets = [];
+    presetTargets.forEach((target) => {
+      const key = String(target?.name || '').trim().toLowerCase();
+      if (!key) return;
+
+      const currentCount = existingTargetCounts.get(key) || 0;
+      const neededCount = requiredTargetCounts.get(key) || 0;
+      const alreadyQueued = missingTargets.filter(candidate => String(candidate?.name || '').trim().toLowerCase() === key).length;
+
+      if (currentCount + alreadyQueued < neededCount) {
+        missingTargets.push(target);
+      }
+    });
+
+    if (missingTargets.length > 0) {
+      existingBoss.targets = [...existingBoss.targets, ...missingTargets];
+      changed = true;
+    }
+  });
+
+  return changed ? next : (data || {});
+}
 
 export default function useRaidAssignmentsData({
   fetchData,
@@ -90,7 +188,7 @@ export default function useRaidAssignmentsData({
           fetchData('raid-assignment-data'),
           fetchData('raid-assignment-config')
         ]);
-        if (!raidAssignmentDataDirty) setRaidAssignmentDataLocal(data);
+        if (!raidAssignmentDataDirty) setRaidAssignmentDataLocal(normalizeRaidAssignmentData(data));
         if (!enabledBossesDirty) setEnabledBossesLocal(config);
       } catch (e) {
         console.error('Failed to load raid assignments:', e);
@@ -218,6 +316,21 @@ export default function useRaidAssignmentsData({
     setEnabledBosses([...set]);
   };
 
+  const handleMoveEnabledBoss = (bossName, direction) => {
+    setEnabledBosses(prev => {
+      const current = Array.isArray(prev) ? [...prev] : [];
+      const index = current.indexOf(bossName);
+      if (index === -1) return current;
+
+      const nextIndex = index + direction;
+      if (nextIndex < 0 || nextIndex >= current.length) return current;
+
+      const [movedBoss] = current.splice(index, 1);
+      current.splice(nextIndex, 0, movedBoss);
+      return current;
+    });
+  };
+
   const handleAddCustomRaidBoss = (zoneName, bossName) => {
     const zone = String(zoneName || '').trim();
     const boss = String(bossName || '').trim();
@@ -279,6 +392,8 @@ export default function useRaidAssignmentsData({
     selectedRaidRestoreBosses,
     raidAssignmentData,
     enabledBosses,
+    raidZones,
+    customRaidGroups,
     raidAssignmentDataDirty,
     enabledBossesDirty,
     isSavingRaidAssignments,
@@ -291,6 +406,7 @@ export default function useRaidAssignmentsData({
     handleRestoreRaidAssignmentArchive,
     handleToggleZone,
     handleToggleBoss,
+    handleMoveEnabledBoss,
     handleAddCustomRaidBoss,
     handleRemoveCustomRaidBoss,
   };

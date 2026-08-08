@@ -9,13 +9,21 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
   const [rosterClaims, setRosterClaims] = useState([]);
 
   const handleLogin = async (password) => {
-    const token = await login(password);
-    if (token) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem('ar-auth-token', token);
-      sessionStorage.setItem('ar-auth', 'true');
-      return true;
+    try {
+      const token = await login(password);
+      if (token) {
+        setIsAuthenticated(true);
+        sessionStorage.setItem('ar-auth-token', token);
+        sessionStorage.setItem('ar-auth', 'true');
+        return true;
+      }
+    } catch (error) {
+      console.error('Officer login failed:', error);
     }
+
+    setIsAuthenticated(false);
+    sessionStorage.removeItem('ar-auth');
+    sessionStorage.removeItem('ar-auth-token');
     return false;
   };
 

@@ -20,9 +20,9 @@ function cleanText(value) {
 }
 
 function getBossOrder({ bossName, bossData, bossOrderMap, fallbackIndex }) {
-  const explicitOrder = bossData?.order ?? bossData?.__order ?? bossData?.exportOrder ?? bossOrderMap?.[bossName];
-  if (typeof explicitOrder === 'number' && Number.isFinite(explicitOrder)) {
-    return explicitOrder;
+  const order = bossOrderMap?.[bossName];
+  if (typeof order === 'number' && Number.isFinite(order)) {
+    return order;
   }
   return fallbackIndex;
 }
@@ -158,6 +158,30 @@ function buildBossExport({
               target: cleanText(item.target) || null
             }))
             .filter(item => item.playerName || item.target),
+          curses: (phase.curses || [])
+            .filter(item => item && (item.playerName || item.target))
+            .map(item => ({
+              id: item.id || null,
+              playerName: cleanText(item.playerName) || null,
+              target: cleanText(item.target) || null
+            }))
+            .filter(item => item.playerName || item.target),
+          sheep: (phase.sheep || [])
+            .filter(item => item && (item.playerName || item.target))
+            .map(item => ({
+              id: item.id || null,
+              playerName: cleanText(item.playerName) || null,
+              target: cleanText(item.target) || null
+            }))
+            .filter(item => item.playerName || item.target),
+          bops: (phase.bops || [])
+            .filter(item => item && (item.playerName || item.target))
+            .map(item => ({
+              id: item.id || null,
+              playerName: cleanText(item.playerName) || null,
+              target: cleanText(item.target) || null
+            }))
+            .filter(item => item.playerName || item.target),
           fearWards: (phase.fearWards || [])
             .filter(item => item && (item.priestName || item.targetName))
             .map(item => ({
@@ -201,9 +225,7 @@ export function buildRaidAssignmentsExport({
   exportTimestamp = new Date().toISOString()
 }) {
   const globalData = raidAssignmentData?.global || {};
-  const bossOrderMap = raidAssignmentData?.__bossOrder && typeof raidAssignmentData.__bossOrder === 'object'
-    ? raidAssignmentData.__bossOrder
-    : {};
+  const bossOrderMap = Object.fromEntries((enabledBosses || []).map((bossName, index) => [bossName, index]));
 
   const zones = (raidZones || [])
     .map(zone => {

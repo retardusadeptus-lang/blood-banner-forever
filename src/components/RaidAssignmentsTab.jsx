@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import {
   CURSE_TYPES, JUDGEMENT_TYPES,
-  RAID_GROUPS, RAID_WIDE_LABEL, BOSS_TARGET_ID, RAID_MARKERS
+  RAID_GROUPS, RAID_WIDE_LABEL, BOSS_TARGET_ID, RAID_MARKERS, DEFAULT_BOSS_ENCOUNTERS
 } from '../constants';
 import { buildRaidAssignmentsExport, serializeRaidAssignmentsExport } from '../services/raidAssignmentsExport.js';
+import { normalizeBossState } from '../utils/raidAssignmentState.js';
+import RaidAssignmentsBossCard from './RaidAssignmentsBossCard.jsx';
 
 // --- HELPER COMPONENTS ---
 
@@ -218,9 +220,39 @@ function BossSelector({ raidZones, enabledBosses, handleToggleZone, handleToggle
   );
 }
 
+function createDefaultBossState(boss, generateId) {
+  const bossDefaults = DEFAULT_BOSS_ENCOUNTERS[boss] || null;
+  const defaultTargets = (bossDefaults?.targets || []).flatMap((target) => {
+    return Array.from({ length: target.count || 1 }, () => ({
+      id: generateId(),
+      name: target.name,
+      markerId: null,
+    }));
+  });
+
+  const phaseCount = Number.isFinite(bossDefaults?.phaseCount) ? bossDefaults.phaseCount : (bossDefaults?.phases?.length || 1);
+  const defaultPhases = Array.from({ length: Math.max(phaseCount, 1) }, (_, index) => ({
+    id: generateId(),
+    name: bossDefaults?.phases?.[index] || `Phase ${index + 1}`,
+    enabledBlocks: ['tanks', 'healers'],
+    tankAssignments: [],
+    healerAssignments: []
+  }));
+
+  return {
+    targets: defaultTargets,
+    phases: defaultPhases,
+    hunterMDs: {},
+    judgements: {},
+    fearWards: [],
+    imageUrl: '',
+    bloodlustAt: ''
+  };
+}
+
 // --- MAIN CONTAINER COMPONENT ---
-export default function RaidAssignmentsTab({
-  isAuthenticated, roster, getSpecById, enabledBosses = [], raidZones = [], handleToggleZone, handleToggleBoss, customRaidGroups = [], handleAddCustomRaidBoss, handleRemoveCustomRaidBoss, raidAssignmentData, setRaidAssignmentData,
+const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
+  isAuthenticated, roster, getSpecById, enabledBosses = [], raidZones = [], handleToggleZone, handleToggleBoss, handleMoveEnabledBoss, customRaidGroups = [], handleAddCustomRaidBoss, handleRemoveCustomRaidBoss, raidAssignmentData, setRaidAssignmentData,
   hasUnsavedChanges, onSaveChanges, isSaving, myPlayerName, actorBattleTag = '', onCopyToArchive
 }) {
   const [showManageBosses, setShowManageBosses] = useState(false);
@@ -228,6 +260,7 @@ export default function RaidAssignmentsTab({
   const [newCustomBossName, setNewCustomBossName] = useState('');
   const [exportStatus, setExportStatus] = useState('');
   const [archiveBossSelection, setArchiveBossSelection] = useState('');
+  const defaultBossStatesRef = useRef({});
 
   const buildCurrentRaidAssignmentExport = () => buildRaidAssignmentsExport({
     raidAssignmentData,
@@ -339,25 +372,59 @@ export default function RaidAssignmentsTab({
     const timer = setTimeout(() => setExportStatus(''), 3000);
     return () => clearTimeout(timer);
   }, [exportStatus]);
-  const activeRaiders = roster.filter(p => p.in_raid);
-  const getPlayersByClass = (cls) => activeRaiders.filter(p => getSpecById(p.spec_id)?.class === cls);
-  const getPlayersByClasses = (classes) => activeRaiders.filter(p => classes.includes(getSpecById(p.spec_id)?.class));
-  const getPlayersBySpec = (specName) => activeRaiders.filter(p => getSpecById(p.spec_id)?.spec === specName);
+  const activeRaiders = useMemo(() => roster.filter(player => player.in_raid), [roster]);
+  const getPlayersByClass = useCallback((cls) => activeRaiders.filter(player => getSpecById(player.spec_id)?.class === cls), [activeRaiders, getSpecById]);
+  const getPlayersByClasses = useCallback((classes) => activeRaiders.filter(player => classes.includes(getSpecById(player.spec_id)?.class)), [activeRaiders, getSpecById]);
+  const getPlayersBySpec = useCallback((specName) => activeRaiders.filter(player => getSpecById(player.spec_id)?.spec === specName), [activeRaiders, getSpecById]);
 
-  const globalData = raidAssignmentData?.global || { tankSlots: [], healerSlots: [], sheep: [], banish: [] };
+  const globalData = useMemo(() => {
+    const baseGlobal = raidAssignmentData?.global || { tankSlots: [], healerSlots: [], soulstones: {}, sheep: [], banish: [], curses: [] };
+    let safeSoulstones = baseGlobal.soulstones;
+    if (Array.isArray(safeSoulstones)) safeSoulstones = {};
+    if (!safeSoulstones) safeSoulstones = {};
 
-  let safeSoulstones = globalData.soulstones;
-  if (Array.isArray(safeSoulstones)) safeSoulstones = {};
-  if (!safeSoulstones) safeSoulstones = {};
+    return {
+      ...baseGlobal,
+      tankSlots: Array.isArray(baseGlobal.tankSlots) ? [...baseGlobal.tankSlots] : [],
+      healerSlots: Array.isArray(baseGlobal.healerSlots) ? [...baseGlobal.healerSlots] : [],
+      soulstones: safeSoulstones,
+      sheep: Array.isArray(baseGlobal.sheep) ? [...baseGlobal.sheep] : [],
+      banish: Array.isArray(baseGlobal.banish) ? [...baseGlobal.banish] : [],
+      curses: Array.isArray(baseGlobal.curses) ? [...baseGlobal.curses] : [],
+    };
+  }, [raidAssignmentData?.global]);
 
-  const updateGlobal = (mutator) => {
+  const generateId = useCallback(() => Math.random().toString(36).substr(2, 9), []);
+  const getBossData = useCallback((bossName) => {
+    const existing = raidAssignmentData?.[bossName];
+    if (existing) return existing;
+
+    const cached = defaultBossStatesRef.current[bossName];
+    if (cached) return cached;
+
+    const created = createDefaultBossState(bossName, generateId);
+    defaultBossStatesRef.current[bossName] = created;
+    return created;
+  }, [generateId, raidAssignmentData]);
+
+  const updateGlobal = useCallback((mutator) => {
     if (!isAuthenticated) return;
-    const next = JSON.parse(JSON.stringify(raidAssignmentData || {}));
-    if (!next.global) next.global = { tankSlots: [], healerSlots: [], soulstones: {}, sheep: [], banish: [] };
-    if (Array.isArray(next.global.soulstones)) next.global.soulstones = {};
-    mutator(next.global);
-    setRaidAssignmentData(next);
-  };
+    setRaidAssignmentData((prev) => {
+      const next = { ...(prev || {}) };
+      const currentGlobal = next.global || { tankSlots: [], healerSlots: [], soulstones: {}, sheep: [], banish: [], curses: [] };
+      next.global = {
+        ...currentGlobal,
+        tankSlots: Array.isArray(currentGlobal.tankSlots) ? [...currentGlobal.tankSlots] : [],
+        healerSlots: Array.isArray(currentGlobal.healerSlots) ? [...currentGlobal.healerSlots] : [],
+        soulstones: Array.isArray(currentGlobal.soulstones) ? {} : { ...(currentGlobal.soulstones || {}) },
+        sheep: Array.isArray(currentGlobal.sheep) ? [...currentGlobal.sheep] : [],
+        banish: Array.isArray(currentGlobal.banish) ? [...currentGlobal.banish] : [],
+        curses: Array.isArray(currentGlobal.curses) ? [...currentGlobal.curses] : [],
+      };
+      mutator(next.global);
+      return next;
+    });
+  }, [isAuthenticated, setRaidAssignmentData]);
 
   const handleNuclearWipe = () => {
     if (!isAuthenticated) return;
@@ -366,25 +433,32 @@ export default function RaidAssignmentsTab({
     }
   };
 
-  const handleClearBoss = (bossName) => {
+  const handleClearBoss = useCallback((bossName) => {
     if (!isAuthenticated) return;
     if (window.confirm(`Are you sure you want to delete all tactics and assignments for ${bossName}?`)) {
-      const next = JSON.parse(JSON.stringify(raidAssignmentData || {}));
-      delete next[bossName]; // This completely removes the boss from the JSON
-      setRaidAssignmentData(next);
+      setRaidAssignmentData((prev) => {
+        const next = { ...(prev || {}) };
+        delete next[bossName];
+        return next;
+      });
     }
-  };
+  }, [isAuthenticated, setRaidAssignmentData]);
 
-  const updateBoss = (boss, mutator) => {
+  const updateBoss = useCallback((boss, mutator) => {
     if (!isAuthenticated) return;
-    const next = JSON.parse(JSON.stringify(raidAssignmentData || {}));
-    if (!next[boss]) next[boss] = { targets: [], phases: [], hunterMDs: {}, curses: {}, judgements: {}, fearWards: [], imageUrl: '', bloodlustAt: '' };
-    mutator(next[boss]);
-    setRaidAssignmentData(next);
-  };
+    setRaidAssignmentData((prev) => {
+      const next = { ...(prev || {}) };
+      const currentBoss = normalizeBossState(next[boss] || createDefaultBossState(boss, generateId), generateId);
+      next[boss] = JSON.parse(JSON.stringify(currentBoss));
+      mutator(next[boss]);
+      next[boss] = normalizeBossState(next[boss], generateId);
+      return next;
+    });
+  }, [generateId, isAuthenticated, setRaidAssignmentData]);
 
-  const generateId = () => Math.random().toString(36).substr(2, 9);
-  const orderedActiveBosses = raidZones.flatMap(z => z.bosses.filter(b => enabledBosses.includes(b)));
+  const knownBosses = useMemo(() => new Set(raidZones.flatMap(zone => zone.bosses)), [raidZones]);
+  const orderedActiveBosses = useMemo(() => enabledBosses.filter(boss => knownBosses.has(boss)), [enabledBosses, knownBosses]);
+  const bossZoneMap = useMemo(() => new Map(raidZones.flatMap(zone => zone.bosses.map(boss => [boss, zone.name]))), [raidZones]);
 
   // Shared receiver pool for Innervate & PI
   const manaReceivers = getPlayersByClasses(['Mage', 'Shaman', 'Druid', 'Priest', 'Warlock', 'Paladin']);
@@ -394,7 +468,8 @@ export default function RaidAssignmentsTab({
   const SECTION_LABELS = {
     interrupts: 'Interrupt', stuns: 'Stun', fears: 'Fear', banishes: 'Banish',
     purges: 'Purge', spellsteals: 'Spellsteal', innervates: 'Innervate',
-    powerInfusions: 'Power Infusion', dispels: 'Dispel'
+    powerInfusions: 'Power Infusion', dispels: 'Dispel', curses: 'Curse',
+    sheep: 'Sheep', bops: 'BoP'
   };
 
   const myAssignmentsSummary = React.useMemo(() => {
@@ -426,6 +501,11 @@ export default function RaidAssignmentsTab({
         }
       });
     });
+    (global.curses || []).forEach(item => {
+      if (item.casterName === myPlayerName) {
+        result.globalLines.push({ label: 'Curse', value: item.curseType || '—' });
+      }
+    });
 
     // Per boss
     orderedActiveBosses.forEach(boss => {
@@ -439,8 +519,6 @@ export default function RaidAssignmentsTab({
         const slot = tankSlots.find(s => s.id === bData.hunterMDs[myPlayerName]);
         bossLines.push({ label: 'Misdirect', value: `→ ${slot?.playerName || '?'}` });
       }
-      // Curse / Judgement
-      if (bData.curses?.[myPlayerName]) bossLines.push({ label: 'Curse', value: bData.curses[myPlayerName] });
       if (bData.judgements?.[myPlayerName]) bossLines.push({ label: 'Judgement', value: bData.judgements[myPlayerName] });
 
       // Phases
@@ -464,7 +542,7 @@ export default function RaidAssignmentsTab({
             if (item.playerName === myPlayerName) {
               phaseLines.push({ label: SECTION_LABELS[key], value: `→ ${item.target || '—'}` });
             }
-            if ((key === 'innervates' || key === 'powerInfusions') && item.target === myPlayerName) {
+            if ((key === 'innervates' || key === 'powerInfusions' || key === 'bops') && item.target === myPlayerName) {
               phaseLines.push({ label: `${SECTION_LABELS[key]} (receiving)`, value: `from ${item.playerName || '?'}` });
             }
           });
@@ -500,11 +578,13 @@ export default function RaidAssignmentsTab({
           >
             {isSaving ? 'Saving...' : !isAuthenticated ? 'Login to save' : hasUnsavedChanges ? 'Save Changes' : 'No Changes'}
           </button>
+          {/*
           {isAuthenticated && (
             <button onClick={handleNuclearWipe} className="text-xs font-bold text-red-500 hover:text-white hover:bg-red-600 px-3 py-2 rounded border border-red-900/50 transition">
               WIPE ALL DATA
             </button>
           )}
+          */}
           {/*
           <button
             type="button"
@@ -607,6 +687,43 @@ export default function RaidAssignmentsTab({
               ))}
             </div>
           )}
+
+          <div className="mt-4 border-t border-slate-800 pt-4 space-y-2">
+            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Selected Boss Order</h3>
+            {enabledBosses.length === 0 ? (
+              <p className="text-xs text-slate-500 italic">Select bosses first, then reorder them here. This order drives both the display and export sequence.</p>
+            ) : (
+              <div className="space-y-2">
+                {enabledBosses.map((boss, index) => (
+                  <div key={boss} className="flex items-center gap-3 rounded-lg border border-slate-800 bg-slate-900/70 px-3 py-2">
+                    <span className="w-6 text-[10px] font-bold text-slate-500">{index + 1}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm font-bold text-slate-200 truncate">{boss}</div>
+                      <div className="text-[10px] uppercase tracking-wider text-slate-500">{bossZoneMap.get(boss) || 'Custom'}</div>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => handleMoveEnabledBoss?.(boss, -1)}
+                        disabled={index === 0}
+                        className={`rounded border px-2 py-1 text-[10px] font-bold ${index === 0 ? 'border-slate-800 text-slate-600 cursor-not-allowed' : 'border-slate-700 text-amber-400 hover:border-amber-500'}`}
+                      >
+                        Up
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleMoveEnabledBoss?.(boss, 1)}
+                        disabled={index === enabledBosses.length - 1}
+                        className={`rounded border px-2 py-1 text-[10px] font-bold ${index === enabledBosses.length - 1 ? 'border-slate-800 text-slate-600 cursor-not-allowed' : 'border-slate-700 text-amber-400 hover:border-amber-500'}`}
+                      >
+                        Down
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       )}
 
@@ -766,30 +883,50 @@ export default function RaidAssignmentsTab({
         </div>
 
         {/* GLOBAL CONTROL CC BLOCKS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-          {['sheep', 'banish'].map(cc => {
-            const rows = Array.isArray(globalData[cc]) ? globalData[cc] : [];
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 pt-2">
+          {[
+            { key: 'sheep', title: 'Raid CC: sheep', casterClasses: ['Mage'], mode: 'marker' },
+            { key: 'banish', title: 'Raid CC: banish', casterClasses: ['Warlock'], mode: 'marker' },
+            { key: 'curses', title: 'Raid Curses', casterClasses: ['Warlock'], mode: 'curse' }
+          ].map(config => {
+            const rows = Array.isArray(globalData[config.key]) ? globalData[config.key] : [];
             return (
-              <div key={cc} className="bg-slate-900/40 p-4 rounded-lg border border-slate-800">
+              <div key={config.key} className="bg-slate-900/40 p-4 rounded-lg border border-slate-800">
                 <div className="flex justify-between items-center mb-3">
-                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Raid CC: {cc}</h4>
-                  {isAuthenticated && <button onClick={() => updateGlobal(g => { if (!Array.isArray(g[cc])) g[cc] = []; g[cc].push({ id: generateId(), casterName: null, markerId: null }); })} className="text-[10px] text-purple-400 font-bold">+ Add</button>}
+                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">{config.title}</h4>
+                  {isAuthenticated && <button onClick={() => updateGlobal(g => {
+                    if (!Array.isArray(g[config.key])) g[config.key] = [];
+                    g[config.key].push(config.mode === 'curse'
+                      ? { id: generateId(), casterName: null, curseType: '' }
+                      : { id: generateId(), casterName: null, markerId: null });
+                  })} className="text-[10px] text-purple-400 font-bold">+ Add</button>}
                 </div>
                 <div className="space-y-2">
                   {rows.map(item => (
                     <div key={item.id} className="flex items-center gap-2 group">
                       <div className="flex-1 min-w-0">
-                        <PlayerSelect value={item.casterName} onChange={val => updateGlobal(g => g[cc].find(x => x.id === item.id).casterName = val)} players={getPlayersByClasses(cc === 'sheep' ? ['Mage'] : ['Warlock'])} fullRoster={roster} getSpecById={getSpecById} disabled={!isAuthenticated} placeholder="— Caster —" />
+                        <PlayerSelect value={item.casterName} onChange={val => updateGlobal(g => g[config.key].find(x => x.id === item.id).casterName = val)} players={getPlayersByClasses(config.casterClasses)} fullRoster={roster} getSpecById={getSpecById} disabled={!isAuthenticated} placeholder="— Caster —" />
                       </div>
                       <span className="text-slate-600 text-xs">&rarr;</span>
-                      <div className="w-28 flex justify-end flex-shrink-0">
-                        {isAuthenticated ? (
-                          <MarkerSelect value={item.markerId} onChange={val => updateGlobal(g => g[cc].find(x => x.id === item.id).markerId = val)} disabled={!isAuthenticated} />
+                      {config.mode === 'curse' ? (
+                        isAuthenticated ? (
+                          <select className="w-32 bg-slate-950 text-white border border-slate-700 rounded px-1.5 py-1 text-xs focus:outline-none" value={item.curseType || ''} onChange={e => updateGlobal(g => g[config.key].find(x => x.id === item.id).curseType = e.target.value)}>
+                            <option value="">— Curse —</option>
+                            {CURSE_TYPES.map(curse => <option key={curse} value={curse}>{curse}</option>)}
+                          </select>
                         ) : (
-                          <MarkerBadge markerId={item.markerId} />
-                        )}
-                      </div>
-                      {isAuthenticated && <button onClick={() => updateGlobal(g => g[cc] = g[cc].filter(x => x.id !== item.id))} className="text-red-500 opacity-0 group-hover:opacity-100 font-bold px-1">✕</button>}
+                          <span className="w-32 text-xs font-bold text-slate-300 truncate text-right">{item.curseType || '—'}</span>
+                        )
+                      ) : (
+                        <div className="w-28 flex justify-end flex-shrink-0">
+                          {isAuthenticated ? (
+                            <MarkerSelect value={item.markerId} onChange={val => updateGlobal(g => g[config.key].find(x => x.id === item.id).markerId = val)} disabled={!isAuthenticated} />
+                          ) : (
+                            <MarkerBadge markerId={item.markerId} />
+                          )}
+                        </div>
+                      )}
+                      {isAuthenticated && <button onClick={() => updateGlobal(g => g[config.key] = g[config.key].filter(x => x.id !== item.id))} className="text-red-500 opacity-0 group-hover:opacity-100 font-bold px-1">✕</button>}
                     </div>
                   ))}
                 </div>
@@ -807,346 +944,31 @@ export default function RaidAssignmentsTab({
       ) : (
         <div className="space-y-6">
           {orderedActiveBosses.map(boss => {
-            const bData = raidAssignmentData?.[boss] || { targets: [], phases: [], hunterMDs: {}, curses: {}, judgements: {}, fearWards: [], imageUrl: '', bloodlustAt: '' };
-            const fullTargetList = [{ id: BOSS_TARGET_ID, name: boss }, ...(bData.targets || [])];
-
-            // Enrich the slot options with actual player spec and color data for the UI
-            const plainTanks = globalData.tankSlots.map((s, i) => {
-              const p = roster.find(player => player.name === s.playerName);
-              const spec = p ? getSpecById(p.spec_id) : null;
-              return { id: s.id, name: p?.name || `Tank ${i + 1}`, spec, color: spec?.color };
-            });
-            const plainHealers = globalData.healerSlots.map((s, i) => {
-              const p = roster.find(player => player.name === s.playerName);
-              const spec = p ? getSpecById(p.spec_id) : null;
-              return { id: s.id, name: p?.name || `Healer ${i + 1}`, spec, color: spec?.color };
-            });
-
+            const bossData = getBossData(boss);
             return (
-              <div key={boss} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-2xl p-5 space-y-6">
-
-                {/* BOSS HEADER */}
-                <div className="border-b border-slate-800 pb-3 flex flex-wrap items-center justify-between gap-4">
-                  <div className="flex items-baseline gap-4">
-                    <h3 className="text-xl font-bold text-purple-400 font-serif italic tracking-wide">{boss}</h3>
-                    {isAuthenticated && (
-                      <button onClick={() => handleClearBoss(boss)} className="text-[10px] font-bold text-red-500 uppercase hover:underline">
-                        Reset Boss
-                      </button>
-                    )}
-                  </div>
-                  <div className="flex items-center gap-2 flex-wrap bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Export Order:</span>
-                      {isAuthenticated ? (
-                        <input type="number" min="0" className="bg-slate-950 border border-slate-700 text-xs rounded px-2 py-1 text-amber-400 font-bold focus:outline-none w-20" value={bData.order ?? ''} onChange={e => updateBoss(boss, b => { const next = e.target.value === '' ? null : Number(e.target.value); b.order = next; })} />
-                      ) : <span className="text-xs text-amber-400 font-bold">{bData.order ?? '—'}</span>}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Bloodlust:</span>
-                      {isAuthenticated ? (
-                        <input type="text" className="bg-slate-950 border border-slate-700 text-xs rounded px-2 py-1 text-red-400 font-bold focus:outline-none w-48" placeholder="Pull, 20% phase 3..." value={bData.bloodlustAt || ''} onChange={e => updateBoss(boss, b => b.bloodlustAt = e.target.value)} />
-                      ) : <span className="text-xs text-red-400 font-bold">{bData.bloodlustAt || '—'}</span>}
-                    </div>
-                  </div>
-                </div>
-
-                {/* DYNAMIC SYNCED CLASS GRID LIST COLS */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                  {/* Hunters */}
-                  <div className="bg-slate-900/30 p-4 rounded-lg border border-slate-800">
-                    <h5 className="text-xs font-bold text-[#abd473] uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">Hunters (Misdirect)</h5>
-                    <div className="space-y-2">
-                      {getPlayersByClass('Hunter').map(h => {
-                        const hSpec = getSpecById(h.spec_id);
-                        return (
-                          <div key={h.id} className="flex items-center justify-between gap-2">
-                            <div className="flex items-center gap-1.5 w-24 flex-shrink-0">
-                              <SpecIcon spec={hSpec} className="w-3.5 h-3.5" />
-                              <span className="text-xs font-bold truncate" style={{ color: hSpec?.color || '#abd473' }}>{h.name}</span>
-                            </div>
-                            <SlotSelect disabled={!isAuthenticated} value={bData.hunterMDs?.[h.name] || ''} onChange={val => updateBoss(boss, b => { if (!b.hunterMDs) b.hunterMDs = {}; b.hunterMDs[h.name] = val; })} options={plainTanks} placeholder="— Tank —" />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Paladins */}
-                  <div className="bg-slate-900/30 p-4 rounded-lg border border-slate-800">
-                    <h5 className="text-xs font-bold text-[#f58cba] uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">Paladins (Judgements)</h5>
-                    <div className="space-y-2">
-                      {getPlayersByClass('Paladin').map(p => {
-                        const pSpec = getSpecById(p.spec_id);
-                        return (
-                          <div key={p.id} className="flex items-center justify-between gap-2">
-                            <div className="flex items-center gap-1.5 w-24 flex-shrink-0">
-                              <SpecIcon spec={pSpec} className="w-3.5 h-3.5" />
-                              <span className="text-xs font-bold truncate" style={{ color: pSpec?.color || '#f58cba' }}>{p.name}</span>
-                            </div>
-                            {isAuthenticated ? (
-                              <select className="flex-1 bg-slate-950 text-white border border-slate-700 rounded px-1.5 py-1 text-xs focus:outline-none" value={bData.judgements?.[p.name] || ''} onChange={e => updateBoss(boss, b => { if (!b.judgements) b.judgements = {}; b.judgements[p.name] = e.target.value; })}>
-                                <option value="">— Judgement —</option>
-                                {JUDGEMENT_TYPES.map(j => <option key={j} value={j}>{j}</option>)}
-                              </select>
-                            ) : (
-                              <span className="text-xs font-bold text-slate-300 flex-1 truncate">{bData.judgements?.[p.name] || '—'}</span>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Warlocks */}
-                  <div className="bg-slate-900/30 p-4 rounded-lg border border-slate-800">
-                    <h5 className="text-xs font-bold text-[#8788ee] uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">Warlocks (Curses)</h5>
-                    <div className="space-y-2">
-                      {getPlayersByClass('Warlock').map(w => {
-                        const wSpec = getSpecById(w.spec_id);
-                        return (
-                          <div key={w.id} className="flex items-center justify-between gap-2">
-                            <div className="flex items-center gap-1.5 w-24 flex-shrink-0">
-                              <SpecIcon spec={wSpec} className="w-3.5 h-3.5" />
-                              <span className="text-xs font-bold truncate" style={{ color: wSpec?.color || '#8788ee' }}>{w.name}</span>
-                            </div>
-                            {isAuthenticated ? (
-                              <select className="flex-1 bg-slate-950 text-white border border-slate-700 rounded px-1.5 py-1 text-xs focus:outline-none" value={bData.curses?.[w.name] || ''} onChange={e => updateBoss(boss, b => { if (!b.curses) b.curses = {}; b.curses[w.name] = e.target.value; })}>
-                                <option value="">— Curse —</option>
-                                {CURSE_TYPES.map(c => <option key={c} value={c}>{c}</option>)}
-                              </select>
-                            ) : (
-                              <span className="text-xs font-bold text-slate-300 flex-1 truncate">{bData.curses?.[w.name] || '—'}</span>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-
-                {/* MOB INJECTION MECHANICS BLOCK */}
-                <div className="bg-slate-900/30 p-4 rounded-lg border border-slate-800/80">
-                  <div className="flex justify-between items-center mb-3">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Encounter Targets</h4>
-                    {isAuthenticated && <button onClick={() => updateBoss(boss, b => b.targets.push({ id: generateId(), name: 'Spawned Add Name', markerId: null }))} className="text-[10px] text-purple-400 font-bold">+ Add Target Mob</button>}
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div className="flex items-center gap-2 bg-slate-950 p-2 rounded border border-slate-800">
-                      <span className="text-xs font-bold text-slate-300 flex-1">{boss} (Primary Boss)</span>
-                      <div className="w-28 flex justify-end flex-shrink-0">
-                        {isAuthenticated ? (
-                          <MarkerSelect value={bData.bossMarkerId} onChange={val => updateBoss(boss, b => b.bossMarkerId = val)} />
-                        ) : (
-                          <MarkerBadge markerId={bData.bossMarkerId} />
-                        )}
-                      </div>
-                    </div>
-                    {bData.targets?.map(mob => (
-                      <div key={mob.id} className="flex items-center gap-2 bg-slate-950 p-2 rounded border border-slate-800 group">
-                        {isAuthenticated ? <input type="text" className="flex-1 bg-slate-900 text-white border border-slate-700 rounded px-2 py-1 text-xs focus:outline-none" value={mob.name} onChange={e => updateBoss(boss, b => b.targets.find(t => t.id === mob.id).name = e.target.value)} /> : <span className="text-xs font-bold text-slate-300 flex-1 truncate">{mob.name}</span>}
-                        <div className="w-28 flex justify-end flex-shrink-0">
-                          {isAuthenticated ? (
-                            <MarkerSelect value={mob.markerId} onChange={val => updateBoss(boss, b => b.targets.find(t => t.id === mob.id).markerId = val)} />
-                          ) : (
-                            <MarkerBadge markerId={mob.markerId} />
-                          )}
-                        </div>
-                        {isAuthenticated && <button onClick={() => updateBoss(boss, b => b.targets = b.targets.filter(t => t.id !== mob.id))} className="text-red-500 font-bold px-1">✕</button>}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* PHASE COMPONENT MANAGER LAYOUT GRID */}
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center border-b border-slate-800 pb-2">
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Encounter Phases</h4>
-                    {isAuthenticated && <button onClick={() => updateBoss(boss, b => b.phases.push({
-                      id: generateId(),
-                      name: `Phase ${b.phases.length + 1}`,
-                      enabledBlocks: ['tanks', 'healers'],
-                      tankAssignments: globalData.tankSlots.map(t => ({ id: generateId(), tankSlotId: t.id, targetId: BOSS_TARGET_ID })),
-                      healerAssignments: globalData.healerSlots.map(h => ({ id: generateId(), healerSlotId: h.id, target: RAID_WIDE_LABEL }))
-                    }))} className="text-xs bg-purple-600 hover:bg-purple-500 text-white font-bold px-3 py-1.5 rounded shadow">+ New Phase</button>}
-                  </div>
-
-                  {bData.phases?.map(phase => {
-                    const activeBlocks = phase.enabledBlocks || ['tanks', 'healers'];
-
-                    const utilityConfigs = [
-                      { key: 'interrupts', title: 'Interrupts', casters: activeRaiders, targetType: 'combo' },
-                      { key: 'stuns', title: 'Stuns', casters: getPlayersByClasses(['Warrior', 'Paladin', 'Rogue', 'Hunter']), targetType: 'combo' },
-                      { key: 'fears', title: 'Fears', casters: getPlayersByClasses(['Warlock', 'Priest', 'Hunter']), targetType: 'combo' },
-                      { key: 'banishes', title: 'Banishes', casters: getPlayersByClasses(['Warlock']), targetType: 'combo' },
-                      { key: 'purges', title: 'Purges', casters: getPlayersByClasses(['Priest', 'Shaman', 'Hunter', 'Warlock']), targetType: 'combo' },
-                      { key: 'spellsteals', title: 'Spellsteals', casters: getPlayersByClasses(['Mage']), targetType: 'combo' },
-                      { key: 'innervates', title: 'Innervates', casters: getPlayersByClasses(['Druid']), targetType: 'player' },
-                      { key: 'dispels', title: 'Dispels / Decurses', casters: getPlayersByClasses(['Paladin', 'Priest', 'Shaman', 'Mage', 'Druid']), targetType: 'text' },
-                      { key: 'powerInfusions', title: 'Power Infusions', casters: getPlayersBySpec('Discipline Priest'), targetType: 'player' }
-                    ];
-
-                    return (
-                      <div key={phase.id} className="bg-slate-900/60 border border-slate-800 rounded-xl p-4 space-y-4">
-                        <div className="flex justify-between items-center border-b border-slate-800/60 pb-2 flex-wrap gap-3">
-                          {isAuthenticated ? <input type="text" className="bg-transparent text-amber-400 font-bold text-base focus:outline-none border-b border-slate-700 w-48" value={phase.name} onChange={e => updateBoss(boss, b => b.phases.find(p => p.id === phase.id).name = e.target.value)} /> : <h5 className="text-amber-400 font-bold text-base">{phase.name}</h5>}
-
-                          {/* DYNAMIC SECTION INJECTOR PANEL BUTTONS */}
-                          <div className="flex items-center gap-2 flex-wrap">
-                            {isAuthenticated && (
-                              <select className="bg-slate-950 text-purple-400 border border-slate-700 rounded px-2 py-1 text-xs font-semibold focus:outline-none" value="" onChange={e => {
-                                const sectionType = e.target.value;
-                                if (!sectionType) return;
-                                updateBoss(boss, b => {
-                                  const targetPhase = b.phases.find(p => p.id === phase.id);
-                                  if (!targetPhase.enabledBlocks) targetPhase.enabledBlocks = ['tanks', 'healers'];
-                                  if (!targetPhase.enabledBlocks.includes(sectionType)) {
-                                    targetPhase.enabledBlocks.push(sectionType);
-                                    if (!targetPhase[sectionType]) targetPhase[sectionType] = [];
-                                  }
-                                });
-                                e.target.value = "";
-                              }}>
-                                <option value="">+ Insert Module...</option>
-                                <option value="interrupts">Interrupts</option>
-                                <option value="stuns">Stuns</option>
-                                <option value="fears">Fears</option>
-                                <option value="banishes">Banishes</option>
-                                <option value="purges">Purges</option>
-                                <option value="spellsteals">Spellsteals</option>
-                                <option value="fearWards">Fear Wards</option>
-                                <option value="innervates">Innervates</option>
-                                <option value="dispels">Dispels / Decurses</option>
-                                <option value="powerInfusions">Power Infusions</option>
-                                <option value="notes">Phase Notes</option>
-                              </select>
-                            )}
-                            {isAuthenticated && <button onClick={() => updateBoss(boss, b => b.phases = b.phases.filter(p => p.id !== phase.id))} className="text-[10px] font-bold text-red-500 uppercase px-2 py-1 hover:bg-red-950/20 rounded">Delete Phase</button>}
-                          </div>
-                        </div>
-
-                        {/* MASTER GRID GENERATOR RENDER */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-
-                          {/* CORE TANKS BLOCK */}
-                          {activeBlocks.includes('tanks') && (
-                            <SectionWrapper title="Tank Targets" isAuthenticated={isAuthenticated} onAdd={() => updateBoss(boss, b => { const p = b.phases.find(x => x.id === phase.id); if (!p.tankAssignments) p.tankAssignments = []; p.tankAssignments.push({ id: generateId(), tankSlotId: '', targetId: BOSS_TARGET_ID }); })} hasItems={phase.tankAssignments?.length > 0} emptyText="No targets tanked yet.">
-                              {phase.tankAssignments?.map(ta => (
-                                <div key={ta.id} className="flex items-center gap-1">
-                                  <SlotSelect disabled={!isAuthenticated} value={ta.tankSlotId || ''} onChange={val => updateBoss(boss, b => b.phases.find(p => p.id === phase.id).tankAssignments.find(t => t.id === ta.id).tankSlotId = val)} options={plainTanks} placeholder="— Tank —" />
-                                  <span className="text-slate-600 text-xs">&rarr;</span>
-                                  {isAuthenticated ? (
-                                    <select className="flex-1 min-w-0 bg-slate-950 text-white border border-slate-700 rounded px-1.5 py-1 text-xs focus:outline-none" value={ta.targetId || ''} onChange={e => updateBoss(boss, b => b.phases.find(p => p.id === phase.id).tankAssignments.find(t => t.id === ta.id).targetId = e.target.value)}>
-                                      <option value="">— Target —</option>
-                                      {fullTargetList.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
-                                    </select>
-                                  ) : (
-                                    <span className="text-xs font-bold text-slate-300 flex-1 min-w-0 truncate">
-                                      {fullTargetList.find(t => t.id === ta.targetId)?.name || 'Unassigned'}
-                                    </span>
-                                  )}
-                                  {isAuthenticated && <button onClick={() => updateBoss(boss, b => { const p = b.phases.find(x => x.id === phase.id); p.tankAssignments = p.tankAssignments.filter(t => t.id !== ta.id); })} className="text-red-500 font-bold px-0.5">✕</button>}
-                                </div>
-                              ))}
-                            </SectionWrapper>
-                          )}
-
-                          {/* CORE HEALERS BLOCK */}
-                          {activeBlocks.includes('healers') && (
-                            <SectionWrapper title="Healer Targets" isAuthenticated={isAuthenticated} onAdd={() => updateBoss(boss, b => { const p = b.phases.find(x => x.id === phase.id); if (!p.healerAssignments) p.healerAssignments = []; p.healerAssignments.push({ id: generateId(), healerSlotId: '', target: RAID_WIDE_LABEL }); })} hasItems={phase.healerAssignments?.length > 0} emptyText="No assigned triage targets.">
-                              {phase.healerAssignments?.map(ha => (
-                                <div key={ha.id} className="flex items-center gap-1">
-                                  <SlotSelect disabled={!isAuthenticated} value={ha.healerSlotId || ''} onChange={val => updateBoss(boss, b => b.phases.find(p => p.id === phase.id).healerAssignments.find(h => h.id === ha.id).healerSlotId = val)} options={plainHealers} placeholder="— Healer —" />
-                                  <span className="text-slate-600 text-xs">&rarr;</span>
-                                  <ComboSelect disabled={!isAuthenticated} value={ha.target} onChange={val => updateBoss(boss, b => b.phases.find(p => p.id === phase.id).healerAssignments.find(h => h.id === ha.id).target = val)} options={[...plainTanks.map(t => t.name), RAID_WIDE_LABEL, ...RAID_GROUPS]} />
-                                  {isAuthenticated && <button onClick={() => updateBoss(boss, b => { const p = b.phases.find(x => x.id === phase.id); p.healerAssignments = p.healerAssignments.filter(h => h.id !== ha.id); })} className="text-red-500 font-bold px-0.5">✕</button>}
-                                </div>
-                              ))}
-                            </SectionWrapper>
-                          )}
-
-                          {/* DYNAMIC UTILITY ARRAY BLOCKS (INTERRUPTS, STUNS, PURGES, ETC) */}
-                          {utilityConfigs.map(cfg => {
-                            if (!activeBlocks.includes(cfg.key)) return null;
-                            const rows = phase[cfg.key] || [];
-                            return (
-                              <SectionWrapper key={cfg.key} title={cfg.title} isAuthenticated={isAuthenticated} onAdd={() => updateBoss(boss, b => { const p = b.phases.find(x => x.id === phase.id); if (!p[cfg.key]) p[cfg.key] = []; p[cfg.key].push({ id: generateId(), playerName: null, target: '' }); })} onRemoveSection={() => updateBoss(boss, b => { const p = b.phases.find(x => x.id === phase.id); p.enabledBlocks = p.enabledBlocks.filter(k => k !== cfg.key); delete p[cfg.key]; })} hasItems={rows.length > 0} emptyText="No active assignments.">
-                                {rows.map(item => (
-                                  <div key={item.id} className="flex items-center gap-1">
-                                    <PlayerSelect disabled={!isAuthenticated} value={item.playerName} onChange={val => updateBoss(boss, b => b.phases.find(p => p.id === phase.id)[cfg.key].find(x => x.id === item.id).playerName = val)} players={cfg.casters} fullRoster={roster} getSpecById={getSpecById} placeholder="— Player —" />
-                                    <span className="text-slate-600 text-xs">&rarr;</span>
-
-                                    {cfg.targetType === 'combo' && (
-                                      <ComboSelect disabled={!isAuthenticated} value={item.target} onChange={val => updateBoss(boss, b => b.phases.find(p => p.id === phase.id)[cfg.key].find(x => x.id === item.id).target = val)} options={fullTargetList.map(t => t.name)} placeholder="Target Details" />
-                                    )}
-                                    {cfg.targetType === 'player' && (
-                                      <PlayerSelect disabled={!isAuthenticated} value={item.target} onChange={val => updateBoss(boss, b => b.phases.find(p => p.id === phase.id)[cfg.key].find(x => x.id === item.id).target = val)} players={manaReceivers} fullRoster={roster} getSpecById={getSpecById} placeholder="— Receiver —" />
-                                    )}
-                                    {cfg.targetType === 'text' && (
-                                      isAuthenticated ? <input type="text" placeholder="Target / Note" className="flex-1 min-w-0 bg-slate-950 text-white border border-slate-700 rounded px-2 py-1.5 text-xs focus:outline-none" value={item.target || ''} onChange={e => updateBoss(boss, b => b.phases.find(p => p.id === phase.id)[cfg.key].find(x => x.id === item.id).target = e.target.value)} />
-                                        : <span className="text-xs font-bold text-slate-300 flex-1 min-w-0 truncate">{item.target || '—'}</span>
-                                    )}
-
-                                    {isAuthenticated && <button onClick={() => updateBoss(boss, b => { const p = b.phases.find(x => x.id === phase.id); p[cfg.key] = p[cfg.key].filter(x => x.id !== item.id); })} className="text-red-500 font-bold px-0.5">✕</button>}
-                                  </div>
-                                ))}
-                              </SectionWrapper>
-                            );
-                          })}
-
-                          {/* DYNAMIC FEAR WARDS SECTIONS */}
-                          {activeBlocks.includes('fearWards') && (
-                            <SectionWrapper title="Fear Wards" isAuthenticated={isAuthenticated} onAdd={() => updateBoss(boss, b => { const p = b.phases.find(x => x.id === phase.id); if (!p.fearWards) p.fearWards = []; p.fearWards.push({ id: generateId(), priestName: null, targetName: null }); })} onRemoveSection={() => updateBoss(boss, b => { const p = b.phases.find(x => x.id === phase.id); p.enabledBlocks = p.enabledBlocks.filter(k => k !== 'fearWards'); delete p.fearWards; })} hasItems={phase.fearWards?.length > 0} emptyText="No assigned fear wards.">
-                              {phase.fearWards?.map(fw => (
-                                <div key={fw.id} className="flex items-center gap-1">
-                                  <PlayerSelect disabled={!isAuthenticated} value={fw.priestName} onChange={val => updateBoss(boss, b => b.phases.find(p => p.id === phase.id).fearWards.find(x => x.id === fw.id).priestName = val)} players={getPlayersByClass('Priest')} fullRoster={roster} getSpecById={getSpecById} placeholder="— Priest —" />
-                                  <span className="text-slate-600 text-xs">&rarr;</span>
-                                  <PlayerSelect disabled={!isAuthenticated} value={fw.targetName} onChange={val => updateBoss(boss, b => b.phases.find(p => p.id === phase.id).fearWards.find(x => x.id === fw.id).targetName = val)} players={activeRaiders} fullRoster={roster} getSpecById={getSpecById} placeholder="— Target —" />
-                                  {isAuthenticated && <button onClick={() => updateBoss(boss, b => { const p = b.phases.find(x => x.id === phase.id); p.fearWards = p.fearWards.filter(x => x.id !== fw.id); })} className="text-red-500 font-bold px-0.5">✕</button>}
-                                </div>
-                              ))}
-                            </SectionWrapper>
-                          )}
-
-                          {/* DYNAMIC PHASE COMPONENT STRATEGIES TEXT PANEL */}
-                          {activeBlocks.includes('notes') && (
-                            <div className="bg-slate-900/40 p-4 rounded-lg border border-slate-800 col-span-full relative group">
-                              <div className="flex items-center justify-between mb-2 border-b border-slate-800 pb-1">
-                                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Notes</span>
-                                {isAuthenticated && <button onClick={() => updateBoss(boss, b => { const p = b.phases.find(x => x.id === phase.id); p.enabledBlocks = p.enabledBlocks.filter(k => k !== 'notes'); delete p.phaseNotes; })} className="text-[10px] text-red-500 font-bold uppercase">✕ Notes</button>}
-                              </div>
-                              {isAuthenticated ? (
-                                <textarea rows="3" placeholder="Enter custom positioning text, dynamic cooldown orders, or burn guidelines..." className="w-full bg-slate-950 text-slate-300 border border-slate-700 rounded p-2 text-xs focus:outline-none resize-none" value={phase.phaseNotes || ''} onChange={e => updateBoss(boss, b => b.phases.find(p => p.id === phase.id).phaseNotes = e.target.value)} />
-                              ) : (
-                                <p className="text-xs text-slate-300 whitespace-pre-wrap">{phase.phaseNotes || 'No tactics logged.'}</p>
-                              )}
-                            </div>
-                          )}
-
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* FULL WIDTH POSITIONING MAP DISPLAY SECTION */}
-                <div className="pt-4 border-t border-slate-900 space-y-2">
-                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Encounter Layout Positioning Reference Image</h4>
-                  {isAuthenticated && (
-                    <input type="text" placeholder="Paste full canvas layout picture reference web URL link directly..." className="w-full bg-slate-900 text-slate-300 border border-slate-700 rounded p-2 text-xs focus:outline-none focus:border-purple-500" value={bData.imageUrl || ''} onChange={e => updateBoss(boss, b => b.imageUrl = e.target.value)} />
-                  )}
-                  {bData.imageUrl ? (
-                    <div className="w-full rounded-xl overflow-hidden border border-slate-800 bg-slate-950 mt-2">
-                      <img src={bData.imageUrl} alt={`${boss} Tactical Matrix Layout Map Reference`} className="w-full h-auto object-contain max-h-[800px]" />
-                    </div>
-                  ) : <div className="text-xs text-slate-600 italic py-2">No custom tactics layout screenshot mapped via URL context references.</div>}
-                </div>
-
-              </div>
+              <RaidAssignmentsBossCard
+                key={boss}
+                boss={boss}
+                bData={bossData}
+                globalData={globalData}
+                roster={roster}
+                getSpecById={getSpecById}
+                getPlayersByClass={getPlayersByClass}
+                getPlayersByClasses={getPlayersByClasses}
+                getPlayersBySpec={getPlayersBySpec}
+                activeRaiders={activeRaiders}
+                manaReceivers={manaReceivers}
+                isAuthenticated={isAuthenticated}
+                updateBoss={updateBoss}
+                handleClearBoss={handleClearBoss}
+                generateId={generateId}
+              />
             );
           })}
         </div>
       )}
     </div>
   );
-}
+});
+
+export default RaidAssignmentsTab;

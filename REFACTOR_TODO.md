@@ -53,19 +53,19 @@
 - [ ] Centralize tab-to-route mapping so the shell only delegates to a single navigation object.
 
 ### B. Extract the app bootstrap and sync layer
-- [ ] Move the initial data bootstrap and periodic sync logic into a dedicated data-sync hook.
+- [x] Move the initial data bootstrap and periodic sync logic into a dedicated data-sync hook.
 - [ ] Isolate the auth/session bootstrap from the main shell so the top-level component mostly renders instead of coordinating lifecycle concerns.
 - [ ] Separate “load data” and “persist changes” concerns from the render tree.
 
 ### C. Extract remaining inline helpers from the shell
-- [ ] Move remaining helper functions such as score calculation, rank badge styling, item-link rendering, and item-opening handlers into utilities or focused hooks.
-- [ ] Move any remaining one-off handlers for overview/loot/roster interactions into feature-specific modules.
-- [ ] Replace inline helper constants and ad-hoc state logic with composable modules where appropriate.
+- [x] Move remaining helper functions such as score calculation, rank badge styling, item-link rendering, and item-opening handlers into utilities or focused hooks.
+- [x] Move any remaining one-off handlers for overview/loot/roster interactions into feature-specific modules.
+- [x] Replace inline helper constants and ad-hoc state logic with composable modules where appropriate.
 
 ### D. Split the main render tree into smaller view components
-- [ ] Extract the header and navigation section into a dedicated shell component.
-- [ ] Extract the main tab content router into a dedicated component that maps tab keys to feature containers.
-- [ ] Consider a small “content renderer” component so App.jsx mostly composes providers, state, and content routers.
+- [x] Extract the header and navigation section into a dedicated shell component.
+- [x] Extract the main tab content router into a dedicated component that maps tab keys to feature containers.
+- [x] Consider a small “content renderer” component so App.jsx mostly composes providers, state, and content routers.
 
 ### E. Reduce prop plumbing and cross-feature coupling
 - [ ] Review the remaining props passed into container components and reduce unnecessary prop drilling.

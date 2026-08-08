@@ -93,6 +93,33 @@ function normalizePhaseForDb(phase) {
   return value;
 }
 
+function waitForBusyRetry(delayMs) {
+  if (delayMs <= 0) return;
+  const buffer = new Int32Array(new SharedArrayBuffer(4));
+  Atomics.wait(buffer, 0, 0, delayMs);
+}
+
+function runWithBusyRetries(operation, { retries = 5, initialDelayMs = 250 } = {}) {
+  let lastError;
+  for (let attempt = 0; attempt < retries; attempt += 1) {
+    try {
+      return operation();
+    } catch (error) {
+      const isBusy = error?.code === 'SQLITE_BUSY' || error?.code === 'SQLITE_LOCKED';
+      if (!isBusy || attempt === retries - 1) {
+        throw error;
+      }
+
+      lastError = error;
+      const delayMs = initialDelayMs * (attempt + 1);
+      console.warn(`[DB] SQLite busy, retrying schema init in ${delayMs}ms (attempt ${attempt + 1}/${retries})`);
+      waitForBusyRetry(delayMs);
+    }
+  }
+
+  throw lastError;
+}
+
 function ensureBattleNetAuthSchema(db) {
   db.exec(`
     CREATE TABLE IF NOT EXISTS users (
@@ -629,15 +656,17 @@ function ensureDatabaseIndexes(db) {
 }
 
 function ensureDatabaseReady(db) {
-  ensureBattleNetAuthSchema(db);
-  ensureTierTokenSupport(db);
-  ensureOperationalTables(db);
-  ensureNormalizedOperationalTables(db);
-  ensureBankRequestSchema(db);
-  ensureOfficerRolesTable(db);
-  ensureDiscordBotConfigTable(db);
-  ensureRaidSignupTables(db);
-  ensureDatabaseIndexes(db);
+  runWithBusyRetries(() => {
+    ensureBattleNetAuthSchema(db);
+    ensureTierTokenSupport(db);
+    ensureOperationalTables(db);
+    ensureNormalizedOperationalTables(db);
+    ensureBankRequestSchema(db);
+    ensureOfficerRolesTable(db);
+    ensureDiscordBotConfigTable(db);
+    ensureRaidSignupTables(db);
+    ensureDatabaseIndexes(db);
+  });
 }
 
 module.exports = {

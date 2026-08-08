@@ -12,7 +12,9 @@ export default function useLootCouncilData({
   raidLogs,
   getDisplayFromId,
   getSpecById,
-  bisPriorities
+  bisPriorities,
+  selectedItemName,
+  setSelectedItemName
 }) {
   const [assignments, setAssignmentsLocal] = useState({});
   const [assignmentsDirty, setAssignmentsDirty] = useState(false);
@@ -22,7 +24,6 @@ export default function useLootCouncilData({
   const [filterBoss, setFilterBoss] = useState('');
   const [filterSlot, setFilterSlot] = useState('');
   const [filterCategory, setFilterCategory] = useState('');
-  const [selectedItemName, setSelectedItemName] = useState('');
   const [tokenRedemptionsByItemId, setTokenRedemptionsByItemId] = useState({});
 
   const setAssignmentsData = (newValOrUpdater, { dirty = true } = {}) => {
