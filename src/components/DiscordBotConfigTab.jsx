@@ -28,7 +28,8 @@ export default function DiscordBotConfigTab({
   specsByName,
   getDisplayFromId,
   scoringConfig,
-  setScoringConfig
+  setScoringConfig,
+  bnetAuthState
 }) {
   const updateRoleList = (field, rawText) => {
     setConfig(prev => ({
@@ -129,6 +130,37 @@ export default function DiscordBotConfigTab({
           />
           <p className="text-[11px] text-slate-500 mt-2">Controls access to /raid bench. Empty list means unrestricted.</p>
         </div>
+      </div>
+
+      <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+        <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Your Battle.net Profile</h3>
+        {bnetAuthState?.authenticated ? (
+          <div className="space-y-2">
+            <div className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2">
+              <p className="text-sm font-semibold text-cyan-300">Logged in as: {bnetAuthState.user?.battletag || 'Unknown'}</p>
+              <p className="text-xs text-slate-400 mt-1">Blizzard ID: {bnetAuthState.user?.blizzardId || 'N/A'}</p>
+            </div>
+            {Array.isArray(bnetAuthState.claimedCharacters) && bnetAuthState.claimedCharacters.length > 0 ? (
+              <div className="space-y-2">
+                <p className="text-xs text-slate-400">Your Claimed Roster Characters:</p>
+                {bnetAuthState.claimedCharacters.map(claim => {
+                  const rosterEntry = Array.isArray(roster) ? roster.find(player => Number(player.id) === Number(claim.rosterId)) : null;
+                  const specDisplay = rosterEntry ? getDisplayFromId?.(rosterEntry.spec_id) : null;
+                  const color = specsByName?.[specDisplay]?.color || '#e2e8f0';
+                  return (
+                    <div key={claim.rosterId} className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2">
+                      <p className="text-xs font-semibold text-slate-100" style={{ color }}>{claim.rosterName || `Character ${claim.rosterId}`}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="text-xs text-slate-400">No roster characters claimed yet. Use the Claim button to link your Battle.net account to a roster character.</p>
+            )}
+          </div>
+        ) : (
+          <p className="text-sm text-slate-500">Not logged in with Battle.net. Use the "Log in with Battle.net" button in the header.</p>
+        )}
       </div>
 
       <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">

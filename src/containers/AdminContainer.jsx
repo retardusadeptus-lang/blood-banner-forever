@@ -15,7 +15,8 @@ export default function AdminContainer({
   adminData,
   setScoringConfig,
   scoringConfig,
-  scoringConfigDirty
+  scoringConfigDirty,
+  bnetAuthState
 }) {
   const {
     officerRoles,
@@ -59,6 +60,7 @@ export default function AdminContainer({
             getDisplayFromId={getDisplayFromId}
             scoringConfig={scoringConfig}
             setScoringConfig={setScoringConfig}
+            bnetAuthState={bnetAuthState}
           />
         )}
         {adminSubTab === 'itemsdb' && (
@@ -97,6 +99,7 @@ export default function AdminContainer({
         getDisplayFromId={getDisplayFromId}
         scoringConfig={scoringConfig}
         setScoringConfig={setScoringConfig}
+        bnetAuthState={bnetAuthState}
       />
     );
   }

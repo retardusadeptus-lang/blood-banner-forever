@@ -453,6 +453,7 @@ export default function DashboardMainContent({ viewModel }) {
           setScoringConfig={setScoringConfig}
           scoringConfig={scoringConfig}
           scoringConfigDirty={scoringConfigDirty}
+          bnetAuthState={bnetAuthState}
         />
       )}
 
