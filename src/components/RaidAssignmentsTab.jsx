@@ -862,7 +862,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
                       </div>
                       <span className="text-slate-600 text-xs">&rarr;</span>
                       <PlayerSelect
-                        value={safeSoulstones[w.name] || null}
+                        value={globalData.soulstones[w.name] || null}
                         onChange={val => updateGlobal(g => {
                           if (!g.soulstones || Array.isArray(g.soulstones)) g.soulstones = {};
                           g.soulstones[w.name] = val;
