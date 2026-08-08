@@ -5,18 +5,6 @@ export default function BankRequestsTab({
   roster,
   specsByName,
   getDisplayFromId,
-  respondingRequestId,
-  setRespondingRequestId,
-  approveQuantity,
-  setApproveQuantity,
-  approvePrice,
-  setApprovePrice,
-  approveNote,
-  setApproveNote,
-  denyReason,
-  setDenyReason,
-  denyCustomReason,
-  setDenyCustomReason,
   handleResolveBankRequest,
   // NEW: implement this in the parent. It receives the array of resolved
   // items (with the same shape handleResolveBankRequest expects, plus the
@@ -33,6 +21,12 @@ export default function BankRequestsTab({
   const [bulkModalOpen, setBulkModalOpen] = useState(false);
   const [bulkItems, setBulkItems] = useState([]);
   const [selectedArchiveRequestIds, setSelectedArchiveRequestIds] = useState([]);
+  const [respondingRequestId, setRespondingRequestId] = useState(null);
+  const [approveQuantity, setApproveQuantity] = useState('');
+  const [approvePrice, setApprovePrice] = useState('');
+  const [approveNote, setApproveNote] = useState('');
+  const [denyReason, setDenyReason] = useState('');
+  const [denyCustomReason, setDenyCustomReason] = useState('');
 
   const denyReasonOptions = [
     'Item reserved for raid use',

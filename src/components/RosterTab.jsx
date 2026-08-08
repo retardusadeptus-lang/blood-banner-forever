@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function RosterTab({
   fetchData,
@@ -29,7 +29,6 @@ export default function RosterTab({
   onUpdateRaidHelperImportEntry,
   onApplyRaidHelperImport,
   onCancelRaidHelperImport,
-  specsByName,
   PlayerNameWithScore,
   hasUnsavedChanges,
   onSaveChanges,
@@ -67,7 +66,7 @@ export default function RosterTab({
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [fetchData, selectedSignupEventId]);
 
   const onImportRaidHelper = () => {
     const ok = handleImportRaidHelperJson(raidHelperJsonText);

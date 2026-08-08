@@ -8,6 +8,7 @@ test('buildRaidAssignmentsExport resolves references and normalizes the payload'
       tankSlots: [{ id: 'tank-1', playerName: 'Alice' }],
       healerSlots: [{ id: 'heal-1', playerName: 'Bob' }],
       soulstones: {},
+      curses: [],
       sheep: [],
       banish: []
     },
@@ -24,8 +25,11 @@ test('buildRaidAssignmentsExport resolves references and normalizes the payload'
         healerAssignments: [{ id: 'ha-1', healerSlotId: 'heal-1', target: 'Raid' }],
         interrupts: [{ id: 'int-1', playerName: null, target: '' }],
         powerInfusions: [{ id: 'pi-1', playerName: null, target: '' }],
+        curses: [{ id: 'curse-1', playerName: 'HunterX', target: 'Elements' }],
+        sheep: [{ id: 'sheep-1', playerName: 'HunterX', target: 'Coilfang Ambusher' }],
+        bops: [{ id: 'bop-1', playerName: 'Bob', target: 'Alice' }],
         fearWards: [{ id: 'fw-1', priestName: 'Priesty', targetName: 'Targety' }],
-        enabledBlocks: ['tanks', 'healers', 'powerInfusions']
+        enabledBlocks: ['tanks', 'healers', 'powerInfusions', 'curses', 'sheep', 'bops']
       }]
     }
   };
@@ -60,6 +64,9 @@ test('buildRaidAssignmentsExport resolves references and normalizes the payload'
   assert.equal(payload.zones[0].bosses[0].phases[0].tankAssignments[0].playerName, 'Alice');
   assert.equal(payload.zones[0].bosses[0].phases[0].healerAssignments[0].playerName, 'Bob');
   assert.deepEqual(payload.zones[0].bosses[0].phases[0].powerInfusions, []);
+  assert.equal(payload.zones[0].bosses[0].phases[0].curses[0].target, 'Elements');
+  assert.equal(payload.zones[0].bosses[0].phases[0].sheep[0].target, 'Coilfang Ambusher');
+  assert.equal(payload.zones[0].bosses[0].phases[0].bops[0].target, 'Alice');
   assert.equal(payload.zones[0].bosses[0].phases[0].fearWards[0].priestName, 'Priesty');
   assert.equal(payload.roster[0].spec_name, 'Protection Warrior');
   assert.ok(!('imageUrl' in payload.zones[0].bosses[0]));
