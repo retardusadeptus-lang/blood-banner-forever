@@ -21,7 +21,7 @@ if (!ADMIN_API_TOKEN) {
 
 const BNET_AUTHORIZE_URL = `https://${BNET_REGION}.battle.net/oauth/authorize`;
 const BNET_TOKEN_URL = `https://${BNET_REGION}.battle.net/oauth/token`;
-const BNET_USERINFO_URL = `https://${BNET_REGION}.api.blizzard.com/oauth/userinfo`;
+const BNET_USERINFO_URL = `https://${BNET_REGION}.battle.net/oauth/userinfo`;
 const BNET_API_BASE_URL = `https://${BNET_REGION}.api.blizzard.com`;
 
 const BNET_CONFIG = {
