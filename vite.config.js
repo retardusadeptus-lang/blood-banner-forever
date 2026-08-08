@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => {
     ],
     server: {
       port: 3000,
+      strictPort: false,
       // Forward /api to the backend so the frontend can use a same-origin relative
       // path in dev (matches the nginx proxy used in the Docker image).
       proxy: {
