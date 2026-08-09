@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { PHASE_JSON_KEYS } from '../constants';
 
 export default function useLootCouncilData({
@@ -26,7 +26,7 @@ export default function useLootCouncilData({
   const [filterCategory, setFilterCategory] = useState('');
   const [tokenRedemptionsByItemId, setTokenRedemptionsByItemId] = useState({});
 
-  const setAssignmentsData = (newValOrUpdater, { dirty = true } = {}) => {
+  const setAssignmentsData = useCallback((newValOrUpdater, { dirty = true } = {}) => {
     setAssignmentsLocal(prev => {
       const next = typeof newValOrUpdater === 'function' ? newValOrUpdater(prev) : newValOrUpdater;
       return next;
@@ -34,7 +34,7 @@ export default function useLootCouncilData({
     if (dirty) {
       setAssignmentsDirty(true);
     }
-  };
+  }, []);
 
   const normalizeAwardedPlayerIds = (assignmentData = {}) => {
     if (Array.isArray(assignmentData.awardedPlayerIds)) {

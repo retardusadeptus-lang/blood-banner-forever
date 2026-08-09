@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { PHASE_JSON_KEYS } from '../constants';
 
-const CORE_SYNC_INTERVAL_MS = 15000;
+const CORE_SYNC_INTERVAL_MS = 30000;
 
 export default function useDataSync({
   globalPhase,
@@ -18,7 +18,6 @@ export default function useDataSync({
   setPlayerStatsLocal,
   raidLogsDirty,
   setRaidLogsLocal,
-  mutableItemsDirty,
   setMutableItemsLocal,
   setMutableItemsBaseline,
   setIsDbConnected,
@@ -37,14 +36,13 @@ export default function useDataSync({
         const assignmentsDocName = globalPhase === 'T5' ? 't5' : phaseKey;
         const bisPrioritiesDocName = globalPhase === 'T5' ? 't5' : phaseKey;
 
-        const [rosterData, assignmentsData, bisData, configData, statsData, logsData, itemsData] = await Promise.all([
+        const [rosterData, assignmentsData, bisData, configData, statsData, logsData] = await Promise.all([
           fetchData('roster'),
           fetchData('assignments/' + assignmentsDocName),
           fetchData('bis-priorities/' + bisPrioritiesDocName),
           fetchData('scoring-config'),
           fetchData('player-stats'),
           fetchData('raid-logs'),
-          fetchData('mutable-items'),
         ]);
 
         if (!rosterDirty) setRosterLocal(rosterData);
@@ -56,10 +54,6 @@ export default function useDataSync({
         }
         if (!playerStatsDirty) setPlayerStatsLocal(statsData);
         if (!raidLogsDirty) setRaidLogsLocal(logsData);
-        if (!mutableItemsDirty) {
-          setMutableItemsLocal(itemsData);
-          setMutableItemsBaseline(itemsData);
-        }
         setIsDbConnected(true);
       } catch (e) {
         console.error('Failed to load data:', e);
@@ -78,18 +72,37 @@ export default function useDataSync({
     scoringConfigDirty,
     playerStatsDirty,
     raidLogsDirty,
-    mutableItemsDirty,
     fetchData,
     initializeDefaultBisPriorities,
     setAssignmentsData,
     setBisPrioritiesLocal,
     setIsDbConnected,
-    setMutableItemsBaseline,
-    setMutableItemsLocal,
     setPlayerStatsLocal,
     setRosterLocal,
     setScoringConfigLocal,
   ]);
+
+  // Mutable items are mostly reference data, so load them once on site startup.
+  useEffect(() => {
+    let mounted = true;
+
+    const loadMutableItemsOnce = async () => {
+      if (document.hidden) return;
+      try {
+        const itemsData = await fetchData('mutable-items');
+        if (!mounted) return;
+        setMutableItemsLocal(itemsData);
+        setMutableItemsBaseline(itemsData);
+      } catch (e) {
+        console.error('Failed to load mutable items:', e);
+      }
+    };
+
+    loadMutableItemsOnce();
+    return () => {
+      mounted = false;
+    };
+  }, [fetchData, setMutableItemsBaseline, setMutableItemsLocal]);
 
   // Separate sync for Master Items DB phase selector
   useEffect(() => {

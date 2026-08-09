@@ -191,6 +191,7 @@ export default function RaidSignupsTab({
     let mounted = true;
 
     const load = async () => {
+      if (document.hidden) return;
       try {
         const data = await fetchData('public-raid-signups');
         if (!mounted) return;

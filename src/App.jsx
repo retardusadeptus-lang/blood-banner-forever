@@ -448,10 +448,7 @@ export default function App() {
     setRosterLocal,
     assignmentsDirty,
     setAssignmentsData,
-    initializeDefaultBisPriorities: async (phase) => {
-      const phaseKey = PHASE_JSON_KEYS[phase];
-      return fetchData(`bis-defaults/${phaseKey}`);
-    },
+    initializeDefaultBisPriorities,
     setBisPrioritiesLocal,
     scoringConfigDirty,
     setScoringConfigLocal,

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { DEFAULT_BOSS_ENCOUNTERS, RAID_ZONES } from '../constants';
 
-const RAID_ASSIGNMENTS_SYNC_INTERVAL_MS = 15000;
+const RAID_ASSIGNMENTS_SYNC_INTERVAL_MS = 30000;
 
 function createPresetTargets(presetTargets = []) {
   return presetTargets.flatMap((target) => {
