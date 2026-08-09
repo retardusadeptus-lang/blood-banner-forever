@@ -1,9 +1,16 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useEffectEvent, useMemo, useState } from 'react';
 import { fetchData } from '../services/apiService';
 import { buildSpecsByName, getDisplayFromId, getSlugFromDisplay, getSpecById, sortSpecsByClass } from '../utils/specDataUtils';
 
 export default function useSpecData({ initialSpecId, initialSpecName, onSpecSelection }) {
   const [specsFromDb, setSpecsFromDb] = useState([]);
+  const selectInitialSpec = useEffectEvent((specs) => {
+    if (specs.length === 0 || !onSpecSelection) return;
+    onSpecSelection({
+      specId: initialSpecId ?? specs[0].id,
+      specName: initialSpecName ?? specs[0].spec
+    });
+  });
 
   const specsByName = useMemo(() => buildSpecsByName(specsFromDb), [specsFromDb]);
   const specsSortedByClass = useMemo(() => sortSpecsByClass(specsFromDb), [specsFromDb]);
@@ -13,23 +20,14 @@ export default function useSpecData({ initialSpecId, initialSpecName, onSpecSele
       try {
         const specs = await fetchData('specs');
         setSpecsFromDb(specs);
-        if (specs.length > 0) {
-          const fallbackSpecId = initialSpecId ?? specs[0].id;
-          const fallbackSpecName = initialSpecName ?? specs[0].spec;
-          if (onSpecSelection) {
-            onSpecSelection({
-              specId: fallbackSpecId,
-              specName: fallbackSpecName
-            });
-          }
-        }
+        selectInitialSpec(specs);
       } catch (error) {
         console.error('Failed to load specs:', error);
       }
     };
 
     loadSpecs();
-  }, [initialSpecId, initialSpecName, onSpecSelection]);
+  }, []);
 
   return {
     specsFromDb,
