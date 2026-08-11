@@ -34,3 +34,44 @@ body {
   margin-top: -4px !important;
   margin-left: -4px !important;
 }
+
+.bank-item-icon .iconlarge {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.bank-item-icon .iconlarge ins {
+  width: 80% !important;
+  height: 80% !important;
+  background-size: cover !important;
+  background-position: calc(50% - 0px) calc(50% - -1px) !important;
+  margin: 0 !important;
+}
+
+.bank-item-icon .iconlarge del {
+  display: none !important;
+}
+
+.bank-item-icon .iconlarge::before,
+.bank-item-icon .iconlarge::after {
+  content: none !important;
+  display: none !important;
+}
+
+.bank-item-icon .item-link {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.bank-item-icon .iconsmall,
+.bank-item-icon .iconmedium {
+  display: none !important;
+}

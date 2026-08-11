@@ -115,6 +115,7 @@ export default function App() {
     setRaidSignupsSubTab,
     lootSubTab,
     setLootSubTab,
+    recruitmentSubTab,
     adminSubTab,
     setAdminSubTab,
     resourcesSubTab,
@@ -480,12 +481,24 @@ export default function App() {
   }, [activeTab, filterBoss, filterZone, filterSlot, searchQuery, dbSearch, overviewSearch]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    let cancelled = false;
+    const refreshWowheadLinks = () => {
+      if (cancelled) return;
       if (window.$WowheadPower && window.$WowheadPower.refreshLinks) {
         window.$WowheadPower.refreshLinks();
       }
-    }, 300);
-    return () => clearTimeout(timer);
+    };
+
+    // Refresh immediately, then again after render/layout settles.
+    refreshWowheadLinks();
+    const raf = requestAnimationFrame(() => requestAnimationFrame(refreshWowheadLinks));
+    const timer = setTimeout(refreshWowheadLinks, 120);
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
   }, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, overviewSearch, selectedBisSpec]);
 
 
@@ -542,16 +555,6 @@ export default function App() {
     return items;
   }, [mutableItems, assignments, roster, overviewSearch]);
 
-  useEffect(() => {
-    if (activeTab !== 'overview') return;
-    const timer = setTimeout(() => {
-      if (window.$WowheadPower && window.$WowheadPower.refreshLinks) {
-        window.$WowheadPower.refreshLinks();
-      }
-    }, 800);
-    return () => clearTimeout(timer);
-  }, [filteredOverviewItems]);
-
   const PlayerNameWithScore = ({ player }) => {
     const specDisplay = getDisplayFromId(player.spec_id) || '?';
     return (
@@ -571,6 +574,7 @@ export default function App() {
     raidAssignmentsSubTab,
     raidSignupsSubTab,
     lootSubTab,
+    recruitmentSubTab,
     adminSubTab,
     resourcesSubTab,
     isAuthenticated,
