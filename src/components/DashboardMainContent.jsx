@@ -513,6 +513,9 @@ export default function DashboardMainContent({ viewModel }) {
           specsFromDb={specsFromDb}
           renderItemSlot={renderItemSlot}
           specsByName={specsByName}
+          fetchData={fetchData}
+          postData={postData}
+          canSubmitWeakauras={isAuthenticated}
         />
       )}
 

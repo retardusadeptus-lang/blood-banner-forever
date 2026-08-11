@@ -213,6 +213,7 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       if (subTab === 'config') return activeTab === 'discordBotConfig';
       if (subTab === 'itemsdb') return activeTab === 'itemsdb';
       if (subTab === 'todo') return activeTab === 'officerRoles' && adminSubTab === 'todo';
+      if (subTab === 'instructions') return activeTab === 'officerRoles' && adminSubTab === 'instructions';
       return false;
     }
 
@@ -259,6 +260,7 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       { value: 'officerRoles', label: 'Officer Roles', authOnly: true },
       { value: 'config', label: 'Config', authOnly: true },
       { value: 'itemsdb', label: 'Master Items DB', authOnly: true },
+      { value: 'instructions', label: 'Site Instructions', authOnly: true },
       { value: 'todo', label: 'To-do List', authOnly: true }
       ],
       resources: [
@@ -266,7 +268,6 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       { value: 'tactics', label: 'Tactics' },
       { value: 'weakauras', label: 'Weakauras' },
       { value: 'cheatsheets', label: 'Cheat Sheets' },
-      { value: 'instructions', label: 'Site Instructions' },
       { value: 'raidlogs', label: 'Raid Logs' },
       { value: 'wowaudit', label: 'WoWAudit' },
       { value: 'wipefest', label: 'Wipefest' }

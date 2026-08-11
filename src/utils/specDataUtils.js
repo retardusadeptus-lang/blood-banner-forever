@@ -23,10 +23,26 @@ export function getSlugFromDisplay(specsByName = {}, displayName) {
 }
 
 export function getDisplayFromId(specs = [], specId) {
-  const spec = specs.find((entry) => entry.id === specId);
+  const numericSpecId = Number(specId);
+  const hasNumericSpecId = Number.isFinite(numericSpecId);
+  const spec = specs.find((entry) => {
+    const entryNumericId = Number(entry?.id);
+    if (hasNumericSpecId && Number.isFinite(entryNumericId)) {
+      return entryNumericId === numericSpecId;
+    }
+    return String(entry?.id) === String(specId);
+  });
   return spec ? spec.spec : null;
 }
 
 export function getSpecById(specs = [], specId) {
-  return specs.find((entry) => entry.id === specId);
+  const numericSpecId = Number(specId);
+  const hasNumericSpecId = Number.isFinite(numericSpecId);
+  return specs.find((entry) => {
+    const entryNumericId = Number(entry?.id);
+    if (hasNumericSpecId && Number.isFinite(entryNumericId)) {
+      return entryNumericId === numericSpecId;
+    }
+    return String(entry?.id) === String(specId);
+  });
 }

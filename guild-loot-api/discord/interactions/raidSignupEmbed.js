@@ -4,9 +4,6 @@ const { parseScheduledUnix } = require('../../utils/raidSignupTime');
 const {
   getEventById,
   getAvailableClassesForEvent,
-  getEventClassFilter,
-  setEventClassFilter,
-  getAllowedSpecsByClass,
   getAllowedSpecsForEvent,
   listEntriesForEvent
 } = require('../utils/raidSignupStore');
@@ -77,15 +74,8 @@ async function refreshEventMessage(db, client, eventId) {
   if (!event || !event.discord_channel_id || !event.discord_message_id) return;
 
   const classes = getAvailableClassesForEvent(db, eventId);
-  const selectedFilter = getEventClassFilter(db, eventId)?.selected_class;
-  const selectedClass = classes.includes(selectedFilter) ? selectedFilter : (classes[0] || '');
-  if (selectedClass && selectedClass !== selectedFilter) {
-    setEventClassFilter(db, eventId, selectedClass);
-  }
-
-  const specs = selectedClass
-    ? getAllowedSpecsByClass(db, eventId, selectedClass)
-    : getAllowedSpecsForEvent(db, eventId);
+  const specs = getAllowedSpecsForEvent(db, eventId);
+  const selectedClass = '';
   const entries = listEntriesForEvent(db, eventId);
 
   const channel = await client.channels.fetch(event.discord_channel_id).catch(() => null);

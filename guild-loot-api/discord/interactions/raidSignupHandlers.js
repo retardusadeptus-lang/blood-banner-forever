@@ -1,13 +1,12 @@
 const {
   getEventById,
-  setEventClassFilter,
+  getAllowedSpecsByClass,
   getDraft,
   upsertDraft,
   upsertUserPreferredSpec,
   getUserPreferredSpec,
   upsertSignupEntry
 } = require('../utils/raidSignupStore');
-const { refreshEventMessage } = require('./raidSignupEmbed');
 
 async function handleSpecSelect(interaction, db, eventId) {
   const event = getEventById(db, eventId);
@@ -43,9 +42,30 @@ async function handleClassFilterSelect(interaction, db, eventId) {
     return true;
   }
 
-  setEventClassFilter(db, eventId, className);
-  await interaction.deferUpdate();
-  await refreshEventMessage(db, interaction.client, eventId);
+  const classSpecs = getAllowedSpecsByClass(db, eventId, className);
+  if (!classSpecs.length) {
+    await interaction.reply({ content: `No specs found for ${className}.`, ephemeral: true });
+    return true;
+  }
+
+  const currentDraft = getDraft(db, eventId, interaction.user.id);
+  const currentDraftSpec = Number(currentDraft?.spec_id || 0);
+  const preferredSpec = Number(getUserPreferredSpec(db, interaction.user.id)?.spec_id || 0);
+
+  const hasDraftInClass = classSpecs.some(spec => Number(spec.id) === currentDraftSpec);
+  const hasPreferredInClass = classSpecs.some(spec => Number(spec.id) === preferredSpec);
+  const nextSpecId = hasDraftInClass
+    ? currentDraftSpec
+    : (hasPreferredInClass ? preferredSpec : Number(classSpecs[0].id));
+
+  upsertDraft(db, eventId, interaction.user.id, nextSpecId);
+  upsertUserPreferredSpec(db, interaction.user.id, nextSpecId);
+
+  const selectedSpec = classSpecs.find(spec => Number(spec.id) === Number(nextSpecId));
+  await interaction.reply({
+    content: `Class set to ${className}. Draft spec is now ${selectedSpec?.spec || 'selected'}.`,
+    ephemeral: true
+  });
   return true;
 }
 

@@ -13,6 +13,7 @@ const buildRaidSignupRoutes = require('./routes/raidSignups');
 const buildAssignmentsRoutes = require('./routes/assignments');
 const buildMutableItemsRoutes = require('./routes/mutableItems');
 const buildRecruitmentPlanningRoutes = require('./routes/recruitmentPlanning');
+const buildWeakAuraRoutes = require('./routes/weakauras');
 
 function getGitCommitSha() {
   if (process.env.GIT_COMMIT) return String(process.env.GIT_COMMIT).trim();
@@ -65,6 +66,7 @@ function buildApp({ db, sessionSecret, bnetConfig, discordService, tokenRedempti
   app.use('/api', buildAssignmentsRoutes({ db }));
   app.use('/api', buildMutableItemsRoutes({ db }));
   app.use('/api', buildRecruitmentPlanningRoutes({ db }));
+  app.use('/api', buildWeakAuraRoutes({ db, sessionSecret }));
   app.use('/api', buildAdminRoutes({ db, configService, sessionSecret }));
   app.use('/api', buildRaidSignupRoutes({ db, sessionSecret }));
 

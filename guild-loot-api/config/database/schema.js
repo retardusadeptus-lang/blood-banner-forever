@@ -384,6 +384,21 @@ function ensureBattleNetUserRolesTable(db) {
   `).run();
 }
 
+function ensureWeakAurasTable(db) {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS weakauras (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      import_code TEXT,
+      wago_url TEXT,
+      access_password TEXT,
+      notes TEXT,
+      created_by TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+}
+
 function ensureDiscordBotConfigTable(db) {
   db.prepare(`
     CREATE TABLE IF NOT EXISTS discord_bot_config (
@@ -771,7 +786,8 @@ function ensureDatabaseIndexes(db) {
     'CREATE INDEX IF NOT EXISTS idx_raid_assignment_images_boss_created ON raid_assignment_images (boss_name, created_at)',
     'CREATE INDEX IF NOT EXISTS idx_raid_signup_absences_user_dates ON raid_signup_absences (user_id, start_date, end_date)',
     'CREATE INDEX IF NOT EXISTS idx_raid_signup_character_absences_roster_dates ON raid_signup_character_absences (roster_id, start_date, end_date)',
-    'CREATE INDEX IF NOT EXISTS idx_bnet_user_roles_role ON bnet_user_roles (role)'
+    'CREATE INDEX IF NOT EXISTS idx_bnet_user_roles_role ON bnet_user_roles (role)',
+    'CREATE INDEX IF NOT EXISTS idx_weakauras_created_at ON weakauras (created_at DESC)'
   ];
 
   statements.forEach(sql => db.prepare(sql).run());
@@ -786,6 +802,7 @@ function ensureDatabaseReady(db) {
     ensureBankRequestSchema(db);
     ensureOfficerRolesTable(db);
     ensureBattleNetUserRolesTable(db);
+    ensureWeakAurasTable(db);
     ensureDiscordBotConfigTable(db);
     ensureRecruitmentPlanningTable(db);
     ensureRaidSignupTables(db);

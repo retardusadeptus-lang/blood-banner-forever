@@ -28,10 +28,8 @@ async function postEvent(interaction, db) {
 
   const embed = buildSignupEmbed(event, [], interaction.guild || null);
   const classes = getAvailableClassesForEvent(db, event.id);
-  const selectedClass = classes[0] || '';
-  const specs = selectedClass
-    ? getAllowedSpecsForEvent(db, event.id).filter(spec => String(spec.class || '').toLowerCase() === String(selectedClass).toLowerCase())
-    : getAllowedSpecsForEvent(db, event.id);
+  const selectedClass = '';
+  const specs = getAllowedSpecsForEvent(db, event.id);
 
   const message = await interaction.channel.send({
     embeds: [embed],

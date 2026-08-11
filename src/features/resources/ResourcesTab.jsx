@@ -1,4 +1,5 @@
 import BisConfigTab from '../../components/BisConfigTab';
+import WeakaurasTab from './WeakaurasTab';
 
 export default function ResourcesTab({
   resourcesSubTab,
@@ -8,7 +9,10 @@ export default function ResourcesTab({
   setMasterItemsDbPhase,
   specsFromDb,
   renderItemSlot,
-  specsByName
+  specsByName,
+  fetchData,
+  postData,
+  canSubmitWeakauras
 }) {
   return (
     <div className="space-y-4">
@@ -36,11 +40,11 @@ export default function ResourcesTab({
       )}
 
       {resourcesSubTab === 'weakauras' && (
-        <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
-          <h3 className="text-lg font-bold text-slate-100">Weakauras</h3>
-          <p className="text-sm text-slate-400">A place to keep the relevant aura packs, alert setups, and role-specific reminders handy.</p>
-          <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-400">Add links and notes here when your raid team wants a shared aura library for each encounter.</div>
-        </div>
+        <WeakaurasTab
+          fetchData={fetchData}
+          postData={postData}
+          canSubmit={canSubmitWeakauras}
+        />
       )}
 
       {resourcesSubTab === 'cheatsheets' && (
@@ -51,14 +55,6 @@ export default function ResourcesTab({
             <div className="rounded-lg border border-slate-800 bg-slate-900 p-4"><div className="text-sm font-semibold text-amber-400">Raid prep</div><div className="mt-2 text-sm text-slate-400">Check open signup events, verify roster attendance, and use the active phase planner before each raid.</div></div>
             <div className="rounded-lg border border-slate-800 bg-slate-900 p-4"><div className="text-sm font-semibold text-amber-400">Bank workflow</div><div className="mt-2 text-sm text-slate-400">Use the main bank tab for browsing the vault, then switch to Requests or Update to manage officer workflows.</div></div>
           </div>
-        </div>
-      )}
-
-      {resourcesSubTab === 'instructions' && (
-        <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
-          <h3 className="text-lg font-bold text-slate-100">Site Instructions</h3>
-          <p className="text-sm text-slate-400">A quick guide for how to use the dashboard sections, from bank uploads to raid signup publishing.</p>
-          <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-400 break-words">Start in the bank contents page, move to requests when you are reviewing approvals, then use raid signups and assignments for operation prep.</div>
         </div>
       )}
 

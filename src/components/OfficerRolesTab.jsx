@@ -99,6 +99,11 @@ export default function OfficerRolesTab({
     return backups[index] || '';
   };
 
+  const isMine = (playerId) => {
+    if (!minePlayerId || !playerId) return false;
+    return Number(playerId) === Number(minePlayerId);
+  };
+
   const assignedBnetUserIds = useMemo(() => {
     return new Set((bnetAccessRoles || []).map(item => Number(item.user_id)).filter(Boolean));
   }, [bnetAccessRoles]);
@@ -271,9 +276,17 @@ export default function OfficerRolesTab({
             const backups = Array.isArray(role.backup_officer_ids) ? role.backup_officer_ids : [];
             const backup1 = getBackupValue(role, 0);
             const backup2 = getBackupValue(role, 1);
+            const highlightMine = showMineOnly && minePlayerId;
+            const isPrimaryMine = isMine(role.primary_officer_id);
+            const isBackup1Mine = isMine(backup1);
+            const isBackup2Mine = isMine(backup2);
+            const isRoleMine = isPrimaryMine || isBackup1Mine || isBackup2Mine;
 
             return (
-              <div key={role.id} className="grid grid-cols-1 xl:grid-cols-4 gap-3 p-3 rounded-xl border border-slate-800 bg-slate-950">
+              <div
+                key={role.id}
+                className={`grid grid-cols-1 xl:grid-cols-4 gap-3 p-3 rounded-xl border bg-slate-950 transition ${highlightMine && isRoleMine ? 'border-sky-500/70 shadow-[0_0_0_1px_rgba(14,165,233,0.35)]' : 'border-slate-800'}`}
+              >
                 <div>
                   <label className="xl:hidden block text-[10px] text-slate-500 uppercase font-bold mb-1">Role</label>
                   <div className="flex items-center gap-2">
@@ -293,12 +306,15 @@ export default function OfficerRolesTab({
                   </div>
                 </div>
 
-                <div>
+                <div className={highlightMine && isPrimaryMine ? 'rounded-lg border border-sky-500/70 bg-sky-950/25 p-2' : ''}>
                   <label className="xl:hidden block text-[10px] text-slate-500 uppercase font-bold mb-1">Primary Officer</label>
+                  {highlightMine && isPrimaryMine && (
+                    <div className="text-[10px] uppercase tracking-wider font-bold text-sky-300 mb-1">You</div>
+                  )}
                   <select
                     value={role.primary_officer_id || ''}
                     onChange={e => updatePrimaryOfficer(role.id, e.target.value ? Number(e.target.value) : null)}
-                    className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
+                    className={`w-full bg-slate-900 text-white border rounded px-3 py-2 text-sm focus:outline-none ${highlightMine && isPrimaryMine ? 'border-sky-400 focus:border-sky-300' : 'border-slate-700'}`}
                   >
                     <option value="">-- Select Primary --</option>
                     {roster.map(player => {
@@ -308,12 +324,15 @@ export default function OfficerRolesTab({
                   </select>
                 </div>
 
-                <div>
+                <div className={highlightMine && isBackup1Mine ? 'rounded-lg border border-sky-500/70 bg-sky-950/25 p-2' : ''}>
                   <label className="xl:hidden block text-[10px] text-slate-500 uppercase font-bold mb-1">Backup 1</label>
+                  {highlightMine && isBackup1Mine && (
+                    <div className="text-[10px] uppercase tracking-wider font-bold text-sky-300 mb-1">You</div>
+                  )}
                   <select
                     value={backup1}
                     onChange={e => setBackupAtIndex(role.id, 0, e.target.value ? Number(e.target.value) : null)}
-                    className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
+                    className={`w-full bg-slate-900 text-white border rounded px-3 py-2 text-sm focus:outline-none ${highlightMine && isBackup1Mine ? 'border-sky-400 focus:border-sky-300' : 'border-slate-700'}`}
                   >
                     <option value="">-- Select Backup --</option>
                     {roster
@@ -325,12 +344,15 @@ export default function OfficerRolesTab({
                   </select>
                 </div>
 
-                <div>
+                <div className={highlightMine && isBackup2Mine ? 'rounded-lg border border-sky-500/70 bg-sky-950/25 p-2' : ''}>
                   <label className="xl:hidden block text-[10px] text-slate-500 uppercase font-bold mb-1">Backup 2</label>
+                  {highlightMine && isBackup2Mine && (
+                    <div className="text-[10px] uppercase tracking-wider font-bold text-sky-300 mb-1">You</div>
+                  )}
                   <select
                     value={backup2}
                     onChange={e => setBackupAtIndex(role.id, 1, e.target.value ? Number(e.target.value) : null)}
-                    className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
+                    className={`w-full bg-slate-900 text-white border rounded px-3 py-2 text-sm focus:outline-none ${highlightMine && isBackup2Mine ? 'border-sky-400 focus:border-sky-300' : 'border-slate-700'}`}
                   >
                     <option value="">-- Select Backup --</option>
                     {roster

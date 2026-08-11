@@ -1,4 +1,5 @@
 import AdminTodoTab from '../features/admin/AdminTodoTab';
+import SiteInstructionsAdminTab from '../features/admin/SiteInstructionsAdminTab';
 import OfficerRolesTab from '../components/OfficerRolesTab';
 import DiscordBotConfigTab from '../components/DiscordBotConfigTab';
 
@@ -93,6 +94,9 @@ export default function AdminContainer({
             onRemoveTodoItem={adminData.handleRemoveTodoItem}
             onSaveTodoItems={adminData.handleSaveTodoItems}
           />
+        )}
+        {adminSubTab === 'instructions' && (
+          <SiteInstructionsAdminTab />
         )}
       </div>
     );
