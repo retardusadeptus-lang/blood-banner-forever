@@ -51,8 +51,36 @@ export default function useDashboardHelpers({
     }
 
     try {
-      const event = await fetchData(`raid-signup-events/${numericEventId}`);
-      const groups = Array.isArray(event?.groups) ? event.groups : [];
+      let event = null;
+      let groups = [];
+
+      try {
+        event = await fetchData(`raid-signup-events/${numericEventId}`);
+        groups = Array.isArray(event?.groups) ? event.groups : [];
+      } catch (eventError) {
+        console.warn('Failed to fetch raid-signup-events/:id for attendance import, falling back to groups endpoint', eventError);
+      }
+
+      if (groups.length === 0) {
+        try {
+          const fallbackGroups = await fetchData(`raid-signup-groups/${numericEventId}`);
+          groups = Array.isArray(fallbackGroups) ? fallbackGroups : [];
+        } catch (groupError) {
+          console.warn('Failed to fetch fallback raid-signup-groups/:eventId for attendance import', groupError);
+        }
+      }
+
+      if (!event) {
+        try {
+          const allEvents = await fetchData('raid-signup-events');
+          if (Array.isArray(allEvents)) {
+            event = allEvents.find(candidate => Number(candidate?.id) === numericEventId) || null;
+          }
+        } catch (listError) {
+          console.warn('Failed to fetch raid-signup-events list for attendance import metadata fallback', listError);
+        }
+      }
+
       const groupedNames = [...new Set(
         groups
           .map(row => String(row?.player_name || '').trim())
@@ -115,8 +143,9 @@ export default function useDashboardHelpers({
 
       alert(msg);
       return true;
-    } catch {
-      alert('Failed to import attendees from raid signup event.');
+    } catch (error) {
+      const detail = error?.message ? `\n${error.message}` : '';
+      alert(`Failed to import attendees from raid signup event.${detail}`);
       return false;
     }
   }, [fetchData, normalizeRaidHelperToken, parseRaidSignupDate, roster, setRoster, setRaidLogs, setNewRaidDate, setNewRaidZone, raidLogs]);

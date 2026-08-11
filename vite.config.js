@@ -3,9 +3,9 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig(({ mode }) => {
-  // Load .env so the dev proxy targets whatever port the backend uses (PORT).
+  // Load .env so the dev proxy targets whatever port the backend uses (API_PORT preferred).
   const env = loadEnv(mode, process.cwd(), '')
-  const apiPort = env.PORT || '4000'
+  const apiPort = env.API_PORT || env.PORT || '4000'
 
   return {
     plugins: [

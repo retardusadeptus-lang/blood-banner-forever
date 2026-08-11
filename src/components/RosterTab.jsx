@@ -1,16 +1,43 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+
+const UNKNOWN_ICON = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg';
+const SPEC_ICON_FALLBACKS = {
+  'Prot Warrior': 'https://wow.zamimg.com/images/wow/icons/large/inv_shield_06.jpg',
+  'Arms Warrior': 'https://wow.zamimg.com/images/wow/icons/large/ability_warrior_savageblow.jpg',
+  'Fury Warrior': 'https://wow.zamimg.com/images/wow/icons/large/ability_warrior_innerrage.jpg',
+  'Prot Paladin': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_devotionaura.jpg',
+  'Holy Paladin': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_holybolt.jpg',
+  'Ret Paladin': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_auraoflight.jpg',
+  'BM Hunter': 'https://wow.zamimg.com/images/wow/icons/large/ability_hunter_beasttaming.jpg',
+  'MM Hunter': 'https://wow.zamimg.com/images/wow/icons/large/ability_marksmanship.jpg',
+  'Survival Hunter': 'https://wow.zamimg.com/images/wow/icons/large/ability_hunter_swiftstrike.jpg',
+  'Elemental Shaman': 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg',
+  'Enhance Shaman': 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightningshield.jpg',
+  'Resto Shaman': 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_magicimmunity.jpg',
+  'Balance Druid': 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_starfall.jpg',
+  'Feral (Tank)': 'https://wow.zamimg.com/images/wow/icons/large/ability_racial_bearform.jpg',
+  'Feral (DPS)': 'https://wow.zamimg.com/images/wow/icons/large/ability_druid_catform.jpg',
+  'Resto Druid': 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_healingtouch.jpg',
+  'Combat Rogue': 'https://wow.zamimg.com/images/wow/icons/large/ability_backstab.jpg',
+  'Subtlety Rogue': 'https://wow.zamimg.com/images/wow/icons/large/ability_stealth.jpg',
+  'Assassination Rogue': 'https://wow.zamimg.com/images/wow/icons/large/ability_rogue_eviscerate.jpg',
+  'Holy Priest': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_guardianspirit.jpg',
+  'Discipline Priest': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_wordfortitude.jpg',
+  'Shadow Priest': 'https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowwordpain.jpg',
+  'Arcane Mage': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_magicalsentry.jpg',
+  'Fire Mage': 'https://wow.zamimg.com/images/wow/icons/large/spell_fire_firebolt02.jpg',
+  'Frost Mage': 'https://wow.zamimg.com/images/wow/icons/large/spell_frost_frostbolt02.jpg',
+  'Destro Warlock': 'https://wow.zamimg.com/images/wow/icons/large/spell_shadow_rainoffire.jpg',
+  'Demo Warlock': 'https://wow.zamimg.com/images/wow/icons/large/spell_shadow_metamorphosis.jpg',
+  'Affliction Warlock': 'https://wow.zamimg.com/images/wow/icons/large/spell_shadow_deathcoil.jpg'
+};
+
+function getSpecIcon(specData) {
+  if (!specData) return UNKNOWN_ICON;
+  return specData.icon_large || specData.icon_medium || specData.icon_small || SPEC_ICON_FALLBACKS[specData.spec] || UNKNOWN_ICON;
+}
 
 export default function RosterTab({
-  fetchData,
-  handleSaveRaidLog,
-  handleApplyRaidSignupGroupsToAttendance,
-  handleImportRaidHelperJson,
-  newRaidDate,
-  setNewRaidDate,
-  newRaidZone,
-  setNewRaidZone,
-  raidLogs,
-  handleDeleteRaidLog,
   handleAddPlayer,
   newName,
   setNewName,
@@ -25,63 +52,15 @@ export default function RosterTab({
   handleRemovePlayer,
   importedRaidHelperPlayerIds,
   importedRaidHelperSpecConflictIds,
-  raidHelperImportSession,
-  onUpdateRaidHelperImportEntry,
-  onApplyRaidHelperImport,
-  onCancelRaidHelperImport,
   PlayerNameWithScore,
   hasUnsavedChanges,
   onSaveChanges,
   isSaving
 }) {
-  const [expandedLog, setExpandedLog] = useState(null);
   const [editingPlayer, setEditingPlayer] = useState(null);
-  const [raidHelperJsonText, setRaidHelperJsonText] = useState('');
-  const [raidSignupEvents, setRaidSignupEvents] = useState([]);
-  const [selectedSignupEventId, setSelectedSignupEventId] = useState('');
-  const [isApplyingSignupEvent, setIsApplyingSignupEvent] = useState(false);
 
   const importedIds = useMemo(() => new Set((importedRaidHelperPlayerIds || []).map(Number)), [importedRaidHelperPlayerIds]);
   const conflictIds = useMemo(() => new Set((importedRaidHelperSpecConflictIds || []).map(Number)), [importedRaidHelperSpecConflictIds]);
-  const specClasses = useMemo(() => [...new Set(specsFromDb.map(spec => spec.class))].sort((a, b) => a.localeCompare(b)), [specsFromDb]);
-
-  useEffect(() => {
-    let mounted = true;
-
-    const loadSignupEvents = async () => {
-      try {
-        const events = await fetchData('raid-signup-events');
-        if (!mounted) return;
-        const filtered = (Array.isArray(events) ? events : []).filter(event => String(event.status || '').toLowerCase() !== 'archived');
-        setRaidSignupEvents(filtered);
-        if (!selectedSignupEventId && filtered.length > 0) {
-          setSelectedSignupEventId(String(filtered[0].id));
-        }
-      } catch (e) {
-        console.error('Failed to load raid signup events for roster attendance import', e);
-      }
-    };
-
-    loadSignupEvents();
-    return () => {
-      mounted = false;
-    };
-  }, [fetchData, selectedSignupEventId]);
-
-  const onImportRaidHelper = () => {
-    const ok = handleImportRaidHelperJson(raidHelperJsonText);
-    if (ok) setRaidHelperJsonText('');
-  };
-
-  const onApplySignupAttendance = async () => {
-    if (!selectedSignupEventId) return;
-    setIsApplyingSignupEvent(true);
-    try {
-      await handleApplyRaidSignupGroupsToAttendance(selectedSignupEventId);
-    } finally {
-      setIsApplyingSignupEvent(false);
-    }
-  };
 
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
@@ -95,98 +74,6 @@ export default function RosterTab({
           >
             {isSaving ? 'Saving...' : hasUnsavedChanges ? 'Save Changes' : 'No Changes'}
           </button>
-        </div>
-      </div>
-
-      <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner mb-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        {/* Raid Logging Panel */}
-        <div>
-          <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Log Current Raid</h3>
-          <form onSubmit={handleSaveRaidLog} className="flex flex-col gap-3">
-            <div className="flex gap-3">
-              <div className="flex-1">
-                <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Date</label>
-                <input type="date" required className="w-full bg-slate-900 text-white border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none" value={newRaidDate} onChange={e => setNewRaidDate(e.target.value)} />
-              </div>
-              <div className="flex-1">
-                <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Zone</label>
-                <input type="text" required placeholder="e.g. SSC" className="w-full bg-slate-900 text-white border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none" value={newRaidZone} onChange={e => setNewRaidZone(e.target.value)} />
-              </div>
-            </div>
-            <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-2 rounded-lg transition shadow-lg text-sm mt-1">Save Active Roster to History</button>
-          </form>
-
-          <div className="mt-4 pt-4 border-t border-slate-800">
-            <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Paste RaidHelper JSON</label>
-            <textarea
-              value={raidHelperJsonText}
-              onChange={e => setRaidHelperJsonText(e.target.value)}
-              placeholder='Paste full JSON object with "signUps" here...'
-              className="w-full min-h-[120px] bg-slate-900 text-white border border-slate-700 rounded-lg px-3 py-2 text-xs focus:outline-none"
-            />
-            <button
-              type="button"
-              onClick={onImportRaidHelper}
-              className="mt-2 bg-cyan-700 hover:bg-cyan-600 text-white font-bold py-2 px-3 rounded-lg transition text-xs uppercase tracking-wider"
-            >
-              Import RaidHelper to Roster + Attendance
-            </button>
-            <p className="text-[10px] text-slate-500 mt-1">You will be prompted to map unknown names and resolve spec mismatches.</p>
-          </div>
-
-          <div className="mt-4 pt-4 border-t border-slate-800">
-            <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Import Attendees From Raid Signup Groups</label>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <select
-                value={selectedSignupEventId}
-                onChange={e => setSelectedSignupEventId(e.target.value)}
-                className="flex-1 bg-slate-900 text-white border border-slate-700 rounded-lg px-3 py-2 text-xs focus:outline-none"
-              >
-                <option value="">Select raid signup event...</option>
-                {raidSignupEvents.map(event => (
-                  <option key={event.id} value={event.id}>
-                    #{event.id} [{event.status}] {event.title}
-                  </option>
-                ))}
-              </select>
-              <button
-                type="button"
-                onClick={onApplySignupAttendance}
-                disabled={!selectedSignupEventId || isApplyingSignupEvent}
-                className="bg-emerald-700 hover:bg-emerald-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-2 px-3 rounded-lg transition text-xs uppercase tracking-wider"
-              >
-                {isApplyingSignupEvent ? 'Applying...' : 'Apply Grouped Attendees'}
-              </button>
-            </div>
-            <p className="text-[10px] text-slate-500 mt-1">Sets In Raid to grouped signup players and logs a raid attendance snapshot.</p>
-          </div>
-        </div>
-
-        {/* Raid History List */}
-        <div>
-          <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2 flex justify-between items-center">
-            <span>Raid History Logs</span>
-            <span className="bg-slate-800 text-slate-400 px-2 py-0.5 rounded text-[10px]">{raidLogs.length} Records</span>
-          </h3>
-          {raidLogs.length === 0 ? (
-            <p className="text-xs text-slate-600 italic py-4">No raids logged yet.</p>
-          ) : (
-            <ul className="max-h-[140px] overflow-y-auto pr-2 custom-scrollbar space-y-2">
-              {raidLogs.map(log => (
-                <li key={log.id} className="flex justify-between items-center bg-slate-900 border border-slate-800 p-2.5 rounded hover:border-slate-700 transition group">
-                  <div>
-                    <span className="font-bold text-sm text-amber-500 block leading-tight">{log.date}</span>
-                    <span className="text-[10px] text-slate-400 uppercase tracking-wider">{log.zone} • {log.attendees.length} Attendees</span>
-                  </div>
-                  <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                    <button onClick={() => setExpandedLog(log)} className="text-cyan-400 hover:text-cyan-300 text-xs font-bold px-2">Pop-out</button>
-                    <button onClick={() => handleDeleteRaidLog(log.id)} className="text-slate-600 hover:text-red-400 text-xs font-bold px-2">Delete</button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
       </div>
 
@@ -223,7 +110,7 @@ export default function RosterTab({
 {roster.map(player => {
             const specData = getSpecById(player.spec_id);
             const specDisplay = specData?.spec || '?';
-            const iconUrl = specData?.icon_large || 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg';
+            const iconUrl = getSpecIcon(specData);
             
             return (
               <div 
@@ -321,138 +208,6 @@ export default function RosterTab({
         </div>
       )}
 
-      {expandedLog && (
-        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-700 rounded-xl p-6 w-full max-w-2xl max-h-[85vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h3 className="text-lg font-bold text-slate-100">Raid Roster Snapshot</h3>
-                <p className="text-xs text-slate-500 uppercase tracking-wider">{expandedLog.date} • {expandedLog.zone}</p>
-              </div>
-              <button onClick={() => setExpandedLog(null)} className="text-slate-400 hover:text-slate-200 text-xl leading-none">✕</button>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-              {roster
-                .filter(player => (expandedLog.attendees || []).map(Number).includes(Number(player.id)))
-                .map(player => {
-                  const spec = getSpecById(player.spec_id);
-                  return (
-                    <div key={player.id} className="bg-slate-950 border border-slate-800 rounded p-2.5">
-                      <div className="text-sm font-bold" style={{ color: spec?.color || '#e2e8f0' }}>{player.name}</div>
-                      <div className="text-[10px] text-slate-500 uppercase tracking-wider">{spec?.class || 'Unknown'} • {spec?.spec || 'Unknown'}</div>
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {raidHelperImportSession && (
-        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-700 rounded-xl p-6 w-full max-w-5xl max-h-[85vh] overflow-y-auto">
-            <div className="flex items-center justify-between gap-3 mb-4">
-              <div>
-                <h3 className="text-lg font-bold text-slate-100">Resolve RaidHelper Imports</h3>
-                <p className="text-xs text-slate-500 uppercase tracking-wider">{raidHelperImportSession.raidDate} • {raidHelperImportSession.raidZone}</p>
-              </div>
-              <button onClick={onCancelRaidHelperImport} className="text-slate-400 hover:text-slate-200 text-xl leading-none">✕</button>
-            </div>
-
-            <div className="space-y-3">
-              {raidHelperImportSession.pending.map(entry => {
-                const resolution = entry.resolution || 'add';
-                const selectedClass = entry.selected_class || '';
-                const classSpecs = selectedClass
-                  ? specsFromDb.filter(spec => spec.class === selectedClass)
-                  : specsFromDb;
-                const mappedPlayer = roster.find(player => Number(player.id) === Number(entry.mapped_player_id));
-                const matchedSpec = mappedPlayer ? getSpecById(mappedPlayer.spec_id) : null;
-
-                return (
-                  <div key={entry.id} className="bg-slate-950 border border-slate-800 rounded-lg p-3">
-                    <div className="flex flex-wrap items-center gap-3 mb-2">
-                      <span className="text-sm font-bold text-amber-300">{entry.imported_name}</span>
-                      <span className="text-[10px] uppercase font-bold text-slate-500 bg-slate-900 px-2 py-1 rounded">{entry.source === 'specMismatch' ? 'Spec Mismatch' : 'Missing Mapping'}</span>
-                      {entry.incoming_spec_name && <span className="text-[10px] text-slate-400">JSON Spec: {entry.incoming_spec_name}</span>}
-                      {matchedSpec && <span className="text-[10px] text-slate-400">Current: {matchedSpec.class} {matchedSpec.spec}</span>}
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
-                      <div>
-                        <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Action</label>
-                        <select
-                          value={resolution}
-                          onChange={e => onUpdateRaidHelperImportEntry(entry.id, { resolution: e.target.value })}
-                          className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
-                        >
-                          {entry.source === 'specMismatch' ? (
-                            <>
-                              <option value="leave">Map & Leave Spec</option>
-                              <option value="amend">Map & Amend Spec</option>
-                              <option value="add">Add As New Player</option>
-                            </>
-                          ) : (
-                            <>
-                              <option value="map">Map To Existing</option>
-                              <option value="add">Add As New Player</option>
-                            </>
-                          )}
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Existing Character</label>
-                        <select
-                          value={entry.mapped_player_id || ''}
-                          onChange={e => onUpdateRaidHelperImportEntry(entry.id, { mapped_player_id: e.target.value ? Number(e.target.value) : '' })}
-                          disabled={resolution === 'add'}
-                          className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none disabled:opacity-50"
-                        >
-                          <option value="">-- Select Character --</option>
-                          {roster.map(player => {
-                            const spec = getSpecById(player.spec_id);
-                            return <option key={player.id} value={player.id}>{player.name} {spec ? `(${spec.class} ${spec.spec})` : ''}</option>;
-                          })}
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Class</label>
-                        <select
-                          value={selectedClass}
-                          onChange={e => onUpdateRaidHelperImportEntry(entry.id, { selected_class: e.target.value })}
-                          className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
-                        >
-                          <option value="">-- Select Class --</option>
-                          {specClasses.map(className => <option key={className} value={className}>{className}</option>)}
-                        </select>
-                      </div>
-
-                      <div>
-                        <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Spec</label>
-                        <select
-                          value={entry.selected_spec_id || ''}
-                          onChange={e => onUpdateRaidHelperImportEntry(entry.id, { selected_spec_id: e.target.value ? Number(e.target.value) : '' })}
-                          className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
-                        >
-                          <option value="">-- Select Spec --</option>
-                          {classSpecs.map(spec => <option key={spec.id} value={spec.id}>{spec.class} - {spec.spec}</option>)}
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="flex justify-end gap-2 mt-5">
-              <button onClick={onCancelRaidHelperImport} className="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-2 px-4 rounded">Cancel</button>
-              <button onClick={onApplyRaidHelperImport} className="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2 px-4 rounded">Apply Import</button>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

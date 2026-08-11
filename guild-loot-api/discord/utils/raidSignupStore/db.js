@@ -1,3 +1,9 @@
+const {
+  normalizeTimezone,
+  DEFAULT_RAID_TIMEZONE,
+  normalizeScheduledForText
+} = require('../../../utils/raidSignupTime');
+
 function parseJsonArray(value) {
   try {
     const parsed = JSON.parse(value || '[]');
@@ -75,13 +81,15 @@ function getRoleBucketForSpec(spec) {
 
 function listTemplates(db) {
   const rows = db.prepare(`
-    SELECT id, name, description, starts_at_text, recurrence_rule, recurrence_days_json, recurrence_delay_hours, recurrence_enabled, allowed_spec_ids_json, is_active
+    SELECT id, name, description, group_size, timezone_text, starts_at_text, recurrence_rule, recurrence_days_json, recurrence_delay_hours, recurrence_enabled, allowed_spec_ids_json, is_active
     FROM raid_signup_templates
     ORDER BY name
   `).all();
 
   return rows.map(row => ({
     ...row,
+    group_size: [10, 25, 40].includes(Number(row.group_size)) ? Number(row.group_size) : 25,
+    timezone: normalizeTimezone(row.timezone_text || DEFAULT_RAID_TIMEZONE),
     recurrence_days: parseJsonArray(row.recurrence_days_json).map(v => Number(v)).filter(v => Number.isInteger(v) && v >= 0 && v <= 6),
     recurrence_delay_hours: Number.isFinite(Number(row.recurrence_delay_hours)) ? Number(row.recurrence_delay_hours) : 2,
     recurrence_enabled: row.recurrence_enabled === 1,
@@ -92,7 +100,7 @@ function listTemplates(db) {
 
 function getTemplateById(db, id) {
   const row = db.prepare(`
-    SELECT id, name, description, starts_at_text, recurrence_rule, recurrence_days_json, recurrence_delay_hours, recurrence_enabled, allowed_spec_ids_json, is_active
+    SELECT id, name, description, group_size, timezone_text, starts_at_text, recurrence_rule, recurrence_days_json, recurrence_delay_hours, recurrence_enabled, allowed_spec_ids_json, is_active
     FROM raid_signup_templates
     WHERE id = ?
   `).get(id);
@@ -100,6 +108,8 @@ function getTemplateById(db, id) {
   if (!row) return null;
   return {
     ...row,
+    group_size: [10, 25, 40].includes(Number(row.group_size)) ? Number(row.group_size) : 25,
+    timezone: normalizeTimezone(row.timezone_text || DEFAULT_RAID_TIMEZONE),
     recurrence_days: parseJsonArray(row.recurrence_days_json).map(v => Number(v)).filter(v => Number.isInteger(v) && v >= 0 && v <= 6),
     recurrence_delay_hours: Number.isFinite(Number(row.recurrence_delay_hours)) ? Number(row.recurrence_delay_hours) : 2,
     recurrence_enabled: row.recurrence_enabled === 1,
@@ -164,10 +174,13 @@ function createEventFromTemplate(db, templateId, options = {}) {
   const title = String(options.title || template.name || 'Raid Signup').trim();
   const description = String(options.description || template.description || '').trim();
 
+  const templateTimezone = normalizeTimezone(template.timezone || template.timezone_text || DEFAULT_RAID_TIMEZONE);
+  const normalizedScheduledFor = scheduledFor ? normalizeScheduledForText(scheduledFor, templateTimezone) : null;
+
   const info = db.prepare(`
     INSERT INTO raid_signup_events (template_id, title, description, scheduled_for, recurrence_instance, status)
     VALUES (?, ?, ?, ?, ?, 'open')
-  `).run(template.id, title, description, scheduledFor, recurrenceInstance);
+  `).run(template.id, title, description, normalizedScheduledFor, recurrenceInstance);
 
   return getEventById(db, Number(info.lastInsertRowid));
 }

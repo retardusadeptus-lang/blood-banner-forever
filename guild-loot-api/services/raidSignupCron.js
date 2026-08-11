@@ -6,38 +6,12 @@ const {
   getAllowedSpecsByClass
 } = require('../discord/utils/raidSignupStore');
 const { resolveClassEmojiToken } = require('../discord/utils/discordEmojiTokens');
-
-function parseRaidSignupDateTime(value) {
-  const raw = String(value || '').trim();
-  if (!raw) return null;
-
-  const ymd = raw.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})(?:\s+([0-9]{2}):([0-9]{2}))?(?:\s*CET)?$/i);
-  if (ymd) {
-    const [, yyyy, mm, dd, hh = '20', min = '00'] = ymd;
-    const parsed = Date.parse(`${yyyy}-${mm}-${dd}T${hh}:${min}:00+01:00`);
-    return Number.isNaN(parsed) ? null : new Date(parsed);
-  }
-
-  const dmy = raw.match(/^([0-9]{2})-([0-9]{2})-([0-9]{4})(?:\s+([0-9]{2}):([0-9]{2}))?(?:\s*CET)?$/i);
-  if (dmy) {
-    const [, dd, mm, yyyy, hh = '20', min = '00'] = dmy;
-    const parsed = Date.parse(`${yyyy}-${mm}-${dd}T${hh}:${min}:00+01:00`);
-    return Number.isNaN(parsed) ? null : new Date(parsed);
-  }
-
-  const loose = Date.parse(raw.replace(' ', 'T'));
-  return Number.isNaN(loose) ? null : new Date(loose);
-}
-
-function formatRaidSignupDateTime(dateObj) {
-  const date = new Date(dateObj.getTime() + 60 * 60 * 1000);
-  const year = date.getUTCFullYear();
-  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-  const day = String(date.getUTCDate()).padStart(2, '0');
-  const hour = String(date.getUTCHours()).padStart(2, '0');
-  const minute = String(date.getUTCMinutes()).padStart(2, '0');
-  return `${year}-${month}-${day} ${hour}:${minute} CET`;
-}
+const {
+  parseScheduledDate,
+  formatScheduleText,
+  normalizeTimezone,
+  DEFAULT_RAID_TIMEZONE
+} = require('../utils/raidSignupTime');
 
 function getNextRecurrenceStart(previousStart, recurrenceDays) {
   const selectedDays = [...new Set((recurrenceDays || []).map(v => Number(v)).filter(v => Number.isInteger(v) && v >= 0 && v <= 6))];
@@ -78,7 +52,7 @@ function createRaidSignupCron({ db }) {
         `).all(template.id);
 
         const parsedCandidates = templateEvents
-          .map(event => ({ event, startedAt: parseRaidSignupDateTime(event.scheduled_for) }))
+          .map(event => ({ event, startedAt: parseScheduledDate(event.scheduled_for, normalizeTimezone(template.timezone || DEFAULT_RAID_TIMEZONE)) }))
           .filter(row => row.startedAt && row.event.discord_channel_id)
           .sort((a, b) => b.startedAt.getTime() - a.startedAt.getTime());
 
@@ -99,7 +73,7 @@ function createRaidSignupCron({ db }) {
           continue;
         }
 
-        const scheduledFor = formatRaidSignupDateTime(nextStart);
+        const scheduledFor = formatScheduleText(nextStart, normalizeTimezone(template.timezone || DEFAULT_RAID_TIMEZONE));
         const nextEvent = createEventFromTemplate(db, template.id, {
           title: String(template.name || latest.event.title || 'Raid Signup').trim(),
           description: String(template.description || latest.event.description || '').trim(),

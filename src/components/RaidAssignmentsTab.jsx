@@ -568,6 +568,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
         <div>
           <h2 className="text-xl font-bold text-slate-100 mb-1">Raid Assignment Sheets</h2>
           <p className="text-sm text-slate-500">Global configurations and customizable phase strategies.</p>
+          {exportStatus ? <p className="mt-1 text-xs text-slate-400">{exportStatus}</p> : null}
         </div>
         <div className="flex items-center gap-4">
           <button
@@ -610,7 +611,6 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
               Copy to Archive
             </button>
           </div>
-          {exportStatus && <span className="text-xs text-slate-400">{exportStatus}</span>}
           <BossSelector
             raidZones={raidZones}
             enabledBosses={enabledBosses}

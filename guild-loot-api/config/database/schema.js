@@ -393,12 +393,32 @@ function ensureDiscordBotConfigTable(db) {
   }
 }
 
+function ensureRecruitmentPlanningTable(db) {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS recruitment_planning (
+      id INTEGER PRIMARY KEY CHECK (id = 1),
+      data_json TEXT NOT NULL DEFAULT '{}',
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  const row = db.prepare('SELECT id FROM recruitment_planning WHERE id = 1').get();
+  if (!row) {
+    db.prepare(`
+      INSERT INTO recruitment_planning (id, data_json)
+      VALUES (1, '{"groups":[]}')
+    `).run();
+  }
+}
+
 function ensureRaidSignupTables(db) {
   db.prepare(`
     CREATE TABLE IF NOT EXISTS raid_signup_templates (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL UNIQUE,
       description TEXT DEFAULT '',
+      group_size INTEGER NOT NULL DEFAULT 25,
+      timezone_text TEXT NOT NULL DEFAULT 'Europe/Paris',
       starts_at_text TEXT DEFAULT '',
       recurrence_rule TEXT DEFAULT '',
       recurrence_days_json TEXT NOT NULL DEFAULT '[]',
@@ -482,6 +502,45 @@ function ensureRaidSignupTables(db) {
     )
   `).run();
 
+  const groupForeignKeys = db.prepare("PRAGMA foreign_key_list('raid_signup_groups')").all();
+  const hasLegacySelfReference = groupForeignKeys.some(fk =>
+    String(fk.from || '').toLowerCase() === 'event_id' && String(fk.table || '').toLowerCase() === 'raid_signup_groups'
+  );
+
+  if (hasLegacySelfReference) {
+    db.pragma('foreign_keys = OFF');
+    try {
+      const rebuildGroups = db.transaction(() => {
+      db.prepare(`
+        CREATE TABLE IF NOT EXISTS raid_signup_groups_new (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          event_id INTEGER NOT NULL REFERENCES raid_signup_events(id) ON DELETE CASCADE,
+          group_number INTEGER NOT NULL,
+          group_name TEXT DEFAULT '',
+          slot_index INTEGER NOT NULL,
+          player_name TEXT NOT NULL,
+          spec_id INTEGER REFERENCES specs(id) ON DELETE SET NULL,
+          note TEXT DEFAULT '',
+          UNIQUE(event_id, group_number, slot_index)
+        )
+      `).run();
+
+      db.prepare(`
+        INSERT INTO raid_signup_groups_new (id, event_id, group_number, group_name, slot_index, player_name, spec_id, note)
+        SELECT id, event_id, group_number, COALESCE(group_name, ''), slot_index, player_name, spec_id, COALESCE(note, '')
+        FROM raid_signup_groups
+      `).run();
+
+      db.prepare('DROP TABLE raid_signup_groups').run();
+      db.prepare('ALTER TABLE raid_signup_groups_new RENAME TO raid_signup_groups').run();
+      });
+
+      rebuildGroups();
+    } finally {
+      db.pragma('foreign_keys = ON');
+    }
+  }
+
   const eventColumns = db.prepare("PRAGMA table_info('raid_signup_events')").all();
   if (!eventColumns.some(col => col.name === 'public_groups')) {
     db.prepare('ALTER TABLE raid_signup_events ADD COLUMN public_groups INTEGER NOT NULL DEFAULT 0').run();
@@ -493,6 +552,12 @@ function ensureRaidSignupTables(db) {
   }
 
   const templateColumns = db.prepare("PRAGMA table_info('raid_signup_templates')").all();
+  if (!templateColumns.some(col => col.name === 'group_size')) {
+    db.prepare('ALTER TABLE raid_signup_templates ADD COLUMN group_size INTEGER NOT NULL DEFAULT 25').run();
+  }
+  if (!templateColumns.some(col => col.name === 'timezone_text')) {
+    db.prepare("ALTER TABLE raid_signup_templates ADD COLUMN timezone_text TEXT NOT NULL DEFAULT 'Europe/Paris'").run();
+  }
   if (!templateColumns.some(col => col.name === 'recurrence_days_json')) {
     db.prepare("ALTER TABLE raid_signup_templates ADD COLUMN recurrence_days_json TEXT NOT NULL DEFAULT '[]'").run();
   }
@@ -628,6 +693,24 @@ function ensureOperationalTables(db) {
     );
   `);
 
+  const specColumns = db.prepare("PRAGMA table_info('specs')").all();
+  const hasSpecTable = specColumns.length > 0;
+  if (hasSpecTable && !specColumns.some(col => col.name === 'slug')) {
+    db.exec("ALTER TABLE specs ADD COLUMN slug TEXT DEFAULT ''");
+  }
+  if (hasSpecTable && !specColumns.some(col => col.name === 'color')) {
+    db.exec("ALTER TABLE specs ADD COLUMN color TEXT DEFAULT '#e2e8f0'");
+  }
+  if (hasSpecTable && !specColumns.some(col => col.name === 'icon_small')) {
+    db.exec("ALTER TABLE specs ADD COLUMN icon_small TEXT DEFAULT ''");
+  }
+  if (hasSpecTable && !specColumns.some(col => col.name === 'icon_medium')) {
+    db.exec("ALTER TABLE specs ADD COLUMN icon_medium TEXT DEFAULT ''");
+  }
+  if (hasSpecTable && !specColumns.some(col => col.name === 'icon_large')) {
+    db.exec("ALTER TABLE specs ADD COLUMN icon_large TEXT DEFAULT ''");
+  }
+
   const rosterColumns = db.prepare('PRAGMA table_info(roster)').all();
   if (!rosterColumns.some(col => col.name === 'user_id')) {
     db.exec('ALTER TABLE roster ADD COLUMN user_id INTEGER');
@@ -664,6 +747,7 @@ function ensureDatabaseReady(db) {
     ensureBankRequestSchema(db);
     ensureOfficerRolesTable(db);
     ensureDiscordBotConfigTable(db);
+    ensureRecruitmentPlanningTable(db);
     ensureRaidSignupTables(db);
     ensureDatabaseIndexes(db);
   });

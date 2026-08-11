@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const { resolveRoleEmojiToken } = require('../utils/discordEmojiTokens');
+const { parseScheduledUnix } = require('../../utils/raidSignupTime');
 const {
   getEventById,
   getAvailableClassesForEvent,
@@ -11,30 +12,6 @@ const {
 } = require('../utils/raidSignupStore');
 const { buildMainSignupComponents } = require('./raidSignupComponents');
 const { formatSignupSummary } = require('../utils/raidSignupStore/summary');
-
-function parseScheduledUnix(value) {
-  const raw = String(value || '').trim();
-  if (!raw) return null;
-
-  const ymd = raw.match(/^(\d{4})-(\d{2})-(\d{2})(?:\s+(\d{2}):(\d{2}))?(?:\s*CET)?$/i);
-  if (ymd) {
-    const [, yyyy, mm, dd, hh = '20', min = '00'] = ymd;
-    const parsed = Date.parse(`${yyyy}-${mm}-${dd}T${hh}:${min}:00+01:00`);
-    if (!Number.isNaN(parsed)) return Math.floor(parsed / 1000);
-  }
-
-  const dmy = raw.match(/^(\d{2})-(\d{2})-(\d{4})(?:\s+(\d{2}):(\d{2}))?(?:\s*CET)?$/i);
-  if (dmy) {
-    const [, dd, mm, yyyy, hh = '20', min = '00'] = dmy;
-    const parsed = Date.parse(`${yyyy}-${mm}-${dd}T${hh}:${min}:00+01:00`);
-    if (!Number.isNaN(parsed)) return Math.floor(parsed / 1000);
-  }
-
-  const normalized = raw.replace(' ', 'T');
-  const parsed = Date.parse(normalized);
-  if (Number.isNaN(parsed)) return null;
-  return Math.floor(parsed / 1000);
-}
 
 function withEmoji(icon, label) {
   return icon ? `${icon} ${label}` : label;

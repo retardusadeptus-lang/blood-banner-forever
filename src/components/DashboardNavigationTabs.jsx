@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function DashboardNavigationTabs({
   activeTab,
   hoveredNavTab,
@@ -13,10 +11,13 @@ export default function DashboardNavigationTabs({
     { keyName: 'bank', label: 'Guild Bank', mainTab: 'bank', items: subTabs?.bank || [] },
     { keyName: 'raidAssignments', label: 'Raid Assignments', mainTab: 'raidAssignments', items: subTabs?.raidAssignments || [] },
     { keyName: 'raidSignups', label: 'Raid Signups', mainTab: 'raidSignups', items: subTabs?.raidSignups || [] },
+    { keyName: 'recruitment', label: 'Recruitment', mainTab: 'recruitment', items: subTabs?.recruitment || [] },
     { keyName: 'resources', label: 'Resources', mainTab: 'resources', items: subTabs?.resources || [] },
-    { keyName: 'loot', label: 'Loot Council', mainTab: 'loot', items: subTabs?.loot || [], authOnly: true },
-    { keyName: 'admin', label: 'Admin', mainTab: 'admin', items: subTabs?.admin || [], authOnly: true },
+    { keyName: 'loot', label: 'Loot Council', mainTab: 'loot', items: subTabs?.loot || [] },
+    { keyName: 'admin', label: 'Admin', mainTab: 'admin', items: subTabs?.admin || [] },
   ];
+
+  const visibleNavItems = navItems.filter(item => item.items.length > 0);
 
   const isTabActive = (keyName, mainTab) => {
     if (keyName === 'bank') {
@@ -24,6 +25,9 @@ export default function DashboardNavigationTabs({
     }
     if (keyName === 'loot') {
       return activeTab === 'loot' || activeTab === 'scoring';
+    }
+    if (keyName === 'recruitment') {
+      return activeTab === 'roster' || activeTab === 'recruitmentPlanning' || activeTab === 'recruitmentFocus';
     }
     if (keyName === 'admin') {
       return activeTab === 'officerRoles' || activeTab === 'discordBotConfig' || activeTab === 'itemsdb';
@@ -36,10 +40,9 @@ export default function DashboardNavigationTabs({
 
   return (
     <div className="relative z-30 flex w-full flex-wrap items-start gap-2 overflow-visible pt-0 pb-0 mb-0">
-      {navItems.map(item => {
+      {visibleNavItems.map(item => {
         const isActive = isTabActive(item.keyName, item.mainTab);
         const isHovered = hoveredNavTab === item.keyName;
-        const isLocked = Boolean(item.authOnly && !isAuthenticated);
 
         return (
           <div
@@ -54,7 +57,6 @@ export default function DashboardNavigationTabs({
               className={`relative z-20 whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${isActive
                 ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800 -mb-px'
                 : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}
-              disabled={isLocked}
             >
               {item.label}
             </button>
@@ -64,18 +66,13 @@ export default function DashboardNavigationTabs({
                 style={{ minWidth: '240px', width: 'max-content', maxWidth: 'min(95vw, 760px)' }}
               >
                 {item.items.map(tab => {
-                  const isSubLocked = Boolean(tab.authOnly && !isAuthenticated);
                   const isSubActive = getDropdownItemActiveState(item.keyName, tab.value);
                   return (
                     <button
                       key={tab.value}
                       type="button"
-                      onClick={() => {
-                        if (isSubLocked) return;
-                        handleMainNavSelect(item.mainTab, tab.value);
-                      }}
-                      disabled={isSubLocked}
-                      className={`flex-none whitespace-nowrap px-3 py-2 font-semibold text-xs uppercase tracking-wider transition-colors rounded-lg text-center ${isSubLocked ? 'opacity-50 cursor-not-allowed' : ''} ${isSubActive ? 'bg-slate-900 border border-slate-800 text-cyan-400' : 'text-amber-300 hover:text-slate-300 hover:bg-slate-900/50'}`}
+                      onClick={() => handleMainNavSelect(item.mainTab, tab.value)}
+                      className={`flex-none whitespace-nowrap px-3 py-2 font-semibold text-xs uppercase tracking-wider transition-colors rounded-lg text-center ${isSubActive ? 'bg-slate-900 border border-slate-800 text-cyan-400' : 'text-amber-300 hover:text-slate-300 hover:bg-slate-900/50'}`}
                     >
                       {tab.label}
                     </button>

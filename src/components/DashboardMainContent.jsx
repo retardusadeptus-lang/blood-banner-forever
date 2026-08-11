@@ -1,4 +1,3 @@
-import React from 'react';
 import OverviewTab from './OverviewTab';
 import AdminContainer from '../containers/AdminContainer';
 import BankContainer from '../containers/BankContainer';
@@ -8,6 +7,8 @@ import RaidAssignmentsContainer from '../containers/RaidAssignmentsContainer';
 import RaidAssignmentsHistory from './RaidAssignmentsHistory';
 import AssignedLootOverview from './AssignedLootOverview';
 import RaidSignupsContainer from '../containers/RaidSignupsContainer';
+import RecruitmentFocusTab from './RecruitmentFocusTab';
+import RecruitmentPlanningTab from './RecruitmentPlanningTab';
 import RosterContainer from '../containers/RosterContainer';
 import ScoringContainer from '../containers/ScoringContainer';
 import ResourcesTab from '../features/resources/ResourcesTab';
@@ -19,6 +20,7 @@ export default function DashboardMainContent({ viewModel }) {
     raidAssignmentsSubTab,
     raidSignupsSubTab,
     lootSubTab,
+    recruitmentSubTab,
     adminSubTab,
     resourcesSubTab,
     isAuthenticated,
@@ -101,6 +103,7 @@ export default function DashboardMainContent({ viewModel }) {
     recentRaidHelperImportedIds,
     recentRaidHelperSpecConflictIds,
     raidHelperImportSession,
+    handleImportRaidHelperJson,
     handleUpdateRaidHelperImportEntry,
     handleApplyRaidHelperImport,
     handleCancelRaidHelperImport,
@@ -357,7 +360,24 @@ export default function DashboardMainContent({ viewModel }) {
           postData={postData}
           deleteData={deleteData}
           isAuthenticated={isAuthenticated}
+          roster={roster}
+          getSpecById={getSpecById}
           specsFromDb={specsFromDb}
+          handleSaveRaidLog={handleSaveRaidLog}
+          handleApplyRaidSignupGroupsToAttendance={handleApplyRaidSignupGroupsToAttendance}
+          handleImportRaidHelperJson={handleImportRaidHelperJson}
+          newRaidDate={newRaidDate}
+          setNewRaidDate={setNewRaidDate}
+          newRaidZone={newRaidZone}
+          setNewRaidZone={setNewRaidZone}
+          raidLogs={raidLogs}
+          handleDeleteRaidLog={handleDeleteRaidLog}
+          importedRaidHelperPlayerIds={recentRaidHelperImportedIds}
+          importedRaidHelperSpecConflictIds={recentRaidHelperSpecConflictIds}
+          raidHelperImportSession={raidHelperImportSession}
+          onUpdateRaidHelperImportEntry={handleUpdateRaidHelperImportEntry}
+          onApplyRaidHelperImport={handleApplyRaidHelperImport}
+          onCancelRaidHelperImport={handleCancelRaidHelperImport}
           activeSection={raidSignupsSubTab}
           onSectionChange={() => {}}
         />
@@ -377,9 +397,9 @@ export default function DashboardMainContent({ viewModel }) {
         />
       )}
 
-      {activeTab === 'loot' && isAuthenticated && (
+      {activeTab === 'loot' && (
         <div className="space-y-4">
-          {lootSubTab === 'assignment' && (
+          {lootSubTab === 'assignment' && isAuthenticated && (
             <LootCouncilContainer
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
@@ -418,8 +438,7 @@ export default function DashboardMainContent({ viewModel }) {
               isSaving={isSavingLootCouncil}
             />
           )}
-          {lootSubTab === 'scoring' && <ScoringContainer {...scoringTabProps} />}
-          {lootSubTab === 'roster' && <RosterContainer {...rosterTabProps} />}
+          {lootSubTab === 'scoring' && isAuthenticated && <ScoringContainer {...scoringTabProps} />}
           {lootSubTab === 'assigned' && (
             <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
               <h3 className="text-lg font-bold text-slate-100">Assigned Loot Overview</h3>
@@ -437,6 +456,24 @@ export default function DashboardMainContent({ viewModel }) {
       )}
 
       {activeTab === 'roster' && isAuthenticated && <RosterContainer {...rosterTabProps} />}
+
+      {activeTab === 'recruitmentPlanning' && isAuthenticated && recruitmentSubTab === 'planning' && (
+        <RecruitmentPlanningTab
+          roster={roster}
+          specsFromDb={specsFromDb}
+          fetchData={fetchData}
+          putData={putData}
+        />
+      )}
+
+      {activeTab === 'recruitmentFocus' && recruitmentSubTab === 'focus' && (
+        <RecruitmentFocusTab
+          isAuthenticated={isAuthenticated}
+          specsFromDb={specsFromDb}
+          fetchData={fetchData}
+          putData={putData}
+        />
+      )}
 
       {(activeTab === 'officerRoles' || activeTab === 'discordBotConfig') && isAuthenticated && (
         <AdminContainer
