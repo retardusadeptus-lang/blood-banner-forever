@@ -10,6 +10,7 @@ export default function BankContainer({
   fetchData,
   putData,
   isAuthenticated,
+  bnetAuthState,
   roster,
   specsByName,
   getDisplayFromId,
@@ -104,6 +105,7 @@ export default function BankContainer({
           bankSearch={bankSearch}
           setBankSearch={setBankSearch}
           isAuthenticated={isAuthenticated}
+          bnetAuthState={bnetAuthState}
           roster={roster}
           myPlayerId={myPlayerId}
         />

@@ -1,5 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { DateTime } from 'luxon';
+import {
+  getRaidSignupAbsences,
+  getRaidSignupAbsenceTargets,
+  createRaidSignupAbsence,
+  updateRaidSignupAbsence,
+  deleteRaidSignupAbsence
+} from '../services/apiService';
 
 const WEEKDAY_OPTIONS = [
   { value: 0, label: 'Sun' },
@@ -248,12 +255,31 @@ function normalizedRole(role) {
   return 'ranged';
 }
 
+function normalizeRecurrenceDays(days) {
+  return [...new Set((Array.isArray(days) ? days : []).map(v => Number(v)).filter(v => Number.isInteger(v) && v >= 0 && v <= 6))].sort((a, b) => a - b);
+}
+
+function getNextRecurrenceStartDateTime(previousStart, recurrenceDays) {
+  const selectedDays = normalizeRecurrenceDays(recurrenceDays);
+  if (selectedDays.length === 0 || !previousStart?.isValid) return null;
+
+  const baseUtc = previousStart.toUTC();
+  for (let offset = 1; offset <= 14; offset += 1) {
+    const candidate = baseUtc.plus({ days: offset });
+    const jsDay = candidate.toJSDate().getUTCDay();
+    if (selectedDays.includes(jsDay)) return candidate;
+  }
+
+  return null;
+}
+
 export default function RaidSignupsTab({
   fetchData,
   putData,
   postData,
   deleteData,
   isAuthenticated,
+  bnetAuthState,
   roster,
   getSpecById,
   specsFromDb,
@@ -271,6 +297,8 @@ export default function RaidSignupsTab({
   onApplyRaidHelperImport,
   onCancelRaidHelperImport,
   activeSection
+  ,
+  onSectionChange
 }) {
   const [events, setEvents] = useState([]);
   const [templates, setTemplates] = useState([]);
@@ -300,6 +328,14 @@ export default function RaidSignupsTab({
   const [loadedSelectedEventId, setLoadedSelectedEventId] = useState('');
   const activeRaidSection = activeSection || 'templates';
   const isReadOnly = !isAuthenticated;
+  const [absences, setAbsences] = useState([]);
+  const [isLoadingAbsences, setIsLoadingAbsences] = useState(false);
+  const [isSavingAbsence, setIsSavingAbsence] = useState(false);
+  const [editingAbsenceId, setEditingAbsenceId] = useState(null);
+  const [absenceDraft, setAbsenceDraft] = useState({ target_key: '', start_date: '', end_date: '', note: '' });
+  const [absenceTargets, setAbsenceTargets] = useState([]);
+  const [absenceCalendarMonth, setAbsenceCalendarMonth] = useState(() => DateTime.now().startOf('month'));
+  const [raidCalendarMonth, setRaidCalendarMonth] = useState(() => DateTime.now().startOf('month'));
   const specClasses = useMemo(() => [...new Set((specsFromDb || []).map(spec => spec.class))].sort((a, b) => a.localeCompare(b)), [specsFromDb]);
 
   const loadPublic = async () => {
@@ -536,6 +572,125 @@ export default function RaidSignupsTab({
     return () => clearInterval(timer);
   }, []);
 
+  const currentBattleNetUserId = Number(bnetAuthState?.user?.id || 0);
+  const canUseAbsences = !!isAuthenticated || !!bnetAuthState?.authenticated;
+
+  useEffect(() => {
+    if (activeRaidSection !== 'absences') return;
+    if (!canUseAbsences) {
+      setAbsences([]);
+      return;
+    }
+
+    let mounted = true;
+    const loadAbsences = async () => {
+      setIsLoadingAbsences(true);
+      try {
+        const rows = await getRaidSignupAbsences();
+        if (!mounted) return;
+        setAbsences(Array.isArray(rows) ? rows : []);
+      } catch (error) {
+        if (!mounted) return;
+        setAbsences([]);
+        const message = error?.payload?.error || error?.message || 'Failed to load absences.';
+        alert(message);
+      } finally {
+        if (mounted) setIsLoadingAbsences(false);
+      }
+    };
+
+    loadAbsences();
+    return () => {
+      mounted = false;
+    };
+  }, [activeRaidSection, canUseAbsences, isAuthenticated, bnetAuthState?.authenticated]);
+
+  useEffect(() => {
+    if (activeRaidSection !== 'absences') return;
+    if (!isAuthenticated) {
+      setAbsenceTargets([]);
+      return;
+    }
+
+    let mounted = true;
+    const loadAbsenceTargets = async () => {
+      try {
+        const rows = await getRaidSignupAbsenceTargets();
+        if (!mounted) return;
+        setAbsenceTargets(Array.isArray(rows) ? rows : []);
+      } catch (error) {
+        if (!mounted) return;
+        setAbsenceTargets([]);
+      }
+    };
+
+    loadAbsenceTargets();
+    return () => {
+      mounted = false;
+    };
+  }, [activeRaidSection, isAuthenticated]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setAbsenceDraft(prev => ({ ...prev, target_key: `user:${String(currentBattleNetUserId || '')}` }));
+      return;
+    }
+
+    const targetKeys = new Set((absenceTargets || []).map(target => `${target.target_type}:${target.target_type === 'user' ? Number(target.user_id || 0) : Number(target.roster_id || 0)}`));
+    const preferredUserKey = `user:${currentBattleNetUserId}`;
+    const preferred = currentBattleNetUserId && targetKeys.has(preferredUserKey)
+      ? preferredUserKey
+      : (absenceTargets[0] ? `${absenceTargets[0].target_type}:${absenceTargets[0].target_type === 'user' ? Number(absenceTargets[0].user_id || 0) : Number(absenceTargets[0].roster_id || 0)}` : '');
+
+    setAbsenceDraft(prev => {
+      if (editingAbsenceId) return prev;
+      if (prev.target_key && targetKeys.has(prev.target_key)) return prev;
+      return { ...prev, target_key: String(preferred || '') };
+    });
+  }, [absenceTargets, currentBattleNetUserId, editingAbsenceId, isAuthenticated]);
+
+  const myAbsences = useMemo(() => {
+    if (!Array.isArray(absences)) return [];
+    if (!currentBattleNetUserId) return [];
+    return absences.filter(entry => Number(entry?.user_id) === currentBattleNetUserId);
+  }, [absences, currentBattleNetUserId]);
+
+  const allAbsences = useMemo(() => {
+    if (!Array.isArray(absences)) return [];
+    if (!isAuthenticated) return [];
+    return absences;
+  }, [absences, isAuthenticated]);
+
+  const officerAbsenceCalendar = useMemo(() => {
+    if (!isAuthenticated) return new Map();
+    const map = new Map();
+
+    (absences || []).forEach(absence => {
+      const names = Array.isArray(absence?.claimed_characters) ? absence.claimed_characters : [];
+      const label = names.length > 0
+        ? `${names.join(', ')} on holiday`
+        : `${absence?.battletag || 'Unknown user'} on holiday`;
+
+      let cursor = DateTime.fromISO(String(absence?.start_date || ''), { zone: 'utc' }).startOf('day');
+      const end = DateTime.fromISO(String(absence?.end_date || ''), { zone: 'utc' }).startOf('day');
+      if (!cursor.isValid || !end.isValid || cursor > end) return;
+
+      while (cursor <= end) {
+        const key = cursor.toFormat('yyyy-LL-dd');
+        if (!map.has(key)) map.set(key, []);
+        map.get(key).push({
+          id: absence.id,
+          label,
+          battletag: absence?.battletag || '',
+          characters: names
+        });
+        cursor = cursor.plus({ days: 1 });
+      }
+    });
+
+    return map;
+  }, [absences, isAuthenticated]);
+
   const signupCandidates = useMemo(() => {
     if (!selectedEventId) return [];
     const detailEntries = Array.isArray(selectedEvent?.entries) ? selectedEvent.entries : [];
@@ -659,6 +814,154 @@ export default function RaidSignupsTab({
       return { event, byRole };
     });
   }, [events]);
+
+  const raidCalendarData = useMemo(() => {
+    if (!isAuthenticated) {
+      return {
+        scheduledItems: [],
+        plannedItems: [],
+        allItems: [],
+        blockedTemplates: []
+      };
+    }
+
+    const now = DateTime.now();
+    const allKnownEvents = [...(raidSignupEvents || []), ...(archivedEvents || [])];
+    const eventByTemplateId = new Map();
+    allKnownEvents.forEach(event => {
+      const templateId = Number(event?.template_id || 0);
+      if (!templateId) return;
+      if (!eventByTemplateId.has(templateId)) eventByTemplateId.set(templateId, []);
+      eventByTemplateId.get(templateId).push(event);
+    });
+
+    const scheduledItems = allKnownEvents
+      .filter(event => String(event?.status || '').toLowerCase() !== 'archived')
+      .map(event => {
+        const template = templateById.get(String(event?.template_id || '')) || null;
+        const timezone = normalizeTimezoneOption(template?.timezone || template?.timezone_text || 'Europe/Paris');
+        const start = parseScheduleDateTime(event?.scheduled_for || '', timezone);
+        if (!start?.isValid) return null;
+        return {
+          kind: 'scheduled',
+          key: `scheduled-${event.id}`,
+          id: event.id,
+          templateId: Number(event?.template_id || 0) || null,
+          title: String(event?.title || '').trim() || `Event #${event.id}`,
+          status: String(event?.status || '').toLowerCase(),
+          start,
+          timezone,
+          sourceLabel: 'Scheduled event'
+        };
+      })
+      .filter(Boolean)
+      .sort((a, b) => a.start.toMillis() - b.start.toMillis());
+
+    const plannedItems = [];
+    const blockedTemplates = [];
+
+    (templates || []).forEach(template => {
+      const templateId = Number(template?.id || 0);
+      if (!templateId) return;
+      if (template?.is_active === false || !template?.recurrence_enabled) return;
+
+      const recurrenceDays = normalizeRecurrenceDays(template?.recurrence_days);
+      if (recurrenceDays.length === 0) return;
+
+      const timezone = normalizeTimezoneOption(template?.timezone || template?.timezone_text || 'Europe/Paris');
+      const templateEvents = eventByTemplateId.get(templateId) || [];
+      const parsedCandidates = templateEvents
+        .map(event => ({
+          event,
+          startedAt: parseScheduleDateTime(event?.scheduled_for || '', timezone)
+        }))
+        .filter(row => row.startedAt?.isValid && row.startedAt.toMillis() <= now.toMillis() && row.event?.discord_channel_id)
+        .sort((a, b) => b.startedAt.toMillis() - a.startedAt.toMillis());
+
+      if (parsedCandidates.length === 0) {
+        blockedTemplates.push({
+          templateId,
+          templateName: String(template?.name || '').trim() || `Template #${templateId}`,
+          reason: 'No started event with a Discord channel was found yet.'
+        });
+        return;
+      }
+
+      const latest = parsedCandidates[0];
+      const delayHours = Number(template?.recurrence_delay_hours || 0);
+      const safeDelayHours = Number.isFinite(delayHours) ? Math.max(0, delayHours) : 0;
+      const nextStartUtc = getNextRecurrenceStartDateTime(latest.startedAt, recurrenceDays);
+      if (!nextStartUtc?.isValid) return;
+
+      const recurrenceInstance = nextStartUtc.toUTC().toISO({ suppressMilliseconds: false });
+      const alreadyScheduled = templateEvents.some(event => String(event?.recurrence_instance || '') === recurrenceInstance);
+      if (alreadyScheduled) return;
+
+      const readyAt = latest.startedAt.plus({ hours: safeDelayHours });
+      plannedItems.push({
+        kind: 'planned',
+        key: `planned-${templateId}-${recurrenceInstance}`,
+        id: null,
+        templateId,
+        title: String(template?.name || '').trim() || `Template #${templateId}`,
+        status: readyAt.toMillis() <= now.toMillis() ? 'ready' : 'pending-delay',
+        start: nextStartUtc.setZone(timezone),
+        timezone,
+        sourceLabel: readyAt.toMillis() <= now.toMillis()
+          ? `Auto recurrence ready (${safeDelayHours}h delay passed)`
+          : `Auto recurrence pending (${safeDelayHours}h delay)`
+      });
+    });
+
+    const allItems = [...scheduledItems, ...plannedItems].sort((a, b) => a.start.toMillis() - b.start.toMillis());
+    return { scheduledItems, plannedItems, allItems, blockedTemplates };
+  }, [archivedEvents, isAuthenticated, raidSignupEvents, templateById, templates]);
+
+  const raidCalendarByDay = useMemo(() => {
+    const map = new Map();
+    raidCalendarData.allItems.forEach(item => {
+      const key = item.start.toFormat('yyyy-LL-dd');
+      if (!map.has(key)) map.set(key, []);
+      map.get(key).push(item);
+    });
+    return map;
+  }, [raidCalendarData]);
+
+  const raidCalendarGrid = useMemo(() => {
+    const monthStart = raidCalendarMonth.startOf('month');
+    const calendarStart = monthStart.startOf('week');
+    const days = [];
+    for (let i = 0; i < 42; i += 1) {
+      const day = calendarStart.plus({ days: i });
+      const key = day.toFormat('yyyy-LL-dd');
+      days.push({
+        key,
+        day,
+        inMonth: day.hasSame(monthStart, 'month'),
+        entries: raidCalendarByDay.get(key) || []
+      });
+    }
+    return days;
+  }, [raidCalendarByDay, raidCalendarMonth]);
+
+  const raidCalendarUpcomingItems = useMemo(() => {
+    const nowMs = DateTime.now().toMillis();
+    return raidCalendarData.allItems
+      .filter(item => item.start.toMillis() >= nowMs)
+      .slice(0, 20);
+  }, [raidCalendarData]);
+
+  const navigateFromCalendarItem = (item) => {
+    if (!item || item.kind !== 'scheduled' || !item.id) return;
+
+    const status = String(item.status || '').toLowerCase();
+    const targetSection = (status === 'closed' || status === 'archived') ? 'history' : 'events';
+    setSelectedEventId(String(item.id));
+    setSelectedSignupEventId(String(item.id));
+    if (typeof onSectionChange === 'function') {
+      onSectionChange(targetSection);
+    }
+  };
 
   const selectedEventSignupSummary = useMemo(() => {
     if (!selectedEventId) {
@@ -899,6 +1202,110 @@ export default function RaidSignupsTab({
       setIsApplyingSignupEvent(false);
     }
   };
+
+  const resetAbsenceDraft = () => {
+    setEditingAbsenceId(null);
+    const targetKeys = new Set((absenceTargets || []).map(target => `${target.target_type}:${target.target_type === 'user' ? Number(target.user_id || 0) : Number(target.roster_id || 0)}`));
+    const preferredUserKey = `user:${currentBattleNetUserId}`;
+    const preferred = isAuthenticated
+      ? (currentBattleNetUserId && targetKeys.has(preferredUserKey)
+        ? preferredUserKey
+        : (absenceTargets[0] ? `${absenceTargets[0].target_type}:${absenceTargets[0].target_type === 'user' ? Number(absenceTargets[0].user_id || 0) : Number(absenceTargets[0].roster_id || 0)}` : ''))
+      : preferredUserKey;
+
+    setAbsenceDraft({ target_key: String(preferred || ''), start_date: '', end_date: '', note: '' });
+  };
+
+  const saveAbsence = async () => {
+    if (!bnetAuthState?.authenticated && !isAuthenticated) {
+      alert('Battle.net login required to submit absences.');
+      return;
+    }
+
+    const payload = {
+      start_date: String(absenceDraft.start_date || '').trim(),
+      end_date: String(absenceDraft.end_date || '').trim(),
+      note: String(absenceDraft.note || '').trim()
+    };
+
+    if (isAuthenticated) {
+      const [targetType, targetIdRaw] = String(absenceDraft.target_key || '').split(':');
+      const targetId = Number(targetIdRaw || 0);
+      if (!targetType || !targetId) {
+        alert('Choose a target character owner.');
+        return;
+      }
+      if (targetType === 'user') payload.user_id = targetId;
+      if (targetType === 'roster') payload.roster_id = targetId;
+    }
+
+    if (!payload.start_date || !payload.end_date) {
+      alert('Choose both a start and end date.');
+      return;
+    }
+
+    setIsSavingAbsence(true);
+    try {
+      if (editingAbsenceId) {
+        await updateRaidSignupAbsence(editingAbsenceId, payload);
+      } else {
+        await createRaidSignupAbsence(payload);
+      }
+      const rows = await getRaidSignupAbsences();
+      setAbsences(Array.isArray(rows) ? rows : []);
+      resetAbsenceDraft();
+    } catch (error) {
+      const message = error?.payload?.error || error?.message || 'Failed to save absence.';
+      alert(message);
+    } finally {
+      setIsSavingAbsence(false);
+    }
+  };
+
+  const beginEditAbsence = (absence) => {
+    setEditingAbsenceId(absence.id);
+    const targetKey = absence.absence_type === 'roster'
+      ? `roster:${Number(absence.roster_id || 0)}`
+      : `user:${Number(absence.user_id || 0)}`;
+    setAbsenceDraft({
+      target_key: targetKey,
+      start_date: absence.start_date || '',
+      end_date: absence.end_date || '',
+      note: absence.note || ''
+    });
+  };
+
+  const removeAbsence = async (absenceId) => {
+    if (!window.confirm('Delete this absence entry?')) return;
+    try {
+      await deleteRaidSignupAbsence(absenceId);
+      const rows = await getRaidSignupAbsences();
+      setAbsences(Array.isArray(rows) ? rows : []);
+      if (String(editingAbsenceId || '') === String(absenceId || '')) {
+        resetAbsenceDraft();
+      }
+    } catch (error) {
+      const message = error?.payload?.error || error?.message || 'Failed to delete absence.';
+      alert(message);
+    }
+  };
+
+  const absenceCalendarGrid = useMemo(() => {
+    const monthStart = absenceCalendarMonth.startOf('month');
+    const calendarStart = monthStart.startOf('week');
+    const days = [];
+    for (let i = 0; i < 42; i += 1) {
+      const day = calendarStart.plus({ days: i });
+      const key = day.toFormat('yyyy-LL-dd');
+      days.push({
+        key,
+        day,
+        inMonth: day.hasSame(monthStart, 'month'),
+        entries: officerAbsenceCalendar.get(key) || []
+      });
+    }
+    return days;
+  }, [absenceCalendarMonth, officerAbsenceCalendar]);
 
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
@@ -1420,6 +1827,131 @@ export default function RaidSignupsTab({
             </div>
           )}
 
+          {activeRaidSection === 'calendar' && (
+            isAuthenticated ? (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                  <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Officer Scheduling Calendar</h3>
+                  <div className="flex items-center gap-2 text-[11px] text-slate-400">
+                    <span className="inline-flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-cyan-400" />Scheduled</span>
+                    <span className="inline-flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400" />Auto planned</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                  <div className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
+                    <div className="text-slate-500 uppercase tracking-wider text-[10px]">Scheduled Events</div>
+                    <div className="text-cyan-300 font-bold text-lg">{raidCalendarData.scheduledItems.length}</div>
+                  </div>
+                  <div className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
+                    <div className="text-slate-500 uppercase tracking-wider text-[10px]">Auto-Planned Next Runs</div>
+                    <div className="text-amber-300 font-bold text-lg">{raidCalendarData.plannedItems.length}</div>
+                  </div>
+                  <div className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
+                    <div className="text-slate-500 uppercase tracking-wider text-[10px]">Templates Waiting</div>
+                    <div className="text-rose-300 font-bold text-lg">{raidCalendarData.blockedTemplates.length}</div>
+                  </div>
+                </div>
+
+                {raidCalendarData.blockedTemplates.length > 0 ? (
+                  <div className="rounded-lg border border-rose-800/50 bg-rose-950/20 p-3 space-y-1">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-rose-300">Auto recurrence currently blocked</p>
+                    <ul className="space-y-1">
+                      {raidCalendarData.blockedTemplates.map(item => (
+                        <li key={`blocked-template-${item.templateId}`} className="text-xs text-rose-200">
+                          {item.templateName}: {item.reason}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+
+                <div className="rounded-lg border border-slate-800 bg-slate-900 p-3 space-y-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Month Grid</p>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setRaidCalendarMonth(prev => prev.minus({ months: 1 }))}
+                        className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-1 rounded"
+                      >
+                        Prev
+                      </button>
+                      <span className="text-xs text-slate-300 font-semibold min-w-[120px] text-center">{raidCalendarMonth.toFormat('LLLL yyyy')}</span>
+                      <button
+                        type="button"
+                        onClick={() => setRaidCalendarMonth(prev => prev.plus({ months: 1 }))}
+                        className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-1 rounded"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-7 gap-1 text-[10px] uppercase tracking-wider text-slate-500">
+                    {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+                      <div key={`calendar-day-${day}`} className="px-2 py-1 font-bold">{day}</div>
+                    ))}
+                  </div>
+                  <div className="grid grid-cols-7 gap-1">
+                    {raidCalendarGrid.map(cell => (
+                      <div key={`raid-calendar-cell-${cell.key}`} className={`min-h-[90px] rounded border p-1.5 ${cell.inMonth ? 'border-slate-700 bg-slate-950' : 'border-slate-800 bg-slate-950/50'}`}>
+                        <div className={`text-[10px] font-bold ${cell.inMonth ? 'text-slate-300' : 'text-slate-600'}`}>{cell.day.day}</div>
+                        <div className="mt-1 space-y-1">
+                          {cell.entries.slice(0, 2).map(entry => (
+                            <button
+                              type="button"
+                              key={`calendar-entry-${cell.key}-${entry.key}`}
+                              onClick={() => navigateFromCalendarItem(entry)}
+                              disabled={entry.kind !== 'scheduled' || !entry.id}
+                              className={`w-full text-left text-[10px] rounded border px-1 py-0.5 truncate ${entry.kind === 'planned' ? 'bg-amber-900/30 border-amber-700/50 text-amber-200' : 'bg-cyan-900/30 border-cyan-700/50 text-cyan-200'} ${(entry.kind === 'scheduled' && entry.id) ? 'hover:brightness-110 cursor-pointer' : 'cursor-default opacity-85'}`}
+                              title={`${entry.title} • ${entry.start.toFormat('dd-LL-yyyy HH:mm')} ${entry.timezone} • ${entry.sourceLabel}`}
+                            >
+                              {entry.title}
+                            </button>
+                          ))}
+                          {cell.entries.length > 2 ? (
+                            <div className="text-[10px] text-slate-400">+{cell.entries.length - 2} more</div>
+                          ) : null}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="rounded-lg border border-slate-800 bg-slate-900 p-3 space-y-2">
+                  <p className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Upcoming (next 20)</p>
+                  {raidCalendarUpcomingItems.length === 0 ? (
+                    <p className="text-xs text-slate-500">No upcoming scheduled or auto-planned raids detected.</p>
+                  ) : (
+                    <div className="space-y-2">
+                      {raidCalendarUpcomingItems.map(item => (
+                        <button
+                          key={`upcoming-${item.key}`}
+                          type="button"
+                          onClick={() => navigateFromCalendarItem(item)}
+                          disabled={item.kind !== 'scheduled' || !item.id}
+                          className={`w-full text-left rounded border border-slate-800 bg-slate-950 px-3 py-2 flex items-center justify-between gap-3 ${(item.kind === 'scheduled' && item.id) ? 'hover:border-cyan-700/60 cursor-pointer' : 'cursor-default opacity-90'}`}
+                        >
+                          <div className="min-w-0">
+                            <div className={`text-xs font-bold uppercase tracking-wider ${item.kind === 'planned' ? 'text-amber-300' : 'text-cyan-300'}`}>{item.kind === 'planned' ? 'Planned Auto-Post' : 'Scheduled Event'}</div>
+                            <div className="text-sm text-slate-100 font-semibold truncate">{item.title}</div>
+                            <div className="text-xs text-slate-400">{item.start.toFormat('dd-LL-yyyy HH:mm')} {item.timezone}</div>
+                          </div>
+                          <div className="text-[11px] text-slate-400 text-right">{item.sourceLabel}</div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                <p className="text-sm text-slate-300">Officer login required to view the scheduling calendar.</p>
+              </div>
+            )
+          )}
+
           {activeRaidSection === 'group-config' && (
             <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
@@ -1630,6 +2162,189 @@ export default function RaidSignupsTab({
                     );
                   })}
                 </div>
+                </>
+              )}
+            </div>
+          )}
+
+          {activeRaidSection === 'absences' && (
+            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Absences</h3>
+                {isAuthenticated ? <span className="text-[11px] text-slate-400">Officer view includes all declared absences</span> : null}
+              </div>
+
+              {!canUseAbsences ? (
+                <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-300">
+                  Battle.net login required to submit and manage your absences.
+                </div>
+              ) : (
+                <>
+                  <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                    <p className="text-xs text-slate-400">Declare your holiday window. Any characters claimed on your Battle.net account are marked as <span className="font-bold text-amber-300">on holiday</span> for officers.</p>
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                      {isAuthenticated ? (
+                        <div>
+                          <label className="block text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-1">Character owner</label>
+                          <select
+                            value={absenceDraft.target_key}
+                            onChange={e => setAbsenceDraft(prev => ({ ...prev, target_key: e.target.value }))}
+                            className="w-full bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm"
+                          >
+                            {absenceTargets.map(target => (
+                              <option key={`absence-target-${target.target_type}-${target.user_id || target.roster_id}`} value={`${target.target_type}:${target.target_type === 'user' ? Number(target.user_id || 0) : Number(target.roster_id || 0)}`}>
+                                {target.target_type === 'roster'
+                                  ? `${target.characters?.[0] || 'Unknown'} (unclaimed)`
+                                  : `${target.characters?.[0] || target.battletag} (${target.battletag})`}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      ) : null}
+                      <div>
+                        <label className="block text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-1">Start date</label>
+                        <input
+                          type="date"
+                          value={absenceDraft.start_date}
+                          onChange={e => setAbsenceDraft(prev => ({ ...prev, start_date: e.target.value }))}
+                          className="w-full bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-1">End date</label>
+                        <input
+                          type="date"
+                          value={absenceDraft.end_date}
+                          onChange={e => setAbsenceDraft(prev => ({ ...prev, end_date: e.target.value }))}
+                          className="w-full bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-1">Note (optional)</label>
+                        <input
+                          type="text"
+                          value={absenceDraft.note}
+                          onChange={e => setAbsenceDraft(prev => ({ ...prev, note: e.target.value }))}
+                          placeholder="Travel / unavailable"
+                          className="w-full bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-sm"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={saveAbsence}
+                        disabled={isSavingAbsence || (!bnetAuthState?.authenticated && !isAuthenticated)}
+                        className="text-xs font-bold bg-amber-600 hover:bg-amber-500 disabled:bg-slate-700 disabled:cursor-not-allowed text-slate-950 px-3 py-2 rounded"
+                      >
+                        {isSavingAbsence ? 'Saving...' : (editingAbsenceId ? 'Update Absence' : 'Add Absence')}
+                      </button>
+                      {editingAbsenceId ? (
+                        <button type="button" onClick={resetAbsenceDraft} className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded">Cancel Edit</button>
+                      ) : null}
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
+                    <p className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">My Absences</p>
+                    {isLoadingAbsences ? (
+                      <p className="text-xs text-slate-500">Loading absences...</p>
+                    ) : myAbsences.length === 0 ? (
+                      <p className="text-xs text-slate-500">No absences declared yet.</p>
+                    ) : (
+                      <div className="space-y-2">
+                        {myAbsences.map(absence => (
+                          <div key={`my-absence-${absence.id}`} className="rounded border border-slate-800 bg-slate-950 px-3 py-2 flex items-center justify-between gap-3">
+                            <div className="min-w-0">
+                              <div className="text-sm text-slate-100 font-semibold">{absence.start_date} to {absence.end_date}</div>
+                              {absence.note ? <div className="text-xs text-slate-400 truncate">{absence.note}</div> : null}
+                            </div>
+                            {absence.can_edit ? (
+                              <div className="flex items-center gap-2 shrink-0">
+                                <button type="button" onClick={() => beginEditAbsence(absence)} className="text-xs font-bold bg-cyan-700 hover:bg-cyan-600 text-white px-2.5 py-1.5 rounded">Edit</button>
+                                <button type="button" onClick={() => removeAbsence(absence.id)} className="text-xs font-bold bg-red-700 hover:bg-red-600 text-white px-2.5 py-1.5 rounded">Delete</button>
+                              </div>
+                            ) : null}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {isAuthenticated ? (
+                    <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
+                      <p className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">All Absences</p>
+                      {isLoadingAbsences ? (
+                        <p className="text-xs text-slate-500">Loading absences...</p>
+                      ) : allAbsences.length === 0 ? (
+                        <p className="text-xs text-slate-500">No absences declared yet.</p>
+                      ) : (
+                        <div className="space-y-2">
+                          {allAbsences.map(absence => (
+                            <div key={`all-absence-${absence.id}`} className="rounded border border-slate-800 bg-slate-950 px-3 py-2 flex items-center justify-between gap-3">
+                              <div className="min-w-0">
+                                <div className="text-sm text-slate-100 font-semibold">{absence.start_date} to {absence.end_date}</div>
+                                  <div className="text-xs text-amber-300 truncate">{absence.claimed_characters?.length > 0 ? absence.claimed_characters.join(', ') : (absence.target_character_name || absence.battletag || 'Unknown user')}</div>
+                                {absence.note ? <div className="text-xs text-slate-400 truncate">{absence.note}</div> : null}
+                              </div>
+                              <div className="flex items-center gap-2 shrink-0">
+                                <button type="button" onClick={() => beginEditAbsence(absence)} className="text-xs font-bold bg-cyan-700 hover:bg-cyan-600 text-white px-2.5 py-1.5 rounded">Edit</button>
+                                <button type="button" onClick={() => removeAbsence(absence.id)} className="text-xs font-bold bg-red-700 hover:bg-red-600 text-white px-2.5 py-1.5 rounded">Delete</button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : null}
+
+                  {isAuthenticated ? (
+                    <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Officer Holiday Calendar</p>
+                        <div className="flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => setAbsenceCalendarMonth(prev => prev.minus({ months: 1 }))}
+                            className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-1 rounded"
+                          >
+                            Prev
+                          </button>
+                          <span className="text-xs text-slate-300 font-semibold min-w-[120px] text-center">{absenceCalendarMonth.toFormat('LLLL yyyy')}</span>
+                          <button
+                            type="button"
+                            onClick={() => setAbsenceCalendarMonth(prev => prev.plus({ months: 1 }))}
+                            className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 px-2 py-1 rounded"
+                          >
+                            Next
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-7 gap-1 text-[10px] uppercase tracking-wider text-slate-500">
+                        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+                          <div key={`absence-day-${day}`} className="px-2 py-1 font-bold">{day}</div>
+                        ))}
+                      </div>
+                      <div className="grid grid-cols-7 gap-1">
+                        {absenceCalendarGrid.map(cell => (
+                          <div key={`absence-cell-${cell.key}`} className={`min-h-[88px] rounded border p-1.5 ${cell.inMonth ? 'border-slate-700 bg-slate-950' : 'border-slate-800 bg-slate-950/50'}`}>
+                            <div className={`text-[10px] font-bold ${cell.inMonth ? 'text-slate-300' : 'text-slate-600'}`}>{cell.day.day}</div>
+                            <div className="mt-1 space-y-1">
+                              {cell.entries.slice(0, 2).map((entry, idx) => (
+                                <div key={`absence-entry-${cell.key}-${entry.id}-${idx}`} className="text-[10px] rounded bg-amber-900/30 border border-amber-700/50 text-amber-200 px-1 py-0.5 truncate" title={entry.label}>
+                                  {entry.characters?.length > 0 ? entry.characters.join(', ') : (entry.battletag || 'Unknown')}
+                                </div>
+                              ))}
+                              {cell.entries.length > 2 ? (
+                                <div className="text-[10px] text-slate-400">+{cell.entries.length - 2} more</div>
+                              ) : null}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
                 </>
               )}
             </div>

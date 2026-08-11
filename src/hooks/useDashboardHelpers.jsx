@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { BOTTOM_SLOTS, PHASE_JSON_KEYS } from '../constants';
 import * as helpers from '../utils/helpers';
 
@@ -32,10 +32,16 @@ export default function useDashboardHelpers({
   getDisplayFromId,
   getSpecById,
 }) {
+  const [expandedBisSlots, setExpandedBisSlots] = useState({});
+
   const normalizeRaidHelperToken = helpers.normalizeRaidHelperToken;
   const parseRaidSignupDate = helpers.parseRaidSignupDate;
   const normalizeSlotKey = helpers.normalizeSlotKey;
   const isGroupedSlot = helpers.isGroupedSlot;
+
+  useEffect(() => {
+    setExpandedBisSlots({});
+  }, [selectedBisSpec]);
 
   const initializeDefaultBisPriorities = useCallback(async (phase) => {
     const phaseKey = PHASE_JSON_KEYS[phase] || phase;
@@ -185,13 +191,18 @@ export default function useDashboardHelpers({
     const slotIndex = slot === 'Ring 2' || slot === 'Trinket 2' ? 1 : 0;
     const isDualSlot = slot.endsWith(' 1') || slot.endsWith(' 2');
 
+    const slotKeySet = (() => {
+      if (isGrouped) return new Set([normalizedSlot]);
+      if (normalizedSlot === 'weapon') return new Set(['weapon']);
+      if (normalizedSlot === 'off-hand') return new Set(['off-hand']);
+      if (normalizedSlot === 'shield') return new Set(['shield']);
+      return new Set([normalizedSlot]);
+    })();
+
     const itemsInSlot = mutableItems.filter(i => {
       const itemSlot = normalizeSlotKey(i?.slot);
       if (!itemSlot) return false;
-      if (isGrouped) return itemSlot === normalizedSlot;
-      if (itemSlot === normalizedSlot) return true;
-      if (normalizedSlot === 'weapon' && itemSlot === 'weapon') return true;
-      return false;
+      return slotKeySet.has(itemSlot);
     });
 
     const bis = itemsInSlot.filter(item => {
@@ -264,12 +275,21 @@ export default function useDashboardHelpers({
     if (bis.length === 0 && opt.length === 0) return null;
 
     const primaryBis = isGroupedDisplaySlot ? bis.slice(0, 2) : bis;
-    const extraItems = isGroupedDisplaySlot
-      ? [
+
+    const extraItems = (() => {
+      if (isGroupedDisplaySlot) {
+        return [
           ...bis.slice(2).map(item => ({ item, kind: 'bis' })),
           ...opt.map(item => ({ item, kind: 'opt' }))
-        ]
-      : opt.map(item => ({ item, kind: 'opt' }));
+        ];
+      }
+
+      return opt.map(item => ({ item, kind: 'opt' }));
+    })();
+
+    const expansionKey = `${selectedBisSpec || 'unknown'}::${slotName}`;
+    const canExpand = extraItems.length > 0;
+    const isExpanded = canExpand && !!expandedBisSlots[expansionKey];
     const iconItems = isGroupedDisplaySlot ? primaryBis : bis.slice(0, 1);
 
     const renderItemSource = (item) => {
@@ -323,7 +343,19 @@ export default function useDashboardHelpers({
         </div>
 
         <div className="flex flex-col min-w-0 justify-center">
-          <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">{slotName}</span>
+          <div className="flex items-center justify-between gap-2 mb-1">
+            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none">{slotName}</span>
+            {canExpand ? (
+              <button
+                type="button"
+                onClick={() => setExpandedBisSlots(prev => ({ ...prev, [expansionKey]: !prev[expansionKey] }))}
+                className="text-[10px] font-bold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded px-1.5 py-0.5 leading-none"
+                title={isExpanded ? 'Collapse optional items' : 'Expand optional items'}
+              >
+                {isExpanded ? '-' : '+'}
+              </button>
+            ) : null}
+          </div>
           {primaryBis.length > 0 ? (
             primaryBis.map(i => (
               <div key={i.name} className="flex flex-col">
@@ -340,7 +372,7 @@ export default function useDashboardHelpers({
               </div>
             ))
           ) : (<span className="text-sm font-bold text-slate-500 italic leading-tight">No primary BiS</span>)}
-          {extraItems.length > 0 && (
+          {isExpanded && extraItems.length > 0 && (
             <div className="mt-1 flex flex-col gap-y-1 border-t border-slate-800/70 pt-2">
               {extraItems.map(({ item: i, kind }) => (
                 <div key={`${i.name}-${kind}`} className="flex flex-col">

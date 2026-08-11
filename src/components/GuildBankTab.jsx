@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { postData } from '../services/apiService';
+import { submitBankRequest } from '../services/apiService';
 
 const FALLBACK_BANK_ICON = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg';
+const MAX_BASKET_ITEMS = 5;
 
 export default function GuildBankTab({
   bankItems,
   bankSearch,
   setBankSearch,
   isAuthenticated,
+  bnetAuthState,
   roster,
   myPlayerId
 }) {
@@ -25,6 +27,7 @@ export default function GuildBankTab({
   
   // Shopping Basket State
   const [basket, setBasket] = useState([]);
+  const canSubmitWebsiteRequest = Boolean(bnetAuthState?.authenticated);
 
   const categories = ['All', 'Gear', 'Materials', 'Consumable', 'Recipe'];
 
@@ -61,6 +64,14 @@ export default function GuildBankTab({
 
   const addToBasket = (e) => {
     e.preventDefault();
+    if (!canSubmitWebsiteRequest) {
+      alert('Please sign in with Battle.net to request bank items.');
+      return;
+    }
+    if (basket.length >= MAX_BASKET_ITEMS) {
+      alert(`You can request up to ${MAX_BASKET_ITEMS} items per basket.`);
+      return;
+    }
     const player = roster.find(p => p.id === parseInt(selectedPlayerId));
     const newRequest = {
       id: generateId(),
@@ -80,14 +91,22 @@ export default function GuildBankTab({
   };
 
   const submitBasket = async () => {
+    if (!canSubmitWebsiteRequest) {
+      alert('Please sign in with Battle.net to request bank items.');
+      return;
+    }
+    if (basket.length > MAX_BASKET_ITEMS) {
+      alert(`You can request up to ${MAX_BASKET_ITEMS} items per basket.`);
+      return;
+    }
     setIsSubmitting(true);
     try {
-      await postData('bank-requests', { basket_items: basket });
+      await submitBankRequest({ basket_items: basket });
       alert(`Request submitted to officers (${basket.length} item${basket.length === 1 ? '' : 's'}).`);
       setBasket([]);
     } catch (err) {
       console.error(err);
-      alert('❌ Server error.');
+      alert(err?.payload?.error || err?.message || '❌ Server error.');
     } finally {
       setIsSubmitting(false);
     }
@@ -99,14 +118,21 @@ export default function GuildBankTab({
     <section className="bank-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-4">
       
       {/* 🛒 Shopping Basket Header */}
+      {!canSubmitWebsiteRequest && (
+        <div className="rounded-xl border border-cyan-700/40 bg-cyan-900/20 px-4 py-3 text-sm text-cyan-200">
+          Sign in with Battle.net to submit guild bank item requests. Viewing the bank is still public.
+        </div>
+      )}
+
       {basket.length > 0 && (
         <div className="bg-amber-950/30 border border-amber-700 p-4 rounded-xl mb-6 space-y-3">
           <div className="flex items-center justify-between gap-3">
-            <span className="text-amber-500 font-bold text-sm">🛒 {basket.length} Items in Basket</span>
-            <button onClick={submitBasket} disabled={isSubmitting} className="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-lg transition">
+            <span className="text-amber-500 font-bold text-sm">🛒 {basket.length}/{MAX_BASKET_ITEMS} Items in Basket</span>
+            <button onClick={submitBasket} disabled={isSubmitting || !canSubmitWebsiteRequest} className="bg-amber-600 hover:bg-amber-500 disabled:bg-slate-700 disabled:text-slate-300 disabled:cursor-not-allowed text-slate-950 font-bold px-4 py-2 rounded-lg transition">
               {isSubmitting ? 'Sending...' : 'Submit Basket'}
             </button>
           </div>
+          <p className="text-[11px] text-amber-300/80 font-semibold">Max {MAX_BASKET_ITEMS} items per basket.</p>
           <div className="flex flex-col gap-2 max-h-56 overflow-y-auto text-xs text-slate-300 pr-1 custom-scrollbar">
               {basket.map(b => (
                 <span key={b.id} className="bg-slate-900 px-2 py-1.5 rounded border border-slate-800 inline-flex items-center gap-2">
@@ -195,8 +221,9 @@ export default function GuildBankTab({
             <button
               type="button"
               onClick={() => { setRequestItem(item); setRequestQty(1); setRequestReason(''); }}
-              className="absolute right-0.5 top-0.5 z-10 flex h-6 w-6 items-center justify-center rounded-full border border-amber-500/60 bg-slate-950/92 text-sm font-black leading-none text-amber-300 shadow backdrop-blur hover:bg-amber-500 hover:text-slate-950"
-              title={`Add ${item.name} to basket`}
+              disabled={!canSubmitWebsiteRequest}
+              className="absolute right-0.5 top-0.5 z-10 flex h-6 w-6 items-center justify-center rounded-full border border-amber-500/60 bg-slate-950/92 text-sm font-black leading-none text-amber-300 shadow backdrop-blur hover:bg-amber-500 hover:text-slate-950 disabled:border-slate-700 disabled:text-slate-500 disabled:bg-slate-900 disabled:cursor-not-allowed"
+              title={canSubmitWebsiteRequest ? `Add ${item.name} to basket` : 'Sign in with Battle.net to request items'}
               aria-label={`Add ${item.name} to basket`}
             >
               <span className="relative -top-px">+</span>
@@ -236,7 +263,17 @@ export default function GuildBankTab({
                 <textarea rows="3" className="w-full bg-slate-950 text-slate-300 border border-slate-700 rounded-lg p-3 text-xs" value={requestReason} onChange={e => setRequestReason(e.target.value)} />
               </div>
               <div className="flex gap-2">
-                <button type="submit" className="flex-1 bg-amber-600 text-slate-950 font-bold py-2 rounded-lg text-sm">Add to Basket</button>
+                <button
+                  type="submit"
+                  disabled={basket.length >= MAX_BASKET_ITEMS || !canSubmitWebsiteRequest}
+                  className="flex-1 bg-amber-600 text-slate-950 font-bold py-2 rounded-lg text-sm disabled:bg-slate-700 disabled:text-slate-300 disabled:cursor-not-allowed"
+                >
+                  {!canSubmitWebsiteRequest
+                    ? 'Battle.net Login Required'
+                    : basket.length >= MAX_BASKET_ITEMS
+                      ? `Basket full (${MAX_BASKET_ITEMS}/${MAX_BASKET_ITEMS})`
+                      : 'Add to Basket'}
+                </button>
                 <button type="button" onClick={() => setRequestItem(null)} className="bg-slate-800 text-slate-300 font-bold py-2 px-4 rounded-lg text-sm">Cancel</button>
               </div>
             </form>

@@ -8,10 +8,10 @@ const buildAdminRaidAssignmentDataRoutes = require('./admin/raidAssignmentData')
 const buildAdminRaidAssignmentConfigRoutes = require('./admin/raidAssignmentConfig');
 const buildAdminRaidAssignmentImagesRoutes = require('./admin/raidAssignmentImages');
 
-function buildAdminRoutes({ db, configService }) {
+function buildAdminRoutes({ db, configService, sessionSecret }) {
   const router = express.Router();
 
-  router.use(buildAdminOfficerRolesRoutes({ db }));
+  router.use(buildAdminOfficerRolesRoutes({ db, sessionSecret }));
   router.use(buildAdminDiscordBotConfigRoutes({ db, configService }));
   router.use(buildAdminPlayerStatsRoutes({ db }));
   router.use(buildAdminRaidLogsRoutes({ db }));

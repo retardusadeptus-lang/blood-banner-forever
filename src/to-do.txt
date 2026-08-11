@@ -54,33 +54,33 @@
 ### General UI Polish
 - [X] Embed Web To-Do List: Render a live task tracking page/tab directly on the website.
 - [ ] Fix Opening Scroll Position: Investigate why opening the Raid Assignments tab opens mid-page rather than scrolled to top.
-- [ ] Icon Delay Fix: Replace short artificial delay workaround with proper asset preloading to stop stale icons on tab transitions.
-- [ ] Browser Crash Investigation: Monitor and profile Firefox tab-crash reports to confirm whether client-side rendering is causing heap spikes.
+- [x] Icon Delay Fix: Replace short artificial delay workaround with proper asset preloading to stop stale icons on tab transitions.
+- [x] Browser Crash Investigation: Monitor and profile Firefox tab-crash reports to confirm whether client-side rendering is causing heap spikes.
 
 ---
 
 ## Raid Signups, Assignments & Tactics
 
 ### Calendar & Absences
-- [ ] Absences Tab: Add dedicated tab to track declared member absences.
-- [ ] Raid Calendar: Build interactive monthly calendar showing raids, absences, guild birthdays, and community events.
+- [x] Absences Tab: Add dedicated tab to track declared member absences.
+- [x] Raid Calendar: Build interactive monthly calendar showing raids, absences, guild birthdays, and community events.
 - [ ] Signups Tracking: Add quick-filter toggle: "Who is not signed up?"
 - [ ] Alt Handling: Allow renaming/custom character entry during signups and link attendance back to main Battle.net ID.
-- [ ] Timezones: Fix timestamp/time offset bugs on scheduled events.
+- [x] Timezones: Fix timestamp/time offset bugs on scheduled events.
 
 ### Raid Assignments
 - [ ] Read-Only Guards: Strip Save button for read-only users; retain draft modifications locally via cookies or revert back to officer filters.
 - [ ] Assignment Tools:
   - [X] Add BoP item flags to assignment layouts.
   - [x] Add drag/drop or control buttons to re-order bosses within a raid run.
-  - Fix bug causing Warglaives to misbehave in assignment logic.
+  - [ ] Fix bug causing Warglaives to misbehave in assignment logic.
 - [ ] Raid History:
   - [ ] Increase visible history list capacity.
   - [ ] Fix broken "View" button on historic assignment logs.
   - [ ] Ensure global archive restoration functions correctly.
 
   ### Raid Signups
-- [ ] Add UI button to expand/collapse individual raid templates.
+- [x] Add UI button to expand/collapse individual raid templates.
 
 ### Tactics & Strategy Module
 - [ ] Dynamic Tactics Layout: Link Tactics drop-down selection to the Raid Assignments boss DB so newly created bosses auto-populate into Tactics.
@@ -91,8 +91,8 @@
 ## Guild Bank, Items & In-Game Addon
 
 ### Guild Bank UI & History
-- [ ] Visual Redesign: Re-theme Guild Bank page to visually match in-game guild bank tab frames.
-- [ ] Icon Performance: Optimize image cache to eliminate slow icon refreshes.
+- [x] Visual Redesign: Re-theme Guild Bank page to visually match in-game guild bank tab frames.
+- [x] Icon Performance: Optimize image cache to eliminate slow icon refreshes.
 - [ ] History & Management: Purge obsolete request history and add explicit Delete options in history tab.
 
 ### Addon Sync & Lua Integration
@@ -120,7 +120,7 @@
 
 ### Loot Council & BiS Config
 - [ ] Mannequin Layout: Redesign BiS configuration to use an armor mannequin visual layout (similar to Wowhead / in-game paper doll).
-- [ ] Slot Mapping Fixes:
+- [x] Slot Mapping Fixes:
   - Fix "Weapon" slot failing to map to Main Hand slot in BiS configs.
   - Allow secondary 2H vs. 1H/Off-Hand sub-row overrides under weapon slots - currently all versions of weapon showing all vairants.
   - Fix Off-Hand dropdowns displaying all weapons (restrict to off-hand and held-in-off-hand items).

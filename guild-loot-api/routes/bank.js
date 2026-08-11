@@ -1,5 +1,7 @@
 const express = require('express');
 const crypto = require('crypto');
+const { getBattleNetSessionFromRequest } = require('../middleware/auth');
+const MAX_BASKET_ITEMS = 5;
 
 function buildBankRoutes({ db, discordService }) {
   const router = express.Router();
@@ -76,6 +78,20 @@ function buildBankRoutes({ db, discordService }) {
         requester_discord_user_id,
         requester_discord_username
       } = req.body;
+
+      const hasDiscordRequester = Boolean(
+        requester_discord_user_id
+        || requester_discord_username
+        || (Array.isArray(basket_items) && basket_items.some(item => item?.requester_discord_user_id || item?.requester_discord_username))
+      );
+
+      if (!hasDiscordRequester) {
+        const bnetSession = getBattleNetSessionFromRequest(req);
+        if (!bnetSession?.userId) {
+          return res.status(401).json({ error: 'Battle.net authentication required for website bank requests.' });
+        }
+      }
+
       const insert = db.prepare(`
         INSERT INTO bank_requests (
           player_id,
@@ -93,6 +109,10 @@ function buildBankRoutes({ db, discordService }) {
       `);
 
       if (Array.isArray(basket_items) && basket_items.length > 0) {
+        if (basket_items.length > MAX_BASKET_ITEMS) {
+          return res.status(400).json({ error: `Basket limit is ${MAX_BASKET_ITEMS} items.` });
+        }
+
         const groupId = request_group_id || generateRequestGroupId();
         const createdIds = [];
 

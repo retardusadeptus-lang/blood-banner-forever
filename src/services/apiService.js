@@ -59,7 +59,10 @@ export const login = async (password) => {
  * @param {string} endpoint - The API endpoint (e.g., 'specs', 'roster')
  */
 export const fetchData = async (endpoint) => {
-  const res = await fetch(apiUrl(endpoint));
+  const res = await fetch(apiUrl(endpoint), {
+    credentials: 'include',
+    headers: { ...getAuthHeaders() }
+  });
   const payload = await readResponsePayload(res);
   if (!res.ok) {
     throw buildApiError(res, payload, `Network response was not ok for endpoint: ${endpoint}`);
@@ -75,6 +78,7 @@ export const fetchData = async (endpoint) => {
 export const putData = async (endpoint, data) => {
   const res = await fetch(apiUrl(endpoint), {
     method: 'PUT',
+    credentials: 'include',
     headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
     body: JSON.stringify(data)
   });
@@ -93,6 +97,7 @@ export const putData = async (endpoint, data) => {
 export const postData = async (endpoint, data) => {
   const res = await fetch(apiUrl(endpoint), {
     method: 'POST',
+    credentials: 'include',
     headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
     body: JSON.stringify(data)
   });
@@ -110,6 +115,7 @@ export const postData = async (endpoint, data) => {
 export const deleteData = async (endpoint) => {
   const res = await fetch(apiUrl(endpoint), {
     method: 'DELETE',
+    credentials: 'include',
     headers: { ...getAuthHeaders() }
   });
   const payload = await readResponsePayload(res);
@@ -199,6 +205,7 @@ export const claimRosterCharacterManual = async (payload) => {
 export const getRosterClaimsAdmin = async () => {
   const res = await fetch(apiUrl('roster/claims'), {
     method: 'GET',
+    credentials: 'include',
     headers: { ...getAuthHeaders() }
   });
   const data = await readResponsePayload(res);
@@ -211,6 +218,7 @@ export const getRosterClaimsAdmin = async () => {
 export const unclaimRosterCharacterAdmin = async (payload) => {
   const res = await fetch(apiUrl('roster/unclaim'), {
     method: 'POST',
+    credentials: 'include',
     headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
     body: JSON.stringify(payload)
   });
@@ -224,6 +232,7 @@ export const unclaimRosterCharacterAdmin = async (payload) => {
 export const getRosterClaimAuditAdmin = async (limit = 50) => {
   const res = await fetch(apiUrl(`roster/claim-audit?limit=${encodeURIComponent(limit)}`), {
     method: 'GET',
+    credentials: 'include',
     headers: { ...getAuthHeaders() }
   });
   const data = await readResponsePayload(res);
@@ -231,4 +240,85 @@ export const getRosterClaimAuditAdmin = async (limit = 50) => {
     throw new Error(data?.error || 'Failed to fetch claim audit log.');
   }
   return data;
+};
+
+export const getRaidSignupAbsences = async () => {
+  const res = await fetch(apiUrl('raid-signup-absences'), {
+    method: 'GET',
+    credentials: 'include',
+    headers: { ...getAuthHeaders() }
+  });
+  const payload = await readResponsePayload(res);
+  if (!res.ok) {
+    throw buildApiError(res, payload, 'Failed to fetch raid signup absences.');
+  }
+  return payload;
+};
+
+export const getRaidSignupAbsenceTargets = async () => {
+  const res = await fetch(apiUrl('raid-signup-absence-targets'), {
+    method: 'GET',
+    credentials: 'include',
+    headers: { ...getAuthHeaders() }
+  });
+  const payload = await readResponsePayload(res);
+  if (!res.ok) {
+    throw buildApiError(res, payload, 'Failed to fetch raid signup absence targets.');
+  }
+  return payload;
+};
+
+export const createRaidSignupAbsence = async (data) => {
+  const res = await fetch(apiUrl('raid-signup-absences'), {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+    body: JSON.stringify(data || {})
+  });
+  const payload = await readResponsePayload(res);
+  if (!res.ok) {
+    throw buildApiError(res, payload, 'Failed to create raid signup absence.');
+  }
+  return payload;
+};
+
+export const updateRaidSignupAbsence = async (absenceId, data) => {
+  const res = await fetch(apiUrl(`raid-signup-absences/${absenceId}`), {
+    method: 'PUT',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+    body: JSON.stringify(data || {})
+  });
+  const payload = await readResponsePayload(res);
+  if (!res.ok) {
+    throw buildApiError(res, payload, 'Failed to update raid signup absence.');
+  }
+  return payload;
+};
+
+export const deleteRaidSignupAbsence = async (absenceId) => {
+  const res = await fetch(apiUrl(`raid-signup-absences/${absenceId}`), {
+    method: 'DELETE',
+    credentials: 'include',
+    headers: { ...getAuthHeaders() }
+  });
+  const payload = await readResponsePayload(res);
+  if (!res.ok) {
+    throw buildApiError(res, payload, 'Failed to delete raid signup absence.');
+  }
+  return payload;
+};
+
+export const submitBankRequest = async (data) => {
+  const res = await fetch(apiUrl('bank-requests'), {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+    body: JSON.stringify(data || {})
+  });
+  const payload = await readResponsePayload(res);
+  if (!res.ok) {
+    throw buildApiError(res, payload, 'Failed to submit bank request.');
+  }
+  return payload;
 };

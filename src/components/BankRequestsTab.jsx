@@ -201,9 +201,31 @@ export default function BankRequestsTab({
 
   const pendingRequestGroups = useMemo(() => groupRequests(bankRequests.filter(r => r.status === 'pending')), [bankRequests]);
   const resolvedRequestGroups = useMemo(() => groupRequests(bankRequests.filter(r => r.status !== 'pending')), [bankRequests]);
+  const pendingRequestIds = useMemo(() => pendingRequestGroups.flatMap(group => group.requests.map(req => req.id)), [pendingRequestGroups]);
   const resolvedRequestIds = useMemo(() => resolvedRequestGroups.flatMap(group => group.requests.map(req => req.id)), [resolvedRequestGroups]);
   const normalizeRequestId = (requestId) => String(requestId);
   const isArchiveRequestSelected = (requestId) => selectedArchiveRequestIds.some(id => normalizeRequestId(id) === normalizeRequestId(requestId));
+  const isPendingRequestInBasket = (requestId) => basket.some(req => normalizeRequestId(req.id) === normalizeRequestId(requestId));
+
+  const toggleAllPendingBasketSelection = () => {
+    const allPendingSelected = pendingRequestIds.length > 0 && pendingRequestIds.every(id => isPendingRequestInBasket(id));
+
+    if (allPendingSelected) {
+      setBasket(prev => prev.filter(req => !pendingRequestIds.some(id => normalizeRequestId(id) === normalizeRequestId(req.id))));
+      return;
+    }
+
+    const allPendingRequests = pendingRequestGroups.flatMap(group => group.requests);
+    setBasket(prev => {
+      const merged = [...prev];
+      allPendingRequests.forEach(req => {
+        if (!merged.some(existing => normalizeRequestId(existing.id) === normalizeRequestId(req.id))) {
+          merged.push(req);
+        }
+      });
+      return merged;
+    });
+  };
 
   /*
   const exportRequestsCsv = (mode = 'all') => {
@@ -287,6 +309,7 @@ export default function BankRequestsTab({
         const player = roster.find(p => Number(p.id) === Number(req.player_id));
         return {
           id: req.id,
+          item_wowhead_id: req.item_wowhead_id ?? null,
           item_name: req.item_name || '',
           quantity: req.quantity ?? req.approved_quantity ?? 0,
           approved_quantity: req.approved_quantity ?? req.quantity ?? 0,
@@ -510,7 +533,20 @@ export default function BankRequestsTab({
           </div>
         </div>
       )}
-      <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-800 pb-2">Pending Requests</h3>
+      <div className="flex items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-2">
+        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Pending Requests</h3>
+        {pendingRequestIds.length > 0 && (
+          <label className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+            <input
+              type="checkbox"
+              checked={pendingRequestIds.length > 0 && pendingRequestIds.every(id => isPendingRequestInBasket(id))}
+              onChange={toggleAllPendingBasketSelection}
+              className="rounded border-slate-700 bg-slate-950"
+            />
+            Select all pending
+          </label>
+        )}
+      </div>
       {pendingRequestGroups.length === 0 ? (
         <p className="text-slate-600 italic py-4 mb-8">No pending requests.</p>
       ) : (
@@ -532,7 +568,6 @@ export default function BankRequestsTab({
                       <span className="font-bold text-purple-400">{hasMultiple ? `Basket (${group.requests.length} items)` : singleReq.item_name}</span>
                       {!hasMultiple && <span className="text-slate-500 text-sm"> x{singleReq.quantity}</span>}
                       <p className="text-xs text-slate-500 mt-1">Requested by <span className="font-bold">{requesters.join(', ')}</span></p>
-                      {group.request_group_id && <p className="text-[10px] text-slate-600 mt-0.5">Basket: {group.request_group_id.slice(0, 8)}</p>}
                     </div>
                   </div>
                   <span className="text-[10px] text-slate-500 font-bold uppercase">{new Date(group.created_at).toLocaleString()}</span>
@@ -542,14 +577,24 @@ export default function BankRequestsTab({
                   {group.requests.map(req => {
                     const player = roster.find(p => p.id === req.player_id);
                     const requesterName = player?.name || req.requester_name || 'Unknown';
+                    const inBasket = isPendingRequestInBasket(req.id);
                     return (
                       <div key={req.id} className="text-sm text-slate-300 bg-slate-900 p-2 rounded border border-slate-800">
                         <div className="flex items-center justify-between gap-2">
-                          <div>
+                          <div className="min-w-0">
                             <span className="font-bold text-purple-400">{req.item_name}</span>
                             <span className="text-slate-500 text-xs"> x{req.quantity}</span>
                             <span className="text-slate-500 text-xs"> — {requesterName}</span>
                           </div>
+                          <label className="text-[11px] text-slate-400 flex items-center gap-2 whitespace-nowrap">
+                            <input
+                              type="checkbox"
+                              checked={inBasket}
+                              onChange={() => toggleToBasket(req)}
+                              className="rounded border-slate-700 bg-slate-950"
+                            />
+                            Tick
+                          </label>
                         </div>
                         {req.reason && <p className="text-xs text-slate-400 mt-1">{req.reason}</p>}
                       </div>

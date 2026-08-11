@@ -19,6 +19,7 @@ export default function DashboardMainContent({ viewModel }) {
     bankSubTab,
     raidAssignmentsSubTab,
     raidSignupsSubTab,
+    setRaidSignupsSubTab,
     lootSubTab,
     recruitmentSubTab,
     adminSubTab,
@@ -305,6 +306,7 @@ export default function DashboardMainContent({ viewModel }) {
           fetchData={fetchData}
           putData={putData}
           isAuthenticated={isAuthenticated}
+          bnetAuthState={bnetAuthState}
           roster={roster}
           specsByName={specsByName}
           getDisplayFromId={getDisplayFromId}
@@ -363,6 +365,7 @@ export default function DashboardMainContent({ viewModel }) {
           roster={roster}
           getSpecById={getSpecById}
           specsFromDb={specsFromDb}
+          bnetAuthState={bnetAuthState}
           handleSaveRaidLog={handleSaveRaidLog}
           handleApplyRaidSignupGroupsToAttendance={handleApplyRaidSignupGroupsToAttendance}
           handleImportRaidHelperJson={handleImportRaidHelperJson}
@@ -379,7 +382,10 @@ export default function DashboardMainContent({ viewModel }) {
           onApplyRaidHelperImport={handleApplyRaidHelperImport}
           onCancelRaidHelperImport={handleCancelRaidHelperImport}
           activeSection={raidSignupsSubTab}
-          onSectionChange={() => {}}
+          onSectionChange={(nextSection) => {
+            if (!nextSection) return;
+            setRaidSignupsSubTab?.(nextSection);
+          }}
         />
       )}
 
@@ -388,6 +394,7 @@ export default function DashboardMainContent({ viewModel }) {
           fetchData={fetchData}
           putData={putData}
           isAuthenticated={isAuthenticated}
+          bnetAuthState={bnetAuthState}
           roster={roster}
           specsByName={specsByName}
           getDisplayFromId={getDisplayFromId}

@@ -35,7 +35,7 @@ function buildApp({ db, sessionSecret, bnetConfig, discordService, tokenRedempti
 
   app.use(cors({ origin: true, credentials: true }));
   app.use(express.json());
-  app.use(createWriteGuard(sessionSecret));
+  app.use(createWriteGuard(sessionSecret, db));
 
   app.get('/api/version', (req, res) => {
     try {
@@ -65,8 +65,8 @@ function buildApp({ db, sessionSecret, bnetConfig, discordService, tokenRedempti
   app.use('/api', buildAssignmentsRoutes({ db }));
   app.use('/api', buildMutableItemsRoutes({ db }));
   app.use('/api', buildRecruitmentPlanningRoutes({ db }));
-  app.use('/api', buildAdminRoutes({ db, configService }));
-  app.use('/api', buildRaidSignupRoutes({ db }));
+  app.use('/api', buildAdminRoutes({ db, configService, sessionSecret }));
+  app.use('/api', buildRaidSignupRoutes({ db, sessionSecret }));
 
   const clientBuildPath = path.join(__dirname, '..', 'dist');
   if (fs.existsSync(clientBuildPath)) {

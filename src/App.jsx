@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, BOTTOM_SLOTS, P2_BOSSES, DEFAULT_GLOBAL_PHASE, CORE_SYNC_INTERVAL_MS, STORAGE_KEYS } from './constants';
 import { fetchData, putData, postData, deleteData } from './services/apiService';
 import { useItemsDatabase } from './hooks/useItemsDatabase';
@@ -38,6 +38,7 @@ import useDashboardHelpers from './hooks/useDashboardHelpers.jsx';
 import useDataSync from './hooks/useDataSync';
 
 export default function App() {
+  const previousActiveTabRef = useRef('');
   // ==========================================
   // SPECS DATA FROM DATABASE
   // ==========================================
@@ -102,6 +103,8 @@ export default function App() {
     handleUnclaimClaim
   } = useAuthSession({ fetchData, setRoster: setRosterLocal, setRosterDirty });
 
+  const hasOfficerAccess = isAuthenticated || bnetAuthState.isOfficer || bnetAuthState.isAdmin;
+
   const {
     activeTab,
     setActiveTab,
@@ -123,7 +126,17 @@ export default function App() {
     handleMainNavSelect,
     getDropdownItemActiveState,
     subTabs,
-  } = useDashboardNavigation({ isAuthenticated });
+  } = useDashboardNavigation({ isAuthenticated: hasOfficerAccess });
+
+  useEffect(() => {
+    const previousTab = previousActiveTabRef.current;
+    if (activeTab === 'raidAssignments' && previousTab && previousTab !== 'raidAssignments') {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      });
+    }
+    previousActiveTabRef.current = activeTab;
+  }, [activeTab]);
 
 
   // bankArchivedRequestIds and bankContentsHistory are persisted inside useBankData
@@ -286,12 +299,13 @@ export default function App() {
     activeTab,
     setActiveTab,
     setRaidAssignmentsSubTab,
-    isAuthenticated,
+    isAuthenticated: hasOfficerAccess,
   });
 
   const adminData = useAdminData({
     fetchData,
     putData,
+    deleteData,
     activeTab,
     adminSubTab,
     scoringConfigDirty,
@@ -573,11 +587,12 @@ export default function App() {
     bankSubTab,
     raidAssignmentsSubTab,
     raidSignupsSubTab,
+    setRaidSignupsSubTab,
     lootSubTab,
     recruitmentSubTab,
     adminSubTab,
     resourcesSubTab,
-    isAuthenticated,
+    isAuthenticated: hasOfficerAccess,
     globalMyPlayerId,
     selectedBisSpec,
     setSelectedBisSpec,
@@ -801,7 +816,7 @@ export default function App() {
           setHoveredNavTab={setHoveredNavTab}
           handleMainNavSelect={handleMainNavSelect}
           getDropdownItemActiveState={getDropdownItemActiveState}
-          isAuthenticated={isAuthenticated}
+          isAuthenticated={hasOfficerAccess}
           subTabs={subTabs}
         />
       )}

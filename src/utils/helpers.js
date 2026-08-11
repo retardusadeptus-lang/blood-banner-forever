@@ -33,7 +33,9 @@ export function normalizeSlotKey(slotName) {
   const normalized = String(slotName || '').trim().toLowerCase();
   if (['rings', 'ring', 'ring 1', 'ring 2', 'ring 1/2', 'finger', 'fingers', 'finger 1', 'finger 2'].includes(normalized)) return 'ring';
   if (['trinkets', 'trinket', 'trinket 1', 'trinket 2', 'trinket 1/2'].includes(normalized)) return 'trinket';
-  if (['two-hand', 'main hand', 'off hand', 'one hand', 'weapon'].includes(normalized)) return 'weapon';
+  if (['weapon', 'main hand', 'one hand', 'one-hand', '1h', 'two-hand', 'two hand', '2h'].includes(normalized)) return 'weapon';
+  if (['off hand', 'off-hand', 'held in off-hand', 'held in off hand'].includes(normalized)) return 'off-hand';
+  if (['shield'].includes(normalized)) return 'shield';
   return normalized;
 }
 

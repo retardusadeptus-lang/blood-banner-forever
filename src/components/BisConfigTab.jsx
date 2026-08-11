@@ -10,11 +10,46 @@ export default function BisConfigTab({
   renderItemSlot,
   specsByName
 }) {
+  const bisBottomSlots = BOTTOM_SLOTS.filter(slot => slot !== 'Main Hand');
+
+  const classColorFallbackByClass = {
+    Druid: '#FF7D0A',
+    Hunter: '#ABD473',
+    Mage: '#69CCF0',
+    Paladin: '#F58CBA',
+    Priest: '#FFFFFF',
+    Rogue: '#FFF569',
+    Shaman: '#0070DE',
+    Warlock: '#9482C9',
+    Warrior: '#C79C6E'
+  };
+
+  const isNeutralDefaultColor = (value) => {
+    const normalized = String(value || '').trim().toLowerCase();
+    return normalized === '#e2e8f0' || normalized === '#e2e8f0ff' || normalized === 'rgb(226, 232, 240)';
+  };
+
+  const resolveSpecColor = (spec) => {
+    if (!spec) return '#FFFFFF';
+    const className = String(spec.class || '').trim();
+    if (className && classColorFallbackByClass[className]) {
+      return classColorFallbackByClass[className];
+    }
+
+    const byName = specsByName?.[spec.spec]?.color;
+    if (byName && !isNeutralDefaultColor(byName)) return byName;
+
+    if (spec.color && !isNeutralDefaultColor(spec.color)) return spec.color;
+    return '#FFFFFF';
+  };
   
   const rightLayoutSlots = ['Hands', 'Waist', 'Legs', 'Feet', 'Rings', 'Trinkets'];
 
   // Quick lookup helper to grab the large icon profile for the spec background art
   const currentSpecObj = specsFromDb.find(s => s.spec === selectedBisSpec);
+  const selectedSpecColor = currentSpecObj
+    ? resolveSpecColor(currentSpecObj)
+    : (specsByName?.[selectedBisSpec]?.color || '#FFFFFF');
 
   return (
     <section className="bis-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">            
@@ -41,10 +76,10 @@ export default function BisConfigTab({
             className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[200px] focus:outline-none focus:ring-1 focus:ring-purple-500 cursor-pointer font-bold text-sm" 
             value={selectedBisSpec || ''} 
             onChange={e => setSelectedBisSpec(e.target.value)} 
-            style={{ color: specsByName[selectedBisSpec]?.color || '#FFFFFF' }}
+            style={{ color: selectedSpecColor }}
           >
             {specsFromDb.map(spec => (
-              <option key={spec.id} value={spec.spec} style={{ color: spec.color }}>
+              <option key={spec.id} value={spec.spec} style={{ color: resolveSpecColor(spec) }}>
                 {spec.spec}
               </option>
             ))}
@@ -81,7 +116,7 @@ export default function BisConfigTab({
           </div>
           <div className="lg:col-span-2 pt-6 mt-2 border-t border-slate-800/80">
             <div className="flex flex-wrap gap-4">
-              {BOTTOM_SLOTS.map(slot => renderItemSlot(slot))
+              {bisBottomSlots.map(slot => renderItemSlot(slot))
                 .filter(Boolean)
                 .map((slot, i) => <div key={i} className="flex-1 min-w-[160px]">{slot}</div>)
               }

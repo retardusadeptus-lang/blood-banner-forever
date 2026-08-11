@@ -1,8 +1,32 @@
 const crypto = require('crypto');
 
 const BNET_SESSION_COOKIE_NAME = 'wow_loot_bnet_sid';
-const BNET_SESSION_TTL_MS = 12 * 60 * 60 * 1000;
 const BNET_AUTH_SESSIONS = new Map();
+
+function parsePositiveNumber(rawValue, fallbackValue) {
+  const parsed = Number(rawValue);
+  if (!Number.isFinite(parsed) || parsed <= 0) return fallbackValue;
+  return parsed;
+}
+
+function getBattleNetSessionTtlMs() {
+  const ttlHours = parsePositiveNumber(process.env.BNET_SESSION_TTL_HOURS, 12);
+  return Math.round(ttlHours * 60 * 60 * 1000);
+}
+
+function normalizeBattletag(value) {
+  return String(value || '').trim().toLowerCase();
+}
+
+function getConfiguredPrimaryAdminBattletag() {
+  return normalizeBattletag(process.env.BNET_PRIMARY_ADMIN_BATTLETAG || process.env.PRIMARY_ADMIN_BATTLETAG || '');
+}
+
+function isPrimaryAdminBattletag(battletag) {
+  const configured = getConfiguredPrimaryAdminBattletag();
+  if (!configured) return false;
+  return normalizeBattletag(battletag) === configured;
+}
 
 function safeEqual(a, b) {
   const ba = Buffer.from(String(a));
@@ -57,6 +81,7 @@ function parseCookies(cookieHeader = '') {
 function setBattleNetSessionCookie(res, token) {
   const cookieParts = [`${BNET_SESSION_COOKIE_NAME}=${encodeURIComponent(token)}`, 'Path=/', 'HttpOnly'];
   cookieParts.push('SameSite=Lax');
+  cookieParts.push(`Max-Age=${Math.floor(getBattleNetSessionTtlMs() / 1000)}`);
   res.setHeader('Set-Cookie', cookieParts.join('; '));
 }
 
@@ -73,7 +98,7 @@ function clearBattleNetSession(req, res) {
 
 function createBattleNetSession(sessionData) {
   const token = crypto.randomBytes(24).toString('hex');
-  const session = { ...sessionData, expiresAt: Date.now() + BNET_SESSION_TTL_MS };
+  const session = { ...sessionData, expiresAt: Date.now() + getBattleNetSessionTtlMs() };
   BNET_AUTH_SESSIONS.set(token, session);
   return { token, session };
 }
@@ -100,6 +125,79 @@ function requireBattleNetAuth(req, res, next) {
   return next();
 }
 
+function getBattleNetRoleForUser(db, userId) {
+  const numericUserId = Number(userId || 0);
+  if (!db || !numericUserId) return null;
+  try {
+    const user = db.prepare('SELECT battletag FROM users WHERE id = ?').get(numericUserId);
+    if (user && isPrimaryAdminBattletag(user.battletag)) {
+      return 'admin';
+    }
+
+    const row = db.prepare('SELECT role FROM bnet_user_roles WHERE user_id = ?').get(numericUserId);
+    const role = String(row?.role || '').toLowerCase();
+    if (role === 'admin' || role === 'officer') return role;
+  } catch (error) {
+    console.error('[ERROR] Failed to read Battle.net role:', error.message);
+  }
+  return null;
+}
+
+function isPrimaryAdminUserId(db, userId) {
+  const numericUserId = Number(userId || 0);
+  if (!db || !numericUserId) return false;
+  try {
+    const row = db.prepare('SELECT battletag FROM users WHERE id = ?').get(numericUserId);
+    return isPrimaryAdminBattletag(row?.battletag || '');
+  } catch (error) {
+    console.error('[ERROR] Failed to resolve primary admin user:', error.message);
+    return false;
+  }
+}
+
+function getBattleNetRoleFromRequest(req, db) {
+  const session = getBattleNetSessionFromRequest(req);
+  const role = getBattleNetRoleForUser(db, session?.userId);
+  return {
+    session,
+    role,
+    isOfficer: role === 'officer' || role === 'admin',
+    isAdmin: role === 'admin'
+  };
+}
+
+function hasOfficerAccess(req, { sessionSecret, db }) {
+  const token = extractAdminToken(req);
+  if (verifySession(token, sessionSecret)) return true;
+  const roleInfo = getBattleNetRoleFromRequest(req, db);
+  return !!roleInfo.isOfficer;
+}
+
+function hasAdminAccess(req, { sessionSecret, db }) {
+  const token = extractAdminToken(req);
+  if (verifySession(token, sessionSecret)) return true;
+  const roleInfo = getBattleNetRoleFromRequest(req, db);
+  return !!roleInfo.isAdmin;
+}
+
+function requireOfficerAccess({ sessionSecret, db }) {
+  return (req, res, next) => {
+    if (!hasOfficerAccess(req, { sessionSecret, db })) {
+      return res.status(401).json({ error: 'Officer authentication required' });
+    }
+    return next();
+  };
+}
+
+function requireAdminAccess({ sessionSecret, db }) {
+  return (req, res, next) => {
+    if (!hasAdminAccess(req, { sessionSecret, db })) {
+      return res.status(401).json({ error: 'Admin authentication required' });
+    }
+    return next();
+  };
+}
+
 function extractAdminToken(req) {
   const header = req.get('x-admin-token') || req.get('authorization')?.replace(/^Bearer\s+/i, '');
   return header || null;
@@ -115,7 +213,7 @@ function requireOfficerAuth(sessionSecret) {
   };
 }
 
-function createWriteGuard(sessionSecret) {
+function createWriteGuard(sessionSecret, db) {
   console.log('[DEBUG] createWriteGuard initialized with sessionSecret defined?', !!sessionSecret);
   return (req, res, next) => {
     const isWriteMethod = ['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method);
@@ -131,6 +229,13 @@ function createWriteGuard(sessionSecret) {
       return next();
     }
 
+    if (/^\/api\/raid-signup-absences(?:\/[A-Za-z0-9-]+)?$/.test(req.path)) {
+      const bnetSession = getBattleNetSessionFromRequest(req);
+      if (bnetSession?.userId) {
+        return next();
+      }
+    }
+
     if (req.method === 'POST' && /\/bank-requests$/.test(req.path)) {
       return next();
     }
@@ -140,7 +245,12 @@ function createWriteGuard(sessionSecret) {
     }
 
     const token = extractAdminToken(req);
-    if (!verifySession(token, sessionSecret)) {
+    const tokenAuthorized = verifySession(token, sessionSecret);
+    if (!tokenAuthorized) {
+      const roleInfo = getBattleNetRoleFromRequest(req, db);
+      if (roleInfo.isOfficer) {
+        return next();
+      }
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
@@ -157,6 +267,16 @@ module.exports = {
   clearBattleNetSession,
   requireBattleNetAuth,
   requireOfficerAuth,
+  requireOfficerAccess,
+  requireAdminAccess,
+  hasOfficerAccess,
+  hasAdminAccess,
+  normalizeBattletag,
+  isPrimaryAdminBattletag,
+  isPrimaryAdminUserId,
+  getConfiguredPrimaryAdminBattletag,
+  getBattleNetRoleForUser,
+  getBattleNetRoleFromRequest,
   createWriteGuard,
   safeEqual
 };

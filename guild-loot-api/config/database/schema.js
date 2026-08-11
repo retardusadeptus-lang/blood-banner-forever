@@ -373,6 +373,17 @@ function ensureOfficerRolesTable(db) {
   `).run();
 }
 
+function ensureBattleNetUserRolesTable(db) {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS bnet_user_roles (
+      user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+      role TEXT NOT NULL CHECK (role IN ('officer', 'admin')),
+      granted_by_user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+}
+
 function ensureDiscordBotConfigTable(db) {
   db.prepare(`
     CREATE TABLE IF NOT EXISTS discord_bot_config (
@@ -567,6 +578,31 @@ function ensureRaidSignupTables(db) {
   if (!templateColumns.some(col => col.name === 'recurrence_enabled')) {
     db.prepare('ALTER TABLE raid_signup_templates ADD COLUMN recurrence_enabled INTEGER NOT NULL DEFAULT 0').run();
   }
+
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS raid_signup_absences (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      start_date TEXT NOT NULL,
+      end_date TEXT NOT NULL,
+      note TEXT DEFAULT '',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS raid_signup_character_absences (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      roster_id INTEGER NOT NULL REFERENCES roster(id) ON DELETE CASCADE,
+      created_by_user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+      start_date TEXT NOT NULL,
+      end_date TEXT NOT NULL,
+      note TEXT DEFAULT '',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
 }
 
 function ensureOperationalTables(db) {
@@ -732,7 +768,10 @@ function ensureDatabaseIndexes(db) {
     'CREATE INDEX IF NOT EXISTS idx_bank_items_category_name ON bank_items (category, name)',
     'CREATE INDEX IF NOT EXISTS idx_bank_requests_status_created ON bank_requests (status, created_at)',
     'CREATE INDEX IF NOT EXISTS idx_bank_requests_group_id ON bank_requests (request_group_id)',
-    'CREATE INDEX IF NOT EXISTS idx_raid_assignment_images_boss_created ON raid_assignment_images (boss_name, created_at)'
+    'CREATE INDEX IF NOT EXISTS idx_raid_assignment_images_boss_created ON raid_assignment_images (boss_name, created_at)',
+    'CREATE INDEX IF NOT EXISTS idx_raid_signup_absences_user_dates ON raid_signup_absences (user_id, start_date, end_date)',
+    'CREATE INDEX IF NOT EXISTS idx_raid_signup_character_absences_roster_dates ON raid_signup_character_absences (roster_id, start_date, end_date)',
+    'CREATE INDEX IF NOT EXISTS idx_bnet_user_roles_role ON bnet_user_roles (role)'
   ];
 
   statements.forEach(sql => db.prepare(sql).run());
@@ -746,6 +785,7 @@ function ensureDatabaseReady(db) {
     ensureNormalizedOperationalTables(db);
     ensureBankRequestSchema(db);
     ensureOfficerRolesTable(db);
+    ensureBattleNetUserRolesTable(db);
     ensureDiscordBotConfigTable(db);
     ensureRecruitmentPlanningTable(db);
     ensureRaidSignupTables(db);
