@@ -236,9 +236,64 @@ function upsertUserPreferredSpec(db, discordUserId, specId) {
   `).run(discordUserId, specId);
 }
 
+function upsertUserPreferredClass(db, discordUserId, className) {
+  const cleaned = String(className || '').trim();
+  if (!cleaned) return;
+  db.prepare(`
+    INSERT INTO raid_signup_user_prefs (discord_user_id, class_name, updated_at)
+    VALUES (?, ?, CURRENT_TIMESTAMP)
+    ON CONFLICT(discord_user_id)
+    DO UPDATE SET class_name = excluded.class_name, updated_at = CURRENT_TIMESTAMP
+  `).run(discordUserId, cleaned);
+}
+
+function upsertUserPreferredCharacter(db, discordUserId, characterName) {
+  const cleaned = String(characterName || '').trim();
+  if (!cleaned) return;
+
+  const existing = db.prepare(`
+    SELECT discord_user_id, class_name, character_name, spec_id
+    FROM raid_signup_user_prefs
+    WHERE discord_user_id = ?
+    LIMIT 1
+  `).get(discordUserId);
+
+  const specId = existing?.spec_id ?? null;
+  const className = existing?.class_name ?? '';
+
+  db.prepare(`
+    INSERT INTO raid_signup_user_prefs (discord_user_id, class_name, character_name, spec_id, updated_at)
+    VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+    ON CONFLICT(discord_user_id)
+    DO UPDATE SET
+      class_name = excluded.class_name,
+      character_name = excluded.character_name,
+      spec_id = COALESCE(raid_signup_user_prefs.spec_id, excluded.spec_id),
+      updated_at = CURRENT_TIMESTAMP
+  `).run(discordUserId, className, cleaned, specId);
+}
+
 function getUserPreferredSpec(db, discordUserId) {
   return db.prepare(`
-    SELECT spec_id
+    SELECT spec_id, class_name, character_name
+    FROM raid_signup_user_prefs
+    WHERE discord_user_id = ?
+    LIMIT 1
+  `).get(discordUserId);
+}
+
+function getUserPreferredClass(db, discordUserId) {
+  return db.prepare(`
+    SELECT class_name
+    FROM raid_signup_user_prefs
+    WHERE discord_user_id = ?
+    LIMIT 1
+  `).get(discordUserId);
+}
+
+function getUserPreferredCharacter(db, discordUserId) {
+  return db.prepare(`
+    SELECT character_name
     FROM raid_signup_user_prefs
     WHERE discord_user_id = ?
     LIMIT 1
@@ -302,10 +357,24 @@ function listEntriesForEvent(db, eventId) {
     FROM raid_signup_entries e
     LEFT JOIN specs s ON s.id = e.spec_id
     WHERE e.event_id = ?
-    ORDER BY e.updated_at DESC
   `).all(eventId);
 
+  const statusPriority = {
+    signup: 0,
+    late: 1,
+    tentative: 2,
+    bench: 3,
+    absence: 4
+  };
+
   const byOrder = [...rows].sort((a, b) => {
+    const aStatus = String(a.status || '').toLowerCase();
+    const bStatus = String(b.status || '').toLowerCase();
+    const aPriority = statusPriority[aStatus] ?? 99;
+    const bPriority = statusPriority[bStatus] ?? 99;
+
+    if (aPriority !== bPriority) return aPriority - bPriority;
+
     const aTime = Date.parse(a.updated_at || '') || 0;
     const bTime = Date.parse(b.updated_at || '') || 0;
     if (aTime !== bTime) return aTime - bTime;
@@ -317,7 +386,7 @@ function listEntriesForEvent(db, eventId) {
     orderMap.set(row.id, idx + 1);
   });
 
-  return rows.map(row => ({ ...row, signup_order: orderMap.get(row.id) || null }));
+  return byOrder.map(row => ({ ...row, signup_order: orderMap.get(row.id) || null }));
 }
 
 function listGroupsForEvent(db, eventId) {
@@ -348,7 +417,11 @@ module.exports = {
   setEventClassFilter,
   upsertDraft,
   upsertUserPreferredSpec,
+  upsertUserPreferredClass,
+  upsertUserPreferredCharacter,
   getUserPreferredSpec,
+  getUserPreferredClass,
+  getUserPreferredCharacter,
   getDraft,
   upsertSignupEntry,
   listEntriesForEvent,

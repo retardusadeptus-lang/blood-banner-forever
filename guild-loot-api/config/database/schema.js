@@ -562,10 +562,20 @@ function ensureRaidSignupTables(db) {
   db.prepare(`
     CREATE TABLE IF NOT EXISTS raid_signup_user_prefs (
       discord_user_id TEXT PRIMARY KEY,
-      spec_id INTEGER NOT NULL REFERENCES specs(id) ON DELETE CASCADE,
+      class_name TEXT NOT NULL DEFAULT '',
+      character_name TEXT NOT NULL DEFAULT '',
+      spec_id INTEGER REFERENCES specs(id) ON DELETE CASCADE,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `).run();
+
+  const userPrefColumns = db.prepare("PRAGMA table_info('raid_signup_user_prefs')").all();
+  if (!userPrefColumns.some(col => col.name === 'class_name')) {
+    db.exec("ALTER TABLE raid_signup_user_prefs ADD COLUMN class_name TEXT DEFAULT ''");
+  }
+  if (!userPrefColumns.some(col => col.name === 'character_name')) {
+    db.exec("ALTER TABLE raid_signup_user_prefs ADD COLUMN character_name TEXT DEFAULT ''");
+  }
 
   db.prepare(`
     CREATE TABLE IF NOT EXISTS raid_signup_event_filters (

@@ -4,25 +4,31 @@ const {
   ButtonStyle,
   StringSelectMenuBuilder
 } = require('discord.js');
+const { resolveSpecEmojiData } = require('../utils/discordEmojiTokens');
 
-function buildMainSignupComponents(eventId, classes, specs, selectedClass, disabled = false) {
-  const classOptions = classes.slice(0, 25).map(className => ({
-    label: className,
-    value: className,
-    default: String(className) === String(selectedClass || '')
-  }));
+function classEmojiLabel(className) {
+  const labels = {
+    warrior: '🛡️',
+    paladin: '🔨',
+    hunter: '🏹',
+    rogue: '🗡️',
+    priest: '✨',
+    shaman: '⚡',
+    mage: '❄️',
+    warlock: '🔥',
+    druid: '🌙'
+  };
+  const key = String(className || '').toLowerCase();
+  return labels[key] || '';
+}
 
-  const classSelect = new StringSelectMenuBuilder()
-    .setCustomId(`rsu:class:${eventId}`)
-    .setPlaceholder(disabled ? 'Event is closed' : 'Filter by class')
-    .setMinValues(1)
-    .setMaxValues(1)
-    .setDisabled(disabled)
-    .addOptions(classOptions.length ? classOptions : [{ label: 'No classes configured', value: 'none' }]);
-
+function buildMainSignupComponents(eventId, classes, specs, selectedClass, disabled = false, preferredCharacter = '', preferredSpecId = null) {
+  const normalizedPreferredSpecId = Number(preferredSpecId ?? 0) || null;
   const options = specs.slice(0, 25).map(spec => ({
-    label: `${spec.class} - ${spec.spec}`,
-    value: String(spec.id)
+    label: `${spec.class} - ${spec.spec}`.trim(),
+    value: String(spec.id),
+    emoji: resolveSpecEmojiData(null, spec.spec, spec.class) || undefined,
+    default: normalizedPreferredSpecId !== null && Number(spec.id) === normalizedPreferredSpecId
   }));
 
   const select = new StringSelectMenuBuilder()
@@ -31,7 +37,22 @@ function buildMainSignupComponents(eventId, classes, specs, selectedClass, disab
     .setMinValues(1)
     .setMaxValues(1)
     .setDisabled(disabled)
-    .addOptions(options.length ? options : [{ label: 'No specs configured', value: 'none' }]);
+    .addOptions(options.length ? options : [{ label: 'No specs configured', value: 'none', default: false }]);
+
+  const normalizedCharacter = String(preferredCharacter || '').trim();
+  const sanitizedCharacter = normalizedCharacter && normalizedCharacter.toLowerCase() !== 'testhero' ? normalizedCharacter : '';
+  const hasCharacterName = Boolean(sanitizedCharacter);
+  const characterNameLabel = hasCharacterName ? `Character Name: ${sanitizedCharacter}` : 'Enter Character Name';
+  const characterButtonStyle = hasCharacterName ? ButtonStyle.Success : ButtonStyle.Primary;
+  const characterButtonEmoji = hasCharacterName ? '✅' : '⚠️';
+  const characterRow = new ActionRowBuilder().addComponents(
+    new ButtonBuilder()
+      .setCustomId(`rsu:character:${eventId}`)
+      .setLabel(characterNameLabel)
+      .setStyle(characterButtonStyle)
+      .setEmoji(characterButtonEmoji)
+      .setDisabled(disabled)
+  );
 
   const statusRow = new ActionRowBuilder().addComponents(
     new ButtonBuilder().setCustomId(`rsu:status:${eventId}:signup`).setLabel('Sign Up').setStyle(ButtonStyle.Success).setDisabled(disabled),
@@ -41,7 +62,7 @@ function buildMainSignupComponents(eventId, classes, specs, selectedClass, disab
     new ButtonBuilder().setCustomId(`rsu:status:${eventId}:absence`).setLabel('Absence').setStyle(ButtonStyle.Danger).setDisabled(disabled)
   );
 
-  return [new ActionRowBuilder().addComponents(classSelect), new ActionRowBuilder().addComponents(select), statusRow];
+  return [characterRow, new ActionRowBuilder().addComponents(select), statusRow];
 }
 
 module.exports = {

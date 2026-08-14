@@ -4,9 +4,14 @@ const {
   getDraft,
   upsertDraft,
   upsertUserPreferredSpec,
+  upsertUserPreferredClass,
+  upsertUserPreferredCharacter,
   getUserPreferredSpec,
+  getUserPreferredClass,
+  getUserPreferredCharacter,
   upsertSignupEntry
 } = require('../utils/raidSignupStore');
+const { refreshEventMessage } = require('./raidSignupEmbed');
 
 async function handleSpecSelect(interaction, db, eventId) {
   const event = getEventById(db, eventId);
@@ -24,6 +29,7 @@ async function handleSpecSelect(interaction, db, eventId) {
   upsertDraft(db, eventId, interaction.user.id, specId);
   upsertUserPreferredSpec(db, interaction.user.id, specId);
 
+  await refreshEventMessage(db, interaction.client, eventId, interaction.user.id);
   await interaction.deferUpdate();
 
   return true;
@@ -41,6 +47,8 @@ async function handleClassFilterSelect(interaction, db, eventId) {
     await interaction.reply({ content: 'Invalid class selection.', ephemeral: true });
     return true;
   }
+
+  upsertUserPreferredClass(db, interaction.user.id, className);
 
   const classSpecs = getAllowedSpecsByClass(db, eventId, className);
   if (!classSpecs.length) {
@@ -83,6 +91,15 @@ async function handleStatusButton(interaction, db, eventId, status) {
     return true;
   }
 
+  const preferredCharacter = String(getUserPreferredCharacter(db, interaction.user.id)?.character_name || '').trim();
+  if (!preferredCharacter) {
+    await interaction.reply({
+      content: 'Please set your character name before signing up.',
+      ephemeral: true
+    });
+    return true;
+  }
+
   let specId = null;
   const draft = getDraft(db, eventId, interaction.user.id);
   if (draft?.spec_id) specId = Number(draft.spec_id);
@@ -108,20 +125,49 @@ async function handleStatusButton(interaction, db, eventId, status) {
     return true;
   }
 
-  const displayName = interaction.member?.displayName || interaction.user.username;
+  const displayName = preferredCharacter || (interaction.member?.displayName || interaction.user.username);
   upsertSignupEntry(db, eventId, interaction.user.id, displayName, normalizedStatus, specId);
   if (specId) {
     upsertUserPreferredSpec(db, interaction.user.id, specId);
   }
 
   await interaction.deferUpdate();
-  await refreshEventMessage(db, interaction.client, eventId);
+  await refreshEventMessage(db, interaction.client, eventId, interaction.user.id);
 
+  return true;
+}
+
+async function handleCharacterNameSubmit(interaction, db, eventId) {
+  const event = getEventById(db, eventId);
+  if (!event || event.status !== 'open') {
+    await interaction.reply({ content: 'This signup event is closed.', ephemeral: true });
+    return true;
+  }
+
+  const characterName = String(interaction.fields?.getTextInputValue('character_name') || '').trim();
+  if (!characterName) {
+    await interaction.reply({ content: 'Character name is required.', ephemeral: true });
+    return true;
+  }
+
+  upsertUserPreferredCharacter(db, interaction.user.id, characterName);
+  const className = String(getUserPreferredClass(db, interaction.user.id)?.class_name || '').trim();
+  if (className) {
+    upsertUserPreferredClass(db, interaction.user.id, className);
+  }
+
+  await interaction.reply({
+    content: `Saved character name as ${characterName}.`,
+    ephemeral: true
+  });
+
+  await refreshEventMessage(db, interaction.client, eventId, interaction.user.id);
   return true;
 }
 
 module.exports = {
   handleSpecSelect,
   handleClassFilterSelect,
-  handleStatusButton
+  handleStatusButton,
+  handleCharacterNameSubmit
 };

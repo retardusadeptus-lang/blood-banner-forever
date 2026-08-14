@@ -26,7 +26,11 @@ async function postEvent(interaction, db) {
     scheduledFor: scheduledFor || undefined
   });
 
-  const embed = buildSignupEmbed(event, [], interaction.guild || null);
+  if (interaction.client && interaction.client.application && typeof interaction.client.application.emojis?.fetch === 'function') {
+    await interaction.client.application.emojis.fetch().catch(() => {});
+  }
+
+  const embed = buildSignupEmbed(event, [], interaction.client || interaction.guild || null);
   const classes = getAvailableClassesForEvent(db, event.id);
   const selectedClass = '';
   const specs = getAllowedSpecsForEvent(db, event.id);

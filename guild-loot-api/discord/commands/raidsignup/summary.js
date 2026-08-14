@@ -59,9 +59,11 @@ function buildEchoEmbed(interaction, event, entries, groups) {
     .addFields(
       { name: 'Sign Summary', value: summaryLine, inline: false },
       { name: withEmoji(resolveClassEmojiToken(interaction.guild || null, 'tank'), `Tank (${tankCount})`), value: summary.roleBuckets.tank.join('\n') || 'None', inline: true },
+      { name: '\u200b', value: '\u200b', inline: true },
       { name: withEmoji(resolveClassEmojiToken(interaction.guild || null, 'healer'), `Healer (${healerCount})`), value: summary.roleBuckets.healer.join('\n') || 'None', inline: true },
-      { name: withEmoji(resolveClassEmojiToken(interaction.guild || null, 'melee'), `DPS (Melee) (${meleeCount})`), value: summary.roleBuckets.melee.join('\n') || 'None', inline: true },
       { name: withEmoji(resolveClassEmojiToken(interaction.guild || null, 'ranged'), `DPS (Ranged) (${rangedCount})`), value: summary.roleBuckets.ranged.join('\n') || 'None', inline: true },
+      { name: '\u200b', value: '\u200b', inline: true },
+      { name: withEmoji(resolveClassEmojiToken(interaction.guild || null, 'melee'), `DPS (Melee) (${meleeCount})`), value: summary.roleBuckets.melee.join('\n') || 'None', inline: true },
       { name: 'Groups', value: summarizeGroups(groups, interaction.guild || null), inline: false }
     )
     .setColor(0x8e44ad)

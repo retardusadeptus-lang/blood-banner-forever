@@ -62,7 +62,7 @@ function initDiscordBot({ db }) {
   }
 
   const client = new Client({
-    intents: [GatewayIntentBits.Guilds]
+    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildEmojisAndStickers]
   });
   activeDiscordClient = client;
 
@@ -92,7 +92,7 @@ function initDiscordBot({ db }) {
 
   client.on('interactionCreate', async interaction => {
     try {
-      if (interaction.isStringSelectMenu() || interaction.isButton()) {
+      if (interaction.isStringSelectMenu() || interaction.isButton() || interaction.isModalSubmit()) {
         const handled = await handleRaidSignupComponent(interaction, { db });
         if (handled) return;
       }
