@@ -9,7 +9,9 @@ import { downloadCsv } from '../utils/csv';
 export default function BankContainer({
   fetchData,
   putData,
+  deleteData,
   isAuthenticated,
+  bnetAuthState,
   roster,
   specsByName,
   getDisplayFromId,
@@ -39,7 +41,7 @@ export default function BankContainer({
     archivedRequestIds,
     bankContentsHistory,
     exportBankContentsHistoryCsv
-  } = useBankData({ fetchData, putData, isAuthenticated });
+  } = useBankData({ fetchData, putData, deleteData, isAuthenticated });
 
   const myPlayerId = globalMyPlayerId ? parseInt(globalMyPlayerId, 10) : null;
 
@@ -104,6 +106,7 @@ export default function BankContainer({
           bankSearch={bankSearch}
           setBankSearch={setBankSearch}
           isAuthenticated={isAuthenticated}
+          bnetAuthState={bnetAuthState}
           roster={roster}
           myPlayerId={myPlayerId}
         />
@@ -157,6 +160,7 @@ export default function BankContainer({
             archivedRequestIds={archivedRequestIds}
             exportArchivedRequestsCsv={exportArchivedRequestsCsv}
             onRestoreArchivedBankRequests={restoreArchivedBankRequests}
+            onDeleteArchivedBankRequests={deleteArchivedBankRequests}
           />
 
           <div className="space-y-2">

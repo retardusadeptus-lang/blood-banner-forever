@@ -24,7 +24,7 @@ function buildRaidsignupCommand() {
         .addStringOption(option =>
           option
             .setName('scheduled_for')
-            .setDescription('Optional schedule text (e.g. 2026-07-08 20:00)')
+            .setDescription('Optional schedule text: YYYY-MM-DD HH:MM (uses template timezone, default Europe/Paris)')
             .setRequired(false)
         )
     )
@@ -114,7 +114,7 @@ function buildRaidsignupCommand() {
         .addStringOption(option =>
           option
             .setName('scheduled_for')
-            .setDescription('New schedule text, e.g. 2026-07-08 20:00')
+            .setDescription('New schedule: YYYY-MM-DD HH:MM (uses template timezone, default Europe/Paris)')
             .setRequired(false)
         )
         .addBooleanOption(option =>

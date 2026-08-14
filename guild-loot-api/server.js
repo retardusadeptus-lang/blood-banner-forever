@@ -5,6 +5,7 @@ const { buildDiscordService } = require('./services/discord');
 const createTokenRedemptionService = require('./services/tokenRedemption');
 const createConfigService = require('./services/configService');
 const { createRaidSignupCron } = require('./services/raidSignupCron');
+const { createWarcraftLogsSync } = require('./services/warcraftLogsSync');
 const { initDiscordBot } = require('./bot');
 const appPath = require.resolve('./app');
 console.log('[DEBUG] resolved app path', appPath);
@@ -20,13 +21,18 @@ const discordService = buildDiscordService({ siteUrl: SITE_URL, webhookUrl: DISC
 const tokenRedemptionService = createTokenRedemptionService(db);
 const configService = createConfigService(db);
 const signupCron = createRaidSignupCron({ db });
+const { fetchReportsFromWcl } = require('./routes/warcraftlogs');
+const warcraftLogsSync = createWarcraftLogsSync({
+  fetchReportsFromWcl: async () => fetchReportsFromWcl({ db })
+});
 const app = buildApp({
   db,
   sessionSecret: SESSION_SECRET,
   bnetConfig: BNET_CONFIG,
   discordService,
   tokenRedemptionService,
-  configService
+  configService,
+  discordWebhookUrl: DISCORD_WEBHOOK_URL
 });
 
 initDiscordBot({ db });
@@ -38,5 +44,7 @@ setTimeout(() => {
 setInterval(() => {
   signupCron.run().catch(() => {});
 }, 60 * 1000);
+
+warcraftLogsSync.scheduleAtUkNightly({ hour: 23, minute: 0 });
 
 app.listen(API_PORT, () => console.log(`Guild Loot API running on port ${API_PORT}`));

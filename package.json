@@ -14,11 +14,16 @@
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:api\"",
     "dev:full": "npm run dev:all",
     "start:full": "powershell -ExecutionPolicy Bypass -File ./scripts/start-full.ps1",
-    "build:docker": "docker build -t gntbc:latest -f ./Dockerfile ."
+    "build:docker": "docker build -t gntbc:latest -f ./Dockerfile .",
+    "seed:recruitment": "node guild-loot-api/scripts/seed_recruitment_roster.js",
+    "seed:demo": "node guild-loot-api/scripts/seed_demo_data.js",
+    "export:cheat-sheet": "node scripts/export-cheat-sheet.mjs",
+    "import:cheat-sheet": "node scripts/import-cheat-sheet.mjs"
   },
   "postinstall": "cd guild-loot-api && npm install && cd .. && npm run build:prod",
   "dependencies": {
     "axios": "^1.17.0",
+    "luxon": "^3.7.2",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   },

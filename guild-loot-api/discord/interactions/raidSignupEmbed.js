@@ -1,49 +1,25 @@
 const { EmbedBuilder } = require('discord.js');
-const { resolveRoleEmojiToken } = require('../utils/discordEmojiTokens');
+const { resolveRoleEmojiToken, resolveClassEmojiToken, resolveSpecEmojiToken } = require('../utils/discordEmojiTokens');
+const { parseScheduledUnix } = require('../../utils/raidSignupTime');
 const {
   getEventById,
   getAvailableClassesForEvent,
-  getEventClassFilter,
-  setEventClassFilter,
-  getAllowedSpecsByClass,
   getAllowedSpecsForEvent,
-  listEntriesForEvent
+  listEntriesForEvent,
+  getUserPreferredSpec,
+  getUserPreferredCharacter
 } = require('../utils/raidSignupStore');
 const { buildMainSignupComponents } = require('./raidSignupComponents');
 const { formatSignupSummary } = require('../utils/raidSignupStore/summary');
-
-function parseScheduledUnix(value) {
-  const raw = String(value || '').trim();
-  if (!raw) return null;
-
-  const ymd = raw.match(/^(\d{4})-(\d{2})-(\d{2})(?:\s+(\d{2}):(\d{2}))?(?:\s*CET)?$/i);
-  if (ymd) {
-    const [, yyyy, mm, dd, hh = '20', min = '00'] = ymd;
-    const parsed = Date.parse(`${yyyy}-${mm}-${dd}T${hh}:${min}:00+01:00`);
-    if (!Number.isNaN(parsed)) return Math.floor(parsed / 1000);
-  }
-
-  const dmy = raw.match(/^(\d{2})-(\d{2})-(\d{4})(?:\s+(\d{2}):(\d{2}))?(?:\s*CET)?$/i);
-  if (dmy) {
-    const [, dd, mm, yyyy, hh = '20', min = '00'] = dmy;
-    const parsed = Date.parse(`${yyyy}-${mm}-${dd}T${hh}:${min}:00+01:00`);
-    if (!Number.isNaN(parsed)) return Math.floor(parsed / 1000);
-  }
-
-  const normalized = raw.replace(' ', 'T');
-  const parsed = Date.parse(normalized);
-  if (Number.isNaN(parsed)) return null;
-  return Math.floor(parsed / 1000);
-}
 
 function withEmoji(icon, label) {
   return icon ? `${icon} ${label}` : label;
 }
 
-function buildSignupEmbed(event, entries, guild = null) {
+function buildSignupEmbed(event, entries, guildOrClient = null) {
   const summary = formatSignupSummary(entries, {
     classIconResolver: entry => {
-      const token = resolveRoleEmojiToken(guild, entry?.spec_class);
+      const token = resolveSpecEmojiToken(guildOrClient, entry?.spec_name, entry?.spec_class);
       return token ? `${token} ` : '';
     }
   });
@@ -52,6 +28,12 @@ function buildSignupEmbed(event, entries, guild = null) {
   const roleField = (name, arr) => ({
     name,
     value: arr.length ? arr.join('\n') : 'None',
+    inline: true
+  });
+
+  const blankField = () => ({
+    name: '\u200b',
+    value: '\u200b',
     inline: true
   });
 
@@ -86,42 +68,51 @@ function buildSignupEmbed(event, entries, guild = null) {
       },
       { name: 'Sign Summary', value: statusLine, inline: false },
       { name: 'Bench / Late / Tentative / Absence', value: statusDetails, inline: false },
-      roleField(withEmoji(resolveRoleEmojiToken(guild, 'tank'), `Tank (${tankCount})`), summary.roleBuckets.tank),
-      roleField(withEmoji(resolveRoleEmojiToken(guild, 'healer'), `Healer (${healerCount})`), summary.roleBuckets.healer),
-      roleField(withEmoji(resolveRoleEmojiToken(guild, 'melee'), `DPS (Melee) (${meleeCount})`), summary.roleBuckets.melee),
-      roleField(withEmoji(resolveRoleEmojiToken(guild, 'ranged'), `DPS (Ranged) (${rangedCount})`), summary.roleBuckets.ranged)
+      roleField(withEmoji(resolveRoleEmojiToken(guildOrClient, 'tank'), `Tank (${tankCount})`), summary.roleBuckets.tank),
+      blankField(),
+      roleField(withEmoji(resolveRoleEmojiToken(guildOrClient, 'healer'), `Healer (${healerCount})`), summary.roleBuckets.healer),
+      roleField(withEmoji(resolveRoleEmojiToken(guildOrClient, 'ranged'), `DPS (Ranged) (${rangedCount})`), summary.roleBuckets.ranged),
+      blankField(),
+      roleField(withEmoji(resolveRoleEmojiToken(guildOrClient, 'melee'), `DPS (Melee) (${meleeCount})`), summary.roleBuckets.melee)
     )
     .setColor(0x3498db)
     .setTimestamp();
 }
 
-async function refreshEventMessage(db, client, eventId) {
+async function refreshEventMessage(db, client, eventId, userId = null) {
   const event = getEventById(db, eventId);
   if (!event || !event.discord_channel_id || !event.discord_message_id) return;
 
   const classes = getAvailableClassesForEvent(db, eventId);
-  const selectedFilter = getEventClassFilter(db, eventId)?.selected_class;
-  const selectedClass = classes.includes(selectedFilter) ? selectedFilter : (classes[0] || '');
-  if (selectedClass && selectedClass !== selectedFilter) {
-    setEventClassFilter(db, eventId, selectedClass);
-  }
-
-  const specs = selectedClass
-    ? getAllowedSpecsByClass(db, eventId, selectedClass)
-    : getAllowedSpecsForEvent(db, eventId);
+  const specs = getAllowedSpecsForEvent(db, eventId);
+  const selectedClass = '';
+  const preferredCharacter = userId ? String(getUserPreferredCharacter(db, userId)?.character_name || '').trim() : '';
+  const preferredSpecId = userId ? Number(getUserPreferredSpec(db, userId)?.spec_id || 0) : 0;
   const entries = listEntriesForEvent(db, eventId);
 
   const channel = await client.channels.fetch(event.discord_channel_id).catch(() => null);
   if (!channel || typeof channel.messages?.fetch !== 'function') return;
 
-  const embed = buildSignupEmbed(event, entries, channel.guild || null);
+  if (client && client.application && typeof client.application.emojis?.fetch === 'function') {
+    await client.application.emojis.fetch().catch(() => {});
+  }
+
+  const embed = buildSignupEmbed(event, entries, client || channel.guild || null);
 
   const message = await channel.messages.fetch(event.discord_message_id).catch(() => null);
   if (!message) return;
 
   await message.edit({
     embeds: [embed],
-    components: buildMainSignupComponents(eventId, classes, specs, selectedClass, event.status !== 'open')
+    components: buildMainSignupComponents(
+      eventId,
+      classes,
+      specs,
+      selectedClass,
+      event.status !== 'open',
+      preferredCharacter,
+      preferredSpecId
+    )
   });
 }
 

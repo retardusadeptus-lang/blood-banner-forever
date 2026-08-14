@@ -1,6 +1,30 @@
-const { handleSpecSelect, handleClassFilterSelect, handleStatusButton } = require('./raidSignupHandlers');
+const {
+  handleSpecSelect,
+  handleClassFilterSelect,
+  handleStatusButton,
+  handleCharacterNameSubmit
+} = require('./raidSignupHandlers');
 const { buildMainSignupComponents } = require('./raidSignupComponents');
 const { buildSignupEmbed, refreshEventMessage } = require('./raidSignupEmbed');
+const { getUserPreferredCharacter } = require('../utils/raidSignupStore');
+
+function buildCharacterNameModal(eventId, preferredCharacter = '') {
+  const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
+
+  const characterInput = new TextInputBuilder()
+    .setCustomId('character_name')
+    .setLabel('Character name')
+    .setPlaceholder('Enter the name you are signing up with')
+    .setRequired(true)
+    .setStyle(TextInputStyle.Short)
+    .setValue(String(preferredCharacter || '').trim());
+
+  const row = new ActionRowBuilder().addComponents(characterInput);
+  return new ModalBuilder()
+    .setCustomId(`rsu:character:${eventId}`)
+    .setTitle('Set character name')
+    .addComponents(row);
+}
 
 async function handleRaidSignupComponent(interaction, { db }) {
   const customId = String(interaction.customId || '');
@@ -24,9 +48,19 @@ async function handleRaidSignupComponent(interaction, { db }) {
     }
   }
 
+  if (interaction.isButton() && type === 'character') {
+    const preferredCharacter = String(getUserPreferredCharacter(db, interaction.user.id)?.character_name || '').trim();
+    await interaction.showModal(buildCharacterNameModal(eventId, preferredCharacter));
+    return true;
+  }
+
   if (interaction.isButton() && type === 'status') {
     const status = parts[3] || '';
     return handleStatusButton(interaction, db, eventId, status);
+  }
+
+  if (interaction.isModalSubmit() && type === 'character') {
+    return handleCharacterNameSubmit(interaction, db, eventId);
   }
 
   return false;
@@ -36,5 +70,6 @@ module.exports = {
   handleRaidSignupComponent,
   buildSignupEmbed,
   buildMainSignupComponents,
-  refreshEventMessage
+  refreshEventMessage,
+  buildCharacterNameModal
 };

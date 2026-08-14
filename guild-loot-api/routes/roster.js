@@ -2,7 +2,7 @@ const express = require('express');
 const {
   getBattleNetSessionFromRequest,
   requireBattleNetAuth,
-  requireOfficerAuth,
+  requireOfficerAccess,
   verifySession,
   extractAdminToken
 } = require('../middleware/auth');
@@ -226,7 +226,7 @@ function buildRosterRoutes({ db, sessionSecret, bnetConfig }) {
     }
   });
 
-  router.get('/roster/claims', requireOfficerAuth(sessionSecret), (req, res) => {
+  router.get('/roster/claims', requireOfficerAccess({ sessionSecret, db }), (req, res) => {
     try {
       const claims = db.prepare(`
         SELECT
@@ -258,7 +258,7 @@ function buildRosterRoutes({ db, sessionSecret, bnetConfig }) {
     }
   });
 
-  router.post('/roster/unclaim', requireOfficerAuth(sessionSecret), (req, res) => {
+  router.post('/roster/unclaim', requireOfficerAccess({ sessionSecret, db }), (req, res) => {
     const rosterId = Number(req.body?.rosterId || req.body?.id || 0);
     if (!rosterId) {
       return res.status(400).json({ error: 'rosterId is required' });
@@ -294,7 +294,7 @@ function buildRosterRoutes({ db, sessionSecret, bnetConfig }) {
     }
   });
 
-  router.get('/roster/claim-audit', requireOfficerAuth(sessionSecret), (req, res) => {
+  router.get('/roster/claim-audit', requireOfficerAccess({ sessionSecret, db }), (req, res) => {
     try {
       const limit = Math.min(200, Math.max(10, Number(req.query?.limit || 50)));
       const rows = db.prepare(`

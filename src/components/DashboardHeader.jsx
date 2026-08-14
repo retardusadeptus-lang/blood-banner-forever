@@ -67,7 +67,7 @@ export default function DashboardHeader({
           </div>
         </div>
 
-        <div className="w-64 flex flex-col justify-between bg-slate-900 border border-slate-800 rounded-lg p-2">
+        <div className="w-72 flex flex-col justify-between bg-slate-900 border border-slate-800 rounded-lg p-2">
           <div className="flex justify-center items-center mb-2">
             <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Current Phase:</span>
             <select
@@ -79,11 +79,11 @@ export default function DashboardHeader({
             </select>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 min-w-0">
             <select
               value={globalMyPlayerId}
               onChange={e => onCharacterSelect(e.target.value)}
-              className="flex-1 bg-slate-950 text-amber-400 font-bold border border-slate-700 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+              className="min-w-0 flex-1 bg-slate-950 text-amber-400 font-bold border border-slate-700 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
             >
               <option value="">— Select Character —</option>
               {sortedRosterForSelector.map(player => {
@@ -107,7 +107,7 @@ export default function DashboardHeader({
               type="button"
               onClick={() => setShowBnetClaimModal(true)}
               disabled={!bnetAuthState.authenticated || selectedGlobalPlayerIsClaimed}
-              className={`text-[10px] font-bold uppercase tracking-wider ${!bnetAuthState.authenticated || selectedGlobalPlayerIsClaimed ? 'text-slate-500 cursor-not-allowed' : 'text-cyan-400 hover:text-cyan-300'}`}
+              className={`shrink-0 rounded border px-2 py-1 text-[10px] font-bold uppercase tracking-wider ${!bnetAuthState.authenticated || selectedGlobalPlayerIsClaimed ? 'border-slate-800 text-slate-500 cursor-not-allowed' : 'border-cyan-700/60 text-cyan-400 hover:text-cyan-300 hover:border-cyan-500/80'}`}
             >
               Claim
             </button>

@@ -14,6 +14,7 @@ const {
   refreshEventMessage
 } = require('../../interactions/raidSignupInteractions');
 const { buildEchoEmbed } = require('./summary');
+const { normalizeScheduledForText, normalizeTimezone, DEFAULT_RAID_TIMEZONE } = require('../../../utils/raidSignupTime');
 
 async function postEvent(interaction, db) {
   const templateId = Number(interaction.options.getString('template', true));
@@ -25,12 +26,14 @@ async function postEvent(interaction, db) {
     scheduledFor: scheduledFor || undefined
   });
 
-  const embed = buildSignupEmbed(event, [], interaction.guild || null);
+  if (interaction.client && interaction.client.application && typeof interaction.client.application.emojis?.fetch === 'function') {
+    await interaction.client.application.emojis.fetch().catch(() => {});
+  }
+
+  const embed = buildSignupEmbed(event, [], interaction.client || interaction.guild || null);
   const classes = getAvailableClassesForEvent(db, event.id);
-  const selectedClass = classes[0] || '';
-  const specs = selectedClass
-    ? getAllowedSpecsForEvent(db, event.id).filter(spec => String(spec.class || '').toLowerCase() === String(selectedClass).toLowerCase())
-    : getAllowedSpecsForEvent(db, event.id);
+  const selectedClass = '';
+  const specs = getAllowedSpecsForEvent(db, event.id);
 
   const message = await interaction.channel.send({
     embeds: [embed],
@@ -64,6 +67,19 @@ async function editEvent(interaction, db) {
   const scheduledFor = interaction.options.getString('scheduled_for');
   const publicGroups = interaction.options.getBoolean('public_groups');
 
+  let normalizedScheduledFor = null;
+  if (scheduledFor !== null) {
+    const templateTzRow = db.prepare(`
+      SELECT t.timezone_text AS timezone_text
+      FROM raid_signup_events e
+      LEFT JOIN raid_signup_templates t ON t.id = e.template_id
+      WHERE e.id = ?
+      LIMIT 1
+    `).get(eventId);
+    const timezone = normalizeTimezone(templateTzRow?.timezone_text || DEFAULT_RAID_TIMEZONE);
+    normalizedScheduledFor = normalizeScheduledForText(String(scheduledFor).trim(), timezone);
+  }
+
   db.prepare(`
     UPDATE raid_signup_events
     SET
@@ -76,7 +92,7 @@ async function editEvent(interaction, db) {
   `).run(
     title !== null ? String(title).trim() : null,
     description !== null ? String(description).trim() : null,
-    scheduledFor !== null ? String(scheduledFor).trim() : null,
+    scheduledFor !== null ? normalizedScheduledFor : null,
     publicGroups !== null ? (publicGroups ? 1 : 0) : null,
     eventId
   );

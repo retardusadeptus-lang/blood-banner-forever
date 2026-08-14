@@ -15,6 +15,7 @@ export function useItemsDatabase({
   const [mutableItemsBaseline, setMutableItemsBaseline] = useState([]);
   const [bisPriorities, setBisPrioritiesLocal] = useState({});
   const [dbBisPriorities, setDbBisPrioritiesLocal] = useState({});
+  const [dbBisPrioritiesBaseline, setDbBisPrioritiesBaseline] = useState({});
   const [masterItemsDbPhase, setMasterItemsDbPhaseLocal] = useState('T5');
   const [dbNewName, setDbNewName] = useState('');
   const [dbNewSlot, setDbNewSlot] = useState(leftSlots[0]);
@@ -53,7 +54,25 @@ export function useItemsDatabase({
   const setBisPriorities = (newVal) => {
     setBisPrioritiesLocal(newVal);
     const phaseKey = phaseJsonKeys[globalPhase];
-    putData('bis-priorities/' + phaseKey, newVal);
+    const previous = bisPriorities;
+    const updates = {};
+    const deletes = [];
+
+    Object.keys(newVal).forEach((key) => {
+      if (previous[key] !== newVal[key]) {
+        updates[key] = newVal[key];
+      }
+    });
+
+    Object.keys(previous).forEach((key) => {
+      if (!(key in newVal)) {
+        deletes.push(key);
+      }
+    });
+
+    if (Object.keys(updates).length || deletes.length) {
+      putData('bis-priorities/' + phaseKey, { updates, deletes });
+    }
   };
 
   const setDbBisPriorities = (newVal) => {
@@ -86,9 +105,10 @@ export function useItemsDatabase({
       setMutableItemsDirty(false);
       setDbNewName('');
       setDbNewItemId('');
-      alert(`Successfully added "${newItem.name}" to items table!`);
-    } catch {
-      alert('Failed to add item.');
+      alert(`Successfully added "${newItem?.name || dbNewName.trim()}" to items table!`);
+    } catch (error) {
+      const message = error?.payload?.error || error?.message || 'Failed to add item.';
+      alert(message);
     }
   };
 
@@ -154,7 +174,23 @@ export function useItemsDatabase({
     try {
       if (dbBisPrioritiesDirty) {
         const phaseKey = phaseJsonKeys[masterItemsDbPhase];
-        await putData('bis-priorities/' + phaseKey, dbBisPriorities);
+        const updates = {};
+        const deletes = [];
+
+        Object.keys(dbBisPriorities).forEach((key) => {
+          if (dbBisPrioritiesBaseline[key] !== dbBisPriorities[key]) {
+            updates[key] = dbBisPriorities[key];
+          }
+        });
+
+        Object.keys(dbBisPrioritiesBaseline).forEach((key) => {
+          if (!(key in dbBisPriorities)) {
+            deletes.push(key);
+          }
+        });
+
+        await putData('bis-priorities/' + phaseKey, { updates, deletes });
+        setDbBisPrioritiesBaseline(dbBisPriorities);
       }
 
       if (mutableItemsDirty) {
@@ -199,6 +235,8 @@ export function useItemsDatabase({
     setBisPrioritiesLocal,
     dbBisPriorities,
     setDbBisPrioritiesLocal,
+    dbBisPrioritiesBaseline,
+    setDbBisPrioritiesBaseline,
     masterItemsDbPhase,
     setMasterItemsDbPhase,
     dbNewName,

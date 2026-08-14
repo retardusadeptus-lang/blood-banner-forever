@@ -6,7 +6,7 @@ const {
   setBattleNetSessionCookie,
   clearBattleNetSession,
   issueSession,
-  requireOfficerAuth,
+  getBattleNetRoleForUser,
   safeEqual
 } = require('../middleware/auth');
 
@@ -236,6 +236,9 @@ function buildAuthRoutes({ db, sessionSecret, bnetConfig }) {
       return res.json({ authenticated: false });
     }
 
+    const role = getBattleNetRoleForUser(db, user.id);
+    const roles = role ? [role] : [];
+
     return res.json({
       authenticated: true,
       user: {
@@ -244,6 +247,9 @@ function buildAuthRoutes({ db, sessionSecret, bnetConfig }) {
         blizzardId: user.blizzard_id,
         createdAt: user.created_at
       },
+      roles,
+      isOfficer: role === 'officer' || role === 'admin',
+      isAdmin: role === 'admin',
       claimedCharacters: getClaimedCharactersForUser(user.id)
     });
   });

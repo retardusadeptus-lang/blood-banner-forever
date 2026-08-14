@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 export default function useAdminData({
   fetchData,
   putData,
+  deleteData,
   activeTab,
   adminSubTab,
   scoringConfigDirty,
@@ -12,6 +13,10 @@ export default function useAdminData({
 }) {
   const [officerRoles, setOfficerRoles] = useState([]);
   const [officerRolesDirty, setOfficerRolesDirty] = useState(false);
+  const [bnetAccessRoles, setBnetAccessRoles] = useState([]);
+  const [bnetAccessRoleCandidates, setBnetAccessRoleCandidates] = useState([]);
+  const [bnetAccessRolesDirty, setBnetAccessRolesDirty] = useState(false);
+  const [bnetAccessRolesBaseline, setBnetAccessRolesBaseline] = useState({});
   const [discordBotConfig, setDiscordBotConfig] = useState({
     request_roles: [],
     signup_roles: [],
@@ -19,6 +24,7 @@ export default function useAdminData({
   });
   const [discordBotConfigDirty, setDiscordBotConfigDirty] = useState(false);
   const [isSavingOfficerRoles, setIsSavingOfficerRoles] = useState(false);
+  const [isSavingBnetAccessRoles, setIsSavingBnetAccessRoles] = useState(false);
   const [isSavingDiscordBotConfig, setIsSavingDiscordBotConfig] = useState(false);
 
   const [todoDraftItems, setTodoDraftItems] = useState(() => {
@@ -45,6 +51,43 @@ export default function useAdminData({
       return next;
     });
     setDiscordBotConfigDirty(true);
+  };
+
+  const setBnetAccessRoleForUser = (userId, role) => {
+    const numericUserId = Number(userId || 0);
+    if (!numericUserId) return;
+
+    setBnetAccessRoles(prev => {
+      const normalizedRole = role === 'admin' ? 'admin' : 'officer';
+      const existing = prev.find(item => Number(item.user_id) === numericUserId);
+      if (!existing) {
+        const user = bnetAccessRoleCandidates.find(candidate => Number(candidate.user_id) === numericUserId);
+        return [
+          ...prev,
+          {
+            user_id: numericUserId,
+            battletag: String(user?.battletag || ''),
+            blizzard_id: String(user?.blizzard_id || ''),
+            role: normalizedRole,
+            updated_at: null
+          }
+        ];
+      }
+
+      return prev.map(item => (
+        Number(item.user_id) === numericUserId
+          ? { ...item, role: normalizedRole }
+          : item
+      ));
+    });
+    setBnetAccessRolesDirty(true);
+  };
+
+  const removeBnetAccessRoleForUser = (userId) => {
+    const numericUserId = Number(userId || 0);
+    if (!numericUserId) return;
+    setBnetAccessRoles(prev => prev.filter(item => Number(item.user_id) !== numericUserId));
+    setBnetAccessRolesDirty(true);
   };
 
   useEffect(() => {
@@ -76,15 +119,30 @@ export default function useAdminData({
 
   useEffect(() => {
     const shouldLoadOfficerRoles = activeTab === 'officerRoles' || adminSubTab === 'officerRoles';
-    if (!shouldLoadOfficerRoles || officerRolesDirty) return;
+    if (!shouldLoadOfficerRoles || officerRolesDirty || bnetAccessRolesDirty) return;
     let mounted = true;
 
     const loadOfficerRoles = async () => {
       if (document.hidden) return;
       try {
-        const data = await fetchData('officer-roles');
+        const [data, accessRoles, candidates] = await Promise.all([
+          fetchData('officer-roles'),
+          fetchData('bnet-access-roles').catch(() => []),
+          fetchData('bnet-access-role-candidates').catch(() => [])
+        ]);
         if (!mounted) return;
         setOfficerRoles(Array.isArray(data) ? data : []);
+        const normalizedAccessRoles = Array.isArray(accessRoles) ? accessRoles : [];
+        setBnetAccessRoles(normalizedAccessRoles);
+        setBnetAccessRoleCandidates(Array.isArray(candidates) ? candidates : []);
+        const nextBaseline = {};
+        normalizedAccessRoles.forEach(item => {
+          const id = Number(item.user_id || 0);
+          if (id) {
+            nextBaseline[id] = String(item.role || '').toLowerCase();
+          }
+        });
+        setBnetAccessRolesBaseline(nextBaseline);
       } catch (error) {
         console.error('Failed to load officer roles:', error);
       }
@@ -92,7 +150,7 @@ export default function useAdminData({
 
     loadOfficerRoles();
     return () => { mounted = false; };
-  }, [fetchData, activeTab, adminSubTab, officerRolesDirty]);
+  }, [fetchData, activeTab, adminSubTab, officerRolesDirty, bnetAccessRolesDirty]);
 
   useEffect(() => {
     const shouldLoadDiscordConfig = activeTab === 'discordBotConfig' || adminSubTab === 'config';
@@ -155,25 +213,95 @@ export default function useAdminData({
     }
   };
 
+  const handleSaveBnetAccessRoles = async ({ silent = false } = {}) => {
+    if (!bnetAccessRolesDirty) return;
+
+    setIsSavingBnetAccessRoles(true);
+    try {
+      const nextMap = {};
+      bnetAccessRoles.forEach(item => {
+        const id = Number(item.user_id || 0);
+        const role = String(item.role || '').toLowerCase();
+        if (!id || (role !== 'admin' && role !== 'officer')) return;
+        nextMap[id] = role;
+      });
+
+      const prevMap = bnetAccessRolesBaseline || {};
+      const upserts = [];
+      const deletes = [];
+
+      Object.entries(nextMap).forEach(([rawUserId, role]) => {
+        const userId = Number(rawUserId);
+        if (!userId) return;
+        if (prevMap[userId] !== role) {
+          upserts.push({ userId, role });
+        }
+      });
+
+      Object.keys(prevMap).forEach(rawUserId => {
+        const userId = Number(rawUserId);
+        if (!userId) return;
+        if (!nextMap[userId]) {
+          deletes.push(userId);
+        }
+      });
+
+      for (const change of upserts) {
+        await putData(`bnet-access-roles/${change.userId}`, { role: change.role });
+      }
+      for (const userId of deletes) {
+        await deleteData(`bnet-access-roles/${userId}`);
+      }
+
+      const normalizedAccessRoles = await fetchData('bnet-access-roles');
+      const normalizedCandidates = await fetchData('bnet-access-role-candidates');
+      setBnetAccessRoles(Array.isArray(normalizedAccessRoles) ? normalizedAccessRoles : []);
+      setBnetAccessRoleCandidates(Array.isArray(normalizedCandidates) ? normalizedCandidates : []);
+      const refreshedBaseline = {};
+      (Array.isArray(normalizedAccessRoles) ? normalizedAccessRoles : []).forEach(item => {
+        const id = Number(item.user_id || 0);
+        if (id) {
+          refreshedBaseline[id] = String(item.role || '').toLowerCase();
+        }
+      });
+      setBnetAccessRolesBaseline(refreshedBaseline);
+      setBnetAccessRolesDirty(false);
+      if (!silent) alert('Battle.net access roles saved.');
+    } catch (error) {
+      if (!silent) alert('Failed to save Battle.net access roles.');
+      throw error;
+    } finally {
+      setIsSavingBnetAccessRoles(false);
+    }
+  };
+
   const handleSaveAdminChanges = async ({ silent = false } = {}) => {
-    if (!officerRolesDirty && !discordBotConfigDirty && !todoDirty) return;
+    if (!officerRolesDirty && !bnetAccessRolesDirty && !discordBotConfigDirty && !todoDirty) return;
     if (officerRolesDirty) await handleSaveOfficerRoles({ silent });
+    if (bnetAccessRolesDirty) await handleSaveBnetAccessRoles({ silent });
     if (discordBotConfigDirty || scoringConfigDirty) await handleSaveDiscordBotConfig({ silent });
     if (todoDirty) await handleSaveTodoItems({ silent });
   };
 
-  const hasAdminUnsavedChanges = officerRolesDirty || discordBotConfigDirty || todoDirty;
+  const hasAdminUnsavedChanges = officerRolesDirty || bnetAccessRolesDirty || discordBotConfigDirty || todoDirty;
 
   return {
     officerRoles,
     setOfficerRoles: setOfficerRolesData,
     officerRolesDirty,
+    bnetAccessRoles,
+    bnetAccessRoleCandidates,
+    bnetAccessRolesDirty,
+    setBnetAccessRoleForUser,
+    removeBnetAccessRoleForUser,
     discordBotConfig,
     setDiscordBotConfig: setDiscordBotConfigData,
     discordBotConfigDirty,
     isSavingOfficerRoles,
+    isSavingBnetAccessRoles,
     isSavingDiscordBotConfig,
     handleSaveOfficerRoles,
+    handleSaveBnetAccessRoles,
     handleSaveDiscordBotConfig,
     handleSaveAdminChanges,
     hasAdminUnsavedChanges,

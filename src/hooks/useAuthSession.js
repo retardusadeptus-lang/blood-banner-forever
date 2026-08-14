@@ -3,7 +3,7 @@ import { login, getBattleNetAuthMe, startBattleNetLogin, logoutBattleNet, claimR
 
 export default function useAuthSession({ fetchData, setRoster, setRosterDirty }) {
   const [isAuthenticated, setIsAuthenticated] = useState(() => sessionStorage.getItem('ar-auth') === 'true');
-  const [bnetAuthState, setBnetAuthState] = useState({ loading: true, authenticated: false, user: null, claimedCharacters: [], error: '', characters: [], diagnostics: [], showBnetCharacterLookup: false });
+  const [bnetAuthState, setBnetAuthState] = useState({ loading: true, authenticated: false, user: null, claimedCharacters: [], roles: [], isOfficer: false, isAdmin: false, error: '', characters: [], diagnostics: [], showBnetCharacterLookup: false });
   const [bnetClaimBusy, setBnetClaimBusy] = useState(false);
   const [showBnetClaimModal, setShowBnetClaimModal] = useState(false);
   const [rosterClaims, setRosterClaims] = useState([]);
@@ -43,6 +43,9 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
         authenticated,
         user: me?.user || null,
         claimedCharacters: me?.claimedCharacters || [],
+        roles: Array.isArray(me?.roles) ? me.roles : [],
+        isOfficer: Boolean(me?.isOfficer),
+        isAdmin: Boolean(me?.isAdmin),
         error: '',
         characters: [],
         diagnostics: [],
@@ -54,6 +57,9 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
         authenticated: false,
         user: null,
         claimedCharacters: [],
+        roles: [],
+        isOfficer: false,
+        isAdmin: false,
         error: err.message || 'Battle.net session unavailable.',
         characters: [],
         diagnostics: [],
@@ -87,7 +93,8 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
   };
 
   const refreshRosterClaims = useCallback(async () => {
-    if (!isAuthenticated) {
+    const hasOfficerAccess = isAuthenticated || bnetAuthState.isOfficer || bnetAuthState.isAdmin;
+    if (!hasOfficerAccess) {
       setRosterClaims([]);
       return;
     }
@@ -97,7 +104,7 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
     } catch {
       setRosterClaims([]);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, bnetAuthState.isOfficer, bnetAuthState.isAdmin]);
 
   const handleBattleNetClaim = async (character) => {
     setBnetClaimBusy(true);

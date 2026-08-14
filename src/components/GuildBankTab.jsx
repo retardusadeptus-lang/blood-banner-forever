@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { postData } from '../services/apiService';
+import { submitBankRequest } from '../services/apiService';
+
+const FALLBACK_BANK_ICON = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg';
+const MAX_BASKET_ITEMS = 5;
 
 export default function GuildBankTab({
   bankItems,
   bankSearch,
   setBankSearch,
   isAuthenticated,
+  bnetAuthState,
   roster,
   myPlayerId
 }) {
@@ -23,6 +27,7 @@ export default function GuildBankTab({
   
   // Shopping Basket State
   const [basket, setBasket] = useState([]);
+  const canSubmitWebsiteRequest = Boolean(bnetAuthState?.authenticated);
 
   const categories = ['All', 'Gear', 'Materials', 'Consumable', 'Recipe'];
 
@@ -48,8 +53,25 @@ export default function GuildBankTab({
     return matchesSearch && matchesCategory && matchesSubCategory;
   });
 
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      if (window.$WowheadPower && window.$WowheadPower.refreshLinks) {
+        window.$WowheadPower.refreshLinks();
+      }
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [filteredBankItems]);
+
   const addToBasket = (e) => {
     e.preventDefault();
+    if (!canSubmitWebsiteRequest) {
+      alert('Please sign in with Battle.net to request bank items.');
+      return;
+    }
+    if (basket.length >= MAX_BASKET_ITEMS) {
+      alert(`You can request up to ${MAX_BASKET_ITEMS} items per basket.`);
+      return;
+    }
     const player = roster.find(p => p.id === parseInt(selectedPlayerId));
     const newRequest = {
       id: generateId(),
@@ -69,14 +91,22 @@ export default function GuildBankTab({
   };
 
   const submitBasket = async () => {
+    if (!canSubmitWebsiteRequest) {
+      alert('Please sign in with Battle.net to request bank items.');
+      return;
+    }
+    if (basket.length > MAX_BASKET_ITEMS) {
+      alert(`You can request up to ${MAX_BASKET_ITEMS} items per basket.`);
+      return;
+    }
     setIsSubmitting(true);
     try {
-      await postData('bank-requests', { basket_items: basket });
+      await submitBankRequest({ basket_items: basket });
       alert(`Request submitted to officers (${basket.length} item${basket.length === 1 ? '' : 's'}).`);
       setBasket([]);
     } catch (err) {
       console.error(err);
-      alert('❌ Server error.');
+      alert(err?.payload?.error || err?.message || '❌ Server error.');
     } finally {
       setIsSubmitting(false);
     }
@@ -88,14 +118,21 @@ export default function GuildBankTab({
     <section className="bank-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-4">
       
       {/* 🛒 Shopping Basket Header */}
+      {!canSubmitWebsiteRequest && (
+        <div className="rounded-xl border border-cyan-700/40 bg-cyan-900/20 px-4 py-3 text-sm text-cyan-200">
+          Sign in with Battle.net to submit guild bank item requests. Viewing the bank is still public.
+        </div>
+      )}
+
       {basket.length > 0 && (
         <div className="bg-amber-950/30 border border-amber-700 p-4 rounded-xl mb-6 space-y-3">
           <div className="flex items-center justify-between gap-3">
-            <span className="text-amber-500 font-bold text-sm">🛒 {basket.length} Items in Basket</span>
-            <button onClick={submitBasket} disabled={isSubmitting} className="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-lg transition">
+            <span className="text-amber-500 font-bold text-sm">🛒 {basket.length}/{MAX_BASKET_ITEMS} Items in Basket</span>
+            <button onClick={submitBasket} disabled={isSubmitting || !canSubmitWebsiteRequest} className="bg-amber-600 hover:bg-amber-500 disabled:bg-slate-700 disabled:text-slate-300 disabled:cursor-not-allowed text-slate-950 font-bold px-4 py-2 rounded-lg transition">
               {isSubmitting ? 'Sending...' : 'Submit Basket'}
             </button>
           </div>
+          <p className="text-[11px] text-amber-300/80 font-semibold">Max {MAX_BASKET_ITEMS} items per basket.</p>
           <div className="flex flex-col gap-2 max-h-56 overflow-y-auto text-xs text-slate-300 pr-1 custom-scrollbar">
               {basket.map(b => (
                 <span key={b.id} className="bg-slate-900 px-2 py-1.5 rounded border border-slate-800 inline-flex items-center gap-2">
@@ -149,27 +186,52 @@ export default function GuildBankTab({
       </div>
 
       {/* 📦 Items List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="flex flex-wrap gap-1.5">
         {filteredBankItems.map((item, idx) => (
-          <div key={idx} className="w-full bg-slate-950 border border-slate-800/80 px-3 py-2.5 rounded-xl transition-all hover:border-amber-700/60 hover:bg-slate-900/90">
-            <div className="flex items-center justify-between gap-1.5">
+          <div key={`${item.item_wowhead_id || 'no-id'}-${item.name || 'unknown'}-${idx}`} className="bank-item-icon group relative h-[66px] w-[66px] overflow-hidden rounded-md border border-slate-800/80 bg-slate-900 shadow-[0_4px_10px_rgba(0,0,0,0.22)] transition-all hover:-translate-y-0.5 hover:border-amber-600/60 hover:shadow-[0_8px_14px_rgba(0,0,0,0.3)]">
+            {item.item_wowhead_id ? (
               <a
-                href={item.item_wowhead_id ? `https://www.wowhead.com/tbc/item=${item.item_wowhead_id}` : `https://www.wowhead.com/tbc/search?q=${encodeURIComponent(item.name)}`}
+                href={`https://www.wowhead.com/tbc/item=${item.item_wowhead_id}`}
+                data-wh-rename-link="false"
+                data-wh-icon-size="large"
                 target="_blank"
                 rel="noreferrer"
-                className="min-w-0 text-sm font-bold text-slate-200 hover:text-purple-400 hover:underline truncate block"
+                className="item-link absolute inset-0 block"
+                title={item.name}
+                style={{ fontSize: 0, lineHeight: 0 }}
+              />
+            ) : (
+              <a
+                href={`https://www.wowhead.com/tbc/search?q=${encodeURIComponent(item.name)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="absolute inset-0"
                 title={item.name}
               >
-                {item.name}
+                <img
+                  src={FALLBACK_BANK_ICON}
+                  alt={item.name}
+                  className="h-full w-full object-cover"
+                />
               </a>
-              <span className="shrink-0 text-xs font-black text-amber-400 font-mono bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800">{item.count || item.quantity || 0}x</span>
-            </div>
+            )}
 
-            <div className="mt-1 h-4 text-[10px] uppercase tracking-wider text-slate-500 truncate" title={item.sub_type || 'No sub-category'}>
-              {item.sub_type || 'No sub-category'}
-            </div>
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-slate-950/10 opacity-70 transition-opacity group-hover:opacity-90" />
 
-            <button onClick={() => { setRequestItem(item); setRequestQty(1); setRequestReason(''); }} className="mt-3 w-full bg-slate-900 hover:bg-amber-600 hover:text-slate-950 border border-slate-800 font-bold px-3 py-1.5 rounded text-[10px] uppercase tracking-wider transition-all">Add to Basket</button>
+            <button
+              type="button"
+              onClick={() => { setRequestItem(item); setRequestQty(1); setRequestReason(''); }}
+              disabled={!canSubmitWebsiteRequest}
+              className="absolute right-0.5 top-0.5 z-10 flex h-6 w-6 items-center justify-center rounded-full border border-amber-500/60 bg-slate-950/92 text-sm font-black leading-none text-amber-300 shadow backdrop-blur hover:bg-amber-500 hover:text-slate-950 disabled:border-slate-700 disabled:text-slate-500 disabled:bg-slate-900 disabled:cursor-not-allowed"
+              title={canSubmitWebsiteRequest ? `Add ${item.name} to basket` : 'Sign in with Battle.net to request items'}
+              aria-label={`Add ${item.name} to basket`}
+            >
+              <span className="relative -top-px">+</span>
+            </button>
+
+            <span className="absolute bottom-0.5 right-0.5 z-10 rounded-md border border-slate-700/80 bg-slate-950/92 px-2 py-0 text-xs font-black leading-tight text-amber-300 shadow backdrop-blur-sm">
+              {item.count || item.quantity || 0}
+            </span>
           </div>
         ))}
       </div>
@@ -201,7 +263,17 @@ export default function GuildBankTab({
                 <textarea rows="3" className="w-full bg-slate-950 text-slate-300 border border-slate-700 rounded-lg p-3 text-xs" value={requestReason} onChange={e => setRequestReason(e.target.value)} />
               </div>
               <div className="flex gap-2">
-                <button type="submit" className="flex-1 bg-amber-600 text-slate-950 font-bold py-2 rounded-lg text-sm">Add to Basket</button>
+                <button
+                  type="submit"
+                  disabled={basket.length >= MAX_BASKET_ITEMS || !canSubmitWebsiteRequest}
+                  className="flex-1 bg-amber-600 text-slate-950 font-bold py-2 rounded-lg text-sm disabled:bg-slate-700 disabled:text-slate-300 disabled:cursor-not-allowed"
+                >
+                  {!canSubmitWebsiteRequest
+                    ? 'Battle.net Login Required'
+                    : basket.length >= MAX_BASKET_ITEMS
+                      ? `Basket full (${MAX_BASKET_ITEMS}/${MAX_BASKET_ITEMS})`
+                      : 'Add to Basket'}
+                </button>
                 <button type="button" onClick={() => setRequestItem(null)} className="bg-slate-800 text-slate-300 font-bold py-2 px-4 rounded-lg text-sm">Cancel</button>
               </div>
             </form>

@@ -240,6 +240,15 @@ export default function useRaidAssignmentsData({
     setSelectedRaidRestoreBosses(Array.isArray(archiveEntry.selectedBosses) ? archiveEntry.selectedBosses : []);
   };
 
+  const handleDeleteRaidAssignmentArchive = (archiveEntryOrId) => {
+    const archiveId = archiveEntryOrId?.id ?? archiveEntryOrId;
+    if (archiveId == null) return;
+
+    setRaidAssignmentArchives(prev => prev.filter(entry => String(entry.id) !== String(archiveId)));
+    setSelectedRaidAssignmentArchiveId(prev => (String(prev) === String(archiveId) ? null : prev));
+    setSelectedRaidRestoreBosses([]);
+  };
+
   const handleToggleRaidRestoreBoss = (bossName) => {
     setSelectedRaidRestoreBosses(prev => (
       prev.includes(bossName)
@@ -402,6 +411,7 @@ export default function useRaidAssignmentsData({
     handleSaveRaidAssignmentsChanges,
     handleCopyRaidAssignmentsToArchive,
     handleViewRaidAssignmentArchive,
+    handleDeleteRaidAssignmentArchive,
     handleToggleRaidRestoreBoss,
     handleRestoreRaidAssignmentArchive,
     handleToggleZone,

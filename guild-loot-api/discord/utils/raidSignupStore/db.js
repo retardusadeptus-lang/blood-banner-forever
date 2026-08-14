@@ -1,3 +1,9 @@
+const {
+  normalizeTimezone,
+  DEFAULT_RAID_TIMEZONE,
+  normalizeScheduledForText
+} = require('../../../utils/raidSignupTime');
+
 function parseJsonArray(value) {
   try {
     const parsed = JSON.parse(value || '[]');
@@ -75,13 +81,15 @@ function getRoleBucketForSpec(spec) {
 
 function listTemplates(db) {
   const rows = db.prepare(`
-    SELECT id, name, description, starts_at_text, recurrence_rule, recurrence_days_json, recurrence_delay_hours, recurrence_enabled, allowed_spec_ids_json, is_active
+    SELECT id, name, description, group_size, timezone_text, starts_at_text, recurrence_rule, recurrence_days_json, recurrence_delay_hours, recurrence_enabled, allowed_spec_ids_json, is_active
     FROM raid_signup_templates
     ORDER BY name
   `).all();
 
   return rows.map(row => ({
     ...row,
+    group_size: [10, 25, 40].includes(Number(row.group_size)) ? Number(row.group_size) : 25,
+    timezone: normalizeTimezone(row.timezone_text || DEFAULT_RAID_TIMEZONE),
     recurrence_days: parseJsonArray(row.recurrence_days_json).map(v => Number(v)).filter(v => Number.isInteger(v) && v >= 0 && v <= 6),
     recurrence_delay_hours: Number.isFinite(Number(row.recurrence_delay_hours)) ? Number(row.recurrence_delay_hours) : 2,
     recurrence_enabled: row.recurrence_enabled === 1,
@@ -92,7 +100,7 @@ function listTemplates(db) {
 
 function getTemplateById(db, id) {
   const row = db.prepare(`
-    SELECT id, name, description, starts_at_text, recurrence_rule, recurrence_days_json, recurrence_delay_hours, recurrence_enabled, allowed_spec_ids_json, is_active
+    SELECT id, name, description, group_size, timezone_text, starts_at_text, recurrence_rule, recurrence_days_json, recurrence_delay_hours, recurrence_enabled, allowed_spec_ids_json, is_active
     FROM raid_signup_templates
     WHERE id = ?
   `).get(id);
@@ -100,6 +108,8 @@ function getTemplateById(db, id) {
   if (!row) return null;
   return {
     ...row,
+    group_size: [10, 25, 40].includes(Number(row.group_size)) ? Number(row.group_size) : 25,
+    timezone: normalizeTimezone(row.timezone_text || DEFAULT_RAID_TIMEZONE),
     recurrence_days: parseJsonArray(row.recurrence_days_json).map(v => Number(v)).filter(v => Number.isInteger(v) && v >= 0 && v <= 6),
     recurrence_delay_hours: Number.isFinite(Number(row.recurrence_delay_hours)) ? Number(row.recurrence_delay_hours) : 2,
     recurrence_enabled: row.recurrence_enabled === 1,
@@ -164,10 +174,13 @@ function createEventFromTemplate(db, templateId, options = {}) {
   const title = String(options.title || template.name || 'Raid Signup').trim();
   const description = String(options.description || template.description || '').trim();
 
+  const templateTimezone = normalizeTimezone(template.timezone || template.timezone_text || DEFAULT_RAID_TIMEZONE);
+  const normalizedScheduledFor = scheduledFor ? normalizeScheduledForText(scheduledFor, templateTimezone) : null;
+
   const info = db.prepare(`
     INSERT INTO raid_signup_events (template_id, title, description, scheduled_for, recurrence_instance, status)
     VALUES (?, ?, ?, ?, ?, 'open')
-  `).run(template.id, title, description, scheduledFor, recurrenceInstance);
+  `).run(template.id, title, description, normalizedScheduledFor, recurrenceInstance);
 
   return getEventById(db, Number(info.lastInsertRowid));
 }
@@ -223,9 +236,64 @@ function upsertUserPreferredSpec(db, discordUserId, specId) {
   `).run(discordUserId, specId);
 }
 
+function upsertUserPreferredClass(db, discordUserId, className) {
+  const cleaned = String(className || '').trim();
+  if (!cleaned) return;
+  db.prepare(`
+    INSERT INTO raid_signup_user_prefs (discord_user_id, class_name, updated_at)
+    VALUES (?, ?, CURRENT_TIMESTAMP)
+    ON CONFLICT(discord_user_id)
+    DO UPDATE SET class_name = excluded.class_name, updated_at = CURRENT_TIMESTAMP
+  `).run(discordUserId, cleaned);
+}
+
+function upsertUserPreferredCharacter(db, discordUserId, characterName) {
+  const cleaned = String(characterName || '').trim();
+  if (!cleaned) return;
+
+  const existing = db.prepare(`
+    SELECT discord_user_id, class_name, character_name, spec_id
+    FROM raid_signup_user_prefs
+    WHERE discord_user_id = ?
+    LIMIT 1
+  `).get(discordUserId);
+
+  const specId = existing?.spec_id ?? null;
+  const className = existing?.class_name ?? '';
+
+  db.prepare(`
+    INSERT INTO raid_signup_user_prefs (discord_user_id, class_name, character_name, spec_id, updated_at)
+    VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+    ON CONFLICT(discord_user_id)
+    DO UPDATE SET
+      class_name = excluded.class_name,
+      character_name = excluded.character_name,
+      spec_id = COALESCE(raid_signup_user_prefs.spec_id, excluded.spec_id),
+      updated_at = CURRENT_TIMESTAMP
+  `).run(discordUserId, className, cleaned, specId);
+}
+
 function getUserPreferredSpec(db, discordUserId) {
   return db.prepare(`
-    SELECT spec_id
+    SELECT spec_id, class_name, character_name
+    FROM raid_signup_user_prefs
+    WHERE discord_user_id = ?
+    LIMIT 1
+  `).get(discordUserId);
+}
+
+function getUserPreferredClass(db, discordUserId) {
+  return db.prepare(`
+    SELECT class_name
+    FROM raid_signup_user_prefs
+    WHERE discord_user_id = ?
+    LIMIT 1
+  `).get(discordUserId);
+}
+
+function getUserPreferredCharacter(db, discordUserId) {
+  return db.prepare(`
+    SELECT character_name
     FROM raid_signup_user_prefs
     WHERE discord_user_id = ?
     LIMIT 1
@@ -289,10 +357,24 @@ function listEntriesForEvent(db, eventId) {
     FROM raid_signup_entries e
     LEFT JOIN specs s ON s.id = e.spec_id
     WHERE e.event_id = ?
-    ORDER BY e.updated_at DESC
   `).all(eventId);
 
+  const statusPriority = {
+    signup: 0,
+    late: 1,
+    tentative: 2,
+    bench: 3,
+    absence: 4
+  };
+
   const byOrder = [...rows].sort((a, b) => {
+    const aStatus = String(a.status || '').toLowerCase();
+    const bStatus = String(b.status || '').toLowerCase();
+    const aPriority = statusPriority[aStatus] ?? 99;
+    const bPriority = statusPriority[bStatus] ?? 99;
+
+    if (aPriority !== bPriority) return aPriority - bPriority;
+
     const aTime = Date.parse(a.updated_at || '') || 0;
     const bTime = Date.parse(b.updated_at || '') || 0;
     if (aTime !== bTime) return aTime - bTime;
@@ -304,7 +386,7 @@ function listEntriesForEvent(db, eventId) {
     orderMap.set(row.id, idx + 1);
   });
 
-  return rows.map(row => ({ ...row, signup_order: orderMap.get(row.id) || null }));
+  return byOrder.map(row => ({ ...row, signup_order: orderMap.get(row.id) || null }));
 }
 
 function listGroupsForEvent(db, eventId) {
@@ -335,7 +417,11 @@ module.exports = {
   setEventClassFilter,
   upsertDraft,
   upsertUserPreferredSpec,
+  upsertUserPreferredClass,
+  upsertUserPreferredCharacter,
   getUserPreferredSpec,
+  getUserPreferredClass,
+  getUserPreferredCharacter,
   getDraft,
   upsertSignupEntry,
   listEntriesForEvent,

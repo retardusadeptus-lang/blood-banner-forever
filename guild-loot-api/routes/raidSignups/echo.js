@@ -75,9 +75,11 @@ function buildRaidSignupEchoRoutes({ db }) {
         .addFields(
           { name: 'Sign Summary', value: summaryLine, inline: false },
           { name: withEmoji(resolveRoleEmojiToken(guild, 'tank'), `Tank (${tankCount})`), value: summary.roleBuckets.tank.join('\n') || 'None', inline: true },
+          { name: '\u200b', value: '\u200b', inline: true },
           { name: withEmoji(resolveRoleEmojiToken(guild, 'healer'), `Healer (${healerCount})`), value: summary.roleBuckets.healer.join('\n') || 'None', inline: true },
-          { name: withEmoji(resolveRoleEmojiToken(guild, 'melee'), `DPS (Melee) (${meleeCount})`), value: summary.roleBuckets.melee.join('\n') || 'None', inline: true },
           { name: withEmoji(resolveRoleEmojiToken(guild, 'ranged'), `DPS (Ranged) (${rangedCount})`), value: summary.roleBuckets.ranged.join('\n') || 'None', inline: true },
+          { name: '\u200b', value: '\u200b', inline: true },
+          { name: withEmoji(resolveRoleEmojiToken(guild, 'melee'), `DPS (Melee) (${meleeCount})`), value: summary.roleBuckets.melee.join('\n') || 'None', inline: true },
           { name: 'Groups', value: groupText, inline: false }
         )
         .setColor(0x8e44ad)

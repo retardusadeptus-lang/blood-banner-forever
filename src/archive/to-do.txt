@@ -11,7 +11,7 @@
 
 ### Infrastructure & Platform Fixes
 - [x] Git & Deployment: Resolve Battle.net branch merge conflicts.
-- [ ] Persistence: Fix production push wipe bug where saved JSON assignment blobs disappear.
+- [x] Persistence: Fix production push wipe bug where saved JSON assignment blobs disappear.
 - [x] Performance: Implement pagination/virtualization on Master Items DB (limit default load to 50 items at a time).
 - [ ] Admin Operations: Resolve Hetzner refund query.
 
@@ -20,13 +20,13 @@
 ## Auth, Permissions & Discord Integration
 
 ### Auth & Access Control
-- [ ] Unified Admin System: Build an Admin Lounge powered by a single password box that yields granular view permissions depending on entered credentials.
+- [x] Unified Admin System: Build an Admin Lounge powered by a single password box that yields granular view permissions depending on entered credentials.
 - [ ] Configurable Tab Visibility: Add controls in the Config tab to toggle/move tabs and groupings between Public, Officer, and Admin views.
 - [ ] Login Fallback:
   - Fall back to guild member password if Battle.net OAuth fails.
   - Require auth for Guild Bank baskets; keep bank viewable read-only.
   - Hide Loot Council Priority Overview behind password auth.
-- [ ] OAuth Fixes: Audit Battle.net fallback URLs to resolve character claiming authorization failures.
+- [x] OAuth Fixes: Audit Battle.net fallback URLs to resolve character claiming authorization failures.
 
 ### Discord Bot & Server Sync
 - [x] Server Configuration: Convert Discord server to Community Server
@@ -34,7 +34,7 @@
 - [ ] Auto-Onboarding: Automatically add new Discord members to the web roster via bot integration.
 - [ ] Custom Assets: Update bot to utilize custom class icons uploaded to the Discord Developer Portal; fix missing discord icons/mobile discord app icon rendering.
 - [ ] Bot Fixes & Integrations:
-  - Fix bug where selecting a class leaves the top dropdown box selected for all users.
+  - [x] Fix bug where selecting a class leaves the top dropdown box selected for all users.
   - Explore direct SoftRes integration with the Discord bot.
 
 ---
@@ -49,41 +49,41 @@
   - Loot Council: Priority Overview | Scoring | Assigned Loot
   - Admin: Officer Roles | Config | Master Items DB | Web To-Do List
   - Resources: BiS | Tactics | WeakAuras | Cheat Sheets
-- [ ] Mobile Layout: Fix secondary sub-tabs not rendering properly on mobile screens.
+- [x] Mobile Layout: Fix secondary sub-tabs not rendering properly on mobile screens.
 
 ### General UI Polish
 - [X] Embed Web To-Do List: Render a live task tracking page/tab directly on the website.
-- [ ] Fix Opening Scroll Position: Investigate why opening the Raid Assignments tab opens mid-page rather than scrolled to top.
-- [ ] Icon Delay Fix: Replace short artificial delay workaround with proper asset preloading to stop stale icons on tab transitions.
-- [ ] Browser Crash Investigation: Monitor and profile Firefox tab-crash reports to confirm whether client-side rendering is causing heap spikes.
+- [x] Fix Opening Scroll Position: Investigate why opening the Raid Assignments tab opens mid-page rather than scrolled to top.
+- [x] Icon Delay Fix: Replace short artificial delay workaround with proper asset preloading to stop stale icons on tab transitions.
+- [x] Browser Crash Investigation: Monitor and profile Firefox tab-crash reports to confirm whether client-side rendering is causing heap spikes.
 
 ---
 
 ## Raid Signups, Assignments & Tactics
 
 ### Calendar & Absences
-- [ ] Absences Tab: Add dedicated tab to track declared member absences.
-- [ ] Raid Calendar: Build interactive monthly calendar showing raids, absences, guild birthdays, and community events.
+- [x] Absences Tab: Add dedicated tab to track declared member absences.
+- [x] Raid Calendar: Build interactive monthly calendar showing raids, absences, guild birthdays, and community events.
 - [ ] Signups Tracking: Add quick-filter toggle: "Who is not signed up?"
 - [ ] Alt Handling: Allow renaming/custom character entry during signups and link attendance back to main Battle.net ID.
-- [ ] Timezones: Fix timestamp/time offset bugs on scheduled events.
+- [x] Timezones: Fix timestamp/time offset bugs on scheduled events.
 
 ### Raid Assignments
-- [ ] Read-Only Guards: Strip Save button for read-only users; retain draft modifications locally via cookies or revert back to officer filters.
-- [ ] Assignment Tools:
+- [?] Read-Only Guards: Strip Save button for read-only users; retain draft modifications locally via cookies or revert back to officer filters.
+- [x] Assignment Tools:
   - [X] Add BoP item flags to assignment layouts.
   - [x] Add drag/drop or control buttons to re-order bosses within a raid run.
-  - Fix bug causing Warglaives to misbehave in assignment logic.
-- [ ] Raid History:
-  - [ ] Increase visible history list capacity.
-  - [ ] Fix broken "View" button on historic assignment logs.
-  - [ ] Ensure global archive restoration functions correctly.
+  - [x] Fix bug causing Warglaives to misbehave in assignment logic.
+- [x] Raid History:
+  - [x] Increase visible history list capacity.
+  - [x] Fix broken "View" button on historic assignment logs.
+  - [x] Ensure global archive restoration functions correctly.
 
   ### Raid Signups
-- [ ] Add UI button to expand/collapse individual raid templates.
+- [x] Add UI button to expand/collapse individual raid templates.
 
 ### Tactics & Strategy Module
-- [ ] Dynamic Tactics Layout: Link Tactics drop-down selection to the Raid Assignments boss DB so newly created bosses auto-populate into Tactics.
+- [x] Dynamic Tactics Layout: Link Tactics drop-down selection to the Raid Assignments boss DB so newly created bosses auto-populate into Tactics.
 - [ ] Role Breakdown: Add filterable strategy sections for Tanks, Healers, and DPS per encounter.
 
 ---
@@ -91,9 +91,9 @@
 ## Guild Bank, Items & In-Game Addon
 
 ### Guild Bank UI & History
-- [ ] Visual Redesign: Re-theme Guild Bank page to visually match in-game guild bank tab frames.
-- [ ] Icon Performance: Optimize image cache to eliminate slow icon refreshes.
-- [ ] History & Management: Purge obsolete request history and add explicit Delete options in history tab.
+- [x] Visual Redesign: Re-theme Guild Bank page to visually match in-game guild bank tab frames.
+- [x] Icon Performance: Optimize image cache to eliminate slow icon refreshes.
+- [x] History & Management: Purge obsolete request history and add explicit Delete options in history tab.
 
 ### Addon Sync & Lua Integration
 - [ ] WeakAura Assignment Exporter:
@@ -116,19 +116,19 @@
 ### Roster & Officer Tools
 - [x] Character Tagging: Add visual 'Claimed' star/badge for claimed characters and officer tags for officer characters.
 - [ ] Guild Rank Config: Integrate Guild Ranks into scoring calculations; allow manual rank overrides in-app and during imports.
-- [ ] UI Highlighting: Fix "Show Mine" toggle in Officer Roles so it correctly highlights the user's name/box.
+- [x] UI Highlighting: Fix "Show Mine" toggle in Officer Roles so it correctly highlights the user's name/box.
 
 ### Loot Council & BiS Config
-- [ ] Mannequin Layout: Redesign BiS configuration to use an armor mannequin visual layout (similar to Wowhead / in-game paper doll).
-- [ ] Slot Mapping Fixes:
+- [x] Mannequin Layout: Redesign BiS configuration to use an armor mannequin visual layout (similar to Wowhead / in-game paper doll).
+- [x] Slot Mapping Fixes:
   - Fix "Weapon" slot failing to map to Main Hand slot in BiS configs.
   - Allow secondary 2H vs. 1H/Off-Hand sub-row overrides under weapon slots - currently all versions of weapon showing all vairants.
   - Fix Off-Hand dropdowns displaying all weapons (restrict to off-hand and held-in-off-hand items).
-- [ ] Priority View Fixes:
+- [x] Priority View Fixes:
   - [x] Fix bug where removing an item from Priority View fails to persist.
   - [x] Fix conflict between saving raw item IDs vs. BiS/Optional flags.
-  - [ ] Fix alt item rendering on Loot Council assignment views.
-  - [ ] Fix warglaives not showing 2nd option as it has the same name as main hand.
+  - [x] Fix alt item rendering on Loot Council assignment views.
+  - [x] Fix warglaives not showing 2nd option as it has the same name as main hand.
 
 ---
 
@@ -143,6 +143,6 @@
 - [ ] Third-Party Integrations: Explore integration options for WowAudit and RCLootCouncil (RCLC).
 
 ### Community Resources
-- [ ] WeakAura Repository: Build collapsible WeakAura tab for sharing raw WA strings (hidden string inputs with 1-click "Copy Code" buttons for standard users).
-- [ ] Cheat Sheets Module: Build wireframe and import data for class/spec cheat sheets (based on Paladin Discord community spreadsheets).
-- [ ] Recruitment Section: Add a public guild recruitment page outlining active class/spec needs.
+- [x] WeakAura Repository: Build collapsible WeakAura tab for sharing raw WA strings (hidden string inputs with 1-click "Copy Code" buttons for standard users).
+- [X] Cheat Sheets Module: Build wireframe and import data for class/spec cheat sheets (based on Paladin Discord community spreadsheets).
+- [x] Recruitment Section: Add a public guild recruitment page outlining active class/spec needs.

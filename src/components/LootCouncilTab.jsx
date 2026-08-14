@@ -1,4 +1,58 @@
 import React, { useState } from 'react';
+import { normalizeSlotKey } from '../utils/helpers';
+
+const UNKNOWN_ICON = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg';
+const CLASS_ICON_FALLBACKS = {
+  druid: 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_healingtouch.jpg',
+  hunter: 'https://wow.zamimg.com/images/wow/icons/large/ability_hunter_beasttaming.jpg',
+  mage: 'https://wow.zamimg.com/images/wow/icons/large/spell_frost_frostbolt02.jpg',
+  paladin: 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_holybolt.jpg',
+  priest: 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_guardianspirit.jpg',
+  rogue: 'https://wow.zamimg.com/images/wow/icons/large/ability_backstab.jpg',
+  shaman: 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg',
+  warlock: 'https://wow.zamimg.com/images/wow/icons/large/spell_shadow_deathcoil.jpg',
+  warrior: 'https://wow.zamimg.com/images/wow/icons/large/inv_shield_06.jpg'
+};
+const SPEC_ICON_FALLBACKS = {
+  'Prot Warrior': 'https://wow.zamimg.com/images/wow/icons/large/inv_shield_06.jpg',
+  'Arms Warrior': 'https://wow.zamimg.com/images/wow/icons/large/ability_warrior_savageblow.jpg',
+  'Fury Warrior': 'https://wow.zamimg.com/images/wow/icons/large/ability_warrior_innerrage.jpg',
+  'Prot Paladin': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_devotionaura.jpg',
+  'Holy Paladin': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_holybolt.jpg',
+  'Ret Paladin': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_auraoflight.jpg',
+  'BM Hunter': 'https://wow.zamimg.com/images/wow/icons/large/ability_hunter_beasttaming.jpg',
+  'MM Hunter': 'https://wow.zamimg.com/images/wow/icons/large/ability_marksmanship.jpg',
+  'Survival Hunter': 'https://wow.zamimg.com/images/wow/icons/large/ability_hunter_swiftstrike.jpg',
+  'Elemental Shaman': 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg',
+  'Enhance Shaman': 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightningshield.jpg',
+  'Resto Shaman': 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_magicimmunity.jpg',
+  'Balance Druid': 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_starfall.jpg',
+  'Feral (Tank)': 'https://wow.zamimg.com/images/wow/icons/large/ability_racial_bearform.jpg',
+  'Feral (DPS)': 'https://wow.zamimg.com/images/wow/icons/large/ability_druid_catform.jpg',
+  'Resto Druid': 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_healingtouch.jpg',
+  'Combat Rogue': 'https://wow.zamimg.com/images/wow/icons/large/ability_backstab.jpg',
+  'Subtlety Rogue': 'https://wow.zamimg.com/images/wow/icons/large/ability_stealth.jpg',
+  'Assassination Rogue': 'https://wow.zamimg.com/images/wow/icons/large/ability_rogue_eviscerate.jpg',
+  'Holy Priest': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_guardianspirit.jpg',
+  'Discipline Priest': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_wordfortitude.jpg',
+  'Shadow Priest': 'https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowwordpain.jpg',
+  'Arcane Mage': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_magicalsentry.jpg',
+  'Fire Mage': 'https://wow.zamimg.com/images/wow/icons/large/spell_fire_firebolt02.jpg',
+  'Frost Mage': 'https://wow.zamimg.com/images/wow/icons/large/spell_frost_frostbolt02.jpg',
+  'Destro Warlock': 'https://wow.zamimg.com/images/wow/icons/large/spell_shadow_rainoffire.jpg',
+  'Demo Warlock': 'https://wow.zamimg.com/images/wow/icons/large/spell_shadow_metamorphosis.jpg',
+  'Affliction Warlock': 'https://wow.zamimg.com/images/wow/icons/large/spell_shadow_deathcoil.jpg'
+};
+
+function resolveSpecIcon(specObj, specDisplay) {
+  if (specObj?.icon_large) return specObj.icon_large;
+  if (specObj?.icon_medium) return String(specObj.icon_medium).replace('/medium/', '/large/');
+  if (specObj?.icon_small) return String(specObj.icon_small).replace('/small/', '/large/');
+  if (SPEC_ICON_FALLBACKS[String(specDisplay || '')]) return SPEC_ICON_FALLBACKS[String(specDisplay || '')];
+  const classKey = String(specObj?.class || '').trim().toLowerCase();
+  if (CLASS_ICON_FALLBACKS[classKey]) return CLASS_ICON_FALLBACKS[classKey];
+  return UNKNOWN_ICON;
+}
 
 export default function LootCouncilTab({
   searchQuery,
@@ -167,32 +221,51 @@ export default function LootCouncilTab({
                 {sortedEligiblePlayers.map(player => {
                   const specDisplay = getDisplayFromId(player.spec_id) || '?';
                   const specKey = getSlugFromDisplay(specDisplay);
+                  const specObj = getSpecById(player.spec_id);
+                  const specIcon = resolveSpecIcon(specObj, specDisplay);
                   const status = getPlayerItemPriorityStatus(selectedItem, specDisplay) || (selectedItem.spec === specKey ? 'BiS' : '');
                   const currentPriority = currentItemAssignments[player.id];
                   const awardedPlayerIds = Array.isArray(currentItemAssignments.awardedPlayerIds)
                     ? currentItemAssignments.awardedPlayerIds.map(id => String(id))
                     : (currentItemAssignments.awardedPlayerId ? [String(currentItemAssignments.awardedPlayerId)] : []);
                   const isAwardedPlayer = awardedPlayerIds.includes(String(player.id));
-                  const PHASE_ORDER = ["Pre-BiS", "T4", "T5", "T6", "ZA", "SWP"];
-                  const currentPhaseIndex = PHASE_ORDER.indexOf(globalPhase);
+                  const PHASE_ORDER = ["PRE-BIS", "T4", "T5", "T6", "ZA", "SWP"];
+                  const currentPhaseIndex = PHASE_ORDER.indexOf(String(globalPhase || '').toUpperCase());
+                  const selectedNormalizedSlot = normalizeSlotKey(selectedItem.slot);
 
                   const playerAlts = selectedItem.is_token ? [] : mutableItems.filter(i => {
-                    if (i.slot !== selectedItem.slot || i.name === selectedItem.name) return false;
+                    if (i.name === selectedItem.name) return false;
+                    if (normalizeSlotKey(i.slot) !== selectedNormalizedSlot) return false;
+
                     const altItemKey = `${i.name}|${specDisplay}`;
                     const altBisPriority = bisPriorities[altItemKey];
-                    if (!altBisPriority && i.spec !== specKey) return false;
+                    const altEligibilityStatus = i?.eligible?.[specDisplay] || '';
+                    const hasSpecMatch = i.spec && specKey && String(i.spec) === String(specKey);
+                    const altStatus = altBisPriority || altEligibilityStatus || (hasSpecMatch ? 'BiS' : '');
+                    if (!altStatus) return false;
+
                     // Only show alternates from the current phase or earlier.
                     // i.phase is expected to be a single string ("T5"). If it's
                     // an array or anything else non-string, we can't trust it
                     // represents a real phase, so exclude rather than guess.
                     if (i.phase) {
                       if (typeof i.phase !== 'string') return false;
-                      const itemPhaseIndex = PHASE_ORDER.indexOf(i.phase);
+                      const itemPhaseIndex = PHASE_ORDER.indexOf(String(i.phase || '').toUpperCase());
                       if (itemPhaseIndex === -1) return false; // unrecognized phase tag, exclude
                       if (currentPhaseIndex !== -1 && itemPhaseIndex > currentPhaseIndex) return false;
                     }
                     return true;
-                  }).map(i => ({ ...i, eligible: i.eligible || {} }));
+                  }).map(i => {
+                    const altItemKey = `${i.name}|${specDisplay}`;
+                    const altBisPriority = bisPriorities[altItemKey];
+                    const altEligibilityStatus = i?.eligible?.[specDisplay] || '';
+                    const hasSpecMatch = i.spec && specKey && String(i.spec) === String(specKey);
+                    return {
+                      ...i,
+                      eligible: i.eligible || {},
+                      _altStatus: altBisPriority || altEligibilityStatus || (hasSpecMatch ? 'BiS' : '')
+                    };
+                  });
 
                   return (
                     <div key={player.id} className={`flex flex-col p-4 rounded-xl shadow-sm border transition-all duration-300 ${isAwardedPlayer ? 'bg-emerald-950/30 border-emerald-600/40' : currentPriority === 1 ? 'bg-slate-800/80 border-amber-500/50' : currentPriority === 'Pass' ? 'bg-slate-950/50 border-slate-900 opacity-60' : 'bg-slate-900 border-slate-700'}`}>
@@ -201,7 +274,7 @@ export default function LootCouncilTab({
                           <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shadow-inner flex-shrink-0 ${isAwardedPlayer ? 'bg-emerald-600 text-white border border-emerald-300 shadow-[0_0_10px_rgba(16,185,129,0.45)]' : getRankBadgeStyle(currentPriority)}`}>
                             {isAwardedPlayer ? 'A' : (typeof currentPriority === 'number' ? currentPriority : (currentPriority === 'Pass' ? '✕' : '-'))}
                           </div>
-                          <img src={getSpecById(player.spec_id)?.icon_large || 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover flex-shrink-0" />
+                          <img src={specIcon} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover flex-shrink-0" />
                           <div>
                             <div className="flex items-center gap-2">
                               <PlayerNameWithScore player={player} />
@@ -212,7 +285,7 @@ export default function LootCouncilTab({
                             <div className="flex items-center gap-2 mt-0.5">
                               <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{specDisplay}</span>
                               <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${status === 'BiS' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-sky-500/20 text-sky-400'}`}>{status}</span>
-                              {selectedItem.is_token && selectedItem.token_classes && selectedItem.token_classes.includes(getSpecById(player.spec_id)?.class) && (
+                              {selectedItem.is_token && selectedItem.token_classes && selectedItem.token_classes.includes(specObj?.class) && (
                                 <span className="text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider bg-amber-500/20 text-amber-400">Token Class</span>
                               )}
                             </div>
@@ -236,7 +309,7 @@ export default function LootCouncilTab({
                           <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-2 block flex items-center gap-1"><span className="text-slate-600">Alternative {selectedItem.slot} Options:</span></span>
                           <div className="flex flex-wrap gap-2">
                             {playerAlts.map(alt => (
-                              <span key={alt.name} className={`text-[10px] px-2 py-1 rounded border shadow-sm flex items-center gap-1 ${alt.eligible[specDisplay] === 'BiS' ? 'bg-emerald-900/30 text-emerald-400 border-emerald-800/50' : 'bg-slate-950 text-slate-400 border-slate-800'}`}>
+                              <span key={alt.name} className={`text-[10px] px-2 py-1 rounded border shadow-sm flex items-center gap-1 ${alt._altStatus === 'BiS' ? 'bg-emerald-900/30 text-emerald-400 border-emerald-800/50' : 'bg-slate-950 text-slate-400 border-slate-800'}`}>
                                 {renderItemLink(alt, "")}
                                 <span className="opacity-50 text-[9px]">({alt.boss})</span>
                               </span>

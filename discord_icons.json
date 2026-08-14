@@ -1,0 +1,182 @@
+[
+  {
+    "name": "role_tank",
+    "id": "1537947419344642189",
+    "discord_tag": "<:role_tank:1537947419344642189>"
+  },
+  {
+    "name": "role_healer",
+    "id": "1537947420493619210",
+    "discord_tag": "<:role_healer:1537947420493619210>"
+  },
+  {
+    "name": "role_melee",
+    "id": "1537947421324218542",
+    "discord_tag": "<:role_melee:1537947421324218542>"
+  },
+  {
+    "name": "role_ranged",
+    "id": "1537947422683173044",
+    "discord_tag": "<:role_ranged:1537947422683173044>"
+  },
+  {
+    "name": "healers",
+    "id": "1537934728622121130",
+    "discord_tag": "<:healers:1537934728622121130>"
+  },
+  {
+    "name": "melee_dps",
+    "id": "1537934727451775067",
+    "discord_tag": "<:melee_dps:1537934727451775067>"
+  },
+  {
+    "name": "tanks",
+    "id": "1537934726193615009",
+    "discord_tag": "<:tanks:1537934726193615009>"
+  },
+  {
+    "name": "ranged_dps",
+    "id": "1537934724704641096",
+    "discord_tag": "<:ranged_dps:1537934724704641096>"
+  },
+  {
+    "name": "balance",
+    "id": "1537934660749885520",
+    "discord_tag": "<:balance:1537934660749885520>"
+  },
+  {
+    "name": "feral",
+    "id": "1537934659600646174",
+    "discord_tag": "<:feral:1537934659600646174>"
+  },
+  {
+    "name": "guardian",
+    "id": "1537934658518519808",
+    "discord_tag": "<:guardian:1537934658518519808>"
+  },
+  {
+    "name": "restoration_druid",
+    "id": "1537934657625128970",
+    "discord_tag": "<:restoration_druid:1537934657625128970>"
+  },
+  {
+    "name": "beastmastery",
+    "id": "1537934656366841968",
+    "discord_tag": "<:beastmastery:1537934656366841968>"
+  },
+  {
+    "name": "marksman",
+    "id": "1537934655347499118",
+    "discord_tag": "<:marksman:1537934655347499118>"
+  },
+  {
+    "name": "survival",
+    "id": "1537934654156574830",
+    "discord_tag": "<:survival:1537934654156574830>"
+  },
+  {
+    "name": "arcane",
+    "id": "1537934653049020436",
+    "discord_tag": "<:arcane:1537934653049020436>"
+  },
+  {
+    "name": "fire",
+    "id": "1537934652034121919",
+    "discord_tag": "<:fire:1537934652034121919>"
+  },
+  {
+    "name": "frost",
+    "id": "1537934651132346448",
+    "discord_tag": "<:frost:1537934651132346448>"
+  },
+  {
+    "name": "holy_paladin",
+    "id": "1537934650150883358",
+    "discord_tag": "<:holy_paladin:1537934650150883358>"
+  },
+  {
+    "name": "ProtPaladin",
+    "id": "1537934649278337095",
+    "discord_tag": "<:ProtPaladin:1537934649278337095>"
+  },
+  {
+    "name": "retribution",
+    "id": "1537934648292806747",
+    "discord_tag": "<:retribution:1537934648292806747>"
+  },
+  {
+    "name": "discipline",
+    "id": "1537934647277912204",
+    "discord_tag": "<:discipline:1537934647277912204>"
+  },
+  {
+    "name": "holy_priest",
+    "id": "1537934646149382184",
+    "discord_tag": "<:holy_priest:1537934646149382184>"
+  },
+  {
+    "name": "shadow",
+    "id": "1537934644379390102",
+    "discord_tag": "<:shadow:1537934644379390102>"
+  },
+  {
+    "name": "assassination",
+    "id": "1537934642592612372",
+    "discord_tag": "<:assassination:1537934642592612372>"
+  },
+  {
+    "name": "combat",
+    "id": "1537934641229733918",
+    "discord_tag": "<:combat:1537934641229733918>"
+  },
+  {
+    "name": "subtlety",
+    "id": "1537934638306037881",
+    "discord_tag": "<:subtlety:1537934638306037881>"
+  },
+  {
+    "name": "elemental",
+    "id": "1537934637240946809",
+    "discord_tag": "<:elemental:1537934637240946809>"
+  },
+  {
+    "name": "enhancement",
+    "id": "1537934636049506355",
+    "discord_tag": "<:enhancement:1537934636049506355>"
+  },
+  {
+    "name": "resto_shaman",
+    "id": "1537934635063844925",
+    "discord_tag": "<:resto_shaman:1537934635063844925>"
+  },
+  {
+    "name": "affliction",
+    "id": "1537934633935839252",
+    "discord_tag": "<:affliction:1537934633935839252>"
+  },
+  {
+    "name": "demonology",
+    "id": "1537934632614371409",
+    "discord_tag": "<:demonology:1537934632614371409>"
+  },
+  {
+    "name": "destruction",
+    "id": "1537934631632896040",
+    "discord_tag": "<:destruction:1537934631632896040>"
+  },
+  {
+    "name": "arms",
+    "id": "1537934630584586260",
+    "discord_tag": "<:arms:1537934630584586260>"
+  },
+  {
+    "name": "fury",
+    "id": "1537934629439283210",
+    "discord_tag": "<:fury:1537934629439283210>"
+  },
+  {
+    "name": "protection_warrior",
+    "id": "1537934627807698985",
+    "discord_tag": "<:protection_warrior:1537934627807698985>"
+  }
+]

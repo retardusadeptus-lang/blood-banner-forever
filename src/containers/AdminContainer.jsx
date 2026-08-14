@@ -1,4 +1,5 @@
 import AdminTodoTab from '../features/admin/AdminTodoTab';
+import SiteInstructionsAdminTab from '../features/admin/SiteInstructionsAdminTab';
 import OfficerRolesTab from '../components/OfficerRolesTab';
 import DiscordBotConfigTab from '../components/DiscordBotConfigTab';
 
@@ -22,12 +23,19 @@ export default function AdminContainer({
     officerRoles,
     setOfficerRoles,
     officerRolesDirty,
+    bnetAccessRoles,
+    bnetAccessRoleCandidates,
+    bnetAccessRolesDirty,
+    setBnetAccessRoleForUser,
+    removeBnetAccessRoleForUser,
     discordBotConfig,
     setDiscordBotConfig,
     discordBotConfigDirty,
     isSavingOfficerRoles,
+    isSavingBnetAccessRoles,
     isSavingDiscordBotConfig,
     handleSaveOfficerRoles,
+    handleSaveBnetAccessRoles,
     handleSaveDiscordBotConfig
   } = adminData;
 
@@ -40,10 +48,17 @@ export default function AdminContainer({
             getSpecById={getSpecById}
             officerRoles={officerRoles}
             setOfficerRoles={setOfficerRoles}
+            bnetAccessRoles={bnetAccessRoles}
+            bnetAccessRoleCandidates={bnetAccessRoleCandidates}
+            bnetAccessRolesDirty={bnetAccessRolesDirty}
+            onSetBnetAccessRole={setBnetAccessRoleForUser}
+            onRemoveBnetAccessRole={removeBnetAccessRoleForUser}
             myPlayerId={selectedMyPlayerName}
             hasUnsavedChanges={officerRolesDirty}
             onSaveChanges={handleSaveOfficerRoles}
             isSaving={isSavingOfficerRoles}
+            onSaveBnetAccessRoles={handleSaveBnetAccessRoles}
+            isSavingBnetAccessRoles={isSavingBnetAccessRoles}
           />
         )}
         {adminSubTab === 'config' && (
@@ -79,6 +94,9 @@ export default function AdminContainer({
             onRemoveTodoItem={adminData.handleRemoveTodoItem}
             onSaveTodoItems={adminData.handleSaveTodoItems}
           />
+        )}
+        {adminSubTab === 'instructions' && (
+          <SiteInstructionsAdminTab />
         )}
       </div>
     );

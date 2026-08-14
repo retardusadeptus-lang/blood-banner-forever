@@ -4,7 +4,8 @@ export default function BankRequestHistory({
   archivedBankRequests,
   archivedRequestIds,
   exportArchivedRequestsCsv,
-  onRestoreArchivedBankRequests
+  onRestoreArchivedBankRequests,
+  onDeleteArchivedBankRequests
 }) {
   const [selectedArchivedRequestIds, setSelectedArchivedRequestIds] = useState([]);
 
@@ -45,6 +46,15 @@ export default function BankRequestHistory({
     onRestoreArchivedBankRequests(requestIds);
     setSelectedArchivedRequestIds([]);
   };
+
+  const deleteSelectedArchivedRequests = async () => {
+    if (selectedArchivedRequestIds.length === 0) return;
+    const requestIds = selectedArchivedRequestIds.filter(id => archivedRequestIds.some(archivedId => normalizeRequestId(archivedId) === normalizeRequestId(id)));
+    if (requestIds.length === 0) return;
+    await onDeleteArchivedBankRequests(requestIds);
+    setSelectedArchivedRequestIds([]);
+  };
+
   return (
     <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-6">
       <div className="space-y-2">
@@ -73,6 +83,14 @@ export default function BankRequestHistory({
             >
               Restore Selected{selectedArchivedRequestIds.length > 0 ? ` (${selectedArchivedRequestIds.length})` : ''}
             </button>
+            <button
+              type="button"
+              onClick={deleteSelectedArchivedRequests}
+              disabled={selectedArchivedRequestIds.length === 0}
+              className="rounded-lg border border-red-700/40 bg-red-900/20 px-3 py-2 text-xs font-bold uppercase tracking-wider text-red-300 transition hover:bg-red-900/40 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Delete Selected{selectedArchivedRequestIds.length > 0 ? ` (${selectedArchivedRequestIds.length})` : ''}
+            </button>
             <button type="button" onClick={exportArchivedRequestsCsv} className="rounded-lg border border-cyan-700/40 bg-cyan-900/20 px-3 py-2 text-xs font-bold uppercase tracking-wider text-cyan-300 transition hover:bg-cyan-900/40">Export Requests CSV</button>
           </div>
         </div>
@@ -94,13 +112,22 @@ export default function BankRequestHistory({
                     <div className="text-xs text-slate-500">{request.player_name || 'Unknown player'} • {request.status || 'unknown'}</div>
                   </div>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => onRestoreArchivedBankRequests([request.id])}
-                  className="rounded-lg border border-emerald-700/40 bg-emerald-900/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-emerald-400 transition hover:bg-emerald-900/40"
-                >
-                  Restore
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => onRestoreArchivedBankRequests([request.id])}
+                    className="rounded-lg border border-emerald-700/40 bg-emerald-900/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-emerald-400 transition hover:bg-emerald-900/40"
+                  >
+                    Restore
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onDeleteArchivedBankRequests([request.id])}
+                    className="rounded-lg border border-red-700/40 bg-red-900/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-red-300 transition hover:bg-red-900/40"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             ))}
           </div>

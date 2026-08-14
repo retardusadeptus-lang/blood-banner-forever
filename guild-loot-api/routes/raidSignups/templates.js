@@ -1,5 +1,6 @@
 const express = require('express');
 const { listTemplates } = require('../../discord/utils/raidSignupStore');
+const { normalizeTimezone, DEFAULT_RAID_TIMEZONE } = require('../../utils/raidSignupTime');
 
 function buildRaidSignupTemplateRoutes({ db }) {
   const router = express.Router();
@@ -17,8 +18,8 @@ function buildRaidSignupTemplateRoutes({ db }) {
       const templates = Array.isArray(req.body) ? req.body : [];
       const deleteAll = db.prepare('DELETE FROM raid_signup_templates');
       const insertTemplate = db.prepare(`
-        INSERT INTO raid_signup_templates (name, description, starts_at_text, recurrence_rule, recurrence_days_json, recurrence_delay_hours, recurrence_enabled, allowed_spec_ids_json, is_active, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+        INSERT INTO raid_signup_templates (name, description, group_size, timezone_text, starts_at_text, recurrence_rule, recurrence_days_json, recurrence_delay_hours, recurrence_enabled, allowed_spec_ids_json, is_active, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
       `);
 
       const saveAll = db.transaction(() => {
@@ -34,10 +35,15 @@ function buildRaidSignupTemplateRoutes({ db }) {
             : [];
           const parsedDelayHours = Number(template.recurrence_delay_hours);
           const recurrenceDelayHours = Number.isFinite(parsedDelayHours) ? Math.max(0, parsedDelayHours) : 2;
+          const parsedGroupSize = Number(template.group_size);
+          const groupSize = [10, 25, 40].includes(parsedGroupSize) ? parsedGroupSize : 25;
+          const timezone = normalizeTimezone(template.timezone || template.timezone_text || DEFAULT_RAID_TIMEZONE);
 
           insertTemplate.run(
             name,
             String(template.description || '').trim(),
+            groupSize,
+            timezone,
             String(template.starts_at_text || '').trim(),
             String(template.recurrence_rule || '').trim(),
             JSON.stringify(recurrenceDays),

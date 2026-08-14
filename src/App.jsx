@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, BOTTOM_SLOTS, P2_BOSSES, DEFAULT_GLOBAL_PHASE, CORE_SYNC_INTERVAL_MS, STORAGE_KEYS } from './constants';
 import { fetchData, putData, postData, deleteData } from './services/apiService';
 import { useItemsDatabase } from './hooks/useItemsDatabase';
@@ -38,6 +38,7 @@ import useDashboardHelpers from './hooks/useDashboardHelpers.jsx';
 import useDataSync from './hooks/useDataSync';
 
 export default function App() {
+  const previousActiveTabRef = useRef('');
   // ==========================================
   // SPECS DATA FROM DATABASE
   // ==========================================
@@ -65,6 +66,8 @@ export default function App() {
   const [globalPhase, setGlobalPhase] = useState(DEFAULT_GLOBAL_PHASE);
 
   const [overviewSearch, setOverviewSearch] = useState('');
+  const [sharedRaidFilter, setSharedRaidFilter] = useState('All Raids');
+  const [sharedPhaseFilter, setSharedPhaseFilter] = useState(DEFAULT_GLOBAL_PHASE);
 
   const [isDbConnected, setIsDbConnected] = useState(false);
   const [newSpec, setNewSpec] = useState(null); // spec_id from database
@@ -102,6 +105,8 @@ export default function App() {
     handleUnclaimClaim
   } = useAuthSession({ fetchData, setRoster: setRosterLocal, setRosterDirty });
 
+  const hasOfficerAccess = isAuthenticated || bnetAuthState.isOfficer || bnetAuthState.isAdmin;
+
   const {
     activeTab,
     setActiveTab,
@@ -115,6 +120,7 @@ export default function App() {
     setRaidSignupsSubTab,
     lootSubTab,
     setLootSubTab,
+    recruitmentSubTab,
     adminSubTab,
     setAdminSubTab,
     resourcesSubTab,
@@ -122,7 +128,17 @@ export default function App() {
     handleMainNavSelect,
     getDropdownItemActiveState,
     subTabs,
-  } = useDashboardNavigation({ isAuthenticated });
+  } = useDashboardNavigation({ isAuthenticated: hasOfficerAccess });
+
+  useEffect(() => {
+    const previousTab = previousActiveTabRef.current;
+    if (activeTab === 'raidAssignments' && previousTab && previousTab !== 'raidAssignments') {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      });
+    }
+    previousActiveTabRef.current = activeTab;
+  }, [activeTab]);
 
 
   // bankArchivedRequestIds and bankContentsHistory are persisted inside useBankData
@@ -168,6 +184,8 @@ export default function App() {
     setBisPrioritiesLocal,
     dbBisPriorities,
     setDbBisPrioritiesLocal,
+    dbBisPrioritiesBaseline,
+    setDbBisPrioritiesBaseline,
     masterItemsDbPhase,
     setMasterItemsDbPhase,
     dbNewName,
@@ -270,6 +288,7 @@ export default function App() {
     handleSaveRaidAssignmentsChanges,
     handleCopyRaidAssignmentsToArchive,
     handleViewRaidAssignmentArchive,
+    handleDeleteRaidAssignmentArchive,
     handleToggleRaidRestoreBoss,
     handleRestoreRaidAssignmentArchive,
     handleToggleZone,
@@ -285,12 +304,13 @@ export default function App() {
     activeTab,
     setActiveTab,
     setRaidAssignmentsSubTab,
-    isAuthenticated,
+    isAuthenticated: hasOfficerAccess,
   });
 
   const adminData = useAdminData({
     fetchData,
     putData,
+    deleteData,
     activeTab,
     adminSubTab,
     scoringConfigDirty,
@@ -463,6 +483,7 @@ export default function App() {
     activeTab,
     masterItemsDbPhase,
     setDbBisPrioritiesLocal,
+    setDbBisPrioritiesBaseline,
   });
 
   // ==========================================
@@ -480,12 +501,24 @@ export default function App() {
   }, [activeTab, filterBoss, filterZone, filterSlot, searchQuery, dbSearch, overviewSearch]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    let cancelled = false;
+    const refreshWowheadLinks = () => {
+      if (cancelled) return;
       if (window.$WowheadPower && window.$WowheadPower.refreshLinks) {
         window.$WowheadPower.refreshLinks();
       }
-    }, 300);
-    return () => clearTimeout(timer);
+    };
+
+    // Refresh immediately, then again after render/layout settles.
+    refreshWowheadLinks();
+    const raf = requestAnimationFrame(() => requestAnimationFrame(refreshWowheadLinks));
+    const timer = setTimeout(refreshWowheadLinks, 120);
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
   }, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, overviewSearch, selectedBisSpec]);
 
 
@@ -542,16 +575,6 @@ export default function App() {
     return items;
   }, [mutableItems, assignments, roster, overviewSearch]);
 
-  useEffect(() => {
-    if (activeTab !== 'overview') return;
-    const timer = setTimeout(() => {
-      if (window.$WowheadPower && window.$WowheadPower.refreshLinks) {
-        window.$WowheadPower.refreshLinks();
-      }
-    }, 800);
-    return () => clearTimeout(timer);
-  }, [filteredOverviewItems]);
-
   const PlayerNameWithScore = ({ player }) => {
     const specDisplay = getDisplayFromId(player.spec_id) || '?';
     return (
@@ -568,12 +591,18 @@ export default function App() {
   const mainContentViewModel = useDashboardMainContentViewModel({
     activeTab,
     bankSubTab,
+    sharedRaidFilter,
+    setSharedRaidFilter,
+    sharedPhaseFilter,
+    setSharedPhaseFilter,
     raidAssignmentsSubTab,
     raidSignupsSubTab,
+    setRaidSignupsSubTab,
     lootSubTab,
+    recruitmentSubTab,
     adminSubTab,
     resourcesSubTab,
-    isAuthenticated,
+    isAuthenticated: hasOfficerAccess,
     globalMyPlayerId,
     selectedBisSpec,
     setSelectedBisSpec,
@@ -588,6 +617,7 @@ export default function App() {
     isSavingRaidAssignments,
     handleCopyRaidAssignmentsToArchive,
     handleViewRaidAssignmentArchive,
+    handleDeleteRaidAssignmentArchive,
     handleRestoreRaidAssignmentArchive,
     handleToggleRaidRestoreBoss,
     handleToggleZone,
@@ -797,7 +827,7 @@ export default function App() {
           setHoveredNavTab={setHoveredNavTab}
           handleMainNavSelect={handleMainNavSelect}
           getDropdownItemActiveState={getDropdownItemActiveState}
-          isAuthenticated={isAuthenticated}
+          isAuthenticated={hasOfficerAccess}
           subTabs={subTabs}
         />
       )}
