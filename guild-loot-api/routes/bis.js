@@ -21,15 +21,48 @@ function buildBisRoutes({ db }) {
       const phase = req.params.phase;
       const deletePhase = db.prepare('DELETE FROM bis_priority_entries WHERE phase = ?');
       const insertEntry = db.prepare('INSERT INTO bis_priority_entries (phase, item_name, spec_name, status) VALUES (?, ?, ?, ?)');
+      const deleteEntry = db.prepare('DELETE FROM bis_priority_entries WHERE phase = ? AND item_name = ? AND spec_name = ?');
 
-      const updateAll = db.transaction(() => {
-        deletePhase.run(phase);
-        for (const [itemKey, status] of Object.entries(req.body || {})) {
+      const payload = req.body || {};
+      const isDelta = payload && typeof payload === 'object' && ('updates' in payload || 'deletes' in payload);
+
+      const applyAllFromObject = (entries) => {
+        for (const [itemKey, status] of Object.entries(entries || {})) {
           const splitIndex = itemKey.lastIndexOf('|');
           if (splitIndex === -1 || !status) continue;
           const itemName = itemKey.slice(0, splitIndex);
           const specName = itemKey.slice(splitIndex + 1);
           insertEntry.run(phase, itemName, specName, status);
+        }
+      };
+
+      const updateAll = db.transaction(() => {
+        if (!isDelta) {
+          deletePhase.run(phase);
+          applyAllFromObject(payload);
+          return;
+        }
+
+        const updates = payload.updates || {};
+        const deletes = Array.isArray(payload.deletes) ? payload.deletes : [];
+
+        for (const itemKey of deletes) {
+          const splitIndex = itemKey.lastIndexOf('|');
+          if (splitIndex === -1) continue;
+          const itemName = itemKey.slice(0, splitIndex);
+          const specName = itemKey.slice(splitIndex + 1);
+          deleteEntry.run(phase, itemName, specName);
+        }
+
+        for (const [itemKey, status] of Object.entries(updates)) {
+          const splitIndex = itemKey.lastIndexOf('|');
+          if (splitIndex === -1) continue;
+          const itemName = itemKey.slice(0, splitIndex);
+          const specName = itemKey.slice(splitIndex + 1);
+          deleteEntry.run(phase, itemName, specName);
+          if (status) {
+            insertEntry.run(phase, itemName, specName, status);
+          }
         }
       });
 

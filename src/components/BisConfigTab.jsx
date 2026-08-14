@@ -183,7 +183,7 @@ export default function BisConfigTab({
           <div className="relative flex flex-col items-center gap-4">
             <div className="w-full rounded-2xl border border-slate-700 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 p-4 shadow-[0_18px_60px_rgba(0,0,0,0.45)]">
               <div className="text-center mb-3">
-                <div className="text-[10px] text-slate-500 uppercase tracking-[0.22em] font-bold">Paper Doll</div>
+                <div className="text-[10px] text-slate-500 uppercase tracking-[0.22em] font-bold">BiS Config</div>
                 <div className="text-sm text-slate-200 font-semibold">{selectedBisSpec || 'Spec'}</div>
               </div>
               <div className="relative mx-auto h-[460px] w-full max-w-[280px] rounded-xl border border-slate-800 bg-slate-950 overflow-hidden">
@@ -193,48 +193,9 @@ export default function BisConfigTab({
                   <img
                     src={selectedSpecIcon}
                     alt=""
-                    className="w-44 h-44 opacity-30 saturate-75"
+                    className="w-60 h-60 opacity-30 saturate-75"
                   />
                 </div>
-
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <svg
-                    viewBox="0 0 280 460"
-                    aria-hidden="true"
-                    className="h-full w-full"
-                  >
-                    <defs>
-                      <radialGradient id="vitruvianGlow" cx="50%" cy="50%" r="58%">
-                        <stop offset="0%" stopColor="rgba(148,163,184,0.22)" />
-                        <stop offset="100%" stopColor="rgba(148,163,184,0)" />
-                      </radialGradient>
-                    </defs>
-
-                    <circle cx="140" cy="230" r="120" fill="url(#vitruvianGlow)" />
-                    <circle cx="140" cy="230" r="112" fill="none" stroke="rgba(148,163,184,0.34)" strokeWidth="1.5" />
-                    <rect x="32" y="120" width="216" height="220" fill="none" stroke="rgba(148,163,184,0.25)" strokeWidth="1.2" />
-
-                    <circle cx="140" cy="102" r="18" fill="none" stroke="rgba(203,213,225,0.45)" strokeWidth="1.6" />
-                    <path d="M140 122 L140 252" fill="none" stroke="rgba(203,213,225,0.45)" strokeWidth="2" strokeLinecap="round" />
-
-                    <path d="M140 154 L78 210" fill="none" stroke="rgba(203,213,225,0.4)" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M140 154 L202 210" fill="none" stroke="rgba(203,213,225,0.4)" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M140 158 L62 172" fill="none" stroke="rgba(203,213,225,0.28)" strokeWidth="1.6" strokeLinecap="round" />
-                    <path d="M140 158 L218 172" fill="none" stroke="rgba(203,213,225,0.28)" strokeWidth="1.6" strokeLinecap="round" />
-
-                    <path d="M140 252 L108 344" fill="none" stroke="rgba(203,213,225,0.4)" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M140 252 L172 344" fill="none" stroke="rgba(203,213,225,0.4)" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M108 344 L86 396" fill="none" stroke="rgba(203,213,225,0.36)" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M172 344 L194 396" fill="none" stroke="rgba(203,213,225,0.36)" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </div>
-
-                <div className="absolute left-1/2 top-10 -translate-x-1/2 h-16 w-16 rounded-full border border-slate-700 bg-slate-900/80" />
-                <div className="absolute left-1/2 top-28 -translate-x-1/2 h-36 w-28 rounded-[30px] border border-slate-700 bg-slate-900/70" />
-                <div className="absolute left-10 top-34 h-20 w-8 rounded-full border border-slate-700 bg-slate-900/60 rotate-[8deg]" />
-                <div className="absolute right-10 top-34 h-20 w-8 rounded-full border border-slate-700 bg-slate-900/60 -rotate-[8deg]" />
-                <div className="absolute left-[38%] top-[67%] h-24 w-9 rounded-full border border-slate-700 bg-slate-900/60 -rotate-[2deg]" />
-                <div className="absolute right-[38%] top-[67%] h-24 w-9 rounded-full border border-slate-700 bg-slate-900/60 rotate-[2deg]" />
               </div>
               <p className="mt-3 text-[11px] text-slate-500 text-center">Primary BiS stays visible by default. Use + on slots to reveal optional items.</p>
             </div>

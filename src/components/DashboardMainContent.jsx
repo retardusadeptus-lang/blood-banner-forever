@@ -516,6 +516,7 @@ export default function DashboardMainContent({ viewModel }) {
           fetchData={fetchData}
           postData={postData}
           canSubmitWeakauras={isAuthenticated}
+          isAuthenticated={isAuthenticated}
         />
       )}
 

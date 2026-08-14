@@ -26,24 +26,49 @@ function buildItemRoutes({ db, tokenRedemptionService }) {
   router.post('/items', (req, res) => {
     try {
       const body = req.body || {};
+      const name = String(body.name || '').trim();
+      if (!name) {
+        return res.status(400).json({ error: 'Item name is required.' });
+      }
+
+      const candidateWowheadId = body.itemId ?? body.wowhead_id ?? null;
+      const duplicate = db.prepare('SELECT id, name, wowhead_id FROM items WHERE lower(name) = lower(?) LIMIT 1').get(name);
+      if (duplicate) {
+        const existingWowheadId = duplicate.wowhead_id ?? null;
+        const candidateId = candidateWowheadId !== null && candidateWowheadId !== undefined && candidateWowheadId !== '' ? Number(candidateWowheadId) : null;
+        const existingId = existingWowheadId !== null && existingWowheadId !== undefined && existingWowheadId !== '' ? Number(existingWowheadId) : null;
+
+        const isSameUnderlyingItem = (
+          candidateId !== null && existingId !== null && candidateId === existingId
+        ) || (
+          candidateId === null && existingId === null
+        );
+
+        if (isSameUnderlyingItem) {
+          return res.status(409).json({ error: `An item named "${name}" already exists in the database.` });
+        }
+      }
+
       const sourceValue = body.source ?? body.zone ?? '';
       const sourceTypeValue = body.source_type ?? body.boss ?? '';
       const result = db.prepare(`
         INSERT INTO items (name, slot, phase, source, source_type, wowhead_id, drop_chance, rarity)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
       `).run(
-        String(body.name || '').trim(),
+        name,
         String(body.slot || '').trim(),
         String(body.phase || '').trim(),
         String(sourceValue || '').trim(),
         String(sourceTypeValue || '').trim(),
-        body.itemId ?? body.wowhead_id ?? null,
+        candidateWowheadId,
         body.drop_chance || null,
         body.rarity || null
       );
-      res.json({ ok: true, id: result.lastInsertRowid });
+
+      const insertedItem = db.prepare('SELECT * FROM items WHERE id = ?').get(result.lastInsertRowid);
+      return res.status(201).json(insertedItem);
     } catch (e) {
-      res.status(500).json({ error: e.message });
+      return res.status(500).json({ error: e.message });
     }
   });
 

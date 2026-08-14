@@ -20,6 +20,15 @@ export const PHASE_JSON_KEYS = {
   "SWP": "swp" 
 };
 
+export const CHEAT_SHEET_PHASE_MAP = {
+  1: 'Pre-BiS',
+  2: 'T4',
+  3: 'T5',
+  4: 'T6',
+  5: 'ZA',
+  9: 'SWP',
+};
+
 export const LEFT_SLOTS = ["Head", "Neck", "Shoulder", "Back", "Chest", "Wrist"];
 
 export const RIGHT_SLOTS = ["Hands", "Waist", "Legs", "Feet", "Ring 1", "Ring 2", "Trinket 1", "Trinket 2"];

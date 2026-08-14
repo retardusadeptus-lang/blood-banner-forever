@@ -182,6 +182,8 @@ export default function App() {
     setBisPrioritiesLocal,
     dbBisPriorities,
     setDbBisPrioritiesLocal,
+    dbBisPrioritiesBaseline,
+    setDbBisPrioritiesBaseline,
     masterItemsDbPhase,
     setMasterItemsDbPhase,
     dbNewName,
@@ -478,6 +480,7 @@ export default function App() {
     activeTab,
     masterItemsDbPhase,
     setDbBisPrioritiesLocal,
+    setDbBisPrioritiesBaseline,
   });
 
   // ==========================================

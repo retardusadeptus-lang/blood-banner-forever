@@ -124,11 +124,11 @@
   - Fix "Weapon" slot failing to map to Main Hand slot in BiS configs.
   - Allow secondary 2H vs. 1H/Off-Hand sub-row overrides under weapon slots - currently all versions of weapon showing all vairants.
   - Fix Off-Hand dropdowns displaying all weapons (restrict to off-hand and held-in-off-hand items).
-- [ ] Priority View Fixes:
+- [x] Priority View Fixes:
   - [x] Fix bug where removing an item from Priority View fails to persist.
   - [x] Fix conflict between saving raw item IDs vs. BiS/Optional flags.
   - [x] Fix alt item rendering on Loot Council assignment views.
-  - [ ] Fix warglaives not showing 2nd option as it has the same name as main hand.
+  - [x] Fix warglaives not showing 2nd option as it has the same name as main hand.
 
 ---
 

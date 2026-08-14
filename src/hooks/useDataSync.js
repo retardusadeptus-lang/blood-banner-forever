@@ -24,6 +24,7 @@ export default function useDataSync({
   activeTab,
   masterItemsDbPhase,
   setDbBisPrioritiesLocal,
+  setDbBisPrioritiesBaseline,
 }) {
   useEffect(() => {
     let isSyncInFlight = false;
@@ -113,7 +114,8 @@ export default function useDataSync({
       const data = await fetchData('bis-priorities/' + phaseKey);
       const dbDefaults = Object.keys(data).length ? data : await initializeDefaultBisPriorities(masterItemsDbPhase);
       setDbBisPrioritiesLocal(dbDefaults);
+      setDbBisPrioritiesBaseline(dbDefaults);
     };
     loadDbBis();
-  }, [masterItemsDbPhase, activeTab, fetchData, initializeDefaultBisPriorities, setDbBisPrioritiesLocal]);
+  }, [masterItemsDbPhase, activeTab, fetchData, initializeDefaultBisPriorities, setDbBisPrioritiesBaseline, setDbBisPrioritiesLocal]);
 }
