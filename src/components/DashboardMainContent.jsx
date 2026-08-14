@@ -9,6 +9,7 @@ import AssignedLootOverview from './AssignedLootOverview';
 import RaidSignupsContainer from '../containers/RaidSignupsContainer';
 import RecruitmentFocusTab from './RecruitmentFocusTab';
 import RecruitmentPlanningTab from './RecruitmentPlanningTab';
+import RecruitmentApplicationsTab from './RecruitmentApplicationsTab';
 import RosterContainer from '../containers/RosterContainer';
 import ScoringContainer from '../containers/ScoringContainer';
 import ResourcesTab from '../features/resources/ResourcesTab';
@@ -17,6 +18,10 @@ export default function DashboardMainContent({ viewModel }) {
   const {
     activeTab,
     bankSubTab,
+    sharedRaidFilter,
+    setSharedRaidFilter,
+    sharedPhaseFilter,
+    setSharedPhaseFilter,
     raidAssignmentsSubTab,
     raidSignupsSubTab,
     setRaidSignupsSubTab,
@@ -39,6 +44,7 @@ export default function DashboardMainContent({ viewModel }) {
     isSavingRaidAssignments,
     handleCopyRaidAssignmentsToArchive,
     handleViewRaidAssignmentArchive,
+    handleDeleteRaidAssignmentArchive,
     handleRestoreRaidAssignmentArchive,
     handleToggleRaidRestoreBoss,
     handleToggleZone,
@@ -339,12 +345,36 @@ export default function DashboardMainContent({ viewModel }) {
               myPlayerName={selectedMyPlayerName}
               actorBattleTag={bnetAuthState.user?.battletag || ''}
               onCopyToArchive={handleCopyRaidAssignmentsToArchive}
+              selectedRaid={sharedRaidFilter}
+              setSelectedRaid={setSharedRaidFilter}
+              selectedPhase={sharedPhaseFilter}
+              setSelectedPhase={setSharedPhaseFilter}
+            />
+          )}
+          {raidAssignmentsSubTab === 'tactics' && (
+            <ResourcesTab
+              resourcesSubTab="tactics"
+              selectedBisSpec={selectedBisSpec}
+              setSelectedBisSpec={setSelectedBisSpec}
+              masterItemsDbPhase={masterItemsDbPhase}
+              setMasterItemsDbPhase={setMasterItemsDbPhase}
+              specsFromDb={specsFromDb}
+              renderItemSlot={renderItemSlot}
+              specsByName={specsByName}
+              fetchData={fetchData}
+              postData={postData}
+              putData={putData}
+              deleteData={deleteData}
+              canSubmitWeakauras={isAuthenticated}
+              isAuthenticated={isAuthenticated}
+              enabledBosses={enabledBosses}
             />
           )}
           {raidAssignmentsSubTab === 'history' && (
             <RaidAssignmentsHistory
               archives={raidAssignmentArchives}
               onViewArchive={handleViewRaidAssignmentArchive}
+              onDeleteArchive={handleDeleteRaidAssignmentArchive}
               onRestoreArchive={handleRestoreRaidAssignmentArchive}
               selectedArchiveId={selectedRaidAssignmentArchiveId}
               selectedRestoreBosses={selectedRaidRestoreBosses}
@@ -482,6 +512,18 @@ export default function DashboardMainContent({ viewModel }) {
         />
       )}
 
+      {activeTab === 'recruitmentApplications' && recruitmentSubTab === 'applications' && (
+        <RecruitmentApplicationsTab
+          isAuthenticated={Boolean(bnetAuthState?.authenticated || isAuthenticated)}
+          bnetAuthState={bnetAuthState}
+          fetchData={fetchData}
+          postData={postData}
+          putData={putData}
+          isOfficer={Boolean(bnetAuthState?.isOfficer || bnetAuthState?.isAdmin || isAuthenticated)}
+          canManageBlurb={Boolean(bnetAuthState?.isOfficer || bnetAuthState?.isAdmin || isAuthenticated)}
+        />
+      )}
+
       {(activeTab === 'officerRoles' || activeTab === 'discordBotConfig') && isAuthenticated && (
         <AdminContainer
           activeTab={activeTab}
@@ -515,8 +557,11 @@ export default function DashboardMainContent({ viewModel }) {
           specsByName={specsByName}
           fetchData={fetchData}
           postData={postData}
+          putData={putData}
+          deleteData={deleteData}
           canSubmitWeakauras={isAuthenticated}
           isAuthenticated={isAuthenticated}
+          enabledBosses={enabledBosses}
         />
       )}
 

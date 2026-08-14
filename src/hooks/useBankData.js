@@ -9,7 +9,7 @@ const CATEGORY_MAP = {
   Misc: 'Misc'
 };
 
-export default function useBankData({ fetchData, putData, isAuthenticated }) {
+export default function useBankData({ fetchData, putData, deleteData, isAuthenticated }) {
   const [bankItems, setBankItems] = useState([]);
   const [bankRequests, setBankRequests] = useState([]);
   const [bankSearch, setBankSearch] = useState('');
@@ -196,6 +196,20 @@ export default function useBankData({ fetchData, putData, isAuthenticated }) {
     setBankArchivedRequestIds(prev => prev.filter(id => !normalized.has(id)));
   };
 
+  const deleteArchivedBankRequests = async (requestIds = []) => {
+    const normalizedIds = (Array.isArray(requestIds) ? requestIds : []).filter(Boolean);
+    if (normalizedIds.length === 0) return;
+
+    const uniqueIds = [...new Set(normalizedIds.map(id => String(id)))];
+    for (const requestId of uniqueIds) {
+      await deleteData(`bank-requests/${requestId}`);
+    }
+
+    const refreshed = await fetchData('bank-requests');
+    setBankRequests(refreshed);
+    setBankArchivedRequestIds(prev => prev.filter(id => !uniqueIds.some(uniqueId => String(uniqueId) === String(id))));
+  };
+
   const visibleBankRequests = useMemo(() => {
     return (Array.isArray(bankRequests) ? bankRequests : []).filter(request => !bankArchivedRequestIds.includes(request.id));
   }, [bankRequests, bankArchivedRequestIds]);
@@ -247,6 +261,7 @@ export default function useBankData({ fetchData, putData, isAuthenticated }) {
     handleBulkResolveBankRequests,
     archiveBankRequests,
     restoreArchivedBankRequests,
+    deleteArchivedBankRequests,
     visibleBankRequests,
     archivedBankRequests,
     archivedRequestIds,

@@ -1,6 +1,7 @@
 export default function RaidAssignmentsHistory({
   archives,
   onViewArchive,
+  onDeleteArchive,
   onRestoreArchive,
   selectedArchiveId,
   selectedRestoreBosses,
@@ -34,6 +35,7 @@ export default function RaidAssignmentsHistory({
               <div className="mt-3 flex flex-wrap gap-2">
                 <button type="button" onClick={() => onViewArchive(entry)} className="rounded-lg border border-cyan-700/40 bg-cyan-900/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-cyan-300 transition hover:bg-cyan-900/40">View</button>
                 <button type="button" onClick={() => onRestoreArchive(entry)} className="rounded-lg border border-emerald-700/40 bg-emerald-900/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-emerald-300 transition hover:bg-emerald-900/40">Restore to Live</button>
+                <button type="button" onClick={() => onDeleteArchive(entry)} className="rounded-lg border border-red-700/40 bg-red-900/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-red-300 transition hover:bg-red-900/40">Delete</button>
               </div>
               {selectedArchiveId === entry.id && (
                 <div className="mt-3 rounded-xl border border-slate-800 bg-slate-950 p-4 space-y-3">

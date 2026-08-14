@@ -120,6 +120,11 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       return;
     }
 
+    if (activeTab === 'recruitmentApplications' && recruitmentSubTab !== 'applications') {
+      setRecruitmentSubTab('applications');
+      return;
+    }
+
     if (activeTab === 'roster' && recruitmentSubTab !== 'roster') {
       setRecruitmentSubTab('roster');
     }
@@ -159,6 +164,8 @@ export default function useDashboardNavigation({ isAuthenticated }) {
         setActiveTab('recruitmentPlanning');
       } else if (subTab === 'focus') {
         setActiveTab('recruitmentFocus');
+      } else if (subTab === 'applications') {
+        setActiveTab('recruitmentApplications');
       } else {
         setActiveTab('roster');
       }
@@ -205,6 +212,7 @@ export default function useDashboardNavigation({ isAuthenticated }) {
     if (groupKey === 'recruitment') {
       if (subTab === 'planning') return activeTab === 'recruitmentPlanning';
       if (subTab === 'focus') return activeTab === 'recruitmentFocus';
+      if (subTab === 'applications') return activeTab === 'recruitmentApplications';
       return activeTab === 'roster';
     }
 
@@ -235,6 +243,7 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       ],
       raidAssignments: [
       { value: 'overview', label: 'Overview' },
+      { value: 'tactics', label: 'Tactics' },
       { value: 'history', label: 'History' }
       ],
       raidSignups: [
@@ -254,7 +263,8 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       recruitment: [
       { value: 'roster', label: 'Roster', authOnly: true },
       { value: 'planning', label: 'Roster Planning', authOnly: true },
-      { value: 'focus', label: 'Recruitment Focus' }
+      { value: 'focus', label: 'Recruitment Focus' },
+      { value: 'applications', label: 'Applications' }
       ],
       admin: [
       { value: 'officerRoles', label: 'Officer Roles', authOnly: true },
@@ -265,11 +275,9 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       ],
       resources: [
       { value: 'bis', label: 'BiS Lists' },
-      { value: 'tactics', label: 'Tactics' },
       { value: 'weakauras', label: 'Weakauras' },
       { value: 'cheatsheets', label: 'Cheat Sheets' },
       { value: 'raidlogs', label: 'Raid Logs' },
-      { value: 'wowaudit', label: 'WoWAudit' },
       { value: 'wipefest', label: 'Wipefest' }
       ]
     };
@@ -281,7 +289,7 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       raidAssignments: allTabs.raidAssignments.filter(tab => tab.value === 'overview'),
       raidSignups: allTabs.raidSignups.filter(tab => tab.value === 'events' || tab.value === 'absences'),
       loot: allTabs.loot.filter(tab => tab.value === 'overview' || tab.value === 'assigned'),
-      recruitment: allTabs.recruitment.filter(tab => tab.value === 'focus'),
+      recruitment: allTabs.recruitment.filter(tab => tab.value === 'focus' || tab.value === 'applications'),
       admin: [],
       resources: allTabs.resources,
     };

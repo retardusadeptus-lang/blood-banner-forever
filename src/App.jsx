@@ -66,6 +66,8 @@ export default function App() {
   const [globalPhase, setGlobalPhase] = useState(DEFAULT_GLOBAL_PHASE);
 
   const [overviewSearch, setOverviewSearch] = useState('');
+  const [sharedRaidFilter, setSharedRaidFilter] = useState('All Raids');
+  const [sharedPhaseFilter, setSharedPhaseFilter] = useState(DEFAULT_GLOBAL_PHASE);
 
   const [isDbConnected, setIsDbConnected] = useState(false);
   const [newSpec, setNewSpec] = useState(null); // spec_id from database
@@ -286,6 +288,7 @@ export default function App() {
     handleSaveRaidAssignmentsChanges,
     handleCopyRaidAssignmentsToArchive,
     handleViewRaidAssignmentArchive,
+    handleDeleteRaidAssignmentArchive,
     handleToggleRaidRestoreBoss,
     handleRestoreRaidAssignmentArchive,
     handleToggleZone,
@@ -588,6 +591,10 @@ export default function App() {
   const mainContentViewModel = useDashboardMainContentViewModel({
     activeTab,
     bankSubTab,
+    sharedRaidFilter,
+    setSharedRaidFilter,
+    sharedPhaseFilter,
+    setSharedPhaseFilter,
     raidAssignmentsSubTab,
     raidSignupsSubTab,
     setRaidSignupsSubTab,
@@ -610,6 +617,7 @@ export default function App() {
     isSavingRaidAssignments,
     handleCopyRaidAssignmentsToArchive,
     handleViewRaidAssignmentArchive,
+    handleDeleteRaidAssignmentArchive,
     handleRestoreRaidAssignmentArchive,
     handleToggleRaidRestoreBoss,
     handleToggleZone,

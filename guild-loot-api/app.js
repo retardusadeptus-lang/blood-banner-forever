@@ -13,7 +13,11 @@ const buildRaidSignupRoutes = require('./routes/raidSignups');
 const buildAssignmentsRoutes = require('./routes/assignments');
 const buildMutableItemsRoutes = require('./routes/mutableItems');
 const buildRecruitmentPlanningRoutes = require('./routes/recruitmentPlanning');
+const buildRecruitmentApplicationsRoutes = require('./routes/recruitmentApplications');
 const buildWeakAuraRoutes = require('./routes/weakauras');
+const buildTacticsRoutes = require('./routes/tactics');
+const buildWipefestRoutes = require('./routes/wipefest');
+const buildWarcraftLogsRoutes = require('./routes/warcraftlogs');
 
 function getGitCommitSha() {
   if (process.env.GIT_COMMIT) return String(process.env.GIT_COMMIT).trim();
@@ -31,7 +35,7 @@ function getGitCommitSha() {
   }
 }
 
-function buildApp({ db, sessionSecret, bnetConfig, discordService, tokenRedemptionService, configService }) {
+function buildApp({ db, sessionSecret, bnetConfig, discordService, tokenRedemptionService, configService, discordWebhookUrl }) {
   const app = express();
 
   app.use(cors({ origin: true, credentials: true }));
@@ -66,7 +70,11 @@ function buildApp({ db, sessionSecret, bnetConfig, discordService, tokenRedempti
   app.use('/api', buildAssignmentsRoutes({ db }));
   app.use('/api', buildMutableItemsRoutes({ db }));
   app.use('/api', buildRecruitmentPlanningRoutes({ db }));
+  app.use('/api', buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl: discordWebhookUrl }));
   app.use('/api', buildWeakAuraRoutes({ db, sessionSecret }));
+  app.use('/api', buildTacticsRoutes({ db, sessionSecret }));
+  app.use('/api', buildWipefestRoutes({ db, sessionSecret }));
+  app.use('/api', buildWarcraftLogsRoutes({ db }));
   app.use('/api', buildAdminRoutes({ db, configService, sessionSecret }));
   app.use('/api', buildRaidSignupRoutes({ db, sessionSecret }));
 

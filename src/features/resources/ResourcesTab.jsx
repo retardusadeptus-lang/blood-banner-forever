@@ -6,6 +6,85 @@ import { CHEAT_SHEET_PHASE_MAP, DEFAULT_GLOBAL_PHASE, PHASES } from '../../const
 
 const CHEAT_SHEET_STORAGE_KEY = 'cheat-sheet-data-v1';
 const CHEAT_SHEET_EXPORT_FILENAME = 'cheat-sheet-export.json';
+const WIPEFEST_STORAGE_KEY = 'wipefest-data-v1';
+
+const normalizeTacticsMediaItem = (item = {}, index = 0) => {
+  const url = String(item?.url || '').trim();
+  const label = String(item?.label || '').trim();
+
+  if (!url) return null;
+
+  const normalizedType = ['image', 'video', 'link'].includes(item?.type) ? item.type : 'link';
+
+  return {
+    id: item?.id || `tactics-media-${index}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    type: normalizedType,
+    url,
+    label: label || url,
+  };
+};
+
+const normalizeTacticsEntry = (entry = {}) => ({
+  bossName: String(entry.bossName || entry.boss_name || '').trim(),
+  notes: String(entry.notes || '').trim(),
+  media: Array.isArray(entry.media)
+    ? entry.media.map(normalizeTacticsMediaItem).filter(Boolean)
+    : Array.isArray(entry.media_json)
+      ? entry.media_json.map(normalizeTacticsMediaItem).filter(Boolean)
+      : [],
+});
+
+const normalizeWipefestEntry = (entry = {}, fallbackReport = null) => {
+  const raidDate = entry.raidDate || (fallbackReport?.startTime ? new Date(fallbackReport.startTime).toISOString().slice(0, 10) : '');
+  const logsUrl = entry.logsUrl || fallbackReport?.url || '';
+
+  return {
+    id: entry.id || fallbackReport?.id || `wipefest-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    raidDate,
+    title: entry.title || fallbackReport?.title || 'New Raid',
+    logsUrl,
+    wipefestUrl: entry.wipefestUrl || '',
+    notes: entry.notes || '',
+  };
+};
+
+const loadWipefestEntries = () => {
+  if (typeof window === 'undefined') return [];
+
+  const saved = window.localStorage.getItem(WIPEFEST_STORAGE_KEY);
+  if (!saved) return [];
+
+  try {
+    const parsed = JSON.parse(saved);
+    if (Array.isArray(parsed)) {
+      return parsed.map(entry => normalizeWipefestEntry(entry));
+    }
+  } catch (error) {
+    console.warn('Failed to parse wipefest saved data:', error);
+  }
+
+  return [];
+};
+
+const formatWclDate = (value) => {
+  if (!value) return 'Unknown date';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'Unknown date';
+  return date.toLocaleDateString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+};
+
+const formatDuration = (value) => {
+  const ms = Number(value || 0);
+  if (!Number.isFinite(ms) || ms <= 0) return 'Unknown duration';
+  const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}m ${seconds}s`;
+};
 
 const sectionLabels = {
   armor: 'Armor',
@@ -107,14 +186,32 @@ export default function ResourcesTab({
   specsByName,
   fetchData,
   postData,
+  putData,
+  deleteData,
   canSubmitWeakauras,
   isAuthenticated = false,
+  enabledBosses = [],
 }) {
   const [bosses, setBosses] = useState(loadCheatSheetBosses);
   const [draftBosses, setDraftBosses] = useState(bosses);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [selectedRaid, setSelectedRaid] = useState('All Raids');
-  const [selectedPhase, setSelectedPhase] = useState(DEFAULT_GLOBAL_PHASE);
+  const [internalSelectedRaid, setInternalSelectedRaid] = useState('All Raids');
+  const [internalSelectedPhase, setInternalSelectedPhase] = useState(DEFAULT_GLOBAL_PHASE);
+  const selectedRaid = internalSelectedRaid;
+  const selectedPhase = internalSelectedPhase;
+  const setSelectedRaid = setInternalSelectedRaid;
+  const setSelectedPhase = setInternalSelectedPhase;
+  const [recentReports, setRecentReports] = useState([]);
+  const [recentReportsError, setRecentReportsError] = useState('');
+  const [isTacticsEditMode, setIsTacticsEditMode] = useState(false);
+  const [raidTacticsBossOrder, setRaidTacticsBossOrder] = useState([]);
+  const [raidTacticsDraft, setRaidTacticsDraft] = useState({});
+  const [raidTacticsSaved, setRaidTacticsSaved] = useState({});
+  const [tacticsError, setTacticsError] = useState('');
+  const [wipefestEntries, setWipefestEntries] = useState([]);
+  const [draftWipefestEntries, setDraftWipefestEntries] = useState([]);
+  const [isWipefestEditMode, setIsWipefestEditMode] = useState(false);
+  const [deletedWipefestEntryIds, setDeletedWipefestEntryIds] = useState([]);
 
   useEffect(() => {
     setBosses(loadCheatSheetBosses());
@@ -131,6 +228,123 @@ export default function ResourcesTab({
       window.localStorage.setItem(CHEAT_SHEET_STORAGE_KEY, JSON.stringify(bosses));
     }
   }, [bosses]);
+
+  const filteredRaidTacticsBossOrder = useMemo(() => {
+    if (!Array.isArray(raidTacticsBossOrder)) return [];
+
+    const sourceBosses = Array.isArray(enabledBosses) && enabledBosses.length > 0
+      ? raidTacticsBossOrder.filter((bossName) => enabledBosses.includes(bossName))
+      : raidTacticsBossOrder;
+
+    return sourceBosses;
+  }, [enabledBosses, raidTacticsBossOrder]);
+
+  useEffect(() => {
+    if (resourcesSubTab !== 'tactics') return undefined;
+
+    let isMounted = true;
+    const loadTactics = async () => {
+      try {
+        const [payload, configuredBosses] = await Promise.all([
+          fetchData('tactics').catch(() => ({ bossOrder: [], entries: [] })),
+          fetchData('raid-assignment-config').catch(() => [])
+        ]);
+
+        if (!isMounted) return;
+
+        const bossOrder = Array.isArray(payload?.bossOrder) && payload.bossOrder.length > 0
+          ? payload.bossOrder
+          : Array.isArray(configuredBosses) && configuredBosses.length > 0
+            ? configuredBosses
+            : [];
+
+        const byBoss = {};
+        (Array.isArray(payload?.entries) ? payload.entries : []).forEach((entry) => {
+          const normalized = normalizeTacticsEntry(entry);
+          if (normalized.bossName) {
+            byBoss[normalized.bossName] = normalized;
+          }
+        });
+
+        const nextDraft = {};
+        bossOrder.forEach((bossName) => {
+          const saved = byBoss[bossName] || { bossName, notes: '', media: [] };
+          nextDraft[bossName] = {
+            bossName,
+            notes: saved.notes || '',
+            media: Array.isArray(saved.media) ? saved.media : [],
+          };
+        });
+
+        setRaidTacticsBossOrder(bossOrder);
+        setRaidTacticsSaved(nextDraft);
+        setRaidTacticsDraft(nextDraft);
+        setTacticsError('');
+      } catch (error) {
+        if (!isMounted) return;
+        setRaidTacticsBossOrder([]);
+        setRaidTacticsSaved({});
+        setRaidTacticsDraft({});
+        setTacticsError(error?.message || 'Failed to load raid tactics.');
+      }
+    };
+
+    loadTactics();
+    return () => {
+      isMounted = false;
+    };
+  }, [fetchData, resourcesSubTab]);
+
+  useEffect(() => {
+    if (resourcesSubTab !== 'wipefest') return undefined;
+
+    let isMounted = true;
+    const loadWipefestEntries = async () => {
+      try {
+        const payload = await fetchData('wipefest');
+        if (!isMounted) return;
+        const entries = Array.isArray(payload) ? payload.map((entry) => normalizeWipefestEntry(entry)) : [];
+        setWipefestEntries(entries);
+        setDraftWipefestEntries(entries);
+        setDeletedWipefestEntryIds([]);
+      } catch (error) {
+        if (!isMounted) return;
+        setWipefestEntries([]);
+        setDraftWipefestEntries([]);
+        setDeletedWipefestEntryIds([]);
+      }
+    };
+
+    loadWipefestEntries();
+    return () => {
+      isMounted = false;
+    };
+  }, [fetchData, resourcesSubTab]);
+
+  useEffect(() => {
+    if (resourcesSubTab !== 'raidlogs') return undefined;
+
+    let isMounted = true;
+
+    const loadRecentReports = async () => {
+      try {
+        const payload = await fetchData('warcraftlogs/recent-reports');
+        if (!isMounted) return;
+        setRecentReports(Array.isArray(payload) ? payload : []);
+        setRecentReportsError('');
+      } catch (error) {
+        if (!isMounted) return;
+        setRecentReports([]);
+        setRecentReportsError(error?.message || 'Failed to load recent WarcraftLogs reports.');
+      }
+    };
+
+    loadRecentReports();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [fetchData, resourcesSubTab]);
 
   const filteredBosses = useMemo(() => {
     const sourceBosses = isEditMode ? draftBosses : bosses;
@@ -211,9 +425,95 @@ export default function ResourcesTab({
     setIsEditMode(true);
   };
 
-  const handleSaveChanges = () => {
-    setBosses(draftBosses.map(normalizeBoss));
-    setIsEditMode(false);
+  const handleTacticsFieldChange = (bossName, field, value) => {
+    setRaidTacticsDraft(prev => ({
+      ...prev,
+      [bossName]: {
+        bossName,
+        notes: field === 'notes' ? value : prev[bossName]?.notes || '',
+        media: field === 'notes' ? prev[bossName]?.media || [] : prev[bossName]?.media || [],
+      },
+    }));
+  };
+
+  const handleTacticsMediaChange = (bossName, mediaId, field, value) => {
+    setRaidTacticsDraft(prev => ({
+      ...prev,
+      [bossName]: {
+        bossName,
+        notes: prev[bossName]?.notes || '',
+        media: (prev[bossName]?.media || []).map(item => (
+          item.id === mediaId ? { ...item, [field]: value } : item
+        )),
+      },
+    }));
+  };
+
+  const handleAddTacticsMedia = (bossName) => {
+    setRaidTacticsDraft(prev => ({
+      ...prev,
+      [bossName]: {
+        bossName,
+        notes: prev[bossName]?.notes || '',
+        media: [
+          ...(prev[bossName]?.media || []),
+          {
+            id: `tactics-media-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+            type: 'image',
+            url: '',
+            label: 'New item',
+          }
+        ],
+      },
+    }));
+  };
+
+  const handleRemoveTacticsMedia = (bossName, mediaId) => {
+    setRaidTacticsDraft(prev => ({
+      ...prev,
+      [bossName]: {
+        bossName,
+        notes: prev[bossName]?.notes || '',
+        media: (prev[bossName]?.media || []).filter(item => item.id !== mediaId),
+      },
+    }));
+  };
+
+  const handleSaveTacticsChanges = async () => {
+    if (!isAuthenticated) {
+      window.alert('Officer login required to save raid tactics.');
+      return;
+    }
+
+    try {
+      const bossNames = raidTacticsBossOrder;
+      for (const bossName of bossNames) {
+        const draftEntry = raidTacticsDraft[bossName] || { bossName, notes: '', media: [] };
+        const sanitizedMedia = (draftEntry.media || []).map((item, index) => normalizeTacticsMediaItem(item, index)).filter(Boolean);
+        await putData(`tactics/${encodeURIComponent(bossName)}`, {
+          bossName,
+          notes: draftEntry.notes || '',
+          media: sanitizedMedia,
+        });
+      }
+
+      const refreshed = await fetchData('tactics');
+      const nextMap = {};
+      (Array.isArray(refreshed?.entries) ? refreshed.entries : []).forEach((entry) => {
+        const normalized = normalizeTacticsEntry(entry);
+        if (normalized.bossName) {
+          nextMap[normalized.bossName] = normalized;
+        }
+      });
+
+      setRaidTacticsSaved(nextMap);
+      setRaidTacticsDraft(nextMap);
+      setTacticsError('');
+    } catch (error) {
+      console.error('Failed to save raid tactics:', error);
+      setTacticsError(error?.message || 'Failed to save raid tactics.');
+      window.alert(error?.message || 'Failed to save raid tactics.');
+    }
   };
 
   const handleExitEditMode = () => {
@@ -270,6 +570,87 @@ export default function ResourcesTab({
     setIsEditMode(false);
   };
 
+  const handleAddWipefestEntry = () => {
+    const defaultEntry = normalizeWipefestEntry({}, recentReports[0] || null);
+    const newEntry = {
+      ...defaultEntry,
+      id: `wipefest-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      raidDate: defaultEntry.raidDate || new Date().toISOString().slice(0, 10),
+      title: 'New Raid',
+      logsUrl: defaultEntry.logsUrl || '',
+      wipefestUrl: '',
+      notes: '',
+    };
+
+    setDraftWipefestEntries(prev => [newEntry, ...prev]);
+    setIsWipefestEditMode(true);
+  };
+
+  const handleSaveWipefestChanges = async () => {
+    try {
+      const persistEntry = async (entry) => {
+        const payload = {
+          raidDate: entry.raidDate || '',
+          title: entry.title || 'New Raid',
+          logsUrl: entry.logsUrl || '',
+          wipefestUrl: entry.wipefestUrl || '',
+          notes: entry.notes || ''
+        };
+
+        if (typeof entry.id === 'number' || /^\d+$/.test(String(entry.id || ''))) {
+          return await putData(`wipefest/${entry.id}`, payload);
+        }
+
+        return await postData('wipefest', payload);
+      };
+
+      const idsToDelete = [...deletedWipefestEntryIds];
+      for (const id of idsToDelete) {
+        if (id && (typeof id === 'number' || /^\d+$/.test(String(id)))) {
+          await deleteData(`wipefest/${id}`);
+        }
+      }
+
+      for (const entry of draftWipefestEntries) {
+        if (!entry) continue;
+        const isPersisted = typeof entry.id === 'number' || /^\d+$/.test(String(entry.id || ''));
+        const isDeleted = deletedWipefestEntryIds.includes(entry.id);
+        if (isDeleted) continue;
+        if (isPersisted || String(entry.id || '').startsWith('wipefest-')) {
+          await persistEntry(entry);
+        }
+      }
+
+      const payload = await fetchData('wipefest');
+      const refreshedEntries = Array.isArray(payload) ? payload.map(normalizeWipefestEntry) : [];
+      setWipefestEntries(refreshedEntries);
+      setDraftWipefestEntries(refreshedEntries);
+      setDeletedWipefestEntryIds([]);
+      setIsWipefestEditMode(false);
+    } catch (error) {
+      console.error('Failed to save wipefest entries:', error);
+      window.alert(error?.message || 'Failed to save wipefest entries.');
+    }
+  };
+
+  const handleExitWipefestEditMode = () => {
+    setDraftWipefestEntries(wipefestEntries.map(entry => normalizeWipefestEntry(entry)));
+    setDeletedWipefestEntryIds([]);
+    setIsWipefestEditMode(false);
+  };
+
+  const handleRemoveWipefestEntry = (entryId) => {
+    setDeletedWipefestEntryIds(prev => prev.includes(entryId) ? prev : [...prev, entryId]);
+    setDraftWipefestEntries(prev => prev.filter(entry => entry.id !== entryId));
+  };
+
+  const updateWipefestEntry = (entryId, field, value) => {
+    setDraftWipefestEntries(prev => prev.map(entry => {
+      if (entry.id !== entryId) return entry;
+      return { ...entry, [field]: value };
+    }));
+  };
+
   return (
     <div className="space-y-4">
       {resourcesSubTab === 'bis' && (
@@ -285,13 +666,212 @@ export default function ResourcesTab({
       )}
 
       {resourcesSubTab === 'tactics' && (
-        <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
-          <h3 className="text-lg font-bold text-slate-100">Raid Tactics</h3>
-          <p className="text-sm text-slate-400">Quick reminders for the upcoming raid plan, boss mechanics, and role-specific priorities.</p>
-          <div className="grid gap-3 md:grid-cols-2">
-            <div className="rounded-lg border border-slate-800 bg-slate-900 p-4"><div className="text-sm font-semibold text-amber-400">Tank/healer calls</div><div className="mt-2 text-sm text-slate-400">Use the raid assignment view to confirm who is covering each role and where to position them.</div></div>
-            <div className="rounded-lg border border-slate-800 bg-slate-900 p-4"><div className="text-sm font-semibold text-amber-400">Encounter prep</div><div className="mt-2 text-sm text-slate-400">Review the latest signup events and group config before the pull so everyone knows their lane.</div></div>
+        <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-5">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h3 className="text-lg font-bold text-slate-100">Raid Tactics</h3>
+              <p className="text-sm text-slate-400">Boss-by-boss notes, references, and media kept in the same order as the raid assignment boss list.</p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              {isAuthenticated && (
+                <div className="flex items-center gap-2">
+                  {!isTacticsEditMode ? (
+                    <button
+                      type="button"
+                      onClick={() => setIsTacticsEditMode(true)}
+                      className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-amber-200 transition hover:bg-amber-500/20"
+                    >
+                      Enter Edit Mode
+                    </button>
+                  ) : (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setRaidTacticsDraft(raidTacticsSaved)}
+                        className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-200 transition hover:border-slate-500"
+                      >
+                        Reset
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleSaveTacticsChanges}
+                        className="rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-200 transition hover:bg-emerald-500/20"
+                      >
+                        Save Changes
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setRaidTacticsDraft(raidTacticsSaved);
+                          setIsTacticsEditMode(false);
+                        }}
+                        className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-200 transition hover:border-slate-500"
+                      >
+                        Exit Edit Mode
+                      </button>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
+
+          {tacticsError && (
+            <div className="rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2 text-sm text-red-200">{tacticsError}</div>
+          )}
+
+          {filteredRaidTacticsBossOrder.length === 0 ? (
+            <div className="rounded-lg border border-dashed border-slate-700 bg-slate-900 p-6 text-sm text-slate-400">
+              No bosses are currently enabled in the raid assignment selector.
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {filteredRaidTacticsBossOrder.map((bossName) => {
+                const draftEntry = raidTacticsDraft[bossName] || { bossName, notes: '', media: [] };
+                const mediaItems = Array.isArray(draftEntry.media) ? draftEntry.media : [];
+
+                return (
+                  <section key={bossName} className="rounded-xl border border-slate-800 bg-slate-900/80 p-4">
+                    <div className="mb-3 flex items-center justify-between gap-2">
+                      <h4 className="text-base font-bold text-slate-100">{bossName}</h4>
+                      {isAuthenticated && (
+                        <button
+                          type="button"
+                          onClick={() => handleAddTacticsMedia(bossName)}
+                          className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-200 transition hover:bg-amber-500/20"
+                        >
+                          Add Media
+                        </button>
+                      )}
+                    </div>
+
+                    {isAuthenticated && isTacticsEditMode ? (
+                      <>
+                        <label className="block text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
+                          Boss notes
+                          <textarea
+                            value={draftEntry.notes || ''}
+                            onChange={(event) => handleTacticsFieldChange(bossName, 'notes', event.target.value)}
+                            className="mt-2 min-h-[120px] w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                            placeholder="Write the encounter plan, pull call, or role-specific guidance for this boss..."
+                          />
+                        </label>
+
+                        <div className="mt-4 space-y-3">
+                          {mediaItems.length === 0 ? (
+                            <div className="rounded-lg border border-dashed border-slate-700 bg-slate-950/60 p-3 text-sm text-slate-400">
+                              No media added yet.
+                            </div>
+                          ) : (
+                            mediaItems.map((item) => (
+                              <div key={item.id} className="rounded-lg border border-slate-700 bg-slate-950/70 p-3">
+                                <div className="grid gap-3 md:grid-cols-[140px_1fr_1.2fr_auto] md:items-center">
+                                  <select
+                                    value={item.type || 'link'}
+                                    onChange={(event) => handleTacticsMediaChange(bossName, item.id, 'type', event.target.value)}
+                                    className="rounded-lg border border-slate-700 bg-slate-900 px-2 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                                  >
+                                    <option value="image">Image</option>
+                                    <option value="video">Video</option>
+                                    <option value="link">Link</option>
+                                  </select>
+
+                                  <input
+                                    value={item.label || ''}
+                                    onChange={(event) => handleTacticsMediaChange(bossName, item.id, 'label', event.target.value)}
+                                    placeholder="Label"
+                                    className="rounded-lg border border-slate-700 bg-slate-900 px-2 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                                  />
+
+                                  <input
+                                    value={item.url || ''}
+                                    onChange={(event) => handleTacticsMediaChange(bossName, item.id, 'url', event.target.value)}
+                                    placeholder="https://..."
+                                    className="rounded-lg border border-slate-700 bg-slate-900 px-2 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                                  />
+
+                                  <button
+                                    type="button"
+                                    onClick={() => handleRemoveTacticsMedia(bossName, item.id)}
+                                    className="rounded-lg border border-red-500/40 bg-red-500/10 px-2 py-2 text-[10px] font-bold uppercase tracking-[0.18em] text-red-200 transition hover:bg-red-500/20"
+                                  >
+                                    Remove
+                                  </button>
+                                </div>
+                              </div>
+                            ))
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      <div className="space-y-4">
+                        {draftEntry.notes ? (
+                          <p className="whitespace-pre-wrap text-sm leading-6 text-slate-300">{draftEntry.notes}</p>
+                        ) : (
+                          <p className="text-sm text-slate-500 italic">No tactic notes saved for this boss yet.</p>
+                        )}
+
+                        {mediaItems.length > 0 && (
+                          <div className="space-y-3">
+                            {mediaItems.map((item) => {
+                              const renderedUrl = item.url;
+                              const label = item.label || item.url;
+                              const isVideo = item.type === 'video';
+                              const isImage = item.type === 'image';
+
+                              if (isImage) {
+                                return (
+                                  <div key={item.id} className="rounded-lg border border-slate-700 bg-slate-950/70 p-2">
+                                    <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">{label}</div>
+                                    <img src={renderedUrl} alt={label} className="max-h-72 w-full rounded-md object-contain" />
+                                  </div>
+                                );
+                              }
+
+                              if (isVideo) {
+                                let embedUrl = renderedUrl;
+                                try {
+                                  const parsed = new URL(renderedUrl);
+                                  if (parsed.hostname.includes('youtube.com') && parsed.searchParams.get('v')) {
+                                    embedUrl = `https://www.youtube.com/embed/${parsed.searchParams.get('v')}`;
+                                  } else if (parsed.hostname.includes('youtu.be')) {
+                                    const videoId = parsed.pathname.replace('/', '');
+                                    embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                                  }
+                                } catch (error) {
+                                  embedUrl = renderedUrl;
+                                }
+
+                                return (
+                                  <div key={item.id} className="rounded-lg border border-slate-700 bg-slate-950/70 p-2">
+                                    <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">{label}</div>
+                                    <iframe
+                                      src={embedUrl}
+                                      title={label}
+                                      className="aspect-video w-full rounded-md border-0"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                      allowFullScreen
+                                    />
+                                  </div>
+                                );
+                              }
+
+                              return (
+                                <a key={item.id} href={renderedUrl} target="_blank" rel="noreferrer" className="block rounded-lg border border-slate-700 bg-slate-950/70 p-3 text-sm text-sky-300 hover:text-sky-200 hover:border-sky-500/60">
+                                  {label}
+                                </a>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </section>
+                );
+              })}
+            </div>
+          )}
         </div>
       )}
 
@@ -739,9 +1319,80 @@ export default function ResourcesTab({
 
       {resourcesSubTab === 'raidlogs' && (
         <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
-          <h3 className="text-lg font-bold text-slate-100">Raid Logs</h3>
-          <p className="text-sm text-slate-400">Links and notes for the most recent raid logs, parses, and attendance reviews.</p>
-          <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-400">Use the roster and scoring pages to review attendance and compare recent raid performance.</div>
+          <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h3 className="text-lg font-bold text-slate-100">Raid Logs</h3>
+              <p className="text-sm text-slate-400">Recent guild reports from Warcraft Logs, plus quick summary links to the latest raids.</p>
+            </div>
+            <div className="rounded-full border border-slate-700 bg-slate-900 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
+              {recentReports.length} recent reports
+            </div>
+          </div>
+
+          {recentReportsError ? (
+            <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 p-4 text-sm text-amber-200">
+              {recentReportsError}
+            </div>
+          ) : null}
+
+          {recentReports.length === 0 ? (
+            <div className="rounded-lg border border-dashed border-slate-700 bg-slate-900 p-4 text-sm text-slate-400">
+              No recent Warcraft Logs reports are available yet. Add the guild ID and API key to enable automatic syncing.
+            </div>
+          ) : (
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {recentReports.map(report => (
+                <article key={report.id} className="rounded-xl border border-slate-800 bg-slate-900/80 p-4 shadow-lg shadow-slate-950/50">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300">{report.zone || 'Raid'}</div>
+                      <h4 className="mt-2 text-lg font-bold text-slate-100">{report.title}</h4>
+                    </div>
+                    {report.url ? (
+                      <a
+                        href={report.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="rounded border border-sky-500/40 bg-sky-500/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-sky-200 transition hover:bg-sky-500/15"
+                      >
+                        Open
+                      </a>
+                    ) : null}
+                  </div>
+
+                  <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px] text-slate-400">
+                    <span className="rounded-full border border-slate-700 bg-slate-800 px-2 py-0.5">{formatWclDate(report.startTime ? new Date(report.startTime).toISOString() : null)}</span>
+                    <span className="rounded-full border border-slate-700 bg-slate-800 px-2 py-0.5">{report.durationMs ? formatDuration(report.durationMs) : 'Untracked duration'}</span>
+                  </div>
+
+                  <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
+                    <div className="rounded-lg border border-slate-800 bg-slate-950 p-2">
+                      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">Kills</div>
+                      <div className="mt-1 text-lg font-bold text-emerald-300">{report.bossKills || 0}</div>
+                    </div>
+                    <div className="rounded-lg border border-slate-800 bg-slate-950 p-2">
+                      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">Fights</div>
+                      <div className="mt-1 text-lg font-bold text-slate-100">{report.totalFights || 0}</div>
+                    </div>
+                  </div>
+
+                  {report.fights && report.fights.length > 0 ? (
+                    <div className="mt-4 space-y-2">
+                      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">Boss breakdown</div>
+                      <div className="space-y-1">
+                        {report.fights.slice(0, 5).map((fight, index) => (
+                          <div key={`${report.id}-${index}`} className="flex items-center justify-between rounded border border-slate-800 bg-slate-950 px-2 py-1 text-xs text-slate-300">
+                            <span>{fight.name || 'Unknown boss'}</span>
+                            <span className={fight.kill ? 'text-emerald-300' : 'text-amber-300'}>{fight.kill ? 'Kill' : 'Wipe'}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
@@ -755,9 +1406,150 @@ export default function ResourcesTab({
 
       {resourcesSubTab === 'wipefest' && (
         <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
-          <h3 className="text-lg font-bold text-slate-100">Wipefest</h3>
-          <p className="text-sm text-slate-400">Store the latest wipefest links or notes for encounter discussion and post-raid review.</p>
-          <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-400">Link the relevant threads or summaries so they are available during the next planning session.</div>
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h3 className="text-lg font-bold text-slate-100">Wipefest</h3>
+              <p className="text-sm text-slate-400">Raid review links with the Warcraft Logs report on the left and the manual wipefest thread on the right.</p>
+            </div>
+
+            {isAuthenticated && (
+              <div className="flex flex-wrap items-center gap-2">
+                {!isWipefestEditMode ? (
+                  <button
+                    type="button"
+                    onClick={() => setIsWipefestEditMode(true)}
+                    className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-amber-200 transition hover:bg-amber-500/20"
+                  >
+                    Enter Edit Mode
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handleAddWipefestEntry}
+                      className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-amber-200 transition hover:bg-amber-500/20"
+                    >
+                      Add Entry
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleSaveWipefestChanges}
+                      className="rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-200 transition hover:bg-emerald-500/20"
+                    >
+                      Save Changes
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleExitWipefestEditMode}
+                      className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-200 transition hover:border-slate-500"
+                    >
+                      Exit Edit Mode
+                    </button>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+
+          {draftWipefestEntries.length === 0 ? (
+            <div className="rounded-lg border border-dashed border-slate-700 bg-slate-900 p-4 text-sm text-slate-400">
+              No wipefest entries yet. Use the WCL feed or create a new note with a raid date and title.
+            </div>
+          ) : (
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {draftWipefestEntries.map((entry) => (
+                <article key={entry.id} className="rounded-xl border border-slate-800 bg-slate-900/80 p-4 shadow-lg shadow-slate-950/50">
+                  {isWipefestEditMode ? (
+                    <div className="space-y-3">
+                      <input
+                        value={entry.raidDate || ''}
+                        type="date"
+                        onChange={event => updateWipefestEntry(entry.id, 'raidDate', event.target.value)}
+                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                      />
+                      <input
+                        value={entry.title || ''}
+                        onChange={event => updateWipefestEntry(entry.id, 'title', event.target.value)}
+                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                      />
+                    </div>
+                  ) : (
+                    <>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300">{entry.raidDate ? formatWclDate(entry.raidDate) : 'No date'}</div>
+                      <h4 className="mt-2 text-lg font-bold text-slate-100">{entry.title || 'Untitled raid'}</h4>
+                    </>
+                  )}
+
+                  <div className="mt-4 space-y-2">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">Warcraft Logs</div>
+                    {entry.logsUrl ? (
+                      <a
+                        href={entry.logsUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center rounded-lg border border-sky-500/40 bg-sky-500/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-sky-200 transition hover:bg-sky-500/15"
+                      >
+                        Open Logs
+                      </a>
+                    ) : (
+                      <span className="inline-flex rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">
+                        No WCL link
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="mt-4 space-y-2">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">Wipefest</div>
+                    {isWipefestEditMode ? (
+                      <input
+                        value={entry.wipefestUrl || ''}
+                        onChange={event => updateWipefestEntry(entry.id, 'wipefestUrl', event.target.value)}
+                        placeholder="https://..."
+                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                      />
+                    ) : entry.wipefestUrl ? (
+                      <a
+                        href={entry.wipefestUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-amber-200 transition hover:bg-amber-500/15"
+                      >
+                        Open Wipefest
+                      </a>
+                    ) : (
+                      <span className="inline-flex rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">
+                        No Wipefest link
+                      </span>
+                    )}
+                  </div>
+
+                  {isWipefestEditMode && (
+                    <>
+                      <div className="mt-4">
+                        <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">Notes</div>
+                        <textarea
+                          value={entry.notes || ''}
+                          onChange={event => updateWipefestEntry(entry.id, 'notes', event.target.value)}
+                          rows={3}
+                          className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                        />
+                      </div>
+
+                      <div className="mt-4 flex justify-end">
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveWipefestEntry(entry.id)}
+                          className="rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-red-200 transition hover:bg-red-500/20"
+                        >
+                          Remove Entry
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

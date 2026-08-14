@@ -399,6 +399,35 @@ function ensureWeakAurasTable(db) {
   `).run();
 }
 
+function ensureTacticsTable(db) {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS raid_tactics (
+      boss_name TEXT PRIMARY KEY,
+      notes TEXT NOT NULL DEFAULT '',
+      media_json TEXT NOT NULL DEFAULT '[]',
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+}
+
+function ensureWipefestTable(db) {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS wipefest (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      raid_date TEXT,
+      title TEXT NOT NULL,
+      logs_url TEXT,
+      wipefest_url TEXT,
+      notes TEXT,
+      created_by TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  db.prepare('CREATE INDEX IF NOT EXISTS idx_wipefest_raid_date ON wipefest (raid_date DESC)').run();
+}
+
 function ensureDiscordBotConfigTable(db) {
   db.prepare(`
     CREATE TABLE IF NOT EXISTS discord_bot_config (
@@ -435,6 +464,38 @@ function ensureRecruitmentPlanningTable(db) {
       VALUES (1, '{"groups":[]}')
     `).run();
   }
+}
+
+function ensureRecruitmentApplicationsTables(db) {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS recruitment_applications_config (
+      id INTEGER PRIMARY KEY CHECK (id = 1),
+      blurb TEXT NOT NULL DEFAULT '',
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  const configRow = db.prepare('SELECT id FROM recruitment_applications_config WHERE id = 1').get();
+  if (!configRow) {
+    db.prepare(`
+      INSERT INTO recruitment_applications_config (id, blurb)
+      VALUES (1, 'We are looking for players who are engaged, reliable, and ready to bring a good attitude to the raid. Tell us about your experience, your goals, and the kind of raid environment you are looking for.')
+    `).run();
+  }
+
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS recruitment_applications (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER,
+      battletag TEXT NOT NULL,
+      class_name TEXT NOT NULL,
+      spec TEXT NOT NULL,
+      name TEXT NOT NULL,
+      about_me TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
 }
 
 function ensureRaidSignupTables(db) {
@@ -620,6 +681,26 @@ function ensureRaidSignupTables(db) {
   `).run();
 }
 
+function ensureWarcraftLogsTables(db) {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS warcraftlogs_reports (
+      id TEXT PRIMARY KEY,
+      title TEXT NOT NULL,
+      zone TEXT DEFAULT '',
+      start_time TEXT,
+      end_time TEXT,
+      duration_ms INTEGER,
+      total_fights INTEGER NOT NULL DEFAULT 0,
+      boss_kills INTEGER NOT NULL DEFAULT 0,
+      fights_json TEXT NOT NULL DEFAULT '[]',
+      url TEXT,
+      synced_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  db.prepare('CREATE INDEX IF NOT EXISTS idx_warcraftlogs_reports_synced_at ON warcraftlogs_reports (synced_at DESC)').run();
+}
+
 function ensureOperationalTables(db) {
   db.exec(`
     CREATE TABLE IF NOT EXISTS assignments (
@@ -787,7 +868,9 @@ function ensureDatabaseIndexes(db) {
     'CREATE INDEX IF NOT EXISTS idx_raid_signup_absences_user_dates ON raid_signup_absences (user_id, start_date, end_date)',
     'CREATE INDEX IF NOT EXISTS idx_raid_signup_character_absences_roster_dates ON raid_signup_character_absences (roster_id, start_date, end_date)',
     'CREATE INDEX IF NOT EXISTS idx_bnet_user_roles_role ON bnet_user_roles (role)',
-    'CREATE INDEX IF NOT EXISTS idx_weakauras_created_at ON weakauras (created_at DESC)'
+    'CREATE INDEX IF NOT EXISTS idx_weakauras_created_at ON weakauras (created_at DESC)',
+    'CREATE INDEX IF NOT EXISTS idx_raid_tactics_updated_at ON raid_tactics (updated_at DESC)',
+    'CREATE INDEX IF NOT EXISTS idx_wipefest_created_at ON wipefest (created_at DESC)'
   ];
 
   statements.forEach(sql => db.prepare(sql).run());
@@ -797,14 +880,18 @@ function ensureDatabaseReady(db) {
   runWithBusyRetries(() => {
     ensureBattleNetAuthSchema(db);
     ensureTierTokenSupport(db);
+    ensureWarcraftLogsTables(db);
     ensureOperationalTables(db);
     ensureNormalizedOperationalTables(db);
     ensureBankRequestSchema(db);
     ensureOfficerRolesTable(db);
     ensureBattleNetUserRolesTable(db);
     ensureWeakAurasTable(db);
+    ensureTacticsTable(db);
+    ensureWipefestTable(db);
     ensureDiscordBotConfigTable(db);
     ensureRecruitmentPlanningTable(db);
+    ensureRecruitmentApplicationsTables(db);
     ensureRaidSignupTables(db);
     ensureDatabaseIndexes(db);
   });

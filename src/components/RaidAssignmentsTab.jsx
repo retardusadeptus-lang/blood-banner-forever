@@ -307,9 +307,11 @@ function createDefaultBossState(boss, generateId) {
 // --- MAIN CONTAINER COMPONENT ---
 const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
   isAuthenticated, roster, getSpecById, enabledBosses = [], raidZones = [], handleToggleZone, handleToggleBoss, handleMoveEnabledBoss, customRaidGroups = [], handleAddCustomRaidBoss, handleRemoveCustomRaidBoss, raidAssignmentData, setRaidAssignmentData,
-  hasUnsavedChanges, onSaveChanges, isSaving, myPlayerName, actorBattleTag = '', onCopyToArchive
+  hasUnsavedChanges, onSaveChanges, isSaving, myPlayerName, actorBattleTag = '', onCopyToArchive,
+  selectedRaid = 'All Raids', setSelectedRaid, selectedPhase = 'All Phases', setSelectedPhase
 }) {
   const [showManageBosses, setShowManageBosses] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
   const [newCustomZoneName, setNewCustomZoneName] = useState('');
   const [newCustomBossName, setNewCustomBossName] = useState('');
   const [exportStatus, setExportStatus] = useState('');
@@ -514,6 +516,10 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
   const orderedActiveBosses = useMemo(() => enabledBosses.filter(boss => knownBosses.has(boss)), [enabledBosses, knownBosses]);
   const bossZoneMap = useMemo(() => new Map(raidZones.flatMap(zone => zone.bosses.map(boss => [boss, zone.name]))), [raidZones]);
 
+  const filteredEnabledBosses = useMemo(() => {
+    return enabledBosses.filter((boss) => knownBosses.has(boss));
+  }, [enabledBosses, knownBosses]);
+
   // Shared receiver pool for Innervate & PI
   const manaReceivers = getPlayersByClasses(['Mage', 'Shaman', 'Druid', 'Priest', 'Warlock', 'Paladin']);
 
@@ -624,15 +630,37 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
           <p className="text-sm text-slate-500">Global configurations and customizable phase strategies.</p>
           {exportStatus ? <p className="mt-1 text-xs text-slate-400">{exportStatus}</p> : null}
         </div>
-        <div className="flex items-center gap-4">
-          <button
-            type="button"
-            onClick={onSaveChanges}
-            disabled={!hasUnsavedChanges || isSaving || !isAuthenticated}
-            className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${hasUnsavedChanges && isAuthenticated ? 'bg-amber-600 hover:bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
-          >
-            {isSaving ? 'Saving...' : !isAuthenticated ? 'Login to save' : hasUnsavedChanges ? 'Save Changes' : 'No Changes'}
-          </button>
+        <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:gap-4">
+          <div className="flex items-center gap-3">
+            {!isEditMode ? (
+              <button
+                type="button"
+                onClick={() => setIsEditMode(true)}
+                disabled={!isAuthenticated}
+                className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${isAuthenticated ? 'bg-amber-600 hover:bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
+              >
+                Enter Edit Mode
+              </button>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  onClick={onSaveChanges}
+                  disabled={!hasUnsavedChanges || isSaving || !isAuthenticated}
+                  className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${hasUnsavedChanges && isAuthenticated ? 'bg-amber-600 hover:bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
+                >
+                  {isSaving ? 'Saving...' : !isAuthenticated ? 'Login to save' : hasUnsavedChanges ? 'Save Changes' : 'No Changes'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsEditMode(false)}
+                  className="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition bg-slate-800 hover:bg-slate-700 text-slate-100"
+                >
+                  Exit Edit Mode
+                </button>
+              </>
+            )}
+          </div>
           {/*
           {isAuthenticated && (
             <button onClick={handleNuclearWipe} className="text-xs font-bold text-red-500 hover:text-white hover:bg-red-600 px-3 py-2 rounded border border-red-900/50 transition">
@@ -867,14 +895,14 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
           <div className="bg-slate-900/40 p-4 rounded-lg border border-slate-800">
             <div className="flex justify-between items-center mb-3">
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Tanks</h4>
-              {isAuthenticated && <button onClick={() => updateGlobal(g => g.tankSlots.push({ id: generateId(), playerName: null }))} className="text-[10px] text-purple-400 font-bold">+ Add Slot</button>}
+              {isAuthenticated && isEditMode && <button onClick={() => updateGlobal(g => g.tankSlots.push({ id: generateId(), playerName: null }))} className="text-[10px] text-purple-400 font-bold">+ Add Slot</button>}
             </div>
             <div className="space-y-2">
               {globalData.tankSlots.map((slot, i) => (
                 <div key={slot.id} className="flex items-center gap-2 group">
                   <span className="text-[10px] font-bold text-slate-600 w-6">T{i + 1}</span>
-                  <PlayerSelect value={slot.playerName} onChange={val => updateGlobal(g => g.tankSlots.find(s => s.id === slot.id).playerName = val)} players={activeRaiders} fullRoster={roster} getSpecById={getSpecById} disabled={!isAuthenticated} />
-                  {isAuthenticated && <button onClick={() => updateGlobal(g => g.tankSlots = g.tankSlots.filter(s => s.id !== slot.id))} className="text-red-500 opacity-0 group-hover:opacity-100 font-bold px-1">✕</button>}
+                  <PlayerSelect value={slot.playerName} onChange={val => updateGlobal(g => g.tankSlots.find(s => s.id === slot.id).playerName = val)} players={activeRaiders} fullRoster={roster} getSpecById={getSpecById} disabled={!(isAuthenticated && isEditMode)} />
+                  {isAuthenticated && isEditMode && <button onClick={() => updateGlobal(g => g.tankSlots = g.tankSlots.filter(s => s.id !== slot.id))} className="text-red-500 opacity-0 group-hover:opacity-100 font-bold px-1">✕</button>}
                 </div>
               ))}
             </div>
@@ -884,14 +912,14 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
           <div className="bg-slate-900/40 p-4 rounded-lg border border-slate-800">
             <div className="flex justify-between items-center mb-3">
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Healers</h4>
-              {isAuthenticated && <button onClick={() => updateGlobal(g => g.healerSlots.push({ id: generateId(), playerName: null }))} className="text-[10px] text-purple-400 font-bold">+ Add Slot</button>}
+              {isAuthenticated && isEditMode && <button onClick={() => updateGlobal(g => g.healerSlots.push({ id: generateId(), playerName: null }))} className="text-[10px] text-purple-400 font-bold">+ Add Slot</button>}
             </div>
             <div className="space-y-2">
               {globalData.healerSlots.map((slot, i) => (
                 <div key={slot.id} className="flex items-center gap-2 group">
                   <span className="text-[10px] font-bold text-slate-600 w-6">H{i + 1}</span>
-                  <PlayerSelect value={slot.playerName} onChange={val => updateGlobal(g => g.healerSlots.find(s => s.id === slot.id).playerName = val)} players={getPlayersByClasses(['Druid', 'Priest', 'Shaman', 'Paladin'])} fullRoster={roster} getSpecById={getSpecById} disabled={!isAuthenticated} />
-                  {isAuthenticated && <button onClick={() => updateGlobal(g => g.healerSlots = g.healerSlots.filter(s => s.id !== slot.id))} className="text-red-500 opacity-0 group-hover:opacity-100 font-bold px-1">✕</button>}
+                  <PlayerSelect value={slot.playerName} onChange={val => updateGlobal(g => g.healerSlots.find(s => s.id === slot.id).playerName = val)} players={getPlayersByClasses(['Druid', 'Priest', 'Shaman', 'Paladin'])} fullRoster={roster} getSpecById={getSpecById} disabled={!(isAuthenticated && isEditMode)} />
+                  {isAuthenticated && isEditMode && <button onClick={() => updateGlobal(g => g.healerSlots = g.healerSlots.filter(s => s.id !== slot.id))} className="text-red-500 opacity-0 group-hover:opacity-100 font-bold px-1">✕</button>}
                 </div>
               ))}
             </div>
@@ -924,7 +952,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
                         players={activeRaiders}
                         fullRoster={roster}
                         getSpecById={getSpecById}
-                        disabled={!isAuthenticated}
+                        disabled={!(isAuthenticated && isEditMode)}
                         placeholder="— Target —"
                       />
                     </div>
@@ -948,7 +976,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
               <div key={config.key} className="bg-slate-900/40 p-4 rounded-lg border border-slate-800">
                 <div className="flex justify-between items-center mb-3">
                   <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">{config.title}</h4>
-                  {isAuthenticated && <button onClick={() => updateGlobal(g => {
+                  {isAuthenticated && isEditMode && <button onClick={() => updateGlobal(g => {
                     if (!Array.isArray(g[config.key])) g[config.key] = [];
                     g[config.key].push(config.mode === 'curse'
                       ? { id: generateId(), casterName: null, curseType: '' }
@@ -959,11 +987,11 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
                   {rows.map(item => (
                     <div key={item.id} className="flex items-center gap-2 group">
                       <div className="flex-1 min-w-0">
-                        <PlayerSelect value={item.casterName} onChange={val => updateGlobal(g => g[config.key].find(x => x.id === item.id).casterName = val)} players={getPlayersByClasses(config.casterClasses)} fullRoster={roster} getSpecById={getSpecById} disabled={!isAuthenticated} placeholder="— Caster —" />
+                        <PlayerSelect value={item.casterName} onChange={val => updateGlobal(g => g[config.key].find(x => x.id === item.id).casterName = val)} players={getPlayersByClasses(config.casterClasses)} fullRoster={roster} getSpecById={getSpecById} disabled={!(isAuthenticated && isEditMode)} placeholder="— Caster —" />
                       </div>
                       <span className="text-slate-600 text-xs">&rarr;</span>
                       {config.mode === 'curse' ? (
-                        isAuthenticated ? (
+                        isAuthenticated && isEditMode ? (
                           <select className="w-32 bg-slate-950 text-white border border-slate-700 rounded px-1.5 py-1 text-xs focus:outline-none" value={item.curseType || ''} onChange={e => updateGlobal(g => g[config.key].find(x => x.id === item.id).curseType = e.target.value)}>
                             <option value="">— Curse —</option>
                             {CURSE_TYPES.map(curse => <option key={curse} value={curse}>{curse}</option>)}
@@ -973,14 +1001,14 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
                         )
                       ) : (
                         <div className="w-28 flex justify-end flex-shrink-0">
-                          {isAuthenticated ? (
-                            <MarkerSelect value={item.markerId} onChange={val => updateGlobal(g => g[config.key].find(x => x.id === item.id).markerId = val)} disabled={!isAuthenticated} />
+                          {isAuthenticated && isEditMode ? (
+                            <MarkerSelect value={item.markerId} onChange={val => updateGlobal(g => g[config.key].find(x => x.id === item.id).markerId = val)} disabled={false} />
                           ) : (
                             <MarkerBadge markerId={item.markerId} />
                           )}
                         </div>
                       )}
-                      {isAuthenticated && <button onClick={() => updateGlobal(g => g[config.key] = g[config.key].filter(x => x.id !== item.id))} className="text-red-500 opacity-0 group-hover:opacity-100 font-bold px-1">✕</button>}
+                      {isAuthenticated && isEditMode && <button onClick={() => updateGlobal(g => g[config.key] = g[config.key].filter(x => x.id !== item.id))} className="text-red-500 opacity-0 group-hover:opacity-100 font-bold px-1">✕</button>}
                     </div>
                   ))}
                 </div>
@@ -1013,6 +1041,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
                 activeRaiders={activeRaiders}
                 manaReceivers={manaReceivers}
                 isAuthenticated={isAuthenticated}
+                isEditMode={isEditMode}
                 updateBoss={updateBoss}
                 handleClearBoss={handleClearBoss}
                 generateId={generateId}

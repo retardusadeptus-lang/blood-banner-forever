@@ -244,6 +244,13 @@ function createWriteGuard(sessionSecret, db) {
       return next();
     }
 
+    if (req.method === 'POST' && req.path === '/api/recruitment-applications') {
+      const bnetSession = getBattleNetSessionFromRequest(req);
+      if (bnetSession?.userId) {
+        return next();
+      }
+    }
+
     const token = extractAdminToken(req);
     const tokenAuthorized = verifySession(token, sessionSecret);
     if (!tokenAuthorized) {

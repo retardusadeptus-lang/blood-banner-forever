@@ -229,10 +229,12 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
   activeRaiders,
   manaReceivers,
   isAuthenticated,
+  isEditMode,
   updateBoss,
   handleClearBoss,
   generateId,
 }) {
+  const canEdit = Boolean(isAuthenticated && isEditMode);
   const fullTargetList = useMemo(() => [{ id: BOSS_TARGET_ID, name: boss }, ...(bData.targets || [])], [boss, bData.targets]);
 
   const plainTanks = useMemo(() => globalData.tankSlots.map((s, i) => {
@@ -267,7 +269,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
       <div className="border-b border-slate-800 pb-3 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-baseline gap-4">
           <h3 className="text-xl font-bold text-purple-400 font-serif italic tracking-wide">{boss}</h3>
-          {isAuthenticated && (
+          {canEdit && (
             <button onClick={() => handleClearBoss(boss)} className="text-[10px] font-bold text-red-500 uppercase hover:underline">
               Reset Boss
             </button>
@@ -276,7 +278,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
         <div className="flex items-center gap-2 flex-wrap bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
           <div className="flex items-center gap-2">
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Bloodlust:</span>
-            {isAuthenticated ? (
+            {canEdit ? (
               <input type="text" className="bg-slate-950 border border-slate-700 text-xs rounded px-2 py-1 text-red-400 font-bold focus:outline-none w-48" placeholder="Pull, 20% phase 3..." value={bData.bloodlustAt || ''} onChange={e => updateBoss(boss, b => b.bloodlustAt = e.target.value)} />
             ) : <span className="text-xs text-red-400 font-bold">{bData.bloodlustAt || '—'}</span>}
           </div>
@@ -295,7 +297,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                     <SpecIcon spec={hSpec} className="w-3.5 h-3.5" />
                     <span className="text-xs font-bold truncate" style={{ color: hSpec?.color || '#abd473' }}>{h.name}</span>
                   </div>
-                  <SlotSelect disabled={!isAuthenticated} value={bData.hunterMDs?.[h.name] || ''} onChange={val => updateBoss(boss, b => { if (!b.hunterMDs) b.hunterMDs = {}; b.hunterMDs[h.name] = val; })} options={plainTanks} placeholder="— Tank —" />
+                  <SlotSelect disabled={!canEdit} value={bData.hunterMDs?.[h.name] || ''} onChange={val => updateBoss(boss, b => { if (!b.hunterMDs) b.hunterMDs = {}; b.hunterMDs[h.name] = val; })} options={plainTanks} placeholder="— Tank —" />
                 </div>
               );
             })}
@@ -313,7 +315,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                     <SpecIcon spec={pSpec} className="w-3.5 h-3.5" />
                     <span className="text-xs font-bold truncate" style={{ color: pSpec?.color || '#f58cba' }}>{p.name}</span>
                   </div>
-                  {isAuthenticated ? (
+                  {canEdit ? (
                     <select className="flex-1 bg-slate-950 text-white border border-slate-700 rounded px-1.5 py-1 text-xs focus:outline-none" value={bData.judgements?.[p.name] || ''} onChange={e => updateBoss(boss, b => { if (!b.judgements) b.judgements = {}; b.judgements[p.name] = e.target.value; })}>
                       <option value="">— Judgement —</option>
                       {JUDGEMENT_TYPES.map(j => <option key={j} value={j}>{j}</option>)}
@@ -331,14 +333,14 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
       <div className="bg-slate-900/30 p-4 rounded-lg border border-slate-800/80">
         <div className="flex justify-between items-center mb-3">
           <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Encounter Targets</h4>
-          {isAuthenticated && <button onClick={() => updateBoss(boss, b => b.targets.push({ id: generateId(), name: 'Spawned Add Name', markerId: null }))} className="text-[10px] text-purple-400 font-bold">+ Add Target Mob</button>}
+          {canEdit && <button onClick={() => updateBoss(boss, b => b.targets.push({ id: generateId(), name: 'Spawned Add Name', markerId: null }))} className="text-[10px] text-purple-400 font-bold">+ Add Target Mob</button>}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="flex items-center gap-2 bg-slate-950 p-2 rounded border border-slate-800">
             <span className="text-xs font-bold text-slate-300 flex-1">{boss} (Primary Boss)</span>
             <div className="w-28 flex justify-end flex-shrink-0">
-              {isAuthenticated ? (
-                <MarkerSelect value={bData.bossMarkerId} onChange={val => updateBoss(boss, b => b.bossMarkerId = val)} />
+              {canEdit ? (
+                <MarkerSelect value={bData.bossMarkerId} onChange={val => updateBoss(boss, b => b.bossMarkerId = val)} disabled={!canEdit} />
               ) : (
                 <MarkerBadge markerId={bData.bossMarkerId} />
               )}
@@ -346,15 +348,15 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
           </div>
           {bData.targets?.map(mob => (
             <div key={mob.id} className="flex items-center gap-2 bg-slate-950 p-2 rounded border border-slate-800 group">
-              {isAuthenticated ? <input type="text" className="flex-1 bg-slate-900 text-white border border-slate-700 rounded px-2 py-1 text-xs focus:outline-none" value={mob.name} onChange={e => updateBoss(boss, b => b.targets.find(t => t.id === mob.id).name = e.target.value)} /> : <span className="text-xs font-bold text-slate-300 flex-1 truncate">{mob.name}</span>}
+              {canEdit ? <input type="text" className="flex-1 bg-slate-900 text-white border border-slate-700 rounded px-2 py-1 text-xs focus:outline-none" value={mob.name} onChange={e => updateBoss(boss, b => b.targets.find(t => t.id === mob.id).name = e.target.value)} /> : <span className="text-xs font-bold text-slate-300 flex-1 truncate">{mob.name}</span>}
               <div className="w-28 flex justify-end flex-shrink-0">
-                {isAuthenticated ? (
-                  <MarkerSelect value={mob.markerId} onChange={val => updateBoss(boss, b => b.targets.find(t => t.id === mob.id).markerId = val)} />
+                {canEdit ? (
+                  <MarkerSelect value={mob.markerId} onChange={val => updateBoss(boss, b => b.targets.find(t => t.id === mob.id).markerId = val)} disabled={!canEdit} />
                 ) : (
                   <MarkerBadge markerId={mob.markerId} />
                 )}
               </div>
-              {isAuthenticated && <button onClick={() => updateBoss(boss, b => b.targets = b.targets.filter(t => t.id !== mob.id))} className="text-red-500 font-bold px-1">✕</button>}
+              {canEdit && <button onClick={() => updateBoss(boss, b => b.targets = b.targets.filter(t => t.id !== mob.id))} className="text-red-500 font-bold px-1">✕</button>}
             </div>
           ))}
         </div>
@@ -363,7 +365,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
       <div className="space-y-4">
         <div className="flex justify-between items-center border-b border-slate-800 pb-2">
           <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Encounter Phases</h4>
-          {isAuthenticated && <button onClick={() => updateBoss(boss, b => b.phases.push({ id: generateId(), name: `Phase ${b.phases.length + 1}`, enabledBlocks: ['tanks', 'healers'], tankAssignments: globalData.tankSlots.map(t => ({ id: generateId(), tankSlotId: t.id, targetId: BOSS_TARGET_ID })), healerAssignments: globalData.healerSlots.map(h => ({ id: generateId(), healerSlotId: h.id, target: RAID_WIDE_LABEL })) }))} className="text-xs bg-purple-600 hover:bg-purple-500 text-white font-bold px-3 py-1.5 rounded shadow">+ New Phase</button>}
+          {canEdit && <button onClick={() => updateBoss(boss, b => b.phases.push({ id: generateId(), name: `Phase ${b.phases.length + 1}`, enabledBlocks: ['tanks', 'healers'], tankAssignments: globalData.tankSlots.map(t => ({ id: generateId(), tankSlotId: t.id, targetId: BOSS_TARGET_ID })), healerAssignments: globalData.healerSlots.map(h => ({ id: generateId(), healerSlotId: h.id, target: RAID_WIDE_LABEL })) }))} className="text-xs bg-purple-600 hover:bg-purple-500 text-white font-bold px-3 py-1.5 rounded shadow">+ New Phase</button>}
         </div>
 
         {bData.phases?.map((phase, phaseIndex) => {
@@ -385,13 +387,13 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
           return (
             <div key={phase.id} className="bg-slate-900/60 border border-slate-800 rounded-xl p-4 space-y-4">
               <div className="flex justify-between items-center border-b border-slate-800/60 pb-2 flex-wrap gap-3">
-                {isAuthenticated ? <input type="text" className="bg-transparent text-amber-400 font-bold text-base focus:outline-none border-b border-slate-700 w-48" value={phase.name} onChange={e => updateBoss(boss, b => {
+                {canEdit ? <input type="text" className="bg-transparent text-amber-400 font-bold text-base focus:outline-none border-b border-slate-700 w-48" value={phase.name} onChange={e => updateBoss(boss, b => {
                   const p = getOrCreatePhase(b, phase.id, generateId);
                   p.name = e.target.value;
                 })} /> : <h5 className="text-amber-400 font-bold text-base">{phase.name}</h5>}
 
                 <div className="flex items-center gap-2 flex-wrap">
-                  {isAuthenticated && (
+                  {canEdit && (
                     <select className="bg-slate-950 text-purple-400 border border-slate-700 rounded px-2 py-1 text-xs font-semibold focus:outline-none" value="" onChange={e => {
                       const sectionType = e.target.value;
                       if (!sectionType) return;
@@ -423,7 +425,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                       <option value="notes">Phase Notes</option>
                     </select>
                   )}
-                  {isAuthenticated && <button onClick={() => updateBoss(boss, b => {
+                  {canEdit && <button onClick={() => updateBoss(boss, b => {
                     if (!Array.isArray(b.phases)) b.phases = [];
                     b.phases = b.phases.filter(p => p.id !== phase.id);
                   })} className="text-[10px] font-bold text-red-500 uppercase px-2 py-1 hover:bg-red-950/20 rounded">Delete Phase</button>}
@@ -432,21 +434,21 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
 
               <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                 {activeBlocks.includes('tanks') && (
-                  <SectionWrapper title="Tank Targets" isAuthenticated={isAuthenticated} onAdd={() => updateBoss(boss, b => {
+                  <SectionWrapper title="Tank Targets" isAuthenticated={canEdit} onAdd={() => updateBoss(boss, b => {
                     const p = getPhaseForEdit(b);
                     if (!Array.isArray(p.tankAssignments)) p.tankAssignments = [];
                     p.tankAssignments.push({ id: generateId(), tankSlotId: '', targetId: BOSS_TARGET_ID });
                   })} hasItems={phase.tankAssignments?.length > 0} emptyText="No targets tanked yet.">
                     {phase.tankAssignments?.map(ta => (
                       <div key={ta.id} className="flex items-center gap-1">
-                        <SlotSelect disabled={!isAuthenticated} value={ta.tankSlotId || ''} onChange={val => updateBoss(boss, b => {
+                        <SlotSelect disabled={!canEdit} value={ta.tankSlotId || ''} onChange={val => updateBoss(boss, b => {
                           const p = getPhaseForEdit(b);
                           if (!Array.isArray(p.tankAssignments)) p.tankAssignments = [];
                           const assignment = p.tankAssignments.find(t => t.id === ta.id);
                           if (assignment) assignment.tankSlotId = val;
                         })} options={plainTanks} placeholder="— Tank —" />
                         <span className="text-slate-600 text-xs">&rarr;</span>
-                        {isAuthenticated ? (
+                        {canEdit ? (
                           <select className="flex-1 min-w-0 bg-slate-950 text-white border border-slate-700 rounded px-1.5 py-1 text-xs focus:outline-none" value={ta.targetId || ''} onChange={e => updateBoss(boss, b => {
                             const p = getPhaseForEdit(b);
                             if (!Array.isArray(p.tankAssignments)) p.tankAssignments = [];
@@ -459,7 +461,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                         ) : (
                           <span className="text-xs font-bold text-slate-300 flex-1 min-w-0 truncate">{fullTargetList.find(t => t.id === ta.targetId)?.name || 'Unassigned'}</span>
                         )}
-                        {isAuthenticated && <button onClick={() => updateBoss(boss, b => {
+                        {canEdit && <button onClick={() => updateBoss(boss, b => {
                           const p = getPhaseForEdit(b);
                           if (!Array.isArray(p.tankAssignments)) p.tankAssignments = [];
                           p.tankAssignments = p.tankAssignments.filter(t => t.id !== ta.id);
@@ -470,27 +472,27 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                 )}
 
                 {activeBlocks.includes('healers') && (
-                  <SectionWrapper title="Healer Targets" isAuthenticated={isAuthenticated} onAdd={() => updateBoss(boss, b => {
+                  <SectionWrapper title="Healer Targets" isAuthenticated={canEdit} onAdd={() => updateBoss(boss, b => {
                     const p = getPhaseForEdit(b);
                     if (!Array.isArray(p.healerAssignments)) p.healerAssignments = [];
                     p.healerAssignments.push({ id: generateId(), healerSlotId: '', target: RAID_WIDE_LABEL });
                   })} hasItems={phase.healerAssignments?.length > 0} emptyText="No assigned triage targets.">
                     {phase.healerAssignments?.map(ha => (
                       <div key={ha.id} className="flex items-center gap-1">
-                        <SlotSelect disabled={!isAuthenticated} value={ha.healerSlotId || ''} onChange={val => updateBoss(boss, b => {
+                        <SlotSelect disabled={!canEdit} value={ha.healerSlotId || ''} onChange={val => updateBoss(boss, b => {
                           const p = getPhaseForEdit(b);
                           if (!Array.isArray(p.healerAssignments)) p.healerAssignments = [];
                           const assignment = p.healerAssignments.find(h => h.id === ha.id);
                           if (assignment) assignment.healerSlotId = val;
                         })} options={plainHealers} placeholder="— Healer —" />
                         <span className="text-slate-600 text-xs">&rarr;</span>
-                        <ComboSelect disabled={!isAuthenticated} value={ha.target} onChange={val => updateBoss(boss, b => {
+                        <ComboSelect disabled={!canEdit} value={ha.target} onChange={val => updateBoss(boss, b => {
                           const p = getPhaseForEdit(b);
                           if (!Array.isArray(p.healerAssignments)) p.healerAssignments = [];
                           const assignment = p.healerAssignments.find(h => h.id === ha.id);
                           if (assignment) assignment.target = val;
                         })} options={[...plainTanks.map(t => t.name), RAID_WIDE_LABEL, ...RAID_GROUPS]} />
-                        {isAuthenticated && <button onClick={() => updateBoss(boss, b => {
+                        {canEdit && <button onClick={() => updateBoss(boss, b => {
                           const p = getPhaseForEdit(b);
                           if (!Array.isArray(p.healerAssignments)) p.healerAssignments = [];
                           p.healerAssignments = p.healerAssignments.filter(h => h.id !== ha.id);
@@ -504,7 +506,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                   if (!activeBlocks.includes(cfg.key)) return null;
                   const rows = phase[cfg.key] || [];
                   return (
-                    <SectionWrapper key={cfg.key} title={cfg.title} isAuthenticated={isAuthenticated} onAdd={() => updateBoss(boss, b => {
+                    <SectionWrapper key={cfg.key} title={cfg.title} isAuthenticated={canEdit} onAdd={() => updateBoss(boss, b => {
                       const p = getOrCreatePhase(b, phase.id, generateId);
                       if (!p[cfg.key]) p[cfg.key] = [];
                       p[cfg.key].push({ id: generateId(), playerName: null, target: '' });
@@ -515,7 +517,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                     })} hasItems={rows.length > 0} emptyText="No active assignments.">
                       {rows.map(item => (
                         <div key={item.id} className="flex items-center gap-1">
-                          <PlayerSelect disabled={!isAuthenticated} value={item.playerName} onChange={val => updateBoss(boss, b => {
+                          <PlayerSelect disabled={!canEdit} value={item.playerName} onChange={val => updateBoss(boss, b => {
                             const p = getOrCreatePhase(b, phase.id, generateId);
                             if (!Array.isArray(p[cfg.key])) p[cfg.key] = [];
                             const assignment = p[cfg.key].find(x => x.id === item.id);
@@ -524,7 +526,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                           <span className="text-slate-600 text-xs">&rarr;</span>
 
                           {cfg.targetType === 'combo' && (
-                            <ComboSelect disabled={!isAuthenticated} value={item.target} onChange={val => updateBoss(boss, b => {
+                            <ComboSelect disabled={!canEdit} value={item.target} onChange={val => updateBoss(boss, b => {
                               const p = getOrCreatePhase(b, phase.id, generateId);
                               if (!Array.isArray(p[cfg.key])) p[cfg.key] = [];
                               const assignment = p[cfg.key].find(x => x.id === item.id);
@@ -532,7 +534,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                             })} options={fullTargetList.map(t => t.name)} placeholder="Target Details" />
                           )}
                           {cfg.targetType === 'player' && (
-                            <PlayerSelect disabled={!isAuthenticated} value={item.target} onChange={val => updateBoss(boss, b => {
+                            <PlayerSelect disabled={!canEdit} value={item.target} onChange={val => updateBoss(boss, b => {
                               const p = getOrCreatePhase(b, phase.id, generateId);
                               if (!Array.isArray(p[cfg.key])) p[cfg.key] = [];
                               const assignment = p[cfg.key].find(x => x.id === item.id);
@@ -540,7 +542,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                             })} players={cfg.receivers || manaReceivers} fullRoster={roster} getSpecById={getSpecById} placeholder="— Receiver —" />
                           )}
                           {cfg.targetType === 'select' && (
-                            isAuthenticated ? (
+                            canEdit ? (
                               <select className="flex-1 min-w-0 bg-slate-950 text-white border border-slate-700 rounded px-1.5 py-1 text-xs focus:outline-none" value={item.target || ''} onChange={e => updateBoss(boss, b => {
                                 const p = getOrCreatePhase(b, phase.id, generateId);
                                 if (!Array.isArray(p[cfg.key])) p[cfg.key] = [];
@@ -555,7 +557,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                             )
                           )}
                           {cfg.targetType === 'text' && (
-                            isAuthenticated ? <input type="text" placeholder="Target / Note" className="flex-1 min-w-0 bg-slate-950 text-white border border-slate-700 rounded px-2 py-1.5 text-xs focus:outline-none" value={item.target || ''} onChange={e => updateBoss(boss, b => {
+                            canEdit ? <input type="text" placeholder="Target / Note" className="flex-1 min-w-0 bg-slate-950 text-white border border-slate-700 rounded px-2 py-1.5 text-xs focus:outline-none" value={item.target || ''} onChange={e => updateBoss(boss, b => {
                               const p = getOrCreatePhase(b, phase.id, generateId);
                               if (!Array.isArray(p[cfg.key])) p[cfg.key] = [];
                               const assignment = p[cfg.key].find(x => x.id === item.id);
@@ -564,7 +566,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                               : <span className="text-xs font-bold text-slate-300 flex-1 min-w-0 truncate">{item.target || '—'}</span>
                           )}
 
-                          {isAuthenticated && <button onClick={() => updateBoss(boss, b => {
+                          {canEdit && <button onClick={() => updateBoss(boss, b => {
                             const p = getOrCreatePhase(b, phase.id, generateId);
                             if (!Array.isArray(p[cfg.key])) p[cfg.key] = [];
                             p[cfg.key] = p[cfg.key].filter(x => x.id !== item.id);
@@ -576,7 +578,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                 })}
 
                 {activeBlocks.includes('fearWards') && (
-                  <SectionWrapper title="Fear Wards" isAuthenticated={isAuthenticated} onAdd={() => updateBoss(boss, b => {
+                  <SectionWrapper title="Fear Wards" isAuthenticated={canEdit} onAdd={() => updateBoss(boss, b => {
                     const p = getOrCreatePhase(b, phase.id, generateId);
                     if (!Array.isArray(p.fearWards)) p.fearWards = [];
                     p.fearWards.push({ id: generateId(), priestName: null, targetName: null });
@@ -587,20 +589,20 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                   })} hasItems={phase.fearWards?.length > 0} emptyText="No assigned fear wards.">
                     {phase.fearWards?.map(fw => (
                       <div key={fw.id} className="flex items-center gap-1">
-                        <PlayerSelect disabled={!isAuthenticated} value={fw.priestName} onChange={val => updateBoss(boss, b => {
+                        <PlayerSelect disabled={!canEdit} value={fw.priestName} onChange={val => updateBoss(boss, b => {
                           const p = getOrCreatePhase(b, phase.id, generateId);
                           if (!Array.isArray(p.fearWards)) p.fearWards = [];
                           const assignment = p.fearWards.find(x => x.id === fw.id);
                           if (assignment) assignment.priestName = val;
                         })} players={getPlayersByClass('Priest')} fullRoster={roster} getSpecById={getSpecById} placeholder="— Priest —" />
                         <span className="text-slate-600 text-xs">&rarr;</span>
-                        <PlayerSelect disabled={!isAuthenticated} value={fw.targetName} onChange={val => updateBoss(boss, b => {
+                        <PlayerSelect disabled={!canEdit} value={fw.targetName} onChange={val => updateBoss(boss, b => {
                           const p = getOrCreatePhase(b, phase.id, generateId);
                           if (!Array.isArray(p.fearWards)) p.fearWards = [];
                           const assignment = p.fearWards.find(x => x.id === fw.id);
                           if (assignment) assignment.targetName = val;
                         })} players={activeRaiders} fullRoster={roster} getSpecById={getSpecById} placeholder="— Target —" />
-                        {isAuthenticated && <button onClick={() => updateBoss(boss, b => {
+                        {canEdit && <button onClick={() => updateBoss(boss, b => {
                           const p = getOrCreatePhase(b, phase.id, generateId);
                           if (!Array.isArray(p.fearWards)) p.fearWards = [];
                           p.fearWards = p.fearWards.filter(x => x.id !== fw.id);
@@ -614,13 +616,13 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                   <div className="bg-slate-900/40 p-4 rounded-lg border border-slate-800 col-span-full relative group">
                     <div className="flex items-center justify-between mb-2 border-b border-slate-800 pb-1">
                       <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Notes</span>
-                      {isAuthenticated && <button onClick={() => updateBoss(boss, b => {
+                      {canEdit && <button onClick={() => updateBoss(boss, b => {
                         const p = getOrCreatePhase(b, phase.id, generateId);
                         p.enabledBlocks = normalizeEnabledBlocks(p).filter(k => k !== 'notes');
                         delete p.phaseNotes;
                       })} className="text-[10px] text-red-500 font-bold uppercase">✕ Notes</button>}
                     </div>
-                    {isAuthenticated ? (
+                    {canEdit ? (
                       <textarea rows="3" placeholder="Enter custom positioning text, dynamic cooldown orders, or burn guidelines..." className="w-full bg-slate-950 text-slate-300 border border-slate-700 rounded p-2 text-xs focus:outline-none resize-none" value={phase.phaseNotes || ''} onChange={e => updateBoss(boss, b => {
                         const targetPhase = getOrCreatePhase(b, phase.id, generateId);
                         targetPhase.phaseNotes = e.target.value;
@@ -638,7 +640,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
 
       <div className="pt-4 border-t border-slate-900 space-y-2">
         <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">Encounter Layout Positioning Reference Image</h4>
-        {isAuthenticated && (
+        {canEdit && (
           <input type="text" placeholder="Paste full canvas layout picture reference web URL link directly..." className="w-full bg-slate-900 text-slate-300 border border-slate-700 rounded p-2 text-xs focus:outline-none focus:border-purple-500" value={bData.imageUrl || ''} onChange={e => updateBoss(boss, b => b.imageUrl = e.target.value)} />
         )}
         {bData.imageUrl ? (

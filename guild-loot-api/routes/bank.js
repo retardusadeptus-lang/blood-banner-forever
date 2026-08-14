@@ -252,6 +252,25 @@ function buildBankRoutes({ db, discordService }) {
     }
   });
 
+  router.delete('/bank-requests/:id', (req, res) => {
+    try {
+      const requestId = Number(req.params.id);
+      if (!Number.isFinite(requestId)) {
+        return res.status(400).json({ error: 'Invalid request id.' });
+      }
+
+      const existing = db.prepare('SELECT * FROM bank_requests WHERE id = ?').get(requestId);
+      if (!existing) {
+        return res.status(404).json({ error: 'Bank request not found.' });
+      }
+
+      const result = db.prepare('DELETE FROM bank_requests WHERE id = ?').run(requestId);
+      res.json({ ok: true, deletedId: requestId, changes: result?.changes || 0 });
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
   return router;
 }
 

@@ -29,7 +29,7 @@ export default function DashboardNavigationTabs({
       return activeTab === 'loot' || activeTab === 'scoring';
     }
     if (keyName === 'recruitment') {
-      return activeTab === 'roster' || activeTab === 'recruitmentPlanning' || activeTab === 'recruitmentFocus';
+      return activeTab === 'roster' || activeTab === 'recruitmentPlanning' || activeTab === 'recruitmentFocus' || activeTab === 'recruitmentApplications';
     }
     if (keyName === 'admin') {
       return activeTab === 'officerRoles' || activeTab === 'discordBotConfig' || activeTab === 'itemsdb';

@@ -70,20 +70,20 @@
 
 ### Raid Assignments
 - [?] Read-Only Guards: Strip Save button for read-only users; retain draft modifications locally via cookies or revert back to officer filters.
-- [ ] Assignment Tools:
+- [x] Assignment Tools:
   - [X] Add BoP item flags to assignment layouts.
   - [x] Add drag/drop or control buttons to re-order bosses within a raid run.
-  - [ ] Fix bug causing Warglaives to misbehave in assignment logic.
-- [ ] Raid History:
-  - [ ] Increase visible history list capacity.
-  - [ ] Fix broken "View" button on historic assignment logs.
-  - [ ] Ensure global archive restoration functions correctly.
+  - [x] Fix bug causing Warglaives to misbehave in assignment logic.
+- [x] Raid History:
+  - [x] Increase visible history list capacity.
+  - [x] Fix broken "View" button on historic assignment logs.
+  - [x] Ensure global archive restoration functions correctly.
 
   ### Raid Signups
 - [x] Add UI button to expand/collapse individual raid templates.
 
 ### Tactics & Strategy Module
-- [ ] Dynamic Tactics Layout: Link Tactics drop-down selection to the Raid Assignments boss DB so newly created bosses auto-populate into Tactics.
+- [x] Dynamic Tactics Layout: Link Tactics drop-down selection to the Raid Assignments boss DB so newly created bosses auto-populate into Tactics.
 - [ ] Role Breakdown: Add filterable strategy sections for Tanks, Healers, and DPS per encounter.
 
 ---
@@ -93,7 +93,7 @@
 ### Guild Bank UI & History
 - [x] Visual Redesign: Re-theme Guild Bank page to visually match in-game guild bank tab frames.
 - [x] Icon Performance: Optimize image cache to eliminate slow icon refreshes.
-- [ ] History & Management: Purge obsolete request history and add explicit Delete options in history tab.
+- [x] History & Management: Purge obsolete request history and add explicit Delete options in history tab.
 
 ### Addon Sync & Lua Integration
 - [ ] WeakAura Assignment Exporter:
@@ -144,5 +144,5 @@
 
 ### Community Resources
 - [x] WeakAura Repository: Build collapsible WeakAura tab for sharing raw WA strings (hidden string inputs with 1-click "Copy Code" buttons for standard users).
-- [ ] Cheat Sheets Module: Build wireframe and import data for class/spec cheat sheets (based on Paladin Discord community spreadsheets).
+- [X] Cheat Sheets Module: Build wireframe and import data for class/spec cheat sheets (based on Paladin Discord community spreadsheets).
 - [x] Recruitment Section: Add a public guild recruitment page outlining active class/spec needs.
