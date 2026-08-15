@@ -5,9 +5,7 @@ const {
   getEventById,
   getAvailableClassesForEvent,
   getAllowedSpecsForEvent,
-  listEntriesForEvent,
-  getUserPreferredSpec,
-  getUserPreferredCharacter
+  listEntriesForEvent
 } = require('../utils/raidSignupStore');
 const { buildMainSignupComponents } = require('./raidSignupComponents');
 const { formatSignupSummary } = require('../utils/raidSignupStore/summary');
@@ -79,15 +77,18 @@ function buildSignupEmbed(event, entries, guildOrClient = null) {
     .setTimestamp();
 }
 
-async function refreshEventMessage(db, client, eventId, userId = null) {
+async function refreshEventMessage(db, client, eventId, _userId = null) {
   const event = getEventById(db, eventId);
   if (!event || !event.discord_channel_id || !event.discord_message_id) return;
 
   const classes = getAvailableClassesForEvent(db, eventId);
   const specs = getAllowedSpecsForEvent(db, eventId);
   const selectedClass = '';
-  const preferredCharacter = userId ? String(getUserPreferredCharacter(db, userId)?.character_name || '').trim() : '';
-  const preferredSpecId = userId ? Number(getUserPreferredSpec(db, userId)?.spec_id || 0) : 0;
+  // The shared event post must stay neutral for everyone in the channel.
+  // User-specific values are stored in raid_signup_user_prefs for the individual
+  // interaction flow, but they must not be rendered back onto the public message.
+  const preferredCharacter = '';
+  const preferredSpecId = 0;
   const entries = listEntriesForEvent(db, eventId);
 
   const channel = await client.channels.fetch(event.discord_channel_id).catch(() => null);

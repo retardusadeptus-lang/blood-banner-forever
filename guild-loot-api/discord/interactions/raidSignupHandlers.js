@@ -29,7 +29,7 @@ async function handleSpecSelect(interaction, db, eventId) {
   upsertDraft(db, eventId, interaction.user.id, specId);
   upsertUserPreferredSpec(db, interaction.user.id, specId);
 
-  await refreshEventMessage(db, interaction.client, eventId, interaction.user.id);
+  await refreshEventMessage(db, interaction.client, eventId);
   await interaction.deferUpdate();
 
   return true;
@@ -132,7 +132,7 @@ async function handleStatusButton(interaction, db, eventId, status) {
   }
 
   await interaction.deferUpdate();
-  await refreshEventMessage(db, interaction.client, eventId, interaction.user.id);
+  await refreshEventMessage(db, interaction.client, eventId);
 
   return true;
 }
@@ -161,7 +161,7 @@ async function handleCharacterNameSubmit(interaction, db, eventId) {
     ephemeral: true
   });
 
-  await refreshEventMessage(db, interaction.client, eventId, interaction.user.id);
+  await refreshEventMessage(db, interaction.client, eventId);
   return true;
 }
 
