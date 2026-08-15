@@ -30,9 +30,9 @@
 
 ### Discord Bot & Server Sync
 - [x] Server Configuration: Convert Discord server to Community Server
-- [ ] Enforce nickname selection.
+- [x] Enforce nickname selection.
 - [ ] Auto-Onboarding: Automatically add new Discord members to the web roster via bot integration.
-- [ ] Custom Assets: Update bot to utilize custom class icons uploaded to the Discord Developer Portal; fix missing discord icons/mobile discord app icon rendering.
+- [x] Custom Assets: Update bot to utilize custom class icons uploaded to the Discord Developer Portal; fix missing discord icons/mobile discord app icon rendering.
 - [ ] Bot Fixes & Integrations:
   - [x] Fix bug where selecting a class leaves the top dropdown box selected for all users.
   - Explore direct SoftRes integration with the Discord bot.
