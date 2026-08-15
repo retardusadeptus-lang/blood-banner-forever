@@ -300,7 +300,7 @@ export default function BankRequestsTab({
   };
   */
 
-  const exportVisibleApprovedRequestsJson = () => {
+  const copyVisibleApprovedRequestsJson = async () => {
     const sourceRows = (Array.isArray(bankRequests) ? bankRequests : []).filter(req => String(req.status || '').toLowerCase() === 'approved');
     const payload = {
       exported_at: new Date().toISOString(),
@@ -322,16 +322,25 @@ export default function BankRequestsTab({
       })
     };
 
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    link.href = url;
-    link.download = `approved-bank-requests-${timestamp}.json`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    const text = JSON.stringify(payload, null, 2);
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    } catch (error) {
+      console.error('Failed to copy approved bank JSON:', error);
+    }
   };
 
   const archiveSelectedResolvedRequests = () => {
@@ -398,10 +407,10 @@ export default function BankRequestsTab({
           */}
           <button
             type="button"
-            onClick={exportVisibleApprovedRequestsJson}
+            onClick={copyVisibleApprovedRequestsJson}
             className="text-xs font-bold bg-purple-700 hover:bg-purple-600 text-white px-3 py-2 rounded"
           >
-            Export Approved JSON
+            Copy Approved JSON
           </button>
           <button
             type="button"
