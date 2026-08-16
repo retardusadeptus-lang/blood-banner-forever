@@ -12,6 +12,12 @@ function classIconForEntry(entry) {
   return '';
 }
 
+function normalizeStatusKey(value) {
+  const normalized = String(value || '').trim().toLowerCase();
+  if (normalized === 'absence') return 'absent';
+  return normalized;
+}
+
 function formatSignupSummary(entries, options = {}) {
   const roleBuckets = {
     tank: [],
@@ -24,6 +30,7 @@ function formatSignupSummary(entries, options = {}) {
     bench: [],
     late: [],
     tentative: [],
+    absent: [],
     absence: []
   };
 
@@ -38,13 +45,22 @@ function formatSignupSummary(entries, options = {}) {
     : classIconForEntry;
 
   entries.forEach(entry => {
-    const status = String(entry.status || '').toLowerCase();
+    const status = normalizeStatusKey(entry.status);
     if (status === 'signup') {
       const bucket = String(entry.role_bucket || 'ranged').toLowerCase();
       const target = roleBuckets[bucket] || roleBuckets.ranged;
       const classIcon = resolveClassIcon(entry);
       const orderTag = entry.signup_order ? `${signupIndexToken(entry.signup_order)} ` : '';
       target.push(`${orderTag}${classIcon}${entry.discord_username}`);
+      return;
+    }
+
+    if (status === 'absent') {
+      const orderTag = entry.signup_order ? `${signupIndexToken(entry.signup_order)} ` : '';
+      const classIcon = resolveClassIcon(entry);
+      const label = `${orderTag}${classIcon}${entry.discord_username}`;
+      statuses.absent.push(label);
+      statuses.absence.push(label);
       return;
     }
 

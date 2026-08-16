@@ -60,18 +60,21 @@ export default function DashboardNavigationTabs({
           {visibleNavItems.map(item => {
             const isActive = isTabActive(item.keyName, item.mainTab);
             const isOpen = (mobileOpenKey || activeNavKey) === item.keyName;
+            const shouldShowDropdown = item.items.length > 1;
 
             return (
               <button
                 key={item.keyName}
                 type="button"
                 onClick={() => {
-                  setMobileOpenKey(item.keyName);
+                  if (shouldShowDropdown) {
+                    setMobileOpenKey(item.keyName);
+                  }
                   handleMainNavSelect(item.mainTab, item.items?.[0]?.value);
                 }}
                 className={`relative z-20 whitespace-nowrap px-4 py-2.5 font-bold text-xs uppercase tracking-wider rounded-t-lg transition-colors ${isActive
                   ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800 -mb-px'
-                  : isOpen
+                  : isOpen && shouldShowDropdown
                     ? 'bg-slate-900/70 text-slate-200 border border-slate-800'
                     : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}
               >
@@ -81,7 +84,7 @@ export default function DashboardNavigationTabs({
           })}
         </div>
 
-        {mobileOpenItem && (
+        {mobileOpenItem && mobileOpenItem.items.length > 1 && (
           <div className="z-[60] flex flex-wrap gap-1 border border-slate-800 rounded-lg bg-slate-950/95 px-2 py-2 shadow-[0_14px_40px_rgba(0,0,0,0.35)]">
             {mobileOpenItem.items.map(tab => {
               const isSubActive = getDropdownItemActiveState(mobileOpenItem.keyName, tab.value);
@@ -104,12 +107,13 @@ export default function DashboardNavigationTabs({
         {visibleNavItems.map(item => {
           const isActive = isTabActive(item.keyName, item.mainTab);
           const isHovered = hoveredNavTab === item.keyName;
+          const shouldShowDropdown = item.items.length > 1;
 
           return (
             <div
               key={item.keyName}
               className="relative inline-flex items-start"
-              onMouseEnter={() => setHoveredNavTab(item.keyName)}
+              onMouseEnter={() => !shouldShowDropdown ? setHoveredNavTab(null) : setHoveredNavTab(item.keyName)}
               onMouseLeave={() => setHoveredNavTab(null)}
             >
               <button
@@ -121,7 +125,7 @@ export default function DashboardNavigationTabs({
               >
                 {item.label}
               </button>
-              {isHovered && (
+              {shouldShowDropdown && isHovered && (
                 <div
                   className={`absolute top-full z-[60] flex flex-wrap gap-1 border-l border-r border-b border-slate-800 rounded-b-lg bg-slate-950/95 px-2 py-2 shadow-[0_14px_40px_rgba(0,0,0,0.35)] overflow-visible ${item.keyName === 'bank' ? 'left-0 justify-start' : 'left-1/2 -translate-x-1/2 justify-center'}`}
                   style={{ minWidth: '240px', width: 'max-content', maxWidth: 'min(95vw, 760px)' }}

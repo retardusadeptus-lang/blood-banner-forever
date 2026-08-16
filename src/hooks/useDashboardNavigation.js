@@ -286,7 +286,7 @@ export default function useDashboardNavigation({ isAuthenticated }) {
 
     return {
       bank: allTabs.bank.filter(tab => tab.value === 'contents'),
-      raidAssignments: allTabs.raidAssignments.filter(tab => tab.value === 'overview'),
+      raidAssignments: allTabs.raidAssignments.filter(tab => tab.value === 'overview' || tab.value === 'tactics'),
       raidSignups: allTabs.raidSignups.filter(tab => tab.value === 'events' || tab.value === 'absences'),
       loot: allTabs.loot.filter(tab => tab.value === 'overview' || tab.value === 'assigned'),
       recruitment: allTabs.recruitment.filter(tab => tab.value === 'focus' || tab.value === 'applications'),

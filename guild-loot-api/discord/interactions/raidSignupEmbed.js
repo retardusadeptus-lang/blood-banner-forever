@@ -5,7 +5,10 @@ const {
   getEventById,
   getAvailableClassesForEvent,
   getAllowedSpecsForEvent,
-  listEntriesForEvent
+  listEntriesForEvent,
+  getUserPreferredClass,
+  getUserPreferredSpec,
+  getUserPreferredCharacter
 } = require('../utils/raidSignupStore');
 const { buildMainSignupComponents } = require('./raidSignupComponents');
 const { formatSignupSummary } = require('../utils/raidSignupStore/summary');
@@ -77,18 +80,25 @@ function buildSignupEmbed(event, entries, guildOrClient = null) {
     .setTimestamp();
 }
 
-async function refreshEventMessage(db, client, eventId, _userId = null) {
+async function refreshEventMessage(db, client, eventId, userId = null) {
   const event = getEventById(db, eventId);
   if (!event || !event.discord_channel_id || !event.discord_message_id) return;
 
   const classes = getAvailableClassesForEvent(db, eventId);
   const specs = getAllowedSpecsForEvent(db, eventId);
-  const selectedClass = '';
-  // The shared event post must stay neutral for everyone in the channel.
-  // User-specific values are stored in raid_signup_user_prefs for the individual
-  // interaction flow, but they must not be rendered back onto the public message.
-  const preferredCharacter = '';
-  const preferredSpecId = 0;
+  const preferredClassRow = userId ? getUserPreferredClass(db, userId) : null;
+  const preferredSpecRow = userId ? getUserPreferredSpec(db, userId) : null;
+  const preferredCharacterRow = userId ? getUserPreferredCharacter(db, userId) : null;
+  const preferredSpecId = userId ? Number(preferredSpecRow?.spec_id || 0) : 0;
+  const selectedClass = String(preferredClassRow?.class_name || '').trim() || (
+    preferredSpecId
+      ? (specs.find(spec => Number(spec.id) === preferredSpecId)?.class || '').trim()
+      : ''
+  );
+  // The shared event post stays neutral unless a caller explicitly provides a user id.
+  // When that id is present, the message is being refreshed for that user's active
+  // interaction flow and should keep their saved character/spec values visible.
+  const preferredCharacter = userId ? String(preferredCharacterRow?.character_name || '').trim() : '';
   const entries = listEntriesForEvent(db, eventId);
 
   const channel = await client.channels.fetch(event.discord_channel_id).catch(() => null);
@@ -112,7 +122,8 @@ async function refreshEventMessage(db, client, eventId, _userId = null) {
       selectedClass,
       event.status !== 'open',
       preferredCharacter,
-      preferredSpecId
+      preferredSpecId,
+      client || channel.guild || null
     )
   });
 }

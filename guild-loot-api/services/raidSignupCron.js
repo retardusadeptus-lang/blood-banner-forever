@@ -3,7 +3,7 @@ const {
   listTemplates,
   createEventFromTemplate,
   getAvailableClassesForEvent,
-  getAllowedSpecsByClass
+  getAllowedSpecsForEvent
 } = require('../discord/utils/raidSignupStore');
 const { resolveClassEmojiToken } = require('../discord/utils/discordEmojiTokens');
 const {
@@ -85,11 +85,10 @@ function createRaidSignupCron({ db }) {
         if (!channel || typeof channel.send !== 'function') continue;
 
         const classes = getAvailableClassesForEvent(db, nextEvent.id);
-        const selectedClass = classes[0] || '';
-        const specs = selectedClass ? getAllowedSpecsByClass(db, nextEvent.id, selectedClass) : [];
+        const specs = getAllowedSpecsForEvent(db, nextEvent.id);
         const message = await channel.send({
           embeds: [buildSignupEmbed(nextEvent, [], channel.guild || null)],
-          components: buildMainSignupComponents(nextEvent.id, classes, specs, selectedClass, false)
+          components: buildMainSignupComponents(nextEvent.id, classes, specs, '', false, '', null, channel.guild || null)
         });
 
         db.prepare(`

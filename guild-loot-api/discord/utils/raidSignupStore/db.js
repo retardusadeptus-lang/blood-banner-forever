@@ -236,15 +236,18 @@ function upsertUserPreferredSpec(db, discordUserId, specId) {
   `).run(discordUserId, specId);
 }
 
-function upsertUserPreferredClass(db, discordUserId, className) {
+function upsertUserPreferredClass(db, discordUserId, className, specId = null) {
   const cleaned = String(className || '').trim();
   if (!cleaned) return;
   db.prepare(`
-    INSERT INTO raid_signup_user_prefs (discord_user_id, class_name, updated_at)
-    VALUES (?, ?, CURRENT_TIMESTAMP)
+    INSERT INTO raid_signup_user_prefs (discord_user_id, class_name, spec_id, updated_at)
+    VALUES (?, ?, ?, CURRENT_TIMESTAMP)
     ON CONFLICT(discord_user_id)
-    DO UPDATE SET class_name = excluded.class_name, updated_at = CURRENT_TIMESTAMP
-  `).run(discordUserId, cleaned);
+    DO UPDATE SET
+      class_name = excluded.class_name,
+      spec_id = COALESCE(raid_signup_user_prefs.spec_id, excluded.spec_id),
+      updated_at = CURRENT_TIMESTAMP
+  `).run(discordUserId, cleaned, Number(specId) || null);
 }
 
 function upsertUserPreferredCharacter(db, discordUserId, characterName) {
@@ -359,15 +362,21 @@ function listEntriesForEvent(db, eventId) {
     WHERE e.event_id = ?
   `).all(eventId);
 
+  const normalizedRows = rows.map(row => {
+    const status = String(row.status || '').trim().toLowerCase();
+    return { ...row, status: status === 'absence' ? 'absent' : status };
+  });
+
   const statusPriority = {
     signup: 0,
     late: 1,
     tentative: 2,
     bench: 3,
+    absent: 4,
     absence: 4
   };
 
-  const byOrder = [...rows].sort((a, b) => {
+  const byOrder = [...normalizedRows].sort((a, b) => {
     const aStatus = String(a.status || '').toLowerCase();
     const bStatus = String(b.status || '').toLowerCase();
     const aPriority = statusPriority[aStatus] ?? 99;

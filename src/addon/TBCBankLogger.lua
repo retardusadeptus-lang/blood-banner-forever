@@ -1,6 +1,6 @@
 -- TBCBankLogger
 -- Modern Dark-Themed Guild Bank Scanner, JSON Exporter/Importer,
--- Live Inventory / Sourced Tracker, and Auto-Fill Trade Assistant.
+-- Live Inventory Tracker, and Real-Time Trade Verification Assistant.
 
 local NUM_GUILD_BANK_TABS = 6
 local SLOTS_PER_TAB = 98
@@ -9,8 +9,7 @@ local SCAN_DELAY = 0.5
 local scannedTabs = {}
 local totalItems = 0
 local scanInProgress = false
-local currentTradePartner = nil
-local lastTradeFilledPartner = nil
+local lastTradePartner = nil
 
 TBCBankDB = TBCBankDB or {}
 TBCBankShoppingList = TBCBankShoppingList or {
@@ -22,6 +21,32 @@ TBCBankShoppingList = TBCBankShoppingList or {
 }
 
 local currentViewMode = "CHARACTER" -- "CHARACTER" or "ITEM"
+
+-- ─────────────────────────────────────────────
+-- Universal Container API Wrappers (Compatibility)
+-- ─────────────────────────────────────────────
+
+local function GetNumBagSlots(bag)
+    if C_Container and C_Container.GetContainerNumSlots then
+        return C_Container.GetContainerNumSlots(bag)
+    elseif GetContainerNumSlots then
+        return GetContainerNumSlots(bag)
+    end
+    return 0
+end
+
+local function GetBagItemInfo(bag, slot)
+    if C_Container and C_Container.GetContainerItemInfo then
+        local info = C_Container.GetContainerItemInfo(bag, slot)
+        if info then
+            return info.itemID, info.stackCount, info.hyperlink, info.isLocked
+        end
+    elseif GetContainerItemInfo then
+        local _, count, locked, _, _, _, link, _, _, id = GetContainerItemInfo(bag, slot)
+        return id, count, link, locked
+    end
+    return nil, nil, nil, nil
+end
 
 -- ─────────────────────────────────────────────
 -- Modern Color Palette & UI Theme
@@ -68,6 +93,8 @@ frame:RegisterEvent("GUILDBANKBAGSLOTS_CHANGED")
 frame:RegisterEvent("BAG_UPDATE_DELAYED")
 frame:RegisterEvent("TRADE_SHOW")
 frame:RegisterEvent("TRADE_CLOSED")
+frame:RegisterEvent("TRADE_PLAYER_ITEM_CHANGED")
+frame:RegisterEvent("TRADE_TARGET_ITEM_CHANGED")
 frame:RegisterEvent("UI_INFO_MESSAGE")
 
 -- ─────────────────────────────────────────────
@@ -146,7 +173,7 @@ local function formatMoneyPlain(copperAmount)
 end
 
 -- ─────────────────────────────────────────────
--- Live Bag & Inventory Counting Helper
+-- Live Inventory & Bag Counting Helper
 -- ─────────────────────────────────────────────
 
 local function getBagCount(targetId, targetName)
@@ -154,23 +181,44 @@ local function getBagCount(targetId, targetName)
     targetName = targetName and targetName:lower()
 
     for bag = 0, 4 do
-        for slot = 1, C_Container.GetContainerNumSlots(bag) do
-            local info = C_Container.GetContainerItemInfo(bag, slot)
-            if info then
+        for slot = 1, GetNumBagSlots(bag) do
+            local itemID, stackCount, link = GetBagItemInfo(bag, slot)
+            if itemID then
                 local match = false
-                if targetId and targetId > 0 and info.itemID == targetId then
+                if targetId and targetId > 0 and itemID == targetId then
                     match = true
-                elseif targetName and info.hyperlink and info.hyperlink:lower():find(targetName, 1, true) then
+                elseif targetName and link and link:lower():find(targetName, 1, true) then
                     match = true
                 end
 
                 if match then
-                    totalCount = totalCount + (info.stackCount or 1)
+                    totalCount = totalCount + (stackCount or 1)
                 end
             end
         end
     end
     return totalCount
+end
+
+-- ─────────────────────────────────────────────
+-- Live Trade Slot Inspector
+-- ─────────────────────────────────────────────
+
+local function getItemsCurrentlyInTrade()
+    local tradeItems = {}
+    for slot = 1, 6 do
+        local name, texture, numItems = GetTradePlayerItemInfo(slot)
+        local link = GetTradePlayerItemLink(slot)
+        if link then
+            local itemID = tonumber(string.match(link, "item:(%d+)")) or 0
+            name = name or select(1, GetItemInfo(link)) or "Unknown Item"
+            local count = numItems or 1
+            
+            local key = tostring(itemID) .. ":" .. name:lower()
+            tradeItems[key] = (tradeItems[key] or 0) + count
+        end
+    end
+    return tradeItems
 end
 
 -- ─────────────────────────────────────────────
@@ -550,9 +598,9 @@ local function aggregateApprovedRequests(payload)
                 requestCount = requestCount + 1
                 local itemId = tonumber(req.item_wowhead_id) or tonumber(req.itemId) or tonumber(req.item_id) or 0
                 local itemName = req.item_name or req.name or "Unknown item"
-                local requester = req.requester_name or req.character or req.player or "Unknown"
+                local requester = jsonTrim(tostring(req.requester_name or req.character or req.player or "Unknown"))
 
-                -- Direct Total Gold parsing
+                -- Direct Total Gold pricing
                 local totalCopper = 0
                 if req.total_price_copper or req.price_copper or req.cost_copper then
                     totalCopper = tonumber(req.total_price_copper) or tonumber(req.price_copper) or tonumber(req.cost_copper) or 0
@@ -591,7 +639,7 @@ local function aggregateApprovedRequests(payload)
                 }
 
                 -- 2. Aggregation by Character
-                local charKey = requester:lower()
+                local charKey = requester:lower():match("^[^-]+")
                 if not aggregatedChars[charKey] then
                     aggregatedChars[charKey] = {
                         characterName = requester,
@@ -758,63 +806,37 @@ local function buildShoppingListByCharacterText(charList)
 end
 
 -- ─────────────────────────────────────────────
--- Trade Automation Helper
+-- Trade Partner Name & Order Retrieval
 -- ─────────────────────────────────────────────
 
-local function getPendingItemsForPlayer(playerName)
-    if not playerName or not TBCBankShoppingList or not TBCBankShoppingList.characters then return nil end
-    local key = playerName:lower():match("^[^-]+")
-    for _, charEntry in ipairs(TBCBankShoppingList.characters) do
-        if charEntry.characterName:lower():match("^[^-]+") == key then
-            return charEntry
-        end
+local function getTradePartnerName()
+    local name = nil
+    if TradeFrameRecipientNameText and TradeFrameRecipientNameText:GetText() then
+        name = TradeFrameRecipientNameText:GetText()
+    end
+    if (not name or name == "" or name == "NPC") and UnitExists("target") and not UnitIsUnit("target", "player") then
+        name = UnitName("target")
+    end
+    if (not name or name == "" or name == "NPC") then
+        name = UnitName("NPC")
+    end
+    if name and name ~= "" and name ~= "NPC" then
+        return jsonTrim(name:match("^[^-]+"))
     end
     return nil
 end
 
-local function fillTradeWindowForPlayer(charEntry)
-    if not charEntry or not charEntry.items then return end
+local function getPendingItemsForPlayer(playerName)
+    if not playerName or not TBCBankShoppingList or not TBCBankShoppingList.characters then return nil end
+    local searchKey = jsonTrim(playerName:lower():match("^[^-]+"))
     
-    local tradeSlot = 1
-    local itemsAdded = 0
-
-    for _, item in ipairs(charEntry.items) do
-        if not item.traded then
-            local needed = item.quantity
-            local targetId = item.itemId
-            local targetName = item.itemName:lower()
-
-            for bag = 0, 4 do
-                for slot = 1, C_Container.GetContainerNumSlots(bag) do
-                    if tradeSlot > 6 then break end
-                    local info = C_Container.GetContainerItemInfo(bag, slot)
-                    if info and needed > 0 then
-                        local match = false
-                        if targetId > 0 and info.itemID == targetId then
-                            match = true
-                        elseif info.hyperlink and info.hyperlink:lower():find(targetName, 1, true) then
-                            match = true
-                        end
-
-                        if match then
-                            C_Container.PickupContainerItem(bag, slot)
-                            ClickTradeButton(tradeSlot)
-                            needed = needed - info.stackCount
-                            tradeSlot = tradeSlot + 1
-                            itemsAdded = itemsAdded + 1
-                        end
-                    end
-                end
-            end
+    for _, charEntry in ipairs(TBCBankShoppingList.characters) do
+        local entryKey = jsonTrim(charEntry.characterName:lower():match("^[^-]+"))
+        if entryKey == searchKey then
+            return charEntry
         end
     end
-
-    if itemsAdded > 0 then
-        lastTradeFilledPartner = charEntry.characterName
-        print(string.format("|cff00ff00[TBC Bank]|r: Filled |cffffd700%d|r trade slot(s) for |cffffd700%s|r.", itemsAdded, charEntry.characterName))
-    else
-        print(string.format("|cff00ff00[TBC Bank]|r: Could not find untraded items in bags for |cffffd700%s|r.", charEntry.characterName))
-    end
+    return nil
 end
 
 local function markPlayerItemsAsTraded(playerName)
@@ -825,12 +847,11 @@ local function markPlayerItemsAsTraded(playerName)
         item.traded = true
     end
 
-    -- Also update item list representation
     if TBCBankShoppingList and TBCBankShoppingList.items then
-        local key = playerName:lower():match("^[^-]+")
+        local key = jsonTrim(playerName:lower():match("^[^-]+"))
         for _, iEntry in ipairs(TBCBankShoppingList.items) do
             for _, r in ipairs(iEntry.requestors or {}) do
-                if r.name:lower():match("^[^-]+") == key then
+                if jsonTrim(r.name:lower():match("^[^-]+")) == key then
                     r.traded = true
                 end
             end
@@ -840,12 +861,13 @@ local function markPlayerItemsAsTraded(playerName)
 end
 
 -- ─────────────────────────────────────────────
--- Modern Floating Trade Prompt Frame
+-- Modern Floating Trade Assistant (With Fixed Scroll Child)
 -- ─────────────────────────────────────────────
 
 local tradePromptFrame = CreateFrame("Frame", "TBCBankTradePrompt", UIParent, "BackdropTemplate")
-tradePromptFrame:SetSize(290, 125)
-tradePromptFrame:SetPoint("TOPLEFT", TradeFrame, "TOPRIGHT", 8, 0)
+tradePromptFrame:SetSize(330, 230)
+tradePromptFrame:SetPoint("TOPLEFT", TradeFrame or UIParent, "TOPRIGHT", 6, 0)
+tradePromptFrame:SetFrameStrata("DIALOG")
 tradePromptFrame:SetBackdrop(FLAT_BACKDROP)
 tradePromptFrame:SetBackdropColor(unpack(THEME.bg))
 tradePromptFrame:SetBackdropBorderColor(unpack(THEME.accent))
@@ -853,22 +875,111 @@ tradePromptFrame:Hide()
 
 local tradeHeader = tradePromptFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 tradeHeader:SetPoint("TOPLEFT", 12, -10)
-tradeHeader:SetText("Guild Bank Trade Assistant")
+tradeHeader:SetText("Trade Verification Assistant")
 tradeHeader:SetTextColor(unpack(THEME.accent))
 
-local tradeText = tradePromptFrame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-tradeText:SetPoint("TOPLEFT", 12, -28)
-tradeText:SetWidth(266)
-tradeText:SetJustifyH("LEFT")
+local tradeDueText = tradePromptFrame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+tradeDueText:SetPoint("TOPLEFT", 12, -26)
+tradeDueText:SetTextColor(unpack(THEME.text))
 
-local fillBtn = CreateModernButton(tradePromptFrame, 128, 24, "Fill Trade", THEME.btnNormal)
-fillBtn:SetPoint("BOTTOMLEFT", 12, 10)
+local scroll = CreateFrame("ScrollFrame", "TBCBankTradePromptScroll", tradePromptFrame, "UIPanelScrollFrameTemplate")
+scroll:SetPoint("TOPLEFT", 12, -44)
+scroll:SetPoint("BOTTOMRIGHT", -28, 44)
 
-local whisperBtn = CreateModernButton(tradePromptFrame, 128, 24, "Whisper Bill", THEME.btnNormal)
-whisperBtn:SetPoint("BOTTOMRIGHT", -12, 10)
+local scrollChild = CreateFrame("Frame", nil, scroll)
+scrollChild:SetSize(280, 200)
+scroll:SetScrollChild(scrollChild)
 
-local markTradedBtn = CreateModernButton(tradePromptFrame, 266, 20, "✔ Mark as Fulfilled", {0.12, 0.28, 0.16, 1.0})
-markTradedBtn:SetPoint("BOTTOM", 0, 38)
+local tradeContentText = scrollChild:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+tradeContentText:SetPoint("TOPLEFT", 0, 0)
+tradeContentText:SetWidth(280)
+tradeContentText:SetJustifyH("LEFT")
+
+local whisperBtn = CreateModernButton(tradePromptFrame, 140, 24, "Whisper Bill", THEME.btnNormal)
+whisperBtn:SetPoint("BOTTOMLEFT", 12, 10)
+
+local markTradedBtn = CreateModernButton(tradePromptFrame, 150, 24, "✔ Mark Fulfilled", {0.12, 0.28, 0.16, 1.0})
+markTradedBtn:SetPoint("BOTTOMRIGHT", -12, 10)
+
+local function updateTradeAssistantDisplay()
+    local partnerName = getTradePartnerName()
+    if not partnerName then
+        tradePromptFrame:Hide()
+        return
+    end
+
+    local pending = getPendingItemsForPlayer(partnerName)
+    if not pending then
+        tradePromptFrame:Hide()
+        return
+    end
+
+    lastTradePartner = partnerName
+    tradePromptFrame:SetParent(TradeFrame or UIParent)
+    tradePromptFrame:ClearAllPoints()
+    tradePromptFrame:SetPoint("TOPLEFT", TradeFrame or UIParent, "TOPRIGHT", 6, 0)
+
+    local tradeItems = getItemsCurrentlyInTrade()
+    local lines = {}
+    local pendingCost = 0
+
+    for _, item in ipairs(pending.items or {}) do
+        if not item.traded then
+            pendingCost = pendingCost + (item.totalPriceCopper or 0)
+            
+            local itemName = item.itemName
+            if item.itemId > 0 then
+                local resolved = select(1, GetItemInfo(item.itemId))
+                if resolved then itemName = resolved end
+            end
+
+            local key = tostring(item.itemId) .. ":" .. itemName:lower()
+            local inTradeCount = tradeItems[key] or 0
+            local inBagsCount = getBagCount(item.itemId, itemName)
+
+            local statusStr = ""
+            if inTradeCount == item.quantity then
+                statusStr = string.format("|cff40ff40[✔ In Trade: %d/%d]|r", inTradeCount, item.quantity)
+            elseif inTradeCount < item.quantity then
+                local missing = item.quantity - inTradeCount
+                statusStr = string.format("|cffffa500[⏳ In Trade: %d/%d (Need %d)]|r\n    |cff888888(In Bags: %d)|r", inTradeCount, item.quantity, missing, inBagsCount)
+            else
+                local over = inTradeCount - item.quantity
+                statusStr = string.format("|cffff4040[⚠ In Trade: %d/%d (Too Many! +%d)]|r", inTradeCount, item.quantity, over)
+            end
+
+            lines[#lines + 1] = string.format("• |cffffffff%s|r x%d\n  %s", itemName, item.quantity, statusStr)
+        end
+    end
+
+    if #lines == 0 then
+        lines[#lines + 1] = "|cff40ff40All requested items have been marked traded!|r"
+    end
+
+    tradeDueText:SetText(string.format("Partner: |cffffd700%s|r | Total Due: %s", pending.characterName, formatMoney(pendingCost)))
+    tradeContentText:SetText(table.concat(lines, "\n\n"))
+    
+    local textHeight = tradeContentText:GetStringHeight() or 100
+    scrollChild:SetHeight(math.max(textHeight + 20, 150))
+
+    whisperBtn:SetScript("OnClick", function()
+        local msgList = {}
+        for _, item in ipairs(pending.items) do
+            if not item.traded then
+                msgList[#msgList + 1] = item.itemName .. " x" .. item.quantity
+            end
+        end
+        local msg = string.format("[TBC Bank]: Your order: %s. Total Due: %s.", table.concat(msgList, ", "), formatMoneyPlain(pendingCost))
+        SendChatMessage(msg, "WHISPER", nil, pending.characterName)
+    end)
+
+    markTradedBtn:SetScript("OnClick", function()
+        markPlayerItemsAsTraded(pending.characterName)
+        updateTradeAssistantDisplay()
+    end)
+
+    tradePromptFrame:Show()
+end
 
 -- ─────────────────────────────────────────────
 -- Modern Main Shopping List & Import UI Frame
@@ -961,7 +1072,7 @@ local function getOrCreateImportFrame()
     scroll:SetScrollChild(editBox)
     f.editBox = editBox
 
-    -- Bottom Bar Modern Buttons
+    -- Bottom Action Buttons
     local importBtn = CreateModernButton(f, 115, 26, "Import JSON", {0.18, 0.28, 0.20, 1.0})
     importBtn:SetPoint("BOTTOMLEFT", 20, 16)
     importBtn:SetScript("OnClick", function()
@@ -1060,53 +1171,28 @@ frame:SetScript("OnEvent", function(self, event, ...)
         if importFrame and importFrame:IsShown() then
             refreshShoppingListView(importFrame)
         end
+        if tradePromptFrame and tradePromptFrame:IsShown() then
+            updateTradeAssistantDisplay()
+        end
 
     elseif event == "TRADE_SHOW" then
-        local partnerName = UnitName("NPC")
-        currentTradePartner = partnerName
+        updateTradeAssistantDisplay()
+        C_Timer.After(0.1, updateTradeAssistantDisplay)
 
-        if partnerName then
-            local pending = getPendingItemsForPlayer(partnerName)
-            if pending then
-                tradePromptFrame:SetPoint("TOPLEFT", TradeFrame, "TOPRIGHT", 8, 0)
-                tradeText:SetText(string.format("Partner: |cffffd700%s|r\nTotal Due: %s", pending.characterName, formatMoney(pending.totalCostCopper)))
-                
-                fillBtn:SetScript("OnClick", function()
-                    fillTradeWindowForPlayer(pending)
-                end)
-                
-                whisperBtn:SetScript("OnClick", function()
-                    local msgList = {}
-                    for _, item in ipairs(pending.items) do
-                        msgList[#msgList + 1] = item.itemName .. " x" .. item.quantity
-                    end
-                    local msg = string.format("[TBC Bank]: Your order: %s. Total Due: %s.", table.concat(msgList, ", "), formatMoneyPlain(pending.totalCostCopper))
-                    SendChatMessage(msg, "WHISPER", nil, partnerName)
-                end)
-
-                markTradedBtn:SetScript("OnClick", function()
-                    markPlayerItemsAsTraded(partnerName)
-                    tradePromptFrame:Hide()
-                    if importFrame and importFrame:IsShown() then
-                        refreshShoppingListView(importFrame)
-                    end
-                end)
-
-                tradePromptFrame:Show()
-            end
+    elseif event == "TRADE_PLAYER_ITEM_CHANGED" or event == "TRADE_TARGET_ITEM_CHANGED" then
+        if tradePromptFrame and tradePromptFrame:IsShown() then
+            updateTradeAssistantDisplay()
         end
 
     elseif event == "TRADE_CLOSED" then
         tradePromptFrame:Hide()
-        currentTradePartner = nil
 
     elseif event == "UI_INFO_MESSAGE" then
         local messageType, msg = ...
-        -- If trade complete message triggers, automatically mark fulfilled
         if msg and (msg:find("Trade complete") or msg:find("Handel abgeschlossen") or msg:find("Échange terminé")) then
-            if lastTradeFilledPartner then
-                markPlayerItemsAsTraded(lastTradeFilledPartner)
-                lastTradeFilledPartner = nil
+            if lastTradePartner then
+                markPlayerItemsAsTraded(lastTradePartner)
+                lastTradePartner = nil
                 if importFrame and importFrame:IsShown() then
                     refreshShoppingListView(importFrame)
                 end

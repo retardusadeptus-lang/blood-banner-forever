@@ -19,6 +19,7 @@ const WEEKDAY_OPTIONS = [
 ];
 
 const TEMPLATE_GROUP_SIZE_OPTIONS = [10, 25, 40];
+const RAID_SIGNUP_SYNC_INTERVAL_MS = 3 * 60 * 1000;
 const TIMEZONE_OPTIONS = [
   { value: 'Europe/Paris', label: 'Europe/Paris' },
   { value: 'UTC', label: 'UTC' },
@@ -176,6 +177,25 @@ function buildDefaultGroupRows() {
   return rows;
 }
 
+function buildGroupRows(savedRows = []) {
+  const byKey = new Map(buildDefaultGroupRows().map(row => [row.localKey, row]));
+  savedRows.forEach(row => {
+    const key = `${row.group_number}-${row.slot_index}`;
+    if (!byKey.has(key)) return;
+    byKey.set(key, {
+      ...byKey.get(key),
+      group_name: row.group_name || `Group ${row.group_number}`,
+      player_name: row.player_name || '',
+      spec_id: row.spec_id || null,
+      note: row.note || '',
+      spec_class: row.spec_class || null,
+      spec_name: row.spec_name || null,
+      class_name: row.class_name || null
+    });
+  });
+  return [...byKey.values()];
+}
+
 function roleSortKey(role) {
   const normalized = String(role || '').toLowerCase();
   if (normalized === 'tank') return 0;
@@ -323,8 +343,10 @@ export default function RaidSignupsTab({
   const [openSlotPickerKey, setOpenSlotPickerKey] = useState('');
   const [editingNoteByRow, setEditingNoteByRow] = useState({});
   const [expandedSummaryStatus, setExpandedSummaryStatus] = useState('');
+  const [echoTagAttendees, setEchoTagAttendees] = useState(false);
   const [isGroupConfigDirty, setIsGroupConfigDirty] = useState(false);
   const [isEventEditDirty, setIsEventEditDirty] = useState(false);
+  const [isRefreshingSignups, setIsRefreshingSignups] = useState(false);
   const [loadedSelectedEventId, setLoadedSelectedEventId] = useState('');
   const activeRaidSection = activeSection || 'templates';
   const isReadOnly = !isAuthenticated;
@@ -378,12 +400,12 @@ export default function RaidSignupsTab({
     };
 
     load();
-    const interval = setInterval(load, 15000);
+    const interval = setInterval(load, RAID_SIGNUP_SYNC_INTERVAL_MS);
     return () => {
       mounted = false;
       clearInterval(interval);
     };
-  }, []);
+  }, [fetchData]);
 
   useEffect(() => {
     loadTemplates().catch(e => console.error('Failed to load raid signup templates', e));
@@ -418,12 +440,15 @@ export default function RaidSignupsTab({
   }, [fetchData, isAuthenticated, selectedSignupEventId]);
 
   useEffect(() => {
+    setExpandedSummaryStatus('');
+  }, [selectedEventId]);
+
+  useEffect(() => {
     if (!selectedEventId) {
       setGroupRows(buildDefaultGroupRows());
       setSelectedEventDetails(null);
       setOpenSlotPickerKey('');
       setEditingNoteByRow({});
-      setExpandedSummaryStatus('');
       setIsGroupConfigDirty(false);
       setIsEventEditDirty(false);
       setLoadedSelectedEventId('');
@@ -434,27 +459,10 @@ export default function RaidSignupsTab({
     const loadSelectedEventContext = async () => {
       if (!isAuthenticated) {
         const publicEvent = (events || []).find(event => String(event?.id) === String(selectedEventId));
-        const defaults = buildDefaultGroupRows();
-        const byKey = new Map(defaults.map(row => [row.localKey, { ...row }]));
-        (publicEvent?.groups || []).forEach(row => {
-          const key = `${row.group_number}-${row.slot_index}`;
-          if (!byKey.has(key)) return;
-          byKey.set(key, {
-            ...byKey.get(key),
-            group_name: row.group_name || `Group ${row.group_number}`,
-            player_name: row.player_name || '',
-            spec_id: row.spec_id || null,
-            note: row.note || '',
-            spec_class: row.spec_class || null,
-            spec_name: row.spec_name || null,
-            class_name: row.class_name || null
-          });
-        });
-        setGroupRows([...byKey.values()]);
+        setGroupRows(buildGroupRows(publicEvent?.groups || []));
         setSelectedEventDetails(publicEvent || null);
         setOpenSlotPickerKey('');
         setEditingNoteByRow({});
-        setExpandedSummaryStatus('');
         setLoadedSelectedEventId(String(selectedEventId));
         return;
       }
@@ -468,27 +476,10 @@ export default function RaidSignupsTab({
           fetchData(`raid-signup-groups/${selectedEventId}`),
           fetchData(`raid-signup-events/${selectedEventId}`)
         ]);
-        const defaults = buildDefaultGroupRows();
-        const byKey = new Map(defaults.map(row => [row.localKey, { ...row }]));
-        (rows || []).forEach(row => {
-          const key = `${row.group_number}-${row.slot_index}`;
-          if (!byKey.has(key)) return;
-          byKey.set(key, {
-            ...byKey.get(key),
-            group_name: row.group_name || `Group ${row.group_number}`,
-            player_name: row.player_name || '',
-            spec_id: row.spec_id || null,
-            note: row.note || '',
-            spec_class: row.spec_class || null,
-            spec_name: row.spec_name || null,
-            class_name: row.class_name || null
-          });
-        });
-        setGroupRows([...byKey.values()]);
+        setGroupRows(buildGroupRows(rows || []));
         setSelectedEventDetails(eventDetails && typeof eventDetails === 'object' ? eventDetails : null);
         setOpenSlotPickerKey('');
         setEditingNoteByRow({});
-        setExpandedSummaryStatus('');
         setIsGroupConfigDirty(false);
         setIsEventEditDirty(false);
         setLoadedSelectedEventId(String(selectedEventId));
@@ -698,13 +689,37 @@ export default function RaidSignupsTab({
     const publicEntries = Array.isArray(publicEvent?.entries) ? publicEvent.entries : [];
     const entries = detailEntries.length > 0 ? detailEntries : publicEntries;
     return entries
-      .filter(entry => String(entry.status || '').toLowerCase() === 'signup')
+      .filter(entry => {
+        const status = String(entry.status || '').trim().toLowerCase();
+        const normalizedStatus = status === 'absence' ? 'absent' : status;
+        return ['signup', 'late', 'tentative', 'bench'].includes(normalizedStatus);
+      })
       .sort((a, b) => {
         const roleDiff = roleSortKey(a.role_bucket) - roleSortKey(b.role_bucket);
         if (roleDiff !== 0) return roleDiff;
         return String(a.discord_username || '').localeCompare(String(b.discord_username || ''));
       });
   }, [events, selectedEvent, selectedEventId]);
+
+  const assignedGroupNames = useMemo(() => new Set(
+    groupRows
+      .filter(row => String(row.player_name || '').trim())
+      .map(row => String(row.player_name || '').trim().toLowerCase())
+  ), [groupRows]);
+
+  const unassignedBenchCandidates = useMemo(() => signupCandidates.filter(candidate => {
+    const status = String(candidate.status || '').trim().toLowerCase();
+    const normalizedStatus = status === 'absence' ? 'absent' : status;
+    const candidateName = String(candidate.discord_username || '').trim();
+    return normalizedStatus === 'bench' && !assignedGroupNames.has(candidateName.toLowerCase());
+  }), [assignedGroupNames, signupCandidates]);
+
+  const unassignedSignupCandidates = useMemo(() => signupCandidates.filter(candidate => {
+    const status = String(candidate.status || '').trim().toLowerCase();
+    const normalizedStatus = status === 'absence' ? 'absent' : status;
+    const candidateName = String(candidate.discord_username || '').trim();
+    return ['signup', 'late', 'tentative'].includes(normalizedStatus) && !assignedGroupNames.has(candidateName.toLowerCase());
+  }), [assignedGroupNames, signupCandidates]);
 
   const selectedEventEntries = useMemo(() => {
     if (!selectedEventId) return [];
@@ -723,6 +738,24 @@ export default function RaidSignupsTab({
     });
     return map;
   }, [selectedEventEntries]);
+
+  const groupRoleSummary = useMemo(() => {
+    const summary = { tank: 0, healer: 0, ranged: 0, melee: 0 };
+
+    groupRows.forEach(row => {
+      const playerName = String(row.player_name || '').trim();
+      if (!playerName) return;
+
+      const candidate = signupCandidates.find(candidate => String(candidate.discord_username || '').trim().toLowerCase() === playerName.toLowerCase())
+        || selectedEventEntryByName.get(playerName.toLowerCase())
+        || null;
+      const role = String(candidate?.role_bucket || '').toLowerCase();
+      const normalizedRole = ['tank', 'healer', 'ranged', 'melee'].includes(role) ? role : 'ranged';
+      if (summary[normalizedRole] !== undefined) summary[normalizedRole] += 1;
+    });
+
+    return summary;
+  }, [groupRows, selectedEventEntryByName, signupCandidates]);
 
   const specById = useMemo(() => {
     const map = new Map();
@@ -777,6 +810,7 @@ export default function RaidSignupsTab({
 
   const summaryStatusLabel = (statusKey) => {
     if (statusKey === 'signup') return 'Sign-ups';
+    if (statusKey === 'late') return 'Late';
     if (statusKey === 'tentative') return 'Tentative';
     if (statusKey === 'bench') return 'Bench';
     if (statusKey === 'absent') return 'Absent';
@@ -785,11 +819,13 @@ export default function RaidSignupsTab({
   };
 
   const statusMarker = (status) => {
-    const normalized = String(status || '').toLowerCase();
+    const normalized = String(status || '').trim().toLowerCase();
+    if (normalized === 'absence') return { glyph: '✕', color: 'text-rose-300' };
     if (normalized === 'signup') return { glyph: '✓', color: 'text-emerald-300' };
     if (normalized === 'absent') return { glyph: '✕', color: 'text-rose-300' };
     if (normalized === 'bench') return { glyph: '✓', color: 'text-amber-300' };
-    if (normalized === 'tentative') return { glyph: '?', color: 'text-yellow-300' };
+    if (normalized === 'late') return { glyph: '⏱', color: 'text-orange-300' };
+    if (normalized === 'tentative') return { glyph: '⚠', color: 'text-yellow-300' };
     return { glyph: '•', color: 'text-slate-400' };
   };
 
@@ -965,32 +1001,36 @@ export default function RaidSignupsTab({
 
   const selectedEventSignupSummary = useMemo(() => {
     if (!selectedEventId) {
-      return { signup: 0, bench: 0, absent: 0, total: 0 };
+      return { signup: 0, late: 0, bench: 0, absent: 0, tentative: 0, total: 0 };
     }
 
     const entries = selectedEventEntries;
 
     const summary = entries.reduce((acc, entry) => {
-      const status = String(entry?.status || '').toLowerCase();
-      if (status === 'signup') acc.signup += 1;
-      else if (status === 'bench') acc.bench += 1;
-      else if (status === 'absent') acc.absent += 1;
-      else if (status === 'tentative') acc.tentative += 1;
+      const status = String(entry?.status || '').trim().toLowerCase();
+      const normalizedStatus = status === 'absence' ? 'absent' : status;
+      if (normalizedStatus === 'signup') acc.signup += 1;
+      else if (normalizedStatus === 'late') acc.late += 1;
+      else if (normalizedStatus === 'bench') acc.bench += 1;
+      else if (normalizedStatus === 'absent') acc.absent += 1;
+      else if (normalizedStatus === 'tentative') acc.tentative += 1;
       acc.total += 1;
       return acc;
-    }, { signup: 0, bench: 0, absent: 0, tentative: 0, total: 0 });
+    }, { signup: 0, late: 0, bench: 0, absent: 0, tentative: 0, total: 0 });
 
     if (summary.total === 0 && selectedEvent) {
       const signup = Number(selectedEvent.signup_count || 0);
+      const late = Number(selectedEvent.late_count || 0);
       const bench = Number(selectedEvent.bench_count || 0);
       const absent = Number(selectedEvent.absent_count || 0);
       const tentative = Number(selectedEvent.tentative_count || 0);
       return {
         signup,
+        late,
         bench,
         absent,
         tentative,
-        total: signup + bench + absent + tentative
+        total: signup + late + bench + absent + tentative
       };
     }
 
@@ -1000,11 +1040,12 @@ export default function RaidSignupsTab({
   const expandedSummaryGroups = useMemo(() => {
     if (!expandedSummaryStatus) return null;
     const filtered = selectedEventEntries.filter(entry => {
-      const status = String(entry?.status || '').toLowerCase();
+      const status = String(entry?.status || '').trim().toLowerCase();
+      const normalizedStatus = status === 'absence' ? 'absent' : status;
       if (expandedSummaryStatus === 'total') {
-        return ['signup', 'tentative', 'bench', 'absent'].includes(status);
+        return ['signup', 'late', 'tentative', 'bench', 'absent'].includes(normalizedStatus);
       }
-      return status === expandedSummaryStatus;
+      return normalizedStatus === expandedSummaryStatus;
     });
     const grouped = { tank: [], healer: [], melee: [], ranged: [] };
 
@@ -1105,7 +1146,7 @@ export default function RaidSignupsTab({
     if (!selectedEventId) return;
     setIsEchoing(true);
     try {
-      await postData(`raid-signup-events/${selectedEventId}/echo`, {});
+      await postData(`raid-signup-events/${selectedEventId}/echo`, { tag_attendees: echoTagAttendees });
       alert('Echo message sent to Discord channel for this event.');
     } catch (e) {
       alert('Failed to echo message. Make sure event is posted by bot and has a Discord channel binding.');
@@ -1114,9 +1155,79 @@ export default function RaidSignupsTab({
     }
   };
 
+  const refreshSignups = async () => {
+    if ((isGroupConfigDirty || isEventEditDirty) && !window.confirm('Refresh signups and discard unsaved event or group changes?')) {
+      return;
+    }
+
+    setIsRefreshingSignups(true);
+    try {
+      const publicEvents = await fetchData('public-raid-signups');
+      const normalizedPublicEvents = Array.isArray(publicEvents) ? publicEvents : [];
+      setEvents(normalizedPublicEvents);
+
+      if (isAuthenticated) {
+        const [eventList, archivedList, selectedDetails, selectedGroups] = await Promise.all([
+          fetchData('raid-signup-events'),
+          fetchData('raid-signup-events?status=archived'),
+          selectedEventId ? fetchData(`raid-signup-events/${selectedEventId}`) : Promise.resolve(null),
+          selectedEventId ? fetchData(`raid-signup-groups/${selectedEventId}`) : Promise.resolve([])
+        ]);
+        setRaidSignupEvents((Array.isArray(eventList) ? eventList : []).filter(event => String(event.status || '').toLowerCase() !== 'archived'));
+        setArchivedEvents(Array.isArray(archivedList) ? archivedList : []);
+        if (selectedEventId) {
+          setSelectedEventDetails(selectedDetails && typeof selectedDetails === 'object' ? selectedDetails : null);
+          setGroupRows(buildGroupRows(Array.isArray(selectedGroups) ? selectedGroups : []));
+          setLoadedSelectedEventId(String(selectedEventId));
+        }
+      } else if (selectedEventId) {
+        const publicEvent = normalizedPublicEvents.find(event => String(event?.id) === String(selectedEventId));
+        setSelectedEventDetails(publicEvent || null);
+        setGroupRows(buildGroupRows(publicEvent?.groups || []));
+        setLoadedSelectedEventId(String(selectedEventId));
+      }
+
+      setIsGroupConfigDirty(false);
+      setIsEventEditDirty(false);
+      setOpenSlotPickerKey('');
+      setEditingNoteByRow({});
+    } catch (e) {
+      console.error('Failed to refresh raid signups', e);
+      alert('Failed to refresh signups.');
+    } finally {
+      setIsRefreshingSignups(false);
+    }
+  };
+
   const updateGroupRow = (rowKey, patch) => {
     setIsGroupConfigDirty(true);
     setGroupRows(prev => prev.map(row => (row.localKey === rowKey ? { ...row, ...patch } : row)));
+  };
+
+  const updateEntryStatus = async (entry, nextStatus) => {
+    if (!selectedEventId || !entry) return;
+    const normalizedStatus = String(nextStatus || '').trim().toLowerCase();
+    if (!['signup', 'late', 'tentative', 'bench', 'absent'].includes(normalizedStatus)) return;
+
+    try {
+      const response = await fetchData(`raid-signup-events/${selectedEventId}`);
+      const entries = Array.isArray(response?.entries) ? response.entries : [];
+      const current = entries.find(candidate => String(candidate.discord_user_id || candidate.discord_username || '').toLowerCase() === String(entry.discord_user_id || entry.discord_username || '').toLowerCase());
+      if (!current) {
+        alert('This player is not currently in the signup list.');
+        return;
+      }
+
+      await putData(`raid-signup-events/${selectedEventId}/status`, { status: normalizedStatus, discord_user_id: current.discord_user_id || null, discord_username: current.discord_username || entry.discord_username || '' });
+      const updatedEvent = await fetchData(`raid-signup-events/${selectedEventId}`);
+      setSelectedEventDetails(updatedEvent || null);
+      setEvents(prev => prev.map(event => String(event.id) === String(selectedEventId) ? { ...event, ...updatedEvent } : event));
+      setExpandedSummaryStatus('');
+      alert(`Updated ${current.discord_username || entry.discord_username || 'player'} to ${normalizedStatus}.`);
+    } catch (error) {
+      console.error('Failed to update signup status', error);
+      alert('Failed to update the player status.');
+    }
   };
 
   const updateGroupName = (groupNumber, groupName) => {
@@ -1575,6 +1686,14 @@ export default function RaidSignupsTab({
                       </optgroup>
                     )}
                   </select>
+                  <button
+                    type="button"
+                    onClick={refreshSignups}
+                    disabled={isRefreshingSignups}
+                    className="text-xs font-bold bg-cyan-700 hover:bg-cyan-600 disabled:opacity-60 text-white px-3 py-2 rounded"
+                  >
+                    {isRefreshingSignups ? 'Refreshing...' : 'Refresh Signups'}
+                  </button>
                   {isReadOnly ? (
                     <span className="text-[11px] text-slate-400">Read-only view (officer login required to edit)</span>
                   ) : null}
@@ -1627,7 +1746,7 @@ export default function RaidSignupsTab({
                 <div className="space-y-4">
                   <div className="bg-slate-900 border border-slate-800 rounded-lg p-3">
                     <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-2">Signup Summary</p>
-                    <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+                    <div className="grid grid-cols-2 md:grid-cols-6 gap-2">
                       <button
                         type="button"
                         onClick={() => setExpandedSummaryStatus(prev => (prev === 'signup' ? '' : 'signup'))}
@@ -1635,6 +1754,14 @@ export default function RaidSignupsTab({
                       >
                         <p className="text-[10px] text-emerald-300 uppercase tracking-wider">Sign-ups</p>
                         <p className="text-sm font-bold text-emerald-200">{selectedEventSignupSummary.signup}</p>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setExpandedSummaryStatus(prev => (prev === 'late' ? '' : 'late'))}
+                        className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'late' ? 'border-orange-400 bg-orange-900/35' : 'border-orange-700/40 bg-orange-900/20 hover:bg-orange-900/30'}`}
+                      >
+                        <p className="text-[10px] text-orange-300 uppercase tracking-wider">Late</p>
+                        <p className="text-sm font-bold text-orange-200">{selectedEventSignupSummary.late}</p>
                       </button>
                       <button
                         type="button"
@@ -1978,6 +2105,14 @@ export default function RaidSignupsTab({
                       </optgroup>
                     )}
                   </select>
+                  <button
+                    type="button"
+                    onClick={refreshSignups}
+                    disabled={isRefreshingSignups}
+                    className="text-xs font-bold bg-cyan-700 hover:bg-cyan-600 disabled:opacity-60 text-white px-3 py-2 rounded"
+                  >
+                    {isRefreshingSignups ? 'Refreshing...' : 'Refresh Signups'}
+                  </button>
                   {isReadOnly ? <span className="text-[11px] text-slate-400">Read-only view</span> : null}
                   {!isReadOnly ? (
                     <button
@@ -2011,6 +2146,75 @@ export default function RaidSignupsTab({
                     {' '}• showing <span className="text-amber-300 font-bold">{visibleGroupCount}</span> groups
                   </p>
 
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {['tank', 'healer', 'ranged', 'melee'].map(role => (
+                      <div key={`group-summary-${role}`} className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
+                        <div className="text-[10px] uppercase tracking-wider text-slate-500">{role === 'tank' ? 'Tanks' : role === 'healer' ? 'Healers' : role === 'ranged' ? 'Ranged' : 'Melee'}</div>
+                        <div className="mt-1 text-lg font-bold text-amber-300">{groupRoleSummary[role] || 0}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="rounded-lg border border-slate-800 bg-slate-900 p-3 space-y-3">
+                    {unassignedBenchCandidates.length > 0 ? (
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between gap-2">
+                          <p className="text-[11px] font-bold uppercase tracking-wider text-amber-300">Bench</p>
+                          <span className="text-[10px] text-slate-400">{unassignedBenchCandidates.length} players</span>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
+                          {unassignedBenchCandidates.map(candidate => {
+                            const candidateColor = resolveEntryNameColor(candidate);
+                            return (
+                              <div key={`bench-${candidate.discord_user_id || candidate.discord_username}`} className="flex items-center gap-2 rounded border border-amber-700 bg-amber-950/20 px-2 py-1.5 text-xs">
+                                <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
+                                <span className="truncate" style={{ color: candidateColor }}>{candidate.discord_username}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ) : null}
+
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-slate-300">Not assigned to group</p>
+                      <span className="text-[10px] text-slate-400">{unassignedSignupCandidates.length} players</span>
+                    </div>
+
+                    {unassignedSignupCandidates.length === 0 ? (
+                      <p className="text-xs text-slate-500">All available signups are already assigned to a group or bench.</p>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
+                        {unassignedSignupCandidates.map(candidate => {
+                          const candidateColor = resolveEntryNameColor(candidate);
+                          const normalizedStatus = String(candidate.status || '').trim().toLowerCase();
+                          const isTentative = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'tentative';
+                          const isLate = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'late';
+                          const isBench = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'bench';
+                          return (
+                            <div key={`unassigned-${candidate.discord_user_id || candidate.discord_username}`} className={`flex items-center gap-2 rounded border px-2 py-1.5 text-xs ${isTentative || isLate ? 'border-yellow-600 bg-yellow-950/20' : 'border-slate-700 bg-slate-950'}`}>
+                              <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
+                              <span className="truncate" style={{ color: candidateColor }}>{candidate.discord_username}</span>
+                              {isTentative ? <span className="text-yellow-300" title="Tentative player">⚠</span> : null}
+                              {isLate ? <span className="text-orange-300" title="Late player">⏱</span> : null}
+                              {!isReadOnly && !isBench ? (
+                                <button
+                                  type="button"
+                                  onClick={() => updateEntryStatus(candidate, 'bench')}
+                                  className="ml-auto text-amber-300 hover:text-amber-200"
+                                  title="Move to bench"
+                                  aria-label={`Move ${candidate.discord_username} to bench`}
+                                >
+                                  🪑
+                                </button>
+                              ) : null}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+
                   <label className="inline-flex items-center gap-2 text-xs text-slate-300">
                     <input
                       type="checkbox"
@@ -2021,6 +2225,17 @@ export default function RaidSignupsTab({
                     Make groups visible in public view
                     {isSavingPublicGroups ? <span className="text-cyan-300">(saving...)</span> : null}
                   </label>
+
+                  {!isReadOnly ? (
+                    <label className="inline-flex items-center gap-2 text-xs text-slate-300">
+                      <input
+                        type="checkbox"
+                        checked={!!echoTagAttendees}
+                        onChange={e => setEchoTagAttendees(e.target.checked)}
+                      />
+                      Tag Attendees/Bench
+                    </label>
+                  ) : null}
 
                   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
                   {Array.from({ length: visibleGroupCount }, (_, idx) => idx + 1).map(groupNumber => {
@@ -2056,9 +2271,10 @@ export default function RaidSignupsTab({
                             const isPickerOpen = openSlotPickerKey === row.localKey;
                             const isEditingNote = !!editingNoteByRow[row.localKey];
                             const hasAssignedPlayer = String(row.player_name || '').trim().length > 0;
+                            const isTentativeAssignment = String(selectedCandidate?.status || '').trim().toLowerCase() === 'tentative';
 
                             return (
-                              <div key={row.localKey} className="relative rounded-lg border border-slate-800 bg-slate-950 p-2 space-y-2">
+                              <div key={row.localKey} className={`relative rounded-lg border p-2 space-y-2 ${isTentativeAssignment ? 'border-yellow-600 bg-yellow-950/20' : 'border-slate-800 bg-slate-950'}`}>
                                 <div className="flex items-center gap-2 w-full min-w-0">
                                   <button
                                     type="button"
@@ -2068,7 +2284,10 @@ export default function RaidSignupsTab({
                                   >
                                     <span className="flex items-center gap-2 min-w-0">
                                       <img src={hasAssignedPlayer ? resolveEntryIcon(selectedCandidate || row) : UNKNOWN_ICON} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800 flex-shrink-0" />
-                                      <span className="truncate" style={{ color: selectedColor }}>{hasAssignedPlayer ? row.player_name : 'Open slot'}</span>
+                                      <span className="truncate flex items-center gap-1" style={{ color: selectedColor }}>
+                                        {isTentativeAssignment ? <span className="text-yellow-300" title="Tentative player">⚠</span> : null}
+                                        {hasAssignedPlayer ? row.player_name : 'Open slot'}
+                                      </span>
                                     </span>
                                     <span className="text-[10px] text-slate-400">▼</span>
                                   </button>

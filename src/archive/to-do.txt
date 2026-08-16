@@ -146,3 +146,9 @@
 - [x] WeakAura Repository: Build collapsible WeakAura tab for sharing raw WA strings (hidden string inputs with 1-click "Copy Code" buttons for standard users).
 - [X] Cheat Sheets Module: Build wireframe and import data for class/spec cheat sheets (based on Paladin Discord community spreadsheets).
 - [x] Recruitment Section: Add a public guild recruitment page outlining active class/spec needs.
+
+
+
+[x] Make recruitment focus use the 'edit mode' approach
+[x] Tactics tab currently only visible to officers?
+[ ] Show mine button doesn't work in officer roles tab

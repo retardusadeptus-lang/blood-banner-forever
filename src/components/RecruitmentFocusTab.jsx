@@ -129,6 +129,7 @@ export default function RecruitmentFocusTab({ isAuthenticated, specsFromDb, fetc
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState('');
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const specById = useMemo(() => {
     const map = new Map();
@@ -218,141 +219,168 @@ export default function RecruitmentFocusTab({ isAuthenticated, specsFromDb, fetc
     setSaveError('');
   };
 
-  if (!isAuthenticated) {
-    return (
-      <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 space-y-4">
-        <div>
-          <h2 className="text-xl font-bold text-slate-100">Recruitment Focus</h2>
-          <p className="text-sm text-slate-400 mt-1">Current class and spec targets for the guild.</p>
-        </div>
-        {isLoading ? <p className="text-sm text-slate-400">Loading recruitment focus...</p> : null}
-        {focusEntries.length === 0 && !isLoading ? <p className="text-sm text-slate-500">No active recruitment targets.</p> : null}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {focusEntries.filter((entry) => entry.specId).map((entry) => {
-            const spec = specById.get(entry.specId);
-            return (
-              <div key={entry.id} className="rounded-xl border border-slate-800 bg-slate-950 p-4 space-y-3">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3 min-w-0">
-                    <img src={getSpecIcon(spec)} alt="" className="w-12 h-12 rounded border border-slate-700" />
-                    <div className="min-w-0">
-                      <div className="text-sm font-bold truncate" style={{ color: getSpecColor(spec) }}>{spec?.spec || 'Open Recruitment'}</div>
-                    </div>
-                  </div>
-                  <div className="shrink-0 h-10 flex items-center text-4xl font-bold leading-none text-amber-300">x{entry.quantity}</div>
+  const handleEnterEditMode = () => {
+    setSaveError('');
+    setIsEditMode(true);
+  };
+
+  const handleExitEditMode = () => {
+    setFocusEntries(lastSavedFocusEntries);
+    setSaveError('');
+    setIsEditMode(false);
+  };
+
+  const renderReadOnlyCards = () => (
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      {focusEntries.filter((entry) => entry.specId).map((entry) => {
+        const spec = specById.get(entry.specId);
+        return (
+          <div key={entry.id} className="rounded-xl border border-slate-800 bg-slate-950 p-4 space-y-3">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3 min-w-0">
+                <img src={getSpecIcon(spec)} alt="" className="w-12 h-12 rounded border border-slate-700" />
+                <div className="min-w-0">
+                  <div className="text-sm font-bold truncate" style={{ color: getSpecColor(spec) }}>{spec?.spec || 'Open Recruitment'}</div>
                 </div>
-                {entry.publicNote ? <p className="text-sm text-slate-300">{entry.publicNote}</p> : null}
               </div>
-            );
-          })}
-        </div>
-      </section>
-    );
-  }
+              <div className="shrink-0 h-10 flex items-center text-4xl font-bold leading-none text-amber-300">x{entry.quantity}</div>
+            </div>
+            {entry.publicNote ? <p className="text-sm text-slate-300">{entry.publicNote}</p> : null}
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  const renderEditor = () => (
+    <div className="space-y-4">
+      {focusEntries.map((entry) => {
+        const spec = specById.get(entry.specId);
+        return (
+          <div key={entry.id} className="rounded-xl border border-slate-800 bg-slate-950 p-4 space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-[140px_120px_auto] gap-3 items-start">
+              <CustomDropdown
+                value={entry.specId}
+                options={specOptions}
+                onSelect={(nextValue) => updateEntry(entry.id, { specId: String(nextValue || '') })}
+                renderTrigger={(selected) => (
+                  <div className="flex items-center gap-2 min-w-0">
+                    <img src={selected?.icon || UNKNOWN_ICON} alt={selected?.label || 'Select spec'} className="w-8 h-8 rounded border border-slate-700" />
+                    <span className="truncate" style={{ color: selected?.color || '#e2e8f0' }}>{selected?.label || 'Select spec'}</span>
+                  </div>
+                )}
+                renderOption={(item, isSelected) => (
+                  <div className="flex items-center gap-2 min-w-0">
+                    <img src={item.icon || UNKNOWN_ICON} alt="" className="w-8 h-8 rounded border border-slate-700" />
+                    <span className="truncate" style={{ color: item.color || '#e2e8f0' }}>{item.label}</span>
+                    {isSelected ? <span className="ml-auto text-[10px] text-cyan-400">Selected</span> : null}
+                  </div>
+                )}
+              />
+
+              <label className="flex items-center gap-2 rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-300">
+                <span className="text-xs uppercase tracking-wider text-slate-500">Need</span>
+                <input
+                  type="number"
+                  min="1"
+                  max="99"
+                  value={entry.quantity}
+                  onChange={(event) => updateEntry(entry.id, { quantity: Math.max(1, Math.min(99, Number(event.target.value) || 1)) })}
+                  className="w-16 bg-transparent text-slate-100 focus:outline-none"
+                />
+              </label>
+
+              <div className="flex justify-end">
+                <button type="button" onClick={() => removeEntry(entry.id)} className="text-rose-400 hover:text-rose-300 text-lg leading-none" title="Remove focus">-</button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Public Note</label>
+                <textarea
+                  value={entry.publicNote}
+                  onChange={(event) => updateEntry(entry.id, { publicNote: event.target.value.slice(0, 500) })}
+                  className="w-full min-h-[90px] rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:outline-none"
+                  placeholder="Visible to everyone. Describe what you need from this role."
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Officer Note</label>
+                <textarea
+                  value={entry.officerNote}
+                  onChange={(event) => updateEntry(entry.id, { officerNote: event.target.value.slice(0, 500) })}
+                  className="w-full min-h-[90px] rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:outline-none"
+                  placeholder="Officer-only context: urgency, bench coverage, trial preference, etc."
+                />
+              </div>
+            </div>
+
+            {spec ? (
+              <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-slate-500">
+                <img src={getSpecIcon(spec)} alt="" className="w-8 h-8 rounded border border-slate-700" />
+                <span style={{ color: getSpecColor(spec) }}>{spec.spec}</span>
+              </div>
+            ) : null}
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  const showReadOnlyState = !isAuthenticated || !isEditMode;
 
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-xl font-bold text-slate-100">Recruitment Focus</h2>
-          <p className="text-sm text-slate-400 mt-1">Define the public recruitment targets and keep officer-only notes separately.</p>
+          <p className="text-sm text-slate-400 mt-1">
+            {showReadOnlyState ? 'Current class and spec targets for the guild.' : 'Define the public recruitment targets and keep officer-only notes separately.'}
+          </p>
         </div>
-        <div className="flex items-center gap-2">
-          <button type="button" onClick={addEntry} className="px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-cyan-700 hover:bg-cyan-600 text-white">Add Focus</button>
-          <button
-            type="button"
-            onClick={saveFocus}
-            disabled={!hasUnsavedChanges || isSaving}
-            className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${hasUnsavedChanges ? 'bg-amber-600 hover:bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
-          >
-            {isSaving ? 'Saving...' : hasUnsavedChanges ? 'Save Changes' : 'No Changes'}
+        {isAuthenticated && !isEditMode ? (
+          <button type="button" onClick={handleEnterEditMode} className="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition bg-amber-600 hover:bg-amber-500 text-slate-950">
+            Enter Edit Mode
           </button>
-        </div>
+        ) : null}
+        {isAuthenticated && isEditMode ? (
+          <div className="flex items-center gap-2">
+            <button type="button" onClick={addEntry} className="px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-cyan-700 hover:bg-cyan-600 text-white">Add Focus</button>
+            <button
+              type="button"
+              onClick={saveFocus}
+              disabled={!hasUnsavedChanges || isSaving}
+              className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${hasUnsavedChanges ? 'bg-amber-600 hover:bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
+            >
+              {isSaving ? 'Saving...' : hasUnsavedChanges ? 'Save Changes' : 'No Changes'}
+            </button>
+            <button type="button" onClick={handleExitEditMode} className="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition bg-slate-800 hover:bg-slate-700 text-slate-100">
+              Exit Edit Mode
+            </button>
+          </div>
+        ) : null}
       </div>
 
       {isLoading ? <p className="text-sm text-slate-400">Loading recruitment focus...</p> : null}
       {saveError ? <p className="text-xs text-rose-400">{saveError}</p> : null}
 
-      {focusEntries.length === 0 && !isLoading ? (
-        <div className="rounded-xl border border-dashed border-slate-700 bg-slate-950/40 p-8 text-center">
-          <p className="text-sm text-slate-400">No recruitment focus entries yet.</p>
-          <p className="mt-1 text-xs text-slate-500">Add a focus entry to publish current hiring priorities.</p>
-        </div>
-      ) : null}
-
-      <div className="space-y-4">
-        {focusEntries.map((entry) => {
-          const spec = specById.get(entry.specId);
-          return (
-            <div key={entry.id} className="rounded-xl border border-slate-800 bg-slate-950 p-4 space-y-3">
-              <div className="grid grid-cols-1 md:grid-cols-[140px_120px_auto] gap-3 items-start">
-                <CustomDropdown
-                  value={entry.specId}
-                  options={specOptions}
-                  onSelect={(nextValue) => updateEntry(entry.id, { specId: String(nextValue || '') })}
-                  renderTrigger={(selected) => (
-                    <div className="flex items-center gap-2 min-w-0">
-                      <img src={selected?.icon || UNKNOWN_ICON} alt={selected?.label || 'Select spec'} className="w-8 h-8 rounded border border-slate-700" />
-                      <span className="truncate" style={{ color: selected?.color || '#e2e8f0' }}>{selected?.label || 'Select spec'}</span>
-                    </div>
-                  )}
-                  renderOption={(item, isSelected) => (
-                    <div className="flex items-center gap-2 min-w-0">
-                      <img src={item.icon || UNKNOWN_ICON} alt="" className="w-8 h-8 rounded border border-slate-700" />
-                      <span className="truncate" style={{ color: item.color || '#e2e8f0' }}>{item.label}</span>
-                      {isSelected ? <span className="ml-auto text-[10px] text-cyan-400">Selected</span> : null}
-                    </div>
-                  )}
-                />
-
-                <label className="flex items-center gap-2 rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-300">
-                  <span className="text-xs uppercase tracking-wider text-slate-500">Need</span>
-                  <input
-                    type="number"
-                    min="1"
-                    max="99"
-                    value={entry.quantity}
-                    onChange={(event) => updateEntry(entry.id, { quantity: Math.max(1, Math.min(99, Number(event.target.value) || 1)) })}
-                    className="w-16 bg-transparent text-slate-100 focus:outline-none"
-                  />
-                </label>
-
-                <div className="flex justify-end">
-                  <button type="button" onClick={() => removeEntry(entry.id)} className="text-rose-400 hover:text-rose-300 text-lg leading-none" title="Remove focus">-</button>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Public Note</label>
-                  <textarea
-                    value={entry.publicNote}
-                    onChange={(event) => updateEntry(entry.id, { publicNote: event.target.value.slice(0, 500) })}
-                    className="w-full min-h-[90px] rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:outline-none"
-                    placeholder="Visible to everyone. Describe what you need from this role."
-                  />
-                </div>
-                <div>
-                  <label className="block text-[10px] uppercase tracking-wider text-slate-500 mb-1">Officer Note</label>
-                  <textarea
-                    value={entry.officerNote}
-                    onChange={(event) => updateEntry(entry.id, { officerNote: event.target.value.slice(0, 500) })}
-                    className="w-full min-h-[90px] rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:outline-none"
-                    placeholder="Officer-only context: urgency, bench coverage, trial preference, etc."
-                  />
-                </div>
-              </div>
-
-              {spec ? (
-                <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-slate-500">
-                  <img src={getSpecIcon(spec)} alt="" className="w-8 h-8 rounded border border-slate-700" />
-                  <span style={{ color: getSpecColor(spec) }}>{spec.spec}</span>
-                </div>
-              ) : null}
+      {showReadOnlyState ? (
+        <>
+          {focusEntries.length === 0 && !isLoading ? <p className="text-sm text-slate-500">No active recruitment targets.</p> : null}
+          {renderReadOnlyCards()}
+        </>
+      ) : (
+        <>
+          {focusEntries.length === 0 && !isLoading ? (
+            <div className="rounded-xl border border-dashed border-slate-700 bg-slate-950/40 p-8 text-center">
+              <p className="text-sm text-slate-400">No recruitment focus entries yet.</p>
+              <p className="mt-1 text-xs text-slate-500">Add a focus entry to publish current hiring priorities.</p>
             </div>
-          );
-        })}
-      </div>
+          ) : null}
+          {renderEditor()}
+        </>
+      )}
     </section>
   );
 }

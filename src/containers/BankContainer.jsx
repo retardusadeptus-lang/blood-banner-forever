@@ -36,6 +36,7 @@ export default function BankContainer({
     handleBulkResolveBankRequests,
     archiveBankRequests,
     restoreArchivedBankRequests,
+    deleteArchivedBankRequests,
     visibleBankRequests,
     archivedBankRequests,
     archivedRequestIds,

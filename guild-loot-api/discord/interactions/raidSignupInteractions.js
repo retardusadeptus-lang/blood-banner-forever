@@ -6,7 +6,13 @@ const {
 } = require('./raidSignupHandlers');
 const { buildMainSignupComponents } = require('./raidSignupComponents');
 const { buildSignupEmbed, refreshEventMessage } = require('./raidSignupEmbed');
-const { getUserPreferredCharacter } = require('../utils/raidSignupStore');
+const {
+  getUserPreferredCharacter,
+  getUserPreferredSpec,
+  getAllowedSpecsForEvent,
+  upsertDraft,
+  upsertUserPreferredSpec
+} = require('../utils/raidSignupStore');
 
 function buildCharacterNameModal(eventId, preferredCharacter = '') {
   const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
@@ -23,6 +29,23 @@ function buildCharacterNameModal(eventId, preferredCharacter = '') {
   return new ModalBuilder()
     .setCustomId(`rsu:character:${eventId}`)
     .setTitle('Set character name')
+    .addComponents(row);
+}
+
+function buildSpecSearchModal(eventId, specs = []) {
+  const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
+
+  const specInput = new TextInputBuilder()
+    .setCustomId('spec_search')
+    .setLabel('Search specs')
+    .setPlaceholder('Type class/spec name, e.g. Warrior Arms or Holy')
+    .setRequired(true)
+    .setStyle(TextInputStyle.Short);
+
+  const row = new ActionRowBuilder().addComponents(specInput);
+  return new ModalBuilder()
+    .setCustomId(`rsu:specsearch:${eventId}`)
+    .setTitle('Find your spec')
     .addComponents(row);
 }
 
@@ -54,6 +77,12 @@ async function handleRaidSignupComponent(interaction, { db }) {
     return true;
   }
 
+  if (interaction.isButton() && type === 'specsearch') {
+    const specs = getAllowedSpecsForEvent(db, eventId);
+    await interaction.showModal(buildSpecSearchModal(eventId, specs));
+    return true;
+  }
+
   if (interaction.isButton() && type === 'status') {
     const status = parts[3] || '';
     return handleStatusButton(interaction, db, eventId, status);
@@ -61,6 +90,39 @@ async function handleRaidSignupComponent(interaction, { db }) {
 
   if (interaction.isModalSubmit() && type === 'character') {
     return handleCharacterNameSubmit(interaction, db, eventId);
+  }
+
+  if (interaction.isModalSubmit() && type === 'specsearch') {
+    const query = String(interaction.fields.getTextInputValue('spec_search') || '').trim();
+    if (!query) {
+      await interaction.reply({ content: 'Search cannot be empty.', ephemeral: true });
+      return true;
+    }
+
+    const specs = getAllowedSpecsForEvent(db, eventId);
+    const normalizedQuery = query.toLowerCase();
+    const match = specs.find(spec => {
+      const label = `${spec.class} ${spec.spec}`.toLowerCase();
+      return label.includes(normalizedQuery) || String(spec.spec || '').toLowerCase().includes(normalizedQuery) || String(spec.class || '').toLowerCase().includes(normalizedQuery);
+    }) || specs.find(spec => {
+      const label = `${spec.class} ${spec.spec}`.toLowerCase();
+      return label.startsWith(normalizedQuery);
+    });
+
+    if (!match) {
+      await interaction.reply({ content: `No spec matched “${query}”. Try a class name or spec name.`, ephemeral: true });
+      return true;
+    }
+
+    await interaction.reply({
+      content: `Selected ${match.class} - ${match.spec}.`,
+      ephemeral: true
+    });
+
+    upsertDraft(db, eventId, interaction.user.id, Number(match.id));
+    upsertUserPreferredSpec(db, interaction.user.id, Number(match.id));
+    await refreshEventMessage(db, interaction.client, eventId, interaction.user.id);
+    return true;
   }
 
   return false;
@@ -71,5 +133,6 @@ module.exports = {
   buildSignupEmbed,
   buildMainSignupComponents,
   refreshEventMessage,
-  buildCharacterNameModal
+  buildCharacterNameModal,
+  buildSpecSearchModal
 };

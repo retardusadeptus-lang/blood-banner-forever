@@ -532,6 +532,7 @@ export default function DashboardMainContent({ viewModel }) {
           getSpecById={getSpecById}
           specsByName={specsByName}
           getDisplayFromId={getDisplayFromId}
+          myPlayerId={globalMyPlayerId}
           selectedMyPlayerName={selectedMyPlayerName}
           rosterClaims={rosterClaims}
           handleUnclaimClaim={handleUnclaimClaim}

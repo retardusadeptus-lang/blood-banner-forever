@@ -569,12 +569,42 @@ function ensureRaidSignupTables(db) {
     )
   `).run();
 
-  const userPrefColumns = db.prepare("PRAGMA table_info('raid_signup_user_prefs')").all();
+  let userPrefColumns = db.prepare("PRAGMA table_info('raid_signup_user_prefs')").all();
   if (!userPrefColumns.some(col => col.name === 'class_name')) {
     db.exec("ALTER TABLE raid_signup_user_prefs ADD COLUMN class_name TEXT DEFAULT ''");
   }
   if (!userPrefColumns.some(col => col.name === 'character_name')) {
     db.exec("ALTER TABLE raid_signup_user_prefs ADD COLUMN character_name TEXT DEFAULT ''");
+  }
+
+  userPrefColumns = db.prepare("PRAGMA table_info('raid_signup_user_prefs')").all();
+  const specIdColumn = userPrefColumns.find(col => col.name === 'spec_id');
+  if (specIdColumn?.notnull) {
+    db.transaction(() => {
+      db.exec(`
+        CREATE TABLE raid_signup_user_prefs_new (
+          discord_user_id TEXT PRIMARY KEY,
+          class_name TEXT NOT NULL DEFAULT '',
+          character_name TEXT NOT NULL DEFAULT '',
+          spec_id INTEGER REFERENCES specs(id) ON DELETE CASCADE,
+          updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
+
+        INSERT INTO raid_signup_user_prefs_new (
+          discord_user_id, class_name, character_name, spec_id, updated_at
+        )
+        SELECT
+          discord_user_id,
+          COALESCE(class_name, ''),
+          COALESCE(character_name, ''),
+          spec_id,
+          updated_at
+        FROM raid_signup_user_prefs;
+
+        DROP TABLE raid_signup_user_prefs;
+        ALTER TABLE raid_signup_user_prefs_new RENAME TO raid_signup_user_prefs;
+      `);
+    })();
   }
 
   db.prepare(`

@@ -10,6 +10,7 @@ export default function AdminContainer({
   getSpecById,
   specsByName,
   getDisplayFromId,
+  myPlayerId,
   selectedMyPlayerName,
   rosterClaims,
   handleUnclaimClaim,
@@ -53,7 +54,7 @@ export default function AdminContainer({
             bnetAccessRolesDirty={bnetAccessRolesDirty}
             onSetBnetAccessRole={setBnetAccessRoleForUser}
             onRemoveBnetAccessRole={removeBnetAccessRoleForUser}
-            myPlayerId={selectedMyPlayerName}
+            myPlayerId={myPlayerId}
             hasUnsavedChanges={officerRolesDirty}
             onSaveChanges={handleSaveOfficerRoles}
             isSaving={isSavingOfficerRoles}

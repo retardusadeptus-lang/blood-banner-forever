@@ -149,11 +149,25 @@ function lookupDiscordIconEntryByName(name) {
     .replace(/[^a-z0-9]+/g, '')
     .replace(/^guild_/, '');
 
+  const directMatch = DISCORD_ICON_TAGS.find(icon => {
+    const candidate = String(icon?.name || '').trim();
+    if (!candidate) return false;
+    const candidateNormalized = candidate.toLowerCase().replace(/[^a-z0-9]+/g, '').replace(/^guild_/, '');
+    return candidateNormalized === normalized;
+  });
+
+  if (directMatch) return directMatch;
+
   return DISCORD_ICON_TAGS.find(icon => {
     const candidate = String(icon?.name || '').trim();
     if (!candidate) return false;
     const candidateNormalized = candidate.toLowerCase().replace(/[^a-z0-9]+/g, '').replace(/^guild_/, '');
-    return candidateNormalized === normalized || candidateNormalized.includes(normalized) || normalized.includes(candidateNormalized);
+
+    if (candidateNormalized === normalized) return true;
+    if (candidateNormalized.length <= normalized.length + 3 && (candidateNormalized.includes(normalized) || normalized.includes(candidateNormalized))) {
+      return true;
+    }
+    return false;
   }) || null;
 }
 
@@ -363,6 +377,7 @@ module.exports = {
   resolveNamedEmoji,
   resolveRoleEmojiToken,
   resolveClassEmojiToken,
+  resolveClassEmojiData,
   getSpecIconNames,
   resolveSpecEmojiData,
   resolveSpecEmojiToken

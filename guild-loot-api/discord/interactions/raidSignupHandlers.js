@@ -26,11 +26,16 @@ async function handleSpecSelect(interaction, db, eventId) {
     return true;
   }
 
-  upsertDraft(db, eventId, interaction.user.id, specId);
-  upsertUserPreferredSpec(db, interaction.user.id, specId);
+  try {
+    await interaction.deferUpdate();
 
-  await refreshEventMessage(db, interaction.client, eventId);
-  await interaction.deferUpdate();
+    upsertDraft(db, eventId, interaction.user.id, specId);
+    upsertUserPreferredSpec(db, interaction.user.id, specId);
+
+    await refreshEventMessage(db, interaction.client, eventId, interaction.user.id);
+  } catch (error) {
+    console.error('[RaidSignup] Failed to update spec selection:', error);
+  }
 
   return true;
 }
@@ -48,32 +53,46 @@ async function handleClassFilterSelect(interaction, db, eventId) {
     return true;
   }
 
-  upsertUserPreferredClass(db, interaction.user.id, className);
+  try {
+    const classSpecs = getAllowedSpecsByClass(db, eventId, className);
+    if (!classSpecs.length) {
+      await interaction.reply({ content: `No specs found for ${className}.`, ephemeral: true });
+      return true;
+    }
 
-  const classSpecs = getAllowedSpecsByClass(db, eventId, className);
-  if (!classSpecs.length) {
-    await interaction.reply({ content: `No specs found for ${className}.`, ephemeral: true });
-    return true;
+    const currentDraft = getDraft(db, eventId, interaction.user.id);
+    const currentDraftSpec = Number(currentDraft?.spec_id || 0);
+    const preferredSpec = Number(getUserPreferredSpec(db, interaction.user.id)?.spec_id || 0);
+
+    const hasDraftInClass = classSpecs.some(spec => Number(spec.id) === currentDraftSpec);
+    const hasPreferredInClass = classSpecs.some(spec => Number(spec.id) === preferredSpec);
+    const nextSpecId = hasDraftInClass
+      ? currentDraftSpec
+      : (hasPreferredInClass ? preferredSpec : Number(classSpecs[0].id));
+
+    upsertDraft(db, eventId, interaction.user.id, nextSpecId);
+    upsertUserPreferredSpec(db, interaction.user.id, nextSpecId);
+    upsertUserPreferredClass(db, interaction.user.id, className, nextSpecId);
+
+    const selectedSpec = classSpecs.find(spec => Number(spec.id) === Number(nextSpecId));
+    await interaction.deferUpdate();
+    interaction.deferred = true;
+    await refreshEventMessage(db, interaction.client, eventId, interaction.user.id);
+    if (selectedSpec) {
+      console.log(`[RaidSignup] Updated class for user ${interaction.user.id} to ${className}; spec set to ${selectedSpec.spec}.`);
+    }
+  } catch (error) {
+    console.error('[RaidSignup] Failed to handle class selection:', error);
+    try {
+      const wasAcknowledged = Boolean(interaction.deferred || interaction.replied || interaction.isDeferred?.());
+      if (!wasAcknowledged) {
+        await interaction.reply({ content: 'There was a problem updating your class selection.', ephemeral: true });
+      }
+    } catch (replyError) {
+      console.error('[RaidSignup] Failed to send class selection error reply:', replyError);
+    }
   }
 
-  const currentDraft = getDraft(db, eventId, interaction.user.id);
-  const currentDraftSpec = Number(currentDraft?.spec_id || 0);
-  const preferredSpec = Number(getUserPreferredSpec(db, interaction.user.id)?.spec_id || 0);
-
-  const hasDraftInClass = classSpecs.some(spec => Number(spec.id) === currentDraftSpec);
-  const hasPreferredInClass = classSpecs.some(spec => Number(spec.id) === preferredSpec);
-  const nextSpecId = hasDraftInClass
-    ? currentDraftSpec
-    : (hasPreferredInClass ? preferredSpec : Number(classSpecs[0].id));
-
-  upsertDraft(db, eventId, interaction.user.id, nextSpecId);
-  upsertUserPreferredSpec(db, interaction.user.id, nextSpecId);
-
-  const selectedSpec = classSpecs.find(spec => Number(spec.id) === Number(nextSpecId));
-  await interaction.reply({
-    content: `Class set to ${className}. Draft spec is now ${selectedSpec?.spec || 'selected'}.`,
-    ephemeral: true
-  });
   return true;
 }
 
@@ -132,7 +151,7 @@ async function handleStatusButton(interaction, db, eventId, status) {
   }
 
   await interaction.deferUpdate();
-  await refreshEventMessage(db, interaction.client, eventId);
+  await refreshEventMessage(db, interaction.client, eventId, interaction.user.id);
 
   return true;
 }
@@ -151,17 +170,13 @@ async function handleCharacterNameSubmit(interaction, db, eventId) {
   }
 
   upsertUserPreferredCharacter(db, interaction.user.id, characterName);
-  const className = String(getUserPreferredClass(db, interaction.user.id)?.class_name || '').trim();
-  if (className) {
-    upsertUserPreferredClass(db, interaction.user.id, className);
-  }
 
   await interaction.reply({
     content: `Saved character name as ${characterName}.`,
     ephemeral: true
   });
 
-  await refreshEventMessage(db, interaction.client, eventId);
+  await refreshEventMessage(db, interaction.client, eventId, interaction.user.id);
   return true;
 }
 

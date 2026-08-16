@@ -32,7 +32,7 @@ function buildRaidSignupEventRoutes({ db }) {
       (
         SELECT COUNT(*)
         FROM raid_signup_entries ae
-        WHERE ae.event_id = e.id AND lower(ae.status) = 'absent'
+        WHERE ae.event_id = e.id AND lower(ae.status) IN ('absent', 'absence')
       ) AS absent_count,
       (
         SELECT COUNT(*)
@@ -144,9 +144,55 @@ function buildRaidSignupEventRoutes({ db }) {
       const event = getEventById(db, eventId);
       if (!event) return res.status(404).json({ error: 'Event not found' });
 
-      const status = String(req.body?.status || '').trim().toLowerCase();
-      const allowed = new Set(['open', 'locked', 'closed', 'archived']);
-      if (!allowed.has(status)) {
+      const bodyStatus = String(req.body?.status || '').trim().toLowerCase();
+      const hasPlayerTarget = req.body && (req.body.discord_user_id !== undefined || req.body.discord_username !== undefined);
+
+      if (hasPlayerTarget) {
+        const allowed = new Set(['signup', 'bench', 'late', 'tentative', 'absence', 'absent']);
+        if (!allowed.has(bodyStatus)) {
+          return res.status(400).json({ error: 'Invalid signup status. Use signup, late, tentative, bench, absence, or absent.' });
+        }
+
+        const discordUserId = req.body?.discord_user_id ? String(req.body.discord_user_id).trim() : '';
+        const discordUsername = req.body?.discord_username ? String(req.body.discord_username).trim() : '';
+
+        let entry = null;
+        if (discordUserId) {
+          entry = db.prepare(`
+            SELECT *
+            FROM raid_signup_entries
+            WHERE event_id = ? AND discord_user_id = ?
+            LIMIT 1
+          `).get(eventId, discordUserId);
+        }
+        if (!entry && discordUsername) {
+          entry = db.prepare(`
+            SELECT *
+            FROM raid_signup_entries
+            WHERE event_id = ? AND discord_username = ?
+            LIMIT 1
+          `).get(eventId, discordUsername);
+        }
+        if (!entry) {
+          return res.status(404).json({ error: 'Signup entry not found for this player.' });
+        }
+
+        db.prepare(`
+          UPDATE raid_signup_entries
+          SET status = ?, updated_at = CURRENT_TIMESTAMP
+          WHERE id = ?
+        `).run(bodyStatus, entry.id);
+
+        const client = getDiscordClient();
+        if (client) {
+          await refreshEventMessage(db, client, eventId);
+        }
+
+        return res.json({ ok: true, status: bodyStatus, entry: { ...entry, status: bodyStatus } });
+      }
+
+      const allowedEventStatus = new Set(['open', 'locked', 'closed', 'archived']);
+      if (!allowedEventStatus.has(bodyStatus)) {
         return res.status(400).json({ error: 'Invalid status. Use open, locked, closed, or archived.' });
       }
 
@@ -154,14 +200,14 @@ function buildRaidSignupEventRoutes({ db }) {
         UPDATE raid_signup_events
         SET status = ?, updated_at = CURRENT_TIMESTAMP
         WHERE id = ?
-      `).run(status, eventId);
+      `).run(bodyStatus, eventId);
 
       const client = getDiscordClient();
       if (client) {
         await refreshEventMessage(db, client, eventId);
       }
 
-      res.json({ ok: true, status });
+      res.json({ ok: true, status: bodyStatus });
     } catch (e) {
       res.status(500).json({ error: e.message });
     }

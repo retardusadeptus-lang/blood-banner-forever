@@ -37,7 +37,7 @@ async function postEvent(interaction, db) {
 
   const message = await interaction.channel.send({
     embeds: [embed],
-    components: buildMainSignupComponents(event.id, classes, specs, selectedClass, false)
+    components: buildMainSignupComponents(event.id, classes, specs, selectedClass, false, '', null, interaction.client || interaction.guild || null)
   });
 
   db.prepare(`
