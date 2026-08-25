@@ -65,7 +65,7 @@
 - [x] Absences Tab: Add dedicated tab to track declared member absences.
 - [x] Raid Calendar: Build interactive monthly calendar showing raids, absences, guild birthdays, and community events.
 - [ ] Signups Tracking: Add quick-filter toggle: "Who is not signed up?"
-- [ ] Alt Handling: Allow renaming/custom character entry during signups and link attendance back to main Battle.net ID.
+- [x] Alt Handling: Allow renaming/custom character entry during signups and link attendance back to main Battle.net ID.
 - [x] Timezones: Fix timestamp/time offset bugs on scheduled events.
 
 ### Raid Assignments
@@ -99,11 +99,11 @@
 - [ ] WeakAura Assignment Exporter:
   - Build JSON / Angry Assignments string exporter on the site for in-game copy/pasting.
   - Write companion Lua WeakAura with embedded JSON parser to render dynamic text on-screen based on logged-in character name.
-- [ ] Addon Data Exchange:
-  - Fix gbexport failure bug.
-  - Fix missing sub-types on uploads (check PC vs. laptop addon version parity).
-  - Add feature to site/addon to extract full in-game Guild Roster alongside guild ranks.
-  - Add request approval & autotrade import payloads from site to addon.
+- [x] Addon Data Exchange:
+  - [x] Fix gbexport failure bug.
+  - [ ] Fix missing sub-types on uploads (check PC vs. laptop addon version parity).
+  - [ ] Add feature to site/addon to extract full in-game Guild Roster alongside guild ranks.
+  - [?] Add request approval & autotrade import payloads from site to addon.
 
 ### Items & Data Management
 - [x] Item ID Repair: Run mass item ID update script with Ghab (comparing Wowhead scraped data vs. background DB). Fix missing/wrong item IDs.
@@ -151,4 +151,19 @@
 
 [x] Make recruitment focus use the 'edit mode' approach
 [x] Tactics tab currently only visible to officers?
-[ ] Show mine button doesn't work in officer roles tab
+[x] Show mine button doesn't work in officer roles tab
+[ ] Fix ordering in raid assignemtns tab
+[ ] Allow users to apply their own boss filters
+[ ] Add a way to remove people from bench
+[ ] Fix Weakauras tab not saving
+[ ] Verify data in cheat sheets tab
+[ ] Finish Site Instructions tab
+[ ] Redevelop the current raid roster workflow
+[ ] Add Discord Login
+[ ] Add Ability to approve/reject/delete applications
+[ ] Change recruitment focus notes to show officer notes when logged in as officer
+[ ] Make Calendar tab public
+[ ] Finish Warcraftlogs API integration
+[ ] Fix wipefest tab not saving
+[ ] Depracate & remove officer login - now tied to battlenet
+[ ] Is there a way to proxy icons for Serbs instead of wowhead?
