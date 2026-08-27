@@ -177,11 +177,15 @@ function buildRaidSignupEventRoutes({ db }) {
           return res.status(404).json({ error: 'Signup entry not found for this player.' });
         }
 
+        const note = req.body?.note !== undefined ? String(req.body.note || '').trim() : undefined;
+
         db.prepare(`
           UPDATE raid_signup_entries
-          SET status = ?, updated_at = CURRENT_TIMESTAMP
+          SET status = ?,
+              note = COALESCE(?, note),
+              updated_at = CURRENT_TIMESTAMP
           WHERE id = ?
-        `).run(bodyStatus, entry.id);
+        `).run(bodyStatus, note === undefined ? null : note, entry.id);
 
         const client = getDiscordClient();
         if (client) {

@@ -200,6 +200,15 @@ function getAllowedSpecsByClass(db, eventId, className) {
 }
 
 function getEventClassFilter(db, eventId) {
+  const tableExists = db.prepare(`
+    SELECT 1
+    FROM sqlite_master
+    WHERE type = 'table' AND name = 'raid_signup_event_filters'
+    LIMIT 1
+  `).get();
+
+  if (!tableExists) return null;
+
   return db.prepare(`
     SELECT selected_class
     FROM raid_signup_event_filters
@@ -209,6 +218,15 @@ function getEventClassFilter(db, eventId) {
 }
 
 function setEventClassFilter(db, eventId, selectedClass) {
+  const tableExists = db.prepare(`
+    SELECT 1
+    FROM sqlite_master
+    WHERE type = 'table' AND name = 'raid_signup_event_filters'
+    LIMIT 1
+  `).get();
+
+  if (!tableExists) return;
+
   db.prepare(`
     INSERT INTO raid_signup_event_filters (event_id, selected_class, updated_at)
     VALUES (?, ?, CURRENT_TIMESTAMP)
@@ -341,6 +359,9 @@ function upsertSignupEntry(db, eventId, discordUserId, discordUsername, status, 
 }
 
 function listEntriesForEvent(db, eventId) {
+  const entryColumns = db.prepare("PRAGMA table_info('raid_signup_entries')").all();
+  const hasNoteColumn = entryColumns.some(column => column.name === 'note');
+
   const rows = db.prepare(`
     SELECT
       e.id,
@@ -350,6 +371,7 @@ function listEntriesForEvent(db, eventId) {
       e.status,
       e.spec_id,
       e.role_bucket,
+      ${hasNoteColumn ? 'e.note,' : "'' AS note,"}
       e.updated_at,
       s.class AS spec_class,
       s.spec AS spec_name,

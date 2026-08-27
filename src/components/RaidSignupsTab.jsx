@@ -1204,7 +1204,7 @@ export default function RaidSignupsTab({
     setGroupRows(prev => prev.map(row => (row.localKey === rowKey ? { ...row, ...patch } : row)));
   };
 
-  const updateEntryStatus = async (entry, nextStatus) => {
+  const updateEntryStatus = async (entry, nextStatus, noteOverride = undefined) => {
     if (!selectedEventId || !entry) return;
     const normalizedStatus = String(nextStatus || '').trim().toLowerCase();
     if (!['signup', 'late', 'tentative', 'bench', 'absent'].includes(normalizedStatus)) return;
@@ -1218,7 +1218,14 @@ export default function RaidSignupsTab({
         return;
       }
 
-      await putData(`raid-signup-events/${selectedEventId}/status`, { status: normalizedStatus, discord_user_id: current.discord_user_id || null, discord_username: current.discord_username || entry.discord_username || '' });
+      const payload = {
+        status: normalizedStatus,
+        discord_user_id: current.discord_user_id || null,
+        discord_username: current.discord_username || entry.discord_username || ''
+      };
+      if (noteOverride !== undefined) payload.note = String(noteOverride || '').trim();
+
+      await putData(`raid-signup-events/${selectedEventId}/status`, payload);
       const updatedEvent = await fetchData(`raid-signup-events/${selectedEventId}`);
       setSelectedEventDetails(updatedEvent || null);
       setEvents(prev => prev.map(event => String(event.id) === String(selectedEventId) ? { ...event, ...updatedEvent } : event));
@@ -1264,6 +1271,18 @@ export default function RaidSignupsTab({
     setIsEventEditDirty(true);
     setEventEditDraft(prev => ({ ...prev, public_groups: !!nextValue }));
   };
+
+  const [benchNoteDrafts, setBenchNoteDrafts] = useState({});
+
+  useEffect(() => {
+    if (!selectedEventDetails?.entries) return;
+    const nextDrafts = {};
+    for (const entry of selectedEventDetails.entries) {
+      const key = String(entry.discord_user_id || entry.discord_username || '');
+      if (key) nextDrafts[key] = String(entry.note || '');
+    }
+    setBenchNoteDrafts(prev => ({ ...prev, ...nextDrafts }));
+  }, [selectedEventDetails]);
 
   const setEventStatus = async (status, confirmMessage) => {
     if (!selectedEventId) return;
@@ -1955,8 +1974,7 @@ export default function RaidSignupsTab({
           )}
 
           {activeRaidSection === 'calendar' && (
-            isAuthenticated ? (
-              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                   <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Officer Scheduling Calendar</h3>
                   <div className="flex items-center gap-2 text-[11px] text-slate-400">
@@ -2072,11 +2090,6 @@ export default function RaidSignupsTab({
                   )}
                 </div>
               </div>
-            ) : (
-              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
-                <p className="text-sm text-slate-300">Officer login required to view the scheduling calendar.</p>
-              </div>
-            )
           )}
 
           {activeRaidSection === 'group-config' && (
@@ -2165,10 +2178,38 @@ export default function RaidSignupsTab({
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
                           {unassignedBenchCandidates.map(candidate => {
                             const candidateColor = resolveEntryNameColor(candidate);
+                            const key = String(candidate.discord_user_id || candidate.discord_username || '');
+                            const currentBenchNote = String(benchNoteDrafts[key] ?? candidate.note ?? '');
                             return (
-                              <div key={`bench-${candidate.discord_user_id || candidate.discord_username}`} className="flex items-center gap-2 rounded border border-amber-700 bg-amber-950/20 px-2 py-1.5 text-xs">
-                                <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
-                                <span className="truncate" style={{ color: candidateColor }}>{candidate.discord_username}</span>
+                              <div key={`bench-${candidate.discord_user_id || candidate.discord_username}`} className="rounded border border-amber-700 bg-amber-950/20 p-2 text-xs space-y-2">
+                                <div className="flex items-center gap-2">
+                                  <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
+                                  <span className="truncate flex-1" style={{ color: candidateColor }}>{candidate.discord_username}</span>
+                                  {!isReadOnly ? (
+                                    <button
+                                      type="button"
+                                      onClick={() => updateEntryStatus(candidate, 'signup')}
+                                      className="text-[10px] font-bold text-amber-200 hover:text-amber-100"
+                                      title="Remove from bench"
+                                    >
+                                      Remove
+                                    </button>
+                                  ) : null}
+                                </div>
+                                {!isReadOnly ? (
+                                  <input
+                                    type="text"
+                                    value={currentBenchNote}
+                                    onChange={event => {
+                                      const nextValue = event.target.value;
+                                      setBenchNoteDrafts(prev => ({ ...prev, [key]: nextValue }));
+                                    }}
+                                    onBlur={() => updateEntryStatus(candidate, 'bench', currentBenchNote)}
+                                    placeholder="Bench note"
+                                    className="w-full bg-slate-950 text-slate-200 border border-amber-700/50 rounded px-2 py-1 text-[11px] focus:outline-none"
+                                  />
+                                ) : null}
+                                {candidate.note && !isReadOnly ? <div className="text-[10px] text-amber-200">{candidate.note}</div> : null}
                               </div>
                             );
                           })}
@@ -2272,9 +2313,10 @@ export default function RaidSignupsTab({
                             const isEditingNote = !!editingNoteByRow[row.localKey];
                             const hasAssignedPlayer = String(row.player_name || '').trim().length > 0;
                             const isTentativeAssignment = String(selectedCandidate?.status || '').trim().toLowerCase() === 'tentative';
+                            const isAbsentAssignment = ['absence', 'absent'].includes(String(selectedCandidate?.status || '').trim().toLowerCase());
 
                             return (
-                              <div key={row.localKey} className={`relative rounded-lg border p-2 space-y-2 ${isTentativeAssignment ? 'border-yellow-600 bg-yellow-950/20' : 'border-slate-800 bg-slate-950'}`}>
+                              <div key={row.localKey} className={`relative rounded-lg border p-2 space-y-2 ${isAbsentAssignment ? 'border-red-600 bg-red-950/20' : isTentativeAssignment ? 'border-yellow-600 bg-yellow-950/20' : 'border-slate-800 bg-slate-950'}`}>
                                 <div className="flex items-center gap-2 w-full min-w-0">
                                   <button
                                     type="button"
@@ -2285,6 +2327,7 @@ export default function RaidSignupsTab({
                                     <span className="flex items-center gap-2 min-w-0">
                                       <img src={hasAssignedPlayer ? resolveEntryIcon(selectedCandidate || row) : UNKNOWN_ICON} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800 flex-shrink-0" />
                                       <span className="truncate flex items-center gap-1" style={{ color: selectedColor }}>
+                                        {isAbsentAssignment ? <span className="text-red-300" title="Grouped player is now absent">🚫</span> : null}
                                         {isTentativeAssignment ? <span className="text-yellow-300" title="Tentative player">⚠</span> : null}
                                         {hasAssignedPlayer ? row.player_name : 'Open slot'}
                                       </span>

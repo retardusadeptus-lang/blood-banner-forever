@@ -5,7 +5,7 @@ function buildAdminRaidAssignmentConfigRoutes({ db }) {
 
   router.get('/raid-assignment-config', (req, res) => {
     try {
-      const rows = db.prepare('SELECT boss_name FROM raid_assignment_config_bosses WHERE enabled = 1 ORDER BY boss_name').all();
+      const rows = db.prepare('SELECT boss_name FROM raid_assignment_config_bosses WHERE enabled = 1 ORDER BY rowid').all();
       res.json(rows.map(row => row.boss_name));
     } catch (e) {
       res.status(500).json({ error: e.message });

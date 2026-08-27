@@ -234,6 +234,17 @@ export default function RecruitmentFocusTab({ isAuthenticated, specsFromDb, fetc
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
       {focusEntries.filter((entry) => entry.specId).map((entry) => {
         const spec = specById.get(entry.specId);
+        const hasPublicNote = Boolean(entry.publicNote);
+        const hasOfficerNote = Boolean(entry.officerNote);
+        const visibleNotes = isAuthenticated
+          ? [
+              hasPublicNote ? { label: 'Public', text: entry.publicNote } : null,
+              hasOfficerNote ? { label: 'Officer', text: entry.officerNote } : null
+            ].filter(Boolean)
+          : hasPublicNote
+            ? [{ label: 'Public', text: entry.publicNote }]
+            : [];
+
         return (
           <div key={entry.id} className="rounded-xl border border-slate-800 bg-slate-950 p-4 space-y-3">
             <div className="flex items-center justify-between gap-3">
@@ -245,7 +256,17 @@ export default function RecruitmentFocusTab({ isAuthenticated, specsFromDb, fetc
               </div>
               <div className="shrink-0 h-10 flex items-center text-4xl font-bold leading-none text-amber-300">x{entry.quantity}</div>
             </div>
-            {entry.publicNote ? <p className="text-sm text-slate-300">{entry.publicNote}</p> : null}
+
+            {visibleNotes.length ? (
+              <div className="space-y-2">
+                {visibleNotes.map((note) => (
+                  <div key={`${entry.id}-${note.label}`} className="rounded border border-slate-800 bg-slate-900/60 p-2">
+                    <div className="text-[10px] uppercase tracking-wider text-slate-500 mb-1">{note.label} Note</div>
+                    <p className="text-sm text-slate-300 whitespace-pre-wrap">{note.text}</p>
+                  </div>
+                ))}
+              </div>
+            ) : null}
           </div>
         );
       })}

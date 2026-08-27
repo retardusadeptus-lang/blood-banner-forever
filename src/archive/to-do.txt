@@ -152,18 +152,19 @@
 [x] Make recruitment focus use the 'edit mode' approach
 [x] Tactics tab currently only visible to officers?
 [x] Show mine button doesn't work in officer roles tab
-[ ] Fix ordering in raid assignemtns tab
-[ ] Allow users to apply their own boss filters
-[ ] Add a way to remove people from bench
-[ ] Fix Weakauras tab not saving
+[x] Fix ordering in raid assignemtns tab
+[x] Allow users to apply their own boss filters
+[x] Add a way to remove people from bench
+[x] Sometimes users don't get added to the raid signups despite signing
+[x] Fix Weakauras tab not saving
 [ ] Verify data in cheat sheets tab
 [ ] Finish Site Instructions tab
 [ ] Redevelop the current raid roster workflow
 [ ] Add Discord Login
-[ ] Add Ability to approve/reject/delete applications
-[ ] Change recruitment focus notes to show officer notes when logged in as officer
-[ ] Make Calendar tab public
+[x] Add Ability to approve/reject/delete applications
+[x] Change recruitment focus notes to show officer notes when logged in as officer
+[x] Make Calendar tab public
 [ ] Finish Warcraftlogs API integration
-[ ] Fix wipefest tab not saving
-[ ] Depracate & remove officer login - now tied to battlenet
+[x] Fix wipefest tab not saving
+[x] Depracate & remove officer login - now tied to battlenet
 [ ] Is there a way to proxy icons for Serbs instead of wowhead?

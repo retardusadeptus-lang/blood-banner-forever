@@ -3,6 +3,19 @@ import BisConfigTab from '../../components/BisConfigTab';
 import WeakaurasTab from './WeakaurasTab';
 import bossData from '../../cheat_sheet_extractv2.json';
 import { CHEAT_SHEET_PHASE_MAP, DEFAULT_GLOBAL_PHASE, PHASES } from '../../constants';
+import druidIcon from '../../assets/icons/druid.png';
+import healersIcon from '../../assets/icons/healers.png';
+import hunterIcon from '../../assets/icons/hunter.png';
+import mageIcon from '../../assets/icons/mage.png';
+import meleeDpsIcon from '../../assets/icons/melee_dps.png';
+import paladinIcon from '../../assets/icons/paladin.png';
+import priestIcon from '../../assets/icons/priest.png';
+import rangedDpsIcon from '../../assets/icons/ranged_dps.png';
+import rogueIcon from '../../assets/icons/rogue.png';
+import shamanIcon from '../../assets/icons/shaman.png';
+import tanksIcon from '../../assets/icons/tanks.png';
+import warlockIcon from '../../assets/icons/warlock.png';
+import warriorIcon from '../../assets/icons/warrior.png';
 
 const CHEAT_SHEET_STORAGE_KEY = 'cheat-sheet-data-v1';
 const CHEAT_SHEET_EXPORT_FILENAME = 'cheat-sheet-export.json';
@@ -24,9 +37,101 @@ const normalizeTacticsMediaItem = (item = {}, index = 0) => {
   };
 };
 
+const TACTICS_ROLE_TAGS = [
+  'General',
+  'Healer',
+  'Tank',
+  'Ranged DPS',
+  'Melee DPS',
+];
+
+const TACTICS_CLASS_TAGS = [
+  'Druid',
+  'Hunter',
+  'Mage',
+  'Paladin',
+  'Priest',
+  'Rogue',
+  'Shaman',
+  'Warlock',
+  'Warrior',
+];
+
+const TACTICS_FILTER_TAGS = [...new Set([...TACTICS_ROLE_TAGS, ...TACTICS_CLASS_TAGS])];
+
+const TACTICS_FILTER_ICONS = {
+  General: null,
+  Healer: healersIcon,
+  Tank: tanksIcon,
+  'Ranged DPS': rangedDpsIcon,
+  'Melee DPS': meleeDpsIcon,
+  Druid: druidIcon,
+  Hunter: hunterIcon,
+  Mage: mageIcon,
+  Paladin: paladinIcon,
+  Priest: priestIcon,
+  Rogue: rogueIcon,
+  Shaman: shamanIcon,
+  Warlock: warlockIcon,
+  Warrior: warriorIcon,
+};
+
+const normalizeTacticsTags = (value = []) => {
+  let source = value;
+  if (!Array.isArray(source) && typeof source === 'string') {
+    try {
+      source = JSON.parse(source);
+    } catch {
+      source = [];
+    }
+  }
+
+  const normalized = (Array.isArray(source) ? source : [])
+    .map(tag => String(tag || '').trim())
+    .filter(Boolean)
+    .map(tag => tag.replace(/\s+/g, ' '));
+
+  return [...new Set(normalized.filter(tag => TACTICS_FILTER_TAGS.includes(tag)))];
+};
+
+const normalizeTacticsSectionItem = (item = {}, index = 0) => ({
+  id: String(item?.id || `tactics-section-item-${index}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`),
+  text: String(item?.text || item?.content || '').trim(),
+  tags: normalizeTacticsTags(Array.isArray(item?.tags) ? item.tags : []),
+});
+
+const normalizeTacticsSection = (section = {}, index = 0) => ({
+  id: String(section?.id || `tactics-section-${index}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`),
+  title: String(section?.title || `Section ${index + 1}`).trim(),
+  items: Array.isArray(section?.items)
+    ? section.items.map((item, itemIndex) => normalizeTacticsSectionItem(item, itemIndex)).filter(item => item.text || item.tags.length > 0)
+    : [],
+});
+
+const normalizeTacticsSections = (source = []) => {
+  let parsed = source;
+  if (typeof parsed === 'string') {
+    try {
+      parsed = JSON.parse(parsed);
+    } catch {
+      parsed = [];
+    }
+  }
+
+  if (!Array.isArray(parsed)) return [];
+  return parsed.map((section, index) => normalizeTacticsSection(section, index));
+};
+
+const getTacticEntryFilterTags = (entry = {}) => {
+  const sectionItemTags = (Array.isArray(entry?.sections) ? entry.sections : []).flatMap(section => (Array.isArray(section?.items) ? section.items : []).flatMap(item => Array.isArray(item?.tags) ? item.tags : []));
+  return [...new Set([...normalizeTacticsTags(Array.isArray(entry?.tags) ? entry.tags : []), ...sectionItemTags])];
+};
+
 const normalizeTacticsEntry = (entry = {}) => ({
   bossName: String(entry.bossName || entry.boss_name || '').trim(),
   notes: String(entry.notes || '').trim(),
+  tags: normalizeTacticsTags(Array.isArray(entry.tags) ? entry.tags : Array.isArray(entry.tags_json) ? entry.tags_json : (typeof entry.tags_json === 'string' ? entry.tags_json : [])),
+  sections: normalizeTacticsSections(Array.isArray(entry.sections) ? entry.sections : (Array.isArray(entry.sections_json) ? entry.sections_json : entry.sections_json)),
   media: Array.isArray(entry.media)
     ? entry.media.map(normalizeTacticsMediaItem).filter(Boolean)
     : Array.isArray(entry.media_json)
@@ -175,6 +280,127 @@ const CHEAT_SHEET_RAIDS = [
 ];
 const CHEAT_SHEET_PHASE_OPTIONS = ['All Phases', ...PHASES];
 
+function BossFilterSelector({ raidZones = [], enabledBosses = [], userBossFilter = null, setUserBossFilter, label = 'Boss Selector' }) {
+  const [open, setOpen] = useState(false);
+
+  const isBossVisible = (bossName) => {
+    if (userBossFilter === null || userBossFilter === undefined) return true;
+    return userBossFilter.includes(bossName);
+  };
+
+  const toggleBoss = (bossName, checked) => {
+    if (!setUserBossFilter) return;
+    setUserBossFilter(prev => {
+      const current = Array.isArray(prev) ? prev : null;
+      if (current === null) {
+        return checked ? [bossName] : [];
+      }
+      if (checked) {
+        return [...new Set([...current, bossName])];
+      }
+      return current.filter(name => name !== bossName);
+    });
+  };
+
+  const allZoneBosses = useMemo(() => {
+    if (Array.isArray(raidZones) && raidZones.length > 0) {
+      return raidZones.flatMap(zone => Array.isArray(zone?.bosses) ? zone.bosses : []);
+    }
+    return enabledBosses;
+  }, [raidZones, enabledBosses]);
+
+  const toggleZoneBosses = (zoneBosses, checked) => {
+    if (!setUserBossFilter) return;
+    setUserBossFilter(prev => {
+      const current = Array.isArray(prev) ? prev : null;
+      const nextSet = new Set(current ?? []);
+
+      if (checked) {
+        zoneBosses.forEach(boss => nextSet.add(boss));
+        return [...nextSet];
+      }
+
+      zoneBosses.forEach(boss => nextSet.delete(boss));
+      return [...nextSet];
+    });
+  };
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 text-sm font-bold flex items-center gap-2 hover:border-purple-500 transition"
+      >
+        {label} ({userBossFilter === null || userBossFilter === undefined ? allZoneBosses.length : Math.min(userBossFilter.length, allZoneBosses.length)}/{allZoneBosses.length})
+        <span className="text-slate-500 text-xs">{open ? '▲' : '▼'}</span>
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
+          <div className="absolute right-0 mt-2 z-20 w-80 max-h-96 overflow-y-auto custom-scrollbar bg-slate-950 border border-slate-700 rounded-xl shadow-2xl p-3 space-y-2">
+            <div className="flex items-center justify-between gap-2 border-b border-slate-800 pb-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Visible bosses</span>
+              <button
+                type="button"
+                onClick={() => setUserBossFilter?.(null)}
+                className="text-[10px] font-bold text-amber-300 hover:text-amber-200"
+              >
+                All
+              </button>
+            </div>
+            {raidZones.map(zone => {
+              const zoneBosses = zone.bosses || [];
+              const zoneBossesEnabled = zoneBosses.filter(boss => isBossVisible(boss)).length;
+              const allEnabled = zoneBosses.length > 0 && zoneBossesEnabled === zoneBosses.length;
+              const someEnabled = zoneBossesEnabled > 0 && !allEnabled;
+
+              return (
+                <div key={zone.name} className="border-b border-slate-900 last:border-0 pb-1.5 mb-1.5">
+                  <label className="flex items-center gap-2 cursor-pointer py-1 px-1 rounded hover:bg-slate-900/60">
+                    <input
+                      type="checkbox"
+                      checked={allEnabled}
+                      ref={el => { if (el) el.indeterminate = someEnabled; }}
+                      onChange={(event) => toggleZoneBosses(zoneBosses, event.target.checked)}
+                      className="rounded bg-slate-800 border-slate-600 text-amber-500 w-3.5 h-3.5 cursor-pointer flex-shrink-0"
+                    />
+                    <span className="text-sm font-bold text-slate-200">{zone.name}</span>
+                  </label>
+                  <div className="pl-7 space-y-0.5 mt-0.5">
+                    {zoneBosses.map(boss => (
+                      <label key={boss} className="flex items-center gap-2 cursor-pointer py-1 px-1 rounded hover:bg-slate-900/60">
+                        <input
+                          type="checkbox"
+                          checked={isBossVisible(boss)}
+                          onChange={(event) => toggleBoss(boss, event.target.checked)}
+                          className="rounded bg-slate-800 border-slate-600 text-amber-500 w-3.5 h-3.5 cursor-pointer flex-shrink-0"
+                        />
+                        <span className="text-xs text-slate-200">{boss}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+            {((!raidZones || raidZones.length === 0) && Array.isArray(enabledBosses)) && enabledBosses.map((boss) => (
+              <label key={boss} className="flex items-center gap-2 cursor-pointer py-1 px-1 rounded hover:bg-slate-900/60">
+                <input
+                  type="checkbox"
+                  checked={isBossVisible(boss)}
+                  onChange={(event) => toggleBoss(boss, event.target.checked)}
+                  className="rounded bg-slate-800 border-slate-600 text-amber-500 w-3.5 h-3.5 cursor-pointer flex-shrink-0"
+                />
+                <span className="text-xs text-slate-200">{boss}</span>
+              </label>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 export default function ResourcesTab({
   resourcesSubTab,
   selectedBisSpec,
@@ -191,6 +417,11 @@ export default function ResourcesTab({
   canSubmitWeakauras,
   isAuthenticated = false,
   enabledBosses = [],
+  raidZones = [],
+  userBossFilter = null,
+  setUserBossFilter,
+  roster = [],
+  selectedCharacterId = '',
 }) {
   const [bosses, setBosses] = useState(loadCheatSheetBosses);
   const [draftBosses, setDraftBosses] = useState(bosses);
@@ -207,6 +438,8 @@ export default function ResourcesTab({
   const [raidTacticsBossOrder, setRaidTacticsBossOrder] = useState([]);
   const [raidTacticsDraft, setRaidTacticsDraft] = useState({});
   const [raidTacticsSaved, setRaidTacticsSaved] = useState({});
+  const [tacticsSelectedTags, setTacticsSelectedTags] = useState([]);
+  const [showTacticsMineOnly, setShowTacticsMineOnly] = useState(false);
   const [tacticsError, setTacticsError] = useState('');
   const [wipefestEntries, setWipefestEntries] = useState([]);
   const [draftWipefestEntries, setDraftWipefestEntries] = useState([]);
@@ -229,15 +462,114 @@ export default function ResourcesTab({
     }
   }, [bosses]);
 
+  const tacticsBossOptions = useMemo(() => {
+    const availableBosses = Array.isArray(raidZones) && raidZones.length > 0
+      ? raidZones.flatMap(zone => Array.isArray(zone?.bosses) ? zone.bosses : [])
+      : Array.isArray(enabledBosses) ? enabledBosses : [];
+
+    return [...new Set(availableBosses.filter(Boolean))];
+  }, [raidZones, enabledBosses]);
+
+  const selectedMyCharacter = useMemo(() => {
+    if (!selectedCharacterId) return null;
+    return roster.find(player => String(player.id) === String(selectedCharacterId)) || null;
+  }, [roster, selectedCharacterId]);
+
+  const selectedMyClass = useMemo(() => {
+    const className = selectedMyCharacter?.class || selectedMyCharacter?.className || selectedMyCharacter?.playerClass || '';
+    return String(className).trim();
+  }, [selectedMyCharacter]);
+
+  const classTagForCharacter = (className) => {
+    if (!className) return null;
+    const normalized = String(className).trim();
+    if (!normalized) return null;
+
+    const lookup = normalized.toLowerCase();
+    const match = TACTICS_CLASS_TAGS.find(tag => tag.toLowerCase() === lookup || lookup.includes(tag.toLowerCase()));
+    return match || null;
+  };
+
+  const roleTagsForCharacter = (className) => {
+    const normalized = String(className || '').trim().toLowerCase();
+    if (!normalized) return ['General'];
+
+    const classMap = {
+      druid: ['General', 'Healer', 'Tank', 'Melee DPS'],
+      hunter: ['General', 'Ranged DPS'],
+      mage: ['General', 'Ranged DPS'],
+      paladin: ['General', 'Healer', 'Tank', 'Melee DPS'],
+      priest: ['General', 'Healer'],
+      rogue: ['General', 'Melee DPS'],
+      shaman: ['General', 'Healer', 'Ranged DPS'],
+      warlock: ['General', 'Ranged DPS'],
+      warrior: ['General', 'Tank', 'Melee DPS'],
+    };
+
+    const match = Object.entries(classMap).find(([key]) => normalized.includes(key));
+    return match ? match[1] : ['General'];
+  };
+
+  const activeTacticsTags = useMemo(() => {
+    if (!showTacticsMineOnly || !selectedMyClass) {
+      return tacticsSelectedTags;
+    }
+
+    const mineClassTag = classTagForCharacter(selectedMyClass);
+    const mineRoleTags = roleTagsForCharacter(selectedMyClass);
+    const nextSet = new Set([...tacticsSelectedTags, ...mineRoleTags]);
+    if (mineClassTag) {
+      nextSet.add(mineClassTag);
+    }
+    nextSet.add('General');
+    return [...nextSet];
+  }, [showTacticsMineOnly, selectedMyClass, tacticsSelectedTags]);
+
+  const tacticsBossNamesForSave = useMemo(() => {
+    return [...new Set([
+      ...(Array.isArray(raidTacticsBossOrder) ? raidTacticsBossOrder : []),
+      ...(Array.isArray(tacticsBossOptions) ? tacticsBossOptions : []),
+      ...Object.keys(raidTacticsDraft || {}),
+      ...Object.keys(raidTacticsSaved || {}),
+    ])];
+  }, [raidTacticsBossOrder, tacticsBossOptions, raidTacticsDraft, raidTacticsSaved]);
+
   const filteredRaidTacticsBossOrder = useMemo(() => {
-    if (!Array.isArray(raidTacticsBossOrder)) return [];
+    const allAvailableBosses = [...new Set(tacticsBossNamesForSave)];
+    const filteredByBoss = (userBossFilter === null || userBossFilter === undefined)
+      ? allAvailableBosses
+      : allAvailableBosses.filter((bossName) => userBossFilter.includes(bossName));
 
-    const sourceBosses = Array.isArray(enabledBosses) && enabledBosses.length > 0
-      ? raidTacticsBossOrder.filter((bossName) => enabledBosses.includes(bossName))
-      : raidTacticsBossOrder;
+    if (activeTacticsTags.length === 0) {
+      return filteredByBoss;
+    }
 
-    return sourceBosses;
-  }, [enabledBosses, raidTacticsBossOrder]);
+    return filteredByBoss.filter((bossName) => {
+      const entry = raidTacticsDraft[bossName] || raidTacticsSaved[bossName] || { tags: [], sections: [] };
+      const tags = getTacticEntryFilterTags(entry);
+      return activeTacticsTags.some(tag => tags.includes(tag));
+    });
+  }, [tacticsBossNamesForSave, userBossFilter, raidTacticsSaved, raidTacticsDraft, activeTacticsTags]);
+
+  const renderTacticTagIcon = (tag, className = '') => {
+    const iconSrc = TACTICS_FILTER_ICONS[tag];
+    if (!iconSrc) {
+      return (
+        <span className={`inline-flex h-4 w-4 items-center justify-center rounded-full border border-slate-600 bg-slate-800 text-[8px] font-bold text-slate-300 ${className}`}>
+          G
+        </span>
+      );
+    }
+
+    return (
+      <img
+        src={iconSrc}
+        alt={tag}
+        className={`h-4 w-4 rounded-full object-contain ${className}`}
+        title={tag}
+      />
+    );
+  };
 
   useEffect(() => {
     if (resourcesSubTab !== 'tactics') return undefined;
@@ -245,18 +577,9 @@ export default function ResourcesTab({
     let isMounted = true;
     const loadTactics = async () => {
       try {
-        const [payload, configuredBosses] = await Promise.all([
-          fetchData('tactics').catch(() => ({ bossOrder: [], entries: [] })),
-          fetchData('raid-assignment-config').catch(() => [])
-        ]);
+        const payload = await fetchData('tactics').catch(() => ({ bossOrder: [], entries: [] }));
 
         if (!isMounted) return;
-
-        const bossOrder = Array.isArray(payload?.bossOrder) && payload.bossOrder.length > 0
-          ? payload.bossOrder
-          : Array.isArray(configuredBosses) && configuredBosses.length > 0
-            ? configuredBosses
-            : [];
 
         const byBoss = {};
         (Array.isArray(payload?.entries) ? payload.entries : []).forEach((entry) => {
@@ -266,12 +589,24 @@ export default function ResourcesTab({
           }
         });
 
+        const fallbackBossOrder = [...new Set([
+          ...(Array.isArray(payload?.bossOrder) ? payload.bossOrder : []),
+          ...tacticsBossOptions,
+          ...Object.keys(byBoss),
+        ])];
+
+        const bossOrder = Array.isArray(payload?.bossOrder) && payload.bossOrder.length > 0
+          ? payload.bossOrder
+          : fallbackBossOrder;
+
         const nextDraft = {};
         bossOrder.forEach((bossName) => {
-          const saved = byBoss[bossName] || { bossName, notes: '', media: [] };
+          const saved = byBoss[bossName] || { bossName, notes: '', media: [], sections: [] };
           nextDraft[bossName] = {
             bossName,
             notes: saved.notes || '',
+            tags: Array.isArray(saved.tags) ? saved.tags : [],
+            sections: Array.isArray(saved.sections) ? saved.sections : [],
             media: Array.isArray(saved.media) ? saved.media : [],
           };
         });
@@ -425,36 +760,148 @@ export default function ResourcesTab({
     setIsEditMode(true);
   };
 
+  const buildTacticsDraftEntry = (currentEntry = {}, overrides = {}) => ({
+    bossName: overrides.bossName ?? currentEntry.bossName ?? '',
+    notes: overrides.notes ?? currentEntry.notes ?? '',
+    tags: Array.isArray(overrides.tags) ? overrides.tags : Array.isArray(currentEntry.tags) ? currentEntry.tags : [],
+    sections: Array.isArray(overrides.sections) ? overrides.sections : Array.isArray(currentEntry.sections) ? currentEntry.sections : [],
+    media: Array.isArray(overrides.media) ? overrides.media : Array.isArray(currentEntry.media) ? currentEntry.media : [],
+  });
+
   const handleTacticsFieldChange = (bossName, field, value) => {
     setRaidTacticsDraft(prev => ({
       ...prev,
-      [bossName]: {
+      [bossName]: buildTacticsDraftEntry(prev[bossName], {
         bossName,
         notes: field === 'notes' ? value : prev[bossName]?.notes || '',
-        media: field === 'notes' ? prev[bossName]?.media || [] : prev[bossName]?.media || [],
-      },
+        tags: prev[bossName]?.tags || [],
+        sections: prev[bossName]?.sections || [],
+        media: prev[bossName]?.media || [],
+      }),
+    }));
+  };
+
+  const handleAddTacticsSection = (bossName) => {
+    setRaidTacticsDraft(prev => ({
+      ...prev,
+      [bossName]: buildTacticsDraftEntry(prev[bossName], {
+        bossName,
+        notes: prev[bossName]?.notes || '',
+        tags: prev[bossName]?.tags || [],
+        sections: [
+          ...(prev[bossName]?.sections || []),
+          {
+            id: `tactics-section-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+            title: `Section ${((prev[bossName]?.sections || []).length + 1)}`,
+            items: [],
+          },
+        ],
+        media: prev[bossName]?.media || [],
+      }),
+    }));
+  };
+
+  const handleAddTacticsLineItem = (bossName, sectionId) => {
+    setRaidTacticsDraft(prev => ({
+      ...prev,
+      [bossName]: buildTacticsDraftEntry(prev[bossName], {
+        bossName,
+        notes: prev[bossName]?.notes || '',
+        tags: prev[bossName]?.tags || [],
+        sections: (prev[bossName]?.sections || []).map(section => section.id === sectionId ? {
+          ...section,
+          items: [
+            ...(section.items || []),
+            {
+              id: `tactics-line-item-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+              text: '',
+              tags: [],
+            },
+          ],
+        } : section),
+        media: prev[bossName]?.media || [],
+      }),
+    }));
+  };
+
+  const handleUpdateTacticsSection = (bossName, sectionId, field, value) => {
+    setRaidTacticsDraft(prev => ({
+      ...prev,
+      [bossName]: buildTacticsDraftEntry(prev[bossName], {
+        bossName,
+        notes: prev[bossName]?.notes || '',
+        tags: prev[bossName]?.tags || [],
+        sections: (prev[bossName]?.sections || []).map(section => section.id === sectionId ? { ...section, [field]: value } : section),
+        media: prev[bossName]?.media || [],
+      }),
+    }));
+  };
+
+  const handleUpdateTacticsLineItem = (bossName, sectionId, itemId, field, value) => {
+    setRaidTacticsDraft(prev => ({
+      ...prev,
+      [bossName]: buildTacticsDraftEntry(prev[bossName], {
+        bossName,
+        notes: prev[bossName]?.notes || '',
+        tags: prev[bossName]?.tags || [],
+        sections: (prev[bossName]?.sections || []).map(section => section.id === sectionId ? {
+          ...section,
+          items: (section.items || []).map(item => item.id === itemId ? { ...item, [field]: value } : item),
+        } : section),
+        media: prev[bossName]?.media || [],
+      }),
+    }));
+  };
+
+  const handleRemoveTacticsSection = (bossName, sectionId) => {
+    setRaidTacticsDraft(prev => ({
+      ...prev,
+      [bossName]: buildTacticsDraftEntry(prev[bossName], {
+        bossName,
+        notes: prev[bossName]?.notes || '',
+        tags: prev[bossName]?.tags || [],
+        sections: (prev[bossName]?.sections || []).filter(section => section.id !== sectionId),
+        media: prev[bossName]?.media || [],
+      }),
+    }));
+  };
+
+  const handleRemoveTacticsLineItem = (bossName, sectionId, itemId) => {
+    setRaidTacticsDraft(prev => ({
+      ...prev,
+      [bossName]: buildTacticsDraftEntry(prev[bossName], {
+        bossName,
+        notes: prev[bossName]?.notes || '',
+        tags: prev[bossName]?.tags || [],
+        sections: (prev[bossName]?.sections || []).map(section => section.id === sectionId ? { ...section, items: (section.items || []).filter(item => item.id !== itemId) } : section),
+        media: prev[bossName]?.media || [],
+      }),
     }));
   };
 
   const handleTacticsMediaChange = (bossName, mediaId, field, value) => {
     setRaidTacticsDraft(prev => ({
       ...prev,
-      [bossName]: {
+      [bossName]: buildTacticsDraftEntry(prev[bossName], {
         bossName,
         notes: prev[bossName]?.notes || '',
+        tags: prev[bossName]?.tags || [],
+        sections: prev[bossName]?.sections || [],
         media: (prev[bossName]?.media || []).map(item => (
           item.id === mediaId ? { ...item, [field]: value } : item
         )),
-      },
+      }),
     }));
   };
 
   const handleAddTacticsMedia = (bossName) => {
     setRaidTacticsDraft(prev => ({
       ...prev,
-      [bossName]: {
+      [bossName]: buildTacticsDraftEntry(prev[bossName], {
         bossName,
         notes: prev[bossName]?.notes || '',
+        tags: prev[bossName]?.tags || [],
+        sections: prev[bossName]?.sections || [],
         media: [
           ...(prev[bossName]?.media || []),
           {
@@ -464,20 +911,26 @@ export default function ResourcesTab({
             label: 'New item',
           }
         ],
-      },
+      }),
     }));
   };
 
   const handleRemoveTacticsMedia = (bossName, mediaId) => {
     setRaidTacticsDraft(prev => ({
       ...prev,
-      [bossName]: {
+      [bossName]: buildTacticsDraftEntry(prev[bossName], {
         bossName,
         notes: prev[bossName]?.notes || '',
+        tags: prev[bossName]?.tags || [],
+        sections: prev[bossName]?.sections || [],
         media: (prev[bossName]?.media || []).filter(item => item.id !== mediaId),
-      },
+      }),
     }));
   };
+
+  const hasTacticsDirtyChanges = useMemo(() => {
+    return JSON.stringify(raidTacticsDraft) !== JSON.stringify(raidTacticsSaved);
+  }, [raidTacticsDraft, raidTacticsSaved]);
 
   const handleSaveTacticsChanges = async () => {
     if (!isAuthenticated) {
@@ -486,13 +939,23 @@ export default function ResourcesTab({
     }
 
     try {
-      const bossNames = raidTacticsBossOrder;
+      const bossNames = tacticsBossNamesForSave;
       for (const bossName of bossNames) {
-        const draftEntry = raidTacticsDraft[bossName] || { bossName, notes: '', media: [] };
+        const draftEntry = raidTacticsDraft[bossName] || raidTacticsSaved[bossName] || { bossName, notes: '', tags: [], sections: [], media: [] };
         const sanitizedMedia = (draftEntry.media || []).map((item, index) => normalizeTacticsMediaItem(item, index)).filter(Boolean);
         await putData(`tactics/${encodeURIComponent(bossName)}`, {
           bossName,
           notes: draftEntry.notes || '',
+          tags: normalizeTacticsTags(draftEntry.tags || []),
+          sections: Array.isArray(draftEntry.sections) ? draftEntry.sections.map(section => ({
+            id: section.id,
+            title: section.title || 'Section',
+            items: Array.isArray(section.items) ? section.items.map(item => ({
+              id: item.id,
+              text: item.text || '',
+              tags: normalizeTacticsTags(item.tags || []),
+            })) : [],
+          })) : [],
           media: sanitizedMedia,
         });
       }
@@ -506,6 +969,7 @@ export default function ResourcesTab({
         }
       });
 
+      setRaidTacticsBossOrder([...new Set([...tacticsBossNamesForSave, ...Object.keys(nextMap)])]);
       setRaidTacticsSaved(nextMap);
       setRaidTacticsDraft(nextMap);
       setTacticsError('');
@@ -667,13 +1131,31 @@ export default function ResourcesTab({
 
       {resourcesSubTab === 'tactics' && (
         <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-5">
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+            <div className="flex-1 min-w-0 pr-2">
               <h3 className="text-lg font-bold text-slate-100">Raid Tactics</h3>
               <p className="text-sm text-slate-400">Boss-by-boss notes, references, and media kept in the same order as the raid assignment boss list.</p>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="ml-auto flex flex-wrap items-center gap-2 md:justify-end">
+              {setUserBossFilter && (
+                <BossFilterSelector
+                  raidZones={raidZones}
+                  enabledBosses={tacticsBossOptions}
+                  userBossFilter={userBossFilter}
+                  setUserBossFilter={setUserBossFilter}
+                />
+              )}
+
+              <button
+                type="button"
+                onClick={() => setShowTacticsMineOnly(prev => !prev)}
+                className={`rounded-lg border px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] transition ${showTacticsMineOnly ? 'border-sky-500/60 bg-sky-500/10 text-sky-200' : 'border-slate-700 bg-slate-900 text-slate-200 hover:border-slate-500'}`}
+                title={selectedMyClass ? `Show tactics tagged for ${selectedMyClass}` : 'Select your character to use Show Mine'}
+              >
+                Show Mine
+              </button>
+
               {isAuthenticated && (
                 <div className="flex items-center gap-2">
                   {!isTacticsEditMode ? (
@@ -696,7 +1178,8 @@ export default function ResourcesTab({
                       <button
                         type="button"
                         onClick={handleSaveTacticsChanges}
-                        className="rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-200 transition hover:bg-emerald-500/20"
+                        disabled={!hasTacticsDirtyChanges}
+                        className={`rounded-lg border px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] transition ${hasTacticsDirtyChanges ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-200 hover:bg-emerald-500/20' : 'cursor-not-allowed border-slate-700 bg-slate-800 text-slate-500'}`}
                       >
                         Save Changes
                       </button>
@@ -720,6 +1203,54 @@ export default function ResourcesTab({
           {tacticsError && (
             <div className="rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2 text-sm text-red-200">{tacticsError}</div>
           )}
+
+          <div className="rounded-xl border border-slate-800 bg-slate-900/70 p-3">
+            <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Filter by tag</div>
+            <div className="space-y-2">
+              <div className="flex flex-wrap gap-2">
+                {TACTICS_ROLE_TAGS.map(tag => {
+                  const active = activeTacticsTags.includes(tag);
+                  const iconSrc = TACTICS_FILTER_ICONS[tag];
+                  return (
+                    <button
+                      key={tag}
+                      type="button"
+                      onClick={() => setTacticsSelectedTags(prev => prev.includes(tag) ? prev.filter(value => value !== tag) : [...prev, tag])}
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] transition ${active ? 'border-emerald-500/70 bg-emerald-500/20 text-emerald-100 shadow-[0_0_0_1px_rgba(16,185,129,0.35)]' : 'border-slate-700 bg-slate-950 text-slate-300 hover:border-slate-500'}`}
+                    >
+                      {iconSrc ? (
+                        <img src={iconSrc} alt="" className="h-4 w-4 object-contain" />
+                      ) : (
+                        <span aria-hidden="true" className="text-[12px]">•</span>
+                      )}
+                      <span>{tag}</span>
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {TACTICS_CLASS_TAGS.map(tag => {
+                  const active = activeTacticsTags.includes(tag);
+                  const iconSrc = TACTICS_FILTER_ICONS[tag];
+                  return (
+                    <button
+                      key={tag}
+                      type="button"
+                      onClick={() => setTacticsSelectedTags(prev => prev.includes(tag) ? prev.filter(value => value !== tag) : [...prev, tag])}
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] transition ${active ? 'border-emerald-500/70 bg-emerald-500/20 text-emerald-100 shadow-[0_0_0_1px_rgba(16,185,129,0.35)]' : 'border-slate-700 bg-slate-950 text-slate-300 hover:border-slate-500'}`}
+                    >
+                      {iconSrc ? (
+                        <img src={iconSrc} alt="" className="h-4 w-4 object-contain" />
+                      ) : (
+                        <span aria-hidden="true" className="text-[12px]">•</span>
+                      )}
+                      <span>{tag}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
 
           {filteredRaidTacticsBossOrder.length === 0 ? (
             <div className="rounded-lg border border-dashed border-slate-700 bg-slate-900 p-6 text-sm text-slate-400">
@@ -757,6 +1288,134 @@ export default function ResourcesTab({
                             placeholder="Write the encounter plan, pull call, or role-specific guidance for this boss..."
                           />
                         </label>
+
+                        <div className="mt-4">
+                          <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Role tags</div>
+                          <div className="flex flex-wrap gap-2">
+                            {TACTICS_ROLE_TAGS.map(tag => {
+                              const active = (draftEntry.tags || []).includes(tag);
+                              return (
+                                <button
+                                  key={tag}
+                                  type="button"
+                                  onClick={() => {
+                                    const nextTags = active
+                                      ? (draftEntry.tags || []).filter(value => value !== tag)
+                                      : [...(draftEntry.tags || []), tag];
+                                    setRaidTacticsDraft(prev => ({
+                                      ...prev,
+                                      [bossName]: {
+                                        bossName,
+                                        notes: prev[bossName]?.notes || '',
+                                        tags: nextTags,
+                                        sections: prev[bossName]?.sections || [],
+                                        media: prev[bossName]?.media || [],
+                                      },
+                                    }));
+                                  }}
+                                  className={`rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] transition ${active ? 'border-amber-500/60 bg-amber-500/15 text-amber-200' : 'border-slate-700 bg-slate-950 text-slate-300 hover:border-slate-500'}`}
+                                >
+                                  {tag}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <div className="mt-5 flex items-center justify-between gap-3">
+                          <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Sections</div>
+                          <button
+                            type="button"
+                            onClick={() => handleAddTacticsSection(bossName)}
+                            className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-200 transition hover:bg-amber-500/20"
+                          >
+                            Add Section
+                          </button>
+                        </div>
+
+                        <div className="mt-4 space-y-4">
+                          {(draftEntry.sections || []).length === 0 ? (
+                            <div className="rounded-lg border border-dashed border-slate-700 bg-slate-950/60 p-3 text-sm text-slate-400">
+                              No sections yet. Add a section to start building role-specific boss notes.
+                            </div>
+                          ) : (
+                            (draftEntry.sections || []).map((section) => (
+                              <div key={section.id} className="rounded-lg border border-slate-700 bg-slate-950/70 p-3">
+                                <div className="mb-3 flex items-center justify-between gap-2">
+                                  <input
+                                    value={section.title || ''}
+                                    onChange={(event) => handleUpdateTacticsSection(bossName, section.id, 'title', event.target.value)}
+                                    placeholder="Section title"
+                                    className="w-full rounded-lg border border-slate-700 bg-slate-900 px-2 py-1.5 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() => handleRemoveTacticsSection(bossName, section.id)}
+                                    className="rounded-lg border border-red-500/40 bg-red-500/10 px-2 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-red-200 transition hover:bg-red-500/20"
+                                  >
+                                    Remove
+                                  </button>
+                                </div>
+
+                                <div className="space-y-3">
+                                  {(section.items || []).map((item) => (
+                                    <div key={item.id} className="rounded-lg border border-slate-700 bg-slate-900/80 p-3">
+                                      <div className="mb-2 flex items-center justify-between gap-2">
+                                        <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Line item</div>
+                                        <button
+                                          type="button"
+                                          onClick={() => handleRemoveTacticsLineItem(bossName, section.id, item.id)}
+                                          className="rounded-lg border border-red-500/40 bg-red-500/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-red-200 transition hover:bg-red-500/20"
+                                        >
+                                          Remove item
+                                        </button>
+                                      </div>
+                                      <textarea
+                                        value={item.text || ''}
+                                        onChange={(event) => handleUpdateTacticsLineItem(bossName, section.id, item.id, 'text', event.target.value)}
+                                        placeholder="Write the step, assignment, or callout for this section..."
+                                        className="min-h-[64px] w-full rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
+                                      />
+                                      <div className="mt-3">
+                                        <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Assigned tags</div>
+                                        <div className="flex flex-wrap gap-2">
+                                          {TACTICS_FILTER_TAGS.map(tag => {
+                                            const active = (item.tags || []).includes(tag);
+                                            return (
+                                              <button
+                                                key={`${section.id}-${item.id}-${tag}`}
+                                                type="button"
+                                                onClick={() => {
+                                                  const nextTags = active
+                                                    ? (item.tags || []).filter(value => value !== tag)
+                                                    : [...(item.tags || []), tag];
+                                                  handleUpdateTacticsLineItem(bossName, section.id, item.id, 'tags', nextTags);
+                                                }}
+                                                className={`rounded-full border px-2 py-1 text-[9px] font-bold uppercase tracking-[0.12em] transition ${active ? 'border-emerald-500/70 bg-emerald-500/20 text-emerald-100' : 'border-slate-700 bg-slate-950 text-slate-300 hover:border-slate-500'}`}
+                                              >
+                                                {tag}
+                                              </button>
+                                            );
+                                          })}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+
+                                <div className="mt-3 flex justify-end">
+                                  <button
+                                    type="button"
+                                    onClick={() => handleAddTacticsLineItem(bossName, section.id)}
+                                    className="rounded-lg border border-sky-500/40 bg-sky-500/10 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-sky-200 transition hover:bg-sky-500/20"
+                                  >
+                                    Add Line Item
+                                  </button>
+                                </div>
+                              </div>
+                            ))
+                          )}
+                        </div>
 
                         <div className="mt-4 space-y-3">
                           {mediaItems.length === 0 ? (
@@ -806,10 +1465,58 @@ export default function ResourcesTab({
                       </>
                     ) : (
                       <div className="space-y-4">
+                        {(draftEntry.tags || []).length > 0 && (
+                          <div className="mb-3 flex flex-wrap gap-2">
+                            {draftEntry.tags.map(tag => (
+                              <span key={tag} className="rounded-full border border-amber-500/40 bg-amber-500/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-amber-200">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+
                         {draftEntry.notes ? (
                           <p className="whitespace-pre-wrap text-sm leading-6 text-slate-300">{draftEntry.notes}</p>
                         ) : (
                           <p className="text-sm text-slate-500 italic">No tactic notes saved for this boss yet.</p>
+                        )}
+
+                        {(draftEntry.sections || []).length > 0 && (
+                          <div className="space-y-4 pt-3">
+                            {(draftEntry.sections || []).map((section) => (
+                              <div key={section.id} className="rounded-lg border border-slate-700 bg-slate-950/60 p-3">
+                                {section.title && (
+                                  <div className="mb-2 text-sm font-bold text-slate-100">{section.title}</div>
+                                )}
+                                <div className="space-y-2">
+                                  {((section.items || []).filter(item => activeTacticsTags.length === 0 || (item.tags || []).some(tag => activeTacticsTags.includes(tag))).length === 0) ? (
+                                    <div className="rounded-md border border-dashed border-slate-700 bg-slate-900/40 p-2.5 text-xs text-slate-500">
+                                      No matching line items for the current tag filters.
+                                    </div>
+                                  ) : (
+                                    (section.items || [])
+                                      .filter(item => activeTacticsTags.length === 0 || (item.tags || []).some(tag => activeTacticsTags.includes(tag)))
+                                      .map((item) => (
+                                        <div key={item.id} className="rounded-md border border-slate-800 bg-slate-900/70 p-2.5">
+                                          <div className="flex items-start gap-2.5">
+                                            {(item.tags || []).length > 0 && (
+                                              <div className="mt-0.5 flex shrink-0 items-center gap-1 rounded-full border border-slate-700 bg-slate-950/80 px-1.5 py-1">
+                                                {(item.tags || []).map(tag => (
+                                                  <div key={`${section.id}-${item.id}-${tag}`} className="flex items-center justify-center">
+                                                    {renderTacticTagIcon(tag, 'h-3.5 w-3.5')}
+                                                  </div>
+                                                ))}
+                                              </div>
+                                            )}
+                                            <div className="whitespace-pre-wrap text-sm leading-6 text-slate-300">{item.text || 'Empty line item.'}</div>
+                                          </div>
+                                        </div>
+                                      ))
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
                         )}
 
                         {mediaItems.length > 0 && (
