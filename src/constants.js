@@ -9,6 +9,8 @@ export const CORE_SYNC_INTERVAL_MS = 15000;
 export const STORAGE_KEYS = {
   activeTab: 'active-tab',
   myPlayerId: 'my-player-id',
+  raidAssignmentsBossFilter: 'raid-assignments-user-boss-filter',
+  tacticsBossFilter: 'tactics-user-boss-filter',
 };
 
 export const PHASE_JSON_KEYS = { 

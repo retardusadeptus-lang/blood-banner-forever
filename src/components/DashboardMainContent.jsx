@@ -22,6 +22,10 @@ export default function DashboardMainContent({ viewModel }) {
     setSharedRaidFilter,
     sharedPhaseFilter,
     setSharedPhaseFilter,
+    raidAssignmentsBossFilter,
+    setRaidAssignmentsBossFilter,
+    tacticsBossFilter,
+    setTacticsBossFilter,
     raidAssignmentsSubTab,
     raidSignupsSubTab,
     setRaidSignupsSubTab,
@@ -349,6 +353,8 @@ export default function DashboardMainContent({ viewModel }) {
               setSelectedRaid={setSharedRaidFilter}
               selectedPhase={sharedPhaseFilter}
               setSelectedPhase={setSharedPhaseFilter}
+              userBossFilter={raidAssignmentsBossFilter}
+              setUserBossFilter={setRaidAssignmentsBossFilter}
             />
           )}
           {raidAssignmentsSubTab === 'tactics' && (
@@ -368,6 +374,11 @@ export default function DashboardMainContent({ viewModel }) {
               canSubmitWeakauras={isAuthenticated}
               isAuthenticated={isAuthenticated}
               enabledBosses={enabledBosses}
+              raidZones={raidZones}
+              userBossFilter={tacticsBossFilter}
+              setUserBossFilter={setTacticsBossFilter}
+              roster={roster}
+              selectedCharacterId={globalMyPlayerId}
             />
           )}
           {raidAssignmentsSubTab === 'history' && (
@@ -519,6 +530,7 @@ export default function DashboardMainContent({ viewModel }) {
           fetchData={fetchData}
           postData={postData}
           putData={putData}
+          deleteData={deleteData}
           isOfficer={Boolean(bnetAuthState?.isOfficer || bnetAuthState?.isAdmin || isAuthenticated)}
           canManageBlurb={Boolean(bnetAuthState?.isOfficer || bnetAuthState?.isAdmin || isAuthenticated)}
         />
@@ -563,6 +575,11 @@ export default function DashboardMainContent({ viewModel }) {
           canSubmitWeakauras={isAuthenticated}
           isAuthenticated={isAuthenticated}
           enabledBosses={enabledBosses}
+          raidZones={raidZones}
+          userBossFilter={tacticsBossFilter}
+          setUserBossFilter={setTacticsBossFilter}
+          roster={roster}
+          selectedCharacterId={globalMyPlayerId}
         />
       )}
 

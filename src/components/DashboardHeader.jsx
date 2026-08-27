@@ -16,9 +16,6 @@ export default function DashboardHeader({
   handleBattleNetLogin,
   handleBattleNetLogout,
   isAuthenticated,
-  handleLoginSubmit,
-  passwordInput,
-  setPasswordInput,
   handleLogout,
   roster,
   getDisplayFromId,
@@ -134,12 +131,7 @@ export default function DashboardHeader({
                 <span className="text-[11px] font-semibold text-amber-300">Logged in as Officer</span>
                 <button onClick={handleLogout} className="ml-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-slate-200 h-6 flex items-center">Logout</button>
               </>
-            ) : (
-              <form onSubmit={handleLoginSubmit} className="flex items-center gap-2">
-                <input type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} className="bg-slate-950 text-white border border-slate-700 rounded px-2 py-1.5 text-[11px] leading-none focus:outline-none focus:ring-1 focus:ring-amber-500 tracking-widest h-6 w-36" placeholder="Officer Password" />
-                <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-1 px-3 rounded transition shadow-lg tracking-wider uppercase text-[11px] h-6 flex items-center justify-center">Unlock</button>
-              </form>
-            )}
+            ) : null}
           </div>
         </div>
       </div>

@@ -9,7 +9,8 @@ const {
   getUserPreferredSpec,
   getUserPreferredClass,
   getUserPreferredCharacter,
-  upsertSignupEntry
+  upsertSignupEntry,
+  setEventClassFilter
 } = require('../utils/raidSignupStore');
 const { refreshEventMessage } = require('./raidSignupEmbed');
 
@@ -73,6 +74,7 @@ async function handleClassFilterSelect(interaction, db, eventId) {
     upsertDraft(db, eventId, interaction.user.id, nextSpecId);
     upsertUserPreferredSpec(db, interaction.user.id, nextSpecId);
     upsertUserPreferredClass(db, interaction.user.id, className, nextSpecId);
+    setEventClassFilter(db, eventId, className);
 
     const selectedSpec = classSpecs.find(spec => Number(spec.id) === Number(nextSpecId));
     await interaction.deferUpdate();

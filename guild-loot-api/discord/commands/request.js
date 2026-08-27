@@ -85,6 +85,34 @@ module.exports = {
     )
     .addStringOption(option =>
       option
+        .setName('item4')
+        .setDescription('Optional fourth item to request')
+        .setRequired(false)
+        .setAutocomplete(true)
+    )
+    .addIntegerOption(option =>
+      option
+        .setName('amount4')
+        .setDescription('How many of item4 to request')
+        .setRequired(false)
+        .setMinValue(1)
+    )
+    .addStringOption(option =>
+      option
+        .setName('item5')
+        .setDescription('Optional fifth item to request')
+        .setRequired(false)
+        .setAutocomplete(true)
+    )
+    .addIntegerOption(option =>
+      option
+        .setName('amount5')
+        .setDescription('How many of item5 to request')
+        .setRequired(false)
+        .setMinValue(1)
+    )
+    .addStringOption(option =>
+      option
         .setName('reason')
         .setDescription('Optional reason for this request')
         .setRequired(false)
@@ -132,6 +160,10 @@ module.exports = {
     const amount2 = interaction.options.getInteger('amount2');
     const itemName3 = (interaction.options.getString('item3') || '').trim();
     const amount3 = interaction.options.getInteger('amount3');
+    const itemName4 = (interaction.options.getString('item4') || '').trim();
+    const amount4 = interaction.options.getInteger('amount4');
+    const itemName5 = (interaction.options.getString('item5') || '').trim();
+    const amount5 = interaction.options.getInteger('amount5');
     const characterId = interaction.options.getInteger('character', true);
     const reason = (interaction.options.getString('reason') || '').trim();
 
@@ -146,6 +178,22 @@ module.exports = {
     if ((itemName3 && !amount3) || (!itemName3 && amount3)) {
       await interaction.reply({
         content: 'If item3 is provided, amount3 is required (and vice versa).',
+        ephemeral: true
+      });
+      return;
+    }
+
+    if ((itemName4 && !amount4) || (!itemName4 && amount4)) {
+      await interaction.reply({
+        content: 'If item4 is provided, amount4 is required (and vice versa).',
+        ephemeral: true
+      });
+      return;
+    }
+
+    if ((itemName5 && !amount5) || (!itemName5 && amount5)) {
+      await interaction.reply({
+        content: 'If item5 is provided, amount5 is required (and vice versa).',
         ephemeral: true
       });
       return;
@@ -166,7 +214,9 @@ module.exports = {
     const requestedPairs = [
       { name: itemName, quantity: amount },
       ...(itemName2 ? [{ name: itemName2, quantity: amount2 }] : []),
-      ...(itemName3 ? [{ name: itemName3, quantity: amount3 }] : [])
+      ...(itemName3 ? [{ name: itemName3, quantity: amount3 }] : []),
+      ...(itemName4 ? [{ name: itemName4, quantity: amount4 }] : []),
+      ...(itemName5 ? [{ name: itemName5, quantity: amount5 }] : [])
     ];
 
     const mergedByName = new Map();
@@ -252,8 +302,7 @@ module.exports = {
       .addFields(
         { name: 'Character', value: player.name, inline: true },
         { name: 'Items', value: itemLines, inline: false },
-        { name: 'Reason', value: reason || 'No reason provided', inline: false },
-        ...(requestGroupId ? [{ name: 'Request Group ID', value: requestGroupId, inline: false }] : [])
+        { name: 'Reason', value: reason || 'No reason provided', inline: false }
       )
       .setTimestamp();
 

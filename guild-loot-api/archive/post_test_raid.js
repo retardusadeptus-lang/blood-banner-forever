@@ -86,24 +86,30 @@ async function main() {
   const specs = getAllowedSpecsForEvent(db, event.id);
   const classes = getAvailableClassesForEvent(db, event.id);
 
-  const sampleRows = [
-    { discord_user_id: 'demo-001', discord_username: 'AlphaMage', spec_id: (specs.find((s) => s.class === 'Mage' && s.spec === 'Fire') || specs[0]).id },
-    { discord_user_id: 'demo-002', discord_username: 'BearTank', spec_id: (specs.find((s) => s.class === 'Druid' && s.spec === 'Feral') || specs[1]).id },
-    { discord_user_id: 'demo-003', discord_username: 'HolyLight', spec_id: (specs.find((s) => s.class === 'Paladin' && s.spec === 'Holy') || specs[2]).id },
-    { discord_user_id: 'demo-004', discord_username: 'ShadowNox', spec_id: (specs.find((s) => s.class === 'Priest' && s.spec === 'Shadow') || specs[3]).id },
-    { discord_user_id: 'demo-005', discord_username: 'Stormcaller', spec_id: (specs.find((s) => s.class === 'Shaman' && s.spec === 'Elemental') || specs[4]).id },
-    { discord_user_id: 'demo-006', discord_username: 'RangedRogue', spec_id: (specs.find((s) => s.class === 'Rogue' && s.spec === 'Assassination') || specs[5]).id },
-    { discord_user_id: 'demo-007', discord_username: 'WarlockRune', spec_id: (specs.find((s) => s.class === 'Warlock' && s.spec === 'Affliction') || specs[6]).id },
-    { discord_user_id: 'demo-008', discord_username: 'HunterX', spec_id: (specs.find((s) => s.class === 'Hunter' && s.spec === 'Beast Mastery') || specs[7]).id }
+  const statusPlan = [
+    ...Array.from({ length: 25 }, (_, index) => ({ status: 'signup', label: `Signup${String(index + 1).padStart(2, '0')}` })),
+    ...Array.from({ length: 3 }, (_, index) => ({ status: 'absent', label: `Absent${String(index + 1).padStart(2, '0')}` })),
+    ...Array.from({ length: 3 }, (_, index) => ({ status: 'bench', label: `Bench${String(index + 1).padStart(2, '0')}` })),
+    ...Array.from({ length: 2 }, (_, index) => ({ status: 'late', label: `Late${String(index + 1).padStart(2, '0')}` }))
   ];
+
+  const sampleRows = statusPlan.map((entry, index) => {
+    const spec = specs[index % specs.length] || specs[0];
+    return {
+      discord_user_id: `demo-${String(index + 1).padStart(3, '0')}`,
+      discord_username: entry.label,
+      status: entry.status,
+      spec_id: spec.id
+    };
+  });
 
   sampleRows.forEach((row) => {
     const spec = db.prepare('SELECT id, class, spec, slug FROM specs WHERE id = ?').get(row.spec_id);
     const bucket = getRoleBucketForSpec(spec || { slug: '', spec: '', class: '' });
     db.prepare(`
       INSERT INTO raid_signup_entries (event_id, discord_user_id, discord_username, status, spec_id, role_bucket, updated_at)
-      VALUES (?, ?, ?, 'signup', ?, ?, CURRENT_TIMESTAMP)
-    `).run(event.id, row.discord_user_id, row.discord_username, row.spec_id, bucket);
+      VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+    `).run(event.id, row.discord_user_id, row.discord_username, row.status, row.spec_id, bucket);
   });
 
   const entries = listEntriesForEvent(db, event.id);

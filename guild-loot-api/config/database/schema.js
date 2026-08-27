@@ -405,9 +405,20 @@ function ensureTacticsTable(db) {
       boss_name TEXT PRIMARY KEY,
       notes TEXT NOT NULL DEFAULT '',
       media_json TEXT NOT NULL DEFAULT '[]',
+      tags_json TEXT NOT NULL DEFAULT '[]',
+      sections_json TEXT NOT NULL DEFAULT '[]',
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `).run();
+
+  const tacticsColumns = db.prepare('PRAGMA table_info(raid_tactics)').all();
+  const existingColumnNames = new Set((tacticsColumns || []).map(column => column.name));
+  if (!existingColumnNames.has('tags_json')) {
+    db.prepare('ALTER TABLE raid_tactics ADD COLUMN tags_json TEXT NOT NULL DEFAULT "[]"').run();
+  }
+  if (!existingColumnNames.has('sections_json')) {
+    db.prepare('ALTER TABLE raid_tactics ADD COLUMN sections_json TEXT NOT NULL DEFAULT "[]"').run();
+  }
 }
 
 function ensureWipefestTable(db) {
@@ -492,10 +503,41 @@ function ensureRecruitmentApplicationsTables(db) {
       spec TEXT NOT NULL,
       name TEXT NOT NULL,
       about_me TEXT NOT NULL,
+      is_proxy INTEGER NOT NULL DEFAULT 0,
+      proxy_name TEXT,
+      proxy_battletag TEXT,
+      status TEXT NOT NULL DEFAULT 'pending',
+      officer_note TEXT NOT NULL DEFAULT '',
+      reviewed_by_user_id INTEGER,
+      reviewed_by_battletag TEXT,
+      reviewed_at DATETIME,
+      status_changed_at DATETIME,
+      status_history_json TEXT NOT NULL DEFAULT '[]',
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `).run();
+
+  const applicationColumns = db.prepare('PRAGMA table_info(recruitment_applications)').all();
+  const existingColumnNames = new Set((applicationColumns || []).map(column => column.name));
+  const migrationColumns = [
+    ['is_proxy', 'INTEGER NOT NULL DEFAULT 0'],
+    ['proxy_name', 'TEXT'],
+    ['proxy_battletag', 'TEXT'],
+    ['status', "TEXT NOT NULL DEFAULT 'pending'"],
+    ['officer_note', "TEXT NOT NULL DEFAULT ''"],
+    ['reviewed_by_user_id', 'INTEGER'],
+    ['reviewed_by_battletag', 'TEXT'],
+    ['reviewed_at', 'DATETIME'],
+    ['status_changed_at', 'DATETIME'],
+    ['status_history_json', "TEXT NOT NULL DEFAULT '[]'"]
+  ];
+
+  for (const [columnName, columnDefinition] of migrationColumns) {
+    if (!existingColumnNames.has(columnName)) {
+      db.prepare(`ALTER TABLE recruitment_applications ADD COLUMN ${columnName} ${columnDefinition}`).run();
+    }
+  }
 }
 
 function ensureRaidSignupTables(db) {
@@ -544,10 +586,16 @@ function ensureRaidSignupTables(db) {
       status TEXT NOT NULL DEFAULT 'signup',
       spec_id INTEGER REFERENCES specs(id) ON DELETE SET NULL,
       role_bucket TEXT,
+      note TEXT DEFAULT '',
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       UNIQUE(event_id, discord_user_id)
     )
   `).run();
+
+  const signupEntryColumns = db.prepare("PRAGMA table_info('raid_signup_entries')").all();
+  if (!signupEntryColumns.some(col => col.name === 'note')) {
+    db.prepare('ALTER TABLE raid_signup_entries ADD COLUMN note TEXT DEFAULT ""').run();
+  }
 
   db.prepare(`
     CREATE TABLE IF NOT EXISTS raid_signup_drafts (

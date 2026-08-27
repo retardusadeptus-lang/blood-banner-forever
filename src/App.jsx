@@ -36,6 +36,7 @@ import useDashboardNavigation from './hooks/useDashboardNavigation';
 import useDashboardMainContentViewModel from './hooks/useDashboardMainContentViewModel';
 import useDashboardHelpers from './hooks/useDashboardHelpers.jsx';
 import useDataSync from './hooks/useDataSync';
+import { getVisibleBosses } from './utils/bossFilterState';
 
 export default function App() {
   const previousActiveTabRef = useRef('');
@@ -68,6 +69,22 @@ export default function App() {
   const [overviewSearch, setOverviewSearch] = useState('');
   const [sharedRaidFilter, setSharedRaidFilter] = useState('All Raids');
   const [sharedPhaseFilter, setSharedPhaseFilter] = useState(DEFAULT_GLOBAL_PHASE);
+  const [raidAssignmentsBossFilter, setRaidAssignmentsBossFilter] = useState(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEYS.raidAssignmentsBossFilter);
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
+  const [tacticsBossFilter, setTacticsBossFilter] = useState(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEYS.tacticsBossFilter);
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
 
   const [isDbConnected, setIsDbConnected] = useState(false);
   const [newSpec, setNewSpec] = useState(null); // spec_id from database
@@ -439,6 +456,11 @@ export default function App() {
   const hasScoringUnsavedChanges = scoringConfigDirty || playerStatsDirty;
   const hasRaidAssignmentsUnsavedChanges = raidAssignmentDataDirty || enabledBossesDirty;
 
+  const raidAssignmentsVisibleBosses = useMemo(() => getVisibleBosses({
+    availableBosses: enabledBosses,
+    userSelection: raidAssignmentsBossFilter,
+  }), [enabledBosses, raidAssignmentsBossFilter]);
+
   const shellState = useAppShellState({
     hasLootUnsavedChanges,
     hasItemsDbUnsavedChanges,
@@ -455,6 +477,22 @@ export default function App() {
   });
 
   const { hasAnyUnsavedChanges, unsavedSections, handleSaveAllChanges } = shellState;
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEYS.raidAssignmentsBossFilter, JSON.stringify(raidAssignmentsBossFilter));
+    } catch {
+      // ignore storage failures for local-only UI filters
+    }
+  }, [raidAssignmentsBossFilter]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEYS.tacticsBossFilter, JSON.stringify(tacticsBossFilter));
+    } catch {
+      // ignore storage failures for local-only UI filters
+    }
+  }, [tacticsBossFilter]);
 
   useAppShellLifecycle({ activeTab, hasAnyUnsavedChanges });
 
@@ -595,6 +633,10 @@ export default function App() {
     setSharedRaidFilter,
     sharedPhaseFilter,
     setSharedPhaseFilter,
+    raidAssignmentsBossFilter,
+    setRaidAssignmentsBossFilter,
+    tacticsBossFilter,
+    setTacticsBossFilter,
     raidAssignmentsSubTab,
     raidSignupsSubTab,
     setRaidSignupsSubTab,
@@ -811,9 +853,6 @@ export default function App() {
           handleBattleNetLogin={handleBattleNetLogin}
           handleBattleNetLogout={handleBattleNetLogout}
           isAuthenticated={isAuthenticated}
-          handleLoginSubmit={handleLoginSubmit}
-          passwordInput={passwordInput}
-          setPasswordInput={setPasswordInput}
           handleLogout={handleLogout}
           roster={roster}
           getDisplayFromId={getDisplayFromId}

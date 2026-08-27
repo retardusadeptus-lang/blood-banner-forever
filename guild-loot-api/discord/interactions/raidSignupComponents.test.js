@@ -385,7 +385,7 @@ test('buildMainSignupComponents keeps the class and spec lists under the Discord
   assert.ok(specOptions.length <= 25);
 });
 
-test('refreshEventMessage reuses the current user\'s saved values when a userId is supplied', async () => {
+test('refreshEventMessage restores the last saved class and character to the shared event message', async () => {
   const db = new Database(':memory:');
   db.exec(`
     CREATE TABLE specs (
@@ -422,6 +422,12 @@ test('refreshEventMessage reuses the current user\'s saved values when a userId 
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 
+    CREATE TABLE raid_signup_event_filters (
+      event_id INTEGER PRIMARY KEY,
+      selected_class TEXT NOT NULL,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
     CREATE TABLE raid_signup_entries (
       id INTEGER PRIMARY KEY,
       event_id INTEGER,
@@ -438,8 +444,10 @@ test('refreshEventMessage reuses the current user\'s saved values when a userId 
   db.prepare(`INSERT INTO specs (id, class, spec, slug) VALUES (2, 'Druid', 'Feral', 'feral')`).run();
   db.prepare(`INSERT INTO raid_signup_events (id, template_id, title, description, scheduled_for, recurrence_instance, public_groups, status, discord_channel_id, discord_message_id, created_at, updated_at)
     VALUES (7, NULL, 'Raid Signup', 'Test event', '2026-08-15T19:00:00Z', NULL, 0, 'open', 'channel-1', 'message-1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`).run();
-  db.prepare(`INSERT INTO raid_signup_user_prefs (discord_user_id, class_name, character_name, spec_id)
-    VALUES ('other-user', 'Druid', 'Steve', 2)`).run();
+  db.prepare(`INSERT INTO raid_signup_user_prefs (discord_user_id, class_name, character_name, spec_id, updated_at)
+    VALUES ('other-user', 'Druid', 'Steve', 2, CURRENT_TIMESTAMP)`).run();
+  db.prepare(`INSERT INTO raid_signup_event_filters (event_id, selected_class, updated_at)
+    VALUES (7, 'Druid', CURRENT_TIMESTAMP)`).run();
 
   let edited;
   const message = {
@@ -462,11 +470,14 @@ test('refreshEventMessage reuses the current user\'s saved values when a userId 
 
   assert.ok(edited, 'refreshEventMessage should have edited the shared event message');
   assert.equal(edited.components[0].components[0].data.label, 'Character Name: Steve');
+  const classOptions = edited.components[1].components[0].toJSON().options;
+  assert.equal(classOptions[0].default, true);
   const specOptions = edited.components[2].components[0].toJSON().options;
-  assert.ok(specOptions.some(option => option.label === 'Druid - Feral' && option.default === true));
+  assert.equal(specOptions[0].default, true);
+  assert.equal(specOptions[0].label, 'Druid - Feral');
 });
 
-test('refreshEventMessage keeps the shared event message neutral when no user id is supplied', async () => {
+test('refreshEventMessage uses the last saved values when no user id is supplied', async () => {
   const db = new Database(':memory:');
   db.exec(`
     CREATE TABLE specs (
@@ -503,6 +514,12 @@ test('refreshEventMessage keeps the shared event message neutral when no user id
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 
+    CREATE TABLE raid_signup_event_filters (
+      event_id INTEGER PRIMARY KEY,
+      selected_class TEXT NOT NULL,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
     CREATE TABLE raid_signup_entries (
       id INTEGER PRIMARY KEY,
       event_id INTEGER,
@@ -519,8 +536,10 @@ test('refreshEventMessage keeps the shared event message neutral when no user id
   db.prepare(`INSERT INTO specs (id, class, spec, slug) VALUES (2, 'Druid', 'Feral', 'feral')`).run();
   db.prepare(`INSERT INTO raid_signup_events (id, template_id, title, description, scheduled_for, recurrence_instance, public_groups, status, discord_channel_id, discord_message_id, created_at, updated_at)
     VALUES (7, NULL, 'Raid Signup', 'Test event', '2026-08-15T19:00:00Z', NULL, 0, 'open', 'channel-1', 'message-1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`).run();
-  db.prepare(`INSERT INTO raid_signup_user_prefs (discord_user_id, class_name, character_name, spec_id)
-    VALUES ('other-user', 'Druid', 'Steve', 2)`).run();
+  db.prepare(`INSERT INTO raid_signup_user_prefs (discord_user_id, class_name, character_name, spec_id, updated_at)
+    VALUES ('other-user', 'Druid', 'Steve', 2, CURRENT_TIMESTAMP)`).run();
+  db.prepare(`INSERT INTO raid_signup_event_filters (event_id, selected_class, updated_at)
+    VALUES (7, 'Druid', CURRENT_TIMESTAMP)`).run();
 
   let edited;
   const message = {
@@ -542,7 +561,7 @@ test('refreshEventMessage keeps the shared event message neutral when no user id
   await refreshEventMessage(db, client, 7);
 
   assert.ok(edited, 'refreshEventMessage should have edited the shared event message');
-  assert.equal(edited.components[0].components[0].data.label, 'Enter Character Name');
+  assert.equal(edited.components[0].components[0].data.label, 'Character Name: Steve');
   const specOptions = edited.components[2].components[0].toJSON().options;
-  assert.ok(specOptions.every(option => option.default === false));
+  assert.ok(specOptions.some(option => option.default === true && option.label === 'Druid - Feral'));
 });

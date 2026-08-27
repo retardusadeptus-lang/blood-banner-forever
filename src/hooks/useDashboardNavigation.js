@@ -94,7 +94,7 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       return;
     }
 
-    if (activeTab === 'raidSignups' && ['templates', 'history', 'group-config', 'calendar'].includes(raidSignupsSubTab)) {
+    if (activeTab === 'raidSignups' && ['templates', 'history', 'group-config'].includes(raidSignupsSubTab)) {
       setRaidSignupsSubTab('events');
       return;
     }
@@ -249,7 +249,7 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       raidSignups: [
       { value: 'templates', label: 'Templates' },
       { value: 'events', label: 'Events' },
-      { value: 'calendar', label: 'Calendar', authOnly: true },
+      { value: 'calendar', label: 'Calendar' },
       { value: 'group-config', label: 'Group Config' },
       { value: 'history', label: 'History' },
       { value: 'absences', label: 'Absences' }
@@ -287,7 +287,7 @@ export default function useDashboardNavigation({ isAuthenticated }) {
     return {
       bank: allTabs.bank.filter(tab => tab.value === 'contents'),
       raidAssignments: allTabs.raidAssignments.filter(tab => tab.value === 'overview' || tab.value === 'tactics'),
-      raidSignups: allTabs.raidSignups.filter(tab => tab.value === 'events' || tab.value === 'absences'),
+      raidSignups: allTabs.raidSignups.filter(tab => tab.value === 'events' || tab.value === 'calendar' || tab.value === 'absences'),
       loot: allTabs.loot.filter(tab => tab.value === 'overview' || tab.value === 'assigned'),
       recruitment: allTabs.recruitment.filter(tab => tab.value === 'focus' || tab.value === 'applications'),
       admin: [],

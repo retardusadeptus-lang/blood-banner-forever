@@ -308,7 +308,8 @@ function createDefaultBossState(boss, generateId) {
 const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
   isAuthenticated, roster, getSpecById, enabledBosses = [], raidZones = [], handleToggleZone, handleToggleBoss, handleMoveEnabledBoss, customRaidGroups = [], handleAddCustomRaidBoss, handleRemoveCustomRaidBoss, raidAssignmentData, setRaidAssignmentData,
   hasUnsavedChanges, onSaveChanges, isSaving, myPlayerName, actorBattleTag = '', onCopyToArchive,
-  selectedRaid = 'All Raids', setSelectedRaid, selectedPhase = 'All Phases', setSelectedPhase
+  selectedRaid = 'All Raids', setSelectedRaid, selectedPhase = 'All Phases', setSelectedPhase,
+  userBossFilter = null, setUserBossFilter,
 }) {
   const [showManageBosses, setShowManageBosses] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -317,6 +318,13 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
   const [exportStatus, setExportStatus] = useState('');
   const [archiveBossSelection, setArchiveBossSelection] = useState('');
   const defaultBossStatesRef = useRef({});
+
+  const visibleBosses = useMemo(() => {
+    if (userBossFilter === null || userBossFilter === undefined) {
+      return enabledBosses;
+    }
+    return enabledBosses.filter(boss => userBossFilter.includes(boss));
+  }, [enabledBosses, userBossFilter]);
 
   const buildCurrentRaidAssignmentExport = () => buildRaidAssignmentsExport({
     raidAssignmentData,
@@ -513,12 +521,12 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
   }, [generateId, isAuthenticated, setRaidAssignmentData]);
 
   const knownBosses = useMemo(() => new Set(raidZones.flatMap(zone => zone.bosses)), [raidZones]);
-  const orderedActiveBosses = useMemo(() => enabledBosses.filter(boss => knownBosses.has(boss)), [enabledBosses, knownBosses]);
+  const orderedActiveBosses = useMemo(() => visibleBosses.filter(boss => knownBosses.has(boss)), [visibleBosses, knownBosses]);
   const bossZoneMap = useMemo(() => new Map(raidZones.flatMap(zone => zone.bosses.map(boss => [boss, zone.name]))), [raidZones]);
 
   const filteredEnabledBosses = useMemo(() => {
-    return enabledBosses.filter((boss) => knownBosses.has(boss));
-  }, [enabledBosses, knownBosses]);
+    return visibleBosses.filter((boss) => knownBosses.has(boss));
+  }, [visibleBosses, knownBosses]);
 
   // Shared receiver pool for Innervate & PI
   const manaReceivers = getPlayersByClasses(['Mage', 'Shaman', 'Druid', 'Priest', 'Warlock', 'Paladin']);

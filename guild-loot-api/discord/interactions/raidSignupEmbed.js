@@ -8,7 +8,8 @@ const {
   listEntriesForEvent,
   getUserPreferredClass,
   getUserPreferredSpec,
-  getUserPreferredCharacter
+  getUserPreferredCharacter,
+  getEventClassFilter
 } = require('../utils/raidSignupStore');
 const { buildMainSignupComponents } = require('./raidSignupComponents');
 const { formatSignupSummary } = require('../utils/raidSignupStore/summary');
@@ -86,19 +87,26 @@ async function refreshEventMessage(db, client, eventId, userId = null) {
 
   const classes = getAvailableClassesForEvent(db, eventId);
   const specs = getAllowedSpecsForEvent(db, eventId);
-  const preferredClassRow = userId ? getUserPreferredClass(db, userId) : null;
-  const preferredSpecRow = userId ? getUserPreferredSpec(db, userId) : null;
-  const preferredCharacterRow = userId ? getUserPreferredCharacter(db, userId) : null;
-  const preferredSpecId = userId ? Number(preferredSpecRow?.spec_id || 0) : 0;
-  const selectedClass = String(preferredClassRow?.class_name || '').trim() || (
-    preferredSpecId
-      ? (specs.find(spec => Number(spec.id) === preferredSpecId)?.class || '').trim()
-      : ''
-  );
-  // The shared event post stays neutral unless a caller explicitly provides a user id.
-  // When that id is present, the message is being refreshed for that user's active
-  // interaction flow and should keep their saved character/spec values visible.
-  const preferredCharacter = userId ? String(preferredCharacterRow?.character_name || '').trim() : '';
+
+  const lastSavedPreference = db.prepare(`
+    SELECT class_name, spec_id, character_name
+    FROM raid_signup_user_prefs
+    ORDER BY updated_at DESC, discord_user_id DESC
+    LIMIT 1
+  `).get() || {};
+
+  const selectedClass = userId
+    ? (String(getUserPreferredClass(db, userId)?.class_name || '').trim() || String(getEventClassFilter(db, eventId)?.selected_class || '').trim())
+    : (String(getEventClassFilter(db, eventId)?.selected_class || lastSavedPreference.class_name || '').trim());
+
+  const preferredSpecId = userId
+    ? (Number(getUserPreferredSpec(db, userId)?.spec_id || 0) || null)
+    : (Number(lastSavedPreference.spec_id || 0) || null);
+
+  const preferredCharacter = userId
+    ? (String(getUserPreferredCharacter(db, userId)?.character_name || '').trim())
+    : (String(lastSavedPreference.character_name || '').trim());
+
   const entries = listEntriesForEvent(db, eventId);
 
   const channel = await client.channels.fetch(event.discord_channel_id).catch(() => null);
