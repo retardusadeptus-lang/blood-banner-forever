@@ -4,6 +4,7 @@ import WeakaurasTab from './WeakaurasTab';
 import bossData from '../../cheat_sheet_extractv2.json';
 import { CHEAT_SHEET_PHASE_MAP, DEFAULT_GLOBAL_PHASE, PHASES } from '../../constants';
 import druidIcon from '../../assets/icons/druid.png';
+import generalIcon from '../../assets/icons/general.png';
 import healersIcon from '../../assets/icons/healers.png';
 import hunterIcon from '../../assets/icons/hunter.png';
 import mageIcon from '../../assets/icons/mage.png';
@@ -60,7 +61,7 @@ const TACTICS_CLASS_TAGS = [
 const TACTICS_FILTER_TAGS = [...new Set([...TACTICS_ROLE_TAGS, ...TACTICS_CLASS_TAGS])];
 
 const TACTICS_FILTER_ICONS = {
-  General: null,
+  General: generalIcon,
   Healer: healersIcon,
   Tank: tanksIcon,
   'Ranged DPS': rangedDpsIcon,
