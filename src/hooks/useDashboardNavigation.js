@@ -94,7 +94,12 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       return;
     }
 
-    if (activeTab === 'raidSignups' && ['templates', 'history', 'group-config'].includes(raidSignupsSubTab)) {
+    if (activeTab === 'raidSignups' && raidSignupsSubTab === 'group-config') {
+      setRaidSignupsSubTab('events');
+      return;
+    }
+
+    if (activeTab === 'raidSignups' && ['templates', 'history'].includes(raidSignupsSubTab)) {
       setRaidSignupsSubTab('events');
       return;
     }
@@ -250,7 +255,6 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       { value: 'templates', label: 'Templates' },
       { value: 'events', label: 'Events' },
       { value: 'calendar', label: 'Calendar' },
-      { value: 'group-config', label: 'Group Config' },
       { value: 'history', label: 'History' },
       { value: 'absences', label: 'Absences' }
       ],

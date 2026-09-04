@@ -1,5 +1,5 @@
 const express = require('express');
-const { getEventById, listEntriesForEvent, listGroupsForEvent, formatSignupSummary } = require('../../discord/utils/raidSignupStore');
+const { getEventById, listEntriesForEvent, listGroupsForEvent } = require('../../discord/utils/raidSignupStore');
 const { resolveClassEmojiToken, resolveSpecEmojiToken } = require('../../discord/utils/discordEmojiTokens');
 const { EmbedBuilder } = require('discord.js');
 
@@ -44,6 +44,42 @@ function buildGroupText(groups, guild) {
   return fields.map(field => `${field.name}\n${field.value}`).join('\n\n');
 }
 
+function buildBenchList(entries, groups) {
+  const groupedNames = new Set(
+    groups
+      .filter(row => Number(row.group_number) > 0)
+      .map(row => normalizeDisplayName(row.player_name || ''))
+      .filter(Boolean)
+  );
+  const officerBenchRows = groups.filter(row => Number(row.group_number) === 0);
+  const officerBenchNames = new Set(
+    officerBenchRows
+      .map(row => normalizeDisplayName(row.player_name || ''))
+      .filter(Boolean)
+  );
+
+  const officerBenchLabels = officerBenchRows.map(row => {
+    const note = String(row.note || '').trim();
+    return note ? `${row.player_name} - ${note}` : row.player_name;
+  });
+
+  const signupBenchLabels = entries
+    .filter(entry => normalizeStatusKey(entry.status) === 'bench')
+    .filter(entry => {
+      const name = normalizeDisplayName(entry.discord_username || entry.player_name || '');
+      if (!name) return false;
+      return !groupedNames.has(name) && !officerBenchNames.has(name);
+    })
+    .map(entry => {
+      const name = String(entry.discord_username || entry.player_name || '').trim();
+      const note = String(entry.note || '').trim();
+      return note ? `${name} - ${note}` : name;
+    })
+    .filter(Boolean);
+
+  return [...officerBenchLabels, ...signupBenchLabels];
+}
+
 function buildRaidSignupEchoRoutes({ db }) {
   const router = express.Router();
 
@@ -66,14 +102,8 @@ function buildRaidSignupEchoRoutes({ db }) {
       const entries = listEntriesForEvent(db, eventId);
       const groups = listGroupsForEvent(db, eventId);
       const tagAttendees = !!req.body?.tag_attendees;
-      const summary = formatSignupSummary(entries, {
-        classIconResolver: entry => {
-          const token = resolveSpecEmojiToken(guild, entry?.spec_name, entry?.spec_class) || resolveClassEmojiToken(guild, entry?.spec_class);
-          return token ? `${token} ` : '';
-        }
-      });
-
-      const benchList = summary.statuses.bench.length ? `Bench: ${summary.statuses.bench.join(', ')}` : 'Bench: None';
+      const benchLabels = buildBenchList(entries, groups);
+      const benchList = benchLabels.length ? `Bench: ${benchLabels.join(', ')}` : 'Bench: None';
       const groupFields = buildGroupFields(groups, guild);
 
       const mentionMap = new Map();

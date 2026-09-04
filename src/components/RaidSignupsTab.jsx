@@ -1,5 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { DateTime } from 'luxon';
+import healersIcon from '../assets/icons/healers.png';
+import meleeDpsIcon from '../assets/icons/melee_dps.png';
+import rangedDpsIcon from '../assets/icons/ranged_dps.png';
+import tanksIcon from '../assets/icons/tanks.png';
 import {
   getRaidSignupAbsences,
   getRaidSignupAbsenceTargets,
@@ -180,6 +184,7 @@ function buildDefaultGroupRows() {
 function buildGroupRows(savedRows = []) {
   const byKey = new Map(buildDefaultGroupRows().map(row => [row.localKey, row]));
   savedRows.forEach(row => {
+    if (Number(row.group_number) <= 0) return;
     const key = `${row.group_number}-${row.slot_index}`;
     if (!byKey.has(key)) return;
     byKey.set(key, {
@@ -196,6 +201,24 @@ function buildGroupRows(savedRows = []) {
   return [...byKey.values()];
 }
 
+function buildBenchAssignments(savedRows = []) {
+  return savedRows
+    .filter(row => Number(row.group_number) === 0 && String(row.player_name || '').trim())
+    .sort((a, b) => Number(a.slot_index) - Number(b.slot_index))
+    .map((row, index) => ({
+      localKey: row.id ? `bench-${row.id}` : `bench-${index + 1}-${String(row.player_name || '').trim().toLowerCase()}`,
+      group_number: 0,
+      group_name: row.group_name || 'Bench',
+      slot_index: Number(row.slot_index) || index + 1,
+      player_name: row.player_name || '',
+      spec_id: row.spec_id || null,
+      note: row.note || '',
+      spec_class: row.spec_class || null,
+      spec_name: row.spec_name || null,
+      class_name: row.class_name || null
+    }));
+}
+
 function roleSortKey(role) {
   const normalized = String(role || '').toLowerCase();
   if (normalized === 'tank') return 0;
@@ -204,12 +227,12 @@ function roleSortKey(role) {
   return 3;
 }
 
-function roleGlyph(role) {
+function roleIconAsset(role) {
   const normalized = String(role || '').toLowerCase();
-  if (normalized === 'tank') return '🛡';
-  if (normalized === 'healer') return '➕';
-  if (normalized === 'melee') return '⚔';
-  return '🏹';
+  if (normalized === 'tank') return tanksIcon;
+  if (normalized === 'healer') return healersIcon;
+  if (normalized === 'melee') return meleeDpsIcon;
+  return rangedDpsIcon;
 }
 
 function parseScheduledUnix(value) {
@@ -327,6 +350,7 @@ export default function RaidSignupsTab({
   const [selectedEventId, setSelectedEventId] = useState('');
   const [eventEditDraft, setEventEditDraft] = useState({ title: '', description: '', scheduled_date: '', scheduled_time: '20:00', scheduled_timezone: 'Europe/Paris', public_groups: false });
   const [groupRows, setGroupRows] = useState(buildDefaultGroupRows());
+  const [benchAssignments, setBenchAssignments] = useState([]);
   const [isSavingGroups, setIsSavingGroups] = useState(false);
   const [isEchoing, setIsEchoing] = useState(false);
   const [isSavingEventEdit, setIsSavingEventEdit] = useState(false);
@@ -446,6 +470,7 @@ export default function RaidSignupsTab({
   useEffect(() => {
     if (!selectedEventId) {
       setGroupRows(buildDefaultGroupRows());
+      setBenchAssignments([]);
       setSelectedEventDetails(null);
       setOpenSlotPickerKey('');
       setEditingNoteByRow({});
@@ -460,6 +485,7 @@ export default function RaidSignupsTab({
       if (!isAuthenticated) {
         const publicEvent = (events || []).find(event => String(event?.id) === String(selectedEventId));
         setGroupRows(buildGroupRows(publicEvent?.groups || []));
+        setBenchAssignments(buildBenchAssignments(publicEvent?.groups || []));
         setSelectedEventDetails(publicEvent || null);
         setOpenSlotPickerKey('');
         setEditingNoteByRow({});
@@ -477,6 +503,7 @@ export default function RaidSignupsTab({
           fetchData(`raid-signup-events/${selectedEventId}`)
         ]);
         setGroupRows(buildGroupRows(rows || []));
+        setBenchAssignments(buildBenchAssignments(rows || []));
         setSelectedEventDetails(eventDetails && typeof eventDetails === 'object' ? eventDetails : null);
         setOpenSlotPickerKey('');
         setEditingNoteByRow({});
@@ -707,19 +734,27 @@ export default function RaidSignupsTab({
       .map(row => String(row.player_name || '').trim().toLowerCase())
   ), [groupRows]);
 
+  const benchAssignmentNames = useMemo(() => new Set(
+    benchAssignments
+      .filter(row => String(row.player_name || '').trim())
+      .map(row => String(row.player_name || '').trim().toLowerCase())
+  ), [benchAssignments]);
+
   const unassignedBenchCandidates = useMemo(() => signupCandidates.filter(candidate => {
     const status = String(candidate.status || '').trim().toLowerCase();
     const normalizedStatus = status === 'absence' ? 'absent' : status;
     const candidateName = String(candidate.discord_username || '').trim();
-    return normalizedStatus === 'bench' && !assignedGroupNames.has(candidateName.toLowerCase());
-  }), [assignedGroupNames, signupCandidates]);
+    const normalizedName = candidateName.toLowerCase();
+    return normalizedStatus === 'bench' && !assignedGroupNames.has(normalizedName) && !benchAssignmentNames.has(normalizedName);
+  }), [assignedGroupNames, benchAssignmentNames, signupCandidates]);
 
   const unassignedSignupCandidates = useMemo(() => signupCandidates.filter(candidate => {
     const status = String(candidate.status || '').trim().toLowerCase();
     const normalizedStatus = status === 'absence' ? 'absent' : status;
     const candidateName = String(candidate.discord_username || '').trim();
-    return ['signup', 'late', 'tentative'].includes(normalizedStatus) && !assignedGroupNames.has(candidateName.toLowerCase());
-  }), [assignedGroupNames, signupCandidates]);
+    const normalizedName = candidateName.toLowerCase();
+    return ['signup', 'late', 'tentative'].includes(normalizedStatus) && !assignedGroupNames.has(normalizedName) && !benchAssignmentNames.has(normalizedName);
+  }), [assignedGroupNames, benchAssignmentNames, signupCandidates]);
 
   const selectedEventEntries = useMemo(() => {
     if (!selectedEventId) return [];
@@ -852,30 +887,18 @@ export default function RaidSignupsTab({
   }, [events]);
 
   const raidCalendarData = useMemo(() => {
-    if (!isAuthenticated) {
-      return {
-        scheduledItems: [],
-        plannedItems: [],
-        allItems: [],
-        blockedTemplates: []
-      };
-    }
-
-    const now = DateTime.now();
-    const allKnownEvents = [...(raidSignupEvents || []), ...(archivedEvents || [])];
-    const eventByTemplateId = new Map();
-    allKnownEvents.forEach(event => {
-      const templateId = Number(event?.template_id || 0);
-      if (!templateId) return;
-      if (!eventByTemplateId.has(templateId)) eventByTemplateId.set(templateId, []);
-      eventByTemplateId.get(templateId).push(event);
-    });
+    const publicEventSource = Array.isArray(events) ? events : [];
+    const allKnownEvents = isAuthenticated ? [...(raidSignupEvents || []), ...(archivedEvents || [])] : publicEventSource;
 
     const scheduledItems = allKnownEvents
-      .filter(event => String(event?.status || '').toLowerCase() !== 'archived')
+      .filter(event => {
+        if (!isAuthenticated) {
+          return String(event?.status || '').toLowerCase() !== 'archived';
+        }
+        return String(event?.status || '').toLowerCase() !== 'archived';
+      })
       .map(event => {
-        const template = templateById.get(String(event?.template_id || '')) || null;
-        const timezone = normalizeTimezoneOption(template?.timezone || template?.timezone_text || 'Europe/Paris');
+        const timezone = normalizeTimezoneOption((event?.timezone || event?.scheduled_timezone) || 'Europe/Paris');
         const start = parseScheduleDateTime(event?.scheduled_for || '', timezone);
         if (!start?.isValid) return null;
         return {
@@ -892,6 +915,24 @@ export default function RaidSignupsTab({
       })
       .filter(Boolean)
       .sort((a, b) => a.start.toMillis() - b.start.toMillis());
+
+    if (!isAuthenticated) {
+      return {
+        scheduledItems,
+        plannedItems: [],
+        allItems: scheduledItems,
+        blockedTemplates: []
+      };
+    }
+
+    const now = DateTime.now();
+    const eventByTemplateId = new Map();
+    allKnownEvents.forEach(event => {
+      const templateId = Number(event?.template_id || 0);
+      if (!templateId) return;
+      if (!eventByTemplateId.has(templateId)) eventByTemplateId.set(templateId, []);
+      eventByTemplateId.get(templateId).push(event);
+    });
 
     const plannedItems = [];
     const blockedTemplates = [];
@@ -951,7 +992,7 @@ export default function RaidSignupsTab({
 
     const allItems = [...scheduledItems, ...plannedItems].sort((a, b) => a.start.toMillis() - b.start.toMillis());
     return { scheduledItems, plannedItems, allItems, blockedTemplates };
-  }, [archivedEvents, isAuthenticated, raidSignupEvents, templateById, templates]);
+  }, [archivedEvents, events, isAuthenticated, raidSignupEvents, templateById, templates]);
 
   const raidCalendarByDay = useMemo(() => {
     const map = new Map();
@@ -1116,7 +1157,8 @@ export default function RaidSignupsTab({
     if (!selectedEventId) return;
     setIsSavingGroups(true);
     try {
-      const payload = groupRows
+      const payload = [
+        ...groupRows
         .filter(row => row.group_number <= visibleGroupCount && String(row.player_name || '').trim())
         .map(row => ({
           group_number: row.group_number,
@@ -1125,7 +1167,18 @@ export default function RaidSignupsTab({
           player_name: row.player_name,
           spec_id: row.spec_id || null,
           note: row.note || ''
-        }));
+        })),
+        ...benchAssignments
+          .filter(row => String(row.player_name || '').trim())
+          .map((row, index) => ({
+            group_number: 0,
+            group_name: 'Bench',
+            slot_index: index + 1,
+            player_name: row.player_name,
+            spec_id: row.spec_id || null,
+            note: row.note || ''
+          }))
+      ];
       await putData(`raid-signup-groups/${selectedEventId}`, payload);
       if (!!eventEditDraft.public_groups !== !!selectedEvent?.public_groups) {
         await putData(`raid-signup-events/${selectedEventId}`, {
@@ -1178,12 +1231,14 @@ export default function RaidSignupsTab({
         if (selectedEventId) {
           setSelectedEventDetails(selectedDetails && typeof selectedDetails === 'object' ? selectedDetails : null);
           setGroupRows(buildGroupRows(Array.isArray(selectedGroups) ? selectedGroups : []));
+          setBenchAssignments(buildBenchAssignments(Array.isArray(selectedGroups) ? selectedGroups : []));
           setLoadedSelectedEventId(String(selectedEventId));
         }
       } else if (selectedEventId) {
         const publicEvent = normalizedPublicEvents.find(event => String(event?.id) === String(selectedEventId));
         setSelectedEventDetails(publicEvent || null);
         setGroupRows(buildGroupRows(publicEvent?.groups || []));
+        setBenchAssignments(buildBenchAssignments(publicEvent?.groups || []));
         setLoadedSelectedEventId(String(selectedEventId));
       }
 
@@ -1202,39 +1257,47 @@ export default function RaidSignupsTab({
   const updateGroupRow = (rowKey, patch) => {
     setIsGroupConfigDirty(true);
     setGroupRows(prev => prev.map(row => (row.localKey === rowKey ? { ...row, ...patch } : row)));
+    if (Object.prototype.hasOwnProperty.call(patch || {}, 'player_name')) {
+      const normalizedName = String(patch.player_name || '').trim().toLowerCase();
+      if (normalizedName) {
+        setBenchAssignments(prev => prev.filter(row => String(row.player_name || '').trim().toLowerCase() !== normalizedName));
+      }
+    }
   };
 
-  const updateEntryStatus = async (entry, nextStatus, noteOverride = undefined) => {
-    if (!selectedEventId || !entry) return;
-    const normalizedStatus = String(nextStatus || '').trim().toLowerCase();
-    if (!['signup', 'late', 'tentative', 'bench', 'absent'].includes(normalizedStatus)) return;
+  const addBenchAssignment = (entry) => {
+    if (!entry) return;
+    const playerName = String(entry.discord_username || entry.player_name || '').trim();
+    if (!playerName) return;
+    const normalizedName = playerName.toLowerCase();
+    if (benchAssignmentNames.has(normalizedName)) return;
 
-    try {
-      const response = await fetchData(`raid-signup-events/${selectedEventId}`);
-      const entries = Array.isArray(response?.entries) ? response.entries : [];
-      const current = entries.find(candidate => String(candidate.discord_user_id || candidate.discord_username || '').toLowerCase() === String(entry.discord_user_id || entry.discord_username || '').toLowerCase());
-      if (!current) {
-        alert('This player is not currently in the signup list.');
-        return;
+    setIsGroupConfigDirty(true);
+    setBenchAssignments(prev => ([
+      ...prev,
+      {
+        localKey: `bench-${Date.now()}-${normalizedName}`,
+        group_number: 0,
+        group_name: 'Bench',
+        slot_index: prev.length + 1,
+        player_name: playerName,
+        spec_id: entry.spec_id || null,
+        note: '',
+        spec_class: entry.spec_class || null,
+        spec_name: entry.spec_name || null,
+        class_name: entry.class_name || null
       }
+    ]));
+  };
 
-      const payload = {
-        status: normalizedStatus,
-        discord_user_id: current.discord_user_id || null,
-        discord_username: current.discord_username || entry.discord_username || ''
-      };
-      if (noteOverride !== undefined) payload.note = String(noteOverride || '').trim();
+  const updateBenchAssignment = (rowKey, patch) => {
+    setIsGroupConfigDirty(true);
+    setBenchAssignments(prev => prev.map(row => (row.localKey === rowKey ? { ...row, ...patch } : row)));
+  };
 
-      await putData(`raid-signup-events/${selectedEventId}/status`, payload);
-      const updatedEvent = await fetchData(`raid-signup-events/${selectedEventId}`);
-      setSelectedEventDetails(updatedEvent || null);
-      setEvents(prev => prev.map(event => String(event.id) === String(selectedEventId) ? { ...event, ...updatedEvent } : event));
-      setExpandedSummaryStatus('');
-      alert(`Updated ${current.discord_username || entry.discord_username || 'player'} to ${normalizedStatus}.`);
-    } catch (error) {
-      console.error('Failed to update signup status', error);
-      alert('Failed to update the player status.');
-    }
+  const removeBenchAssignment = (rowKey) => {
+    setIsGroupConfigDirty(true);
+    setBenchAssignments(prev => prev.filter(row => row.localKey !== rowKey).map((row, index) => ({ ...row, slot_index: index + 1 })));
   };
 
   const updateGroupName = (groupNumber, groupName) => {
@@ -1271,18 +1334,6 @@ export default function RaidSignupsTab({
     setIsEventEditDirty(true);
     setEventEditDraft(prev => ({ ...prev, public_groups: !!nextValue }));
   };
-
-  const [benchNoteDrafts, setBenchNoteDrafts] = useState({});
-
-  useEffect(() => {
-    if (!selectedEventDetails?.entries) return;
-    const nextDrafts = {};
-    for (const entry of selectedEventDetails.entries) {
-      const key = String(entry.discord_user_id || entry.discord_username || '');
-      if (key) nextDrafts[key] = String(entry.note || '');
-    }
-    setBenchNoteDrafts(prev => ({ ...prev, ...nextDrafts }));
-  }, [selectedEventDetails]);
 
   const setEventStatus = async (status, confirmMessage) => {
     if (!selectedEventId) return;
@@ -1469,7 +1520,10 @@ export default function RaidSignupsTab({
                   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
                     {['tank', 'healer', 'melee', 'ranged'].map(role => (
                       <div key={role} className="bg-slate-900 border border-slate-800 rounded-lg p-3">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">{roleGlyph(role)} {role}</h4>
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
+                          <img src={roleIconAsset(role)} alt="" className="w-4 h-4 object-contain" />
+                          <span>{role}</span>
+                        </h4>
                         {byRole[role].length === 0 ? (
                           <p className="text-xs text-slate-600 italic">None</p>
                         ) : (
@@ -1821,7 +1875,10 @@ export default function RaidSignupsTab({
                         <p className="text-[11px] text-slate-400 uppercase tracking-wider font-bold">{summaryStatusLabel(expandedSummaryStatus)}</p>
                         {expandedSummaryGroups && ['tank', 'healer', 'melee', 'ranged'].map(role => (
                           <div key={`summary-${role}`} className="rounded border border-slate-800 bg-slate-950/70 p-2">
-                            <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-1">{roleGlyph(role)} {role}</p>
+                            <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-1 flex items-center gap-1.5">
+                              <img src={roleIconAsset(role)} alt="" className="w-3.5 h-3.5 object-contain" />
+                              <span>{role}</span>
+                            </p>
                             {expandedSummaryGroups[role].length === 0 ? (
                               <p className="text-xs text-slate-600 italic">None</p>
                             ) : (
@@ -1968,6 +2025,320 @@ export default function RaidSignupsTab({
                       </div>
                     </div>
                   ) : null}
+
+                  {!isReadOnly ? (
+                    <div className="space-y-4 border-t border-slate-800 pt-4">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                      <div>
+                        <h4 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Group Config</h4>
+                        <p className="text-xs text-slate-500">Manage group assignments for the selected raid.</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {!isReadOnly ? (
+                          <button
+                            type="button"
+                            onClick={saveGroups}
+                            disabled={!selectedEventId || isSavingGroups}
+                            className="text-xs font-bold bg-amber-600 hover:bg-amber-500 text-slate-950 px-3 py-2 rounded"
+                          >
+                            {isSavingGroups ? 'Saving...' : 'Save Groups'}
+                          </button>
+                        ) : null}
+                        {!isReadOnly ? (
+                          <button
+                            type="button"
+                            onClick={echoGroups}
+                            disabled={!selectedEventId || isEchoing}
+                            className="text-xs font-bold bg-purple-700 hover:bg-purple-600 text-white px-3 py-2 rounded"
+                          >
+                            {isEchoing ? 'Echoing...' : 'Echo To Discord'}
+                          </button>
+                        ) : null}
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-slate-400">
+                      Template group size: <span className="text-amber-300 font-bold">{selectedTemplate ? `${normalizeTemplateGroupSize(selectedTemplate.group_size)}-man` : 'Unknown template'}</span>
+                      {' '}• showing <span className="text-amber-300 font-bold">{visibleGroupCount}</span> groups
+                    </p>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      {['tank', 'healer', 'ranged', 'melee'].map(role => (
+                        <div key={`group-summary-${role}`} className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
+                          <div className="text-[10px] uppercase tracking-wider text-slate-500">{role === 'tank' ? 'Tanks' : role === 'healer' ? 'Healers' : role === 'ranged' ? 'Ranged' : 'Melee'}</div>
+                          <div className="mt-1 text-lg font-bold text-amber-300">{groupRoleSummary[role] || 0}</div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="rounded-lg border border-slate-800 bg-slate-900 p-3 space-y-3">
+                      {(benchAssignments.length > 0 || unassignedBenchCandidates.length > 0) ? (
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between gap-2">
+                            <p className="text-[11px] font-bold uppercase tracking-wider text-amber-300">Bench</p>
+                            <span className="text-[10px] text-slate-400">{benchAssignments.length + unassignedBenchCandidates.length} players</span>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
+                            {benchAssignments.map(row => {
+                              const matchedEntry = selectedEventEntryByName.get(String(row.player_name || '').trim().toLowerCase()) || null;
+                              const candidateColor = resolveEntryNameColor(matchedEntry || row);
+                              return (
+                                <div key={row.localKey} className="rounded border border-amber-700 bg-amber-950/20 p-2 text-xs space-y-2">
+                                  <div className="flex items-center gap-2">
+                                    <img src={resolveEntryIcon(matchedEntry || row)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
+                                    <span className="truncate flex-1" style={{ color: candidateColor }}>{row.player_name}</span>
+                                    {!isReadOnly ? (
+                                      <button
+                                        type="button"
+                                        onClick={() => removeBenchAssignment(row.localKey)}
+                                        className="text-[10px] font-bold text-amber-200 hover:text-amber-100"
+                                        title="Remove from officer bench"
+                                      >
+                                        Remove
+                                      </button>
+                                    ) : null}
+                                  </div>
+                                  {!isReadOnly ? (
+                                    <input
+                                      type="text"
+                                      value={String(row.note || '')}
+                                      onChange={event => updateBenchAssignment(row.localKey, { note: event.target.value })}
+                                      placeholder="Bench note"
+                                      className="w-full bg-slate-950 text-slate-200 border border-amber-700/50 rounded px-2 py-1 text-[11px] focus:outline-none"
+                                    />
+                                  ) : null}
+                                  {row.note && isReadOnly ? <div className="text-[10px] text-amber-200">{row.note}</div> : null}
+                                </div>
+                              );
+                            })}
+                            {unassignedBenchCandidates.map(candidate => {
+                              const candidateColor = resolveEntryNameColor(candidate);
+                              return (
+                                <div key={`bench-${candidate.discord_user_id || candidate.discord_username}`} className="rounded border border-amber-700 bg-amber-950/20 p-2 text-xs space-y-2">
+                                  <div className="flex items-center gap-2">
+                                    <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
+                                    <span className="truncate flex-1" style={{ color: candidateColor }}>{candidate.discord_username}</span>
+                                  </div>
+                                  <div className="text-[10px] text-slate-400">Signed as bench</div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ) : null}
+
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-slate-300">Not assigned to group</p>
+                        <span className="text-[10px] text-slate-400">{unassignedSignupCandidates.length} players</span>
+                      </div>
+
+                      {unassignedSignupCandidates.length === 0 ? (
+                        <p className="text-xs text-slate-500">All available signups are already assigned to a group or bench.</p>
+                      ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
+                          {unassignedSignupCandidates.map(candidate => {
+                            const candidateColor = resolveEntryNameColor(candidate);
+                            const normalizedStatus = String(candidate.status || '').trim().toLowerCase();
+                            const isTentative = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'tentative';
+                            const isLate = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'late';
+                            const isBench = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'bench';
+                            return (
+                              <div key={`unassigned-${candidate.discord_user_id || candidate.discord_username}`} className={`flex items-center gap-2 rounded border px-2 py-1.5 text-xs ${isTentative || isLate ? 'border-yellow-600 bg-yellow-950/20' : 'border-slate-700 bg-slate-950'}`}>
+                                <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
+                                <span className="truncate" style={{ color: candidateColor }}>{candidate.discord_username}</span>
+                                {isTentative ? <span className="text-yellow-300" title="Tentative player">⚠</span> : null}
+                                {isLate ? <span className="text-orange-300" title="Late player">⏱</span> : null}
+                                {!isReadOnly && !isBench ? (
+                                  <button
+                                    type="button"
+                                    onClick={() => addBenchAssignment(candidate)}
+                                    className="ml-auto text-amber-300 hover:text-amber-200"
+                                    title="Add to officer bench"
+                                    aria-label={`Add ${candidate.discord_username} to officer bench`}
+                                  >
+                                    🪑
+                                  </button>
+                                ) : null}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+
+                      <label className="inline-flex items-center gap-2 text-xs text-slate-300">
+                        <input
+                          type="checkbox"
+                          checked={!!eventEditDraft.public_groups}
+                          disabled={isSavingPublicGroups || isReadOnly}
+                          onChange={e => savePublicGroupsVisibility(e.target.checked)}
+                        />
+                        Make groups visible in public view
+                        {isSavingPublicGroups ? <span className="text-cyan-300">(saving...)</span> : null}
+                      </label>
+
+                      {!isReadOnly ? (
+                        <label className="inline-flex items-center gap-2 text-xs text-slate-300">
+                          <input
+                            type="checkbox"
+                            checked={!!echoTagAttendees}
+                            onChange={e => setEchoTagAttendees(e.target.checked)}
+                          />
+                          Tag Attendees/Bench
+                        </label>
+                      ) : null}
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
+                        {Array.from({ length: visibleGroupCount }, (_, idx) => idx + 1).map(groupNumber => {
+                          const rows = groupRows.filter(row => row.group_number === groupNumber).sort((a, b) => a.slot_index - b.slot_index);
+                          return (
+                            <div key={groupNumber} className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                              <input
+                                type="text"
+                                value={rows[0]?.group_name || `Group ${groupNumber}`}
+                                disabled={isReadOnly}
+                                onChange={e => updateGroupName(groupNumber, e.target.value)}
+                                className="w-full bg-slate-950 text-amber-300 border border-slate-700 rounded px-3 py-2 text-xs font-bold uppercase tracking-wider"
+                              />
+
+                              <div className="space-y-2">
+                                {rows.map(row => {
+                                  const normalizedPlayerName = String(row.player_name || '').trim().toLowerCase();
+                                  const selectedCandidate = signupCandidates.find(candidate => String(candidate.discord_username || '').trim().toLowerCase() === normalizedPlayerName)
+                                    || selectedEventEntryByName.get(normalizedPlayerName)
+                                    || null;
+                                  const assignedElsewhereNames = new Set(
+                                    groupRows
+                                      .filter(other => other.localKey !== row.localKey)
+                                      .map(other => String(other.player_name || '').trim())
+                                      .filter(Boolean)
+                                  );
+                                  const availableCandidates = signupCandidates.filter(candidate => {
+                                    const candidateName = String(candidate.discord_username || '').trim();
+                                    if (!candidateName) return false;
+                                    if (candidateName === String(row.player_name || '').trim()) return true;
+                                    return !assignedElsewhereNames.has(candidateName);
+                                  });
+                                  const selectedColor = selectedCandidate
+                                    ? resolveEntryNameColor(selectedCandidate)
+                                    : resolveEntryNameColor(row);
+                                  const isPickerOpen = openSlotPickerKey === row.localKey;
+                                  const isEditingNote = !!editingNoteByRow[row.localKey];
+                                  const hasAssignedPlayer = String(row.player_name || '').trim().length > 0;
+                                  const isTentativeAssignment = String(selectedCandidate?.status || '').trim().toLowerCase() === 'tentative';
+                                  const isAbsentAssignment = ['absence', 'absent'].includes(String(selectedCandidate?.status || '').trim().toLowerCase());
+
+                                  return (
+                                    <div key={row.localKey} className={`relative rounded-lg border p-2 space-y-2 ${isAbsentAssignment ? 'border-red-600 bg-red-950/20' : isTentativeAssignment ? 'border-yellow-600 bg-yellow-950/20' : 'border-slate-800 bg-slate-950'}`}>
+                                      <div className="flex items-center gap-2 w-full min-w-0">
+                                        <button
+                                          type="button"
+                                          disabled={isReadOnly}
+                                          onClick={() => setOpenSlotPickerKey(prev => (prev === row.localKey ? '' : row.localKey))}
+                                          className="min-w-0 flex-1 flex items-center justify-between gap-2 bg-slate-900 text-sm border border-slate-700 rounded px-2 py-2 text-left"
+                                        >
+                                          <span className="flex items-center gap-2 min-w-0">
+                                            <img src={hasAssignedPlayer ? resolveEntryIcon(selectedCandidate || row) : UNKNOWN_ICON} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800 flex-shrink-0" />
+                                            <span className="truncate flex items-center gap-1" style={{ color: selectedColor }}>
+                                              {isAbsentAssignment ? <span className="text-red-300" title="Grouped player is now absent">🚫</span> : null}
+                                              {isTentativeAssignment ? <span className="text-yellow-300" title="Tentative player">⚠</span> : null}
+                                              {hasAssignedPlayer ? row.player_name : 'Open slot'}
+                                            </span>
+                                          </span>
+                                          <span className="text-[10px] text-slate-400">▼</span>
+                                        </button>
+
+                                        {!isReadOnly && hasAssignedPlayer ? (
+                                          <>
+                                            <button
+                                              type="button"
+                                              onClick={() => {
+                                                updateGroupRow(row.localKey, { player_name: '', spec_id: null, note: '' });
+                                                setEditingNoteByRow(prev => ({ ...prev, [row.localKey]: false }));
+                                                setOpenSlotPickerKey('');
+                                              }}
+                                              className="w-8 h-8 flex items-center justify-center shrink-0 rounded border text-xs font-bold bg-slate-900 border-slate-700 text-slate-300 hover:bg-slate-800"
+                                              title="Clear slot"
+                                            >
+                                              ↻
+                                            </button>
+                                            <button
+                                              type="button"
+                                              onClick={() => setEditingNoteByRow(prev => ({ ...prev, [row.localKey]: !prev[row.localKey] }))}
+                                              className={`w-8 h-8 flex items-center justify-center shrink-0 rounded border text-xs font-bold ${isEditingNote ? 'bg-cyan-700 border-cyan-500 text-white' : 'bg-slate-900 border-slate-700 text-slate-300 hover:bg-slate-800'}`}
+                                              title="Add or edit note"
+                                            >
+                                              ✎
+                                            </button>
+                                          </>
+                                        ) : null}
+                                      </div>
+
+                                      {!isReadOnly && isPickerOpen ? (
+                                        <div className="absolute left-2 right-2 top-[calc(100%-2px)] z-20 max-h-56 overflow-y-auto rounded-md border border-slate-700 bg-slate-900 shadow-xl">
+                                          <button
+                                            type="button"
+                                            onClick={() => {
+                                              updateGroupRow(row.localKey, { player_name: '', spec_id: null, note: '' });
+                                              setEditingNoteByRow(prev => ({ ...prev, [row.localKey]: false }));
+                                              setOpenSlotPickerKey('');
+                                            }}
+                                            className="w-full text-left px-2.5 py-2 text-sm text-slate-200 hover:bg-slate-800"
+                                          >
+                                            Open slot
+                                          </button>
+                                          {availableCandidates.length === 0 ? (
+                                            <div className="px-2.5 py-2 text-xs text-slate-500">No unassigned signup players available.</div>
+                                          ) : availableCandidates.map(candidate => {
+                                            const color = resolveEntryNameColor(candidate);
+                                            return (
+                                              <button
+                                                key={`${candidate.discord_user_id}-${candidate.discord_username}`}
+                                                type="button"
+                                                onClick={() => {
+                                                  updateGroupRow(row.localKey, {
+                                                    player_name: candidate.discord_username,
+                                                    spec_id: candidate.spec_id || null
+                                                  });
+                                                  setOpenSlotPickerKey('');
+                                                }}
+                                                className="w-full text-left px-2.5 py-2 text-sm hover:bg-slate-800"
+                                              >
+                                                <span className="flex items-center gap-2">
+                                                  <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800 flex-shrink-0" />
+                                                  <span className="truncate" style={{ color }}>
+                                                    {candidate.discord_username}
+                                                  </span>
+                                                </span>
+                                              </button>
+                                            );
+                                          })}
+                                        </div>
+                                      ) : null}
+
+                                      {hasAssignedPlayer && row.note && !isEditingNote ? (
+                                        <p className="text-xs text-slate-400">{row.note}</p>
+                                      ) : null}
+
+                                      {!isReadOnly && hasAssignedPlayer && isEditingNote ? (
+                                        <input
+                                          type="text"
+                                          value={row.note || ''}
+                                          onChange={e => updateGroupRow(row.localKey, { note: e.target.value })}
+                                          placeholder="Optional note"
+                                          className="w-full bg-slate-900 text-slate-200 border border-slate-700 rounded px-2 py-1.5 text-xs focus:outline-none"
+                                        />
+                                      ) : null}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                  ) : null}
                 </div>
               )}
             </div>
@@ -2090,343 +2461,6 @@ export default function RaidSignupsTab({
                   )}
                 </div>
               </div>
-          )}
-
-          {activeRaidSection === 'group-config' && (
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
-                <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Group Config</h3>
-                <div className="flex items-center gap-2">
-                  <select
-                    value={selectedEventId}
-                    onChange={e => setSelectedEventId(e.target.value)}
-                    className="bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm"
-                  >
-                    <option value="">Select event...</option>
-                    {readableActiveEvents.length > 0 && (
-                      <optgroup label="Active events">
-                        {readableActiveEvents.map(event => (
-                          <option key={`active-${event.id}`} value={event.id}>#{event.id} [{event.status}] {event.title}</option>
-                        ))}
-                      </optgroup>
-                    )}
-                    {readableArchivedEvents.length > 0 && (
-                      <optgroup label="Archived events">
-                        {readableArchivedEvents.map(event => (
-                          <option key={`archived-${event.id}`} value={event.id}>#{event.id} [{event.status}] {event.title}</option>
-                        ))}
-                      </optgroup>
-                    )}
-                  </select>
-                  <button
-                    type="button"
-                    onClick={refreshSignups}
-                    disabled={isRefreshingSignups}
-                    className="text-xs font-bold bg-cyan-700 hover:bg-cyan-600 disabled:opacity-60 text-white px-3 py-2 rounded"
-                  >
-                    {isRefreshingSignups ? 'Refreshing...' : 'Refresh Signups'}
-                  </button>
-                  {isReadOnly ? <span className="text-[11px] text-slate-400">Read-only view</span> : null}
-                  {!isReadOnly ? (
-                    <button
-                      type="button"
-                      onClick={saveGroups}
-                      disabled={!selectedEventId || isSavingGroups}
-                      className="text-xs font-bold bg-amber-600 hover:bg-amber-500 text-slate-950 px-3 py-2 rounded"
-                    >
-                      {isSavingGroups ? 'Saving...' : 'Save Groups'}
-                    </button>
-                  ) : null}
-                  {!isReadOnly ? (
-                    <button
-                      type="button"
-                      onClick={echoGroups}
-                      disabled={!selectedEventId || isEchoing}
-                      className="text-xs font-bold bg-purple-700 hover:bg-purple-600 text-white px-3 py-2 rounded"
-                    >
-                      {isEchoing ? 'Echoing...' : 'Echo To Discord'}
-                    </button>
-                  ) : null}
-                </div>
-              </div>
-
-              {!selectedEventId ? (
-                <p className="text-xs text-slate-500">Choose an event to configure groups and echo them to Discord.</p>
-              ) : (
-                <>
-                  <p className="text-xs text-slate-400">
-                    Template group size: <span className="text-amber-300 font-bold">{selectedTemplate ? `${normalizeTemplateGroupSize(selectedTemplate.group_size)}-man` : 'Unknown template'}</span>
-                    {' '}• showing <span className="text-amber-300 font-bold">{visibleGroupCount}</span> groups
-                  </p>
-
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    {['tank', 'healer', 'ranged', 'melee'].map(role => (
-                      <div key={`group-summary-${role}`} className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
-                        <div className="text-[10px] uppercase tracking-wider text-slate-500">{role === 'tank' ? 'Tanks' : role === 'healer' ? 'Healers' : role === 'ranged' ? 'Ranged' : 'Melee'}</div>
-                        <div className="mt-1 text-lg font-bold text-amber-300">{groupRoleSummary[role] || 0}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="rounded-lg border border-slate-800 bg-slate-900 p-3 space-y-3">
-                    {unassignedBenchCandidates.length > 0 ? (
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between gap-2">
-                          <p className="text-[11px] font-bold uppercase tracking-wider text-amber-300">Bench</p>
-                          <span className="text-[10px] text-slate-400">{unassignedBenchCandidates.length} players</span>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
-                          {unassignedBenchCandidates.map(candidate => {
-                            const candidateColor = resolveEntryNameColor(candidate);
-                            const key = String(candidate.discord_user_id || candidate.discord_username || '');
-                            const currentBenchNote = String(benchNoteDrafts[key] ?? candidate.note ?? '');
-                            return (
-                              <div key={`bench-${candidate.discord_user_id || candidate.discord_username}`} className="rounded border border-amber-700 bg-amber-950/20 p-2 text-xs space-y-2">
-                                <div className="flex items-center gap-2">
-                                  <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
-                                  <span className="truncate flex-1" style={{ color: candidateColor }}>{candidate.discord_username}</span>
-                                  {!isReadOnly ? (
-                                    <button
-                                      type="button"
-                                      onClick={() => updateEntryStatus(candidate, 'signup')}
-                                      className="text-[10px] font-bold text-amber-200 hover:text-amber-100"
-                                      title="Remove from bench"
-                                    >
-                                      Remove
-                                    </button>
-                                  ) : null}
-                                </div>
-                                {!isReadOnly ? (
-                                  <input
-                                    type="text"
-                                    value={currentBenchNote}
-                                    onChange={event => {
-                                      const nextValue = event.target.value;
-                                      setBenchNoteDrafts(prev => ({ ...prev, [key]: nextValue }));
-                                    }}
-                                    onBlur={() => updateEntryStatus(candidate, 'bench', currentBenchNote)}
-                                    placeholder="Bench note"
-                                    className="w-full bg-slate-950 text-slate-200 border border-amber-700/50 rounded px-2 py-1 text-[11px] focus:outline-none"
-                                  />
-                                ) : null}
-                                {candidate.note && !isReadOnly ? <div className="text-[10px] text-amber-200">{candidate.note}</div> : null}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    ) : null}
-
-                    <div className="flex items-center justify-between gap-2">
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-slate-300">Not assigned to group</p>
-                      <span className="text-[10px] text-slate-400">{unassignedSignupCandidates.length} players</span>
-                    </div>
-
-                    {unassignedSignupCandidates.length === 0 ? (
-                      <p className="text-xs text-slate-500">All available signups are already assigned to a group or bench.</p>
-                    ) : (
-                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
-                        {unassignedSignupCandidates.map(candidate => {
-                          const candidateColor = resolveEntryNameColor(candidate);
-                          const normalizedStatus = String(candidate.status || '').trim().toLowerCase();
-                          const isTentative = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'tentative';
-                          const isLate = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'late';
-                          const isBench = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'bench';
-                          return (
-                            <div key={`unassigned-${candidate.discord_user_id || candidate.discord_username}`} className={`flex items-center gap-2 rounded border px-2 py-1.5 text-xs ${isTentative || isLate ? 'border-yellow-600 bg-yellow-950/20' : 'border-slate-700 bg-slate-950'}`}>
-                              <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
-                              <span className="truncate" style={{ color: candidateColor }}>{candidate.discord_username}</span>
-                              {isTentative ? <span className="text-yellow-300" title="Tentative player">⚠</span> : null}
-                              {isLate ? <span className="text-orange-300" title="Late player">⏱</span> : null}
-                              {!isReadOnly && !isBench ? (
-                                <button
-                                  type="button"
-                                  onClick={() => updateEntryStatus(candidate, 'bench')}
-                                  className="ml-auto text-amber-300 hover:text-amber-200"
-                                  title="Move to bench"
-                                  aria-label={`Move ${candidate.discord_username} to bench`}
-                                >
-                                  🪑
-                                </button>
-                              ) : null}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-
-                  <label className="inline-flex items-center gap-2 text-xs text-slate-300">
-                    <input
-                      type="checkbox"
-                      checked={!!eventEditDraft.public_groups}
-                      disabled={isSavingPublicGroups || isReadOnly}
-                      onChange={e => savePublicGroupsVisibility(e.target.checked)}
-                    />
-                    Make groups visible in public view
-                    {isSavingPublicGroups ? <span className="text-cyan-300">(saving...)</span> : null}
-                  </label>
-
-                  {!isReadOnly ? (
-                    <label className="inline-flex items-center gap-2 text-xs text-slate-300">
-                      <input
-                        type="checkbox"
-                        checked={!!echoTagAttendees}
-                        onChange={e => setEchoTagAttendees(e.target.checked)}
-                      />
-                      Tag Attendees/Bench
-                    </label>
-                  ) : null}
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
-                  {Array.from({ length: visibleGroupCount }, (_, idx) => idx + 1).map(groupNumber => {
-                    const rows = groupRows.filter(row => row.group_number === groupNumber).sort((a, b) => a.slot_index - b.slot_index);
-                    return (
-                      <div key={groupNumber} className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
-                        <input
-                          type="text"
-                          value={rows[0]?.group_name || `Group ${groupNumber}`}
-                          disabled={isReadOnly}
-                          onChange={e => updateGroupName(groupNumber, e.target.value)}
-                          className="w-full bg-slate-950 text-amber-300 border border-slate-700 rounded px-3 py-2 text-xs font-bold uppercase tracking-wider"
-                        />
-
-                        <div className="space-y-2">
-                          {rows.map(row => {
-                            const selectedCandidate = signupCandidates.find(candidate => String(candidate.discord_username || '') === String(row.player_name || '')) || null;
-                            const assignedElsewhereNames = new Set(
-                              groupRows
-                                .filter(other => other.localKey !== row.localKey)
-                                .map(other => String(other.player_name || '').trim())
-                                .filter(Boolean)
-                            );
-                            const availableCandidates = signupCandidates.filter(candidate => {
-                              const candidateName = String(candidate.discord_username || '').trim();
-                              if (!candidateName) return false;
-                              if (candidateName === String(row.player_name || '').trim()) return true;
-                              return !assignedElsewhereNames.has(candidateName);
-                            });
-                            const selectedColor = selectedCandidate
-                              ? resolveEntryNameColor(selectedCandidate)
-                              : resolveEntryNameColor(row);
-                            const isPickerOpen = openSlotPickerKey === row.localKey;
-                            const isEditingNote = !!editingNoteByRow[row.localKey];
-                            const hasAssignedPlayer = String(row.player_name || '').trim().length > 0;
-                            const isTentativeAssignment = String(selectedCandidate?.status || '').trim().toLowerCase() === 'tentative';
-                            const isAbsentAssignment = ['absence', 'absent'].includes(String(selectedCandidate?.status || '').trim().toLowerCase());
-
-                            return (
-                              <div key={row.localKey} className={`relative rounded-lg border p-2 space-y-2 ${isAbsentAssignment ? 'border-red-600 bg-red-950/20' : isTentativeAssignment ? 'border-yellow-600 bg-yellow-950/20' : 'border-slate-800 bg-slate-950'}`}>
-                                <div className="flex items-center gap-2 w-full min-w-0">
-                                  <button
-                                    type="button"
-                                    disabled={isReadOnly}
-                                    onClick={() => setOpenSlotPickerKey(prev => (prev === row.localKey ? '' : row.localKey))}
-                                    className="min-w-0 flex-1 flex items-center justify-between gap-2 bg-slate-900 text-sm border border-slate-700 rounded px-2 py-2 text-left"
-                                  >
-                                    <span className="flex items-center gap-2 min-w-0">
-                                      <img src={hasAssignedPlayer ? resolveEntryIcon(selectedCandidate || row) : UNKNOWN_ICON} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800 flex-shrink-0" />
-                                      <span className="truncate flex items-center gap-1" style={{ color: selectedColor }}>
-                                        {isAbsentAssignment ? <span className="text-red-300" title="Grouped player is now absent">🚫</span> : null}
-                                        {isTentativeAssignment ? <span className="text-yellow-300" title="Tentative player">⚠</span> : null}
-                                        {hasAssignedPlayer ? row.player_name : 'Open slot'}
-                                      </span>
-                                    </span>
-                                    <span className="text-[10px] text-slate-400">▼</span>
-                                  </button>
-
-                                  {!isReadOnly && hasAssignedPlayer ? (
-                                    <>
-                                      <button
-                                        type="button"
-                                        onClick={() => {
-                                          updateGroupRow(row.localKey, { player_name: '', spec_id: null, note: '' });
-                                          setEditingNoteByRow(prev => ({ ...prev, [row.localKey]: false }));
-                                          setOpenSlotPickerKey('');
-                                        }}
-                                        className="w-8 h-8 flex items-center justify-center shrink-0 rounded border text-xs font-bold bg-slate-900 border-slate-700 text-slate-300 hover:bg-slate-800"
-                                        title="Clear slot"
-                                      >
-                                        ↻
-                                      </button>
-                                      <button
-                                        type="button"
-                                        onClick={() => setEditingNoteByRow(prev => ({ ...prev, [row.localKey]: !prev[row.localKey] }))}
-                                        className={`w-8 h-8 flex items-center justify-center shrink-0 rounded border text-xs font-bold ${isEditingNote ? 'bg-cyan-700 border-cyan-500 text-white' : 'bg-slate-900 border-slate-700 text-slate-300 hover:bg-slate-800'}`}
-                                        title="Add or edit note"
-                                      >
-                                        ✎
-                                      </button>
-                                    </>
-                                  ) : null}
-                                </div>
-
-                                {!isReadOnly && isPickerOpen ? (
-                                  <div className="absolute left-2 right-2 top-[calc(100%-2px)] z-20 max-h-56 overflow-y-auto rounded-md border border-slate-700 bg-slate-900 shadow-xl">
-                                    <button
-                                      type="button"
-                                      onClick={() => {
-                                        updateGroupRow(row.localKey, { player_name: '', spec_id: null, note: '' });
-                                        setEditingNoteByRow(prev => ({ ...prev, [row.localKey]: false }));
-                                        setOpenSlotPickerKey('');
-                                      }}
-                                      className="w-full text-left px-2.5 py-2 text-sm text-slate-200 hover:bg-slate-800"
-                                    >
-                                      Open slot
-                                    </button>
-                                    {availableCandidates.length === 0 ? (
-                                      <div className="px-2.5 py-2 text-xs text-slate-500">No unassigned signup players available.</div>
-                                    ) : availableCandidates.map(candidate => {
-                                      const color = resolveEntryNameColor(candidate);
-                                      return (
-                                        <button
-                                          key={`${candidate.discord_user_id}-${candidate.discord_username}`}
-                                          type="button"
-                                          onClick={() => {
-                                            updateGroupRow(row.localKey, {
-                                              player_name: candidate.discord_username,
-                                              spec_id: candidate.spec_id || null
-                                            });
-                                            setOpenSlotPickerKey('');
-                                          }}
-                                          className="w-full text-left px-2.5 py-2 text-sm hover:bg-slate-800"
-                                        >
-                                          <span className="flex items-center gap-2">
-                                            <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800 flex-shrink-0" />
-                                            <span className="truncate" style={{ color }}>
-                                              {candidate.discord_username}
-                                            </span>
-                                          </span>
-                                        </button>
-                                      );
-                                    })}
-                                  </div>
-                                ) : null}
-
-                                {hasAssignedPlayer && row.note && !isEditingNote ? (
-                                  <p className="text-xs text-slate-400">{row.note}</p>
-                                ) : null}
-
-                                {!isReadOnly && hasAssignedPlayer && isEditingNote ? (
-                                  <input
-                                    type="text"
-                                    value={row.note || ''}
-                                    onChange={e => updateGroupRow(row.localKey, { note: e.target.value })}
-                                    placeholder="Optional note"
-                                    className="w-full bg-slate-900 text-slate-200 border border-slate-700 rounded px-2 py-1.5 text-xs focus:outline-none"
-                                  />
-                                ) : null}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-                </>
-              )}
-            </div>
           )}
 
           {activeRaidSection === 'absences' && (
