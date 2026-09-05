@@ -25,6 +25,7 @@ async function main() {
 
   const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildEmojisAndStickers] });
   await client.login(token);
+  await client.application.emojis.fetch().catch(() => {});
 
   const guild = await client.guilds.fetch(guildId).catch(() => null);
   if (!guild) {
@@ -114,8 +115,8 @@ async function main() {
 
   const entries = listEntriesForEvent(db, event.id);
 
-  const embed = buildSignupEmbed(event, entries, guild);
-  const components = buildMainSignupComponents(event.id, classes, specs, '', false, 'TestHero');
+  const embed = buildSignupEmbed(event, entries, client);
+  const components = buildMainSignupComponents(event.id, classes, specs, '', false, 'TestHero', null, client);
   const message = await targetChannel.send({ embeds: [embed], components });
 
   db.prepare(`

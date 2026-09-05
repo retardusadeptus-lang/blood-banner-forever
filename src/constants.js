@@ -4,7 +4,8 @@
 
 export const PHASES = ["Pre-BiS", "T4", "T5", "T6", "ZA", "SWP"];
 
-export const DEFAULT_GLOBAL_PHASE = 'T5';
+const configuredDefaultPhase = String(import.meta.env?.VITE_DEFAULT_PHASE || '').trim();
+export const DEFAULT_GLOBAL_PHASE = PHASES.includes(configuredDefaultPhase) ? configuredDefaultPhase : 'T6';
 export const CORE_SYNC_INTERVAL_MS = 15000;
 export const STORAGE_KEYS = {
   activeTab: 'active-tab',

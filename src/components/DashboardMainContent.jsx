@@ -4,13 +4,11 @@ import BankContainer from '../containers/BankContainer';
 import ItemsDatabaseContainer from '../containers/ItemsDatabaseContainer';
 import LootCouncilContainer from '../containers/LootCouncilContainer';
 import RaidAssignmentsContainer from '../containers/RaidAssignmentsContainer';
-import RaidAssignmentsHistory from './RaidAssignmentsHistory';
 import AssignedLootOverview from './AssignedLootOverview';
 import RaidSignupsContainer from '../containers/RaidSignupsContainer';
 import RecruitmentFocusTab from './RecruitmentFocusTab';
 import RecruitmentPlanningTab from './RecruitmentPlanningTab';
 import RecruitmentApplicationsTab from './RecruitmentApplicationsTab';
-import RosterContainer from '../containers/RosterContainer';
 import ScoringContainer from '../containers/ScoringContainer';
 import ResourcesTab from '../features/resources/ResourcesTab';
 
@@ -34,6 +32,7 @@ export default function DashboardMainContent({ viewModel }) {
     adminSubTab,
     resourcesSubTab,
     isAuthenticated,
+    canViewScoring,
     globalMyPlayerId,
     selectedBisSpec,
     setSelectedBisSpec,
@@ -47,10 +46,6 @@ export default function DashboardMainContent({ viewModel }) {
     handleSaveRaidAssignmentsChanges,
     isSavingRaidAssignments,
     handleCopyRaidAssignmentsToArchive,
-    handleViewRaidAssignmentArchive,
-    handleDeleteRaidAssignmentArchive,
-    handleRestoreRaidAssignmentArchive,
-    handleToggleRaidRestoreBoss,
     handleToggleZone,
     handleToggleBoss,
     handleMoveEnabledBoss,
@@ -100,10 +95,6 @@ export default function DashboardMainContent({ viewModel }) {
     mutableItems,
     bisPriorities,
     globalPhase,
-    raidAssignmentArchives,
-    selectedRaidAssignmentArchiveId,
-    selectedRaidRestoreBosses,
-    setSelectedRaidRestoreBosses,
     raidAssignmentData,
     setRaidAssignmentData,
     enabledBosses,
@@ -355,6 +346,7 @@ export default function DashboardMainContent({ viewModel }) {
               setSelectedPhase={setSharedPhaseFilter}
               userBossFilter={raidAssignmentsBossFilter}
               setUserBossFilter={setRaidAssignmentsBossFilter}
+              fetchData={fetchData}
             />
           )}
           {raidAssignmentsSubTab === 'tactics' && (
@@ -381,18 +373,6 @@ export default function DashboardMainContent({ viewModel }) {
               selectedCharacterId={globalMyPlayerId}
             />
           )}
-          {raidAssignmentsSubTab === 'history' && (
-            <RaidAssignmentsHistory
-              archives={raidAssignmentArchives}
-              onViewArchive={handleViewRaidAssignmentArchive}
-              onDeleteArchive={handleDeleteRaidAssignmentArchive}
-              onRestoreArchive={handleRestoreRaidAssignmentArchive}
-              selectedArchiveId={selectedRaidAssignmentArchiveId}
-              selectedRestoreBosses={selectedRaidRestoreBosses}
-              setSelectedRestoreBosses={setSelectedRaidRestoreBosses}
-              onToggleRestoreBoss={handleToggleRaidRestoreBoss}
-            />
-          )}
         </div>
       )}
 
@@ -404,6 +384,7 @@ export default function DashboardMainContent({ viewModel }) {
           deleteData={deleteData}
           isAuthenticated={isAuthenticated}
           roster={roster}
+          guildRoleRanks={scoringConfig?.guildRoleRanks}
           getSpecById={getSpecById}
           specsFromDb={specsFromDb}
           bnetAuthState={bnetAuthState}
@@ -423,6 +404,7 @@ export default function DashboardMainContent({ viewModel }) {
           onApplyRaidHelperImport={handleApplyRaidHelperImport}
           onCancelRaidHelperImport={handleCancelRaidHelperImport}
           activeSection={raidSignupsSubTab}
+          guildRoleRanks={scoringConfig?.guildRoleRanks}
           onSectionChange={(nextSection) => {
             if (!nextSection) return;
             setRaidSignupsSubTab?.(nextSection);
@@ -486,7 +468,7 @@ export default function DashboardMainContent({ viewModel }) {
               isSaving={isSavingLootCouncil}
             />
           )}
-          {lootSubTab === 'scoring' && isAuthenticated && <ScoringContainer {...scoringTabProps} />}
+          {lootSubTab === 'scoring' && canViewScoring && <ScoringContainer {...scoringTabProps} />}
           {lootSubTab === 'assigned' && (
             <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
               <h3 className="text-lg font-bold text-slate-100">Assigned Loot Overview</h3>
@@ -503,14 +485,13 @@ export default function DashboardMainContent({ viewModel }) {
         </div>
       )}
 
-      {activeTab === 'roster' && isAuthenticated && <RosterContainer {...rosterTabProps} />}
-
       {activeTab === 'recruitmentPlanning' && isAuthenticated && recruitmentSubTab === 'planning' && (
         <RecruitmentPlanningTab
           roster={roster}
           specsFromDb={specsFromDb}
           fetchData={fetchData}
           putData={putData}
+          rosterManagementProps={rosterTabProps}
         />
       )}
 
@@ -536,7 +517,7 @@ export default function DashboardMainContent({ viewModel }) {
         />
       )}
 
-      {(activeTab === 'officerRoles' || activeTab === 'discordBotConfig') && isAuthenticated && (
+      {(activeTab === 'officerRoles' || activeTab === 'discordBotConfig' || activeTab === 'roster') && isAuthenticated && (
         <AdminContainer
           activeTab={activeTab}
           adminSubTab={adminSubTab}
@@ -549,6 +530,17 @@ export default function DashboardMainContent({ viewModel }) {
           rosterClaims={rosterClaims}
           handleUnclaimClaim={handleUnclaimClaim}
           adminData={adminData}
+          fetchData={fetchData}
+          specsFromDb={specsFromDb}
+          calculateScore={calculateScore}
+          calculateAttendance={calculateAttendance}
+          playerStats={playerStats}
+          guildRoleRanks={scoringConfig?.guildRoleRanks}
+          handleUpdatePlayer={handleUpdatePlayer}
+          handleRemovePlayer={handleRemovePlayer}
+          rosterDirty={rosterDirty}
+          onSaveRosterChanges={onSaveRosterAttendanceChanges}
+          isSavingRoster={isSavingRosterAttendance}
           setScoringConfig={setScoringConfig}
           scoringConfig={scoringConfig}
           scoringConfigDirty={scoringConfigDirty}
@@ -556,7 +548,7 @@ export default function DashboardMainContent({ viewModel }) {
         />
       )}
 
-      {activeTab === 'scoring' && isAuthenticated && <ScoringContainer {...scoringTabProps} />}
+      {activeTab === 'scoring' && canViewScoring && <ScoringContainer {...scoringTabProps} />}
 
       {activeTab === 'bis' && (
         <ResourcesTab

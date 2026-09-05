@@ -2,25 +2,15 @@ import React, { useMemo, useState } from 'react';
 
 export default function OfficerRolesTab({
   roster,
-  getSpecById,
   officerRoles,
   setOfficerRoles,
-  bnetAccessRoles,
-  bnetAccessRoleCandidates,
-  bnetAccessRolesDirty,
-  onSetBnetAccessRole,
-  onRemoveBnetAccessRole,
   myPlayerId,
   hasUnsavedChanges,
   onSaveChanges,
-  isSaving,
-  onSaveBnetAccessRoles,
-  isSavingBnetAccessRoles
+  isSaving
 }) {
   const [newRoleName, setNewRoleName] = useState('');
   const [showMineOnly, setShowMineOnly] = useState(false);
-  const [selectedBnetUserId, setSelectedBnetUserId] = useState('');
-  const [selectedBnetRole, setSelectedBnetRole] = useState('officer');
   const [isEditMode, setIsEditMode] = useState(false);
 
   const addRole = () => {
@@ -105,24 +95,6 @@ export default function OfficerRolesTab({
     return Number(playerId) === Number(minePlayerId);
   };
 
-  const assignedBnetUserIds = useMemo(() => {
-    return new Set((bnetAccessRoles || []).map(item => Number(item.user_id)).filter(Boolean));
-  }, [bnetAccessRoles]);
-
-  const unassignedCandidates = useMemo(() => {
-    return (bnetAccessRoleCandidates || []).filter(candidate => !assignedBnetUserIds.has(Number(candidate.user_id)));
-  }, [bnetAccessRoleCandidates, assignedBnetUserIds]);
-
-  const handleAddBnetRole = () => {
-    const userId = Number(selectedBnetUserId || 0);
-    if (!userId) {
-      alert('Select a Battle.net user first.');
-      return;
-    }
-    onSetBnetAccessRole?.(userId, selectedBnetRole);
-    setSelectedBnetUserId('');
-  };
-
   const getPlayerNameById = (playerId) => {
     if (!playerId) return 'Unassigned';
     const player = roster.find(currentPlayer => Number(currentPlayer.id) === Number(playerId));
@@ -176,86 +148,6 @@ export default function OfficerRolesTab({
 
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
-      <div className="mb-8 rounded-xl border border-cyan-900/40 bg-cyan-950/20 p-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
-          <div>
-            <h3 className="text-lg font-bold text-cyan-200">Battle.net Access Roles</h3>
-            <p className="text-xs text-cyan-100/70">Admins can grant Officer/Admin access to authenticated Battle.net users.</p>
-          </div>
-          <button
-            type="button"
-            onClick={onSaveBnetAccessRoles}
-            disabled={!bnetAccessRolesDirty || isSavingBnetAccessRoles}
-            className={`px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${bnetAccessRolesDirty ? 'bg-cyan-600 hover:bg-cyan-500 text-white' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
-          >
-            {isSavingBnetAccessRoles ? 'Saving...' : bnetAccessRolesDirty ? 'Save Access Roles' : 'No Changes'}
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_auto] gap-2 mb-4">
-          <select
-            value={selectedBnetUserId}
-            onChange={e => setSelectedBnetUserId(e.target.value)}
-            className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
-          >
-            <option value="">-- Select Battle.net user --</option>
-            {unassignedCandidates.map(candidate => (
-              <option key={candidate.user_id} value={candidate.user_id}>
-                {candidate.battletag}
-              </option>
-            ))}
-          </select>
-          <select
-            value={selectedBnetRole}
-            onChange={e => setSelectedBnetRole(e.target.value === 'admin' ? 'admin' : 'officer')}
-            className="bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
-          >
-            <option value="officer">Officer</option>
-            <option value="admin">Admin</option>
-          </select>
-          <button
-            type="button"
-            onClick={handleAddBnetRole}
-            className="bg-cyan-700 hover:bg-cyan-600 text-white font-bold px-4 py-2 rounded text-xs uppercase tracking-wider"
-          >
-            Add
-          </button>
-        </div>
-
-        {(bnetAccessRoles || []).length === 0 ? (
-          <div className="text-sm text-cyan-100/70 border border-dashed border-cyan-900/50 rounded p-3">No Battle.net access roles assigned yet.</div>
-        ) : (
-          <div className="space-y-2">
-            {(bnetAccessRoles || []).map(item => (
-              <div key={item.user_id} className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto] gap-2 border border-slate-800 bg-slate-950 rounded p-3 items-center">
-                <div>
-                  <div className="text-sm font-semibold text-slate-100">{item.battletag || `User ${item.user_id}`}</div>
-                  <div className="text-[11px] text-slate-500">Battle.net ID: {item.blizzard_id || 'n/a'}</div>
-                </div>
-                <select
-                  value={item.role === 'admin' ? 'admin' : 'officer'}
-                  onChange={e => onSetBnetAccessRole?.(item.user_id, e.target.value)}
-                  className="bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
-                >
-                  <option value="officer">Officer</option>
-                  <option value="admin">Admin</option>
-                </select>
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (!window.confirm(`Remove Battle.net access for ${item.battletag || item.user_id}?`)) return;
-                    onRemoveBnetAccessRole?.(item.user_id);
-                  }}
-                  className="text-red-400 hover:text-red-300 font-bold text-xs uppercase tracking-wider px-3 py-2 border border-red-900/40 rounded"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
           <h2 className="text-xl font-bold text-slate-100 mb-1">Officer Roles</h2>

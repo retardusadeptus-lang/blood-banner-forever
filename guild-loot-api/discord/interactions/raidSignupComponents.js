@@ -63,7 +63,7 @@ function buildMainSignupComponents(eventId, classes, specs, selectedClass, disab
   const specOptions = prioritizedSpecs.slice(0, 25).map(spec => ({
     label: `${spec.class} - ${spec.spec}`.trim(),
     value: String(spec.id),
-    emoji: resolveSpecEmojiData(null, spec.spec, spec.class) || undefined,
+    emoji: resolveSpecEmojiData(guildOrClient, spec.spec, spec.class) || undefined,
     default: normalizedPreferredSpecId !== null && Number(spec.id) === normalizedPreferredSpecId
   }));
 

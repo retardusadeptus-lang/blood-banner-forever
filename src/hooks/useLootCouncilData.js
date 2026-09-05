@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { PHASE_JSON_KEYS } from '../constants';
+import { getGuildRoleWeight } from '../utils/appShellHelpers';
 
 export default function useLootCouncilData({
   fetchData,
@@ -104,6 +105,7 @@ export default function useLootCouncilData({
   };
 
   const calculateScore = (playerId) => {
+    const player = roster.find(rosterPlayer => Number(rosterPlayer.id) === Number(playerId));
     const stats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {}, manualAdjustment: { value: 0, note: '' } };
     let parseSum = 0; let parseCount = 0;
     Object.values(stats.parses || {}).forEach(p => {
@@ -120,7 +122,8 @@ export default function useLootCouncilData({
     const afkPenalty = (stats.afks || 0) * Number(scoringConfig.afkPenalty || 5);
     const manualAdj = stats.manualAdjustment?.value || 0;
 
-    return ((avgParse * Number(scoringConfig.parseWeight)) + cons + ench + gem + att - afkPenalty + manualAdj).toFixed(1);
+    const baseScore = (avgParse * Number(scoringConfig.parseWeight)) + cons + ench + gem + att - afkPenalty + manualAdj;
+    return (baseScore * getGuildRoleWeight(player, scoringConfig)).toFixed(1);
   };
 
   const sortPlayersByRank = (itemObj, playerList, assignmentData) => {

@@ -11,6 +11,7 @@ import {
   updateRaidSignupAbsence,
   deleteRaidSignupAbsence
 } from '../services/apiService';
+import { getDefaultGuildRoleName } from '../utils/appShellHelpers';
 
 const WEEKDAY_OPTIONS = [
   { value: 0, label: 'Sun' },
@@ -24,6 +25,7 @@ const WEEKDAY_OPTIONS = [
 
 const TEMPLATE_GROUP_SIZE_OPTIONS = [10, 25, 40];
 const RAID_SIGNUP_SYNC_INTERVAL_MS = 3 * 60 * 1000;
+const RAID_SIGNUPS_EVENT_STORAGE_KEY = 'raid-signups-selected-event-id';
 const TIMEZONE_OPTIONS = [
   { value: 'Europe/Paris', label: 'Europe/Paris' },
   { value: 'UTC', label: 'UTC' },
@@ -324,6 +326,7 @@ export default function RaidSignupsTab({
   isAuthenticated,
   bnetAuthState,
   roster,
+  guildRoleRanks = [],
   getSpecById,
   specsFromDb,
   handleSaveRaidLog,
@@ -347,12 +350,17 @@ export default function RaidSignupsTab({
   const [templates, setTemplates] = useState([]);
   const [archivedEvents, setArchivedEvents] = useState([]);
   const [isSavingTemplates, setIsSavingTemplates] = useState(false);
-  const [selectedEventId, setSelectedEventId] = useState('');
+  const [selectedEventId, setSelectedEventId] = useState(() => localStorage.getItem(RAID_SIGNUPS_EVENT_STORAGE_KEY) || '');
   const [eventEditDraft, setEventEditDraft] = useState({ title: '', description: '', scheduled_date: '', scheduled_time: '20:00', scheduled_timezone: 'Europe/Paris', public_groups: false });
   const [groupRows, setGroupRows] = useState(buildDefaultGroupRows());
   const [benchAssignments, setBenchAssignments] = useState([]);
   const [isSavingGroups, setIsSavingGroups] = useState(false);
   const [isEchoing, setIsEchoing] = useState(false);
+  const [isUnsignedRaidersOpen, setIsUnsignedRaidersOpen] = useState(false);
+  const [isEchoingUnsignedRaiders, setIsEchoingUnsignedRaiders] = useState(false);
+  const [echoTagUnsignedRaiders, setEchoTagUnsignedRaiders] = useState(true);
+  const [selectedUnsignedRaiderIds, setSelectedUnsignedRaiderIds] = useState(new Set());
+  const [unsignedRaiderEchoResult, setUnsignedRaiderEchoResult] = useState(null);
   const [isSavingEventEdit, setIsSavingEventEdit] = useState(false);
   const [isSavingPublicGroups, setIsSavingPublicGroups] = useState(false);
   const [isChangingStatus, setIsChangingStatus] = useState(false);
@@ -374,6 +382,15 @@ export default function RaidSignupsTab({
   const [loadedSelectedEventId, setLoadedSelectedEventId] = useState('');
   const activeRaidSection = activeSection || 'templates';
   const isReadOnly = !isAuthenticated;
+
+  useEffect(() => {
+    if (selectedEventId) {
+      localStorage.setItem(RAID_SIGNUPS_EVENT_STORAGE_KEY, String(selectedEventId));
+    } else {
+      localStorage.removeItem(RAID_SIGNUPS_EVENT_STORAGE_KEY);
+    }
+  }, [selectedEventId]);
+
   const [absences, setAbsences] = useState([]);
   const [isLoadingAbsences, setIsLoadingAbsences] = useState(false);
   const [isSavingAbsence, setIsSavingAbsence] = useState(false);
@@ -594,7 +611,7 @@ export default function RaidSignupsTab({
   const canUseAbsences = !!isAuthenticated || !!bnetAuthState?.authenticated;
 
   useEffect(() => {
-    if (activeRaidSection !== 'absences') return;
+    if (!['events', 'absences'].includes(activeRaidSection)) return;
     if (!canUseAbsences) {
       setAbsences([]);
       return;
@@ -763,6 +780,47 @@ export default function RaidSignupsTab({
     const publicEntries = Array.isArray(publicEvent?.entries) ? publicEvent.entries : [];
     return detailEntries.length > 0 ? detailEntries : publicEntries;
   }, [events, selectedEvent, selectedEventId]);
+
+  const unsignedRaiders = useMemo(() => {
+    const raiderRoleNames = new Set((Array.isArray(guildRoleRanks) ? guildRoleRanks : [])
+      .filter(role => role?.isRaider === true)
+      .map(role => String(role.name || '').trim().toLowerCase())
+      .filter(Boolean));
+    const defaultGuildRole = getDefaultGuildRoleName({ guildRoleRanks }).toLowerCase();
+    if (!selectedEventId || raiderRoleNames.size === 0) return [];
+
+    const signedNames = new Set();
+    selectedEventEntries.forEach(entry => {
+      [entry.discord_username, entry.player_name, entry.character_name, entry.roster_name]
+        .map(value => String(value || '').trim().toLowerCase())
+        .filter(Boolean)
+        .forEach(name => signedNames.add(name));
+    });
+
+    const eventUnix = parseScheduledUnix(selectedEvent?.scheduled_for);
+    const eventDate = eventUnix ? DateTime.fromSeconds(eventUnix).toISODate() : '';
+    return (roster || [])
+      .filter(player => {
+        const rankName = String(player.guild_rank || player.rank || defaultGuildRole).trim().toLowerCase();
+        const playerName = String(player.name || '').trim().toLowerCase();
+        return raiderRoleNames.has(rankName) && playerName && !signedNames.has(playerName);
+      })
+      .map(player => {
+        const playerName = String(player.name || '').trim().toLowerCase();
+        const absence = (absences || []).find(entry => {
+          const names = [entry.target_character_name, ...(Array.isArray(entry.claimed_characters) ? entry.claimed_characters : [])]
+            .map(value => String(value || '').trim().toLowerCase());
+          const matchesPlayer = names.includes(playerName);
+          const coversEvent = !eventDate || (String(entry.start_date || '') <= eventDate && String(entry.end_date || '') >= eventDate);
+          return matchesPlayer && coversEvent;
+        });
+        return { player, absence };
+      });
+  }, [absences, guildRoleRanks, roster, selectedEvent, selectedEventEntries, selectedEventId]);
+
+  useEffect(() => {
+    setSelectedUnsignedRaiderIds(new Set(unsignedRaiders.map(({ player }) => String(player.id))));
+  }, [unsignedRaiders]);
 
   const selectedEventEntryByName = useMemo(() => {
     const map = new Map();
@@ -1208,6 +1266,31 @@ export default function RaidSignupsTab({
     }
   };
 
+  const echoUnsignedRaiders = async () => {
+    const selectedRaiders = unsignedRaiders.filter(({ player }) => selectedUnsignedRaiderIds.has(String(player.id)));
+    if (!selectedEventId || selectedRaiders.length === 0) return;
+    setIsEchoingUnsignedRaiders(true);
+    setUnsignedRaiderEchoResult(null);
+    try {
+      const result = await postData(`raid-signup-events/${selectedEventId}/echo-unsigned-raiders`, {
+        players: selectedRaiders.map(({ player }) => {
+          const spec = specById.get(Number(player.spec_id));
+          return {
+            name: player.name,
+            spec_name: spec?.spec || '',
+            spec_class: spec?.class || ''
+          };
+        }),
+        tag_raiders: echoTagUnsignedRaiders
+      });
+      setUnsignedRaiderEchoResult(result || { ok: true });
+    } catch (e) {
+      setUnsignedRaiderEchoResult({ error: e?.message || 'Failed to echo unsigned raiders.' });
+    } finally {
+      setIsEchoingUnsignedRaiders(false);
+    }
+  };
+
   const refreshSignups = async () => {
     if ((isGroupConfigDirty || isEventEditDirty) && !window.confirm('Refresh signups and discard unsaved event or group changes?')) {
       return;
@@ -1290,6 +1373,25 @@ export default function RaidSignupsTab({
     ]));
   };
 
+  const assignToNextOpenGroupSlot = (entry) => {
+    if (!entry || isReadOnly) return;
+    const nextOpenSlot = [...groupRows]
+      .filter(row => Number(row.group_number) > 0 && Number(row.group_number) <= visibleGroupCount && !String(row.player_name || '').trim())
+      .sort((a, b) => Number(a.group_number) - Number(b.group_number) || Number(a.slot_index) - Number(b.slot_index))[0];
+    if (!nextOpenSlot) return;
+
+    const playerName = String(entry.discord_username || entry.player_name || '').trim();
+    updateGroupRow(nextOpenSlot.localKey, {
+      player_name: playerName,
+      spec_id: entry.spec_id || null,
+      spec_class: entry.spec_class || null,
+      spec_name: entry.spec_name || null,
+      class_name: entry.class_name || null,
+      note: ''
+    });
+    setBenchAssignments(prev => prev.filter(row => String(row.player_name || '').trim().toLowerCase() !== playerName.toLowerCase()));
+  };
+
   const updateBenchAssignment = (rowKey, patch) => {
     setIsGroupConfigDirty(true);
     setBenchAssignments(prev => prev.map(row => (row.localKey === rowKey ? { ...row, ...patch } : row)));
@@ -1330,9 +1432,22 @@ export default function RaidSignupsTab({
   };
 
   const savePublicGroupsVisibility = async (nextValue) => {
-    setIsGroupConfigDirty(true);
-    setIsEventEditDirty(true);
-    setEventEditDraft(prev => ({ ...prev, public_groups: !!nextValue }));
+    if (!selectedEventId || isReadOnly) return;
+    const publicGroups = !!nextValue;
+    setIsSavingPublicGroups(true);
+    setEventEditDraft(prev => ({ ...prev, public_groups: publicGroups }));
+    try {
+      await putData(`raid-signup-events/${selectedEventId}`, { public_groups: publicGroups });
+      await loadPublic();
+      setSelectedEventDetails(prev => prev ? { ...prev, public_groups: publicGroups } : prev);
+      setIsGroupConfigDirty(false);
+      setIsEventEditDirty(false);
+    } catch (e) {
+      setEventEditDraft(prev => ({ ...prev, public_groups: !publicGroups }));
+      alert('Failed to update public group visibility.');
+    } finally {
+      setIsSavingPublicGroups(false);
+    }
   };
 
   const setEventStatus = async (status, confirmMessage) => {
@@ -1819,7 +1934,7 @@ export default function RaidSignupsTab({
                 <div className="space-y-4">
                   <div className="bg-slate-900 border border-slate-800 rounded-lg p-3">
                     <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-2">Signup Summary</p>
-                    <div className="grid grid-cols-2 md:grid-cols-6 gap-2">
+                    <div className="grid grid-cols-2 md:grid-cols-7 gap-2">
                       <button
                         type="button"
                         onClick={() => setExpandedSummaryStatus(prev => (prev === 'signup' ? '' : 'signup'))}
@@ -1867,6 +1982,17 @@ export default function RaidSignupsTab({
                       >
                         <p className="text-[10px] text-slate-300 uppercase tracking-wider">Total</p>
                         <p className="text-sm font-bold text-slate-100">{selectedEventSignupSummary.total}</p>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setUnsignedRaiderEchoResult(null);
+                          setIsUnsignedRaidersOpen(true);
+                        }}
+                        className="text-left rounded border border-amber-700/60 bg-amber-900/20 px-2 py-1.5 hover:bg-amber-900/35"
+                      >
+                        <p className="whitespace-nowrap text-[10px] text-amber-300 uppercase tracking-wider">Unsigned Raiders</p>
+                        <p className="text-sm font-bold text-amber-200">{unsignedRaiders.length}</p>
                       </button>
                     </div>
 
@@ -2149,15 +2275,26 @@ export default function RaidSignupsTab({
                                 {isTentative ? <span className="text-yellow-300" title="Tentative player">⚠</span> : null}
                                 {isLate ? <span className="text-orange-300" title="Late player">⏱</span> : null}
                                 {!isReadOnly && !isBench ? (
-                                  <button
-                                    type="button"
-                                    onClick={() => addBenchAssignment(candidate)}
-                                    className="ml-auto text-amber-300 hover:text-amber-200"
-                                    title="Add to officer bench"
-                                    aria-label={`Add ${candidate.discord_username} to officer bench`}
-                                  >
-                                    🪑
-                                  </button>
+                                  <div className="ml-auto flex items-center gap-1">
+                                    <button
+                                      type="button"
+                                      onClick={() => assignToNextOpenGroupSlot(candidate)}
+                                      className="w-6 h-6 rounded border border-cyan-800 hover:bg-cyan-900/40 inline-flex items-center justify-center"
+                                      title="Assign to next open group slot"
+                                      aria-label={`Assign ${candidate.discord_username} to the next open group slot`}
+                                    >
+                                      <img src={healersIcon} alt="" className="w-4 h-4 object-contain grayscale opacity-70" />
+                                    </button>
+                                    <button
+                                      type="button"
+                                      onClick={() => addBenchAssignment(candidate)}
+                                      className="w-6 h-6 rounded border border-cyan-800 hover:bg-cyan-900/40 inline-flex items-center justify-center"
+                                      title="Add to officer bench"
+                                      aria-label={`Add ${candidate.discord_username} to officer bench`}
+                                    >
+                                      🪑
+                                    </button>
+                                  </div>
                                 ) : null}
                               </div>
                             );
@@ -2652,6 +2789,7 @@ export default function RaidSignupsTab({
               <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Raid History</h3>
 
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+
                 <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-4">
                   <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Log Current Raid</h4>
                   <form onSubmit={handleSaveRaidLog} className="flex flex-col gap-3">
@@ -2906,6 +3044,83 @@ export default function RaidSignupsTab({
           </div>
         </div>
       )}
+
+      {isUnsignedRaidersOpen ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4" onClick={() => setIsUnsignedRaidersOpen(false)}>
+          <div className="w-full max-w-lg rounded-xl border border-slate-700 bg-slate-900 p-5 shadow-2xl" onClick={event => event.stopPropagation()}>
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <h3 className="text-lg font-bold text-slate-100">Unsigned Raiders</h3>
+                <p className="mt-1 text-xs text-slate-400">{selectedEvent?.title || 'Selected event'}</p>
+              </div>
+              <button type="button" onClick={() => setIsUnsignedRaidersOpen(false)} className="text-xl text-slate-400 hover:text-white" aria-label="Close unsigned raiders">×</button>
+            </div>
+
+            <div className="mt-4 flex items-center justify-between gap-3">
+              <p className="text-xs text-slate-400">{selectedUnsignedRaiderIds.size} of {unsignedRaiders.length} selected</p>
+              {unsignedRaiders.length > 0 ? (
+                <div className="flex items-center gap-2">
+                  <button type="button" onClick={() => setSelectedUnsignedRaiderIds(new Set(unsignedRaiders.map(({ player }) => String(player.id))))} className="text-[11px] font-semibold text-cyan-300 hover:text-cyan-200">Select all</button>
+                  <button type="button" onClick={() => setSelectedUnsignedRaiderIds(new Set())} className="text-[11px] font-semibold text-slate-400 hover:text-slate-200">Clear all</button>
+                </div>
+              ) : null}
+            </div>
+
+            <div className="mt-2 space-y-2">
+              {unsignedRaiders.length === 0 ? (
+                <p className="rounded border border-slate-800 bg-slate-950 p-3 text-sm text-slate-500">No unsigned raiders for this event.</p>
+              ) : unsignedRaiders.map(({ player, absence }) => (
+                <label key={`unsigned-raider-${player.id}`} className="flex cursor-pointer items-center justify-between gap-3 rounded border border-slate-800 bg-slate-950 px-3 py-2 hover:border-slate-600">
+                  <span className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={selectedUnsignedRaiderIds.has(String(player.id))}
+                      onChange={() => setSelectedUnsignedRaiderIds(current => {
+                        const next = new Set(current);
+                        const playerId = String(player.id);
+                        if (next.has(playerId)) next.delete(playerId);
+                        else next.add(playerId);
+                        return next;
+                      })}
+                    />
+                    <img src={resolveEntryIcon(player)} alt="" className="h-5 w-5 rounded border border-slate-700 bg-slate-800" />
+                    <span className="text-sm" style={{ color: resolveEntryNameColor(player) }}>{player.name}</span>
+                  </span>
+                  <span className={absence ? 'text-xs font-semibold text-amber-300' : 'text-xs text-slate-500'}>{absence ? 'Absence recorded' : 'No absence recorded'}</span>
+                </label>
+              ))}
+            </div>
+
+            {!isReadOnly && unsignedRaiders.length > 0 ? (
+              <>
+                <label className="mt-4 inline-flex items-center gap-2 text-xs text-slate-300">
+                  <input type="checkbox" checked={echoTagUnsignedRaiders} onChange={event => setEchoTagUnsignedRaiders(event.target.checked)} />
+                  Ping linked raiders in Discord
+                </label>
+                <p className="mt-2 text-xs text-slate-500">Only Discord users who have previously saved one of these character names will be pinged.</p>
+                <button
+                  type="button"
+                  onClick={echoUnsignedRaiders}
+                      disabled={isEchoingUnsignedRaiders || selectedUnsignedRaiderIds.size === 0}
+                  className="mt-4 w-full rounded bg-amber-600 px-3 py-2 text-xs font-bold text-slate-950 hover:bg-amber-500 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {isEchoingUnsignedRaiders ? 'Sending...' : 'Echo Unsigned Raiders to Discord'}
+                </button>
+              </>
+            ) : null}
+
+            {unsignedRaiderEchoResult?.error ? (
+              <p className="mt-3 rounded border border-rose-800/60 bg-rose-950/30 p-2 text-xs text-rose-300">{unsignedRaiderEchoResult.error}</p>
+            ) : null}
+            {unsignedRaiderEchoResult?.ok ? (
+              <div className="mt-3 rounded border border-emerald-800/60 bg-emerald-950/30 p-2 text-xs text-emerald-300">
+                <p>Discord message sent.</p>
+                {unsignedRaiderEchoResult.unmatched?.length > 0 ? <p className="mt-1 text-amber-300">No Discord ID found for: {unsignedRaiderEchoResult.unmatched.join(', ')}</p> : null}
+              </div>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }

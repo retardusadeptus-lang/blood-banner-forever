@@ -245,9 +245,15 @@ function ensureNormalizedOperationalTables(db) {
       gem_bonus REAL NOT NULL DEFAULT 10,
       att_weight REAL NOT NULL DEFAULT 0.5,
       afk_penalty REAL NOT NULL DEFAULT 5,
+      guild_role_ranks TEXT NOT NULL DEFAULT '[]',
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `).run();
+
+  const scoringConfigColumns = db.prepare("PRAGMA table_info('scoring_config_values')").all();
+  if (!scoringConfigColumns.some(column => column.name === 'guild_role_ranks')) {
+    db.prepare("ALTER TABLE scoring_config_values ADD COLUMN guild_role_ranks TEXT NOT NULL DEFAULT '[]'").run();
+  }
 
   db.prepare(`
     CREATE TABLE IF NOT EXISTS raid_assignment_config_bosses (
@@ -301,12 +307,13 @@ function ensureNormalizedOperationalTables(db) {
       enchantBonus: legacyConfig.enchantBonus ?? 10,
       gemBonus: legacyConfig.gemBonus ?? 10,
       attWeight: legacyConfig.attWeight ?? 0.5,
-      afkPenalty: legacyConfig.afkPenalty ?? 5
+      afkPenalty: legacyConfig.afkPenalty ?? 5,
+      guildRoleRanks: legacyConfig.guildRoleRanks ?? []
     };
 
     db.prepare(`
-      INSERT INTO scoring_config_values (id, parse_weight, support_multi, cons_bonus, enchant_bonus, gem_bonus, att_weight, afk_penalty)
-      VALUES (1, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO scoring_config_values (id, parse_weight, support_multi, cons_bonus, enchant_bonus, gem_bonus, att_weight, afk_penalty, guild_role_ranks)
+      VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       defaults.parseWeight,
       defaults.supportMulti,
@@ -314,7 +321,8 @@ function ensureNormalizedOperationalTables(db) {
       defaults.enchantBonus,
       defaults.gemBonus,
       defaults.attWeight,
-      defaults.afkPenalty
+      defaults.afkPenalty,
+      JSON.stringify(defaults.guildRoleRanks)
     );
   }
 
@@ -871,6 +879,15 @@ function ensureOperationalTables(db) {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 
+    CREATE TABLE IF NOT EXISTS bank_item_history (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      item_wowhead_id INTEGER NOT NULL UNIQUE,
+      name VARCHAR(255) NOT NULL,
+      category VARCHAR(100) NOT NULL DEFAULT '',
+      sub_type VARCHAR(100) DEFAULT '',
+      last_seen_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
     CREATE TABLE IF NOT EXISTS bank_uploads (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       item_count INTEGER NOT NULL,
@@ -913,6 +930,11 @@ function ensureOperationalTables(db) {
     );
   `);
 
+  db.exec(`
+    INSERT OR IGNORE INTO bank_item_history (item_wowhead_id, name, category, sub_type)
+    SELECT item_wowhead_id, name, category, sub_type FROM bank_items;
+  `);
+
   const specColumns = db.prepare("PRAGMA table_info('specs')").all();
   const hasSpecTable = specColumns.length > 0;
   if (hasSpecTable && !specColumns.some(col => col.name === 'slug')) {
@@ -935,6 +957,9 @@ function ensureOperationalTables(db) {
   if (!rosterColumns.some(col => col.name === 'user_id')) {
     db.exec('ALTER TABLE roster ADD COLUMN user_id INTEGER');
   }
+  if (!rosterColumns.some(col => col.name === 'guild_rank')) {
+    db.exec("ALTER TABLE roster ADD COLUMN guild_rank TEXT DEFAULT ''");
+  }
 }
 
 function ensureDatabaseIndexes(db) {
@@ -950,6 +975,7 @@ function ensureDatabaseIndexes(db) {
     'CREATE INDEX IF NOT EXISTS idx_items_source ON items (source, source_type)',
     'CREATE INDEX IF NOT EXISTS idx_items_bis_item_spec ON items_bis (item_id, spec_id)',
     'CREATE INDEX IF NOT EXISTS idx_bank_items_category_name ON bank_items (category, name)',
+    'CREATE INDEX IF NOT EXISTS idx_bank_item_history_name ON bank_item_history (name)',
     'CREATE INDEX IF NOT EXISTS idx_bank_requests_status_created ON bank_requests (status, created_at)',
     'CREATE INDEX IF NOT EXISTS idx_bank_requests_group_id ON bank_requests (request_group_id)',
     'CREATE INDEX IF NOT EXISTS idx_raid_assignment_images_boss_created ON raid_assignment_images (boss_name, created_at)',

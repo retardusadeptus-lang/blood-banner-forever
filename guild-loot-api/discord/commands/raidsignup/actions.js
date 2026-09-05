@@ -30,14 +30,15 @@ async function postEvent(interaction, db) {
     await interaction.client.application.emojis.fetch().catch(() => {});
   }
 
-  const embed = buildSignupEmbed(event, [], interaction.client || interaction.guild || null);
+  const discordContext = interaction.client || interaction.guild || null;
+  const embed = buildSignupEmbed(event, [], discordContext);
   const classes = getAvailableClassesForEvent(db, event.id);
   const selectedClass = '';
   const specs = getAllowedSpecsForEvent(db, event.id);
 
   const message = await interaction.channel.send({
     embeds: [embed],
-    components: buildMainSignupComponents(event.id, classes, specs, selectedClass, false, '', null, interaction.client || interaction.guild || null)
+    components: buildMainSignupComponents(event.id, classes, specs, selectedClass, false, '', null, discordContext)
   });
 
   db.prepare(`
@@ -187,6 +188,7 @@ async function echoEvent(interaction, db) {
 
   const entries = listEntriesForEvent(db, eventId);
   const groups = listGroupsForEvent(db, eventId);
+  await interaction.client.application.emojis.fetch().catch(() => {});
   const embed = buildEchoEmbed(interaction, event, entries, groups);
 
   await interaction.channel.send({ embeds: [embed] });

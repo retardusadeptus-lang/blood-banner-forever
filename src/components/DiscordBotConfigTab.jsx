@@ -1,4 +1,6 @@
 
+import { useState } from 'react';
+
 function normalizeList(rawText) {
   return Array.from(
     new Set(
@@ -29,8 +31,29 @@ export default function DiscordBotConfigTab({
   getDisplayFromId,
   scoringConfig,
   setScoringConfig,
-  bnetAuthState
+  bnetAuthState,
+  bnetAccessRoles,
+  bnetAccessRoleCandidates,
+  bnetAccessRolesDirty,
+  onSetBnetAccessRole,
+  onRemoveBnetAccessRole,
+  onSaveBnetAccessRoles,
+  isSavingBnetAccessRoles
 }) {
+  const [selectedBnetUserId, setSelectedBnetUserId] = useState('');
+  const [selectedBnetRole, setSelectedBnetRole] = useState('officer');
+
+  const assignedBnetUserIds = new Set((bnetAccessRoles || []).map(item => Number(item.user_id)).filter(Boolean));
+  const unassignedCandidates = (bnetAccessRoleCandidates || []).filter(candidate => !assignedBnetUserIds.has(Number(candidate.user_id)));
+  const handleAddBnetRole = () => {
+    const userId = Number(selectedBnetUserId || 0);
+    if (!userId) {
+      alert('Select a Battle.net user first.');
+      return;
+    }
+    onSetBnetAccessRole?.(userId, selectedBnetRole);
+    setSelectedBnetUserId('');
+  };
   const updateRoleList = (field, rawText) => {
     setConfig(prev => ({
       ...(prev || {}),
@@ -44,6 +67,20 @@ export default function DiscordBotConfigTab({
 
   const updateScoringField = (field, value) => {
     setScoringConfig?.({ ...(scoringConfig || {}), [field]: value });
+  };
+
+  const guildRoleRanks = Array.isArray(scoringConfig?.guildRoleRanks) ? scoringConfig.guildRoleRanks : [];
+  const updateGuildRoleRank = (index, field, value) => {
+    const nextRoles = guildRoleRanks.map((role, roleIndex) => roleIndex === index ? { ...role, [field]: field === 'rank' ? Number(value) || 0 : value } : role);
+    updateScoringField('guildRoleRanks', nextRoles);
+  };
+
+  const addGuildRoleRank = () => {
+    updateScoringField('guildRoleRanks', [...guildRoleRanks, { name: '', rank: guildRoleRanks.length + 1, weight: 1, isRaider: false }]);
+  };
+
+  const removeGuildRoleRank = (index) => {
+    updateScoringField('guildRoleRanks', guildRoleRanks.filter((_, roleIndex) => roleIndex !== index));
   };
 
   return (
@@ -61,6 +98,40 @@ export default function DiscordBotConfigTab({
         >
           {isSaving ? 'Saving...' : hasUnsavedChanges ? 'Save Config' : 'No Changes'}
         </button>
+      </div>
+
+      <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
+          <div>
+            <h3 className="text-lg font-bold text-cyan-200">Battle.net Access Roles</h3>
+            <p className="text-xs text-cyan-100/70">Admins can grant Officer/Admin access to authenticated Battle.net users.</p>
+          </div>
+          <button type="button" onClick={onSaveBnetAccessRoles} disabled={!bnetAccessRolesDirty || isSavingBnetAccessRoles} className={`px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition ${bnetAccessRolesDirty ? 'bg-cyan-600 hover:bg-cyan-500 text-white' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}>
+            {isSavingBnetAccessRoles ? 'Saving...' : bnetAccessRolesDirty ? 'Save Access Roles' : 'No Changes'}
+          </button>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_auto] gap-2 mb-4">
+          <select value={selectedBnetUserId} onChange={event => setSelectedBnetUserId(event.target.value)} className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none">
+            <option value="">-- Select Battle.net user --</option>
+            {unassignedCandidates.map(candidate => <option key={candidate.user_id} value={candidate.user_id}>{candidate.battletag}</option>)}
+          </select>
+          <select value={selectedBnetRole} onChange={event => setSelectedBnetRole(event.target.value === 'admin' ? 'admin' : 'officer')} className="bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none">
+            <option value="officer">Officer</option>
+            <option value="admin">Admin</option>
+          </select>
+          <button type="button" onClick={handleAddBnetRole} className="bg-cyan-700 hover:bg-cyan-600 text-white font-bold px-4 py-2 rounded text-xs uppercase tracking-wider">Add</button>
+        </div>
+        {(bnetAccessRoles || []).length === 0 ? <div className="text-sm text-cyan-100/70 border border-dashed border-cyan-900/50 rounded p-3">No Battle.net access roles assigned yet.</div> : (
+          <div className="space-y-2">
+            {(bnetAccessRoles || []).map(item => (
+              <div key={item.user_id} className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto] gap-2 border border-slate-800 bg-slate-950 rounded p-3 items-center">
+                <div><div className="text-sm font-semibold text-slate-100">{item.battletag || `User ${item.user_id}`}</div><div className="text-[11px] text-slate-500">Battle.net ID: {item.blizzard_id || 'n/a'}</div></div>
+                <select value={item.role === 'admin' ? 'admin' : 'officer'} onChange={event => onSetBnetAccessRole?.(item.user_id, event.target.value)} className="bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"><option value="officer">Officer</option><option value="admin">Admin</option></select>
+                <button type="button" onClick={() => { if (window.confirm(`Remove Battle.net access for ${item.battletag || item.user_id}?`)) onRemoveBnetAccessRole?.(item.user_id); }} className="text-red-400 hover:text-red-300 font-bold text-xs uppercase tracking-wider px-3 py-2 border border-red-900/40 rounded">Remove</button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
@@ -94,6 +165,38 @@ export default function DiscordBotConfigTab({
             <label className="block text-xs font-bold text-red-500 mb-1">AFK Penalty (-)</label>
             <input type="number" step="0.1" className="w-full bg-slate-900 text-red-400 font-bold border border-red-900 rounded p-2 focus:outline-none" value={scoringConfig?.afkPenalty ?? ''} onChange={e => updateScoringField('afkPenalty', e.target.value)} />
           </div>
+        </div>
+      </div>
+
+      <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+        <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Guild Role Rankings</h3>
+            <p className="mt-1 text-xs text-slate-500">Lower numbers sort first in the Admin Roster. Match the character's guild rank text exactly.</p>
+          </div>
+          <button type="button" onClick={addGuildRoleRank} className="rounded-lg bg-slate-800 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-slate-700">Add Guild Role</button>
+        </div>
+        <div className="space-y-2">
+          {guildRoleRanks.length === 0 ? <p className="rounded border border-dashed border-slate-800 p-3 text-sm text-slate-500">No guild role rankings configured.</p> : (
+            <>
+              <div className="grid grid-cols-[minmax(0,1fr)_90px_100px_80px_auto] items-end gap-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                <span>Guild Rank</span>
+                <span className="text-center">Rank</span>
+                <span className="text-center">Score Weight</span>
+                <span className="text-center">Raider</span>
+                <span className="invisible rounded border px-3 py-2 text-xs">Remove</span>
+              </div>
+              {guildRoleRanks.map((role, index) => (
+                <div key={`guild-role-${index}`} className="grid grid-cols-[minmax(0,1fr)_90px_100px_80px_auto] items-center gap-2">
+                  <input type="text" value={role.name || ''} onChange={event => updateGuildRoleRank(index, 'name', event.target.value)} placeholder="Guild role name" className="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white" />
+                  <input type="number" min="1" value={role.rank ?? ''} onChange={event => updateGuildRoleRank(index, 'rank', event.target.value)} aria-label={`Rank number for ${role.name || 'guild role'}`} className="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white" />
+                  <input type="number" min="0" step="0.1" value={role.weight ?? 1} onChange={event => updateGuildRoleRank(index, 'weight', event.target.value)} aria-label={`Score weight for ${role.name || 'guild role'}`} className="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white" />
+                  <label className="flex justify-center"><input type="checkbox" checked={role.isRaider === true} onChange={event => updateGuildRoleRank(index, 'isRaider', event.target.checked)} aria-label={`Mark ${role.name || 'guild role'} as raider`} className="h-4 w-4 rounded border-slate-600 bg-slate-900 text-cyan-500" /></label>
+                  <button type="button" onClick={() => removeGuildRoleRank(index)} className="rounded border border-rose-900/50 px-3 py-2 text-xs font-bold text-rose-400 hover:bg-rose-950/40">Remove</button>
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </div>
 

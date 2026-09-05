@@ -2,6 +2,7 @@ import GuildBankTab from '../components/GuildBankTab';
 import BankUpdate from '../components/BankUpdate';
 import BankRequestHistory from '../components/BankRequestHistory';
 import BankContentsHistory from '../components/BankContentsHistory';
+import BankItemHistory from '../components/BankItemHistory';
 import BankRequestsTab from '../components/BankRequestsTab';
 import useBankData from '../hooks/useBankData';
 import { downloadCsv } from '../utils/csv';
@@ -21,16 +22,19 @@ export default function BankContainer({
 }) {
   const {
     bankItems,
+    bankItemHistory,
     bankSearch,
     setBankSearch,
     bankUpdateJsonText,
     setBankUpdateJsonText,
+    notifyBankUpdate,
+    setNotifyBankUpdate,
     bankUploadParsed,
     bankUploadStatus,
     bankUploadMeta,
-    handleUploadBankLuaFile,
     handleParseBankUpdateJson,
     handleSaveBankUpload,
+    handleRestoreBankItem,
     clearBankUpdate,
     handleResolveBankRequest,
     handleBulkResolveBankRequests,
@@ -45,12 +49,6 @@ export default function BankContainer({
   } = useBankData({ fetchData, putData, deleteData, isAuthenticated });
 
   const myPlayerId = globalMyPlayerId ? parseInt(globalMyPlayerId, 10) : null;
-
-  const handleBankFileUpload = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    handleUploadBankLuaFile(file);
-  };
 
   const exportArchivedRequestsCsv = () => {
     const headers = ['id', 'created_at', 'status', 'item_name', 'quantity', 'approved_quantity', 'price', 'requester_name', 'reason', 'officer_note'];
@@ -104,6 +102,7 @@ export default function BankContainer({
       {bankSubTab === 'contents' && (
         <GuildBankTab
           bankItems={bankItems}
+          bankItemHistory={bankItemHistory}
           bankSearch={bankSearch}
           setBankSearch={setBankSearch}
           isAuthenticated={isAuthenticated}
@@ -123,39 +122,35 @@ export default function BankContainer({
         )
       )}
       {bankSubTab === 'addon' && (
-        <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
-          <h3 className="text-lg font-bold text-amber-400">Guild Bank Addon</h3>
-          <p className="text-sm text-slate-400">Install the TBC Bank Logger addon to stream live bank snapshots into the dashboard.</p>
-          <a href="/addon/TBCBankLogger.zip" className="inline-flex items-center rounded-lg border border-amber-600/40 bg-amber-600/10 px-4 py-2 text-sm font-bold text-amber-400 transition hover:bg-amber-600/20">Download Addon (.zip)</a>
-          <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-300 space-y-2">
-            <p>1. Extract the addon into your WoW Interface folder.</p>
-            <p>2. Reload the UI and log in with your guild character.</p>
-            <p>3. Use the Update sub-tab to sync new bank snapshots when the vault changes.</p>
+        <div className="space-y-4">
+          <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+            <h3 className="text-lg font-bold text-amber-400">Guild Bank Addon</h3>
+            <p className="text-sm text-slate-400">Install the TBC Bank Logger addon to export live bank snapshots into the dashboard.</p>
+            <a href="/addon/TBCBankLogger.zip" className="inline-flex items-center rounded-lg border border-amber-600/40 bg-amber-600/10 px-4 py-2 text-sm font-bold text-amber-400 transition hover:bg-amber-600/20">Download Addon (.zip)</a>
+            <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-300 space-y-2">
+              <p>1. Extract the addon into your WoW Interface folder.</p>
+              <p>2. Reload the UI and log in with your guild character.</p>
+              <p>3. Export the bank snapshot and paste its JSON below when the guild bank changes.</p>
+            </div>
           </div>
+          {isAuthenticated ? (
+            <BankUpdate
+              bankUpdateJsonText={bankUpdateJsonText}
+              setBankUpdateJsonText={setBankUpdateJsonText}
+              notifyBankUpdate={notifyBankUpdate}
+              setNotifyBankUpdate={setNotifyBankUpdate}
+              handleParseBankUpdateJson={handleParseBankUpdateJson}
+              clearBankUpdate={clearBankUpdate}
+              handleSaveBankUpload={handleSaveBankUpload}
+              bankUploadStatus={bankUploadStatus}
+              bankUploadMeta={bankUploadMeta}
+              bankUploadParsed={bankUploadParsed}
+            />
+          ) : null}
         </div>
       )}
-      {bankSubTab === 'update' && (
-        isAuthenticated ? (
-          <BankUpdate
-            handleBankFileUpload={handleBankFileUpload}
-            bankUpdateJsonText={bankUpdateJsonText}
-            setBankUpdateJsonText={setBankUpdateJsonText}
-            handleParseBankUpdateJson={handleParseBankUpdateJson}
-            clearBankUpdate={clearBankUpdate}
-            handleSaveBankUpload={handleSaveBankUpload}
-            bankUploadStatus={bankUploadStatus}
-            bankUploadMeta={bankUploadMeta}
-            bankUploadParsed={bankUploadParsed}
-          />
-        ) : (
-          <div className="bg-slate-950 border border-slate-800 rounded-xl p-8 text-center text-slate-400">
-            <h3 className="text-lg font-bold text-slate-200 mb-2">Officer login required</h3>
-            <p className="text-sm">This section is reserved for officer inventory updates.</p>
-          </div>
-        )
-      )}
       {bankSubTab === 'history' && (
-        <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-6">
+        <div className="space-y-4">
           <BankRequestHistory
             archivedBankRequests={archivedBankRequests}
             archivedRequestIds={archivedRequestIds}
@@ -164,9 +159,10 @@ export default function BankContainer({
             onDeleteArchivedBankRequests={deleteArchivedBankRequests}
           />
 
-          <div className="space-y-2">
-            <BankContentsHistory bankContentsHistory={bankContentsHistory} exportBankContentsHistoryCsv={exportBankContentsHistoryCsv} />
-          </div>
+          <BankContentsHistory bankContentsHistory={bankContentsHistory} exportBankContentsHistoryCsv={exportBankContentsHistoryCsv} />
+          {isAuthenticated && (
+            <BankItemHistory bankItemHistory={bankItemHistory} onRestoreBankItem={handleRestoreBankItem} />
+          )}
         </div>
       )}
     </div>

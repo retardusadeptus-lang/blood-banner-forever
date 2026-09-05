@@ -1,7 +1,8 @@
 export default function BankUpdate({
-  handleBankFileUpload,
   bankUpdateJsonText,
   setBankUpdateJsonText,
+  notifyBankUpdate,
+  setNotifyBankUpdate,
   handleParseBankUpdateJson,
   clearBankUpdate,
   handleSaveBankUpload,
@@ -12,8 +13,7 @@ export default function BankUpdate({
   return (
     <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
       <h3 className="text-lg font-bold text-slate-100">Bank Inventory Update</h3>
-      <p className="text-sm text-slate-400">Upload the latest bank export or parsed snapshot to refresh the vault list.</p>
-      <input type="file" onChange={handleBankFileUpload} className="block w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-300" />
+      <p className="text-sm text-slate-400">Paste the latest JSON export from the TBC Bank Logger addon to refresh the guild bank inventory.</p>
       <div className="rounded-xl border border-slate-800 bg-slate-900 p-4 space-y-3">
         <div>
           <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2">Paste Bank JSON</label>
@@ -37,7 +37,16 @@ export default function BankUpdate({
         </div>
       </div>
       <div className="flex flex-wrap items-center gap-3">
-        <button type="button" onClick={handleSaveBankUpload} className="rounded-lg bg-amber-600 px-4 py-2 text-sm font-bold text-slate-950 transition hover:bg-amber-500">Save Upload</button>
+        <button type="button" onClick={handleSaveBankUpload} className="rounded-lg bg-amber-600 px-4 py-2 text-sm font-bold text-slate-950 transition hover:bg-amber-500">Save Bank Update</button>
+        <label className="flex items-center gap-2 text-xs text-slate-300">
+          <input
+            type="checkbox"
+            checked={notifyBankUpdate}
+            onChange={e => setNotifyBankUpdate(e.target.checked)}
+            className="h-4 w-4 accent-amber-500"
+          />
+          Notify Discord
+        </label>
         <span className="text-xs text-slate-500">{bankUploadStatus}</span>
       </div>
       {bankUploadMeta?.gold !== null && bankUploadMeta?.gold !== undefined && (

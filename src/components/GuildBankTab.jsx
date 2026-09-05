@@ -6,6 +6,7 @@ const MAX_BASKET_ITEMS = 5;
 
 export default function GuildBankTab({
   bankItems,
+  bankItemHistory,
   bankSearch,
   setBankSearch,
   isAuthenticated,
@@ -31,9 +32,17 @@ export default function GuildBankTab({
 
   const categories = ['All', 'Gear', 'Materials', 'Consumable', 'Recipe'];
 
+  const requestableBankItems = React.useMemo(() => {
+    const currentItemIds = new Set(bankItems.map(item => Number(item.item_wowhead_id)));
+    const outOfStockItems = bankItemHistory
+      .filter(item => !currentItemIds.has(Number(item.item_wowhead_id)))
+      .map(item => ({ ...item, count: 0 }));
+    return [...bankItems, ...outOfStockItems];
+  }, [bankItems, bankItemHistory]);
+
   const uniqueSubCategories = React.useMemo(() => {
     const subs = new Set();
-    bankItems.forEach(item => {
+    requestableBankItems.forEach(item => {
       if (!item) return;
       const itemCat = item.category || 'Other';
       if ((selectedCategory === 'All' || itemCat === selectedCategory) && item.sub_type) {
@@ -41,11 +50,11 @@ export default function GuildBankTab({
       }
     });
     return ['All', ...Array.from(subs).sort()];
-  }, [bankItems, selectedCategory]);
+  }, [requestableBankItems, selectedCategory]);
 
   React.useEffect(() => { setSelectedSubCategory('All'); }, [selectedCategory]);
 
-  const filteredBankItems = bankItems.filter(item => {
+  const filteredBankItems = requestableBankItems.filter(item => {
     if (!item) return false;
     const matchesSearch = item.name.toLowerCase().includes(bankSearch.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || (item.category || 'Other') === selectedCategory;
@@ -163,7 +172,7 @@ export default function GuildBankTab({
               </button>
             ))}
           </div>
-          <input type="text" placeholder="Search vault inventory..." className="w-full xl:w-80 bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none" value={bankSearch} onChange={e => setBankSearch(e.target.value)} />
+          <input type="text" placeholder="Search bank inventory..." className="w-full xl:w-80 bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none" value={bankSearch} onChange={e => setBankSearch(e.target.value)} />
         </div>
         {uniqueSubCategories.length > 1 && (
           <div className="flex flex-wrap items-center gap-2">

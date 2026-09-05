@@ -1,12 +1,3 @@
-const path = require('path');
-const DISCORD_ICON_TAGS = (() => {
-  try {
-    return require(path.resolve(__dirname, '..', '..', '..', 'discord_icons.json'));
-  } catch (error) {
-    return [];
-  }
-})();
-
 const ROLE_EMOJI_NAME = {
   tank: 'role_tank',
   healer: 'role_healer',
@@ -140,62 +131,18 @@ function resolveNamedEmoji(guildOrClient, desiredName, fallback = '') {
   return fallback;
 }
 
-function lookupDiscordIconEntryByName(name) {
-  const raw = String(name || '').trim();
-  if (!raw) return null;
-
-  const normalized = raw
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '')
-    .replace(/^guild_/, '');
-
-  const directMatch = DISCORD_ICON_TAGS.find(icon => {
-    const candidate = String(icon?.name || '').trim();
-    if (!candidate) return false;
-    const candidateNormalized = candidate.toLowerCase().replace(/[^a-z0-9]+/g, '').replace(/^guild_/, '');
-    return candidateNormalized === normalized;
-  });
-
-  if (directMatch) return directMatch;
-
-  return DISCORD_ICON_TAGS.find(icon => {
-    const candidate = String(icon?.name || '').trim();
-    if (!candidate) return false;
-    const candidateNormalized = candidate.toLowerCase().replace(/[^a-z0-9]+/g, '').replace(/^guild_/, '');
-
-    if (candidateNormalized === normalized) return true;
-    if (candidateNormalized.length <= normalized.length + 3 && (candidateNormalized.includes(normalized) || normalized.includes(candidateNormalized))) {
-      return true;
-    }
-    return false;
-  }) || null;
-}
-
-function lookupDiscordIconTagByName(name) {
-  return lookupDiscordIconEntryByName(name)?.discord_tag || '';
-}
-
 function resolveRoleEmojiToken(guild, roleBucket) {
   const key = String(roleBucket || '').toLowerCase();
-  const exactTag = lookupDiscordIconTagByName(ROLE_EMOJI_NAME[key]) || lookupDiscordIconTagByName(key);
-  if (exactTag) return exactTag;
   return resolveNamedEmoji(guild, ROLE_EMOJI_NAME[key], ROLE_FALLBACK[key] || '');
 }
 
 function resolveClassEmojiToken(guild, className) {
   const key = String(className || '').toLowerCase();
-  const exactTag = lookupDiscordIconTagByName(CLASS_EMOJI_NAME[key]) || lookupDiscordIconTagByName(key);
-  if (exactTag) return exactTag;
   return resolveNamedEmoji(guild, CLASS_EMOJI_NAME[key], CLASS_FALLBACK[key] || '');
 }
 
 function resolveClassEmojiData(guild, className) {
   const key = String(className || '').toLowerCase();
-  const iconEntry = lookupDiscordIconEntryByName(CLASS_EMOJI_NAME[key]) || lookupDiscordIconEntryByName(key);
-  if (iconEntry) {
-    return { id: String(iconEntry.id), name: String(iconEntry.name), animated: false };
-  }
-
   const resolved = resolveNamedEmoji(guild, CLASS_EMOJI_NAME[key], '');
   if (!resolved) return null;
 
@@ -350,11 +297,6 @@ function resolveSpecEmojiData(guild, specName, className = '') {
       const match = /<a?:([^:]+):([0-9]+)>/.exec(emoji);
       if (match) return { id: match[2], name: match[1], animated: match[0].startsWith('<a:') };
     }
-  }
-
-  for (const candidate of candidateNames) {
-    const entry = DISCORD_ICON_TAGS.find(icon => String(icon?.name || '').toLowerCase() === String(candidate).toLowerCase());
-    if (entry) return { id: String(entry.id), name: String(entry.name), animated: false };
   }
 
   return null;

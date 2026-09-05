@@ -39,6 +39,7 @@ function createRaidSignupCron({ db }) {
 
       const client = getDiscordClient();
       if (!client) return;
+      await client.application.emojis.fetch().catch(() => {});
 
       const { buildSignupEmbed, buildMainSignupComponents } = require('../discord/interactions/raidSignupInteractions');
       const now = Date.now();
@@ -87,8 +88,8 @@ function createRaidSignupCron({ db }) {
         const classes = getAvailableClassesForEvent(db, nextEvent.id);
         const specs = getAllowedSpecsForEvent(db, nextEvent.id);
         const message = await channel.send({
-          embeds: [buildSignupEmbed(nextEvent, [], channel.guild || null)],
-          components: buildMainSignupComponents(nextEvent.id, classes, specs, '', false, '', null, channel.guild || null)
+          embeds: [buildSignupEmbed(nextEvent, [], client)],
+          components: buildMainSignupComponents(nextEvent.id, classes, specs, '', false, '', null, client)
         });
 
         db.prepare(`

@@ -51,6 +51,14 @@ const SPEC_ICON_FALLBACKS = {
   'Demo Warlock': 'https://wow.zamimg.com/images/wow/icons/small/spell_shadow_metamorphosis.jpg',
   'Affliction Warlock': 'https://wow.zamimg.com/images/wow/icons/small/spell_shadow_deathcoil.jpg'
 };
+const SIGNUP_STATUS_LABELS = {
+  signup: 'Signed up',
+  bench: 'Benched',
+  absent: 'Absent',
+  absence: 'Absent',
+  tentative: 'Tentative',
+  late: 'Late'
+};
 
 function resolveSpecIconUrl(spec) {
   if (!spec) return null;
@@ -131,7 +139,7 @@ function PlayerSelect({ value, onChange, players, fullRoster, getSpecById, disab
           const pSpec = getSpecById(p.spec_id);
           return (
             <option key={p.id} value={p.name} style={{ color: pSpec?.color }}>
-              {p.name}
+              {p.name}{p.signupStatus && SIGNUP_STATUS_LABELS[p.signupStatus] ? ` (${SIGNUP_STATUS_LABELS[p.signupStatus]})` : ''}
             </option>
           );
         })}
@@ -185,7 +193,7 @@ function MarkerBadge({ markerId }) {
   return <span title={marker.label} style={{ color: marker.color }} className="text-sm leading-none flex-shrink-0">{marker.glyph}</span>;
 }
 
-function SectionWrapper({ title, isAuthenticated, onAdd, onRemoveSection, hasItems, emptyText, children }) {
+function SectionWrapper({ title, isAuthenticated, onAdd, onAutoFill, onRemoveSection, hasItems, emptyText, children }) {
   return (
     <div className="bg-slate-900/40 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
       <div>
@@ -194,6 +202,9 @@ function SectionWrapper({ title, isAuthenticated, onAdd, onRemoveSection, hasIte
           <div className="flex items-center gap-2">
             {isAuthenticated && onAdd && (
               <button onClick={onAdd} className="text-[10px] bg-slate-800 hover:bg-slate-700 text-purple-400 font-bold px-2 py-0.5 rounded">+</button>
+            )}
+            {isAuthenticated && onAutoFill && (
+              <button onClick={onAutoFill} className="text-[10px] text-cyan-400 hover:text-cyan-300 font-bold">Auto-fill</button>
             )}
             {isAuthenticated && onRemoveSection && (
               <button onClick={onRemoveSection} className="text-[10px] text-red-500 hover:text-red-400 font-bold px-1" title="Remove entire section">✕ Section</button>
@@ -258,7 +269,6 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
     { key: 'purges', title: 'Purges', casters: getPlayersByClasses(['Priest', 'Shaman', 'Hunter', 'Warlock']), targetType: 'combo' },
     { key: 'spellsteals', title: 'Spellsteals', casters: getPlayersByClasses(['Mage']), targetType: 'combo' },
     { key: 'curses', title: 'Curses', casters: getPlayersByClasses(['Warlock']), targetType: 'select', selectOptions: CURSE_TYPES, placeholder: '— Curse —' },
-    { key: 'innervates', title: 'Innervates', casters: getPlayersByClasses(['Druid']), targetType: 'player' },
     { key: 'bops', title: 'Blessing of Protection', casters: getPlayersByClasses(['Paladin']), targetType: 'player', receivers: activeRaiders },
     { key: 'dispels', title: 'Dispels / Decurses', casters: getPlayersByClasses(['Paladin', 'Priest', 'Shaman', 'Mage', 'Druid']), targetType: 'text' },
     { key: 'powerInfusions', title: 'Power Infusions', casters: getPlayersBySpec('Discipline Priest'), targetType: 'player' }
@@ -305,7 +315,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
         </div>
 
         <div className="bg-slate-900/30 p-4 rounded-lg border border-slate-800">
-          <h5 className="text-xs font-bold text-[#f58cba] uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">Paladins (Judgements)</h5>
+                  <h5 className="text-xs font-bold text-[#f58cba] uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">Paladins (Judgements)</h5>
           <div className="space-y-2">
             {getPlayersByClass('Paladin').map(p => {
               const pSpec = getSpecById(p.spec_id);
@@ -316,12 +326,16 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                     <span className="text-xs font-bold truncate" style={{ color: pSpec?.color || '#f58cba' }}>{p.name}</span>
                   </div>
                   {canEdit ? (
-                    <select className="flex-1 bg-slate-950 text-white border border-slate-700 rounded px-1.5 py-1 text-xs focus:outline-none" value={bData.judgements?.[p.name] || ''} onChange={e => updateBoss(boss, b => { if (!b.judgements) b.judgements = {}; b.judgements[p.name] = e.target.value; })}>
-                      <option value="">— Judgement —</option>
+                    <select className="flex-1 bg-slate-950 text-white border border-slate-700 rounded px-1.5 py-1 text-xs focus:outline-none" value={bData.judgements?.[p.name] || ''} onChange={e => updateBoss(boss, b => {
+                      if (!b.judgements) b.judgements = {};
+                      if (e.target.value) b.judgements[p.name] = e.target.value;
+                      else delete b.judgements[p.name];
+                    })}>
+                      <option value="">Use global ({globalData.judgements?.[p.name] || 'unassigned'})</option>
                       {JUDGEMENT_TYPES.map(j => <option key={j} value={j}>{j}</option>)}
                     </select>
                   ) : (
-                    <span className="text-xs font-bold text-slate-300 flex-1 truncate">{bData.judgements?.[p.name] || '—'}</span>
+                    <span className="text-xs font-bold text-slate-300 flex-1 truncate">{bData.judgements?.[p.name] || globalData.judgements?.[p.name] || '—'}</span>
                   )}
                 </div>
               );
@@ -370,6 +384,8 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
 
         {bData.phases?.map((phase, phaseIndex) => {
           const activeBlocks = normalizeEnabledBlocks(phase);
+          const defaultInnervates = getPlayersByClass('Druid').map(player => ({ id: `default-innervate-${player.id}`, playerName: player.name, target: '' }));
+          const innervateRows = Array.isArray(phase.innervates) ? phase.innervates : defaultInnervates;
           const getPhaseForEdit = (bossState) => {
             const phaseList = Array.isArray(bossState?.phases) ? bossState.phases : [];
             if (!phaseList[phaseIndex]) {
@@ -382,6 +398,11 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
               };
             }
             return phaseList[phaseIndex];
+          };
+          const getInnervatesForEdit = (bossState) => {
+            const targetPhase = getPhaseForEdit(bossState);
+            if (!Array.isArray(targetPhase.innervates)) targetPhase.innervates = defaultInnervates.map(item => ({ ...item }));
+            return targetPhase.innervates;
           };
 
           return (
@@ -434,7 +455,21 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
 
               <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                 {activeBlocks.includes('tanks') && (
-                  <SectionWrapper title="Tank Targets" isAuthenticated={canEdit} onAdd={() => updateBoss(boss, b => {
+                  <SectionWrapper title="Tank Targets" isAuthenticated={canEdit} onAutoFill={() => updateBoss(boss, b => {
+                    const p = getPhaseForEdit(b);
+                    const existing = Array.isArray(p.tankAssignments) ? p.tankAssignments : [];
+                    const assigned = new Set(existing.map(item => item.tankSlotId).filter(Boolean));
+                    const available = globalData.tankSlots.filter(slot => !assigned.has(slot.id));
+                    let nextIndex = 0;
+                    existing.forEach(item => {
+                      if (!item.tankSlotId && available[nextIndex]) {
+                        item.tankSlotId = available[nextIndex].id;
+                        item.targetId = item.targetId || BOSS_TARGET_ID;
+                        nextIndex += 1;
+                      }
+                    });
+                    p.tankAssignments = [...existing, ...available.slice(nextIndex).map(slot => ({ id: generateId(), tankSlotId: slot.id, targetId: BOSS_TARGET_ID }))];
+                  })} onAdd={() => updateBoss(boss, b => {
                     const p = getPhaseForEdit(b);
                     if (!Array.isArray(p.tankAssignments)) p.tankAssignments = [];
                     p.tankAssignments.push({ id: generateId(), tankSlotId: '', targetId: BOSS_TARGET_ID });
@@ -472,7 +507,21 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                 )}
 
                 {activeBlocks.includes('healers') && (
-                  <SectionWrapper title="Healer Targets" isAuthenticated={canEdit} onAdd={() => updateBoss(boss, b => {
+                  <SectionWrapper title="Healer Targets" isAuthenticated={canEdit} onAutoFill={() => updateBoss(boss, b => {
+                    const p = getPhaseForEdit(b);
+                    const existing = Array.isArray(p.healerAssignments) ? p.healerAssignments : [];
+                    const assigned = new Set(existing.map(item => item.healerSlotId).filter(Boolean));
+                    const available = globalData.healerSlots.filter(slot => !assigned.has(slot.id));
+                    let nextIndex = 0;
+                    existing.forEach(item => {
+                      if (!item.healerSlotId && available[nextIndex]) {
+                        item.healerSlotId = available[nextIndex].id;
+                        item.target = item.target || RAID_WIDE_LABEL;
+                        nextIndex += 1;
+                      }
+                    });
+                    p.healerAssignments = [...existing, ...available.slice(nextIndex).map(slot => ({ id: generateId(), healerSlotId: slot.id, target: RAID_WIDE_LABEL }))];
+                  })} onAdd={() => updateBoss(boss, b => {
                     const p = getPhaseForEdit(b);
                     if (!Array.isArray(p.healerAssignments)) p.healerAssignments = [];
                     p.healerAssignments.push({ id: generateId(), healerSlotId: '', target: RAID_WIDE_LABEL });
@@ -501,6 +550,37 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
                     ))}
                   </SectionWrapper>
                 )}
+
+                <SectionWrapper title="Innervates" isAuthenticated={canEdit} onAutoFill={() => updateBoss(boss, b => {
+                  const rows = getInnervatesForEdit(b);
+                  const assigned = new Set(rows.map(item => item.playerName).filter(Boolean));
+                  getPlayersByClass('Druid').forEach(player => {
+                    if (!assigned.has(player.name)) rows.push({ id: generateId(), playerName: player.name, target: '' });
+                  });
+                })} onAdd={() => updateBoss(boss, b => {
+                  getInnervatesForEdit(b).push({ id: generateId(), playerName: null, target: '' });
+                })} hasItems={innervateRows.length > 0} emptyText="No druids available for innervates.">
+                  {innervateRows.map(item => (
+                    <div key={item.id} className="flex items-center gap-1">
+                      <PlayerSelect disabled={!canEdit} value={item.playerName} onChange={val => updateBoss(boss, b => {
+                        const rows = getInnervatesForEdit(b);
+                        const assignment = rows.find(entry => entry.id === item.id);
+                        if (assignment) assignment.playerName = val;
+                      })} players={getPlayersByClass('Druid')} fullRoster={roster} getSpecById={getSpecById} placeholder="— Druid —" />
+                      <span className="text-slate-600 text-xs">&rarr;</span>
+                      <PlayerSelect disabled={!canEdit} value={item.target} onChange={val => updateBoss(boss, b => {
+                        const rows = getInnervatesForEdit(b);
+                        const assignment = rows.find(entry => entry.id === item.id);
+                        if (assignment) assignment.target = val;
+                      })} players={manaReceivers} fullRoster={roster} getSpecById={getSpecById} placeholder="— Receiver —" />
+                      {canEdit && <button onClick={() => updateBoss(boss, b => {
+                        const rows = getInnervatesForEdit(b);
+                        const targetPhase = getPhaseForEdit(b);
+                        targetPhase.innervates = rows.filter(entry => entry.id !== item.id);
+                      })} className="text-red-500 font-bold px-0.5">✕</button>}
+                    </div>
+                  ))}
+                </SectionWrapper>
 
                 {utilityConfigs.map(cfg => {
                   if (!activeBlocks.includes(cfg.key)) return null;

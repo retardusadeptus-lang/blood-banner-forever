@@ -1,5 +1,14 @@
 const express = require('express');
 
+function parseGuildRoleRanks(value) {
+  try {
+    const parsed = JSON.parse(value || '[]');
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    return [];
+  }
+}
+
 function buildAdminScoringConfigRoutes({ db }) {
   const router = express.Router();
 
@@ -13,7 +22,8 @@ function buildAdminScoringConfigRoutes({ db }) {
         enchantBonus: row.enchant_bonus,
         gemBonus: row.gem_bonus,
         attWeight: row.att_weight,
-        afkPenalty: row.afk_penalty
+        afkPenalty: row.afk_penalty,
+        guildRoleRanks: parseGuildRoleRanks(row.guild_role_ranks)
       } : {
         parseWeight: 1,
         supportMulti: 1.5,
@@ -21,7 +31,8 @@ function buildAdminScoringConfigRoutes({ db }) {
         enchantBonus: 10,
         gemBonus: 10,
         attWeight: 0.5,
-        afkPenalty: 5
+        afkPenalty: 5,
+        guildRoleRanks: []
       });
     } catch (e) {
       res.status(500).json({ error: e.message });
@@ -32,8 +43,8 @@ function buildAdminScoringConfigRoutes({ db }) {
     try {
       const payload = req.body || {};
       db.prepare(`
-        INSERT INTO scoring_config_values (id, parse_weight, support_multi, cons_bonus, enchant_bonus, gem_bonus, att_weight, afk_penalty)
-        VALUES (1, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO scoring_config_values (id, parse_weight, support_multi, cons_bonus, enchant_bonus, gem_bonus, att_weight, afk_penalty, guild_role_ranks)
+        VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(id) DO UPDATE SET
           parse_weight = excluded.parse_weight,
           support_multi = excluded.support_multi,
@@ -41,7 +52,8 @@ function buildAdminScoringConfigRoutes({ db }) {
           enchant_bonus = excluded.enchant_bonus,
           gem_bonus = excluded.gem_bonus,
           att_weight = excluded.att_weight,
-          afk_penalty = excluded.afk_penalty
+          afk_penalty = excluded.afk_penalty,
+          guild_role_ranks = excluded.guild_role_ranks
       `).run(
         payload.parseWeight ?? 1,
         payload.supportMulti ?? 1.5,
@@ -49,7 +61,8 @@ function buildAdminScoringConfigRoutes({ db }) {
         payload.enchantBonus ?? 10,
         payload.gemBonus ?? 10,
         payload.attWeight ?? 0.5,
-        payload.afkPenalty ?? 5
+        payload.afkPenalty ?? 5,
+        JSON.stringify(Array.isArray(payload.guildRoleRanks) ? payload.guildRoleRanks : [])
       );
       res.json({ ok: true });
     } catch (e) {

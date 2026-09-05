@@ -9,6 +9,7 @@ export default function useAdminData({
   scoringConfigDirty,
   setScoringConfigDirty,
   scoringConfig,
+  setScoringConfigLocal,
   refreshRosterClaims
 }) {
   const [officerRoles, setOfficerRoles] = useState([]);
@@ -201,6 +202,19 @@ export default function useAdminData({
       }
       if (scoringConfigDirty) {
         await putData('scoring-config', scoringConfig);
+        const savedScoringConfig = await fetchData('scoring-config');
+        const normalizeGuildRoleRanks = roles => (Array.isArray(roles) ? roles : []).map(role => ({
+          name: String(role?.name || '').trim(),
+          rank: Number(role?.rank) || 0,
+          weight: Number(role?.weight ?? 1),
+          isRaider: role?.isRaider === true
+        }));
+        const expectedGuildRoleRanks = normalizeGuildRoleRanks(scoringConfig?.guildRoleRanks);
+        const savedGuildRoleRanks = normalizeGuildRoleRanks(savedScoringConfig?.guildRoleRanks);
+        if (JSON.stringify(savedGuildRoleRanks) !== JSON.stringify(expectedGuildRoleRanks)) {
+          throw new Error('The API did not return the saved guild role rankings. Restart or update the API server before saving scoring config.');
+        }
+        setScoringConfigLocal(savedScoringConfig);
       }
       setDiscordBotConfigDirty(false);
       setScoringConfigDirty(false);

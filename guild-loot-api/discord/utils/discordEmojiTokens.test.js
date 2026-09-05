@@ -28,7 +28,7 @@ test('resolveSpecEmojiToken resolves the class-specific spec icon for a spec nam
   assert.equal(resolveSpecEmojiToken(guild, 'Fire', 'Mage'), '<:fire:202>');
 });
 
-test('resolveSpecEmojiToken prefers the uploaded class-specific icon over a generic guild class emoji', () => {
+test('resolveSpecEmojiToken uses the live guild emoji when available', () => {
   const guild = {
     emojis: {
       cache: [
@@ -36,11 +36,11 @@ test('resolveSpecEmojiToken prefers the uploaded class-specific icon over a gene
       ]
     }
   };
-  assert.equal(resolveSpecEmojiToken(guild, 'Holy', 'Priest'), '<:holy_priest:1537934646149382184>');
+  assert.equal(resolveSpecEmojiToken(guild, 'Holy', 'Priest'), '✨');
 });
 
-test('resolveSpecEmojiToken uses the uploaded bot icon tag from discord_icons.json when no live cache entry exists', () => {
-  assert.equal(resolveSpecEmojiToken(null, 'Holy', 'Paladin'), '<:holy_paladin:1537934650150883358>');
+test('resolveSpecEmojiToken uses a Unicode fallback when no live bot emoji is available', () => {
+  assert.equal(resolveSpecEmojiToken(null, 'Holy', 'Paladin'), '✨');
 });
 
 test('getSpecIconNames keeps Druid and Shaman restoration mappings separate', () => {

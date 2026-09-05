@@ -110,6 +110,8 @@ function buildDiscordService({ siteUrl, webhookUrl }) {
   }
 
   async function sendBankBulkResolutionWebhook({ groups = [], mentions = [], title = '📦 Bank Basket Resolved' }) {
+    const MAX_FIELD_LENGTH = 1024;
+    const MAX_EMBED_LENGTH = 5800;
     const safeGroups = Array.isArray(groups) && groups.length > 0
       ? groups
       : [{ playerName: 'No items', entries: [{ statusIcon: '•', itemName: 'No items in summary', approvedQuantity: 0, requestedQuantity: 0, priceText: '', noteText: '' }] }];
@@ -122,7 +124,7 @@ function buildDiscordService({ siteUrl, webhookUrl }) {
       return `${text.slice(0, Math.max(0, width - 3))}...`;
     };
 
-    const buildColumnValue = (formatter, { includePlayerName = true, includeSeparator = false } = {}) => safeGroups.map((group, groupIndex) => {
+    const buildColumnValue = (formatter, { includePlayerName = true, includeSeparator = false } = {}, groupsToRender = safeGroups) => groupsToRender.map((group, groupIndex) => {
       const lines = [];
       if (includePlayerName && group.playerName) {
         lines.push(`**${truncateText(group.playerName, 20)}**`);
@@ -164,22 +166,80 @@ function buildDiscordService({ siteUrl, webhookUrl }) {
       return price === ' ' ? note : `${price} • ${note}`;
     }, { includePlayerName: false, includeSeparator: true });
 
-    await postToDiscord({
-      username: 'Guild Banker',
-      avatar_url: DEFAULT_AVATAR,
-      ...(mentionPayload || {}),
-      embeds: [{
-        title,
-        color: 3447003,
-        description: '',
-        fields: [
-          { name: '\u200b', value: statusItemValue, inline: true },
-          { name: '\u200b', value: countPriceValue, inline: true },
-          { name: '\u200b', value: noteValue, inline: true }
-        ],
-        timestamp: new Date().toISOString()
-      }]
+    const buildFieldValues = groupsToRender => ({
+      statusItemValue: buildColumnValue(entry => {
+        const status = String(entry.statusIcon || '•');
+        const item = truncateText(entry.itemName || '', 34);
+        return `${status} ${item}`;
+      }, {}, groupsToRender),
+      countPriceValue: buildColumnValue(entry => {
+        const requestedQuantity = entry.requestedQuantity != null ? String(entry.requestedQuantity) : '0';
+        const approvedValue = entry.statusIcon === '❌' ? '0' : String(entry.approvedQuantity ?? 0);
+        return `${approvedValue}/${requestedQuantity}`;
+      }, { includePlayerName: false, includeSeparator: true }, groupsToRender),
+      noteValue: buildColumnValue(entry => {
+        const price = entry.priceText ? `${entry.priceText}` : ' ';
+        const note = entry.noteText ? truncateText(entry.noteText, 240) : ' ';
+        return price === ' ' ? note : `${price} • ${note}`;
+      }, { includePlayerName: false, includeSeparator: true }, groupsToRender)
     });
+
+    const fitsEmbed = groupsToRender => {
+      const values = buildFieldValues(groupsToRender);
+      return Object.values(values).every(value => value.length <= MAX_FIELD_LENGTH)
+        && Object.values(values).reduce((total, value) => total + value.length, title.length) <= MAX_EMBED_LENGTH;
+    };
+
+    const pages = [];
+    let page = [];
+    const addGroupToPages = group => {
+      const entries = Array.isArray(group.entries) ? group.entries : [];
+      const groupChunks = [];
+      let entryChunk = [];
+      entries.forEach(entry => {
+        const candidateEntries = [...entryChunk, entry];
+        if (entryChunk.length > 0 && !fitsEmbed([{ ...group, entries: candidateEntries }])) {
+          groupChunks.push(entryChunk);
+          entryChunk = [entry];
+        } else {
+          entryChunk = candidateEntries;
+        }
+      });
+      groupChunks.push(entryChunk);
+
+      groupChunks.forEach((entriesForChunk, chunkIndex) => {
+        const chunk = { ...group, entries: entriesForChunk };
+        if (chunkIndex > 0) chunk.playerName = `${group.playerName || 'Unknown'} (continued)`;
+        if (page.length > 0 && !fitsEmbed([...page, chunk])) {
+          pages.push(page);
+          page = [];
+        }
+        page.push(chunk);
+      });
+    };
+
+    safeGroups.forEach(addGroupToPages);
+    if (page.length > 0) pages.push(page);
+
+    for (const [pageIndex, pageGroups] of pages.entries()) {
+      const values = buildFieldValues(pageGroups);
+      await postToDiscord({
+        username: 'Guild Banker',
+        avatar_url: DEFAULT_AVATAR,
+        ...(pageIndex === 0 ? (mentionPayload || {}) : {}),
+        embeds: [{
+          title: pages.length > 1 ? `${title} (${pageIndex + 1}/${pages.length})` : title,
+          color: 3447003,
+          description: '',
+          fields: [
+            { name: '\u200b', value: values.statusItemValue, inline: true },
+            { name: '\u200b', value: values.countPriceValue, inline: true },
+            { name: '\u200b', value: values.noteValue, inline: true }
+          ],
+          timestamp: new Date().toISOString()
+        }]
+      });
+    }
   }
 
   return {

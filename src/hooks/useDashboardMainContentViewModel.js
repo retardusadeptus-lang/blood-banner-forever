@@ -20,6 +20,7 @@ export default function useDashboardMainContentViewModel(props) {
     adminSubTab: props.adminSubTab,
     resourcesSubTab: props.resourcesSubTab,
     isAuthenticated: props.isAuthenticated,
+    canViewScoring: props.canViewScoring,
     globalMyPlayerId: props.globalMyPlayerId,
     selectedBisSpec: props.selectedBisSpec,
     setSelectedBisSpec: props.setSelectedBisSpec,

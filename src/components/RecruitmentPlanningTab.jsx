@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import RosterTab from './RosterTab';
+import healersIcon from '../assets/icons/healers.png';
 
 const DEFAULT_SLOTS_PER_GROUP = 5;
 const UNKNOWN_ICON = 'https://wow.zamimg.com/images/wow/icons/small/inv_misc_questionmark.jpg';
@@ -171,12 +173,14 @@ function CustomDropdown({
   );
 }
 
-export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData, putData }) {
+export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData, putData, rosterManagementProps }) {
   const [groups, setGroups] = useState(buildEmptyGroups);
   const [lastSavedGroups, setLastSavedGroups] = useState(buildEmptyGroups);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState('');
+  const [rosterAddStatus, setRosterAddStatus] = useState('');
+  const [editingRosterPlayer, setEditingRosterPlayer] = useState(null);
 
   const specsByClass = useMemo(() => {
     const map = new Map();
@@ -294,6 +298,47 @@ export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData,
     updateGroups(next);
   };
 
+  const addRosterPlayerToPlanning = (player) => {
+    const playerId = String(player.id);
+    const playerSpecId = String(player.spec_id || '');
+    const alreadyAssigned = groups.some(group => group.slots.some(slot => String(slot.rosterId || '') === playerId));
+    if (alreadyAssigned) {
+      setRosterAddStatus(`${player.name} is already assigned to a planning slot.`);
+      return;
+    }
+
+    const targetGroup = groups.find(group => group.slots.some(slot => !slot.rosterId));
+    if (targetGroup) {
+      const targetSlot = targetGroup.slots.find(slot => !slot.rosterId);
+      const next = applySlotPatch(groups, targetGroup.id, targetSlot.id, { specId: playerSpecId, rosterId: playerId });
+      updateGroups(next);
+      setRosterAddStatus(`${player.name} added to ${targetGroup.groupName}.`);
+      return;
+    }
+
+    const nextGroup = createGroup(groups.length + 1);
+    const next = [...groups, {
+      ...nextGroup,
+      slots: nextGroup.slots.map((slot, slotIndex) => slotIndex === 0 ? { ...slot, specId: playerSpecId, rosterId: playerId } : slot)
+    }];
+    updateGroups(next);
+    setRosterAddStatus(`${player.name} added to ${nextGroup.groupName}.`);
+  };
+
+  const saveRosterPlayerEdit = () => {
+    if (!editingRosterPlayer || !rosterManagementProps?.handleUpdatePlayer) return;
+    const nextSpecId = String(editingRosterPlayer.spec_id || '');
+    rosterManagementProps.handleUpdatePlayer(editingRosterPlayer.id, {
+      name: String(editingRosterPlayer.name || '').trim(),
+      spec_id: Number(nextSpecId)
+    });
+    updateGroups(groups.map(group => ({
+      ...group,
+      slots: group.slots.map(slot => String(slot.rosterId || '') === String(editingRosterPlayer.id) ? { ...slot, specId: nextSpecId } : slot)
+    })));
+    setEditingRosterPlayer(null);
+  };
+
   const removeGroup = (groupId) => {
     const next = groups.filter(group => group.id !== groupId);
     updateGroups(next);
@@ -388,6 +433,88 @@ export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData,
       ) : null}
       {saveError ? <p className="text-xs text-rose-400">{saveError}</p> : null}
       {isSaving ? <p className="text-xs text-cyan-400">Saving...</p> : null}
+
+      <div className="rounded-xl border border-slate-800 bg-slate-950 p-4 space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h3 className="text-sm font-bold uppercase tracking-widest text-slate-300">Roster</h3>
+            <p className="mt-1 text-xs text-slate-500">Add a roster member to the next available planning slot.</p>
+          </div>
+          {rosterAddStatus ? <span className="text-xs text-cyan-400">{rosterAddStatus}</span> : null}
+        </div>
+        {roster.length === 0 ? (
+          <p className="text-sm text-slate-500">No roster members yet.</p>
+        ) : (
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-2">
+            {roster.map((player) => {
+              const playerSpec = specById.get(String(player.spec_id || ''));
+              const isAssigned = groups.some(group => group.slots.some(slot => String(slot.rosterId || '') === String(player.id)));
+              return (
+                <div key={player.id} className={`flex min-w-0 items-center gap-2 rounded-lg border px-2 py-1.5 ${isAssigned ? 'border-emerald-500/70 bg-emerald-950/30' : 'border-slate-800 bg-slate-900'}`}>
+                  <img src={getSpecIcon(playerSpec)} alt="" className="h-6 w-6 rounded border border-slate-700" />
+                  <div className="min-w-0 flex-1">
+                    <div className="truncate text-xs font-semibold" style={{ color: getSpecColor(playerSpec) }}>{player.name}</div>
+                  </div>
+                  <div className="ml-auto flex shrink-0 items-center gap-1">
+                    <button
+                      type="button"
+                      onClick={() => addRosterPlayerToPlanning(player)}
+                      className="flex h-7 w-7 items-center justify-center rounded border border-cyan-600/50 bg-cyan-600/10 transition hover:bg-cyan-600/25 disabled:cursor-not-allowed disabled:opacity-40"
+                      disabled={isAssigned}
+                      title={isAssigned ? `${player.name} is already assigned` : `Add ${player.name} to the next available slot`}
+                      aria-label={isAssigned ? `${player.name} is already assigned` : `Add ${player.name} to planning`}
+                    >
+                      <img src={healersIcon} alt="" className="h-4 w-4 object-contain grayscale opacity-70" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setEditingRosterPlayer({ ...player })}
+                      className="flex h-7 w-7 items-center justify-center rounded border border-slate-700 bg-slate-950 text-sm text-slate-300 transition hover:border-cyan-600/60 hover:text-cyan-300"
+                      title={`Edit ${player.name}`}
+                      aria-label={`Edit ${player.name}`}
+                    >
+                      ✎
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {editingRosterPlayer && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4" onClick={() => setEditingRosterPlayer(null)}>
+          <div className="w-full max-w-md rounded-xl border border-slate-700 bg-slate-900 p-6 shadow-2xl" onClick={event => event.stopPropagation()}>
+            <h3 className="text-lg font-bold text-slate-100">Edit Roster Member</h3>
+            <div className="mt-4 space-y-3">
+              <div>
+                <label className="mb-1 block text-[10px] font-bold uppercase tracking-wider text-slate-500">Name</label>
+                <input
+                  type="text"
+                  value={editingRosterPlayer.name || ''}
+                  onChange={event => setEditingRosterPlayer({ ...editingRosterPlayer, name: event.target.value })}
+                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-[10px] font-bold uppercase tracking-wider text-slate-500">Class / Spec</label>
+                <select
+                  value={editingRosterPlayer.spec_id || ''}
+                  onChange={event => setEditingRosterPlayer({ ...editingRosterPlayer, spec_id: event.target.value })}
+                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                >
+                  {specsFromDb.map(spec => <option key={spec.id} value={spec.id}>{spec.class} · {spec.spec}</option>)}
+                </select>
+              </div>
+            </div>
+            <div className="mt-5 flex justify-end gap-2">
+              <button type="button" onClick={() => setEditingRosterPlayer(null)} className="rounded-lg bg-slate-800 px-4 py-2 text-xs font-bold text-slate-300">Cancel</button>
+              <button type="button" onClick={saveRosterPlayerEdit} className="rounded-lg bg-amber-600 px-4 py-2 text-xs font-bold text-slate-950">Save</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {groups.length === 0 ? (
         <div className="rounded-xl border border-dashed border-slate-700 bg-slate-950/40 p-8 text-center">
@@ -507,6 +634,17 @@ export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData,
           </div>
         ))}
       </div>
+
+      {rosterManagementProps ? (
+        <details className="rounded-xl border border-slate-800 bg-slate-950">
+          <summary className="cursor-pointer list-none p-4 text-sm font-bold uppercase tracking-widest text-slate-300">
+            Manage Roster
+          </summary>
+          <div className="border-t border-slate-800">
+            <RosterTab {...rosterManagementProps} />
+          </div>
+        </details>
+      ) : null}
     </section>
   );
 }

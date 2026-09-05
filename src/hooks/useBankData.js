@@ -2,19 +2,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { downloadCsv } from '../utils/csv';
 
 const BANK_SYNC_INTERVAL_MS = 20000;
-const CATEGORY_MAP = {
-  Bank: 'Bank',
-  Consumables: 'Consumables',
-  Gear: 'Gear',
-  Misc: 'Misc'
-};
-
 export default function useBankData({ fetchData, putData, deleteData, isAuthenticated }) {
   const [bankItems, setBankItems] = useState([]);
+  const [bankItemHistory, setBankItemHistory] = useState([]);
   const [bankRequests, setBankRequests] = useState([]);
   const [bankSearch, setBankSearch] = useState('');
   const [bankArchivedRequestIds, setBankArchivedRequestIds] = useState(() => JSON.parse(localStorage.getItem('bank-archived-request-ids') || '[]'));
   const [bankUpdateJsonText, setBankUpdateJsonText] = useState('');
+  const [notifyBankUpdate, setNotifyBankUpdate] = useState(true);
   const [bankUploadParsed, setBankUploadParsed] = useState(null);
   const [bankUploadStatus, setBankUploadStatus] = useState('');
   const [bankUploadMeta, setBankUploadMeta] = useState({ gold: null });
@@ -36,6 +31,9 @@ export default function useBankData({ fetchData, putData, deleteData, isAuthenti
         const items = await fetchData('bank-items');
         if (!mounted) return;
         setBankItems(items);
+        const itemHistory = await fetchData('bank-item-history');
+        if (!mounted) return;
+        setBankItemHistory(itemHistory);
         if (isAuthenticated) {
           const requests = await fetchData('bank-requests');
           if (!mounted) return;
@@ -49,53 +47,6 @@ export default function useBankData({ fetchData, putData, deleteData, isAuthenti
     const interval = setInterval(loadBankData, BANK_SYNC_INTERVAL_MS);
     return () => { mounted = false; clearInterval(interval); };
   }, [fetchData, isAuthenticated]);
-
-  const handleUploadBankLuaFile = (file) => {
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (evt) => {
-      const text = evt.target.result;
-      const parsed = [];
-
-      const idRegex = /\[(\d+)\]\s*=\s*\{/g;
-      let match;
-
-      while ((match = idRegex.exec(text)) !== null) {
-        const id = match[1];
-        const restOfFile = text.substring(match.index);
-        const closingBracket = restOfFile.indexOf('},');
-        const itemDataStr = restOfFile.substring(0, closingBracket);
-
-        const countMatch = itemDataStr.match(/\["count"\]\s*=\s*(\d+)/);
-        const count = countMatch ? parseInt(countMatch[1]) : 1;
-
-        const nameMatch = itemDataStr.match(/\["name"\]\s*=\s*"([^"]+)"/);
-        const name = nameMatch ? nameMatch[1] : 'Unknown Item';
-
-        const catMatch = itemDataStr.match(/\["category"\]\s*=\s*"([^"]+)"/);
-        const rawCat = catMatch ? catMatch[1] : 'Misc';
-        const cleanCat = CATEGORY_MAP[rawCat] || 'Misc';
-
-        const subTypeMatch = itemDataStr.match(/\["subtype"\]\s*=\s*"([^"]+)"/);
-        const subType = subTypeMatch ? subTypeMatch[1] : '';
-
-        parsed.push({
-          item_wowhead_id: parseInt(id),
-          count,
-          name,
-          category: cleanCat,
-          sub_type: subType
-        });
-      }
-
-      const goldMatch = text.match(/\["(?:gold|guildGold|bankGold)"\]\s*=\s*(\d+)/);
-      const parsedGold = goldMatch ? parseInt(goldMatch[1], 10) : null;
-      setBankUploadMeta({ gold: parsedGold });
-      setBankUploadStatus(parsed.length === 0 ? '⚠️ Found 0 items. Check your Lua file.' : `✅ Loaded ${parsed.length} items. Click Save to update the bank.`);
-      setBankUploadParsed(parsed.length === 0 ? null : parsed);
-    };
-    reader.readAsText(file);
-  };
 
   const handleParseBankUpdateJson = () => {
     try {
@@ -122,8 +73,9 @@ export default function useBankData({ fetchData, putData, deleteData, isAuthenti
         return;
       }
 
-      const parsedGold = Number(parsedData.gold ?? parsedData.guildGold ?? parsedData.bankGold ?? parsedData.guild_gold ?? parsedData.guildGoldCopper ?? 0);
-      setBankUploadMeta({ gold: Number.isFinite(parsedGold) ? parsedGold : null });
+      const parsedMoney = Number(parsedData.gold ?? parsedData.guildGold ?? parsedData.bankGold ?? parsedData.guild_gold ?? parsedData.guildGoldCopper ?? 0);
+      const parsedGold = Number.isFinite(parsedMoney) ? parsedMoney / 10000 : null;
+      setBankUploadMeta({ gold: parsedGold });
       setBankUploadParsed(normalized);
       setBankUploadStatus(`✅ Loaded ${normalized.length} items from JSON. Click Save to update the bank.`);
     } catch {
@@ -137,7 +89,7 @@ export default function useBankData({ fetchData, putData, deleteData, isAuthenti
     setBankUploadStatus('Uploading...');
     try {
       const payload = Array.isArray(bankUploadParsed) ? bankUploadParsed : (bankUploadParsed.items || []);
-      const data = await putData('bank-items', payload);
+      const data = await putData('bank-items', { items: payload, notifyDiscord: notifyBankUpdate });
       const snapshot = {
         id: Date.now(),
         timestamp: new Date().toISOString(),
@@ -146,14 +98,30 @@ export default function useBankData({ fetchData, putData, deleteData, isAuthenti
         items: payload
       };
       setBankContentsHistory(prev => [snapshot, ...prev].slice(0, 12));
-      setBankUploadStatus(`✅ Bank updated with ${data.count} items! Discord notified.`);
+      setBankUploadStatus(`✅ Bank updated with ${data.count} items!${data.discordNotified ? ' Discord notified.' : ' Discord notification skipped.'}`);
       setBankUploadParsed(null);
       setBankUploadMeta({ gold: null });
       const items = await fetchData('bank-items');
       setBankItems(items);
+      const itemHistory = await fetchData('bank-item-history');
+      setBankItemHistory(itemHistory);
     } catch {
       setBankUploadStatus('❌ Error uploading.');
     }
+  };
+
+  const handleRestoreBankItem = async (itemWowheadId, quantity) => {
+    const result = await putData(`bank-item-history/${itemWowheadId}/restore`, { quantity });
+    setBankItems(prev => {
+      const existing = prev.find(item => Number(item.item_wowhead_id) === Number(itemWowheadId));
+      if (existing) {
+        return prev.map(item => item === existing ? { ...item, count: result.item.count } : item);
+      }
+      return [...prev, result.item];
+    });
+    const itemHistory = await fetchData('bank-item-history');
+    setBankItemHistory(itemHistory);
+    return result.item;
   };
 
   const exportBankContentsHistoryCsv = () => {
@@ -243,18 +211,21 @@ export default function useBankData({ fetchData, putData, deleteData, isAuthenti
 
   return {
     bankItems,
+    bankItemHistory,
     bankRequests,
     bankSearch,
     setBankSearch,
     bankArchivedRequestIds,
     bankUpdateJsonText,
     setBankUpdateJsonText,
+    notifyBankUpdate,
+    setNotifyBankUpdate,
     bankUploadParsed,
     bankUploadStatus,
     bankUploadMeta,
-    handleUploadBankLuaFile,
     handleParseBankUpdateJson,
     handleSaveBankUpload,
+    handleRestoreBankItem,
     clearBankUpload,
     clearBankUpdate,
     handleResolveBankRequest,

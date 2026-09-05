@@ -323,7 +323,7 @@ function buildRosterRoutes({ db, sessionSecret, bnetConfig }) {
 
   router.get('/roster', (req, res) => {
     try {
-      const rows = db.prepare('SELECT id, name, spec_id, in_raid, user_id FROM roster').all();
+      const rows = db.prepare('SELECT id, name, spec_id, in_raid, user_id, guild_rank FROM roster').all();
       const roster = rows.map(r => ({ ...r, in_raid: r.in_raid === 1 }));
       res.json(roster);
     } catch (e) {
@@ -335,20 +335,21 @@ function buildRosterRoutes({ db, sessionSecret, bnetConfig }) {
     try {
       const players = req.body;
       const deleteAll = db.prepare('DELETE FROM roster');
-      const insertWithId = db.prepare('INSERT INTO roster (id, name, spec_id, in_raid, user_id) VALUES (?, ?, ?, ?, ?)');
-      const insertNoId = db.prepare('INSERT INTO roster (name, spec_id, in_raid, user_id) VALUES (?, ?, ?, ?)');
+      const insertWithId = db.prepare('INSERT INTO roster (id, name, spec_id, in_raid, user_id, guild_rank) VALUES (?, ?, ?, ?, ?, ?)');
+      const insertNoId = db.prepare('INSERT INTO roster (name, spec_id, in_raid, user_id, guild_rank) VALUES (?, ?, ?, ?, ?)');
 
       const saveAll = db.transaction(() => {
         deleteAll.run();
         return players.map(p => {
           const nextUserId = p.user_id === undefined || p.user_id === null ? null : Number(p.user_id);
+          const guildRank = String(p.guild_rank || '').trim();
           if (p.id !== undefined && p.id !== null && String(p.id).trim() !== '') {
-            insertWithId.run(Number(p.id), p.name, p.spec_id, p.in_raid ? 1 : 0, nextUserId);
-            return { id: Number(p.id), name: p.name, spec_id: p.spec_id, in_raid: !!p.in_raid, user_id: nextUserId };
+            insertWithId.run(Number(p.id), p.name, p.spec_id, p.in_raid ? 1 : 0, nextUserId, guildRank);
+            return { id: Number(p.id), name: p.name, spec_id: p.spec_id, in_raid: !!p.in_raid, user_id: nextUserId, guild_rank: guildRank };
           }
 
-          const info = insertNoId.run(p.name, p.spec_id, p.in_raid ? 1 : 0, nextUserId);
-          return { id: info.lastInsertRowid, name: p.name, spec_id: p.spec_id, in_raid: !!p.in_raid, user_id: nextUserId };
+          const info = insertNoId.run(p.name, p.spec_id, p.in_raid ? 1 : 0, nextUserId, guildRank);
+          return { id: info.lastInsertRowid, name: p.name, spec_id: p.spec_id, in_raid: !!p.in_raid, user_id: nextUserId, guild_rank: guildRank };
         });
       });
 

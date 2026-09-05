@@ -18,7 +18,6 @@ import DashboardMainContent from './components/DashboardMainContent';
 import DashboardPageLayout from './components/DashboardPageLayout';
 import DashboardModals from './components/DashboardModals';
 // component imports replaced by container wrappers
-import RosterContainer from './containers/RosterContainer';
 import ScoringContainer from './containers/ScoringContainer';
 import ItemsDatabaseContainer from './containers/ItemsDatabaseContainer';
 import BankContainer from './containers/BankContainer';
@@ -29,7 +28,7 @@ import AssignedLootOverview from './components/AssignedLootOverview';
 import RaidSignupsContainer from './containers/RaidSignupsContainer';
 // replaced inline with RaidSignupsContainer
 import * as helpers from './utils/helpers';
-import { calculatePlayerScore, getRankBadgeStyle as getAppShellRankBadgeStyle } from './utils/appShellHelpers';
+import { calculatePlayerScore, getRankBadgeStyle as getAppShellRankBadgeStyle, getDefaultGuildRoleName } from './utils/appShellHelpers';
 import useRaidHelperImport from './hooks/useRaidHelperImport';
 import useAuthSession from './hooks/useAuthSession';
 import useDashboardNavigation from './hooks/useDashboardNavigation';
@@ -145,7 +144,10 @@ export default function App() {
     handleMainNavSelect,
     getDropdownItemActiveState,
     subTabs,
-  } = useDashboardNavigation({ isAuthenticated: hasOfficerAccess });
+  } = useDashboardNavigation({
+    isAuthenticated: hasOfficerAccess,
+    canViewScoring: isAuthenticated || bnetAuthState.isAdmin
+  });
 
   useEffect(() => {
     const previousTab = previousActiveTabRef.current;
@@ -333,6 +335,7 @@ export default function App() {
     scoringConfigDirty,
     setScoringConfigDirty,
     scoringConfig,
+    setScoringConfigLocal,
     setScoringConfig,
     refreshRosterClaims
   });
@@ -579,11 +582,13 @@ export default function App() {
   };
 
   const calculateScore = (playerId) => {
+    const player = roster.find(rosterPlayer => Number(rosterPlayer.id) === Number(playerId)) || { guild_rank: getDefaultGuildRoleName(scoringConfig) };
     return calculatePlayerScore({
       playerId,
       playerStats,
       scoringConfig,
-      attendanceScore: rosterData.calculateAttendance(playerId)
+      attendanceScore: rosterData.calculateAttendance(playerId),
+      player
     });
   };
 
@@ -645,6 +650,7 @@ export default function App() {
     adminSubTab,
     resourcesSubTab,
     isAuthenticated: hasOfficerAccess,
+    canViewScoring: isAuthenticated || bnetAuthState.isAdmin,
     globalMyPlayerId,
     selectedBisSpec,
     setSelectedBisSpec,

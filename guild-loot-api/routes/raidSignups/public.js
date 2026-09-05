@@ -42,11 +42,13 @@ function buildRaidSignupPublicRoutes({ db }) {
         rows.forEach(row => {
           const playerName = String(row?.player_name || '').trim();
           if (!playerName) return;
+          const groupNumber = Number(row?.group_number);
+          const slotIndex = Number(row?.slot_index);
           insert.run(
             eventId,
-            Number(row.group_number) || 1,
+            Number.isFinite(groupNumber) ? groupNumber : 1,
             String(row.group_name || '').trim(),
-            Number(row.slot_index) || 1,
+            Number.isFinite(slotIndex) ? slotIndex : 1,
             playerName,
             row.spec_id ? Number(row.spec_id) : null,
             String(row.note || '').trim()

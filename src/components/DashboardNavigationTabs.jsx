@@ -29,10 +29,10 @@ export default function DashboardNavigationTabs({
       return activeTab === 'loot' || activeTab === 'scoring';
     }
     if (keyName === 'recruitment') {
-      return activeTab === 'roster' || activeTab === 'recruitmentPlanning' || activeTab === 'recruitmentFocus' || activeTab === 'recruitmentApplications';
+      return activeTab === 'recruitmentPlanning' || activeTab === 'recruitmentFocus' || activeTab === 'recruitmentApplications';
     }
     if (keyName === 'admin') {
-      return activeTab === 'officerRoles' || activeTab === 'discordBotConfig' || activeTab === 'itemsdb';
+      return activeTab === 'officerRoles' || activeTab === 'discordBotConfig' || activeTab === 'itemsdb' || activeTab === 'roster';
     }
     if (keyName === 'resources') {
       return activeTab === 'bis';

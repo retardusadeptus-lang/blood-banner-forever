@@ -1,5 +1,38 @@
 import { P2_BOSSES } from '../constants';
 
+const UNKNOWN_ICON = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg';
+const CLASS_ICON_FALLBACKS = {
+  druid: 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_healingtouch.jpg',
+  hunter: 'https://wow.zamimg.com/images/wow/icons/large/ability_hunter_beasttaming.jpg',
+  mage: 'https://wow.zamimg.com/images/wow/icons/large/spell_frost_frostbolt02.jpg',
+  paladin: 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_holybolt.jpg',
+  priest: 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_guardianspirit.jpg',
+  rogue: 'https://wow.zamimg.com/images/wow/icons/large/ability_backstab.jpg',
+  shaman: 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_lightning.jpg',
+  warlock: 'https://wow.zamimg.com/images/wow/icons/large/spell_shadow_deathcoil.jpg',
+  warrior: 'https://wow.zamimg.com/images/wow/icons/large/inv_shield_06.jpg'
+};
+const SPEC_ICON_FALLBACKS = {
+  'Prot Warrior': 'https://wow.zamimg.com/images/wow/icons/large/inv_shield_06.jpg',
+  'Prot Paladin': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_devotionaura.jpg',
+  'Holy Paladin': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_holybolt.jpg',
+  'Resto Shaman': 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_magicimmunity.jpg',
+  'Balance Druid': 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_starfall.jpg',
+  'Resto Druid': 'https://wow.zamimg.com/images/wow/icons/large/spell_nature_healingtouch.jpg',
+  'Holy Priest': 'https://wow.zamimg.com/images/wow/icons/large/spell_holy_guardianspirit.jpg',
+  'Shadow Priest': 'https://wow.zamimg.com/images/wow/icons/large/spell_shadow_shadowwordpain.jpg',
+  'Fire Mage': 'https://wow.zamimg.com/images/wow/icons/large/spell_fire_firebolt02.jpg',
+  'Frost Mage': 'https://wow.zamimg.com/images/wow/icons/large/spell_frost_frostbolt02.jpg'
+};
+
+function getSpecIcon(spec) {
+  if (!spec) return UNKNOWN_ICON;
+  if (spec.icon_large) return spec.icon_large;
+  if (spec.icon_medium) return String(spec.icon_medium).replace('/medium/', '/large/');
+  if (spec.icon_small) return String(spec.icon_small).replace('/small/', '/large/');
+  return SPEC_ICON_FALLBACKS[spec.spec] || CLASS_ICON_FALLBACKS[String(spec.class || '').trim().toLowerCase()] || UNKNOWN_ICON;
+}
+
 export default function ScoringTab({
   roster,
   playerStats,
@@ -39,7 +72,7 @@ export default function ScoringTab({
             <div key={player.id} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300">
               <div className="p-4 flex items-center justify-between cursor-pointer hover:bg-slate-900 transition-colors" onClick={() => setExpandedPlayerId(isExpanded ? null : player.id)}>
                 <div className="flex items-center gap-4">
-                  <img src={getSpecById(player.spec_id)?.icon_large || 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg'} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover" />
+                  <img src={getSpecIcon(getSpecById(player.spec_id))} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover" onError={event => { event.currentTarget.src = UNKNOWN_ICON; }} />
                   <div>
                     <PlayerNameWithScore player={player} />
                     <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{getDisplayFromId(player.spec_id)}</span>
