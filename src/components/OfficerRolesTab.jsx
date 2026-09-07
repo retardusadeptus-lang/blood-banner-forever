@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 export default function OfficerRolesTab({
   roster,
+  getSpecById,
   officerRoles,
   setOfficerRoles,
   myPlayerId,
@@ -239,7 +240,6 @@ export default function OfficerRolesTab({
               No roles matched your "Show Mine" filter.
             </div>
           ) : visibleRoles.map(role => {
-            const backups = Array.isArray(role.backup_officer_ids) ? role.backup_officer_ids : [];
             const backup1 = getBackupValue(role, 0);
             const backup2 = getBackupValue(role, 1);
             const highlightMine = showMineOnly && minePlayerId;

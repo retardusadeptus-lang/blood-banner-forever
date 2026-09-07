@@ -30,7 +30,7 @@ function getGitCommitSha() {
       return fs.readFileSync(refPath, 'utf8').trim();
     }
     return head;
-  } catch (e) {
+  } catch {
     return 'unknown';
   }
 }

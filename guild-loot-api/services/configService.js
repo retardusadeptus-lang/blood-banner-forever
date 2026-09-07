@@ -31,7 +31,7 @@ function createConfigService(db) {
       try {
         const parsed = JSON.parse(raw || '[]');
         return normalizeRoleList(parsed);
-      } catch (e) {
+      } catch {
         return [];
       }
     };

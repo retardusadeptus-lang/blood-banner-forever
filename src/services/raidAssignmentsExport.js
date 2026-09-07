@@ -19,7 +19,7 @@ function cleanText(value) {
   return typeof value === 'string' ? value.trim() : value;
 }
 
-function getBossOrder({ bossName, bossData, bossOrderMap, fallbackIndex }) {
+function getBossOrder({ bossName, bossOrderMap, fallbackIndex }) {
   const order = bossOrderMap?.[bossName];
   if (typeof order === 'number' && Number.isFinite(order)) {
     return order;
@@ -248,7 +248,7 @@ export function buildRaidAssignmentsExport({
           bossName,
           bossData: raidAssignmentData?.[bossName] || {},
           zoneName: zone?.name || null,
-          order: getBossOrder({ bossName, bossData: raidAssignmentData?.[bossName] || {}, bossOrderMap, fallbackIndex: index }),
+          order: getBossOrder({ bossName, bossOrderMap, fallbackIndex: index }),
           globalData
         }));
 

@@ -36,38 +36,6 @@ const CLASS_FALLBACK = {
   druid: '🌙'
 };
 
-const SPEC_EMOJI_NAME = {
-  affliction: 'Affliction',
-  demonology: 'Demonology',
-  destruction: 'Destruction',
-  balance: 'Balance',
-  feral: 'Feral',
-  guardian: 'Guardian',
-  restoration: 'Restoration',
-  resto: 'Restoration',
-  beastmastery: 'Beast Mastery',
-  beast: 'Beast Mastery',
-  marksmanship: 'Marksmanship',
-  marksman: 'Marksmanship',
-  survival: 'Survival',
-  arcane: 'Arcane',
-  fire: 'Fire',
-  frost: 'Frost',
-  holy: 'Holy',
-  protection: 'Protection',
-  prot: 'Protection',
-  retribution: 'Retribution',
-  ret: 'Retribution',
-  shadow: 'Shadow',
-  elemental: 'Elemental',
-  enhancement: 'Enhancement',
-  enhance: 'Enhancement',
-  assassination: 'Assassination',
-  combat: 'Combat',
-  sublety: 'Subtlety',
-  subtlety: 'Subtlety'
-};
-
 const SPEC_FALLBACK = {
   affliction: '☠️',
   demonology: '🔮',
@@ -149,25 +117,6 @@ function resolveClassEmojiData(guild, className) {
   const match = /<a?:([^:]+):([0-9]+)>/.exec(resolved);
   if (!match) return null;
   return { id: match[2], name: match[1], animated: match[0].startsWith('<a:') };
-}
-
-function normalizeEmojiNameCandidates(value) {
-  const raw = String(value || '').trim();
-  if (!raw) return [];
-
-  const normalized = raw
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '')
-    .replace(/^guild_/, '');
-
-  const names = new Set();
-  const base = String(value || '').trim();
-  names.add(base);
-  names.add(base.toLowerCase());
-  names.add(base.replace(/\s+/g, ''));
-  names.add(base.toLowerCase().replace(/\s+/g, ''));
-  names.add(normalized);
-  return [...names].filter(Boolean);
 }
 
 function normalizedSpecKey(value) {

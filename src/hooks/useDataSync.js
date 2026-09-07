@@ -27,7 +27,9 @@ export default function useDataSync({
   setDbBisPrioritiesBaseline,
 }) {
   useEffect(() => {
+    let cancelled = false;
     let isSyncInFlight = false;
+    let retryTimeout;
 
     const loadAll = async () => {
       if (document.hidden || isSyncInFlight) return;
@@ -46,18 +48,20 @@ export default function useDataSync({
           fetchData('raid-logs'),
         ]);
 
+        if (cancelled) return;
         if (!rosterDirty) setRosterLocal(rosterData);
         if (!assignmentsDirty) setAssignmentsData(assignmentsData, { dirty: false });
         const defaults = Object.keys(bisData).length ? bisData : await initializeDefaultBisPriorities(globalPhase);
         setBisPrioritiesLocal(defaults);
         if (!scoringConfigDirty) {
-          setScoringConfigLocal(Object.keys(configData).length ? configData : { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5, afkPenalty: 5 });
+          setScoringConfigLocal(Object.keys(configData).length ? configData : { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5, afkPenalty: 5, defaultSitePhase: 'T6', defaultSiteTab: 'recruitment.focus', claimGameVersion: 'all', claimFallbackEnabled: false });
         }
         if (!playerStatsDirty) setPlayerStatsLocal(statsData);
         if (!raidLogsDirty) setRaidLogsLocal(logsData);
         setIsDbConnected(true);
       } catch (e) {
         console.error('Failed to load data:', e);
+        retryTimeout = setTimeout(loadAll, 1000);
       } finally {
         isSyncInFlight = false;
       }
@@ -65,7 +69,16 @@ export default function useDataSync({
 
     loadAll();
     const interval = setInterval(loadAll, CORE_SYNC_INTERVAL_MS);
-    return () => clearInterval(interval);
+    const handleVisibilityChange = () => {
+      if (!document.hidden) loadAll();
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+      clearTimeout(retryTimeout);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, [
     globalPhase,
     rosterDirty,
@@ -79,6 +92,7 @@ export default function useDataSync({
     setBisPrioritiesLocal,
     setIsDbConnected,
     setPlayerStatsLocal,
+    setRaidLogsLocal,
     setRosterLocal,
     setScoringConfigLocal,
   ]);

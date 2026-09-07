@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { login, getBattleNetAuthMe, startBattleNetLogin, logoutBattleNet, claimRosterCharacter, claimRosterCharacterManual, getRosterClaimsAdmin, unclaimRosterCharacterAdmin } from '../services/apiService';
+import { login, getBattleNetAuthMe, getBattleNetCharacters, startBattleNetLogin, logoutBattleNet, claimRosterCharacter, claimRosterCharacterManual, getRosterClaimsAdmin, unclaimRosterCharacterAdmin } from '../services/apiService';
 
 export default function useAuthSession({ fetchData, setRoster, setRosterDirty }) {
   const [isAuthenticated, setIsAuthenticated] = useState(() => sessionStorage.getItem('ar-auth') === 'true');
@@ -38,6 +38,16 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
     try {
       const me = await getBattleNetAuthMe();
       const authenticated = Boolean(me?.authenticated);
+      let characters = [];
+      let characterError = '';
+      if (authenticated) {
+        try {
+          const profile = await getBattleNetCharacters();
+          characters = Array.isArray(profile?.characters) ? profile.characters : [];
+        } catch (err) {
+          characterError = err.message || 'Failed to load Battle.net characters.';
+        }
+      }
       setBnetAuthState({
         loading: false,
         authenticated,
@@ -46,8 +56,8 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
         roles: Array.isArray(me?.roles) ? me.roles : [],
         isOfficer: Boolean(me?.isOfficer),
         isAdmin: Boolean(me?.isAdmin),
-        error: '',
-        characters: [],
+        error: characterError,
+        characters,
         diagnostics: [],
         showBnetCharacterLookup: authenticated
       });

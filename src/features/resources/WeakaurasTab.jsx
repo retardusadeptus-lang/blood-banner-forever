@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 function formatCreatedAt(value) {
   if (!value) return 'Unknown date';
@@ -50,7 +50,7 @@ export default function WeakaurasTab({ fetchData, postData, canSubmit }) {
     notes: ''
   });
 
-  const loadEntries = async () => {
+  const loadEntries = useCallback(async () => {
     setIsLoading(true);
     setError('');
     try {
@@ -62,11 +62,13 @@ export default function WeakaurasTab({ fetchData, postData, canSubmit }) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [fetchData]);
 
   useEffect(() => {
+    // Load external WeakAura data when the resource view mounts.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadEntries();
-  }, []);
+  }, [loadEntries]);
 
   const sortedEntries = useMemo(
     () => [...entries].sort((a, b) => Number(b.id || 0) - Number(a.id || 0)),

@@ -1,4 +1,3 @@
-import React from 'react';
 import { LEFT_SLOTS, BOTTOM_SLOTS, PHASES } from '../constants';
 
 export default function BisConfigTab({

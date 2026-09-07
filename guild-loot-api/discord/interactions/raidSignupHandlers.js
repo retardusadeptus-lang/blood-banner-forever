@@ -7,7 +7,6 @@ const {
   upsertUserPreferredClass,
   upsertUserPreferredCharacter,
   getUserPreferredSpec,
-  getUserPreferredClass,
   getUserPreferredCharacter,
   upsertSignupEntry,
   setEventClassFilter

@@ -1,6 +1,17 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { startTransition, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { DEFAULT_SITE_TAB } from '../constants.js';
+import { getSiteTabIdForRoute, getSiteTabRoute, getVisibleSiteTabs, isSiteActiveTabAuthOnly } from '../config/siteRegistry.js';
 
-const AUTH_ONLY_TABS = ['bankRequests', 'recruitmentPlanning', 'roster', 'scoring', 'itemsdb', 'officerRoles', 'discordBotConfig'];
+function getNavigationSubTab(activeTab, state) {
+  if (activeTab === 'bank') return state.bankSubTab;
+  if (activeTab === 'raidAssignments') return state.raidAssignmentsSubTab;
+  if (activeTab === 'raidSignups') return state.raidSignupsSubTab;
+  if (activeTab === 'loot') return state.lootSubTab;
+  if (activeTab === 'recruitmentPlanning' || activeTab === 'recruitmentFocus' || activeTab === 'recruitmentApplications') return state.recruitmentSubTab;
+  if (activeTab === 'officerRoles' || activeTab === 'discordBotConfig' || activeTab === 'roster' || activeTab === 'itemsdb' || activeTab === 'sitemap') return state.adminSubTab;
+  if (activeTab === 'bis') return state.resourcesSubTab;
+  return null;
+}
 const NAV_STORAGE_KEYS = {
   activeTab: 'active-tab',
   bankSubTab: 'bank-sub-tab',
@@ -11,25 +22,44 @@ const NAV_STORAGE_KEYS = {
   adminSubTab: 'admin-sub-tab',
   resourcesSubTab: 'resources-sub-tab'
 };
+const BNET_LAST_SITE_TAB_PREFIX = 'bnet-last-site-tab:';
 
-export default function useDashboardNavigation({ isAuthenticated, canViewScoring = false }) {
-  const [activeTab, setActiveTab] = useState(() => localStorage.getItem(NAV_STORAGE_KEYS.activeTab) || 'loot');
+export function readNavigationState(storage = globalThis.localStorage) {
+  const read = key => storage?.getItem(key) || null;
+  const activeTab = read(NAV_STORAGE_KEYS.activeTab) || 'recruitmentFocus';
+  const savedRecruitmentSubTab = read(NAV_STORAGE_KEYS.recruitmentSubTab);
+
+  return {
+    activeTab,
+    bankSubTab: read(NAV_STORAGE_KEYS.bankSubTab) || 'contents',
+    raidAssignmentsSubTab: read(NAV_STORAGE_KEYS.raidAssignmentsSubTab) || 'overview',
+    raidSignupsSubTab: read(NAV_STORAGE_KEYS.raidSignupsSubTab) || 'templates',
+    lootSubTab: read(NAV_STORAGE_KEYS.lootSubTab) || 'overview',
+    recruitmentSubTab: savedRecruitmentSubTab || (
+      activeTab === 'recruitmentPlanning'
+        ? 'planning'
+        : activeTab === 'recruitmentFocus'
+          ? 'focus'
+          : 'roster'
+    ),
+    adminSubTab: read(NAV_STORAGE_KEYS.adminSubTab) || 'officerRoles',
+    resourcesSubTab: read(NAV_STORAGE_KEYS.resourcesSubTab) || 'bis'
+  };
+}
+
+export default function useDashboardNavigation({ isAuthenticated, canViewScoring = false, canViewSitemap = false, siteAudience = 'Public', surfaceRolesByTab = {}, groupByTab = {}, orderByTab = {}, defaultSiteTab = DEFAULT_SITE_TAB, bnetUserId = null, bnetAuthReady = false, defaultSiteTabReady = false }) {
+  const initialNavigationState = readNavigationState();
+  const [activeTab, setActiveTab] = useState(() => initialNavigationState.activeTab);
   const [hoveredNavTab, setHoveredNavTab] = useState(null);
-  const [bankSubTab, setBankSubTab] = useState(() => localStorage.getItem(NAV_STORAGE_KEYS.bankSubTab) || 'contents');
-  const [raidAssignmentsSubTab, setRaidAssignmentsSubTab] = useState(() => localStorage.getItem(NAV_STORAGE_KEYS.raidAssignmentsSubTab) || 'overview');
-  const [raidSignupsSubTab, setRaidSignupsSubTab] = useState(() => localStorage.getItem(NAV_STORAGE_KEYS.raidSignupsSubTab) || 'templates');
-  const [lootSubTab, setLootSubTab] = useState(() => localStorage.getItem(NAV_STORAGE_KEYS.lootSubTab) || 'overview');
-  const [recruitmentSubTab, setRecruitmentSubTab] = useState(() => {
-    const savedRecruitmentSubTab = localStorage.getItem(NAV_STORAGE_KEYS.recruitmentSubTab);
-    if (savedRecruitmentSubTab) return savedRecruitmentSubTab;
-
-    const savedActiveTab = localStorage.getItem(NAV_STORAGE_KEYS.activeTab) || 'loot';
-    if (savedActiveTab === 'recruitmentPlanning') return 'planning';
-    if (savedActiveTab === 'recruitmentFocus') return 'focus';
-    return 'roster';
-  });
-  const [adminSubTab, setAdminSubTab] = useState(() => localStorage.getItem(NAV_STORAGE_KEYS.adminSubTab) || 'officerRoles');
-  const [resourcesSubTab, setResourcesSubTab] = useState(() => localStorage.getItem(NAV_STORAGE_KEYS.resourcesSubTab) || 'bis');
+  const [bankSubTab, setBankSubTab] = useState(() => initialNavigationState.bankSubTab);
+  const [raidAssignmentsSubTab, setRaidAssignmentsSubTab] = useState(() => initialNavigationState.raidAssignmentsSubTab);
+  const [raidSignupsSubTab, setRaidSignupsSubTab] = useState(() => initialNavigationState.raidSignupsSubTab);
+  const [lootSubTab, setLootSubTab] = useState(() => initialNavigationState.lootSubTab);
+  const [recruitmentSubTab, setRecruitmentSubTab] = useState(() => initialNavigationState.recruitmentSubTab);
+  const [adminSubTab, setAdminSubTab] = useState(() => initialNavigationState.adminSubTab);
+  const [resourcesSubTab, setResourcesSubTab] = useState(() => initialNavigationState.resourcesSubTab);
+  const initialRouteAppliedRef = useRef(false);
+  const restoredBnetUserIdRef = useRef(null);
 
   useEffect(() => {
     localStorage.setItem(NAV_STORAGE_KEYS.activeTab, activeTab);
@@ -65,6 +95,8 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
 
   useEffect(() => {
     if (activeTab === 'bank' && bankSubTab === 'update') {
+      // Normalize legacy navigation state after route changes.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setBankSubTab('addon');
       return;
     }
@@ -74,10 +106,22 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
         setActiveTab('loot');
         setLootSubTab('overview');
       }
+      if (activeTab === 'sitemap' && !canViewSitemap) {
+        setActiveTab('loot');
+        setLootSubTab('overview');
+      }
       return;
     }
 
-    if (AUTH_ONLY_TABS.includes(activeTab)) {
+    if (isSiteActiveTabAuthOnly(activeTab, getNavigationSubTab(activeTab, {
+      adminSubTab,
+      bankSubTab,
+      lootSubTab,
+      raidAssignmentsSubTab,
+      raidSignupsSubTab,
+      recruitmentSubTab,
+      resourcesSubTab
+    }))) {
       if (activeTab === 'recruitmentPlanning') {
         setActiveTab('recruitmentFocus');
         setRecruitmentSubTab('focus');
@@ -123,10 +167,12 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
     if (activeTab === 'recruitmentFocus' && recruitmentSubTab !== 'focus') {
       setRecruitmentSubTab('focus');
     }
-  }, [activeTab, bankSubTab, canViewScoring, isAuthenticated, lootSubTab, raidAssignmentsSubTab, raidSignupsSubTab, recruitmentSubTab]);
+  }, [activeTab, adminSubTab, bankSubTab, canViewScoring, canViewSitemap, isAuthenticated, lootSubTab, raidAssignmentsSubTab, raidSignupsSubTab, recruitmentSubTab, resourcesSubTab]);
 
   useEffect(() => {
     if (activeTab === 'recruitmentPlanning' && recruitmentSubTab !== 'planning') {
+      // Normalize the selected subtab for the active route.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setRecruitmentSubTab('planning');
       return;
     }
@@ -143,176 +189,110 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
 
   }, [activeTab, recruitmentSubTab]);
 
-  const handleMainNavSelect = useCallback((mainTab, subTab = null) => {
-    setHoveredNavTab(null);
+  const subTabs = useMemo(() => Object.fromEntries(
+    ['bank', 'raidAssignments', 'raidSignups', 'recruitment', 'resources', 'loot', 'admin'].map(groupKey => [
+      groupKey,
+      getVisibleSiteTabs(groupKey, {
+        audience: siteAudience,
+        isAuthenticated,
+        canViewScoring,
+        canViewSitemap,
+        surfaceRolesByTab,
+        groupByTab,
+        orderByTab
+      })
+    ])
+  ), [canViewScoring, canViewSitemap, groupByTab, isAuthenticated, orderByTab, siteAudience, surfaceRolesByTab]);
 
-    if (mainTab === 'overview') {
-      setActiveTab('loot');
-      setLootSubTab('overview');
-      return;
-    }
+  const activeSiteTabId = getSiteTabIdForRoute(activeTab, getNavigationSubTab(activeTab, {
+    adminSubTab,
+    bankSubTab,
+    lootSubTab,
+    raidAssignmentsSubTab,
+    raidSignupsSubTab,
+    recruitmentSubTab,
+    resourcesSubTab
+  }));
 
-    if (mainTab === 'bank') {
-      if (subTab === 'requests') {
-        setActiveTab('bankRequests');
-      } else {
-        setActiveTab('bank');
-        setBankSubTab(subTab || 'contents');
-      }
-    } else if (mainTab === 'raidAssignments') {
-      setActiveTab('raidAssignments');
-      setRaidAssignmentsSubTab(subTab || 'overview');
-    } else if (mainTab === 'raidSignups') {
-      setActiveTab('raidSignups');
-      setRaidSignupsSubTab(subTab || 'templates');
-    } else if (mainTab === 'loot') {
-      if (subTab === 'scoring') {
-        setActiveTab('scoring');
-      } else {
-        setActiveTab('loot');
-        setLootSubTab(subTab || 'overview');
-      }
-    } else if (mainTab === 'recruitment') {
-      if (subTab === 'planning') {
-        setActiveTab('recruitmentPlanning');
-      } else if (subTab === 'focus') {
-        setActiveTab('recruitmentFocus');
-      } else if (subTab === 'applications') {
-        setActiveTab('recruitmentApplications');
-      } else {
-        setActiveTab('recruitmentPlanning');
-      }
-      setRecruitmentSubTab(subTab || 'planning');
-    } else if (mainTab === 'admin') {
-      if (subTab === 'config') {
-        setActiveTab('discordBotConfig');
-      } else if (subTab === 'itemsdb') {
-        setActiveTab('itemsdb');
-      } else if (subTab === 'roster') {
-        setActiveTab('roster');
-        setAdminSubTab('roster');
-      } else if (subTab === 'todo') {
-        setActiveTab('officerRoles');
-        setAdminSubTab('todo');
-      } else {
-        setActiveTab('officerRoles');
-        setAdminSubTab(subTab || 'officerRoles');
-      }
-    } else if (mainTab === 'resources') {
-      setActiveTab('bis');
-      setResourcesSubTab(subTab || 'bis');
-    } else {
-      setActiveTab(mainTab);
-    }
+  const applySiteTabRoute = useCallback((tabId) => {
+    const route = getSiteTabRoute(tabId);
+    if (!route) return false;
+
+    setActiveTab(route.activeTab);
+    if (!route.subTab) return true;
+    if (route.activeTab === 'bank') setBankSubTab(route.subTab);
+    if (route.activeTab === 'raidAssignments') setRaidAssignmentsSubTab(route.subTab);
+    if (route.activeTab === 'raidSignups') setRaidSignupsSubTab(route.subTab);
+    if (route.activeTab === 'loot') setLootSubTab(route.subTab);
+    if (route.activeTab === 'recruitmentPlanning' || route.activeTab === 'recruitmentFocus' || route.activeTab === 'recruitmentApplications') setRecruitmentSubTab(route.subTab);
+    if (route.activeTab === 'officerRoles' || route.activeTab === 'discordBotConfig' || route.activeTab === 'roster' || route.activeTab === 'itemsdb' || route.activeTab === 'sitemap') setAdminSubTab(route.subTab);
+    if (route.activeTab === 'bis') setResourcesSubTab(route.subTab);
+    return true;
   }, []);
 
-  const getDropdownItemActiveState = useCallback((groupKey, subTab) => {
-    if (groupKey === 'bank') {
-      if (subTab === 'requests') return activeTab === 'bankRequests';
-      return activeTab === 'bank' && bankSubTab === subTab;
+  const isVisibleSiteTab = useCallback((tabId) => Object.values(subTabs).some(tabs => tabs.some(tabItem => tabItem.id === tabId)), [subTabs]);
+
+  useEffect(() => {
+    if (!bnetAuthReady || !defaultSiteTabReady) return;
+
+    const fallbackTabId = isVisibleSiteTab(defaultSiteTab)
+      ? defaultSiteTab
+      : isVisibleSiteTab(DEFAULT_SITE_TAB) ? DEFAULT_SITE_TAB : null;
+    let requestedTabId = fallbackTabId;
+
+    if (bnetUserId) {
+      const normalizedUserId = String(bnetUserId);
+      if (restoredBnetUserIdRef.current === normalizedUserId) return;
+      try {
+        const savedTabId = localStorage.getItem(`${BNET_LAST_SITE_TAB_PREFIX}${normalizedUserId}`);
+        if (isVisibleSiteTab(savedTabId)) requestedTabId = savedTabId;
+      } catch {
+        requestedTabId = fallbackTabId;
+      }
+      restoredBnetUserIdRef.current = normalizedUserId;
+    } else {
+      restoredBnetUserIdRef.current = null;
+      if (initialRouteAppliedRef.current) return;
     }
 
-    if (groupKey === 'raidAssignments') {
-      return activeTab === 'raidAssignments' && raidAssignmentsSubTab === subTab;
+    if (requestedTabId) applySiteTabRoute(requestedTabId);
+    initialRouteAppliedRef.current = true;
+  }, [applySiteTabRoute, bnetAuthReady, bnetUserId, defaultSiteTab, defaultSiteTabReady, isVisibleSiteTab]);
+
+  useEffect(() => {
+    if (!bnetUserId || !activeSiteTabId) return;
+    try {
+      localStorage.setItem(`${BNET_LAST_SITE_TAB_PREFIX}${String(bnetUserId)}`, activeSiteTabId);
+    } catch {
+      return;
     }
+  }, [activeSiteTabId, bnetUserId]);
 
-    if (groupKey === 'raidSignups') {
-      return activeTab === 'raidSignups' && raidSignupsSubTab === subTab;
+  const handleMainNavSelect = useCallback((tabId = null) => {
+    setHoveredNavTab(null);
+    applySiteTabRoute(tabId);
+  }, [applySiteTabRoute]);
+  const getDropdownItemActiveState = useCallback((tabId = null) => {
+    if (!getSiteTabRoute(tabId)) return false;
+    const activeSiteTabId = getSiteTabIdForRoute(activeTab, getNavigationSubTab(activeTab, {
+      adminSubTab,
+      bankSubTab,
+      lootSubTab,
+      raidAssignmentsSubTab,
+      raidSignupsSubTab,
+      recruitmentSubTab,
+      resourcesSubTab
+    }));
+    return activeSiteTabId === tabId;
+  }, [activeTab, adminSubTab, bankSubTab, lootSubTab, raidAssignmentsSubTab, raidSignupsSubTab, recruitmentSubTab, resourcesSubTab]);
+
+  useEffect(() => {
+    if (activeTab !== 'bis') return;
+    const visibleResources = subTabs.resources || [];
+    if (visibleResources.length > 0 && !visibleResources.some(tab => tab.value === resourcesSubTab)) {
+      startTransition(() => setResourcesSubTab(visibleResources[0].value));
     }
-
-    if (groupKey === 'loot') {
-      if (subTab === 'scoring') return activeTab === 'scoring';
-      return activeTab === 'loot' && lootSubTab === subTab;
-    }
-
-    if (groupKey === 'recruitment') {
-      if (subTab === 'planning') return activeTab === 'recruitmentPlanning';
-      if (subTab === 'focus') return activeTab === 'recruitmentFocus';
-      if (subTab === 'applications') return activeTab === 'recruitmentApplications';
-      return activeTab === 'recruitmentPlanning';
-    }
-
-    if (groupKey === 'admin') {
-      if (subTab === 'officerRoles') return activeTab === 'officerRoles' && adminSubTab === 'officerRoles';
-      if (subTab === 'roster') return activeTab === 'roster';
-      if (subTab === 'config') return activeTab === 'discordBotConfig';
-      if (subTab === 'itemsdb') return activeTab === 'itemsdb';
-      if (subTab === 'todo') return activeTab === 'officerRoles' && adminSubTab === 'todo';
-      // if (subTab === 'instructions') return activeTab === 'officerRoles' && adminSubTab === 'instructions';
-      return false;
-    }
-
-    if (groupKey === 'resources') {
-      return activeTab === 'bis' && resourcesSubTab === subTab;
-    }
-
-    return activeTab === groupKey;
-  }, [activeTab, adminSubTab, bankSubTab, lootSubTab, raidAssignmentsSubTab, raidSignupsSubTab, resourcesSubTab]);
-
-  const subTabs = useMemo(() => {
-    const allTabs = {
-      bank: [
-      { value: 'contents', label: 'Contents' },
-      { value: 'requests', label: 'Requests', authOnly: true },
-      { value: 'addon', label: 'Addon' },
-      { value: 'history', label: 'History' }
-      ],
-      raidAssignments: [
-      { value: 'overview', label: 'Overview' },
-      { value: 'tactics', label: 'Tactics' }
-      ],
-      raidSignups: [
-      { value: 'templates', label: 'Templates' },
-      { value: 'events', label: 'Events' },
-      { value: 'calendar', label: 'Calendar' },
-      { value: 'history', label: 'History' },
-      { value: 'absences', label: 'Absences' }
-      ],
-      loot: [
-      { value: 'overview', label: 'Priority Overview' },
-      { value: 'assignment', label: 'Priority Assignment', authOnly: true },
-      { value: 'scoring', label: 'Scoring', authOnly: true },
-      { value: 'assigned', label: 'Assigned Loot', authOnly: true }
-      ],
-      recruitment: [
-      { value: 'planning', label: 'Roster Planning', authOnly: true },
-      { value: 'focus', label: 'Recruitment Focus' },
-      { value: 'applications', label: 'Applications' }
-      ],
-      admin: [
-      { value: 'officerRoles', label: 'Officer Roles', authOnly: true },
-      { value: 'roster', label: 'Roster', authOnly: true },
-      { value: 'config', label: 'Config', authOnly: true },
-      { value: 'itemsdb', label: 'Master Items DB', authOnly: true },
-      // { value: 'instructions', label: 'Site Instructions', authOnly: true },
-      { value: 'todo', label: 'To-do List', authOnly: true }
-      ],
-      resources: [
-      { value: 'bis', label: 'BiS Lists' },
-      { value: 'weakauras', label: 'Weakauras' },
-      { value: 'cheatsheets', label: 'Cheat Sheets' },
-      { value: 'raidlogs', label: 'Raid Logs' },
-      { value: 'wipefest', label: 'Wipefest' }
-      ]
-    };
-
-    if (isAuthenticated) {
-      return {
-        ...allTabs,
-        loot: canViewScoring ? allTabs.loot : allTabs.loot.filter(tab => tab.value !== 'scoring')
-      };
-    }
-
-    return {
-      bank: allTabs.bank.filter(tab => tab.value === 'contents'),
-      raidAssignments: allTabs.raidAssignments.filter(tab => tab.value === 'overview' || tab.value === 'tactics'),
-      raidSignups: allTabs.raidSignups.filter(tab => tab.value === 'events' || tab.value === 'calendar' || tab.value === 'absences'),
-      loot: allTabs.loot.filter(tab => tab.value === 'overview' || tab.value === 'assigned'),
-      recruitment: allTabs.recruitment.filter(tab => tab.value === 'focus' || tab.value === 'applications'),
-      admin: [],
-      resources: allTabs.resources,
-    };
-  }, [canViewScoring, isAuthenticated]);
+  }, [activeTab, resourcesSubTab, subTabs, setResourcesSubTab]);
 
   return {
     activeTab,
@@ -335,6 +315,7 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
     setResourcesSubTab,
     handleMainNavSelect,
     getDropdownItemActiveState,
+    activeSiteTabId,
     subTabs,
   };
 }

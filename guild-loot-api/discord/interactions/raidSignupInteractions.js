@@ -8,7 +8,6 @@ const { buildMainSignupComponents } = require('./raidSignupComponents');
 const { buildSignupEmbed, refreshEventMessage } = require('./raidSignupEmbed');
 const {
   getUserPreferredCharacter,
-  getUserPreferredSpec,
   getAllowedSpecsForEvent,
   upsertDraft,
   upsertUserPreferredSpec
@@ -32,7 +31,7 @@ function buildCharacterNameModal(eventId, preferredCharacter = '') {
     .addComponents(row);
 }
 
-function buildSpecSearchModal(eventId, specs = []) {
+function buildSpecSearchModal(eventId) {
   const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
 
   const specInput = new TextInputBuilder()
@@ -78,8 +77,7 @@ async function handleRaidSignupComponent(interaction, { db }) {
   }
 
   if (interaction.isButton() && type === 'specsearch') {
-    const specs = getAllowedSpecsForEvent(db, eventId);
-    await interaction.showModal(buildSpecSearchModal(eventId, specs));
+    await interaction.showModal(buildSpecSearchModal(eventId));
     return true;
   }
 

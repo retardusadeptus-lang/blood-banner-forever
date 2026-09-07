@@ -4,9 +4,11 @@ export default function BnetClaimModal({
   open,
   onClose,
   isAuthenticated,
-  showBnetCharacterLookup,
   isLoading,
   error,
+  characters = [],
+  selectedGameVersion = 'all',
+  showManualFallback = false,
   roster,
   onClaim,
   onManualClaim,
@@ -14,10 +16,33 @@ export default function BnetClaimModal({
   onLogout,
   claimedRosterNames
 }) {
-  if (!open) return null;
-
-  const rosterNames = new Set(roster.map(player => String(player.name || '').trim().toLowerCase()));
   const [rosterFilter, setRosterFilter] = useState('');
+
+  const accountCharacterChoices = useMemo(() => {
+    const rosterByName = new Map(
+      (Array.isArray(roster) ? roster : [])
+        .filter(player => !player?.user_id)
+        .map(player => [String(player?.name || '').trim().toLowerCase(), player])
+        .filter(([name]) => name)
+    );
+    return characters
+      .filter(character => String(character?.name || '').trim())
+      .filter(character => {
+        const version = String(character?.gameVersion || character?.gameType || 'World of Warcraft').trim();
+        return selectedGameVersion === 'all' || version === selectedGameVersion;
+      })
+      .filter(character => rosterByName.has(String(character.name || '').trim().toLowerCase()))
+      .map(character => ({
+        ...character,
+        rosterPlayer: rosterByName.get(String(character.name || '').trim().toLowerCase())
+      })
+      )
+      .sort((a, b) => {
+        const versionOrder = String(a?.gameVersion || a?.gameType || '').localeCompare(String(b?.gameVersion || b?.gameType || ''));
+        if (versionOrder !== 0) return versionOrder;
+        return String(a.name || '').localeCompare(String(b.name || ''));
+      });
+  }, [characters, roster, selectedGameVersion]);
 
   const fallbackRosterChoices = useMemo(() => {
     const query = String(rosterFilter || '').trim().toLowerCase();
@@ -30,6 +55,8 @@ export default function BnetClaimModal({
       })
       .sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')));
   }, [roster, rosterFilter]);
+
+  if (!open) return null;
 
   return (
     <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4" role="dialog" aria-modal="true">
@@ -85,7 +112,44 @@ export default function BnetClaimModal({
           <div className="text-sm text-slate-400 py-8 text-center">Loading Battle.net characters...</div>
         ) : (
           <div className="space-y-2">
-            <div className="mt-4 pt-4 border-t border-slate-800">
+            {isAuthenticated && (
+              <div className="space-y-2">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                    Battle.net Characters
+                  </p>
+                </div>
+
+                {accountCharacterChoices.length === 0 ? (
+                  <div className="text-xs text-slate-500 bg-slate-950 border border-slate-800 rounded p-2">
+                    No Battle.net characters match this game version.
+                  </div>
+                ) : (
+                  <div className="space-y-1 max-h-56 overflow-y-auto pr-1">
+                    {accountCharacterChoices.map(character => (
+                      <div key={`${character.gameVersion || character.gameType}-${character.realmSlug || character.realmName}-${character.name}`} className="flex items-center justify-between gap-2 bg-slate-950 border border-slate-800 rounded px-2 py-1.5">
+                        <div className="min-w-0">
+                          <p className="text-xs text-slate-200 truncate">{character.name}</p>
+                          <p className="text-[10px] text-slate-500 truncate">
+                            {[character.realmName, character.gameVersion || character.gameType].filter(Boolean).join(' - ')}
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          disabled={!isAuthenticated}
+                          onClick={() => onClaim?.(character)}
+                          className="shrink-0 bg-cyan-700 hover:bg-cyan-600 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed text-white font-bold py-1 px-2 rounded text-[10px] uppercase tracking-wider"
+                        >
+                          Claim
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {showManualFallback && <div className="mt-4 pt-4 border-t border-slate-800">
               <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
                 Fallback: Claim From Roster List
               </p>
@@ -124,7 +188,7 @@ export default function BnetClaimModal({
                   })}
                 </div>
               )}
-            </div>
+            </div>}
           </div>
         )}
       </div>

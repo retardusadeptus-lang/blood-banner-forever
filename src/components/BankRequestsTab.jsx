@@ -1,10 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 
 export default function BankRequestsTab({
   bankRequests,
   roster,
-  specsByName,
-  getDisplayFromId,
   handleResolveBankRequest,
   // NEW: implement this in the parent. It receives the array of resolved
   // items (with the same shape handleResolveBankRequest expects, plus the
@@ -13,9 +11,7 @@ export default function BankRequestsTab({
   //   handleBulkResolveBankRequests(resolutions, summaryMessage)
   //   resolutions: [{ id, status: 'approved'|'denied', price, note, quantity, item_name, requester }]
   handleBulkResolveBankRequests,
-  archivedBankRequests = [],
-  onArchiveBankRequests,
-  onRestoreArchivedBankRequests
+  onArchiveBankRequests
 }) {
   const [basket, setBasket] = useState([]);
   const [bulkModalOpen, setBulkModalOpen] = useState(false);
@@ -408,9 +404,14 @@ export default function BankRequestsTab({
           <button
             type="button"
             onClick={copyVisibleApprovedRequestsJson}
-            className="text-xs font-bold bg-purple-700 hover:bg-purple-600 text-white px-3 py-2 rounded"
+            aria-label="Copy approved JSON"
+            title="Copy approved JSON"
+            className="inline-flex items-center justify-center bg-purple-700 hover:bg-purple-600 text-white p-2.5 rounded"
           >
-            Copy Approved JSON
+            <svg aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <rect x="9" y="9" width="11" height="11" rx="2" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
           </button>
           <button
             type="button"

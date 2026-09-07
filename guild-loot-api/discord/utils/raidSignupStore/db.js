@@ -8,7 +8,7 @@ function parseJsonArray(value) {
   try {
     const parsed = JSON.parse(value || '[]');
     return Array.isArray(parsed) ? parsed : [];
-  } catch (e) {
+  } catch {
     return [];
   }
 }
@@ -185,7 +185,7 @@ function createEventFromTemplate(db, templateId, options = {}) {
   return getEventById(db, Number(info.lastInsertRowid));
 }
 
-function getAllowedSpecsForEvent(db, eventId) {
+function getAllowedSpecsForEvent(db) {
   return db.prepare('SELECT id, class, spec, slug, icon_small, icon_medium, icon_large, color FROM specs ORDER BY class, spec').all();
 }
 

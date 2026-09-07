@@ -5,7 +5,6 @@ const {
   getAvailableClassesForEvent,
   getAllowedSpecsForEvent
 } = require('../discord/utils/raidSignupStore');
-const { resolveClassEmojiToken } = require('../discord/utils/discordEmojiTokens');
 const {
   parseScheduledDate,
   formatScheduleText,

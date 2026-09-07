@@ -6,10 +6,12 @@ export const PHASES = ["Pre-BiS", "T4", "T5", "T6", "ZA", "SWP"];
 
 const configuredDefaultPhase = String(import.meta.env?.VITE_DEFAULT_PHASE || '').trim();
 export const DEFAULT_GLOBAL_PHASE = PHASES.includes(configuredDefaultPhase) ? configuredDefaultPhase : 'T6';
+export const DEFAULT_SITE_TAB = 'recruitment.focus';
 export const CORE_SYNC_INTERVAL_MS = 15000;
 export const STORAGE_KEYS = {
   activeTab: 'active-tab',
   myPlayerId: 'my-player-id',
+  priorityPhase: 'priority-phase',
   raidAssignmentsBossFilter: 'raid-assignments-user-boss-filter',
   tacticsBossFilter: 'tactics-user-boss-filter',
 };

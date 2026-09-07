@@ -76,6 +76,7 @@ export default function GuildRosterTab({
 
   useEffect(() => {
     let mounted = true;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoadingRequests(true);
     fetchData('bank-requests')
       .then(requests => { if (mounted) setBankRequests(Array.isArray(requests) ? requests : []); })

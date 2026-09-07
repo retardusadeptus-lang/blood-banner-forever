@@ -4,6 +4,7 @@ export default function ItemIdEditorModal({ open, item, onClose, onSave }) {
   const [value, setValue] = useState(item?.wowheadIdInput || '');
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setValue(item?.wowheadIdInput || '');
   }, [item]);
 

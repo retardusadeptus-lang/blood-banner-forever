@@ -43,7 +43,8 @@ export default function RecruitmentApplicationsTab({
   putData,
   deleteData,
   isOfficer,
-  canManageBlurb = false
+  canManageBlurb = false,
+  siteTabMetadata
 }) {
   const [blurb, setBlurb] = useState('');
   const [savedBlurb, setSavedBlurb] = useState('');
@@ -203,7 +204,7 @@ export default function RecruitmentApplicationsTab({
   };
 
   return (
-    <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 space-y-6">
+    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 space-y-6">
       <div className="space-y-3">
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <div>

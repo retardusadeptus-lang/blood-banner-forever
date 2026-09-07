@@ -7,6 +7,7 @@ const buildAdminScoringConfigRoutes = require('./admin/scoringConfig');
 const buildAdminRaidAssignmentDataRoutes = require('./admin/raidAssignmentData');
 const buildAdminRaidAssignmentConfigRoutes = require('./admin/raidAssignmentConfig');
 const buildAdminRaidAssignmentImagesRoutes = require('./admin/raidAssignmentImages');
+const buildAdminSiteVisibilityRoutes = require('./admin/siteVisibility');
 
 function buildAdminRoutes({ db, configService, sessionSecret }) {
   const router = express.Router();
@@ -19,6 +20,7 @@ function buildAdminRoutes({ db, configService, sessionSecret }) {
   router.use(buildAdminRaidAssignmentDataRoutes({ db }));
   router.use(buildAdminRaidAssignmentConfigRoutes({ db }));
   router.use(buildAdminRaidAssignmentImagesRoutes({ db }));
+  router.use(buildAdminSiteVisibilityRoutes({ db, sessionSecret }));
 
   return router;
 }

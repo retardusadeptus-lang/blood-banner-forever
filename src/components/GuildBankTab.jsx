@@ -9,7 +9,6 @@ export default function GuildBankTab({
   bankItemHistory,
   bankSearch,
   setBankSearch,
-  isAuthenticated,
   bnetAuthState,
   roster,
   myPlayerId
@@ -23,6 +22,8 @@ export default function GuildBankTab({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   React.useEffect(() => {
+    // Keep the requester selection aligned with the active character.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (myPlayerId) setSelectedPlayerId(myPlayerId);
   }, [myPlayerId]);
   
@@ -52,7 +53,11 @@ export default function GuildBankTab({
     return ['All', ...Array.from(subs).sort()];
   }, [requestableBankItems, selectedCategory]);
 
-  React.useEffect(() => { setSelectedSubCategory('All'); }, [selectedCategory]);
+  React.useEffect(() => {
+    // Reset subcategory options when the main category changes.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setSelectedSubCategory('All');
+  }, [selectedCategory]);
 
   const filteredBankItems = requestableBankItems.filter(item => {
     if (!item) return false;

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { DateTime } from 'luxon';
 import healersIcon from '../assets/icons/healers.png';
 import meleeDpsIcon from '../assets/icons/melee_dps.png';
@@ -344,7 +344,8 @@ export default function RaidSignupsTab({
   onCancelRaidHelperImport,
   activeSection
   ,
-  onSectionChange
+  onSectionChange,
+  siteTabMetadata
 }) {
   const [events, setEvents] = useState([]);
   const [templates, setTemplates] = useState([]);
@@ -365,7 +366,7 @@ export default function RaidSignupsTab({
   const [isSavingPublicGroups, setIsSavingPublicGroups] = useState(false);
   const [isChangingStatus, setIsChangingStatus] = useState(false);
   const [isDeletingEvent, setIsDeletingEvent] = useState(false);
-  const [clockNow, setClockNow] = useState(Date.now());
+  const [clockNow, setClockNow] = useState(() => Date.now());
   const [expandedLog, setExpandedLog] = useState(null);
   const [raidHelperJsonText, setRaidHelperJsonText] = useState('');
   const [raidSignupEvents, setRaidSignupEvents] = useState([]);
@@ -380,7 +381,9 @@ export default function RaidSignupsTab({
   const [isEventEditDirty, setIsEventEditDirty] = useState(false);
   const [isRefreshingSignups, setIsRefreshingSignups] = useState(false);
   const [loadedSelectedEventId, setLoadedSelectedEventId] = useState('');
-  const activeRaidSection = activeSection || 'templates';
+  const activeRaidSection = siteTabMetadata?.contentOwner === 'RaidSignupsContainer'
+    ? siteTabMetadata.route?.subTab || activeSection || 'templates'
+    : activeSection || 'templates';
   const isReadOnly = !isAuthenticated;
 
   useEffect(() => {
@@ -449,8 +452,10 @@ export default function RaidSignupsTab({
   }, [fetchData]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadTemplates().catch(e => console.error('Failed to load raid signup templates', e));
     loadArchivedEvents().catch(e => console.error('Failed to load archived raid signup events', e));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
   useEffect(() => {
@@ -481,11 +486,13 @@ export default function RaidSignupsTab({
   }, [fetchData, isAuthenticated, selectedSignupEventId]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setExpandedSummaryStatus('');
   }, [selectedEventId]);
 
   useEffect(() => {
     if (!selectedEventId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setGroupRows(buildDefaultGroupRows());
       setBenchAssignments([]);
       setSelectedEventDetails(null);
@@ -550,6 +557,7 @@ export default function RaidSignupsTab({
     const availableEventIds = new Set([...readableActiveEvents, ...readableArchivedEvents].map(event => String(event.id)));
     if (selectedEventId && availableEventIds.has(String(selectedEventId))) return;
     const firstEvent = [...readableActiveEvents, ...readableArchivedEvents][0];
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelectedEventId(firstEvent?.id ? String(firstEvent.id) : '');
   }, [readableActiveEvents, readableArchivedEvents, selectedEventId]);
 
@@ -585,6 +593,7 @@ export default function RaidSignupsTab({
 
   useEffect(() => {
     if (!selectedEvent) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setEventEditDraft({ title: '', description: '', scheduled_date: '', scheduled_time: '20:00', scheduled_timezone: 'Europe/Paris', public_groups: false });
       return;
     }
@@ -613,6 +622,7 @@ export default function RaidSignupsTab({
   useEffect(() => {
     if (!['events', 'absences'].includes(activeRaidSection)) return;
     if (!canUseAbsences) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setAbsences([]);
       return;
     }
@@ -643,6 +653,7 @@ export default function RaidSignupsTab({
   useEffect(() => {
     if (activeRaidSection !== 'absences') return;
     if (!isAuthenticated) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setAbsenceTargets([]);
       return;
     }
@@ -653,7 +664,7 @@ export default function RaidSignupsTab({
         const rows = await getRaidSignupAbsenceTargets();
         if (!mounted) return;
         setAbsenceTargets(Array.isArray(rows) ? rows : []);
-      } catch (error) {
+      } catch {
         if (!mounted) return;
         setAbsenceTargets([]);
       }
@@ -667,6 +678,7 @@ export default function RaidSignupsTab({
 
   useEffect(() => {
     if (!isAuthenticated) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setAbsenceDraft(prev => ({ ...prev, target_key: `user:${String(currentBattleNetUserId || '')}` }));
       return;
     }
@@ -819,6 +831,7 @@ export default function RaidSignupsTab({
   }, [absences, guildRoleRanks, roster, selectedEvent, selectedEventEntries, selectedEventId]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelectedUnsignedRaiderIds(new Set(unsignedRaiders.map(({ player }) => String(player.id))));
   }, [unsignedRaiders]);
 
@@ -922,13 +935,10 @@ export default function RaidSignupsTab({
     return { glyph: '•', color: 'text-slate-400' };
   };
 
-  const specColorByKey = useMemo(() => {
-    const map = new Map();
-    specsFromDb.forEach(spec => {
-      map.set(`${String(spec.class || '').toLowerCase()}|${String(spec.spec || '').toLowerCase()}`, spec.color || '#e2e8f0');
-    });
-    return map;
-  }, [specsFromDb]);
+  const specColorByKey = new Map();
+  specsFromDb.forEach(spec => {
+    specColorByKey.set(`${String(spec.class || '').toLowerCase()}|${String(spec.spec || '').toLowerCase()}`, spec.color || '#e2e8f0');
+  });
 
   const groupedPublic = useMemo(() => {
     return events.map(event => {
@@ -1050,7 +1060,7 @@ export default function RaidSignupsTab({
 
     const allItems = [...scheduledItems, ...plannedItems].sort((a, b) => a.start.toMillis() - b.start.toMillis());
     return { scheduledItems, plannedItems, allItems, blockedTemplates };
-  }, [archivedEvents, events, isAuthenticated, raidSignupEvents, templateById, templates]);
+  }, [archivedEvents, events, isAuthenticated, raidSignupEvents, templates]);
 
   const raidCalendarByDay = useMemo(() => {
     const map = new Map();
@@ -1204,7 +1214,7 @@ export default function RaidSignupsTab({
       await putData('raid-signup-templates', payload);
       await loadTemplates();
       alert('Raid signup templates saved. Use /raidsignup post in Discord to publish one.');
-    } catch (e) {
+    } catch {
       alert('Failed to save raid signup templates.');
     } finally {
       setIsSavingTemplates(false);
@@ -1246,7 +1256,7 @@ export default function RaidSignupsTab({
       setIsGroupConfigDirty(false);
       await loadPublic();
       alert('Raid groups saved.');
-    } catch (e) {
+    } catch {
       alert('Failed to save raid groups.');
     } finally {
       setIsSavingGroups(false);
@@ -1259,7 +1269,7 @@ export default function RaidSignupsTab({
     try {
       await postData(`raid-signup-events/${selectedEventId}/echo`, { tag_attendees: echoTagAttendees });
       alert('Echo message sent to Discord channel for this event.');
-    } catch (e) {
+    } catch {
       alert('Failed to echo message. Make sure event is posted by bot and has a Discord channel binding.');
     } finally {
       setIsEchoing(false);
@@ -1424,7 +1434,7 @@ export default function RaidSignupsTab({
       setIsEventEditDirty(false);
       await loadPublic();
       alert('Event details updated.');
-    } catch (e) {
+    } catch {
       alert('Failed to update event details.');
     } finally {
       setIsSavingEventEdit(false);
@@ -1442,7 +1452,7 @@ export default function RaidSignupsTab({
       setSelectedEventDetails(prev => prev ? { ...prev, public_groups: publicGroups } : prev);
       setIsGroupConfigDirty(false);
       setIsEventEditDirty(false);
-    } catch (e) {
+    } catch {
       setEventEditDraft(prev => ({ ...prev, public_groups: !publicGroups }));
       alert('Failed to update public group visibility.');
     } finally {
@@ -1460,7 +1470,7 @@ export default function RaidSignupsTab({
       await loadPublic();
       await loadArchivedEvents();
       alert(`Event updated: ${status}.`);
-    } catch (e) {
+    } catch {
       alert(`Failed to set event status to ${status}.`);
     } finally {
       setIsChangingStatus(false);
@@ -1477,7 +1487,7 @@ export default function RaidSignupsTab({
       await loadPublic();
       setSelectedEventId('');
       alert('Raid deleted from website and Discord.');
-    } catch (e) {
+    } catch {
       alert('Failed to delete raid event.');
     } finally {
       setIsDeletingEvent(false);

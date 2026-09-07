@@ -82,7 +82,7 @@ export default function useLootCouncilData({
     }, { dirty: true });
   };
 
-  const getPlayerItemPriorityStatus = (itemObj, specDisplay) => {
+  const getPlayerItemPriorityStatus = useCallback((itemObj, specDisplay) => {
     if (!itemObj) return '';
 
     if (!itemObj.is_token) {
@@ -102,9 +102,9 @@ export default function useLootCouncilData({
       if (rewardStatus === 'Opt') hasOpt = true;
     }
     return hasOpt ? 'Opt' : '';
-  };
+  }, [bisPriorities, tokenRedemptionsByItemId]);
 
-  const calculateScore = (playerId) => {
+  const calculateScore = useCallback((playerId) => {
     const player = roster.find(rosterPlayer => Number(rosterPlayer.id) === Number(playerId));
     const stats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {}, manualAdjustment: { value: 0, note: '' } };
     let parseSum = 0; let parseCount = 0;
@@ -124,9 +124,9 @@ export default function useLootCouncilData({
 
     const baseScore = (avgParse * Number(scoringConfig.parseWeight)) + cons + ench + gem + att - afkPenalty + manualAdj;
     return (baseScore * getGuildRoleWeight(player, scoringConfig)).toFixed(1);
-  };
+  }, [playerStats, raidLogs, roster, scoringConfig]);
 
-  const sortPlayersByRank = (itemObj, playerList, assignmentData) => {
+  const sortPlayersByRank = useCallback((itemObj, playerList, assignmentData) => {
     return [...playerList].sort((a, b) => {
       const rankA = assignmentData[itemObj.name]?.[a.id];
       const rankB = assignmentData[itemObj.name]?.[b.id];
@@ -140,7 +140,7 @@ export default function useLootCouncilData({
       if (scoreA !== scoreB) return scoreB - scoreA;
       return a.name.localeCompare(b.name);
     });
-  };
+  }, [calculateScore]);
 
   const getItemSourceDetails = (item) => {
     const zone = String(item?.zone || item?.source || '').trim();
@@ -232,7 +232,7 @@ export default function useLootCouncilData({
     });
 
     return sortPlayersByRank(selectedItem, eligible, assignments);
-  }, [selectedItem, roster, assignments, playerStats, scoringConfig, raidLogs, bisPriorities, getSpecById, tokenRedemptionsByItemId]);
+  }, [selectedItem, roster, assignments, getDisplayFromId, getPlayerItemPriorityStatus, getSpecById, sortPlayersByRank]);
 
   const handleClearOverviewItemPriorities = (itemName) => {
     if (!itemName) return;

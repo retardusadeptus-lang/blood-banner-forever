@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 const crypto = require('crypto');
 
 require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '.env') });

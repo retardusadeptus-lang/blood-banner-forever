@@ -8,18 +8,16 @@ import useBankData from '../hooks/useBankData';
 import { downloadCsv } from '../utils/csv';
 
 export default function BankContainer({
-  fetchData,
-  putData,
-  deleteData,
-  isAuthenticated,
-  bnetAuthState,
-  roster,
-  specsByName,
-  getDisplayFromId,
-  bankSubTab,
-  activeTab,
-  globalMyPlayerId
+  api,
+  session,
+  directory,
+  navigation,
+  siteTabMetadata
 }) {
+  const { fetchData, putData, deleteData } = api;
+  const { isAuthenticated, bnetAuthState } = session;
+  const { roster, specsByName, getDisplayFromId } = directory;
+  const { bankSubTab, activeTab, globalMyPlayerId } = navigation;
   const {
     bankItems,
     bankItemHistory,
@@ -49,6 +47,11 @@ export default function BankContainer({
   } = useBankData({ fetchData, putData, deleteData, isAuthenticated });
 
   const myPlayerId = globalMyPlayerId ? parseInt(globalMyPlayerId, 10) : null;
+  const registryRoute = siteTabMetadata?.contentOwner === 'BankContainer' ? siteTabMetadata.route : null;
+  const resolvedActiveTab = registryRoute?.activeTab || activeTab;
+  const resolvedBankSubTab = siteTabMetadata?.id === 'guild-bank.requests'
+    ? 'requests'
+    : registryRoute?.subTab || bankSubTab;
 
   const exportArchivedRequestsCsv = () => {
     const headers = ['id', 'created_at', 'status', 'item_name', 'quantity', 'approved_quantity', 'price', 'requester_name', 'reason', 'officer_note'];
@@ -82,7 +85,7 @@ export default function BankContainer({
     onRestoreArchivedBankRequests: restoreArchivedBankRequests
   };
 
-  if (activeTab === 'bankRequests') {
+  if (resolvedActiveTab === 'bankRequests') {
     if (!isAuthenticated) {
       return (
         <div className="bg-slate-950 border border-slate-800 rounded-xl p-8 text-center text-slate-400">
@@ -95,11 +98,11 @@ export default function BankContainer({
     return <BankRequestsTab {...bankRequestsProps} />;
   }
 
-  if (activeTab !== 'bank') return null;
+  if (resolvedActiveTab !== 'bank') return null;
 
   return (
     <div className="space-y-4">
-      {bankSubTab === 'contents' && (
+      {resolvedBankSubTab === 'contents' && (
         <GuildBankTab
           bankItems={bankItems}
           bankItemHistory={bankItemHistory}
@@ -111,7 +114,7 @@ export default function BankContainer({
           myPlayerId={myPlayerId}
         />
       )}
-      {bankSubTab === 'requests' && (
+      {resolvedBankSubTab === 'requests' && (
         isAuthenticated ? (
           <BankRequestsTab {...bankRequestsProps} />
         ) : (
@@ -121,7 +124,7 @@ export default function BankContainer({
           </div>
         )
       )}
-      {bankSubTab === 'addon' && (
+      {resolvedBankSubTab === 'addon' && (
         <div className="space-y-4">
           <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
             <h3 className="text-lg font-bold text-amber-400">Guild Bank Addon</h3>
@@ -149,7 +152,7 @@ export default function BankContainer({
           ) : null}
         </div>
       )}
-      {bankSubTab === 'history' && (
+      {resolvedBankSubTab === 'history' && (
         <div className="space-y-4">
           <BankRequestHistory
             archivedBankRequests={archivedBankRequests}

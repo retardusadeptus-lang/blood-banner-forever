@@ -36,11 +36,7 @@ function buildStatusHistory(previousHistory, status, actorLabel, at) {
   return JSON.stringify(nextHistory.slice(-20));
 }
 
-function titleCase(value) {
-  return String(value || '').split(/\s+/).filter(Boolean).map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join(' ');
-}
-
-function buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl }) {
+function buildRecruitmentApplicationsRoutes({ db, webhookUrl }) {
   const router = express.Router();
 
   function ensureOfficer(req, res) {

@@ -1,33 +1,21 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, BOTTOM_SLOTS, P2_BOSSES, DEFAULT_GLOBAL_PHASE, CORE_SYNC_INTERVAL_MS, STORAGE_KEYS } from './constants';
+import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, P2_BOSSES, DEFAULT_GLOBAL_PHASE, DEFAULT_SITE_TAB, STORAGE_KEYS } from './constants';
 import { fetchData, putData, postData, deleteData } from './services/apiService';
 import { useItemsDatabase } from './hooks/useItemsDatabase';
 import useSpecData from './hooks/useSpecData';
 import useAppShellState from './hooks/useAppShellState';
 import useAppShellLifecycle from './hooks/useAppShellLifecycle';
-import OverviewTab from './components/OverviewTab';
-import AdminContainer from './containers/AdminContainer';
 import useAdminData from './hooks/useAdminData';
+import useSiteVisibility from './hooks/useSiteVisibility';
 import useLootCouncilData from './hooks/useLootCouncilData';
 import useRaidAssignmentsData from './hooks/useRaidAssignmentsData';
 import useRosterData from './hooks/useRosterData';
-import ResourcesTab from './features/resources/ResourcesTab';
 import DashboardHeader from './components/DashboardHeader';
 import DashboardNavigationTabs from './components/DashboardNavigationTabs';
 import DashboardMainContent from './components/DashboardMainContent';
 import DashboardPageLayout from './components/DashboardPageLayout';
 import DashboardModals from './components/DashboardModals';
 // component imports replaced by container wrappers
-import ScoringContainer from './containers/ScoringContainer';
-import ItemsDatabaseContainer from './containers/ItemsDatabaseContainer';
-import BankContainer from './containers/BankContainer';
-import LootCouncilContainer from './containers/LootCouncilContainer';
-import RaidAssignmentsContainer from './containers/RaidAssignmentsContainer';
-import RaidAssignmentsHistory from './components/RaidAssignmentsHistory';
-import AssignedLootOverview from './components/AssignedLootOverview';
-import RaidSignupsContainer from './containers/RaidSignupsContainer';
-// replaced inline with RaidSignupsContainer
-import * as helpers from './utils/helpers';
 import { calculatePlayerScore, getRankBadgeStyle as getAppShellRankBadgeStyle, getDefaultGuildRoleName } from './utils/appShellHelpers';
 import useRaidHelperImport from './hooks/useRaidHelperImport';
 import useAuthSession from './hooks/useAuthSession';
@@ -35,7 +23,6 @@ import useDashboardNavigation from './hooks/useDashboardNavigation';
 import useDashboardMainContentViewModel from './hooks/useDashboardMainContentViewModel';
 import useDashboardHelpers from './hooks/useDashboardHelpers.jsx';
 import useDataSync from './hooks/useDataSync';
-import { getVisibleBosses } from './utils/bossFilterState';
 
 export default function App() {
   const previousActiveTabRef = useRef('');
@@ -59,11 +46,12 @@ export default function App() {
   // ==========================================
   // 1. ALL LOCAL UI AND FILTER STATES
   // ==========================================
-  const [passwordInput, setPasswordInput] = useState('');
   const [globalMyPlayerId, setGlobalMyPlayerId] = useState(() => localStorage.getItem(STORAGE_KEYS.myPlayerId) || '');
 
   // Global phase selector (controls which phase's assignments are shown)
-  const [globalPhase, setGlobalPhase] = useState(DEFAULT_GLOBAL_PHASE);
+  const storedPriorityPhase = localStorage.getItem(STORAGE_KEYS.priorityPhase);
+  const [globalPhase, setGlobalPhase] = useState(() => storedPriorityPhase || DEFAULT_GLOBAL_PHASE);
+  const priorityPhaseWasStored = useRef(Boolean(storedPriorityPhase));
 
   const [overviewSearch, setOverviewSearch] = useState('');
   const [sharedRaidFilter, setSharedRaidFilter] = useState('All Raids');
@@ -104,9 +92,20 @@ export default function App() {
 
   const [isSavingScoring, setIsSavingScoring] = useState(false);
 
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.priorityPhase, globalPhase);
+  }, [globalPhase]);
+
+  useEffect(() => {
+    const configuredPhase = scoringConfig?.defaultSitePhase;
+    if (PHASES.includes(configuredPhase) && !priorityPhaseWasStored.current) {
+      setGlobalPhase(configuredPhase);
+      priorityPhaseWasStored.current = true;
+    }
+  }, [scoringConfig?.defaultSitePhase]);
+
   const {
     isAuthenticated,
-    handleLogin,
     handleLogout,
     bnetAuthState,
     bnetClaimBusy,
@@ -122,6 +121,11 @@ export default function App() {
   } = useAuthSession({ fetchData, setRoster: setRosterLocal, setRosterDirty });
 
   const hasOfficerAccess = isAuthenticated || bnetAuthState.isOfficer || bnetAuthState.isAdmin;
+  const siteVisibility = useSiteVisibility({
+    fetchData,
+    putData,
+    canEdit: bnetAuthState.isAdmin
+  });
 
   const {
     activeTab,
@@ -129,7 +133,6 @@ export default function App() {
     hoveredNavTab,
     setHoveredNavTab,
     bankSubTab,
-    setBankSubTab,
     raidAssignmentsSubTab,
     setRaidAssignmentsSubTab,
     raidSignupsSubTab,
@@ -138,15 +141,23 @@ export default function App() {
     setLootSubTab,
     recruitmentSubTab,
     adminSubTab,
-    setAdminSubTab,
     resourcesSubTab,
-    setResourcesSubTab,
     handleMainNavSelect,
     getDropdownItemActiveState,
+    activeSiteTabId,
     subTabs,
   } = useDashboardNavigation({
     isAuthenticated: hasOfficerAccess,
-    canViewScoring: isAuthenticated || bnetAuthState.isAdmin
+    canViewScoring: isAuthenticated || bnetAuthState.isAdmin,
+    canViewSitemap: bnetAuthState.isAdmin,
+    siteAudience: bnetAuthState.isAdmin ? 'Admin' : hasOfficerAccess ? 'Officer' : 'Public',
+    surfaceRolesByTab: siteVisibility.surfaceRolesByTab,
+    groupByTab: siteVisibility.groupByTab,
+    orderByTab: siteVisibility.orderByTab,
+    defaultSiteTab: scoringConfig?.defaultSiteTab || DEFAULT_SITE_TAB,
+    bnetUserId: bnetAuthState.authenticated ? bnetAuthState.user?.id : null,
+    bnetAuthReady: !bnetAuthState.loading,
+    defaultSiteTabReady: isDbConnected
   });
 
   useEffect(() => {
@@ -203,7 +214,6 @@ export default function App() {
     setBisPrioritiesLocal,
     dbBisPriorities,
     setDbBisPrioritiesLocal,
-    dbBisPrioritiesBaseline,
     setDbBisPrioritiesBaseline,
     masterItemsDbPhase,
     setMasterItemsDbPhase,
@@ -274,9 +284,9 @@ export default function App() {
     getPlayerItemPriorityStatus,
     handleSetPriority,
     handleToggleAwardedPriority,
+    normalizeAwardedPlayerIds,
     handleSaveLootCouncilChanges,
     handleClearOverviewItemPriorities,
-    normalizeAwardedPlayerIds,
     setAssignmentsData,
   } = useLootCouncilData({
     fetchData,
@@ -295,9 +305,6 @@ export default function App() {
   });
 
   const {
-    raidAssignmentArchives,
-    selectedRaidAssignmentArchiveId,
-    selectedRaidRestoreBosses,
     raidAssignmentData,
     enabledBosses,
     raidAssignmentDataDirty,
@@ -306,10 +313,6 @@ export default function App() {
     setRaidAssignmentData,
     handleSaveRaidAssignmentsChanges,
     handleCopyRaidAssignmentsToArchive,
-    handleViewRaidAssignmentArchive,
-    handleDeleteRaidAssignmentArchive,
-    handleToggleRaidRestoreBoss,
-    handleRestoreRaidAssignmentArchive,
     handleToggleZone,
     handleToggleBoss,
     handleMoveEnabledBoss,
@@ -321,6 +324,7 @@ export default function App() {
     fetchData,
     putData,
     activeTab,
+    activeSiteTabId,
     setActiveTab,
     setRaidAssignmentsSubTab,
     isAuthenticated: hasOfficerAccess,
@@ -369,7 +373,7 @@ export default function App() {
     const player = roster.find(p => p.id === parseInt(globalMyPlayerId, 10));
     if (!player) return null;
     return getDisplayFromId(player.spec_id);
-  }, [globalMyPlayerId, roster, specsFromDb]);
+  }, [getDisplayFromId, globalMyPlayerId, roster]);
 
   // When opening BiS Config, default the spec selector to the selected character.
   useEffect(() => {
@@ -378,14 +382,13 @@ export default function App() {
     if (selectedBisSpec !== selectedMyPlayerBisSpec) {
       setSelectedBisSpec(selectedMyPlayerBisSpec);
     }
-  }, [activeTab, selectedMyPlayerBisSpec]);
+  }, [activeTab, selectedBisSpec, selectedMyPlayerBisSpec]);
 
   // RaidHelper import handling (extracted to hook)
   const {
     raidHelperImportSession,
     recentRaidHelperImportedIds,
     recentRaidHelperSpecConflictIds,
-    handleImportRaidHelperJson,
     handleUpdateRaidHelperImportEntry,
     handleCancelRaidHelperImport,
     handleApplyRaidHelperImport
@@ -440,8 +443,6 @@ export default function App() {
     },
     renderItemLink,
     hideWowheadTooltip,
-    getDisplayFromId,
-    getSpecById,
   });
 
   const {
@@ -450,25 +451,22 @@ export default function App() {
     handleOpenItemForLootAssignment,
     handleSaveScoringChanges,
     renderItemSlot,
-    jumpToMasterItemsDbForItem,
     handleSaveItemIdFromModal,
   } = dashboardHelpers;
 
   const hasItemsDbUnsavedChanges = dbBisPrioritiesDirty || mutableItemsDirty;
-  const hasRosterUnsavedChanges = rosterDirty || raidLogsDirty || playerStatsDirty;
+  const hasRosterUnsavedChanges = rosterDirty || raidLogsDirty;
   const hasScoringUnsavedChanges = scoringConfigDirty || playerStatsDirty;
+  const hasConfigUnsavedChanges = scoringConfigDirty;
   const hasRaidAssignmentsUnsavedChanges = raidAssignmentDataDirty || enabledBossesDirty;
 
-  const raidAssignmentsVisibleBosses = useMemo(() => getVisibleBosses({
-    availableBosses: enabledBosses,
-    userSelection: raidAssignmentsBossFilter,
-  }), [enabledBosses, raidAssignmentsBossFilter]);
-
   const shellState = useAppShellState({
+    canSaveChanges: hasOfficerAccess,
     hasLootUnsavedChanges,
     hasItemsDbUnsavedChanges,
     hasRosterUnsavedChanges,
     hasScoringUnsavedChanges,
+    hasConfigUnsavedChanges,
     hasRaidAssignmentsUnsavedChanges,
     adminData,
     handleSaveLootCouncilChanges,
@@ -497,7 +495,7 @@ export default function App() {
     }
   }, [tacticsBossFilter]);
 
-  useAppShellLifecycle({ activeTab, hasAnyUnsavedChanges });
+  useAppShellLifecycle({ activeTab, hasAnyUnsavedChanges, canSaveChanges: hasOfficerAccess });
 
   // ==========================================
   // 3. SQL SYNC ENGINE
@@ -563,24 +561,6 @@ export default function App() {
   }, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, overviewSearch, selectedBisSpec]);
 
 
-  // Auth/session handlers are provided by `useAuthSession` hook.
-  const handleLoginSubmit = async (e) => {
-    if (e) e.preventDefault();
-    try {
-      const ok = await handleLogin(passwordInput);
-      if (ok) {
-        setPasswordInput('');
-      } else {
-        alert('Incorrect password or login request failed.');
-        setPasswordInput('');
-      }
-    } catch (error) {
-      console.error('Officer login submit failed:', error);
-      alert('Officer login request failed. Check that the local API is running.');
-      setPasswordInput('');
-    }
-  };
-
   const calculateScore = (playerId) => {
     const player = roster.find(rosterPlayer => Number(rosterPlayer.id) === Number(playerId)) || { guild_rank: getDefaultGuildRoleName(scoringConfig) };
     return calculatePlayerScore({
@@ -633,6 +613,7 @@ export default function App() {
 
   const mainContentViewModel = useDashboardMainContentViewModel({
     activeTab,
+    activeSiteTabId,
     bankSubTab,
     sharedRaidFilter,
     setSharedRaidFilter,
@@ -646,9 +627,12 @@ export default function App() {
     raidSignupsSubTab,
     setRaidSignupsSubTab,
     lootSubTab,
+    priorityPhase: globalPhase,
+    setPriorityPhase: setGlobalPhase,
     recruitmentSubTab,
     adminSubTab,
     resourcesSubTab,
+    siteVisibility,
     isAuthenticated: hasOfficerAccess,
     canViewScoring: isAuthenticated || bnetAuthState.isAdmin,
     globalMyPlayerId,
@@ -661,13 +645,10 @@ export default function App() {
     handleOpenItemForLootAssignment,
     handleClearOverviewItemPriorities,
     handleToggleAwardedPriority,
+    normalizeAwardedPlayerIds,
     handleSaveRaidAssignmentsChanges,
     isSavingRaidAssignments,
     handleCopyRaidAssignmentsToArchive,
-    handleViewRaidAssignmentArchive,
-    handleDeleteRaidAssignmentArchive,
-    handleRestoreRaidAssignmentArchive,
-    handleToggleRaidRestoreBoss,
     handleToggleZone,
     handleToggleBoss,
     handleMoveEnabledBoss,
@@ -717,18 +698,6 @@ export default function App() {
     mutableItems,
     bisPriorities,
     globalPhase,
-    raidAssignmentArchives,
-    selectedRaidAssignmentArchiveId,
-    selectedRaidRestoreBosses,
-    setSelectedRaidRestoreBosses: (value) => {
-      if (typeof value === 'function') {
-        const nextValue = value(selectedRaidRestoreBosses);
-        if (Array.isArray(nextValue)) {
-          return nextValue;
-        }
-      }
-      return value;
-    },
     raidAssignmentData,
     setRaidAssignmentData,
     enabledBosses,
@@ -817,7 +786,6 @@ export default function App() {
     handleRemovePlayer: rosterData.handleRemovePlayer,
     rosterDirty,
     raidLogsDirty,
-    playerStatsDirty,
     rosterClaims,
     handleUnclaimClaim,
     adminData,
@@ -837,8 +805,6 @@ export default function App() {
           hasAnyUnsavedChanges={hasAnyUnsavedChanges}
           unsavedSections={unsavedSections}
           handleSaveAllChanges={handleSaveAllChanges}
-          globalPhase={globalPhase}
-          setGlobalPhase={setGlobalPhase}
           globalMyPlayerId={globalMyPlayerId}
           onCharacterSelect={(id) => {
             setGlobalMyPlayerId(id);
@@ -855,6 +821,7 @@ export default function App() {
           currentUserClaimedRosterIds={currentUserClaimedRosterIds}
           selectedGlobalPlayerIsClaimed={selectedGlobalPlayerIsClaimed}
           setShowBnetClaimModal={setShowBnetClaimModal}
+          canSaveChanges={hasOfficerAccess}
           bnetAuthState={bnetAuthState}
           handleBattleNetLogin={handleBattleNetLogin}
           handleBattleNetLogout={handleBattleNetLogout}
@@ -867,7 +834,7 @@ export default function App() {
       )}
       navigation={(
         <DashboardNavigationTabs
-          activeTab={activeTab}
+          activeSiteTabId={activeSiteTabId}
           hoveredNavTab={hoveredNavTab}
           setHoveredNavTab={setHoveredNavTab}
           handleMainNavSelect={handleMainNavSelect}
@@ -885,6 +852,8 @@ export default function App() {
         <DashboardModals
           showBnetClaimModal={showBnetClaimModal}
           setShowBnetClaimModal={setShowBnetClaimModal}
+          claimGameVersion={scoringConfig?.claimGameVersion || 'all'}
+          claimFallbackEnabled={Boolean(scoringConfig?.claimFallbackEnabled)}
           bnetAuthState={bnetAuthState}
           bnetClaimBusy={bnetClaimBusy}
           handleBattleNetClaim={handleBattleNetClaim}

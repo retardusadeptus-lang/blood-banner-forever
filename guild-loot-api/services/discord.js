@@ -124,7 +124,7 @@ function buildDiscordService({ siteUrl, webhookUrl }) {
       return `${text.slice(0, Math.max(0, width - 3))}...`;
     };
 
-    const buildColumnValue = (formatter, { includePlayerName = true, includeSeparator = false } = {}, groupsToRender = safeGroups) => groupsToRender.map((group, groupIndex) => {
+    const buildColumnValue = (formatter, { includePlayerName = true, includeSeparator = false } = {}, groupsToRender = safeGroups) => groupsToRender.map(group => {
       const lines = [];
       if (includePlayerName && group.playerName) {
         lines.push(`**${truncateText(group.playerName, 20)}**`);
@@ -146,25 +146,6 @@ function buildDiscordService({ siteUrl, webhookUrl }) {
 
       return lines.join('\n');
     }).join('\n\n');
-
-    const statusItemValue = buildColumnValue(entry => {
-      const status = String(entry.statusIcon || '•');
-      const item = truncateText(entry.itemName || '', 34);
-      return `${status} ${item}`;
-    });
-
-    const countPriceValue = buildColumnValue(entry => {
-      const approvedCount = entry.approvedQuantity != null ? String(entry.approvedQuantity) : '0';
-      const requestedCount = entry.requestedQuantity != null ? String(entry.requestedQuantity) : '0';
-      const approvedValue = entry.statusIcon === '❌' ? '0' : String(entry.approvedQuantity ?? 0);
-      return `${approvedValue}/${requestedCount}`;
-    }, { includePlayerName: false, includeSeparator: true });
-
-    const noteValue = buildColumnValue(entry => {
-      const price = entry.priceText ? `${entry.priceText}` : ' ';
-      const note = entry.noteText ? entry.noteText : ' ';
-      return price === ' ' ? note : `${price} • ${note}`;
-    }, { includePlayerName: false, includeSeparator: true });
 
     const buildFieldValues = groupsToRender => ({
       statusItemValue: buildColumnValue(entry => {

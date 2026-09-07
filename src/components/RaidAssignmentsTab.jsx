@@ -1,7 +1,7 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
   CURSE_TYPES, JUDGEMENT_TYPES,
-  RAID_GROUPS, RAID_WIDE_LABEL, BOSS_TARGET_ID, RAID_MARKERS, DEFAULT_BOSS_ENCOUNTERS
+  RAID_WIDE_LABEL, BOSS_TARGET_ID, RAID_MARKERS, DEFAULT_BOSS_ENCOUNTERS
 } from '../constants';
 import { buildRaidAssignmentsExport, serializeRaidAssignmentsExport } from '../services/raidAssignmentsExport.js';
 import { normalizeBossState } from '../utils/raidAssignmentState.js';
@@ -144,7 +144,7 @@ function SignupRosterReference({ event, entries, groups, getSpecById, isLoading,
         groupedNames.add(String(entry.discord_username || entry.player_name || '').trim().toLowerCase());
       });
     return { sections: [...sections.entries()].sort(([a], [b]) => a - b).map(([number, section]) => ({ number, ...section })), groupedNames };
-  }, [entries, entryByName, groups]);
+  }, [entryByName, groups]);
 
   const renderEntry = entry => {
     const status = String(entry.status || '').toLowerCase();
@@ -252,80 +252,6 @@ function PlayerSelect({ value, onChange, players, fullRoster, getSpecById, disab
   );
 }
 
-function SlotSelect({ value, onChange, options, disabled, placeholder }) {
-  const isMissing = value && !options.some(o => o.id === value);
-  const selectedOption = options.find(o => o.id === value);
-
-  if (disabled) {
-    return (
-      <div className="flex items-center gap-1.5 flex-1 min-w-0">
-        {selectedOption && <SpecIcon spec={selectedOption.spec} />}
-        <span className={`text-xs font-bold truncate ${isMissing ? 'text-red-400' : 'text-slate-300'}`} style={{ color: selectedOption?.color }}>
-          {isMissing ? 'Deleted Slot' : (selectedOption ? selectedOption.name : placeholder.replace(/—/g, '').trim() || 'Unassigned')}
-        </span>
-      </div>
-    );
-  }
-
-  return (
-    <div className="flex items-center gap-1.5 flex-1 min-w-0">
-      {selectedOption && <SpecIcon spec={selectedOption.spec} />}
-      <select
-        className={`flex-1 min-w-0 bg-slate-950 border border-slate-700 rounded px-1.5 py-1 text-xs focus:outline-none ${isMissing ? 'text-red-400 border-red-500 font-bold' : 'text-white'}`}
-        value={value || ''}
-        onChange={e => onChange(e.target.value)}
-        style={{ color: selectedOption?.color }}
-      >
-        <option value="" className="text-white">{placeholder}</option>
-        {options.map(o => <option key={o.id} value={o.id} style={{ color: o.color }}>{o.name}</option>)}
-        {isMissing && <option value={value} className="text-red-400 font-bold">Deleted Slot</option>}
-      </select>
-    </div>
-  );
-}
-
-function ComboSelect({ value, onChange, options, placeholder = '— Select —', disabled }) {
-  const [forceCustom, setForceCustom] = useState(false);
-
-  if (disabled) {
-    return (
-      <div className="flex items-center gap-1.5 flex-1 min-w-0">
-        <span className="text-xs font-bold text-slate-300 truncate">{value || placeholder.replace(/—/g, '').trim() || 'Unassigned'}</span>
-      </div>
-    );
-  }
-
-  const isPresetValue = !!value && options.includes(value);
-  const showCustomInput = forceCustom || (!!value && !isPresetValue);
-
-  return (
-    <div className="flex items-center gap-1.5 flex-1 min-w-0">
-      <select
-        className="flex-1 min-w-0 bg-slate-900 text-white border border-slate-700 rounded px-2 py-1.5 text-xs focus:outline-none"
-        value={showCustomInput ? '__custom__' : (isPresetValue ? value : '')}
-        onChange={e => {
-          if (e.target.value === '__custom__') { setForceCustom(true); onChange(''); }
-          else { setForceCustom(false); onChange(e.target.value); }
-        }}
-      >
-        <option value="">{placeholder}</option>
-        {options.map(o => <option key={o} value={o}>{o}</option>)}
-        <option value="__custom__">Custom…</option>
-      </select>
-      {showCustomInput && (
-        <input
-          type="text"
-          placeholder="Custom assignment..."
-          className="flex-1 min-w-0 bg-slate-950 text-white border border-slate-700 rounded px-2 py-1.5 text-xs focus:outline-none"
-          value={value}
-          onChange={e => onChange(e.target.value)}
-          autoFocus
-        />
-      )}
-    </div>
-  );
-}
-
 function MarkerSelect({ value, onChange, disabled }) {
   return (
     <select disabled={disabled} className="bg-slate-900 text-white border border-slate-700 rounded px-2 py-1.5 text-xs focus:outline-none w-28 flex-shrink-0" value={value || ''} onChange={e => onChange(e.target.value || null)}>
@@ -339,27 +265,6 @@ function MarkerBadge({ markerId }) {
   const marker = RAID_MARKERS.find(m => m.id === markerId);
   if (!marker) return null;
   return <span title={marker.label} style={{ color: marker.color }} className="text-sm leading-none flex-shrink-0">{marker.glyph}</span>;
-}
-
-function SectionWrapper({ title, isAuthenticated, onAdd, onRemoveSection, hasItems, emptyText, children }) {
-  return (
-    <div className="bg-slate-900/40 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
-      <div>
-        <div className="flex items-center justify-between mb-3 border-b border-slate-800 pb-1.5">
-          <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">{title}</h4>
-          <div className="flex items-center gap-2">
-            {isAuthenticated && onAdd && (
-              <button onClick={onAdd} className="text-[10px] bg-slate-800 hover:bg-slate-700 text-purple-400 font-bold px-2 py-0.5 rounded">+</button>
-            )}
-            {isAuthenticated && onRemoveSection && (
-              <button onClick={onRemoveSection} className="text-[10px] text-red-500 hover:text-red-400 font-bold px-1" title="Remove entire section">✕ Section</button>
-            )}
-          </div>
-        </div>
-        {!hasItems ? <p className="text-xs text-slate-600 italic mb-2">{emptyText}</p> : <div className="space-y-2 mb-2">{children}</div>}
-      </div>
-    </div>
-  );
 }
 
 function BossSelector({ raidZones, enabledBosses, handleToggleZone, handleToggleBoss, isAuthenticated, showManageBosses, onToggleManageBosses }) {
@@ -446,16 +351,14 @@ function createDefaultBossState(boss, generateId) {
 // --- MAIN CONTAINER COMPONENT ---
 const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
   isAuthenticated, roster, getSpecById, enabledBosses = [], raidZones = [], handleToggleZone, handleToggleBoss, handleMoveEnabledBoss, customRaidGroups = [], handleAddCustomRaidBoss, handleRemoveCustomRaidBoss, raidAssignmentData, setRaidAssignmentData: setStoredRaidAssignmentData,
-  hasUnsavedChanges, onSaveChanges, isSaving, myPlayerName, actorBattleTag = '', onCopyToArchive,
-  selectedRaid = 'All Raids', setSelectedRaid, selectedPhase = 'All Phases', setSelectedPhase,
-  userBossFilter = null, setUserBossFilter, fetchData,
+  hasUnsavedChanges, onSaveChanges, isSaving, myPlayerName,
+  userBossFilter = null, fetchData, siteTabMetadata,
 }) {
   const [showManageBosses, setShowManageBosses] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [newCustomZoneName, setNewCustomZoneName] = useState('');
   const [newCustomBossName, setNewCustomBossName] = useState('');
   const [exportStatus, setExportStatus] = useState('');
-  const [archiveBossSelection, setArchiveBossSelection] = useState('');
   const [signupEvents, setSignupEvents] = useState([]);
   const [selectedSignupEventId, setSelectedSignupEventId] = useState(() => localStorage.getItem(RAID_ASSIGNMENTS_EVENT_STORAGE_KEY) || '');
   const [selectedSignupEvent, setSelectedSignupEvent] = useState(null);
@@ -463,8 +366,6 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
   const [signupRosterError, setSignupRosterError] = useState('');
   const [showSignupRoster, setShowSignupRoster] = useState(false);
   const [showImportPreviousModal, setShowImportPreviousModal] = useState(false);
-  const defaultBossStatesRef = useRef({});
-
   const activeSignupEvents = useMemo(() => signupEvents.filter(event => String(event.status || '').toLowerCase() !== 'archived'), [signupEvents]);
   const archivedSignupEvents = useMemo(() => signupEvents.filter(event => String(event.status || '').toLowerCase() === 'archived'), [signupEvents]);
 
@@ -491,6 +392,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
 
   React.useEffect(() => {
     if (!selectedSignupEventId || !fetchData) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedSignupEvent(null);
       return undefined;
     }
@@ -614,48 +516,6 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
     exportTimestamp: new Date().toISOString()
   });
 
-  const selectedArchiveBosses = archiveBossSelection
-    ? enabledBosses.filter(boss => boss === archiveBossSelection)
-    : enabledBosses;
-
-  const buildArchiveLiveSnapshot = () => {
-    const nextData = {};
-
-    if (activeAssignmentData?.global) {
-      nextData.global = JSON.parse(JSON.stringify(activeAssignmentData.global));
-    }
-
-    if (activeAssignmentData?.__bossOrder) {
-      const filteredOrder = Object.fromEntries(
-        Object.entries(activeAssignmentData.__bossOrder).filter(([bossName]) => selectedArchiveBosses.includes(bossName))
-      );
-      if (Object.keys(filteredOrder).length > 0) {
-        nextData.__bossOrder = filteredOrder;
-      }
-    }
-
-    if (activeAssignmentData?.__customBossGroups) {
-      nextData.__customBossGroups = JSON.parse(JSON.stringify(activeAssignmentData.__customBossGroups));
-    }
-
-    selectedArchiveBosses.forEach(bossName => {
-      if (activeAssignmentData?.[bossName]) {
-        nextData[bossName] = JSON.parse(JSON.stringify(activeAssignmentData[bossName]));
-      }
-    });
-
-    return nextData;
-  };
-
-  const buildArchiveExport = () => buildRaidAssignmentsExport({
-    raidAssignmentData: activeAssignmentData,
-    roster,
-    enabledBosses: selectedArchiveBosses,
-    raidZones,
-    getSpecById,
-    exportTimestamp: new Date().toISOString()
-  });
-
   /*
   const downloadRaidAssignmentsJson = () => {
     const payload = buildCurrentRaidAssignmentExport();
@@ -681,7 +541,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
         await navigator.clipboard.writeText(text);
         setExportStatus('Copied JSON to clipboard.');
         return;
-      } catch (error) {
+      } catch {
         // fall back to manual copy below
       }
     }
@@ -692,22 +552,6 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
     document.execCommand('copy');
     document.body.removeChild(textarea);
     setExportStatus('Copied JSON to clipboard.');
-  };
-
-  const copyRaidAssignmentsToArchive = () => {
-    const payload = buildArchiveExport();
-    const bossLabel = archiveBossSelection || 'All selected bosses';
-    onCopyToArchive?.({
-      id: Date.now(),
-      timestamp: new Date().toISOString(),
-      boss: bossLabel,
-      actorBattleTag: actorBattleTag || 'Unknown',
-      bossCount: selectedArchiveBosses.length,
-      selectedBosses: [...selectedArchiveBosses],
-      payload,
-      liveSnapshot: buildArchiveLiveSnapshot()
-    });
-    setExportStatus('Copied current assignment sheet to archive.');
   };
 
   React.useEffect(() => {
@@ -749,18 +593,6 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
   }, [activeAssignmentData?.global]);
 
   const generateId = useCallback(() => Math.random().toString(36).substr(2, 9), []);
-  const getBossData = useCallback((bossName) => {
-    const existing = activeAssignmentData?.[bossName];
-    if (existing) return existing;
-
-    const cached = defaultBossStatesRef.current[bossName];
-    if (cached) return cached;
-
-    const created = createDefaultBossState(bossName, generateId);
-    defaultBossStatesRef.current[bossName] = created;
-    return created;
-  }, [generateId, activeAssignmentData]);
-
   const updateGlobal = useCallback((mutator) => {
     if (!isAuthenticated) return;
     setRaidAssignmentData((prev) => {
@@ -829,13 +661,6 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
       global[key] = rows;
     });
   }, [generateId, updateGlobal]);
-
-  const handleNuclearWipe = () => {
-    if (!isAuthenticated) return;
-    if (window.confirm("☢️ WARNING: This will permanently wipe ALL global assignments and ALL boss tactics. Are you absolutely sure?")) {
-      setRaidAssignmentData({});
-    }
-  };
 
   const handleClearBoss = useCallback((bossName) => {
     if (!isAuthenticated) return;
@@ -930,24 +755,25 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
   const knownBosses = useMemo(() => new Set(raidZones.flatMap(zone => zone.bosses)), [raidZones]);
   const orderedActiveBosses = useMemo(() => visibleBosses.filter(boss => knownBosses.has(boss)), [visibleBosses, knownBosses]);
   const bossZoneMap = useMemo(() => new Map(raidZones.flatMap(zone => zone.bosses.map(boss => [boss, zone.name]))), [raidZones]);
-
-  const filteredEnabledBosses = useMemo(() => {
-    return visibleBosses.filter((boss) => knownBosses.has(boss));
-  }, [visibleBosses, knownBosses]);
+  const defaultBossStates = useMemo(() => Object.fromEntries(
+    visibleBosses.map(boss => [boss, createDefaultBossState(boss, generateId)])
+  ), [generateId, visibleBosses]);
+  const getBossData = useCallback((bossName) => (
+    activeAssignmentData?.[bossName] || defaultBossStates[bossName] || createDefaultBossState(bossName, generateId)
+  ), [activeAssignmentData, defaultBossStates, generateId]);
 
   // Shared receiver pool for Innervate & PI
   const manaReceivers = getPlayersByClasses(['Mage', 'Shaman', 'Druid', 'Priest', 'Warlock', 'Paladin']);
 
   const [showMyAssignments, setShowMyAssignments] = useState(false);
 
-  const SECTION_LABELS = {
-    interrupts: 'Interrupt', stuns: 'Stun', fears: 'Fear', banishes: 'Banish',
-    purges: 'Purge', spellsteals: 'Spellsteal', innervates: 'Innervate',
-    powerInfusions: 'Power Infusion', dispels: 'Dispel', curses: 'Curse',
-    sheep: 'Sheep', bops: 'BoP'
-  };
-
   const myAssignmentsSummary = React.useMemo(() => {
+    const sectionLabels = {
+      interrupts: 'Interrupt', stuns: 'Stun', fears: 'Fear', banishes: 'Banish',
+      purges: 'Purge', spellsteals: 'Spellsteal', innervates: 'Innervate',
+      powerInfusions: 'Power Infusion', dispels: 'Dispel', curses: 'Curse',
+      sheep: 'Sheep', bops: 'BoP'
+    };
     if (!myPlayerName || !activeAssignmentData) return null;
     const global = activeAssignmentData.global || {};
     const tankSlots = global.tankSlots || [];
@@ -1013,13 +839,13 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
           if (ha) phaseLines.push({ label: 'Heal', value: `→ ${ha.target || '?'}` });
         }
         // Utility sections
-        Object.keys(SECTION_LABELS).forEach(key => {
+        Object.keys(sectionLabels).forEach(key => {
           (phase[key] || []).forEach(item => {
             if (item.playerName === myPlayerName) {
-              phaseLines.push({ label: SECTION_LABELS[key], value: `→ ${item.target || '—'}` });
+              phaseLines.push({ label: sectionLabels[key], value: `→ ${item.target || '—'}` });
             }
             if ((key === 'innervates' || key === 'powerInfusions' || key === 'bops') && item.target === myPlayerName) {
-              phaseLines.push({ label: `${SECTION_LABELS[key]} (receiving)`, value: `from ${item.playerName || '?'}` });
+              phaseLines.push({ label: `${sectionLabels[key]} (receiving)`, value: `from ${item.playerName || '?'}` });
             }
           });
         });
@@ -1039,7 +865,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
   }, [myPlayerName, activeAssignmentData, orderedActiveBosses]);
 
   return (
-    <div className="w-full space-y-6">
+    <div data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="w-full space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
         <div>
           <h2 className="text-xl font-bold text-slate-100 mb-1">Raid Assignment Sheets</h2>
@@ -1096,9 +922,14 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
           <button
             type="button"
             onClick={copyRaidAssignmentsJson}
-            className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white px-3 py-2 rounded transition"
+            aria-label="Copy JSON"
+            title="Copy JSON"
+            className="inline-flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-white p-2.5 rounded transition"
           >
-            Copy JSON
+            <svg aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <rect x="9" y="9" width="11" height="11" rx="2" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
           </button>
           {isAuthenticated && isEditMode && (
             <button

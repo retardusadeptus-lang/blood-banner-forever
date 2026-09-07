@@ -1,12 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 export default function DashboardNavigationTabs({
-  activeTab,
+  activeSiteTabId,
   hoveredNavTab,
   setHoveredNavTab,
   handleMainNavSelect,
   getDropdownItemActiveState,
-  isAuthenticated,
   subTabs,
 }) {
   const navItems = [
@@ -21,33 +20,30 @@ export default function DashboardNavigationTabs({
 
   const visibleNavItems = navItems.filter(item => item.items.length > 0);
 
-  const isTabActive = (keyName, mainTab) => {
-    if (keyName === 'bank') {
-      return activeTab === 'bank' || activeTab === 'bankRequests';
+  const getRestrictedTabTone = (tab, isActive = false) => {
+    const roles = tab?.surfaceRoles || [];
+    if (roles.length === 1 && roles[0] === 'Admin') {
+      return isActive ? 'text-pink-300' : 'text-pink-300 hover:text-pink-200';
     }
-    if (keyName === 'loot') {
-      return activeTab === 'loot' || activeTab === 'scoring';
+    if (roles.includes('Officer') && !roles.includes('Public') && !roles.includes('Guild Member')) {
+      return isActive ? 'text-violet-300' : 'text-violet-300 hover:text-violet-200';
     }
-    if (keyName === 'recruitment') {
-      return activeTab === 'recruitmentPlanning' || activeTab === 'recruitmentFocus' || activeTab === 'recruitmentApplications';
-    }
-    if (keyName === 'admin') {
-      return activeTab === 'officerRoles' || activeTab === 'discordBotConfig' || activeTab === 'itemsdb' || activeTab === 'roster';
-    }
-    if (keyName === 'resources') {
-      return activeTab === 'bis';
-    }
-    return activeTab === mainTab;
+    return isActive ? 'text-cyan-400' : 'text-amber-300 hover:text-slate-300';
   };
 
+  const isTabActive = useCallback((items = []) => {
+    return items.some(tab => tab.id === activeSiteTabId);
+  }, [activeSiteTabId]);
+
   const activeNavKey = useMemo(() => {
-    const activeItem = visibleNavItems.find(item => isTabActive(item.keyName, item.mainTab));
+    const activeItem = visibleNavItems.find(item => isTabActive(item.items));
     return activeItem?.keyName || visibleNavItems[0]?.keyName || null;
-  }, [activeTab, visibleNavItems]);
+  }, [isTabActive, visibleNavItems]);
 
   const [mobileOpenKey, setMobileOpenKey] = useState(activeNavKey);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMobileOpenKey(prev => prev || activeNavKey);
   }, [activeNavKey]);
 
@@ -58,7 +54,7 @@ export default function DashboardNavigationTabs({
       <div className="md:hidden space-y-2">
         <div className="relative z-30 flex w-full flex-wrap items-start gap-2 overflow-visible pt-0 pb-0 mb-0">
           {visibleNavItems.map(item => {
-            const isActive = isTabActive(item.keyName, item.mainTab);
+            const isActive = isTabActive(item.items);
             const isOpen = (mobileOpenKey || activeNavKey) === item.keyName;
             const shouldShowDropdown = item.items.length > 1;
 
@@ -70,7 +66,7 @@ export default function DashboardNavigationTabs({
                   if (shouldShowDropdown) {
                     setMobileOpenKey(item.keyName);
                   }
-                  handleMainNavSelect(item.mainTab, item.items?.[0]?.value);
+                    handleMainNavSelect(item.items?.[0]?.id);
                 }}
                 className={`relative z-20 whitespace-nowrap px-4 py-2.5 font-bold text-xs uppercase tracking-wider rounded-t-lg transition-colors ${isActive
                   ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800 -mb-px'
@@ -87,13 +83,13 @@ export default function DashboardNavigationTabs({
         {mobileOpenItem && mobileOpenItem.items.length > 1 && (
           <div className="z-[60] flex flex-wrap gap-1 border border-slate-800 rounded-lg bg-slate-950/95 px-2 py-2 shadow-[0_14px_40px_rgba(0,0,0,0.35)]">
             {mobileOpenItem.items.map(tab => {
-              const isSubActive = getDropdownItemActiveState(mobileOpenItem.keyName, tab.value);
+              const isSubActive = getDropdownItemActiveState(tab.id);
               return (
                 <button
                   key={tab.value}
                   type="button"
-                  onClick={() => handleMainNavSelect(mobileOpenItem.mainTab, tab.value)}
-                  className={`flex-none whitespace-nowrap px-3 py-2 font-semibold text-xs uppercase tracking-wider transition-colors rounded-lg text-center ${isSubActive ? 'bg-slate-900 border border-slate-800 text-cyan-400' : 'text-amber-300 hover:text-slate-300 hover:bg-slate-900/50'}`}
+                  onClick={() => handleMainNavSelect(tab.id)}
+                  className={`flex-none whitespace-nowrap px-3 py-2 font-semibold text-xs uppercase tracking-wider transition-colors rounded-lg text-center ${isSubActive ? `bg-slate-900 border border-slate-800 ${getRestrictedTabTone(tab, true)}` : `${getRestrictedTabTone(tab)} hover:bg-slate-900/50`}`}
                 >
                   {tab.label}
                 </button>
@@ -105,7 +101,7 @@ export default function DashboardNavigationTabs({
 
       <div className="relative z-30 hidden md:flex w-full flex-wrap items-start gap-2 overflow-visible pt-0 pb-0 mb-0">
         {visibleNavItems.map(item => {
-          const isActive = isTabActive(item.keyName, item.mainTab);
+          const isActive = isTabActive(item.items);
           const isHovered = hoveredNavTab === item.keyName;
           const shouldShowDropdown = item.items.length > 1;
 
@@ -118,7 +114,7 @@ export default function DashboardNavigationTabs({
             >
               <button
                 type="button"
-                onClick={() => handleMainNavSelect(item.mainTab, item.items?.[0]?.value)}
+                onClick={() => handleMainNavSelect(item.items?.[0]?.id)}
                 className={`relative z-20 whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${isActive
                   ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800 -mb-px'
                   : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}
@@ -131,13 +127,13 @@ export default function DashboardNavigationTabs({
                   style={{ minWidth: '240px', width: 'max-content', maxWidth: 'min(95vw, 760px)' }}
                 >
                   {item.items.map(tab => {
-                    const isSubActive = getDropdownItemActiveState(item.keyName, tab.value);
+                    const isSubActive = getDropdownItemActiveState(tab.id);
                     return (
                       <button
                         key={tab.value}
                         type="button"
-                        onClick={() => handleMainNavSelect(item.mainTab, tab.value)}
-                        className={`flex-none whitespace-nowrap px-3 py-2 font-semibold text-xs uppercase tracking-wider transition-colors rounded-lg text-center ${isSubActive ? 'bg-slate-900 border border-slate-800 text-cyan-400' : 'text-amber-300 hover:text-slate-300 hover:bg-slate-900/50'}`}
+                        onClick={() => handleMainNavSelect(tab.id)}
+                        className={`flex-none whitespace-nowrap px-3 py-2 font-semibold text-xs uppercase tracking-wider transition-colors rounded-lg text-center ${isSubActive ? `bg-slate-900 border border-slate-800 ${getRestrictedTabTone(tab, true)}` : `${getRestrictedTabTone(tab)} hover:bg-slate-900/50`}`}
                       >
                         {tab.label}
                       </button>

@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { PHASES } from '../constants';
 
 function normalizeList(rawText) {
   return Array.from(
@@ -66,7 +67,7 @@ export default function DiscordBotConfigTab({
   const benchText = toEditorText(config?.bench_roles);
 
   const updateScoringField = (field, value) => {
-    setScoringConfig?.({ ...(scoringConfig || {}), [field]: value });
+    setScoringConfig?.(previous => ({ ...(previous || {}), [field]: value }));
   };
 
   const guildRoleRanks = Array.isArray(scoringConfig?.guildRoleRanks) ? scoringConfig.guildRoleRanks : [];
@@ -101,6 +102,67 @@ export default function DiscordBotConfigTab({
       </div>
 
       <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+        <div className="mb-4 max-w-xs">
+          <label className="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Default Site Phase</label>
+          <select
+            value={scoringConfig?.defaultSitePhase || PHASES[0]}
+            onChange={event => updateScoringField('defaultSitePhase', event.target.value)}
+            className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
+          >
+            {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
+          </select>
+          <p className="text-[11px] text-slate-500 mt-2">Sets the initial phase used by the Priority Overview and Priority Assignment tabs.</p>
+        </div>
+        <div className="mb-4 max-w-xs">
+          <label className="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Default Site Tab</label>
+          <select
+            value={scoringConfig?.defaultSiteTab || 'recruitment.focus'}
+            onChange={event => updateScoringField('defaultSiteTab', event.target.value)}
+            className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
+          >
+            <option value="recruitment.focus">Recruitment Focus</option>
+            <option value="guild-bank.contents">Guild Bank</option>
+            <option value="raid-assignments.overview">Raid Assignments</option>
+            <option value="raid-signups.events">Raid Signups</option>
+            <option value="recruitment.applications">Recruitment Applications</option>
+            <option value="resources.bis">BiS Lists</option>
+            <option value="resources.weakauras">Weakauras</option>
+            <option value="resources.cheatsheets">Cheat Sheets</option>
+            <option value="resources.raidlogs">Raid Logs</option>
+            <option value="resources.wipefest">Wipefest</option>
+            <option value="loot.overview">Priority Overview</option>
+            <option value="loot.assigned">Assigned Loot</option>
+          </select>
+          <p className="text-[11px] text-slate-500 mt-2">Sets the first tab for visitors without a saved Battle.net tab.</p>
+        </div>
+        <div className="mb-4 max-w-xs">
+          <label className="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Claim Character Game Version</label>
+          <select
+            value={scoringConfig?.claimGameVersion || 'all'}
+            onChange={event => updateScoringField('claimGameVersion', event.target.value)}
+            className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
+          >
+            <option value="all">All game versions</option>
+            <option value="World of Warcraft">World of Warcraft</option>
+            <option value="Classic Anniversary">Classic Anniversary</option>
+            <option value="Classic Era">Classic Era</option>
+            <option value="Classic Progression">Classic Progression</option>
+            <option value="WoW Classic">WoW Classic</option>
+          </select>
+          <p className="text-[11px] text-slate-500 mt-2">Controls which Battle.net characters appear in the claim modal.</p>
+        </div>
+        <label className="flex items-start gap-3 mb-4 max-w-xl cursor-pointer">
+          <input
+            type="checkbox"
+            checked={Boolean(scoringConfig?.claimFallbackEnabled)}
+            onChange={event => updateScoringField('claimFallbackEnabled', event.target.checked)}
+            className="mt-0.5 h-4 w-4 accent-amber-500"
+          />
+          <span>
+            <span className="block text-xs font-bold uppercase tracking-wider text-amber-400">Enable manual roster fallback</span>
+            <span className="block text-[11px] text-slate-500 mt-1">Shows the manual roster claim list when Battle.net character lookup does not find a match.</span>
+          </span>
+        </label>
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
           <div>
             <h3 className="text-lg font-bold text-cyan-200">Battle.net Access Roles</h3>

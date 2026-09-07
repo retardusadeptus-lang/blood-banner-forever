@@ -28,7 +28,7 @@ function getConfigForPermission(db, permissionKey) {
 
   try {
     return normalizeRoles(JSON.parse(row[key] || '[]'));
-  } catch (e) {
+  } catch {
     return [];
   }
 }

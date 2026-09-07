@@ -1,4 +1,3 @@
-import React from 'react';
 import { LEFT_SLOTS, RIGHT_SLOTS, BOTTOM_SLOTS, PHASES } from '../constants';
 
 export default function ItemsDatabaseTab({
@@ -35,7 +34,8 @@ export default function ItemsDatabaseTab({
   setMasterItemsDbPhase,
   hasUnsavedChanges,
   onSaveChanges,
-  isSaving
+  isSaving,
+  siteTabMetadata
 }) {
   const resolvedPageSize = Number.isFinite(Number(dbPageSize)) ? Number(dbPageSize) : 25;
   const resolvedPage = Number.isFinite(Number(dbPage)) ? Number(dbPage) : 1;
@@ -45,7 +45,7 @@ export default function ItemsDatabaseTab({
   const visibleItems = dbFilteredItems.slice(startIndex, startIndex + resolvedPageSize);
 
   return (
-    <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
+    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
       
       {/* ➕ FORM: Add New Item to Tables */}
       <div className="bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">

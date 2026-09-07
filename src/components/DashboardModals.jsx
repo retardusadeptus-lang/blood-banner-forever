@@ -1,4 +1,3 @@
-import React from 'react';
 import BnetClaimModal from './BnetClaimModal';
 import ItemIdEditorModal from './ItemIdEditorModal';
 
@@ -7,6 +6,8 @@ export default function DashboardModals({
   setShowBnetClaimModal,
   bnetAuthState,
   bnetClaimBusy,
+  claimGameVersion,
+  claimFallbackEnabled,
   handleBattleNetClaim,
   handleBattleNetManualClaim,
   handleBattleNetLogin,
@@ -26,6 +27,8 @@ export default function DashboardModals({
         isLoading={bnetAuthState.loading || bnetClaimBusy}
         error={bnetAuthState.error}
         characters={bnetAuthState.characters}
+        selectedGameVersion={claimGameVersion}
+        showManualFallback={claimFallbackEnabled}
         diagnostics={bnetAuthState.diagnostics}
         roster={roster}
         onClaim={handleBattleNetClaim}

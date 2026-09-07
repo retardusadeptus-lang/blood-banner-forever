@@ -19,8 +19,8 @@ import warlockIcon from '../../assets/icons/warlock.png';
 import warriorIcon from '../../assets/icons/warrior.png';
 
 const CHEAT_SHEET_STORAGE_KEY = 'cheat-sheet-data-v1';
+const CHEAT_SHEET_PHASE_STORAGE_KEY = 'cheat-sheet-phase-v1';
 const CHEAT_SHEET_EXPORT_FILENAME = 'cheat-sheet-export.json';
-const WIPEFEST_STORAGE_KEY = 'wipefest-data-v1';
 
 const normalizeTacticsMediaItem = (item = {}, index = 0) => {
   const url = String(item?.url || '').trim();
@@ -154,24 +154,6 @@ const normalizeWipefestEntry = (entry = {}, fallbackReport = null) => {
   };
 };
 
-const loadWipefestEntries = () => {
-  if (typeof window === 'undefined') return [];
-
-  const saved = window.localStorage.getItem(WIPEFEST_STORAGE_KEY);
-  if (!saved) return [];
-
-  try {
-    const parsed = JSON.parse(saved);
-    if (Array.isArray(parsed)) {
-      return parsed.map(entry => normalizeWipefestEntry(entry));
-    }
-  } catch (error) {
-    console.warn('Failed to parse wipefest saved data:', error);
-  }
-
-  return [];
-};
-
 const formatWclDate = (value) => {
   if (!value) return 'Unknown date';
   const date = new Date(value);
@@ -275,11 +257,13 @@ const loadCheatSheetBosses = () => {
   return (bossData || []).map(normalizeBoss);
 };
 
-const CHEAT_SHEET_RAIDS = [
-  'All Raids',
-  ...[...new Set((bossData || []).map(boss => boss.raid).filter(Boolean))].sort((a, b) => a.localeCompare(b))
-];
 const CHEAT_SHEET_PHASE_OPTIONS = ['All Phases', ...PHASES];
+
+const loadCheatSheetPhase = () => {
+  if (typeof window === 'undefined') return DEFAULT_GLOBAL_PHASE;
+  const savedPhase = window.localStorage.getItem(CHEAT_SHEET_PHASE_STORAGE_KEY);
+  return CHEAT_SHEET_PHASE_OPTIONS.includes(savedPhase) ? savedPhase : DEFAULT_GLOBAL_PHASE;
+};
 
 function BossFilterSelector({ raidZones = [], enabledBosses = [], userBossFilter = null, setUserBossFilter, label = 'Boss Selector' }) {
   const [open, setOpen] = useState(false);
@@ -423,12 +407,16 @@ export default function ResourcesTab({
   setUserBossFilter,
   roster = [],
   selectedCharacterId = '',
+  siteTabMetadata
 }) {
+  const activeResourcesSubTab = siteTabMetadata?.contentOwner === 'ResourcesTab'
+    ? siteTabMetadata.route?.subTab || resourcesSubTab
+    : resourcesSubTab;
   const [bosses, setBosses] = useState(loadCheatSheetBosses);
   const [draftBosses, setDraftBosses] = useState(bosses);
   const [isEditMode, setIsEditMode] = useState(false);
   const [internalSelectedRaid, setInternalSelectedRaid] = useState('All Raids');
-  const [internalSelectedPhase, setInternalSelectedPhase] = useState(DEFAULT_GLOBAL_PHASE);
+  const [internalSelectedPhase, setInternalSelectedPhase] = useState(loadCheatSheetPhase);
   const selectedRaid = internalSelectedRaid;
   const selectedPhase = internalSelectedPhase;
   const setSelectedRaid = setInternalSelectedRaid;
@@ -448,20 +436,16 @@ export default function ResourcesTab({
   const [deletedWipefestEntryIds, setDeletedWipefestEntryIds] = useState([]);
 
   useEffect(() => {
-    setBosses(loadCheatSheetBosses());
-  }, []);
-
-  useEffect(() => {
-    if (!isEditMode) {
-      setDraftBosses(bosses);
-    }
-  }, [bosses, isEditMode]);
-
-  useEffect(() => {
     if (typeof window !== 'undefined') {
       window.localStorage.setItem(CHEAT_SHEET_STORAGE_KEY, JSON.stringify(bosses));
     }
   }, [bosses]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(CHEAT_SHEET_PHASE_STORAGE_KEY, selectedPhase);
+    }
+  }, [selectedPhase]);
 
   const tacticsBossOptions = useMemo(() => {
     const availableBosses = Array.isArray(raidZones) && raidZones.length > 0
@@ -573,7 +557,7 @@ export default function ResourcesTab({
   };
 
   useEffect(() => {
-    if (resourcesSubTab !== 'tactics') return undefined;
+    if (activeResourcesSubTab !== 'tactics') return undefined;
 
     let isMounted = true;
     const loadTactics = async () => {
@@ -629,10 +613,10 @@ export default function ResourcesTab({
     return () => {
       isMounted = false;
     };
-  }, [fetchData, resourcesSubTab]);
+  }, [activeResourcesSubTab, fetchData, tacticsBossOptions]);
 
   useEffect(() => {
-    if (resourcesSubTab !== 'wipefest') return undefined;
+    if (activeResourcesSubTab !== 'wipefest') return undefined;
 
     let isMounted = true;
     const loadWipefestEntries = async () => {
@@ -643,7 +627,7 @@ export default function ResourcesTab({
         setWipefestEntries(entries);
         setDraftWipefestEntries(entries);
         setDeletedWipefestEntryIds([]);
-      } catch (error) {
+      } catch {
         if (!isMounted) return;
         setWipefestEntries([]);
         setDraftWipefestEntries([]);
@@ -655,10 +639,10 @@ export default function ResourcesTab({
     return () => {
       isMounted = false;
     };
-  }, [fetchData, resourcesSubTab]);
+  }, [activeResourcesSubTab, fetchData]);
 
   useEffect(() => {
-    if (resourcesSubTab !== 'raidlogs') return undefined;
+    if (activeResourcesSubTab !== 'raidlogs') return undefined;
 
     let isMounted = true;
 
@@ -680,7 +664,17 @@ export default function ResourcesTab({
     return () => {
       isMounted = false;
     };
-  }, [fetchData, resourcesSubTab]);
+  }, [activeResourcesSubTab, fetchData]);
+
+  const cheatSheetRaidOptions = useMemo(() => {
+    const sourceBosses = isEditMode ? draftBosses : bosses;
+    const raids = [...new Set((sourceBosses || []).map(boss => boss.raid).filter(Boolean))]
+      .filter(raid => selectedPhase === 'All Phases' || getPhaseFromRaid(raid) === selectedPhase)
+      .sort((a, b) => a.localeCompare(b));
+    return ['All Raids', ...raids];
+  }, [bosses, draftBosses, isEditMode, selectedPhase]);
+
+  const effectiveSelectedRaid = cheatSheetRaidOptions.includes(selectedRaid) ? selectedRaid : 'All Raids';
 
   const filteredBosses = useMemo(() => {
     const sourceBosses = isEditMode ? draftBosses : bosses;
@@ -688,16 +682,42 @@ export default function ResourcesTab({
     return [...(sourceBosses || [])]
       .filter(boss => {
         if (!isEditMode && boss.hidden) return false;
-        const matchesRaid = selectedRaid === 'All Raids' || boss.raid === selectedRaid;
+        const matchesRaid = effectiveSelectedRaid === 'All Raids' || boss.raid === effectiveSelectedRaid;
         const bossPhase = getPhaseFromRaid(boss.raid);
         const matchesPhase = selectedPhase === 'All Phases' || bossPhase === selectedPhase;
         return matchesRaid && matchesPhase;
       })
       .sort((a, b) => Number(Boolean(a.hidden)) - Number(Boolean(b.hidden)));
-  }, [bosses, draftBosses, isEditMode, selectedPhase, selectedRaid]);
+  }, [bosses, draftBosses, effectiveSelectedRaid, isEditMode, selectedPhase]);
+
+  useEffect(() => {
+    if (activeResourcesSubTab !== 'cheatsheets' || typeof window === 'undefined') return undefined;
+
+    let cancelled = false;
+    const refreshWowheadLinks = () => {
+      if (!cancelled && window.$WowheadPower?.refreshLinks) {
+        window.$WowheadPower.refreshLinks();
+      }
+    };
+
+    const frame = window.requestAnimationFrame(refreshWowheadLinks);
+    const timer = window.setTimeout(refreshWowheadLinks, 120);
+    return () => {
+      cancelled = true;
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+    };
+  }, [activeResourcesSubTab, filteredBosses, selectedPhase, effectiveSelectedRaid]);
 
   const currentBosses = isEditMode ? draftBosses : bosses;
   const hasPendingChanges = JSON.stringify(draftBosses) !== JSON.stringify(bosses);
+
+  const handleSaveChanges = () => {
+    const normalizedBosses = draftBosses.map(normalizeBoss);
+    setBosses(normalizedBosses);
+    setDraftBosses(normalizedBosses);
+    setIsEditMode(false);
+  };
 
   const updateBossField = (bossId, field, value) => {
     setDraftBosses(prev => prev.map(boss => {
@@ -723,7 +743,7 @@ export default function ResourcesTab({
         ...boss,
         card_sections: {
           ...existingSections,
-          [sectionKey]: !Boolean(existingSections[sectionKey]),
+          [sectionKey]: !existingSections[sectionKey],
         },
       };
     }));
@@ -732,7 +752,7 @@ export default function ResourcesTab({
   const handleHideBossCard = (bossId) => {
     setDraftBosses(prev => prev.map(boss => {
       if (boss.boss_id !== bossId) return boss;
-      return { ...boss, hidden: !Boolean(boss.hidden) };
+      return { ...boss, hidden: !boss.hidden };
     }));
   };
 
@@ -740,7 +760,7 @@ export default function ResourcesTab({
     const newBoss = normalizeBoss({
       boss_id: `new-boss-${Date.now()}`,
       name: 'New Boss',
-      raid: selectedRaid !== 'All Raids' ? selectedRaid : 'Karazhan',
+      raid: effectiveSelectedRaid !== 'All Raids' ? effectiveSelectedRaid : 'Karazhan',
       level: 70,
       phase: 1,
       creature_type: 'Uncategorized',
@@ -1117,8 +1137,8 @@ export default function ResourcesTab({
   };
 
   return (
-    <div className="space-y-4">
-      {resourcesSubTab === 'bis' && (
+    <div data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="space-y-4">
+      {activeResourcesSubTab === 'bis' && (
         <BisConfigTab
           selectedBisSpec={selectedBisSpec}
           setSelectedBisSpec={setSelectedBisSpec}
@@ -1130,7 +1150,7 @@ export default function ResourcesTab({
         />
       )}
 
-      {resourcesSubTab === 'tactics' && (
+      {activeResourcesSubTab === 'tactics' && (
         <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-5">
           <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
             <div className="flex-1 min-w-0 pr-2">
@@ -1547,7 +1567,7 @@ export default function ResourcesTab({
                                     const videoId = parsed.pathname.replace('/', '');
                                     embedUrl = `https://www.youtube.com/embed/${videoId}`;
                                   }
-                                } catch (error) {
+                                } catch {
                                   embedUrl = renderedUrl;
                                 }
 
@@ -1583,7 +1603,7 @@ export default function ResourcesTab({
         </div>
       )}
 
-      {resourcesSubTab === 'weakauras' && (
+      {activeResourcesSubTab === 'weakauras' && (
         <WeakaurasTab
           fetchData={fetchData}
           postData={postData}
@@ -1591,7 +1611,7 @@ export default function ResourcesTab({
         />
       )}
 
-      {resourcesSubTab === 'cheatsheets' && (
+      {activeResourcesSubTab === 'cheatsheets' && (
         <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-5">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
@@ -1604,10 +1624,10 @@ export default function ResourcesTab({
                 Raid
                 <select
                   className="mt-1 min-w-[180px] rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
-                  value={selectedRaid}
+                  value={effectiveSelectedRaid}
                   onChange={event => setSelectedRaid(event.target.value)}
                 >
-                  {CHEAT_SHEET_RAIDS.map(raid => (
+                  {cheatSheetRaidOptions.map(raid => (
                     <option key={raid} value={raid}>{raid}</option>
                   ))}
                 </select>
@@ -1932,13 +1952,17 @@ export default function ResourcesTab({
                           </>
                         ) : (
                           <>
-                            <span className={`rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-[0.12em] ${boss.tauntable ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300' : 'border-red-500/40 bg-red-500/10 text-red-300'}`}>
+                            <span className={`rounded-full border px-2 py-2 text-[10px] font-bold uppercase tracking-[0.12em] ${boss.tauntable ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300' : 'border-red-500/40 bg-red-500/10 text-red-300'}`}>
                               {boss.tauntable ? 'Tauntable' : 'Not Tauntable'}
                             </span>
-                            <span className={`rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-[0.12em] ${boss.dual_wield ? 'border-cyan-500/40 bg-cyan-500/10 text-cyan-300' : 'border-slate-700 bg-slate-800 text-slate-400'}`}>
-                              {boss.dual_wield ? 'Dual Wield' : 'Single Wield'}
+                            <span className={`rounded-full border px-2 py-2 text-[10px] font-bold uppercase tracking-[0.12em] ${boss.dual_wield ? 'border-cyan-500/40 bg-cyan-500/10 text-cyan-300' : 'border-slate-700 bg-slate-800 text-slate-400'}`}>
+                              {boss.dual_wield ? 'Dual Wield' : (
+                                <span className="relative inline-block after:absolute after:left-0 after:right-0 after:top-[43%] after:h-0.5 after:bg-slate-500 after:content-['']">
+                                  Dual Wield
+                                </span>
+                              )}
                             </span>
-                            <span className={`rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-[0.12em] ${boss.parry_haste ? 'border-violet-500/40 bg-violet-500/10 text-violet-300' : 'border-slate-700 bg-slate-800 text-slate-400'}`}>
+                            <span className={`rounded-full border px-2 py-2 text-[10px] font-bold uppercase tracking-[0.12em] ${boss.parry_haste ? 'border-violet-500/40 bg-violet-500/10 text-violet-300' : 'border-slate-700 bg-slate-800 text-slate-400'}`}>
                               {boss.parry_haste ? 'Parry Haste' : 'No Parry Haste'}
                             </span>
                           </>
@@ -1965,7 +1989,19 @@ export default function ResourcesTab({
                               );
 
                               if (!spellId) {
-                                return <span key={`${boss.boss_id}-icon-${icon}`}>{image}</span>;
+                                return (
+                                  <a
+                                    key={`${boss.boss_id}-icon-${icon}`}
+                                    href={`https://www.wowhead.com/tbc/search?q=${encodeURIComponent(icon.replaceAll('_', ' '))}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="boss-spell-icon group relative block overflow-hidden rounded-md border border-slate-700 bg-slate-950 transition hover:border-amber-500"
+                                    title={`Search Wowhead for ${icon.replaceAll('_', ' ')}`}
+                                    style={{ fontSize: 0, lineHeight: 0 }}
+                                  >
+                                    {image}
+                                  </a>
+                                );
                               }
 
                               return (
@@ -1974,16 +2010,35 @@ export default function ResourcesTab({
                                   href={`https://www.wowhead.com/tbc/spell=${spellId}`}
                                   data-wh-rename-link="false"
                                   data-wh-icon-size="large"
+                                  data-wh-tooltip={`spell:${spellId}`}
                                   target="_blank"
                                   rel="noreferrer"
                                   className="boss-spell-icon group relative block overflow-hidden rounded-md border border-slate-700 bg-slate-950 transition hover:border-amber-500"
-                                  title={icon}
+                                  title={`Spell ${spellId}`}
                                   style={{ fontSize: 0, lineHeight: 0 }}
                                 >
                                   {image}
                                 </a>
                               );
                             })}
+                          </div>
+                        )}
+
+                        {iconList.length === 0 && spellList.length > 0 && (
+                          <div className="flex flex-wrap gap-2">
+                            {spellList.map(spellId => (
+                              <a
+                                key={`${boss.boss_id}-spell-${spellId}`}
+                                href={`https://www.wowhead.com/tbc/spell=${spellId}`}
+                                data-wh-rename-link="false"
+                                data-wh-tooltip={`spell:${spellId}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="rounded border border-slate-700 bg-slate-950 px-2 py-1 text-xs text-slate-300 transition hover:border-amber-500 hover:text-amber-300"
+                              >
+                                Spell {spellId}
+                              </a>
+                            ))}
                           </div>
                         )}
 
@@ -2025,7 +2080,7 @@ export default function ResourcesTab({
         </div>
       )}
 
-      {resourcesSubTab === 'raidlogs' && (
+      {activeResourcesSubTab === 'raidlogs' && (
         <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
@@ -2104,7 +2159,7 @@ export default function ResourcesTab({
         </div>
       )}
 
-      {resourcesSubTab === 'wowaudit' && (
+      {activeResourcesSubTab === 'wowaudit' && (
         <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
           <h3 className="text-lg font-bold text-slate-100">WoWAudit</h3>
           <p className="text-sm text-slate-400">Keep a short list of important WoWAudit links, profiles, or notes for known raid goals and progress.</p>
@@ -2112,7 +2167,7 @@ export default function ResourcesTab({
         </div>
       )}
 
-      {resourcesSubTab === 'wipefest' && (
+      {activeResourcesSubTab === 'wipefest' && (
         <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>

@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
-const { resolveRoleEmojiToken, resolveClassEmojiToken, resolveSpecEmojiToken } = require('../utils/discordEmojiTokens');
+const { resolveRoleEmojiToken, resolveSpecEmojiToken } = require('../utils/discordEmojiTokens');
 const { parseScheduledUnix } = require('../../utils/raidSignupTime');
 const {
   getEventById,

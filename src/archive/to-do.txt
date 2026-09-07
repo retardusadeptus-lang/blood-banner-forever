@@ -3,17 +3,43 @@
 ## Architecture, Core Refactoring & Infrastructure
 
 ### In Progress / Remaining Shell Reduction
-- [ ] Final App Shell Pass: Move remaining tab/subtab navigation, route mapping, and top-level dropdown controls into a dedicated useNavigation hook.
-- [ ] Data Sync Isolation: Isolate auth/session bootstrap and periodic background sync logic from App.jsx into a dedicated data-sync provider/hook.
-- [ ] Prop Drilling Cleanup: Audit container components to pass targeted prop bags rather than dumping full top-level state objects.
+- [x] Final App Shell Pass: Move remaining tab/subtab navigation, route mapping, and top-level dropdown controls into a dedicated useNavigation hook.
+- [x] Registry Route Metadata: Give every registered tab a stable ID, explicit content route, visibility roles, default group, and persisted order.
+- [x] Per-Tab Metadata Refactor:
+  - [x] Make navigation and active-state handling consume stable tab IDs instead of hard-coded group headers.
+  - [x] Resolve Sitemap tab details through a stable tab-ID metadata lookup.
+  - [x] Add a shared effective tab metadata accessor for group, order, route, and visibility resolution.
+  - [x] Resolve Scoring and Sitemap content ownership through registry routes, including legacy route aliases.
+  - [x] Move Sitemap tab sections and actions into registry-backed metadata keyed by tab ID.
+  - [x] Add normalized content-owner metadata for existing tab containers.
+  - [x] Consume content-owner metadata in the dashboard shell for migrated tab branches.
+  - [x] Validate content-owner values against the supported dashboard render-owner set.
+  - [x] Make content ownership explicit on every registered tab instead of deriving it from routes.
+  - [x] Drive auth-only route recovery through the shared registry metadata.
+  - [x] Move special Scoring and Sitemap visibility checks into explicit registry capabilities.
+  - [x] Resolve dropdown active state through stable registry tab IDs, including legacy route aliases.
+  - [x] Validate canonical routes and legacy route aliases for collisions.
+  - [x] Require exact subtab matching when resolving canonical routes and aliases.
+  - [x] Add focused registry contract tests for routes, visibility, ownership, and layout overrides.
+  - [x] Make each tab component declare or consume its registry metadata for grouping, visibility, and route ownership.
+  - [x] Replace remaining App.jsx and content-shell tab conditionals with metadata-driven tab resolution where practical. Loot Overview/Assignment/Assigned, Raid Assignments Overview/Tactics, Guild Bank contents/requests, recruitment, admin, resources, and scoring now use stable registry tab IDs. Navigation now owns active tab-ID resolution.
+  - [x] Add registry validation for stable IDs, routes, and visibility metadata.
+- [x] Data Sync Isolation: Isolate auth/session bootstrap and periodic background sync logic from App.jsx into dedicated hooks (`useAuthSession`, `useDataSync`).
+- [x] Prop Drilling Cleanup: Audit container components to pass targeted prop bags rather than dumping full top-level state objects. Scoring, Items DB, roster/attendance, Admin, Raid Assignments, Loot Council, and shared API helpers now cross the content-shell boundary as dedicated bags. Added a regression check for projected view-model callback dependencies.
 - [x] Backend Refactor: Modularize the 1,500+ line server.js monolith into Express Router sub-modules (/routes, /middleware, /config, /services).
-- [ ] Project Setup: Evaluate monorepo structure and folder setup based on team feedback.
+- [-] Project Setup: Evaluate monorepo structure and folder setup based on team feedback.
+
+### Runtime Validation & Regression Coverage
+- [x] Browser smoke test: frontend loads on port 3000, API responds on its configured port, and public main/subtab navigation updates active state without navigation errors.
+- [x] Authenticated browser smoke test: verify member, officer, and admin rendering, Sitemap editing/persistence, and moved-tab content after Battle.net login.
+- [x] Add automated navigation tests for persisted active tab recovery and stable-ID subtab resolution.
+- [x] Add backend authorization/persistence tests for configurable site visibility and layout overrides.
 
 ### Infrastructure & Platform Fixes
 - [x] Git & Deployment: Resolve Battle.net branch merge conflicts.
 - [x] Persistence: Fix production push wipe bug where saved JSON assignment blobs disappear.
 - [x] Performance: Implement pagination/virtualization on Master Items DB (limit default load to 50 items at a time).
-- [ ] Admin Operations: Resolve Hetzner refund query.
+- [/] Admin Operations: Resolve Hetzner refund query.
 
 ---
 
@@ -21,8 +47,8 @@
 
 ### Auth & Access Control
 - [x] Unified Admin System: Build an Admin Lounge powered by a single password box that yields granular view permissions depending on entered credentials.
-- [ ] Configurable Tab Visibility: Add controls in the Config tab to toggle/move tabs and groupings between Public, Officer, and Admin views.
-- [ ] Login Fallback:
+- [x] Configurable Tab Visibility: Add controls in the Config tab to toggle/move tabs and groupings between Public, Officer, and Admin views.
+- [/] Login Fallback:
   - Fall back to guild member password if Battle.net OAuth fails.
   - Require auth for Guild Bank baskets; keep bank viewable read-only.
   - Hide Loot Council Priority Overview behind password auth.
@@ -31,11 +57,11 @@
 ### Discord Bot & Server Sync
 - [x] Server Configuration: Convert Discord server to Community Server
 - [x] Enforce nickname selection.
-- [ ] Auto-Onboarding: Automatically add new Discord members to the web roster via bot integration.
+- [-] Auto-Onboarding: Automatically add new Discord members to the web roster via bot integration.
 - [x] Custom Assets: Update bot to utilize custom class icons uploaded to the Discord Developer Portal; fix missing discord icons/mobile discord app icon rendering.
-- [ ] Bot Fixes & Integrations:
+- [/] Bot Fixes & Integrations:
   - [x] Fix bug where selecting a class leaves the top dropdown box selected for all users.
-  - Explore direct SoftRes integration with the Discord bot.
+  - [/] Explore direct SoftRes integration with the Discord bot.
 
 ---
 
@@ -64,7 +90,7 @@
 ### Calendar & Absences
 - [x] Absences Tab: Add dedicated tab to track declared member absences.
 - [x] Raid Calendar: Build interactive monthly calendar showing raids, absences, guild birthdays, and community events.
-- [ ] Signups Tracking: Add quick-filter toggle: "Who is not signed up?"
+- [x] Signups Tracking: Add quick-filter toggle: "Who is not signed up?"
 - [x] Alt Handling: Allow renaming/custom character entry during signups and link attendance back to main Battle.net ID.
 - [x] Timezones: Fix timestamp/time offset bugs on scheduled events.
 
@@ -84,7 +110,7 @@
 
 ### Tactics & Strategy Module
 - [x] Dynamic Tactics Layout: Link Tactics drop-down selection to the Raid Assignments boss DB so newly created bosses auto-populate into Tactics.
-- [ ] Role Breakdown: Add filterable strategy sections for Tanks, Healers, and DPS per encounter.
+- [x] Role Breakdown: Add filterable strategy sections for Tanks, Healers, and DPS per encounter.
 
 ---
 
@@ -96,18 +122,18 @@
 - [x] History & Management: Purge obsolete request history and add explicit Delete options in history tab.
 
 ### Addon Sync & Lua Integration
-- [ ] WeakAura Assignment Exporter:
+- [/] WeakAura Assignment Exporter:
   - Build JSON / Angry Assignments string exporter on the site for in-game copy/pasting.
   - Write companion Lua WeakAura with embedded JSON parser to render dynamic text on-screen based on logged-in character name.
 - [x] Addon Data Exchange:
   - [x] Fix gbexport failure bug.
-  - [ ] Fix missing sub-types on uploads (check PC vs. laptop addon version parity).
-  - [ ] Add feature to site/addon to extract full in-game Guild Roster alongside guild ranks.
+  - [/] Fix missing sub-types on uploads (check PC vs. laptop addon version parity).
+  - [/] Add feature to site/addon to extract full in-game Guild Roster alongside guild ranks.
   - [?] Add request approval & autotrade import payloads from site to addon.
 
 ### Items & Data Management
 - [x] Item ID Repair: Run mass item ID update script with Ghab (comparing Wowhead scraped data vs. background DB). Fix missing/wrong item IDs.
-- [ ] Drop Sources: Fix drop source mapping for Tier tokens and add explicit zone tags to drops on BiS lists.
+- [/] Drop Sources: Fix drop source mapping for Tier tokens and add explicit zone tags to drops on BiS lists.
 
 ---
 
@@ -115,7 +141,7 @@
 
 ### Roster & Officer Tools
 - [x] Character Tagging: Add visual 'Claimed' star/badge for claimed characters and officer tags for officer characters.
-- [ ] Guild Rank Config: Integrate Guild Ranks into scoring calculations; allow manual rank overrides in-app and during imports.
+- [x] Guild Rank Config: Integrate Guild Ranks into scoring calculations; allow manual rank overrides in-app and during imports.
 - [x] UI Highlighting: Fix "Show Mine" toggle in Officer Roles so it correctly highlights the user's name/box.
 
 ### Loot Council & BiS Config
@@ -135,12 +161,12 @@
 ## Analytics, WarcraftLogs & Community Resources
 
 ### WarcraftLogs (WCL) & Integrations
-- [ ] WCL GraphQL Pipeline:
+- [/] WCL GraphQL Pipeline:
   - Build GraphQL queries to fetch parse percentile and healing metrics.
   - Schedule nightly cron job to sync WCL guild logs into player_parses database table.
   - Embed Chart.js / Recharts line charts on frontend with toggleable performance metrics over time.
   - Review parse calculation logic (evaluate T5 specifics vs. overall median/best averages).
-- [ ] Third-Party Integrations: Explore integration options for WowAudit and RCLootCouncil (RCLC).
+- [/] Third-Party Integrations: Explore integration options for WowAudit and RCLootCouncil (RCLC).
 
 ### Community Resources
 - [x] WeakAura Repository: Build collapsible WeakAura tab for sharing raw WA strings (hidden string inputs with 1-click "Copy Code" buttons for standard users).
@@ -157,14 +183,99 @@
 [x] Add a way to remove people from bench
 [x] Sometimes users don't get added to the raid signups despite signing
 [x] Fix Weakauras tab not saving
-[ ] Verify data in cheat sheets tab
-[ ] Finish Site Instructions tab
-[ ] Redevelop the current raid roster workflow
-[ ] Add Discord Login
 [x] Add Ability to approve/reject/delete applications
 [x] Change recruitment focus notes to show officer notes when logged in as officer
 [x] Make Calendar tab public
-[ ] Finish Warcraftlogs API integration
 [x] Fix wipefest tab not saving
 [x] Depracate & remove officer login - now tied to battlenet
+
+
+
+## Phase 1: Data, Access & Configuration
+
+[ ] Verify data in cheat sheets tab
+[x] make it so loot council tab is only visible when logged in with battlenet and have claimed a character
+[ ] Add Discord oauth2 Login
+[x] keep character claim in its own box
+  [ ] reinstate proper battlenet character claiming
+[x] hide 'save changes' box for non-officers (check first that non-members shouldn't have anything that flags a dirty state in the site which does in fact render this box irrelevant for them)
+[x] add sitemap tab within admin tab group (admin role only to be able to view) that shows which tabs are visible to which role (public, guild member [identified as somebody on roster who has claimed character], officer, admin)
+[x] include components within each tab through registry-backed tab metadata
+  [x] move static Sitemap section/action definitions to stable tab IDs
+  [ ] keep component/action permissions separate from surfaced navigation roles
+[x] consider how easy it is to implement an edit functionality to each tab that shows/hides tabs for roles
+[x] review which options e.g. export/import are admin only
+[ ] review if archiving works consistently on gbank requests - do we need to mark durty and save changes?
+[ ] Admin Operations: Resolve Hetzner refund query.
+
+## Phase 2: Navigation, Shell & Shared UX
+
+[x] refreshing while in admin tab group does not return to the same tab
+[x] redesign site header
+  [x] move default phase to config tab
+  [x] add phase filter to priority assignments tab
+  [x] add phase filter to priority overview tab
+  [x] make bis config default to default phase & remember individual selection
+  [x] make cheat sheets default to default phase & remember individual selection
+    [x] make cheat sheets raid dropdown list only show relevant raids e.g. T6 selected phase should only show mount hyjal and black temple in the raids dropdown
+    [x] some icons do not show spell info
+    [x] dual wield flag should be either dual wield (highlighted blue as it currently is) or strikethrough with the same ttext but in grey, rather than 'single wield'
+  [x] keep character claim in its own box
+  [x] hide 'save changes' box for non-officers (check first that non-members shouldn't have anything that flags a dirty state in the site which does in fact render this box irrelevant for them)
+[x] move raid signups history sub tab to end slot
+[x] use different text colour for officer tabs (purple?)
+[x] use different text colour for admin tabs (blue?)
+[x] change 'copy JSON' button text to a copy icon
+[ ] can we add the page we're on to the URL without actually having to make separate URLs for each tab? Idea would be to be able to link to e.g. guild-name-tbc.top/raid-assignments and show only the raid assignments tab in read-only mode for unsophisticated users of the app
+
+## Phase 3: Raid, Roster & Attendance Workflows
+
+[x] Redevelop the current raid roster workflow
+[ ] default the tactics and raid assignment boss selector selections to match the phase and remember user selections
+[ ] add attendance chart per person in the drilldown of attendance tab that shows event date chronoligcally and whether they attended (dates taken from raid history log)
+[ ] raid history log should be its own full-width section with a summary of signups, absence, tentative, bench etc taken from signup event.
+[ ] make sections in absences tab collapsible
+[ ] make import raidhelper section collapsed by default
+
+## Phase 4: Guild Bank & Addon Workflow
+
+[ ] review why subcategory doesn't work on gbank export/import
+[ ] add additional webhook for guild bank updates
+[ ] add guild bank addon instructions (commands etc)
+[ ] add auto populate trade window back into addon
+[ ] make the sections on gbank history tab collapsible
+[ ] Add feature to site/addon to extract full in-game Guild Roster alongside guild ranks.
+[ ] WeakAura Assignment Exporter:
+  [ ] Write companion Lua WeakAura with embedded JSON parser to render dynamic text on-screen based on logged-in character name.
+
+## Phase 5: Applications, Recruitment & Community
+
+[ ] Add discord and battletag sections to applications
+[ ] Add echo to discord (direct to applicant if possible) that tells them when they have added an application and notifies them of any changes
+[ ] consider if allowing people to sign directly on site is possible and a good idea
+[ ] add a guild info tab with links to discord, hyperlink to jump to applications
+
+## Phase 6: Resources, Loot Data & Third-Party Integrations
+
+[ ] Finish Site Instructions tab
+[ ] allow creation of sections on weakauras tab (only admins can create sections so options should be visible only to admins)
+[ ] add search and filter on weakauras page
+[ ] add a tags section (comma separated tags) to each weakaura that feed into the filter/search
+[ ] Drop Sources: Fix drop source mapping for Tier tokens and add explicit zone tags to drops on BiS lists.
+[ ] Explore direct SoftRes integration with the Discord bot.
+[ ] Third-Party Integrations: Explore integration options for WowAudit and RCLootCouncil (RCLC).
 [ ] Is there a way to proxy icons for Serbs instead of wowhead?
+
+## Phase 7: WarcraftLogs & Analytics
+
+[ ] Finish Warcraftlogs API integration
+[ ] WCL GraphQL Pipeline:
+  [ ] Build GraphQL queries to fetch parse percentile and healing metrics.
+  [ ] Schedule nightly cron job to sync WCL guild logs into player_parses database table.
+  [ ] Embed Chart.js / Recharts line charts on frontend with toggleable performance metrics over time.
+  [ ] Review parse calculation logic (evaluate T5 specifics vs. overall median/best averages).
+
+## Phase 8: Visual Polish & Experimental Ideas
+
+[ ] test red hue site redesign
+[ ] maybe big faded image in background like illidan etc per site phase?

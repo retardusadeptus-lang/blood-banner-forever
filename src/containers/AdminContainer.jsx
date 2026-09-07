@@ -3,35 +3,40 @@ import AdminTodoTab from '../features/admin/AdminTodoTab';
 import OfficerRolesTab from '../components/OfficerRolesTab';
 import DiscordBotConfigTab from '../components/DiscordBotConfigTab';
 import GuildRosterTab from '../components/GuildRosterTab';
+import SitemapTab from '../components/SitemapTab';
 
-export default function AdminContainer({
-  activeTab,
-  adminSubTab,
-  roster,
-  getSpecById,
-  specsByName,
-  getDisplayFromId,
-  myPlayerId,
-  selectedMyPlayerName,
-  rosterClaims,
-  handleUnclaimClaim,
-  adminData,
-  setScoringConfig,
-  scoringConfig,
-  scoringConfigDirty,
-  bnetAuthState,
-  fetchData,
-  specsFromDb,
-  calculateScore,
-  calculateAttendance,
-  playerStats,
-  guildRoleRanks,
-  handleUpdatePlayer,
-  handleRemovePlayer,
-  rosterDirty,
-  onSaveRosterChanges,
-  isSavingRoster
-}) {
+export default function AdminContainer({ navigation, directory, admin, scoring, session, rosterModel, siteVisibility, siteTabMetadata }) {
+  const {
+    activeTab,
+    adminSubTab,
+    myPlayerId,
+    selectedMyPlayerName,
+  } = navigation;
+  const {
+    roster,
+    getSpecById,
+    specsByName,
+    getDisplayFromId,
+    specsFromDb,
+    calculateScore,
+  } = directory;
+  const { rosterClaims, handleUnclaimClaim, data: adminData } = admin;
+  const {
+    setConfig: setScoringConfig,
+    config: scoringConfig,
+    configDirty: scoringConfigDirty,
+    playerStats,
+    calculateAttendance,
+  } = scoring;
+  const { bnetAuthState, fetchData } = session;
+  const {
+    guildRoleRanks,
+    handleUpdatePlayer,
+    handleRemovePlayer,
+    dirty: rosterDirty,
+    onSaveChanges: onSaveRosterChanges,
+    isSaving: isSavingRoster,
+  } = rosterModel;
   const {
     officerRoles,
     setOfficerRoles,
@@ -52,9 +57,11 @@ export default function AdminContainer({
     handleSaveDiscordBotConfig
   } = adminData;
 
-  const resolvedAdminSubTab = activeTab === 'roster' ? 'roster' : adminSubTab;
+  const registryRoute = siteTabMetadata?.contentOwner === 'AdminContainer' ? siteTabMetadata.route : null;
+  const resolvedActiveTab = registryRoute?.activeTab || activeTab;
+  const resolvedAdminSubTab = registryRoute?.subTab || (resolvedActiveTab === 'roster' ? 'roster' : adminSubTab);
 
-  if (activeTab === 'officerRoles' || activeTab === 'roster') {
+  if (resolvedActiveTab === 'officerRoles' || resolvedActiveTab === 'roster') {
     return (
       <div className="space-y-4">
         {resolvedAdminSubTab === 'roster' && (
@@ -140,7 +147,11 @@ export default function AdminContainer({
     );
   }
 
-  if (activeTab === 'discordBotConfig') {
+  if (resolvedActiveTab === 'sitemap') {
+    return <SitemapTab {...siteVisibility} siteTabMetadata={siteTabMetadata} />;
+  }
+
+  if (resolvedActiveTab === 'discordBotConfig') {
     return (
       <DiscordBotConfigTab
         config={discordBotConfig}

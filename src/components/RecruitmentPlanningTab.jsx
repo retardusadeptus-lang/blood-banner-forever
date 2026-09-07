@@ -173,7 +173,7 @@ function CustomDropdown({
   );
 }
 
-export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData, putData, rosterManagementProps }) {
+export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData, putData, rosterManagementProps, siteTabMetadata }) {
   const [groups, setGroups] = useState(buildEmptyGroups);
   const [lastSavedGroups, setLastSavedGroups] = useState(buildEmptyGroups);
   const [isLoading, setIsLoading] = useState(true);
@@ -403,7 +403,7 @@ export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData,
   };
 
   return (
-    <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 space-y-4">
+    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-xl font-bold text-slate-100">Roster Planning</h2>
@@ -550,9 +550,7 @@ export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData,
               {group.slots.map((slot) => {
                 const specId = String(slot.specId || '');
                 const rosterOptions = getRosterOptions(specId);
-                const selectedSpec = specById.get(specId);
                 const selectedPlayer = rosterById.get(String(slot.rosterId || ''));
-                const selectedSpecIcon = getSpecIcon(selectedSpec);
                 const selectedRosterOption = rosterOptions.find(option => option.type === 'option' && option.value === String(slot.rosterId || '')) || rosterOptions[0];
 
                 return (

@@ -9,6 +9,78 @@ const {
 
 const router = express.Router();
 
+function getProfileNamespace(value) {
+  const href = String(value || '').trim();
+  if (!href) return '';
+
+  try {
+    return new URL(href).searchParams.get('namespace') || '';
+  } catch {
+    const match = href.match(/[?&]namespace=([^&]+)/i);
+    return match ? decodeURIComponent(match[1]) : '';
+  }
+}
+
+function findNamedCharacter(value, depth = 0) {
+  if (!value || depth > 4) return null;
+  if (Array.isArray(value)) {
+    return value.map(item => findNamedCharacter(item, depth + 1)).find(Boolean) || null;
+  }
+  if (typeof value !== 'object') return null;
+
+  if (String(value.name || '').trim() && (value.realm || value.level || value.id || value.key)) {
+    return value;
+  }
+
+  const preferredKeys = ['character', 'protected_character', 'profile', 'data'];
+  for (const key of preferredKeys) {
+    const match = findNamedCharacter(value[key], depth + 1);
+    if (match) return match;
+  }
+
+  return Object.values(value)
+    .map(child => findNamedCharacter(child, depth + 1))
+    .find(Boolean) || null;
+}
+
+function findProfileHref(value, depth = 0) {
+  if (!value || depth > 4) return '';
+  if (typeof value === 'string' && value.includes('namespace=')) return value;
+  if (Array.isArray(value)) {
+    return value.map(item => findProfileHref(item, depth + 1)).find(Boolean) || '';
+  }
+  if (typeof value !== 'object') return '';
+
+  if (typeof value.href === 'string' && value.href.includes('namespace=')) return value.href;
+  return Object.values(value)
+    .map(child => findProfileHref(child, depth + 1))
+    .find(Boolean) || '';
+}
+
+function getGameVersion(character, item, account, profileNamespace = '') {
+  const explicitVersion = character?.gameVersion
+    || character?.game_version
+    || item?.gameVersion
+    || item?.game_version
+    || character?.game?.name
+    || item?.game?.name
+    || account?.game?.name
+    || account?.gameVersion
+    || account?.game_version;
+  if (explicitVersion) return String(explicitVersion).trim();
+
+  const namespace = [character, item, account]
+    .map(findProfileHref)
+    .map(getProfileNamespace)
+    .find(Boolean)
+    ?.toLowerCase() || String(profileNamespace || '').toLowerCase();
+  if (namespace.includes('classicann')) return 'Classic Anniversary';
+  if (namespace.includes('classic1x')) return 'Classic Era';
+  if (namespace.includes('classic2x')) return 'Classic Progression';
+  if (namespace.includes('classic')) return 'WoW Classic';
+  return 'World of Warcraft';
+}
+
 function buildRosterRoutes({ db, sessionSecret, bnetConfig }) {
   const { BNET_API_BASE_URL, BNET_REGION, BNET_LOCALE } = bnetConfig;
 
@@ -18,34 +90,65 @@ function buildRosterRoutes({ db, sessionSecret, bnetConfig }) {
       throw new Error('No active Battle.net session');
     }
 
-    const response = await fetch(`${BNET_API_BASE_URL}/profile/user/wow/characters?namespace=profile-${BNET_REGION}&locale=${BNET_LOCALE}`, {
-      headers: { Authorization: `Bearer ${session.accessToken}` }
-    });
-    const data = await response.json().catch(() => ({}));
-    if (!response.ok) {
-      throw new Error(`Battle.net character fetch failed (${response.status}): ${data.error || 'unknown error'}`);
+    const profileNamespaces = [
+      `profile-${BNET_REGION}`,
+      `profile-classicann-${BNET_REGION}`,
+      `profile-classic1x-${BNET_REGION}`,
+      `profile-classic2x-${BNET_REGION}`
+    ];
+    const profileResults = await Promise.all(profileNamespaces.map(async profileNamespace => {
+      const response = await fetch(`${BNET_API_BASE_URL}/profile/user/wow?namespace=${profileNamespace}&locale=${BNET_LOCALE}`, {
+        headers: { Authorization: `Bearer ${session.accessToken}` }
+      });
+      const data = await response.json().catch(() => ({}));
+      return { profileNamespace, response, data };
+    }));
+    const primaryResult = profileResults[0];
+    if (!primaryResult.response.ok) {
+      throw new Error(`Battle.net character fetch failed (${primaryResult.response.status}): ${primaryResult.data.error || 'unknown error'}`);
     }
 
-    const accountCharacters = Array.isArray(data.wow_accounts) ? data.wow_accounts : [];
-    const characters = accountCharacters.flatMap(account => (Array.isArray(account?.characters) ? account.characters : []).map(item => {
-      const character = item?.character || item || {};
-      const realm = character.realm || item?.realm || {};
-      return {
-        name: String(character.name || '').trim(),
-        realmName: String(realm.name || '').trim(),
-        realmSlug: String(realm.slug || '').trim(),
-        gameType: 'wow',
-        level: character.level || item?.level || null,
-        namespace: 'profile'
-      };
-    }));
+    const characters = profileResults.flatMap(({ profileNamespace, response, data }) => {
+      if (!response.ok) return [];
+      const accountCharacters = Array.isArray(data.wow_accounts)
+        ? data.wow_accounts
+        : Array.isArray(data.accounts)
+          ? data.accounts
+          : [];
 
-    return { characters, diagnostics: [] };
-  }
+      return accountCharacters.flatMap(account => {
+        const accountEntries = Array.isArray(account?.characters)
+          ? account.characters
+          : Array.isArray(account?.characterList)
+            ? account.characterList
+            : [];
 
-  function getClaimedCharactersForUser(userId) {
-    const rows = db.prepare('SELECT id, name FROM roster WHERE user_id = ? ORDER BY name COLLATE NOCASE').all(userId);
-    return rows.map(row => ({ rosterId: row.id, rosterName: row.name }));
+        return accountEntries.map(item => {
+          const character = findNamedCharacter(item) || item?.character || item || {};
+          const realm = character.realm || item?.realm || {};
+          const gameVersion = getGameVersion(character, item, account, profileNamespace);
+          const name = String(character.name || item?.name || '').trim();
+          return {
+            name,
+            realmName: String(realm.name || '').trim(),
+            realmSlug: String(realm.slug || '').trim(),
+            gameType: 'wow',
+            gameVersion,
+            level: character.level || item?.level || null,
+            namespace: profileNamespace
+          };
+        });
+      });
+    }).filter(character => character.name);
+
+    const uniqueCharacters = Array.from(new Map(
+      characters.map(character => [
+        `${character.gameVersion}|${character.realmSlug || character.realmName}|${character.name.toLowerCase()}`,
+        character
+      ])
+    ).values());
+
+    return { characters: uniqueCharacters, diagnostics: [] };
   }
 
   function logRosterClaimAudit(payload) {

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { BOTTOM_SLOTS, PHASE_JSON_KEYS } from '../constants';
 import * as helpers from '../utils/helpers';
 
@@ -29,8 +29,6 @@ export default function useDashboardHelpers({
   handleUpdateItemId,
   renderItemLink,
   hideWowheadTooltip,
-  getDisplayFromId,
-  getSpecById,
 }) {
   const [expandedBisSlots, setExpandedBisSlots] = useState({});
 
@@ -38,10 +36,6 @@ export default function useDashboardHelpers({
   const parseRaidSignupDate = helpers.parseRaidSignupDate;
   const normalizeSlotKey = helpers.normalizeSlotKey;
   const isGroupedSlot = helpers.isGroupedSlot;
-
-  useEffect(() => {
-    setExpandedBisSlots({});
-  }, [selectedBisSpec]);
 
   const initializeDefaultBisPriorities = useCallback(async (phase) => {
     const phaseKey = PHASE_JSON_KEYS[phase] || phase;
@@ -399,7 +393,7 @@ export default function useDashboardHelpers({
         </div>
       </div>
     );
-  }, [getItemsForSlotAndSpec, hideWowheadTooltip, renderItemLink, selectedBisSpec]);
+  }, [expandedBisSlots, getItemsForSlotAndSpec, hideWowheadTooltip, renderItemLink, selectedBisSpec]);
 
   return {
     initializeDefaultBisPriorities,

@@ -246,6 +246,10 @@ function ensureNormalizedOperationalTables(db) {
       att_weight REAL NOT NULL DEFAULT 0.5,
       afk_penalty REAL NOT NULL DEFAULT 5,
       guild_role_ranks TEXT NOT NULL DEFAULT '[]',
+      default_site_phase TEXT NOT NULL DEFAULT 'T6',
+      default_site_tab TEXT NOT NULL DEFAULT 'recruitment.focus',
+      claim_game_version TEXT NOT NULL DEFAULT 'all',
+      claim_fallback_enabled INTEGER NOT NULL DEFAULT 0,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `).run();
@@ -253,6 +257,18 @@ function ensureNormalizedOperationalTables(db) {
   const scoringConfigColumns = db.prepare("PRAGMA table_info('scoring_config_values')").all();
   if (!scoringConfigColumns.some(column => column.name === 'guild_role_ranks')) {
     db.prepare("ALTER TABLE scoring_config_values ADD COLUMN guild_role_ranks TEXT NOT NULL DEFAULT '[]'").run();
+  }
+  if (!scoringConfigColumns.some(column => column.name === 'default_site_phase')) {
+    db.prepare("ALTER TABLE scoring_config_values ADD COLUMN default_site_phase TEXT NOT NULL DEFAULT 'T6'").run();
+  }
+  if (!scoringConfigColumns.some(column => column.name === 'default_site_tab')) {
+    db.prepare("ALTER TABLE scoring_config_values ADD COLUMN default_site_tab TEXT NOT NULL DEFAULT 'recruitment.focus'").run();
+  }
+  if (!scoringConfigColumns.some(column => column.name === 'claim_game_version')) {
+    db.prepare("ALTER TABLE scoring_config_values ADD COLUMN claim_game_version TEXT NOT NULL DEFAULT 'all'").run();
+  }
+  if (!scoringConfigColumns.some(column => column.name === 'claim_fallback_enabled')) {
+    db.prepare("ALTER TABLE scoring_config_values ADD COLUMN claim_fallback_enabled INTEGER NOT NULL DEFAULT 0").run();
   }
 
   db.prepare(`
@@ -269,11 +285,11 @@ function ensureNormalizedOperationalTables(db) {
     const insertEntry = db.prepare('INSERT OR REPLACE INTO bis_priority_entries (phase, item_name, spec_name, status) VALUES (?, ?, ?, ?)');
     const migrateBis = db.transaction(() => {
       legacyRows.forEach(row => {
-        let parsed = {};
+        let parsed;
         try {
           parsed = JSON.parse(row.data || '{}');
-        } catch (e) {
-          parsed = {};
+        } catch {
+          return;
         }
 
         Object.entries(parsed).forEach(([itemKey, status]) => {
@@ -295,7 +311,7 @@ function ensureNormalizedOperationalTables(db) {
     if (legacyRow) {
       try {
         legacyConfig = JSON.parse(legacyRow.data || '{}');
-      } catch (e) {
+      } catch {
         legacyConfig = {};
       }
     }
@@ -308,12 +324,16 @@ function ensureNormalizedOperationalTables(db) {
       gemBonus: legacyConfig.gemBonus ?? 10,
       attWeight: legacyConfig.attWeight ?? 0.5,
       afkPenalty: legacyConfig.afkPenalty ?? 5,
-      guildRoleRanks: legacyConfig.guildRoleRanks ?? []
+      guildRoleRanks: legacyConfig.guildRoleRanks ?? [],
+      defaultSitePhase: legacyConfig.defaultSitePhase ?? 'T6',
+      defaultSiteTab: legacyConfig.defaultSiteTab ?? 'recruitment.focus',
+      claimGameVersion: legacyConfig.claimGameVersion ?? 'all',
+      claimFallbackEnabled: legacyConfig.claimFallbackEnabled ?? false
     };
 
     db.prepare(`
-      INSERT INTO scoring_config_values (id, parse_weight, support_multi, cons_bonus, enchant_bonus, gem_bonus, att_weight, afk_penalty, guild_role_ranks)
-      VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO scoring_config_values (id, parse_weight, support_multi, cons_bonus, enchant_bonus, gem_bonus, att_weight, afk_penalty, guild_role_ranks, default_site_phase, default_site_tab, claim_game_version, claim_fallback_enabled)
+      VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       defaults.parseWeight,
       defaults.supportMulti,
@@ -322,7 +342,11 @@ function ensureNormalizedOperationalTables(db) {
       defaults.gemBonus,
       defaults.attWeight,
       defaults.afkPenalty,
-      JSON.stringify(defaults.guildRoleRanks)
+      JSON.stringify(defaults.guildRoleRanks),
+      defaults.defaultSitePhase,
+      defaults.defaultSiteTab,
+      defaults.claimGameVersion,
+      defaults.claimFallbackEnabled ? 1 : 0
     );
   }
 
@@ -333,7 +357,7 @@ function ensureNormalizedOperationalTables(db) {
     if (legacyRow) {
       try {
         enabledBosses = JSON.parse(legacyRow.enabled_bosses || '[]');
-      } catch (e) {
+      } catch {
         enabledBosses = [];
       }
     }
@@ -545,6 +569,34 @@ function ensureRecruitmentApplicationsTables(db) {
     if (!existingColumnNames.has(columnName)) {
       db.prepare(`ALTER TABLE recruitment_applications ADD COLUMN ${columnName} ${columnDefinition}`).run();
     }
+  }
+}
+
+function ensureSiteVisibilityTable(db) {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS site_visibility_config (
+      id INTEGER PRIMARY KEY CHECK (id = 1),
+      surface_roles_by_tab_json TEXT NOT NULL DEFAULT '{}',
+      group_by_tab_json TEXT NOT NULL DEFAULT '{}',
+      order_by_tab_json TEXT NOT NULL DEFAULT '{}',
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  const row = db.prepare('SELECT id FROM site_visibility_config WHERE id = 1').get();
+  if (!row) {
+    db.prepare(`
+      INSERT INTO site_visibility_config (id, surface_roles_by_tab_json, group_by_tab_json, order_by_tab_json)
+      VALUES (1, '{}', '{}', '{}')
+    `).run();
+  }
+
+  const columns = db.prepare("PRAGMA table_info('site_visibility_config')").all();
+  if (!columns.some(column => column.name === 'group_by_tab_json')) {
+    db.prepare("ALTER TABLE site_visibility_config ADD COLUMN group_by_tab_json TEXT NOT NULL DEFAULT '{}'").run();
+  }
+  if (!columns.some(column => column.name === 'order_by_tab_json')) {
+    db.prepare("ALTER TABLE site_visibility_config ADD COLUMN order_by_tab_json TEXT NOT NULL DEFAULT '{}'").run();
   }
 }
 
@@ -1004,6 +1056,7 @@ function ensureDatabaseReady(db) {
     ensureTacticsTable(db);
     ensureWipefestTable(db);
     ensureDiscordBotConfigTable(db);
+    ensureSiteVisibilityTable(db);
     ensureRecruitmentPlanningTable(db);
     ensureRecruitmentApplicationsTables(db);
     ensureRaidSignupTables(db);

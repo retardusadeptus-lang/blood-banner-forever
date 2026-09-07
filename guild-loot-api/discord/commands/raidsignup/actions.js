@@ -1,6 +1,4 @@
-const { EmbedBuilder } = require('discord.js');
 const {
-  listTemplates,
   createEventFromTemplate,
   getEventById,
   getAvailableClassesForEvent,
