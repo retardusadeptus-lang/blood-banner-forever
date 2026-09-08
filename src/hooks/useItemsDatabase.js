@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function useItemsDatabase({
   fetchData,
@@ -9,6 +9,7 @@ export function useItemsDatabase({
   leftSlots,
   p2Bosses,
   globalPhase,
+  defaultPhase = globalPhase,
   setSelectedItemName,
 }) {
   const [mutableItems, setMutableItemsLocal] = useState([]);
@@ -16,7 +17,8 @@ export function useItemsDatabase({
   const [bisPriorities, setBisPrioritiesLocal] = useState({});
   const [dbBisPriorities, setDbBisPrioritiesLocal] = useState({});
   const [dbBisPrioritiesBaseline, setDbBisPrioritiesBaseline] = useState({});
-  const [masterItemsDbPhase, setMasterItemsDbPhaseLocal] = useState('T5');
+  const [masterItemsDbPhase, setMasterItemsDbPhaseLocal] = useState(defaultPhase);
+  const masterItemsDbPhaseWasSelected = useRef(false);
   const [dbNewName, setDbNewName] = useState('');
   const [dbNewSlot, setDbNewSlot] = useState(leftSlots[0]);
   const [dbNewZone, setDbNewZone] = useState('SSC');
@@ -47,9 +49,16 @@ export function useItemsDatabase({
   };
 
   const setMasterItemsDbPhase = (value) => {
+    masterItemsDbPhaseWasSelected.current = true;
     setMasterItemsDbPhaseLocal(value);
     setDbPage(1);
   };
+
+  useEffect(() => {
+    if (!masterItemsDbPhaseWasSelected.current && defaultPhase) {
+      setMasterItemsDbPhaseLocal(defaultPhase);
+    }
+  }, [defaultPhase]);
 
   const setBisPriorities = (newVal) => {
     setBisPrioritiesLocal(newVal);

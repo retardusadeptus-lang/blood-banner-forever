@@ -3,6 +3,21 @@ const crypto = require('crypto');
 const { getBattleNetSessionFromRequest } = require('../middleware/auth');
 const MAX_BASKET_ITEMS = 5;
 
+const BANK_CATEGORY_MAP = {
+  'Trade Goods': 'Materials',
+  'Item Enhancement': 'Materials',
+  Gem: 'Materials',
+  Armor: 'Gear',
+  Weapon: 'Gear',
+  Consumable: 'Consumable',
+  Recipe: 'Recipe'
+};
+
+function normalizeBankCategory(category) {
+  const value = String(category || '').trim();
+  return BANK_CATEGORY_MAP[value] || value || 'Other';
+}
+
 function buildBankRoutes({ db, discordService }) {
   const router = express.Router();
   const { sendBankInventoryWebhook, sendBankBulkResolutionWebhook, sendBankResolutionWebhook } = discordService;
@@ -16,7 +31,8 @@ function buildBankRoutes({ db, discordService }) {
 
   router.get('/bank-items', (req, res) => {
     try {
-      const rows = db.prepare('SELECT * FROM bank_items ORDER BY category, name').all();
+      const rows = db.prepare('SELECT * FROM bank_items ORDER BY category, name').all()
+        .map(row => ({ ...row, category: normalizeBankCategory(row.category) }));
       res.json(rows);
     } catch (e) {
       res.status(500).json({ error: e.message });
@@ -33,7 +49,7 @@ function buildBankRoutes({ db, discordService }) {
         LEFT JOIN bank_items current_items
           ON current_items.item_wowhead_id = history.item_wowhead_id
         ORDER BY history.name COLLATE NOCASE
-      `).all();
+      `).all().map(row => ({ ...row, category: normalizeBankCategory(row.category) }));
       res.json(rows);
     } catch (e) {
       res.status(500).json({ error: e.message });
@@ -71,6 +87,10 @@ function buildBankRoutes({ db, discordService }) {
   router.put('/bank-items', async (req, res) => {
     try {
       const items = Array.isArray(req.body) ? req.body : req.body.items;
+      const normalizedItems = items.map(item => ({
+        ...item,
+        category: normalizeBankCategory(item.category)
+      }));
       const notifyDiscord = Array.isArray(req.body) || req.body.notifyDiscord !== false;
 
       db.prepare('DELETE FROM bank_items').run();
@@ -89,18 +109,18 @@ function buildBankRoutes({ db, discordService }) {
       `);
 
       const insertAll = db.transaction(() => {
-        items.forEach(item => {
+        normalizedItems.forEach(item => {
           insert.run(item.item_wowhead_id, item.name, item.category, item.count, item.sub_type || '');
           remember.run(item.item_wowhead_id, item.name, item.category, item.sub_type || '');
         });
       });
       insertAll();
 
-      db.prepare('INSERT INTO bank_uploads (item_count) VALUES (?)').run(items.length);
+      db.prepare('INSERT INTO bank_uploads (item_count) VALUES (?)').run(normalizedItems.length);
       if (notifyDiscord) {
-        await sendBankInventoryWebhook(items);
+        await sendBankInventoryWebhook(normalizedItems);
       }
-      res.json({ ok: true, count: items.length, discordNotified: notifyDiscord });
+      res.json({ ok: true, count: normalizedItems.length, discordNotified: notifyDiscord });
     } catch (e) {
       res.status(500).json({ error: e.message });
     }

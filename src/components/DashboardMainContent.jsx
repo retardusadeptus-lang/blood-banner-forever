@@ -169,6 +169,7 @@ export default function DashboardMainContent({ viewModel }) {
     setSharedRaidFilter,
     sharedPhaseFilter,
     setSharedPhaseFilter,
+    globalPhase,
     raidAssignmentsBossFilter,
     setRaidAssignmentsBossFilter,
     raidSignupsSubTab,
@@ -384,6 +385,7 @@ export default function DashboardMainContent({ viewModel }) {
           attendance={raidSignupsAttendance}
           raidHelper={raidSignupsHelper}
           navigation={navigationContext}
+              sectionVisibilityById={siteVisibility?.sectionVisibilityById}
           siteTabMetadata={siteTabMetadata}
         />
       )}
@@ -507,6 +509,7 @@ export default function DashboardMainContent({ viewModel }) {
           raidZones={raidZones}
           userBossFilter={tacticsBossFilter}
           setUserBossFilter={setTacticsBossFilter}
+          defaultPhase={globalPhase}
           roster={roster}
           selectedCharacterId={globalMyPlayerId}
           siteTabMetadata={siteTabMetadata}
@@ -533,6 +536,7 @@ export default function DashboardMainContent({ viewModel }) {
           raidZones={raidZones}
           userBossFilter={tacticsBossFilter}
           setUserBossFilter={setTacticsBossFilter}
+          defaultPhase={globalPhase}
           roster={roster}
           selectedCharacterId={globalMyPlayerId}
           siteTabMetadata={siteTabMetadata}

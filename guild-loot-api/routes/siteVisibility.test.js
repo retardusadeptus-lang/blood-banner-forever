@@ -13,6 +13,7 @@ function createApp() {
       surface_roles_by_tab_json TEXT NOT NULL DEFAULT '{}',
       group_by_tab_json TEXT NOT NULL DEFAULT '{}',
       order_by_tab_json TEXT NOT NULL DEFAULT '{}',
+      section_visibility_by_id_json TEXT NOT NULL DEFAULT '{}',
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
     INSERT INTO site_visibility_config (id) VALUES (1);
@@ -43,7 +44,8 @@ test('GET /api/site-visibility returns the public persisted configuration', asyn
     assert.deepEqual(await response.json(), {
       surface_roles_by_tab: {},
       group_by_tab: {},
-      order_by_tab: {}
+      order_by_tab: {},
+      section_visibility_by_id: {}
     });
   });
 });
@@ -85,6 +87,10 @@ test('admin site-visibility writes are normalized and persist across reads', asy
         order_by_tab: {
           'loot.overview': '2',
           'loot.assigned': 'not-a-number'
+        },
+        section_visibility_by_id: {
+          'raid-signups.history.raid-helper-import': false,
+          'invalid': 'true'
         }
       })
     });
@@ -101,6 +107,10 @@ test('admin site-visibility writes are normalized and persist across reads', asy
       },
       order_by_tab: {
         'loot.overview': 2
+      },
+      section_visibility_by_id: {
+        'raid-signups.history.raid-helper-import': false,
+        invalid: true
       }
     });
 
@@ -116,6 +126,10 @@ test('admin site-visibility writes are normalized and persist across reads', asy
       },
       order_by_tab: {
         'loot.overview': 2
+      },
+      section_visibility_by_id: {
+        'raid-signups.history.raid-helper-import': false,
+        invalid: true
       }
     });
   });

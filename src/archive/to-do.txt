@@ -231,15 +231,15 @@
 ## Phase 3: Raid, Roster & Attendance Workflows
 
 [x] Redevelop the current raid roster workflow
-[ ] default the tactics and raid assignment boss selector selections to match the phase and remember user selections
-[ ] add attendance chart per person in the drilldown of attendance tab that shows event date chronoligcally and whether they attended (dates taken from raid history log)
-[ ] raid history log should be its own full-width section with a summary of signups, absence, tentative, bench etc taken from signup event.
-[ ] make sections in absences tab collapsible
-[ ] make import raidhelper section collapsed by default
+[x] default the tactics and raid assignment boss selector selections to match the phase and remember user selections
+[08/09] add attendance chart per person in the drilldown of attendance tab that shows event date chronoligcally and whether they attended (dates taken from raid history log)
+[08/09] raid history log should be its own full-width section with a summary of signups, absence, tentative, bench etc taken from signup event.
+[x] make sections in absences tab collapsible
+[08/09] make import raidhelper section collapsed by default and ensure it's on the sitemap as a section that I can disable or enable at will
 
 ## Phase 4: Guild Bank & Addon Workflow
 
-[ ] review why subcategory doesn't work on gbank export/import
+[08/09] review why subcategory doesn't work on gbank export/import
 [ ] add additional webhook for guild bank updates
 [ ] add guild bank addon instructions (commands etc)
 [ ] add auto populate trade window back into addon

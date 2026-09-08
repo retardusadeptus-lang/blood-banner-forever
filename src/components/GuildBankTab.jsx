@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { submitBankRequest } from '../services/apiService';
+import { CATEGORY_MAP } from '../constants';
 
 const FALLBACK_BANK_ICON = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg';
 const MAX_BASKET_ITEMS = 5;
+
+const normalizeBankCategory = category => CATEGORY_MAP[category] || category || 'Other';
 
 export default function GuildBankTab({
   bankItems,
@@ -38,7 +41,10 @@ export default function GuildBankTab({
     const outOfStockItems = bankItemHistory
       .filter(item => !currentItemIds.has(Number(item.item_wowhead_id)))
       .map(item => ({ ...item, count: 0 }));
-    return [...bankItems, ...outOfStockItems];
+    return [...bankItems, ...outOfStockItems].map(item => ({
+      ...item,
+      category: normalizeBankCategory(item.category)
+    }));
   }, [bankItems, bankItemHistory]);
 
   const uniqueSubCategories = React.useMemo(() => {

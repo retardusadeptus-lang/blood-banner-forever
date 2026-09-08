@@ -34,6 +34,19 @@ export const CHEAT_SHEET_PHASE_MAP = {
   9: 'SWP',
 };
 
+export const RAID_PHASE_BY_ZONE = {
+  Karazhan: 'T4',
+  "Gruul's Lair": 'T4',
+  "Magtheridon's Lair": 'T4',
+  'Tempest Keep': 'T5',
+  'Serpentshrine Cavern': 'T5',
+  'Battle for Mount Hyjal': 'T6',
+  'Mount Hyjal': 'T6',
+  'Black Temple': 'T6',
+  "Zul'Aman": 'ZA',
+  'Sunwell Plateau': 'SWP',
+};
+
 export const LEFT_SLOTS = ["Head", "Neck", "Shoulder", "Back", "Chest", "Wrist"];
 
 export const RIGHT_SLOTS = ["Hands", "Waist", "Legs", "Feet", "Ring 1", "Ring 2", "Trinket 1", "Trinket 2"];

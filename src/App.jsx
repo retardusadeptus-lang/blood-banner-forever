@@ -81,7 +81,19 @@ export default function App() {
   const [itemIdEditor, setItemIdEditor] = useState(null);
 
   const [roster, setRosterLocal] = useState([]);
-  const [scoringConfig, setScoringConfigLocal] = useState({});
+  const [scoringConfig, setScoringConfigLocal] = useState({
+    parseWeight: 1,
+    supportMulti: 1.5,
+    consBonus: 10,
+    enchantBonus: 10,
+    gemBonus: 10,
+    attWeight: 0.5,
+    afkPenalty: 5,
+    defaultSitePhase: DEFAULT_GLOBAL_PHASE,
+    defaultSiteTab: DEFAULT_SITE_TAB,
+    claimGameVersion: 'all',
+    claimFallbackEnabled: false
+  });
   const [playerStats, setPlayerStatsLocal] = useState({});
   const [raidLogs, setRaidLogsLocal] = useState([]);
 
@@ -180,7 +192,10 @@ export default function App() {
     setRosterLocal(newVal);
     setRosterDirty(true);
   };
-  const setScoringConfig = (newVal) => { setScoringConfigLocal(newVal); setScoringConfigDirty(true); };
+  const setScoringConfig = (newVal) => {
+    setScoringConfigLocal(previous => typeof newVal === 'function' ? newVal(previous) : newVal);
+    setScoringConfigDirty(true);
+  };
   const setPlayerStats = (newVal) => { setPlayerStatsLocal(newVal); setPlayerStatsDirty(true); };
   const setRaidLogs = (newVal) => { setRaidLogsLocal(newVal); setRaidLogsDirty(true); };
 
@@ -255,6 +270,7 @@ export default function App() {
     leftSlots: LEFT_SLOTS,
     p2Bosses: P2_BOSSES,
     globalPhase,
+    defaultPhase: scoringConfig?.defaultSitePhase || DEFAULT_GLOBAL_PHASE,
     setSelectedItemName: setSelectedLootItemName,
   });
 

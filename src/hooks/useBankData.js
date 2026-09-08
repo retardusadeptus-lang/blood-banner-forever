@@ -1,7 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import { downloadCsv } from '../utils/csv';
+import { CATEGORY_MAP } from '../constants';
 
 const BANK_SYNC_INTERVAL_MS = 20000;
+const normalizeBankCategory = category => CATEGORY_MAP[category] || category || 'Other';
+const normalizeBankItems = items => (Array.isArray(items) ? items : []).map(item => ({
+  ...item,
+  category: normalizeBankCategory(item.category)
+}));
+
 export default function useBankData({ fetchData, putData, deleteData, isAuthenticated }) {
   const [bankItems, setBankItems] = useState([]);
   const [bankItemHistory, setBankItemHistory] = useState([]);
@@ -30,10 +37,10 @@ export default function useBankData({ fetchData, putData, deleteData, isAuthenti
       try {
         const items = await fetchData('bank-items');
         if (!mounted) return;
-        setBankItems(items);
+        setBankItems(normalizeBankItems(items));
         const itemHistory = await fetchData('bank-item-history');
         if (!mounted) return;
-        setBankItemHistory(itemHistory);
+        setBankItemHistory(normalizeBankItems(itemHistory));
         if (isAuthenticated) {
           const requests = await fetchData('bank-requests');
           if (!mounted) return;
@@ -63,7 +70,7 @@ export default function useBankData({ fetchData, putData, deleteData, isAuthenti
         item_wowhead_id: Number(item.item_wowhead_id ?? item.id ?? item.itemId) || 0,
         count: Number(item.count ?? item.quantity ?? 0) || 0,
         name: item.name || item.item_name || '',
-        category: item.category || item.cat || '',
+        category: normalizeBankCategory(item.category || item.cat),
         sub_type: item.sub_type || item.subtype || item.subType || ''
       })).filter(item => item.item_wowhead_id > 0);
 
@@ -102,9 +109,9 @@ export default function useBankData({ fetchData, putData, deleteData, isAuthenti
       setBankUploadParsed(null);
       setBankUploadMeta({ gold: null });
       const items = await fetchData('bank-items');
-      setBankItems(items);
+      setBankItems(normalizeBankItems(items));
       const itemHistory = await fetchData('bank-item-history');
-      setBankItemHistory(itemHistory);
+      setBankItemHistory(normalizeBankItems(itemHistory));
     } catch {
       setBankUploadStatus('❌ Error uploading.');
     }

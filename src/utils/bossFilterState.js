@@ -1,4 +1,4 @@
-import { DEFAULT_GLOBAL_PHASE } from '../constants.js';
+import { DEFAULT_GLOBAL_PHASE, RAID_PHASE_BY_ZONE } from '../constants.js';
 
 export function getVisibleBosses({ availableBosses = [], userSelection = null }) {
   const safeAvailable = Array.isArray(availableBosses) ? availableBosses : [];
@@ -39,7 +39,7 @@ export function filterBossesByPhase({ bossNames = [], raidZones = [], phase = DE
   const phaseByRaid = {};
   safeRaidZones.forEach(zone => {
     const zoneName = zone?.name || '';
-    const zonePhase = zone?.phase || zone?.raidPhase || DEFAULT_GLOBAL_PHASE;
+    const zonePhase = zone?.phase || zone?.raidPhase || RAID_PHASE_BY_ZONE[zoneName] || DEFAULT_GLOBAL_PHASE;
     if (zoneName && zonePhase) {
       phaseByRaid[zoneName] = zonePhase;
     }
@@ -48,6 +48,6 @@ export function filterBossesByPhase({ bossNames = [], raidZones = [], phase = DE
   return safeBossNames.filter(bossName => {
     const matchingZone = safeRaidZones.find(zone => Array.isArray(zone?.bosses) && zone.bosses.includes(bossName));
     if (!matchingZone) return false;
-    return (matchingZone.phase || matchingZone.raidPhase || phaseByRaid[matchingZone.name] || DEFAULT_GLOBAL_PHASE) === phase;
+    return (matchingZone.phase || matchingZone.raidPhase || phaseByRaid[matchingZone.name] || RAID_PHASE_BY_ZONE[matchingZone.name] || DEFAULT_GLOBAL_PHASE) === phase;
   });
 }

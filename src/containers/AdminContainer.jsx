@@ -33,6 +33,7 @@ export default function AdminContainer({ navigation, directory, admin, scoring, 
     guildRoleRanks,
     handleUpdatePlayer,
     handleRemovePlayer,
+    raidLogs,
     dirty: rosterDirty,
     onSaveChanges: onSaveRosterChanges,
     isSaving: isSavingRoster,
@@ -71,6 +72,7 @@ export default function AdminContainer({ navigation, directory, admin, scoring, 
             getSpecById={getSpecById}
             calculateScore={calculateScore}
             calculateAttendance={calculateAttendance}
+            raidLogs={raidLogs}
             playerStats={playerStats}
             guildRoleRanks={guildRoleRanks}
             rosterClaims={rosterClaims}

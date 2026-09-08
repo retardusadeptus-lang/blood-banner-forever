@@ -1,10 +1,11 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import {
   CURSE_TYPES, JUDGEMENT_TYPES,
-  RAID_WIDE_LABEL, BOSS_TARGET_ID, RAID_MARKERS, DEFAULT_BOSS_ENCOUNTERS
+  RAID_WIDE_LABEL, BOSS_TARGET_ID, RAID_MARKERS, DEFAULT_BOSS_ENCOUNTERS, DEFAULT_GLOBAL_PHASE
 } from '../constants';
 import { buildRaidAssignmentsExport, serializeRaidAssignmentsExport } from '../services/raidAssignmentsExport.js';
 import { normalizeBossState } from '../utils/raidAssignmentState.js';
+import { filterBossesByPhase } from '../utils/bossFilterState.js';
 import RaidAssignmentsBossCard from './RaidAssignmentsBossCard.jsx';
 
 // --- HELPER COMPONENTS ---
@@ -352,7 +353,7 @@ function createDefaultBossState(boss, generateId) {
 const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
   isAuthenticated, roster, getSpecById, enabledBosses = [], raidZones = [], handleToggleZone, handleToggleBoss, handleMoveEnabledBoss, customRaidGroups = [], handleAddCustomRaidBoss, handleRemoveCustomRaidBoss, raidAssignmentData, setRaidAssignmentData: setStoredRaidAssignmentData,
   hasUnsavedChanges, onSaveChanges, isSaving, myPlayerName,
-  userBossFilter = null, fetchData, siteTabMetadata,
+  userBossFilter = null, setUserBossFilter, defaultPhase = DEFAULT_GLOBAL_PHASE, fetchData, siteTabMetadata,
 }) {
   const [showManageBosses, setShowManageBosses] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -506,6 +507,17 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
     }
     return enabledBosses.filter(boss => userBossFilter.includes(boss));
   }, [enabledBosses, userBossFilter]);
+
+  const defaultPhaseBosses = useMemo(() => filterBossesByPhase({
+    bossNames: enabledBosses,
+    raidZones,
+    phase: defaultPhase,
+  }), [defaultPhase, enabledBosses, raidZones]);
+
+  React.useEffect(() => {
+    if ((userBossFilter !== null && userBossFilter !== undefined) || !setUserBossFilter || enabledBosses.length === 0) return;
+    setUserBossFilter(defaultPhaseBosses);
+  }, [defaultPhaseBosses, enabledBosses.length, setUserBossFilter, userBossFilter]);
 
   const buildCurrentRaidAssignmentExport = () => buildRaidAssignmentsExport({
     raidAssignmentData: activeAssignmentData,

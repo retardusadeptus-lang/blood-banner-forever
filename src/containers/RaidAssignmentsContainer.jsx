@@ -28,6 +28,7 @@ export default function RaidAssignmentsContainer({ raidAssignments, session, dir
       setSelectedPhase={navigation.setSharedPhaseFilter}
       userBossFilter={navigation.raidAssignmentsBossFilter}
       setUserBossFilter={navigation.setRaidAssignmentsBossFilter}
+      defaultPhase={navigation.globalPhase}
       fetchData={api.fetchData}
       siteTabMetadata={siteTabMetadata}
     />

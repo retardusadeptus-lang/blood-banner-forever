@@ -74,7 +74,7 @@ const SITE_MAP = [
       tab('raid-signups.templates', 'Templates', ['Officer', 'Admin'], ['Signup templates', 'Group configuration', 'Template save controls']),
       tab('raid-signups.events', 'Events', ['Public', 'Guild Member', 'Officer', 'Admin'], ['Event list and signup groups', 'Signup controls', 'Attendance and import tools'], [action('Sign up for event', ['Public', 'Guild Member', 'Officer', 'Admin'], ['Guild Member', 'Officer', 'Admin']), action('Edit event', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Open, lock, or archive event', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Save event details and groups', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Import Raid Helper attendance', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Delete event or raid log', ['Officer', 'Admin'], ['Officer', 'Admin'])]),
       tab('raid-signups.calendar', 'Calendar', ['Public', 'Guild Member', 'Officer', 'Admin'], ['Monthly event calendar', 'Signup event details', 'Absence indicators']),
-      tab('raid-signups.history', 'History', ['Officer', 'Admin'], ['Archived signup events', 'Historical attendance', 'Event detail views']),
+      tab('raid-signups.history', 'History', ['Officer', 'Admin'], ['Archived signup events', 'Historical attendance', 'Event detail views', 'RaidHelper import']),
       tab('raid-signups.absences', 'Absences', ['Public', 'Guild Member', 'Officer', 'Admin'], ['Personal absence view', 'Officer absence overview', 'Absence create and edit controls'], [action('Create or edit own absence', ['Guild Member', 'Officer', 'Admin'], ['Guild Member', 'Officer', 'Admin']), action('Edit or delete any absence', ['Officer', 'Admin'], ['Officer', 'Admin'])]),
     ],
   },
@@ -126,8 +126,10 @@ export default function SitemapTab({
   surfaceRolesByTab = {},
   groupByTab = {},
   orderByTab = {},
+  sectionVisibilityById = {},
   updateSiteVisibility,
   updateSiteLayout,
+  updateSectionVisibility,
   saveSiteVisibility,
   siteVisibilityDirty = false,
   isSavingSiteVisibility = false,
@@ -310,7 +312,20 @@ export default function SitemapTab({
                             )}
                             {entry.sections.map(item => (
                               <div key={`${tabKey}-${item}`} className="grid grid-cols-[minmax(220px,1fr)_repeat(4,minmax(90px,1fr))] gap-2 border-b border-slate-800/70 bg-slate-950/40 px-4 py-2 text-[11px] last:border-b-0">
-                                <span className="text-slate-400">{item}</span>
+                                <span className="flex items-center gap-2 text-slate-400">
+                                  {entry.registryTabId === 'raid-signups.history' && item === 'RaidHelper import' && updateSectionVisibility ? (
+                                    <label className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-cyan-300" title="Show or hide the RaidHelper import section">
+                                      <input
+                                        type="checkbox"
+                                        checked={sectionVisibilityById['raid-signups.history.raid-helper-import'] !== false}
+                                        onChange={event => updateSectionVisibility('raid-signups.history.raid-helper-import', event.target.checked)}
+                                        className="accent-cyan-500"
+                                      />
+                                      On
+                                    </label>
+                                  ) : null}
+                                  {item}
+                                </span>
                                 {ROLE_COLUMNS.map(role => {
                                   const visible = visibleRoles.includes(role);
                                   return <span key={role} className="text-center"><VisibilityFlag status={visible ? 'all' : 'none'} role={role} /></span>;

@@ -1,6 +1,6 @@
 import RaidSignupsTab from '../components/RaidSignupsTab';
 
-export default function RaidSignupsContainer({ api, session, directory, attendance, raidHelper, navigation, siteTabMetadata }) {
+export default function RaidSignupsContainer({ api, session, directory, attendance, raidHelper, navigation, sectionVisibilityById = {}, siteTabMetadata }) {
   return (
     <RaidSignupsTab
       {...api}
@@ -14,6 +14,7 @@ export default function RaidSignupsContainer({ api, session, directory, attendan
       {...raidHelper}
       activeSection={navigation.raidSignupsSubTab}
       onSectionChange={navigation.setRaidSignupsSubTab}
+      sectionVisibilityById={sectionVisibilityById}
       siteTabMetadata={siteTabMetadata}
     />
   );

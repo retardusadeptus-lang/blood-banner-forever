@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { PHASES } from '../constants';
+import { DEFAULT_GLOBAL_PHASE, PHASES } from '../constants';
 
 function normalizeList(rawText) {
   return Array.from(
@@ -105,7 +105,7 @@ export default function DiscordBotConfigTab({
         <div className="mb-4 max-w-xs">
           <label className="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Default Site Phase</label>
           <select
-            value={scoringConfig?.defaultSitePhase || PHASES[0]}
+            value={scoringConfig?.defaultSitePhase || DEFAULT_GLOBAL_PHASE}
             onChange={event => updateScoringField('defaultSitePhase', event.target.value)}
             className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none"
           >

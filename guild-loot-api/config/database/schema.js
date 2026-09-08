@@ -579,6 +579,7 @@ function ensureSiteVisibilityTable(db) {
       surface_roles_by_tab_json TEXT NOT NULL DEFAULT '{}',
       group_by_tab_json TEXT NOT NULL DEFAULT '{}',
       order_by_tab_json TEXT NOT NULL DEFAULT '{}',
+      section_visibility_by_id_json TEXT NOT NULL DEFAULT '{}',
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `).run();
@@ -597,6 +598,9 @@ function ensureSiteVisibilityTable(db) {
   }
   if (!columns.some(column => column.name === 'order_by_tab_json')) {
     db.prepare("ALTER TABLE site_visibility_config ADD COLUMN order_by_tab_json TEXT NOT NULL DEFAULT '{}'").run();
+  }
+  if (!columns.some(column => column.name === 'section_visibility_by_id_json')) {
+    db.prepare("ALTER TABLE site_visibility_config ADD COLUMN section_visibility_by_id_json TEXT NOT NULL DEFAULT '{}'").run();
   }
 }
 

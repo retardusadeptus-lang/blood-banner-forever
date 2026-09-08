@@ -345,6 +345,7 @@ export default function RaidSignupsTab({
   activeSection
   ,
   onSectionChange,
+  sectionVisibilityById = {},
   siteTabMetadata
 }) {
   const [events, setEvents] = useState([]);
@@ -385,6 +386,7 @@ export default function RaidSignupsTab({
     ? siteTabMetadata.route?.subTab || activeSection || 'templates'
     : activeSection || 'templates';
   const isReadOnly = !isAuthenticated;
+  const isRaidHelperImportVisible = sectionVisibilityById['raid-signups.history.raid-helper-import'] !== false;
 
   useEffect(() => {
     if (selectedEventId) {
@@ -2612,6 +2614,11 @@ export default function RaidSignupsTab({
 
           {activeRaidSection === 'absences' && (
             <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+              <style>{`
+                details[open] > summary .absence-section-indicator {
+                  transform: rotate(90deg);
+                }
+              `}</style>
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                 <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Absences</h3>
                 {isAuthenticated ? <span className="text-[11px] text-slate-400">Officer view includes all declared absences</span> : null}
@@ -2623,7 +2630,11 @@ export default function RaidSignupsTab({
                 </div>
               ) : (
                 <>
-                  <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                  <details open className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                    <summary className="flex cursor-pointer list-none items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-300">
+                      <span aria-hidden="true" className="absence-section-indicator inline-block transition-transform duration-150">&gt;</span>
+                      Declare absence
+                    </summary>
                     <p className="text-xs text-slate-400">Declare your holiday window. Any characters claimed on your Battle.net account are marked as <span className="font-bold text-amber-300">on holiday</span> for officers.</p>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                       {isAuthenticated ? (
@@ -2686,10 +2697,13 @@ export default function RaidSignupsTab({
                         <button type="button" onClick={resetAbsenceDraft} className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded">Cancel Edit</button>
                       ) : null}
                     </div>
-                  </div>
+                  </details>
 
-                  <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
-                    <p className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">My Absences</p>
+                  <details open className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
+                    <summary className="flex cursor-pointer list-none items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-300">
+                      <span aria-hidden="true" className="absence-section-indicator inline-block transition-transform duration-150">&gt;</span>
+                      My Absences
+                    </summary>
                     {isLoadingAbsences ? (
                       <p className="text-xs text-slate-500">Loading absences...</p>
                     ) : myAbsences.length === 0 ? (
@@ -2712,11 +2726,14 @@ export default function RaidSignupsTab({
                         ))}
                       </div>
                     )}
-                  </div>
+                  </details>
 
                   {isAuthenticated ? (
-                    <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
-                      <p className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">All Absences</p>
+                    <details open className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
+                      <summary className="flex cursor-pointer list-none items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-300">
+                        <span aria-hidden="true" className="absence-section-indicator inline-block transition-transform duration-150">&gt;</span>
+                        All Absences
+                      </summary>
                       {isLoadingAbsences ? (
                         <p className="text-xs text-slate-500">Loading absences...</p>
                       ) : allAbsences.length === 0 ? (
@@ -2738,13 +2755,16 @@ export default function RaidSignupsTab({
                           ))}
                         </div>
                       )}
-                    </div>
+                    </details>
                   ) : null}
 
                   {isAuthenticated ? (
-                    <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                    <details open className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                      <summary className="flex cursor-pointer list-none items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-300">
+                        <span aria-hidden="true" className="absence-section-indicator inline-block transition-transform duration-150">&gt;</span>
+                        Officer Holiday Calendar
+                      </summary>
                       <div className="flex items-center justify-between gap-2">
-                        <p className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Officer Holiday Calendar</p>
                         <div className="flex items-center gap-2">
                           <button
                             type="button"
@@ -2786,7 +2806,7 @@ export default function RaidSignupsTab({
                           </div>
                         ))}
                       </div>
-                    </div>
+                    </details>
                   ) : null}
                 </>
               )}
@@ -2798,7 +2818,50 @@ export default function RaidSignupsTab({
               <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
               <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Raid History</h3>
 
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Signup Event Summary</h4>
+                    <p className="text-[10px] text-slate-500 mt-1">Attendance categories are taken from the selected signup event.</p>
+                  </div>
+                  <select
+                    value={selectedEventId}
+                    onChange={e => setSelectedEventId(e.target.value)}
+                    className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-xs"
+                  >
+                    <option value="">Select signup event...</option>
+                    {readableActiveEvents.length > 0 && (
+                      <optgroup label="Active events">
+                        {readableActiveEvents.map(event => <option key={`history-active-${event.id}`} value={event.id}>#{event.id} {event.title}</option>)}
+                      </optgroup>
+                    )}
+                    {readableArchivedEvents.length > 0 && (
+                      <optgroup label="Archived events">
+                        {readableArchivedEvents.map(event => <option key={`history-archived-${event.id}`} value={event.id}>#{event.id} {event.title}</option>)}
+                      </optgroup>
+                    )}
+                  </select>
+                </div>
+                {selectedEvent ? (
+                  <div className="grid grid-cols-2 md:grid-cols-6 gap-2">
+                    {[
+                      ['Sign-ups', selectedEventSignupSummary.signup, 'text-emerald-300'],
+                      ['Late', selectedEventSignupSummary.late, 'text-orange-300'],
+                      ['Tentative', selectedEventSignupSummary.tentative, 'text-cyan-300'],
+                      ['Bench', selectedEventSignupSummary.bench, 'text-amber-300'],
+                      ['Absent', selectedEventSignupSummary.absent, 'text-rose-300'],
+                      ['Total', selectedEventSignupSummary.total, 'text-slate-200']
+                    ].map(([label, count, color]) => (
+                      <div key={`history-summary-${label}`} className="rounded border border-slate-800 bg-slate-950 px-3 py-2">
+                        <div className="text-[10px] uppercase tracking-wider text-slate-500">{label}</div>
+                        <div className={`mt-1 text-lg font-bold ${color}`}>{count}</div>
+                      </div>
+                    ))}
+                  </div>
+                ) : <p className="text-xs text-slate-500">Select a signup event to view its attendance summary.</p>}
+              </div>
+
+              <div className="space-y-4">
 
                 <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-4">
                   <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Log Current Raid</h4>
@@ -2816,7 +2879,8 @@ export default function RaidSignupsTab({
                     <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-2 rounded-lg transition shadow-lg text-sm">Save Active Roster to History</button>
                   </form>
 
-                  <div className="pt-3 border-t border-slate-800">
+                  {isRaidHelperImportVisible ? <details className="pt-3 border-t border-slate-800">
+                    <summary className="cursor-pointer list-none text-[10px] text-slate-500 uppercase font-bold">RaidHelper import</summary>
                     <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Paste RaidHelper JSON</label>
                     <textarea
                       value={raidHelperJsonText}
@@ -2832,7 +2896,7 @@ export default function RaidSignupsTab({
                       Import RaidHelper to Roster + Attendance
                     </button>
                     <p className="text-[10px] text-slate-500 mt-1">You will be prompted to map unknown names and resolve spec mismatches.</p>
-                  </div>
+                  </details> : null}
 
                   <div className="pt-3 border-t border-slate-800">
                     <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Import Attendees From Raid Signup Groups</label>

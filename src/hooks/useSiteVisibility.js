@@ -4,6 +4,7 @@ export default function useSiteVisibility({ fetchData, putData, canEdit = false 
   const [surfaceRolesByTab, setSurfaceRolesByTab] = useState({});
   const [groupByTab, setGroupByTab] = useState({});
   const [orderByTab, setOrderByTab] = useState({});
+  const [sectionVisibilityById, setSectionVisibilityById] = useState({});
   const [siteVisibilityDirty, setSiteVisibilityDirty] = useState(false);
   const [isSavingSiteVisibility, setIsSavingSiteVisibility] = useState(false);
 
@@ -17,6 +18,7 @@ export default function useSiteVisibility({ fetchData, putData, canEdit = false 
           : {});
         setGroupByTab(data?.group_by_tab && typeof data.group_by_tab === 'object' ? data.group_by_tab : {});
         setOrderByTab(data?.order_by_tab && typeof data.order_by_tab === 'object' ? data.order_by_tab : {});
+        setSectionVisibilityById(data?.section_visibility_by_id && typeof data.section_visibility_by_id === 'object' ? data.section_visibility_by_id : {});
         setSiteVisibilityDirty(false);
       })
       .catch(error => console.error('Failed to load site visibility:', error));
@@ -36,14 +38,21 @@ export default function useSiteVisibility({ fetchData, putData, canEdit = false 
     setSiteVisibilityDirty(true);
   };
 
+  const updateSectionVisibility = (sectionId, visible) => {
+    if (!canEdit) return;
+    setSectionVisibilityById(previous => ({ ...previous, [sectionId]: Boolean(visible) }));
+    setSiteVisibilityDirty(true);
+  };
+
   const saveSiteVisibility = async () => {
     if (!canEdit || !siteVisibilityDirty) return;
     setIsSavingSiteVisibility(true);
     try {
-      const saved = await putData('site-visibility', { surface_roles_by_tab: surfaceRolesByTab, group_by_tab: groupByTab, order_by_tab: orderByTab });
+      const saved = await putData('site-visibility', { surface_roles_by_tab: surfaceRolesByTab, group_by_tab: groupByTab, order_by_tab: orderByTab, section_visibility_by_id: sectionVisibilityById });
       setSurfaceRolesByTab(saved?.surface_roles_by_tab || surfaceRolesByTab);
       setGroupByTab(saved?.group_by_tab || groupByTab);
       setOrderByTab(saved?.order_by_tab || orderByTab);
+      setSectionVisibilityById(saved?.section_visibility_by_id || sectionVisibilityById);
       setSiteVisibilityDirty(false);
     } finally {
       setIsSavingSiteVisibility(false);
@@ -54,8 +63,10 @@ export default function useSiteVisibility({ fetchData, putData, canEdit = false 
     surfaceRolesByTab,
     groupByTab,
     orderByTab,
+    sectionVisibilityById,
     updateSiteVisibility,
     updateSiteLayout,
+    updateSectionVisibility,
     saveSiteVisibility,
     siteVisibilityDirty,
     isSavingSiteVisibility

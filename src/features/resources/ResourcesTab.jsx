@@ -3,6 +3,7 @@ import BisConfigTab from '../../components/BisConfigTab';
 import WeakaurasTab from './WeakaurasTab';
 import bossData from '../../cheat_sheet_extractv2.json';
 import { CHEAT_SHEET_PHASE_MAP, DEFAULT_GLOBAL_PHASE, PHASES } from '../../constants';
+import { filterBossesByPhase } from '../../utils/bossFilterState.js';
 import druidIcon from '../../assets/icons/druid.png';
 import generalIcon from '../../assets/icons/general.png';
 import healersIcon from '../../assets/icons/healers.png';
@@ -405,6 +406,7 @@ export default function ResourcesTab({
   raidZones = [],
   userBossFilter = null,
   setUserBossFilter,
+  defaultPhase = DEFAULT_GLOBAL_PHASE,
   roster = [],
   selectedCharacterId = '',
   siteTabMetadata
@@ -454,6 +456,15 @@ export default function ResourcesTab({
 
     return [...new Set(availableBosses.filter(Boolean))];
   }, [raidZones, enabledBosses]);
+
+  useEffect(() => {
+    if (activeResourcesSubTab !== 'tactics' || (userBossFilter !== null && userBossFilter !== undefined) || !setUserBossFilter || tacticsBossOptions.length === 0) return;
+    setUserBossFilter(filterBossesByPhase({
+      bossNames: tacticsBossOptions,
+      raidZones,
+      phase: defaultPhase,
+    }));
+  }, [activeResourcesSubTab, defaultPhase, raidZones, setUserBossFilter, tacticsBossOptions, userBossFilter]);
 
   const selectedMyCharacter = useMemo(() => {
     if (!selectedCharacterId) return null;

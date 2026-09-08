@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { P2_BOSSES } from '../constants';
 import { getDefaultGuildRoleName } from '../utils/appShellHelpers';
+import { getAttendanceChartEntries } from '../utils/attendanceChart.js';
 
 const UNKNOWN_ICON = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg';
 const SPEC_ICON_FALLBACKS = {
@@ -44,6 +45,7 @@ export default function GuildRosterTab({
   getSpecById,
   calculateScore,
   calculateAttendance,
+  raidLogs = [],
   playerStats = {},
   guildRoleRanks = [],
   rosterClaims,
@@ -108,6 +110,11 @@ export default function GuildRosterTab({
   };
   const selectedRequests = selectedPlayer ? (requestsByPlayerId.get(String(selectedPlayer.id)) || []) : [];
   const selectedStats = selectedPlayer ? (playerStats[selectedPlayer.id] || { cons: false, enchants: false, gems: false, afks: 0, parses: {} }) : null;
+  const attendanceChartEntries = useMemo(() => getAttendanceChartEntries({
+    raidLogs,
+    playerId: selectedPlayer?.id,
+  }), [raidLogs, selectedPlayer?.id]);
+  const attendedRaidCount = attendanceChartEntries.filter(entry => entry.attended).length;
   const roleRankByName = useMemo(() => new Map((Array.isArray(guildRoleRanks) ? guildRoleRanks : []).map(role => [String(role.name || '').trim().toLowerCase(), Number(role.rank) || 9999])), [guildRoleRanks]);
   const defaultGuildRank = getDefaultGuildRoleName({ guildRoleRanks });
 
@@ -323,6 +330,43 @@ export default function GuildRosterTab({
             {detailType === 'attendance' && (
               <div className="mt-5 space-y-4">
                 <div className="rounded-lg border border-slate-800 bg-slate-950 p-4"><div className="text-xs font-bold uppercase tracking-wider text-slate-500">Current Attendance</div><div className="mt-1 text-3xl font-bold text-cyan-400">{calculateAttendance(selectedPlayer.id)}%</div></div>
+                <div className="rounded-lg border border-slate-800 bg-slate-950 p-4">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Raid Attendance History</h4>
+                      <p className="mt-1 text-xs text-slate-500">{attendedRaidCount} of {attendanceChartEntries.length} raids attended</p>
+                    </div>
+                    {attendanceChartEntries.length > 0 && (
+                      <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-wider text-slate-500" aria-label="Attendance chart legend">
+                        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-emerald-400" aria-hidden="true" />Attended</span>
+                        <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-rose-400" aria-hidden="true" />Absent</span>
+                      </div>
+                    )}
+                  </div>
+                  {attendanceChartEntries.length === 0 ? (
+                    <p className="mt-4 text-sm text-slate-500">No raid history has been recorded yet.</p>
+                  ) : (
+                    <div className="mt-4 overflow-x-auto pb-1">
+                      <div className="grid min-w-[520px] grid-cols-[repeat(auto-fit,minmax(76px,1fr))] gap-2" role="list" aria-label={`Attendance history for ${selectedPlayer.name}`}>
+                        {attendanceChartEntries.map(entry => {
+                          const parsedDate = entry.timestamp && !Number.isNaN(entry.timestamp) ? new Date(entry.timestamp) : null;
+                          const displayDate = parsedDate
+                            ? parsedDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
+                            : entry.date || 'Unknown date';
+                          return (
+                            <div key={String(entry.id)} role="listitem" className={`rounded-lg border p-2.5 ${entry.attended ? 'border-emerald-500/40 bg-emerald-500/10' : 'border-rose-500/40 bg-rose-500/10'}`}>
+                              <div className="text-[11px] font-bold text-slate-200">{displayDate}</div>
+                              <div className="mt-1 truncate text-[10px] text-slate-500" title={entry.zone}>{entry.zone}</div>
+                              <div className={`mt-3 flex h-8 items-center justify-center rounded text-[10px] font-bold uppercase tracking-wider ${entry.attended ? 'bg-emerald-400/20 text-emerald-300' : 'bg-rose-400/20 text-rose-300'}`}>
+                                {entry.attended ? 'Attended' : 'Absent'}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
                 <div className="rounded-lg border border-slate-800 bg-slate-950 p-4 text-sm text-slate-400">Attendance contributes to the score using the current scoring configuration. AFKs on trash recorded in scoring: <span className="font-bold text-red-400">{selectedStats.afks || 0}</span>.</div>
               </div>
             )}
