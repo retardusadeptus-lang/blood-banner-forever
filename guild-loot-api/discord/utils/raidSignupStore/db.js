@@ -361,6 +361,8 @@ function upsertSignupEntry(db, eventId, discordUserId, discordUsername, status, 
 function listEntriesForEvent(db, eventId) {
   const entryColumns = db.prepare("PRAGMA table_info('raid_signup_entries')").all();
   const hasNoteColumn = entryColumns.some(column => column.name === 'note');
+  const userPrefColumns = db.prepare("PRAGMA table_info('raid_signup_user_prefs')").all();
+  const hasUserPrefsTable = userPrefColumns.length > 0;
 
   const rows = db.prepare(`
     SELECT
@@ -371,6 +373,7 @@ function listEntriesForEvent(db, eventId) {
       e.status,
       e.spec_id,
       e.role_bucket,
+      ${hasUserPrefsTable ? "COALESCE(p.character_name, '')" : "''"} AS character_name,
       ${hasNoteColumn ? 'e.note,' : "'' AS note,"}
       e.updated_at,
       s.class AS spec_class,
@@ -381,6 +384,7 @@ function listEntriesForEvent(db, eventId) {
       s.icon_large
     FROM raid_signup_entries e
     LEFT JOIN specs s ON s.id = e.spec_id
+    ${hasUserPrefsTable ? 'LEFT JOIN raid_signup_user_prefs p ON p.discord_user_id = e.discord_user_id' : ''}
     WHERE e.event_id = ?
   `).all(eventId);
 
@@ -432,6 +436,7 @@ function listGroupsForEvent(db, eventId) {
 }
 
 module.exports = {
+  ensureRosterPlayerForSignup,
   getRoleBucketForSpec,
   listTemplates,
   getTemplateById,

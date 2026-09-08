@@ -24,7 +24,6 @@ function getConfigForPermission(db, permissionKey) {
 
   let key = 'request_roles_json';
   if (permissionKey === 'signup') key = 'signup_roles_json';
-  if (permissionKey === 'bench') key = 'bench_roles_json';
 
   try {
     return normalizeRoles(JSON.parse(row[key] || '[]'));

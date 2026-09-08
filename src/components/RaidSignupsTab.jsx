@@ -326,6 +326,7 @@ export default function RaidSignupsTab({
   isAuthenticated,
   bnetAuthState,
   roster,
+  rosterClaims = [],
   guildRoleRanks = [],
   getSpecById,
   specsFromDb,
@@ -338,6 +339,7 @@ export default function RaidSignupsTab({
   setNewRaidZone,
   raidLogs,
   handleDeleteRaidLog,
+  handleUpdateRaidLog,
   raidHelperImportSession,
   onUpdateRaidHelperImportEntry,
   onApplyRaidHelperImport,
@@ -369,14 +371,20 @@ export default function RaidSignupsTab({
   const [isDeletingEvent, setIsDeletingEvent] = useState(false);
   const [clockNow, setClockNow] = useState(() => Date.now());
   const [expandedLog, setExpandedLog] = useState(null);
+  const [expandedLogStatus, setExpandedLogStatus] = useState('');
+  const [expandedSummaryStatus, setExpandedSummaryStatus] = useState('');
   const [raidHelperJsonText, setRaidHelperJsonText] = useState('');
   const [raidSignupEvents, setRaidSignupEvents] = useState([]);
+  const [historyEventDetails, setHistoryEventDetails] = useState({});
+  const [attendanceSearch, setAttendanceSearch] = useState('');
+  const [attendanceStatusFilter, setAttendanceStatusFilter] = useState('');
+  const [attendanceColumnFilters, setAttendanceColumnFilters] = useState({});
+  const [attendanceSort, setAttendanceSort] = useState({ key: 'name', direction: 'asc' });
   const [selectedSignupEventId, setSelectedSignupEventId] = useState('');
   const [isApplyingSignupEvent, setIsApplyingSignupEvent] = useState(false);
   const [selectedEventDetails, setSelectedEventDetails] = useState(null);
   const [openSlotPickerKey, setOpenSlotPickerKey] = useState('');
   const [editingNoteByRow, setEditingNoteByRow] = useState({});
-  const [expandedSummaryStatus, setExpandedSummaryStatus] = useState('');
   const [echoTagAttendees, setEchoTagAttendees] = useState(false);
   const [isGroupConfigDirty, setIsGroupConfigDirty] = useState(false);
   const [isEventEditDirty, setIsEventEditDirty] = useState(false);
@@ -394,6 +402,11 @@ export default function RaidSignupsTab({
     } else {
       localStorage.removeItem(RAID_SIGNUPS_EVENT_STORAGE_KEY);
     }
+  }, [selectedEventId]);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setExpandedSummaryStatus('');
   }, [selectedEventId]);
 
   const [absences, setAbsences] = useState([]);
@@ -486,11 +499,6 @@ export default function RaidSignupsTab({
       mounted = false;
     };
   }, [fetchData, isAuthenticated, selectedSignupEventId]);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setExpandedSummaryStatus('');
-  }, [selectedEventId]);
 
   useEffect(() => {
     if (!selectedEventId) {
@@ -622,7 +630,7 @@ export default function RaidSignupsTab({
   const canUseAbsences = !!isAuthenticated || !!bnetAuthState?.authenticated;
 
   useEffect(() => {
-    if (!['events', 'absences'].includes(activeRaidSection)) return;
+    if (!['events', 'absences', 'history'].includes(activeRaidSection)) return;
     if (!canUseAbsences) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setAbsences([]);
@@ -651,6 +659,25 @@ export default function RaidSignupsTab({
       mounted = false;
     };
   }, [activeRaidSection, canUseAbsences, isAuthenticated, bnetAuthState?.authenticated]);
+
+  useEffect(() => {
+    if (activeRaidSection !== 'history' || !isAuthenticated) return;
+    let mounted = true;
+    const historyEvents = [...readableActiveEvents, ...readableArchivedEvents];
+    Promise.all(historyEvents.map(async event => {
+      try {
+        const details = await fetchData(`raid-signup-events/${event.id}`);
+        return [String(event.id), details && typeof details === 'object' ? details : event];
+      } catch {
+        return [String(event.id), event];
+      }
+    })).then(entries => {
+      if (mounted) setHistoryEventDetails(Object.fromEntries(entries));
+    });
+    return () => {
+      mounted = false;
+    };
+  }, [activeRaidSection, fetchData, isAuthenticated, readableActiveEvents, readableArchivedEvents]);
 
   useEffect(() => {
     if (activeRaidSection !== 'absences') return;
@@ -834,7 +861,11 @@ export default function RaidSignupsTab({
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setSelectedUnsignedRaiderIds(new Set(unsignedRaiders.map(({ player }) => String(player.id))));
+    setSelectedUnsignedRaiderIds(new Set(
+      unsignedRaiders
+        .filter(({ absence }) => !absence)
+        .map(({ player }) => String(player.id))
+    ));
   }, [unsignedRaiders]);
 
   const selectedEventEntryByName = useMemo(() => {
@@ -928,12 +959,12 @@ export default function RaidSignupsTab({
 
   const statusMarker = (status) => {
     const normalized = String(status || '').trim().toLowerCase();
-    if (normalized === 'absence') return { glyph: '✕', color: 'text-rose-300' };
+    if (normalized === 'absence') return { glyph: 'x', color: 'text-rose-300' };
     if (normalized === 'signup') return { glyph: '✓', color: 'text-emerald-300' };
-    if (normalized === 'absent') return { glyph: '✕', color: 'text-rose-300' };
+    if (normalized === 'absent') return { glyph: 'x', color: 'text-rose-300' };
     if (normalized === 'bench') return { glyph: '✓', color: 'text-amber-300' };
-    if (normalized === 'late') return { glyph: '⏱', color: 'text-orange-300' };
-    if (normalized === 'tentative') return { glyph: '⚠', color: 'text-yellow-300' };
+    if (normalized === 'late') return { glyph: 'L', color: 'text-orange-300' };
+    if (normalized === 'tentative') return { glyph: '?', color: 'text-yellow-300' };
     return { glyph: '•', color: 'text-slate-400' };
   };
 
@@ -1110,13 +1141,18 @@ export default function RaidSignupsTab({
     }
   };
 
-  const selectedEventSignupSummary = useMemo(() => {
-    if (!selectedEventId) {
-      return { signup: 0, late: 0, bench: 0, absent: 0, tentative: 0, total: 0 };
-    }
+  const getHistoryEventForLog = (log) => {
+    if (!log) return null;
+    const byId = historyEventDetails[String(log.signupEventId)];
+    if (byId) return byId;
+    const eventDate = String(log.date || '');
+    return [...readableActiveEvents, ...readableArchivedEvents].find(event => {
+      return parseScheduleDateTime(event.scheduled_for)?.toISODate() === eventDate;
+    }) || null;
+  };
 
-    const entries = selectedEventEntries;
-
+  const getSignupSummary = (event) => {
+    const entries = Array.isArray(event?.entries) ? event.entries : [];
     const summary = entries.reduce((acc, entry) => {
       const status = String(entry?.status || '').trim().toLowerCase();
       const normalizedStatus = status === 'absence' ? 'absent' : status;
@@ -1129,24 +1165,24 @@ export default function RaidSignupsTab({
       return acc;
     }, { signup: 0, late: 0, bench: 0, absent: 0, tentative: 0, total: 0 });
 
-    if (summary.total === 0 && selectedEvent) {
-      const signup = Number(selectedEvent.signup_count || 0);
-      const late = Number(selectedEvent.late_count || 0);
-      const bench = Number(selectedEvent.bench_count || 0);
-      const absent = Number(selectedEvent.absent_count || 0);
-      const tentative = Number(selectedEvent.tentative_count || 0);
-      return {
-        signup,
-        late,
-        bench,
-        absent,
-        tentative,
-        total: signup + late + bench + absent + tentative
-      };
+    if (summary.total === 0 && event) {
+      const signup = Number(event.signup_count || 0);
+      const late = Number(event.late_count || 0);
+      const bench = Number(event.bench_count || 0);
+      const absent = Number(event.absent_count || 0);
+      const tentative = Number(event.tentative_count || 0);
+      return { signup, late, bench, absent, tentative, total: signup + late + bench + absent + tentative };
     }
 
     return summary;
-  }, [selectedEvent, selectedEventEntries, selectedEventId]);
+  };
+
+  const selectedEventSignupSummary = useMemo(() => {
+    if (!selectedEventId) {
+      return { signup: 0, late: 0, bench: 0, absent: 0, tentative: 0, total: 0 };
+    }
+    return getSignupSummary(selectedEvent);
+  }, [selectedEvent, selectedEventId]);
 
   const expandedSummaryGroups = useMemo(() => {
     if (!expandedSummaryStatus) return null;
@@ -1615,6 +1651,151 @@ export default function RaidSignupsTab({
     return days;
   }, [absenceCalendarMonth, officerAbsenceCalendar]);
 
+  const attendanceTracker = useMemo(() => {
+    const logs = [...(Array.isArray(raidLogs) ? raidLogs : [])].sort((a, b) => String(a.date || '').localeCompare(String(b.date || '')));
+    const includedLogs = logs.filter(log => log.includeInAttendance !== false);
+    const rosterPlayers = (Array.isArray(roster) ? roster : [])
+      .filter(player => String(player?.name || '').trim())
+      .sort((a, b) => String(a.name).localeCompare(String(b.name)));
+    const rankOrder = new Map((Array.isArray(guildRoleRanks) ? guildRoleRanks : []).map(role => [String(role.name || '').trim().toLowerCase(), Number(role.rank) || 9999]));
+    const claimByRosterId = new Map((Array.isArray(rosterClaims) ? rosterClaims : []).map(claim => [String(claim.rosterId || claim.roster_id || ''), claim]));
+    const grouped = new Map();
+    rosterPlayers.forEach(player => {
+      const claim = claimByRosterId.get(String(player.id));
+      const userId = claim?.userId || claim?.user_id;
+      const groupKey = userId ? `user:${userId}` : `roster:${player.id}`;
+      if (!grouped.has(groupKey)) grouped.set(groupKey, []);
+      grouped.get(groupKey).push(player);
+    });
+    const players = [...grouped.values()].map(members => {
+      const sortedMembers = [...members].sort((left, right) => {
+        const leftRank = rankOrder.get(String(left.guild_rank || left.rank || '').trim().toLowerCase()) ?? 9999;
+        const rightRank = rankOrder.get(String(right.guild_rank || right.rank || '').trim().toLowerCase()) ?? 9999;
+        return leftRank - rightRank || String(left.name).localeCompare(String(right.name));
+      });
+      return {
+        player: sortedMembers[0],
+        memberIds: sortedMembers.map(member => Number(member.id)),
+        memberNames: sortedMembers.map(member => member.name),
+        memberUserIds: sortedMembers
+          .map(member => claimByRosterId.get(String(member.id))?.userId || claimByRosterId.get(String(member.id))?.user_id)
+          .map(Number)
+          .filter(Boolean),
+      };
+    });
+    const eventsForHistory = [...readableActiveEvents, ...readableArchivedEvents].map(event => historyEventDetails[String(event.id)] || event);
+    const eventByDate = new Map();
+    eventsForHistory.forEach(event => {
+      const eventDate = parseScheduleDateTime(event.scheduled_for)?.toISODate();
+      if (eventDate && !eventByDate.has(eventDate)) eventByDate.set(eventDate, event);
+    });
+    const normalizeStatus = status => String(status || '').trim().toLowerCase() === 'absence' ? 'absent' : String(status || '').trim().toLowerCase();
+    const namesForEntry = entry => [entry?.discord_username, entry?.player_name, entry?.character_name, entry?.roster_name]
+      .map(value => String(value || '').trim().toLowerCase()).filter(Boolean);
+    const notifiedAbsence = (player, date) => (absences || []).some(absence => {
+      const covered = String(absence?.start_date || '') <= date && String(absence?.end_date || '') >= date;
+      const names = Array.isArray(absence?.claimed_characters) ? absence.claimed_characters : [];
+      return covered && (Number(absence?.roster_id) === Number(player.id) || names.some(name => String(name).trim().toLowerCase() === String(player.name).trim().toLowerCase()) || String(absence?.target_character_name || '').trim().toLowerCase() === String(player.name).trim().toLowerCase());
+    });
+    const statusForCell = (playerGroup, log) => {
+      const player = playerGroup.player;
+      const memberNames = new Set(playerGroup.memberNames.map(name => String(name).trim().toLowerCase()));
+      const memberUserIds = new Set((playerGroup.memberUserIds || []).map(Number));
+      const savedAttendeeNames = new Set((log.attendeeNames || []).map(name => String(name).trim().toLowerCase()));
+      const event = historyEventDetails[String(log.signupEventId)] || eventByDate.get(String(log.date || ''));
+      const entry = Array.isArray(event?.entries)
+        ? event.entries.find(candidate => namesForEntry(candidate).some(name => memberNames.has(name)) || memberUserIds.has(Number(candidate?.discord_user_id)))
+        : null;
+      const status = normalizeStatus(entry?.status);
+      const logDate = String(log.date || '').slice(0, 10);
+      const coveredAbsence = playerGroup.memberIds.some(memberId => notifiedAbsence({ ...player, id: memberId }, logDate));
+      if (status === 'absent' && coveredAbsence) return 'absence';
+      if (['signup', 'bench', 'late', 'tentative', 'absent'].includes(status)) return status;
+      if (!status && coveredAbsence) return 'absence';
+      return (log.attendees || []).map(Number).some(attendeeId => playerGroup.memberIds.includes(Number(attendeeId))) || [...memberNames].some(name => savedAttendeeNames.has(name)) ? 'signup' : 'no_signup';
+    };
+    const isAttendingLog = (playerGroup, log) => {
+      const memberNames = new Set(playerGroup.memberNames.map(name => String(name).trim().toLowerCase()));
+      if ((log.attendees || []).map(Number).some(attendeeId => playerGroup.memberIds.includes(Number(attendeeId))) || [...memberNames].some(name => (log.attendeeNames || []).map(attendeeName => String(attendeeName).trim().toLowerCase()).includes(name))) return true;
+      const event = historyEventDetails[String(log.signupEventId)] || eventByDate.get(String(log.date || ''));
+      const memberUserIds = new Set((playerGroup.memberUserIds || []).map(Number));
+      const entry = Array.isArray(event?.entries)
+        ? event.entries.find(candidate => namesForEntry(candidate).some(name => memberNames.has(name)) || memberUserIds.has(Number(candidate?.discord_user_id)))
+        : null;
+      return ['signup', 'bench', 'late', 'tentative'].includes(normalizeStatus(entry?.status));
+    };
+    const search = attendanceSearch.trim().toLowerCase();
+    const filteredPlayers = players.filter(player => {
+      const spec = getSpecById(player.player.spec_id);
+      const rank = player.player.guild_rank || player.player.rank || 'Unranked';
+      const className = player.player.class_name || player.player.class || spec?.class || '';
+      const matchesSearch = !search || [...player.memberNames, rank, className].some(value => String(value).toLowerCase().includes(search));
+      const statuses = includedLogs.map(log => statusForCell(player, log));
+      const attended = includedLogs.filter(log => isAttendingLog(player, log)).length;
+      const unnotified = statuses.filter(status => status === 'no_signup').length;
+      const responsePercent = includedLogs.length === 0 ? 100 : Math.round(((includedLogs.length - unnotified) / includedLogs.length) * 100);
+      const columnValues = {
+        name: player.player.name,
+        className,
+        rank,
+        attendance: includedLogs.length === 0 ? 100 : Math.round((attended / includedLogs.length) * 100),
+        unnotified,
+        response: responsePercent,
+        ...Object.fromEntries(includedLogs.map((log, index) => [`log:${log.id}`, statuses[index]]))
+      };
+      const matchesColumns = Object.entries(attendanceColumnFilters).every(([key, value]) => {
+        if (!value) return true;
+        return String(columnValues[key] ?? '').toLowerCase().includes(String(value).toLowerCase());
+      });
+      return matchesSearch && (!attendanceStatusFilter || statuses.includes(attendanceStatusFilter)) && matchesColumns;
+    });
+    filteredPlayers.sort((left, right) => {
+      const leftAttendance = includedLogs.filter(log => isAttendingLog(left, log)).length;
+      const rightAttendance = includedLogs.filter(log => isAttendingLog(right, log)).length;
+      const leftStatuses = includedLogs.map(log => statusForCell(left, log));
+      const rightStatuses = includedLogs.map(log => statusForCell(right, log));
+      const getSortValue = (player, statuses, attended) => {
+        if (attendanceSort.key === 'name') return player.player.name;
+        if (attendanceSort.key === 'className') return player.player.class_name || player.player.class || getSpecById(player.player.spec_id)?.class || '';
+        if (attendanceSort.key === 'rank') return player.player.guild_rank || player.player.rank || 'Unranked';
+        if (attendanceSort.key === 'attendance') return attended;
+        if (attendanceSort.key === 'unnotified') return statuses.filter(status => status === 'no_signup').length;
+        if (attendanceSort.key === 'response') return statuses.filter(status => status !== 'no_signup').length;
+        const logIndex = includedLogs.findIndex(log => `log:${log.id}` === attendanceSort.key);
+        return logIndex >= 0 ? statuses[logIndex] : '';
+      };
+      const leftValue = getSortValue(left, leftStatuses, leftAttendance);
+      const rightValue = getSortValue(right, rightStatuses, rightAttendance);
+      const comparison = typeof leftValue === 'number' && typeof rightValue === 'number'
+        ? leftValue - rightValue
+        : String(leftValue).localeCompare(String(rightValue), undefined, { sensitivity: 'base' });
+      return attendanceSort.direction === 'asc' ? comparison : -comparison;
+    });
+    return { logs, includedLogs, players: filteredPlayers, statusForCell, isAttendingLog };
+  }, [absences, attendanceColumnFilters, attendanceSearch, attendanceSort, attendanceStatusFilter, getSpecById, guildRoleRanks, historyEventDetails, raidLogs, readableActiveEvents, readableArchivedEvents, roster, rosterClaims]);
+
+  const toggleAttendanceSort = (key) => {
+    setAttendanceSort(current => current.key === key
+      ? { key, direction: current.direction === 'asc' ? 'desc' : 'asc' }
+      : { key, direction: 'asc' });
+  };
+
+  const attendanceSortIndicator = (key) => attendanceSort.key === key ? (attendanceSort.direction === 'asc' ? ' ^' : ' v') : '';
+  const attendanceColumnFilter = (key) => attendanceColumnFilters[key] || '';
+  const setAttendanceColumnFilter = (key, value) => setAttendanceColumnFilters(current => ({ ...current, [key]: value }));
+  const expandedSignupEvent = expandedLog ? getHistoryEventForLog(expandedLog) : null;
+  const expandedSignupSummary = getSignupSummary(expandedSignupEvent);
+  const expandedSignupEntries = Array.isArray(expandedSignupEvent?.entries) ? expandedSignupEvent.entries : [];
+  const expandedSignupGroups = Array.isArray(expandedSignupEvent?.groups)
+    ? expandedSignupEvent.groups.filter(group => String(group.player_name || '').trim())
+    : [];
+  const expandedStatusEntries = expandedLogStatus === 'total'
+    ? expandedSignupEntries
+    : expandedSignupEntries.filter(entry => {
+      const status = String(entry?.status || '').trim().toLowerCase();
+      return (status === 'absence' ? 'absent' : status) === expandedLogStatus;
+    });
+
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
       <div className="flex items-center justify-between gap-3">
@@ -1944,102 +2125,73 @@ export default function RaidSignupsTab({
                 <p className="text-xs text-slate-500">Choose an event to edit details or manage its status.</p>
               ) : (
                 <div className="space-y-4">
-                  <div className="bg-slate-900 border border-slate-800 rounded-lg p-3">
-                    <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-2">Signup Summary</p>
-                    <div className="grid grid-cols-2 md:grid-cols-7 gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setExpandedSummaryStatus(prev => (prev === 'signup' ? '' : 'signup'))}
-                        className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'signup' ? 'border-emerald-400 bg-emerald-900/35' : 'border-emerald-700/40 bg-emerald-900/20 hover:bg-emerald-900/30'}`}
-                      >
-                        <p className="text-[10px] text-emerald-300 uppercase tracking-wider">Sign-ups</p>
-                        <p className="text-sm font-bold text-emerald-200">{selectedEventSignupSummary.signup}</p>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setExpandedSummaryStatus(prev => (prev === 'late' ? '' : 'late'))}
-                        className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'late' ? 'border-orange-400 bg-orange-900/35' : 'border-orange-700/40 bg-orange-900/20 hover:bg-orange-900/30'}`}
-                      >
-                        <p className="text-[10px] text-orange-300 uppercase tracking-wider">Late</p>
-                        <p className="text-sm font-bold text-orange-200">{selectedEventSignupSummary.late}</p>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setExpandedSummaryStatus(prev => (prev === 'tentative' ? '' : 'tentative'))}
-                        className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'tentative' ? 'border-cyan-400 bg-cyan-900/35' : 'border-cyan-700/40 bg-cyan-900/20 hover:bg-cyan-900/30'}`}
-                      >
-                        <p className="text-[10px] text-cyan-300 uppercase tracking-wider">Tentative</p>
-                        <p className="text-sm font-bold text-cyan-200">{selectedEventSignupSummary.tentative}</p>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setExpandedSummaryStatus(prev => (prev === 'bench' ? '' : 'bench'))}
-                        className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'bench' ? 'border-amber-400 bg-amber-900/35' : 'border-amber-700/40 bg-amber-900/20 hover:bg-amber-900/30'}`}
-                      >
-                        <p className="text-[10px] text-amber-300 uppercase tracking-wider">Bench</p>
-                        <p className="text-sm font-bold text-amber-200">{selectedEventSignupSummary.bench}</p>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setExpandedSummaryStatus(prev => (prev === 'absent' ? '' : 'absent'))}
-                        className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'absent' ? 'border-rose-400 bg-rose-900/35' : 'border-rose-700/40 bg-rose-900/20 hover:bg-rose-900/30'}`}
-                      >
-                        <p className="text-[10px] text-rose-300 uppercase tracking-wider">Absent</p>
-                        <p className="text-sm font-bold text-rose-200">{selectedEventSignupSummary.absent}</p>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setExpandedSummaryStatus(prev => (prev === 'total' ? '' : 'total'))}
-                        className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'total' ? 'border-slate-300 bg-slate-800/70' : 'border-slate-700/60 bg-slate-950/80 hover:bg-slate-800/70'}`}
-                      >
-                        <p className="text-[10px] text-slate-300 uppercase tracking-wider">Total</p>
-                        <p className="text-sm font-bold text-slate-100">{selectedEventSignupSummary.total}</p>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setUnsignedRaiderEchoResult(null);
-                          setIsUnsignedRaidersOpen(true);
-                        }}
-                        className="text-left rounded border border-amber-700/60 bg-amber-900/20 px-2 py-1.5 hover:bg-amber-900/35"
-                      >
-                        <p className="whitespace-nowrap text-[10px] text-amber-300 uppercase tracking-wider">Unsigned Raiders</p>
-                        <p className="text-sm font-bold text-amber-200">{unsignedRaiders.length}</p>
-                      </button>
-                    </div>
-
-                    {expandedSummaryStatus ? (
-                      <div className="mt-3 border-t border-slate-800 pt-3 space-y-2">
-                        <p className="text-[11px] text-slate-400 uppercase tracking-wider font-bold">{summaryStatusLabel(expandedSummaryStatus)}</p>
-                        {expandedSummaryGroups && ['tank', 'healer', 'melee', 'ranged'].map(role => (
-                          <div key={`summary-${role}`} className="rounded border border-slate-800 bg-slate-950/70 p-2">
-                            <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-1 flex items-center gap-1.5">
-                              <img src={roleIconAsset(role)} alt="" className="w-3.5 h-3.5 object-contain" />
-                              <span>{role}</span>
-                            </p>
-                            {expandedSummaryGroups[role].length === 0 ? (
-                              <p className="text-xs text-slate-600 italic">None</p>
-                            ) : (
-                              <ul className="space-y-1">
-                                {expandedSummaryGroups[role].map(entry => {
-                                  const color = resolveEntryNameColor(entry);
-                                  const marker = statusMarker(entry.status);
-                                  return (
-                                    <li key={`summary-${entry.discord_user_id}-${entry.status}`} className="flex items-center gap-2 text-xs text-slate-200">
-                                      <span className={`${marker.color} font-bold w-3 text-center`}>{marker.glyph}</span>
-                                      <img src={resolveEntryIcon(entry)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
-                                      <span className="truncate" style={{ color }}>{entry.discord_username}</span>
-                                      {entry.spec_name ? <span className="text-[10px] text-slate-500">({entry.spec_name})</span> : null}
-                                    </li>
-                                  );
-                                })}
-                              </ul>
-                            )}
-                          </div>
-                        ))}
+                  {selectedEvent ? (
+                    <div className="bg-slate-900 border border-slate-800 rounded-lg p-3">
+                      <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-2">Signup Summary</p>
+                      <div className="grid grid-cols-2 md:grid-cols-7 gap-2">
+                        <button type="button" onClick={() => setExpandedSummaryStatus(prev => (prev === 'signup' ? '' : 'signup'))} className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'signup' ? 'border-emerald-400 bg-emerald-900/35' : 'border-emerald-700/40 bg-emerald-900/20 hover:bg-emerald-900/30'}`}>
+                          <p className="text-[10px] text-emerald-300 uppercase tracking-wider">Sign-ups</p>
+                          <p className="text-sm font-bold text-emerald-200">{selectedEventSignupSummary.signup}</p>
+                        </button>
+                        <button type="button" onClick={() => setExpandedSummaryStatus(prev => (prev === 'late' ? '' : 'late'))} className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'late' ? 'border-orange-400 bg-orange-900/35' : 'border-orange-700/40 bg-orange-900/20 hover:bg-orange-900/30'}`}>
+                          <p className="text-[10px] text-orange-300 uppercase tracking-wider">Late</p>
+                          <p className="text-sm font-bold text-orange-200">{selectedEventSignupSummary.late}</p>
+                        </button>
+                        <button type="button" onClick={() => setExpandedSummaryStatus(prev => (prev === 'tentative' ? '' : 'tentative'))} className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'tentative' ? 'border-cyan-400 bg-cyan-900/35' : 'border-cyan-700/40 bg-cyan-900/20 hover:bg-cyan-900/30'}`}>
+                          <p className="text-[10px] text-cyan-300 uppercase tracking-wider">Tentative</p>
+                          <p className="text-sm font-bold text-cyan-200">{selectedEventSignupSummary.tentative}</p>
+                        </button>
+                        <button type="button" onClick={() => setExpandedSummaryStatus(prev => (prev === 'bench' ? '' : 'bench'))} className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'bench' ? 'border-amber-400 bg-amber-900/35' : 'border-amber-700/40 bg-amber-900/20 hover:bg-amber-900/30'}`}>
+                          <p className="text-[10px] text-amber-300 uppercase tracking-wider">Bench</p>
+                          <p className="text-sm font-bold text-amber-200">{selectedEventSignupSummary.bench}</p>
+                        </button>
+                        <button type="button" onClick={() => setExpandedSummaryStatus(prev => (prev === 'absent' ? '' : 'absent'))} className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'absent' ? 'border-rose-400 bg-rose-900/35' : 'border-rose-700/40 bg-rose-900/20 hover:bg-rose-900/30'}`}>
+                          <p className="text-[10px] text-rose-300 uppercase tracking-wider">Absent</p>
+                          <p className="text-sm font-bold text-rose-200">{selectedEventSignupSummary.absent}</p>
+                        </button>
+                        <button type="button" onClick={() => setExpandedSummaryStatus(prev => (prev === 'total' ? '' : 'total'))} className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'total' ? 'border-slate-300 bg-slate-800/70' : 'border-slate-700/60 bg-slate-950/80 hover:bg-slate-800/70'}`}>
+                          <p className="text-[10px] text-slate-300 uppercase tracking-wider">Total</p>
+                          <p className="text-sm font-bold text-slate-100">{selectedEventSignupSummary.total}</p>
+                        </button>
+                        <button type="button" onClick={() => { setUnsignedRaiderEchoResult(null); setIsUnsignedRaidersOpen(true); }} className="text-left rounded border border-amber-700/60 bg-amber-900/20 px-2 py-1.5 hover:bg-amber-900/35">
+                          <p className="whitespace-nowrap text-[10px] text-amber-300 uppercase tracking-wider">Unsigned Raiders</p>
+                          <p className="text-sm font-bold text-amber-200">{unsignedRaiders.length}</p>
+                        </button>
                       </div>
-                    ) : null}
-                  </div>
+
+                      {expandedSummaryStatus ? (
+                        <div className="mt-3 border-t border-slate-800 pt-3 space-y-2">
+                          <p className="text-[11px] text-slate-400 uppercase tracking-wider font-bold">{summaryStatusLabel(expandedSummaryStatus)}</p>
+                          {expandedSummaryGroups && ['tank', 'healer', 'melee', 'ranged'].map(role => (
+                            <div key={`summary-${role}`} className="rounded border border-slate-800 bg-slate-950/70 p-2">
+                              <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-1 flex items-center gap-1.5">
+                                <img src={roleIconAsset(role)} alt="" className="w-3.5 h-3.5 object-contain" />
+                                <span>{role}</span>
+                              </p>
+                              {expandedSummaryGroups[role].length === 0 ? (
+                                <p className="text-xs text-slate-600 italic">None</p>
+                              ) : (
+                                <ul className="space-y-1">
+                                  {expandedSummaryGroups[role].map(entry => {
+                                    const color = resolveEntryNameColor(entry);
+                                    const marker = statusMarker(entry.status);
+                                    return (
+                                      <li key={`summary-${entry.discord_user_id}-${entry.status}`} className="flex items-center gap-2 text-xs text-slate-200">
+                                        <span className={`${marker.color} font-bold w-3 text-center`}>{marker.glyph}</span>
+                                        <img src={resolveEntryIcon(entry)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
+                                        <span className="truncate" style={{ color }}>{entry.discord_username}</span>
+                                        {entry.spec_name ? <span className="text-[10px] text-slate-500">({entry.spec_name})</span> : null}
+                                      </li>
+                                    );
+                                  })}
+                                </ul>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
 
                   {isReadOnly ? (
                     <div className="space-y-2 text-sm">
@@ -2609,6 +2761,7 @@ export default function RaidSignupsTab({
                     </div>
                   )}
                 </div>
+
               </div>
           )}
 
@@ -2818,49 +2971,6 @@ export default function RaidSignupsTab({
               <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
               <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Raid History</h3>
 
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
-                  <div>
-                    <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Signup Event Summary</h4>
-                    <p className="text-[10px] text-slate-500 mt-1">Attendance categories are taken from the selected signup event.</p>
-                  </div>
-                  <select
-                    value={selectedEventId}
-                    onChange={e => setSelectedEventId(e.target.value)}
-                    className="bg-slate-950 text-white border border-slate-700 rounded px-3 py-2 text-xs"
-                  >
-                    <option value="">Select signup event...</option>
-                    {readableActiveEvents.length > 0 && (
-                      <optgroup label="Active events">
-                        {readableActiveEvents.map(event => <option key={`history-active-${event.id}`} value={event.id}>#{event.id} {event.title}</option>)}
-                      </optgroup>
-                    )}
-                    {readableArchivedEvents.length > 0 && (
-                      <optgroup label="Archived events">
-                        {readableArchivedEvents.map(event => <option key={`history-archived-${event.id}`} value={event.id}>#{event.id} {event.title}</option>)}
-                      </optgroup>
-                    )}
-                  </select>
-                </div>
-                {selectedEvent ? (
-                  <div className="grid grid-cols-2 md:grid-cols-6 gap-2">
-                    {[
-                      ['Sign-ups', selectedEventSignupSummary.signup, 'text-emerald-300'],
-                      ['Late', selectedEventSignupSummary.late, 'text-orange-300'],
-                      ['Tentative', selectedEventSignupSummary.tentative, 'text-cyan-300'],
-                      ['Bench', selectedEventSignupSummary.bench, 'text-amber-300'],
-                      ['Absent', selectedEventSignupSummary.absent, 'text-rose-300'],
-                      ['Total', selectedEventSignupSummary.total, 'text-slate-200']
-                    ].map(([label, count, color]) => (
-                      <div key={`history-summary-${label}`} className="rounded border border-slate-800 bg-slate-950 px-3 py-2">
-                        <div className="text-[10px] uppercase tracking-wider text-slate-500">{label}</div>
-                        <div className={`mt-1 text-lg font-bold ${color}`}>{count}</div>
-                      </div>
-                    ))}
-                  </div>
-                ) : <p className="text-xs text-slate-500">Select a signup event to view its attendance summary.</p>}
-              </div>
-
               <div className="space-y-4">
 
                 <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-4">
@@ -2935,19 +3045,160 @@ export default function RaidSignupsTab({
                     <p className="text-xs text-slate-600 italic py-4">No raids logged yet.</p>
                   ) : (
                     <ul className="max-h-[200px] overflow-y-auto pr-2 custom-scrollbar space-y-2">
-                      {raidLogs.map(log => (
+                      {[...raidLogs].sort((left, right) => String(right.date || '').localeCompare(String(left.date || ''))).map(log => {
+                        const signupEvent = getHistoryEventForLog(log);
+                        const summary = getSignupSummary(signupEvent);
+                        const groupCount = Array.isArray(signupEvent?.groups)
+                          ? new Set(signupEvent.groups.filter(group => Number(group.group_number) > 0).map(group => Number(group.group_number))).size
+                          : 0;
+                        return (
                         <li key={log.id} className="flex justify-between items-center bg-slate-950 border border-slate-800 p-2.5 rounded hover:border-slate-700 transition group">
-                          <div>
+                          <div className="min-w-0">
                             <span className="font-bold text-sm text-amber-500 block leading-tight">{log.date}</span>
-                            <span className="text-[10px] text-slate-400 uppercase tracking-wider">{log.zone} • {(log.attendees || []).length} Attendees</span>
+                            <span className="text-[10px] text-slate-400 uppercase tracking-wider">{log.zone} • {Math.max((log.attendees || []).length, (log.attendeeNames || []).length)} Attendees • {log.includeInAttendance === false ? 'Excluded from metrics' : 'Included in metrics'}</span>
+                            {summary.total > 0 ? (
+                              <span className="text-[10px] text-slate-500 block mt-1">
+                                <span className="text-emerald-300">{summary.signup} signed</span>
+                                <span> • </span>
+                                <span className="text-orange-300">{summary.late} late</span>
+                                <span> • </span>
+                                <span className="text-amber-300">{summary.bench} bench</span>
+                                <span> • </span>
+                                <span className="text-rose-300">{summary.absent} absent</span>
+                                {summary.tentative > 0 ? <><span> • </span><span className="text-cyan-300">{summary.tentative} tentative</span></> : null}
+                                {groupCount > 0 ? <><span> • </span><span>{groupCount} groups</span></> : null}
+                              </span>
+                            ) : null}
+                            {log.note ? <span className="text-[10px] text-cyan-300 block mt-1">{log.note}</span> : null}
                           </div>
-                          <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <button onClick={() => setExpandedLog(log)} className="text-cyan-400 hover:text-cyan-300 text-xs font-bold px-2">Pop-out</button>
+                          <div className="flex items-center gap-2">
+                            <label className="flex items-center gap-1.5 text-[10px] text-slate-400" title="Include this raid in attendance percentages and scoring">
+                              <input type="checkbox" checked={log.includeInAttendance !== false} onChange={event => handleUpdateRaidLog(log.id, { includeInAttendance: event.target.checked })} className="accent-emerald-600" />
+                              Metrics
+                            </label>
+                            <button onClick={() => { setExpandedLogStatus(''); setExpandedLog(log); }} className="text-cyan-400 hover:text-cyan-300 text-xs font-bold px-2">Pop-out</button>
                             <button onClick={() => handleDeleteRaidLog(log.id)} className="text-slate-600 hover:text-red-400 text-xs font-bold px-2">Delete</button>
                           </div>
                         </li>
-                      ))}
+                        );
+                      })}
                     </ul>
+                  )}
+                </div>
+
+                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+                  <div className="flex flex-col gap-2 mb-3 md:flex-row md:items-center md:justify-between">
+                    <div>
+                      <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Attendance Tracker</h4>
+                      <p className="text-[10px] text-slate-500 mt-1">Signup status by raid. Green cells are confirmed attendance or approved absences.</p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <input type="search" value={attendanceSearch} onChange={event => setAttendanceSearch(event.target.value)} placeholder="Filter character, rank, class" className="w-full md:w-56 rounded border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] text-slate-200 placeholder:text-slate-600" />
+                      <select value={attendanceStatusFilter} onChange={event => setAttendanceStatusFilter(event.target.value)} className="rounded border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] text-slate-300">
+                        <option value="">All statuses</option>
+                        <option value="signup">Signed up</option>
+                        <option value="absence">Notified absence</option>
+                        <option value="bench">Bench</option>
+                        <option value="late">Late</option>
+                        <option value="tentative">Tentative</option>
+                        <option value="absent">Absent</option>
+                        <option value="no_signup">No signup</option>
+                      </select>
+                    </div>
+                  </div>
+                  {attendanceTracker.includedLogs.length === 0 || attendanceTracker.players.length === 0 ? (
+                    <p className="text-xs text-slate-600 italic py-4">Log an included raid and save an active roster to populate attendance.</p>
+                  ) : (
+                    <div className="overflow-x-auto custom-scrollbar">
+                      <table className="w-max min-w-full table-fixed border-collapse text-xs">
+                        <colgroup>
+                          <col style={{ width: '260px' }} />
+                          <col style={{ width: '110px' }} />
+                          <col style={{ width: '110px' }} />
+                          <col style={{ width: '70px' }} />
+                          <col style={{ width: '78px' }} />
+                          <col style={{ width: '70px' }} />
+                          {attendanceTracker.includedLogs.map(log => <col key={`width-${log.id}`} style={{ width: '88px' }} />)}
+                        </colgroup>
+                        <thead>
+                          <tr className="border-b border-slate-800">
+                            {[
+                              ['name', 'Name', 'text-left'],
+                              ['className', 'Class', 'text-left'],
+                              ['rank', 'Guild Rank', 'text-left'],
+                              ['attendance', 'Att.%', 'text-center'],
+                              ['unnotified', 'Unnotified', 'text-center'],
+                              ['response', 'Resp.%', 'text-center']
+                            ].map(([key, label, alignment]) => (
+                              <th key={key} title={key === 'unnotified' ? 'Raids with no signup and no absence record' : key === 'response' ? 'Raids with any signup or absence response' : undefined} className={`sticky ${key === 'name' ? 'left-0 z-10' : ''} bg-slate-900 px-2 py-2 ${alignment} text-[10px] font-bold uppercase tracking-wider text-slate-500`}>
+                                <div className="flex h-full flex-col justify-end gap-1">
+                                  <button type="button" onClick={() => toggleAttendanceSort(key)} className={`${alignment} hover:text-cyan-300`}>{label}{attendanceSortIndicator(key)}</button>
+                                  {!['attendance', 'unnotified', 'response'].includes(key) && <input type="search" value={attendanceColumnFilter(key)} onChange={event => setAttendanceColumnFilter(key, event.target.value)} placeholder="Filter" className="w-full rounded border border-slate-700 bg-slate-950 px-1 py-1 text-[10px] font-normal normal-case tracking-normal text-slate-300 placeholder:text-slate-600" />}
+                                </div>
+                              </th>
+                            ))}
+                            {attendanceTracker.includedLogs.map(log => (
+                              <th key={log.id} className="min-w-[84px] px-2 py-2 text-center text-[10px] font-bold text-slate-400">
+                                <div className="flex h-full flex-col justify-end gap-1">
+                                  <button type="button" onClick={() => toggleAttendanceSort(`log:${log.id}`)} className="hover:text-cyan-300"><span className="block text-amber-500">{log.zone || 'Raid'}</span><span className="block text-slate-500">{log.date}{attendanceSortIndicator(`log:${log.id}`)}</span></button>
+                                  <input type="search" value={attendanceColumnFilter(`log:${log.id}`)} onChange={event => setAttendanceColumnFilter(`log:${log.id}`, event.target.value)} placeholder="Filter" className="w-full rounded border border-slate-700 bg-slate-950 px-1 py-1 text-[10px] font-normal tracking-normal text-slate-300 placeholder:text-slate-600" />
+                                </div>
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {attendanceTracker.players.map(player => {
+                            const playerStatuses = attendanceTracker.includedLogs.map(log => attendanceTracker.statusForCell(player, log));
+                            const attended = attendanceTracker.includedLogs.filter(log => attendanceTracker.isAttendingLog(player, log)).length;
+                            const unnotifiedAbsences = playerStatuses.filter(status => status === 'no_signup').length;
+                            const responseCount = playerStatuses.filter(status => status !== 'no_signup').length;
+                            const responsePercent = attendanceTracker.includedLogs.length === 0
+                              ? 100
+                              : Math.round((responseCount / attendanceTracker.includedLogs.length) * 100);
+                            const spec = getSpecById(player.player.spec_id);
+                            const className = String(player.player.class_name || player.player.class || spec?.class || '').trim().toLowerCase();
+                            const nameColor = CLASS_NAME_COLORS[className] || '#e2e8f0';
+                            const rankName = player.player.guild_rank || player.player.rank || 'Unranked';
+                            return (
+                              <tr key={player.memberIds.join('-')} className="border-b border-slate-800/70 last:border-0">
+                                <th className="sticky left-0 z-10 whitespace-nowrap bg-slate-900 px-3 py-2 text-left font-semibold" style={{ color: nameColor }}>
+                                  {player.player.name} <span className="font-normal text-slate-500">{player.memberNames.length > 1 ? `(alts: ${player.memberNames.slice(1).join(', ')})` : ''}</span>
+                                </th>
+                                <td className="bg-slate-900 px-3 py-2 text-left text-slate-300">{player.player.class_name || player.player.class || spec?.class || 'Unknown'}</td>
+                                <td className="bg-slate-900 px-3 py-2 text-left text-slate-500">{rankName}</td>
+                                <td className="bg-slate-900 px-3 py-2 text-center font-bold text-slate-300">{attendanceTracker.includedLogs.length === 0 ? '100%' : `${Math.round((attended / attendanceTracker.includedLogs.length) * 100)}%`}</td>
+                                <td className="bg-slate-900 px-2 py-2 text-center font-bold text-rose-300">{unnotifiedAbsences}</td>
+                                <td className="bg-slate-900 px-2 py-2 text-center font-bold text-cyan-300">{responsePercent}%</td>
+                                {attendanceTracker.includedLogs.map(log => {
+                                  const status = attendanceTracker.statusForCell(player, log);
+                                  const statusMeta = {
+                                    signup: { symbol: '✓', label: 'Signed up', color: 'bg-emerald-700/80 text-emerald-50' },
+                                    absence: { symbol: 'A', label: 'Notified absence', color: 'bg-emerald-700/80 text-emerald-50' },
+                                    bench: {
+                                      symbol: (
+                                        <svg viewBox="0 0 24 24" className="inline-block h-4 w-4" fill="none" aria-hidden="true" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                                          <path d="M5 5l14 14" />
+                                          <path d="M9 5h6a4 4 0 0 1 4 4v6" />
+                                          <path d="M5 9v6a4 4 0 0 0 4 4h6" />
+                                        </svg>
+                                      ),
+                                      label: 'Bench',
+                                      color: 'bg-emerald-700/80 text-emerald-50'
+                                    },
+                                    late: { symbol: 'L', label: 'Late', color: 'bg-yellow-900/75 text-yellow-100' },
+                                    tentative: { symbol: '?', label: 'Tentative', color: 'bg-yellow-900/75 text-yellow-100' },
+                                    absent: { symbol: '×', label: 'Absent', color: 'bg-red-950/90 text-red-100' },
+                                    no_signup: { symbol: '−', label: 'No signup', color: 'bg-slate-800/80 text-slate-400' }
+                                  }[status];
+                                  return <td key={log.id} className={`px-2 py-2 text-center font-bold ${statusMeta.color}`} aria-label={`${player.name}: ${statusMeta.label} for ${log.zone || 'raid'} ${log.date}`} title={statusMeta.label}>{statusMeta.symbol}</td>;
+                                })}
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
                   )}
                 </div>
               </div>
@@ -2993,22 +3244,98 @@ export default function RaidSignupsTab({
               <div>
                 <h3 className="text-lg font-bold text-slate-100">Raid Roster Snapshot</h3>
                 <p className="text-xs text-slate-500 uppercase tracking-wider">{expandedLog.date} • {expandedLog.zone}</p>
+                {expandedLog.note ? <p className="text-xs text-cyan-300 mt-1">{expandedLog.note}</p> : null}
               </div>
               <button onClick={() => setExpandedLog(null)} className="text-slate-400 hover:text-slate-200 text-xl leading-none">✕</button>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-              {(roster || [])
-                .filter(player => (expandedLog.attendees || []).map(Number).includes(Number(player.id)))
-                .map(player => {
-                  const spec = getSpecById(player.spec_id);
-                  return (
-                    <div key={player.id} className="bg-slate-950 border border-slate-800 rounded p-2.5">
-                      <div className="text-sm font-bold" style={{ color: spec?.color || '#e2e8f0' }}>{player.name}</div>
-                      <div className="text-[10px] text-slate-500 uppercase tracking-wider">{spec?.class || 'Unknown'} • {spec?.spec || 'Unknown'}</div>
+            {expandedSignupEvent ? (
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+                  {[
+                    ['signup', 'Sign-ups', expandedSignupSummary.signup, 'border-emerald-700/50 text-emerald-300'],
+                    ['late', 'Late', expandedSignupSummary.late, 'border-orange-700/50 text-orange-300'],
+                    ['tentative', 'Tentative', expandedSignupSummary.tentative, 'border-cyan-700/50 text-cyan-300'],
+                    ['bench', 'Bench', expandedSignupSummary.bench, 'border-amber-700/50 text-amber-300'],
+                    ['absent', 'Absent', expandedSignupSummary.absent, 'border-rose-700/50 text-rose-300'],
+                    ['total', 'Total', expandedSignupSummary.total, 'border-slate-700 text-slate-200']
+                  ].map(([status, label, count, color]) => (
+                    <button
+                      key={`expanded-summary-${status}`}
+                      type="button"
+                      onClick={() => setExpandedLogStatus(current => current === status ? '' : status)}
+                      className={`rounded border bg-slate-950 px-2 py-2 text-left ${color} ${expandedLogStatus === status ? 'ring-1 ring-cyan-400' : ''}`}
+                    >
+                      <div className="text-[10px] uppercase tracking-wider text-slate-500">{label}</div>
+                      <div className="mt-1 text-lg font-bold">{count}</div>
+                    </button>
+                  ))}
+                </div>
+
+                {expandedLogStatus ? (
+                  <div className="border-t border-slate-800 pt-3">
+                    <h4 className="text-[11px] text-slate-400 uppercase tracking-wider font-bold mb-2">{summaryStatusLabel(expandedLogStatus)}</h4>
+                    {expandedStatusEntries.length === 0 ? (
+                      <p className="text-xs text-slate-600 italic">None</p>
+                    ) : (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                        {expandedStatusEntries.map(entry => {
+                          return (
+                            <div key={`expanded-entry-${entry.discord_user_id}-${entry.status}`} className="bg-slate-950 border border-slate-800 rounded p-2.5">
+                              <div className="flex items-center gap-2 text-sm font-bold" style={{ color: resolveEntryNameColor(entry) }}>
+                                <img src={resolveEntryIcon(entry)} alt="" className="h-5 w-5 shrink-0 rounded border border-slate-700 bg-slate-800" />
+                                <span className="truncate">{entry.discord_username || entry.character_name || entry.player_name}</span>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                ) : null}
+
+                {expandedSignupGroups.length > 0 ? (
+                  <div className="border-t border-slate-800 pt-3 space-y-2">
+                    <h4 className="text-[11px] text-slate-400 uppercase tracking-wider font-bold">Groups</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      {[...new Set(expandedSignupGroups.map(group => Number(group.group_number)))].sort((a, b) => a - b).map(groupNumber => {
+                        const groupMembers = expandedSignupGroups.filter(group => Number(group.group_number) === groupNumber);
+                        const groupName = groupMembers[0]?.group_name || (groupNumber === 0 ? 'Bench' : `Group ${groupNumber}`);
+                        return (
+                          <div key={`expanded-group-${groupNumber}`} className="bg-slate-950 border border-slate-800 rounded p-2.5">
+                            <div className="text-xs font-bold text-slate-200 mb-1">{groupName}</div>
+                            <div className="space-y-1">
+                              {groupMembers.map((member, index) => (
+                                <div key={`expanded-group-member-${groupNumber}-${member.id || index}`} className="text-xs text-slate-300 flex items-center justify-between gap-2">
+                                  <span className="flex min-w-0 items-center gap-1.5">
+                                    <img src={resolveEntryIcon(member)} alt="" className="h-4 w-4 shrink-0 rounded border border-slate-700 bg-slate-800" />
+                                    <span className="truncate" style={{ color: resolveEntryNameColor(member) }}>{member.player_name}</span>
+                                  </span>
+                                  {member.spec_name ? <span className="shrink-0 text-[10px] text-slate-500">{member.spec_name}</span> : null}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
-                  );
-                })}
-            </div>
+                  </div>
+                ) : null}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                {(roster || [])
+                  .filter(player => (expandedLog.attendees || []).map(Number).includes(Number(player.id)))
+                  .map(player => {
+                    const spec = getSpecById(player.spec_id);
+                    return (
+                      <div key={player.id} className="bg-slate-950 border border-slate-800 rounded p-2.5">
+                        <div className="text-sm font-bold" style={{ color: spec?.color || '#e2e8f0' }}>{player.name}</div>
+                        <div className="text-[10px] text-slate-500 uppercase tracking-wider">{spec?.class || 'Unknown'} • {spec?.spec || 'Unknown'}</div>
+                      </div>
+                    );
+                  })}
+              </div>
+            )}
           </div>
         </div>
       )}

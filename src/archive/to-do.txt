@@ -197,7 +197,7 @@
 [x] make it so loot council tab is only visible when logged in with battlenet and have claimed a character
 [ ] Add Discord oauth2 Login
 [x] keep character claim in its own box
-  [ ] reinstate proper battlenet character claiming
+  [x] reinstate proper battlenet character claiming
 [x] hide 'save changes' box for non-officers (check first that non-members shouldn't have anything that flags a dirty state in the site which does in fact render this box irrelevant for them)
 [x] add sitemap tab within admin tab group (admin role only to be able to view) that shows which tabs are visible to which role (public, guild member [identified as somebody on roster who has claimed character], officer, admin)
 [x] include components within each tab through registry-backed tab metadata
@@ -205,7 +205,7 @@
   [ ] keep component/action permissions separate from surfaced navigation roles
 [x] consider how easy it is to implement an edit functionality to each tab that shows/hides tabs for roles
 [x] review which options e.g. export/import are admin only
-[ ] review if archiving works consistently on gbank requests - do we need to mark durty and save changes?
+[x] review if archiving works consistently on gbank requests - do we need to mark durty and save changes?
 [ ] Admin Operations: Resolve Hetzner refund query.
 
 ## Phase 2: Navigation, Shell & Shared UX
@@ -227,15 +227,17 @@
 [x] use different text colour for admin tabs (blue?)
 [x] change 'copy JSON' button text to a copy icon
 [ ] can we add the page we're on to the URL without actually having to make separate URLs for each tab? Idea would be to be able to link to e.g. guild-name-tbc.top/raid-assignments and show only the raid assignments tab in read-only mode for unsophisticated users of the app
+[x] role icons not working on live discord bot
+[x] is there spam retrying to post recurring events?
 
 ## Phase 3: Raid, Roster & Attendance Workflows
 
 [x] Redevelop the current raid roster workflow
 [x] default the tactics and raid assignment boss selector selections to match the phase and remember user selections
-[08/09] add attendance chart per person in the drilldown of attendance tab that shows event date chronoligcally and whether they attended (dates taken from raid history log)
-[08/09] raid history log should be its own full-width section with a summary of signups, absence, tentative, bench etc taken from signup event.
+[x] add attendance chart per person in the drilldown of attendance tab that shows event date chronoligcally and whether they attended (dates taken from raid history log)
+[x] raid history log should be its own full-width section with a summary of signups, absence, tentative, bench etc taken from signup event.
 [x] make sections in absences tab collapsible
-[08/09] make import raidhelper section collapsed by default and ensure it's on the sitemap as a section that I can disable or enable at will
+[x] make import raidhelper section collapsed by default and ensure it's on the sitemap as a section that I can disable or enable at will
 
 ## Phase 4: Guild Bank & Addon Workflow
 

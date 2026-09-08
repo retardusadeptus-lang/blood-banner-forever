@@ -55,11 +55,23 @@ function buildRaidsignupCommand() {
     .addSubcommand(subcommand =>
       subcommand
         .setName('unlock')
-        .setDescription('Unlock or restore a raid signup event so signups are accepted again')
+        .setDescription('Unlock a locked raid signup event so signups are accepted again')
         .addStringOption(option =>
           option
             .setName('event')
             .setDescription('Event id')
+            .setRequired(true)
+            .setAutocomplete(true)
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('restore')
+        .setDescription('Restore an archived raid signup event and reopen signups')
+        .addStringOption(option =>
+          option
+            .setName('event')
+            .setDescription('Archived event id')
             .setRequired(true)
             .setAutocomplete(true)
         )

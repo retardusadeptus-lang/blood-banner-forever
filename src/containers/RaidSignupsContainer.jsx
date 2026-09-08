@@ -7,6 +7,7 @@ export default function RaidSignupsContainer({ api, session, directory, attendan
       isAuthenticated={session.isAuthenticated}
       roster={directory.roster}
       guildRoleRanks={session.guildRoleRanks}
+      rosterClaims={session.rosterClaims}
       getSpecById={directory.getSpecById}
       specsFromDb={directory.specsFromDb}
       bnetAuthState={session.bnetAuthState}

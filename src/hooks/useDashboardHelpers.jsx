@@ -9,6 +9,7 @@ export default function useDashboardHelpers({
   playerStats,
   scoringConfig,
   raidLogs,
+  rosterClaims,
   setRoster,
   setRaidLogs,
   setSelectedItemName,
@@ -49,7 +50,6 @@ export default function useDashboardHelpers({
       alert('Select a raid signup event first.');
       return false;
     }
-
     try {
       let event = null;
       let groups = [];
@@ -81,15 +81,45 @@ export default function useDashboardHelpers({
         }
       }
 
-      const groupedNames = [...new Set(
+      let groupedNames = [...new Set(
         groups
           .map(row => String(row?.player_name || '').trim())
           .filter(Boolean)
       )];
+      let importSource = 'grouped';
 
       if (groupedNames.length === 0) {
-        alert('This signup event has no grouped players assigned yet.');
-        return false;
+        const shouldUseSignups = window.confirm('This signup event has no grouped players assigned yet. Would you like to apply the signup history instead?');
+        if (!shouldUseSignups) return false;
+
+        const signupStatuses = new Set(['signup', 'late', 'tentative', 'bench']);
+        const claimedNamesByUserId = new Map();
+        (Array.isArray(rosterClaims) ? rosterClaims : []).forEach(claim => {
+          const userId = Number(claim?.userId || claim?.user_id);
+          const rosterName = String(claim?.rosterName || claim?.roster_name || '').trim();
+          if (!userId || !rosterName) return;
+          if (!claimedNamesByUserId.has(userId)) claimedNamesByUserId.set(userId, []);
+          claimedNamesByUserId.get(userId).push(rosterName);
+        });
+        groupedNames = [...new Set(
+          (Array.isArray(event?.entries) ? event.entries : [])
+            .filter(entry => signupStatuses.has(String(entry?.status || '').trim().toLowerCase()))
+            .flatMap(entry => [
+              ...(claimedNamesByUserId.get(Number(entry?.discord_user_id)) || []),
+              entry?.discord_username,
+              entry?.player_name,
+              entry?.character_name,
+              entry?.roster_name
+            ])
+            .map(value => String(value || '').trim())
+            .filter(Boolean)
+        )];
+        importSource = 'signup history';
+
+        if (groupedNames.length === 0) {
+          alert('This signup event has no grouped players assigned yet and no signup history attendees are available.');
+          return false;
+        }
       }
 
       const rosterByToken = new Map();
@@ -127,13 +157,36 @@ export default function useDashboardHelpers({
 
       const raidDate = parseRaidSignupDate(event?.scheduled_for);
       const raidZone = String(event?.title || 'Raid Signup Import').trim();
+      const normalizedRaidDate = String(raidDate || '').slice(0, 10);
+      const sameDayLogs = raidLogs.filter(log => String(log.date || '').slice(0, 10) === normalizedRaidDate);
+      let nextRaidLogs = raidLogs;
+
+      if (sameDayLogs.length > 0) {
+        const overwrite = window.confirm(`A raid log already exists for ${normalizedRaidDate}. Click OK to overwrite it, or Cancel to choose another option.`);
+        if (overwrite) {
+          nextRaidLogs = raidLogs.filter(log => String(log.date || '').slice(0, 10) !== normalizedRaidDate);
+        } else if (!window.confirm('Add this as a second raid on the same day? Click Cancel to leave the existing log unchanged.')) {
+          return false;
+        }
+      }
 
       setRoster(rosterWithRaidState);
-      setRaidLogs([{ id: Date.now(), date: raidDate, zone: raidZone, attendees: [...attendeeSet] }, ...raidLogs]);
+      setRaidLogs([{
+        id: Date.now(),
+        date: raidDate,
+        zone: raidZone,
+        attendees: [...attendeeSet],
+        attendeeNames: groupedNames,
+        includeInAttendance: true,
+        signupEventId: numericEventId,
+        note: importSource === 'signup history'
+          ? 'Attendees fell back to signed players because no saved groups were available.'
+          : ''
+      }, ...nextRaidLogs]);
       setNewRaidDate(raidDate);
       setNewRaidZone(raidZone);
 
-      let msg = `Imported ${attendeeSet.size} grouped attendees from signup #${numericEventId}.`;
+      let msg = `Imported ${attendeeSet.size} ${importSource} attendees from signup #${numericEventId}.`;
       if (unmatched.length > 0) {
         msg += `\nUnmatched (${unmatched.length}): ${unmatched.slice(0, 12).join(', ')}${unmatched.length > 12 ? ', ...' : ''}`;
       }
@@ -148,7 +201,7 @@ export default function useDashboardHelpers({
       alert(`Failed to import attendees from raid signup event.${detail}`);
       return false;
     }
-  }, [fetchData, normalizeRaidHelperToken, parseRaidSignupDate, roster, setRoster, setRaidLogs, setNewRaidDate, setNewRaidZone, raidLogs]);
+  }, [fetchData, normalizeRaidHelperToken, parseRaidSignupDate, raidLogs, roster, rosterClaims, setNewRaidDate, setNewRaidZone, setRaidLogs, setRoster]);
 
   const handleOpenItemForLootAssignment = useCallback((itemName) => {
     if (!itemName) return;

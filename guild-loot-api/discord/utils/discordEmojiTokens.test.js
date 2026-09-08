@@ -20,12 +20,12 @@ const createGuild = () => ({
 
 test('resolveClassEmojiToken returns the guild class emoji token for class names', () => {
   const guild = createGuild();
-  assert.equal(resolveClassEmojiToken(guild, 'warlock'), '<:warlock:101>');
+  assert.equal(resolveClassEmojiToken(guild, 'warlock'), '<:warlock:1538305987692335154>');
 });
 
 test('resolveSpecEmojiToken resolves the class-specific spec icon for a spec name', () => {
   const guild = createGuild();
-  assert.equal(resolveSpecEmojiToken(guild, 'Fire', 'Mage'), '<:fire:202>');
+  assert.equal(resolveSpecEmojiToken(guild, 'Fire', 'Mage'), '<:fire:1528191590991003731>');
 });
 
 test('resolveSpecEmojiToken uses the live guild emoji when available', () => {
@@ -36,7 +36,7 @@ test('resolveSpecEmojiToken uses the live guild emoji when available', () => {
       ]
     }
   };
-  assert.equal(resolveSpecEmojiToken(guild, 'Holy', 'Priest'), '✨');
+  assert.equal(resolveSpecEmojiToken(guild, 'Holy', 'Priest'), '<:holy_priest:1537969972356186193>');
 });
 
 test('resolveSpecEmojiToken uses a Unicode fallback when no live bot emoji is available', () => {

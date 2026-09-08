@@ -136,7 +136,7 @@ function getBattleNetRoleForUser(db, userId) {
 
     const row = db.prepare('SELECT role FROM bnet_user_roles WHERE user_id = ?').get(numericUserId);
     const role = String(row?.role || '').toLowerCase();
-    if (role === 'admin' || role === 'officer') return role;
+    if (role === 'admin' || role === 'officer' || role === 'guild_member') return role;
   } catch (error) {
     console.error('[ERROR] Failed to read Battle.net role:', error.message);
   }

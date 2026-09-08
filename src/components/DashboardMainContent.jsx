@@ -141,6 +141,7 @@ export default function DashboardMainContent({ viewModel }) {
     toggleRaidStatus,
     handleUpdatePlayer,
     handleRemovePlayer,
+    handleUpdateRaidLog,
     dirty: rosterDirty,
   } = rosterModel;
 
@@ -184,6 +185,7 @@ export default function DashboardMainContent({ viewModel }) {
     setNewRaidZone,
     raidLogs,
     handleDeleteRaidLog,
+    handleUpdateRaidLog,
   };
   const raidSignupsHelper = {
     handleImportRaidHelperJson,
@@ -380,7 +382,7 @@ export default function DashboardMainContent({ viewModel }) {
       {activeContentOwner === 'RaidSignupsContainer' && activeSiteTabId?.startsWith('raid-signups.') && (
         <RaidSignupsContainer
           api={api}
-          session={{ ...sessionContext, guildRoleRanks: scoringConfig?.guildRoleRanks }}
+          session={{ ...sessionContext, guildRoleRanks: scoringConfig?.guildRoleRanks, rosterClaims: admin.rosterClaims }}
           directory={{ roster, getSpecById, specsFromDb }}
           attendance={raidSignupsAttendance}
           raidHelper={raidSignupsHelper}

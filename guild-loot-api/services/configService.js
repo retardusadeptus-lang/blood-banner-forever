@@ -36,10 +36,10 @@ function createConfigService(db) {
       }
     };
 
+    const signupRoles = parse(row.signup_roles_json);
     return {
       request_roles: parse(row.request_roles_json),
-      signup_roles: parse(row.signup_roles_json),
-      bench_roles: parse(row.bench_roles_json)
+      signup_roles: signupRoles.length > 0 ? signupRoles : parse(row.bench_roles_json)
     };
   }
 

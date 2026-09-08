@@ -34,10 +34,11 @@ export default function useAppShellState({
     canSaveChanges && hasRaidAssignmentsUnsavedChanges ? 'Raid Assignments' : null,
     canSaveChanges && hasRosterUnsavedChanges ? 'Roster' : null,
     canSaveChanges && hasConfigUnsavedChanges ? 'Config' : null,
+    canSaveChanges && adminData?.bnetAccessRolesDirty ? 'Config' : null,
+    canSaveChanges && adminData?.discordBotConfigDirty ? 'Config' : null,
     canSaveChanges && hasScoringUnsavedChanges && !hasConfigUnsavedChanges ? 'Scoring' : null,
     canSaveChanges && hasItemsDbUnsavedChanges ? 'Items DB' : null,
     canSaveChanges && adminData?.officerRolesDirty ? 'Officer Roles' : null,
-    canSaveChanges && adminData?.discordBotConfigDirty ? 'Discord Config' : null,
     canSaveChanges && adminData?.todoDirty ? 'To-do List' : null,
   ].filter(Boolean), [
     canSaveChanges,
@@ -48,6 +49,7 @@ export default function useAppShellState({
     hasConfigUnsavedChanges,
     hasItemsDbUnsavedChanges,
     adminData?.officerRolesDirty,
+    adminData?.bnetAccessRolesDirty,
     adminData?.discordBotConfigDirty,
     adminData?.todoDirty,
   ]);

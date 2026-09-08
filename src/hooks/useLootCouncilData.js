@@ -118,7 +118,8 @@ export default function useLootCouncilData({
     const cons = stats.cons ? Number(scoringConfig.consBonus) : 0;
     const ench = stats.enchants ? Number(scoringConfig.enchantBonus) : 0;
     const gem = stats.gems ? Number(scoringConfig.gemBonus) : 0;
-    const att = (raidLogs.length === 0 ? 100 : Math.round((raidLogs.filter(log => (log.attendees || []).map(Number).includes(Number(playerId))).length / raidLogs.length) * 100)) * Number(scoringConfig.attWeight);
+    const includedLogs = raidLogs.filter(log => log.includeInAttendance !== false);
+    const att = (includedLogs.length === 0 ? 100 : Math.round((includedLogs.filter(log => (log.attendees || []).map(Number).includes(Number(playerId))).length / includedLogs.length) * 100)) * Number(scoringConfig.attWeight);
     const afkPenalty = (stats.afks || 0) * Number(scoringConfig.afkPenalty || 5);
     const manualAdj = stats.manualAdjustment?.value || 0;
 

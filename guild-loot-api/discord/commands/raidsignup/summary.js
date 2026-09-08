@@ -32,7 +32,7 @@ function summarizeGroups(groups, guild) {
 }
 
 function buildEchoEmbed(interaction, event, entries, groups) {
-  const discordContext = interaction.client || interaction.guild || null;
+  const discordContext = interaction.guild || interaction.client || null;
   const summary = formatSignupSummary(entries, {
     classIconResolver: entry => {
       const token = resolveClassEmojiToken(discordContext, entry?.spec_class);

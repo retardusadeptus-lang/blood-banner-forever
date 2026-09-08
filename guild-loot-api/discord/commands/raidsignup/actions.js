@@ -28,7 +28,11 @@ async function postEvent(interaction, db) {
     await interaction.client.application.emojis.fetch().catch(() => {});
   }
 
-  const discordContext = interaction.client || interaction.guild || null;
+  if (interaction.guild?.emojis && typeof interaction.guild.emojis.fetch === 'function') {
+    await interaction.guild.emojis.fetch().catch(() => {});
+  }
+
+  const discordContext = interaction.guild || interaction.client || null;
   const embed = buildSignupEmbed(event, [], discordContext);
   const classes = getAvailableClassesForEvent(db, event.id);
   const selectedClass = '';
@@ -154,6 +158,29 @@ async function unlockEvent(interaction, db) {
   await interaction.reply({ content: `Unlocked event #${eventId}. Signups are enabled again.`, ephemeral: true });
 }
 
+async function restoreEvent(interaction, db) {
+  const eventId = Number(interaction.options.getString('event', true));
+  const event = getEventById(db, eventId);
+  if (!event) {
+    await interaction.reply({ content: 'Event not found.', ephemeral: true });
+    return;
+  }
+
+  if (event.status !== 'archived') {
+    await interaction.reply({ content: 'Event is not archived.', ephemeral: true });
+    return;
+  }
+
+  db.prepare(`
+    UPDATE raid_signup_events
+    SET status = 'open', updated_at = CURRENT_TIMESTAMP
+    WHERE id = ? AND status = 'archived'
+  `).run(eventId);
+
+  await refreshEventMessage(db, interaction.client, eventId);
+  await interaction.reply({ content: `Restored event #${eventId}. Signups are enabled again.`, ephemeral: true });
+}
+
 async function deleteEvent(interaction, db) {
   const eventId = Number(interaction.options.getString('event', true));
   const event = getEventById(db, eventId);
@@ -186,7 +213,9 @@ async function echoEvent(interaction, db) {
 
   const entries = listEntriesForEvent(db, eventId);
   const groups = listGroupsForEvent(db, eventId);
-  await interaction.client.application.emojis.fetch().catch(() => {});
+  if (interaction.client?.application?.emojis && typeof interaction.client.application.emojis.fetch === 'function') {
+    await interaction.client.application.emojis.fetch().catch(() => {});
+  }
   const embed = buildEchoEmbed(interaction, event, entries, groups);
 
   await interaction.channel.send({ embeds: [embed] });
@@ -199,6 +228,7 @@ module.exports = {
   lockEvent,
   archiveEvent,
   unlockEvent,
+  restoreEvent,
   deleteEvent,
   echoEvent
 };

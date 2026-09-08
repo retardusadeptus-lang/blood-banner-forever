@@ -31,6 +31,11 @@ export default function AdminContainer({ navigation, directory, admin, scoring, 
   const { bnetAuthState, fetchData } = session;
   const {
     guildRoleRanks,
+    handleAddPlayer,
+    newName,
+    setNewName,
+    newSpec,
+    setNewSpec,
     handleUpdatePlayer,
     handleRemovePlayer,
     raidLogs,
@@ -70,6 +75,11 @@ export default function AdminContainer({ navigation, directory, admin, scoring, 
             roster={roster}
             specsFromDb={specsFromDb}
             getSpecById={getSpecById}
+            handleAddPlayer={handleAddPlayer}
+            newName={newName}
+            setNewName={setNewName}
+            newSpec={newSpec}
+            setNewSpec={setNewSpec}
             calculateScore={calculateScore}
             calculateAttendance={calculateAttendance}
             raidLogs={raidLogs}
@@ -107,6 +117,7 @@ export default function AdminContainer({ navigation, directory, admin, scoring, 
           <DiscordBotConfigTab
             config={discordBotConfig}
             setConfig={setDiscordBotConfig}
+            discordRoles={adminData.discordRoles}
             hasUnsavedChanges={discordBotConfigDirty || scoringConfigDirty}
             onSaveChanges={handleSaveDiscordBotConfig}
             isSaving={isSavingDiscordBotConfig}
@@ -158,6 +169,7 @@ export default function AdminContainer({ navigation, directory, admin, scoring, 
       <DiscordBotConfigTab
         config={discordBotConfig}
         setConfig={setDiscordBotConfig}
+        discordRoles={adminData.discordRoles}
         hasUnsavedChanges={discordBotConfigDirty || scoringConfigDirty}
         onSaveChanges={handleSaveDiscordBotConfig}
         isSaving={isSavingDiscordBotConfig}
