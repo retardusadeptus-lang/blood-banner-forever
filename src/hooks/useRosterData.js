@@ -48,15 +48,29 @@ export default function useRosterData({
   const setAllRaidStatus = (status) => setRoster(roster.map(p => ({ ...p, in_raid: status })));
 
   const calculateAttendance = (playerId) => {
-    if (raidLogs.length === 0) return 100;
-    const attendedCount = raidLogs.filter(log => (log.attendees || []).map(Number).includes(Number(playerId))).length;
-    return Math.round((attendedCount / raidLogs.length) * 100);
+    const includedLogs = raidLogs.filter(log => log.includeInAttendance !== false);
+    if (includedLogs.length === 0) return 100;
+    const attendedCount = includedLogs.filter(log => (log.attendees || []).map(Number).includes(Number(playerId))).length;
+    return Math.round((attendedCount / includedLogs.length) * 100);
   };
 
   const handleSaveRaidLog = (e) => {
     e.preventDefault();
     const activeRaiderIds = roster.filter(p => p.in_raid).map(p => Number(p.id));
-    setRaidLogs([{ id: Date.now(), date: newRaidDate, zone: newRaidZone, attendees: activeRaiderIds }, ...raidLogs]);
+    const normalizedDate = String(newRaidDate || '').slice(0, 10);
+    const sameDayLogs = raidLogs.filter(log => String(log.date || '').slice(0, 10) === normalizedDate);
+    let nextRaidLogs = raidLogs;
+
+    if (sameDayLogs.length > 0) {
+      const overwrite = window.confirm(`A raid log already exists for ${normalizedDate}. Click OK to overwrite it, or Cancel to choose another option.`);
+      if (overwrite) {
+        nextRaidLogs = raidLogs.filter(log => String(log.date || '').slice(0, 10) !== normalizedDate);
+      } else if (!window.confirm('Add this as a second raid on the same day? Click Cancel to leave the existing log unchanged.')) {
+        return;
+      }
+    }
+
+    setRaidLogs([{ id: Date.now(), date: newRaidDate, zone: newRaidZone, attendees: activeRaiderIds, includeInAttendance: true }, ...nextRaidLogs]);
     alert(`Saved raid log for ${activeRaiderIds.length} players!`);
   };
 
@@ -64,6 +78,10 @@ export default function useRosterData({
     if (window.confirm('Delete this raid log?')) {
       setRaidLogs(raidLogs.filter(log => log.id !== logId));
     }
+  };
+
+  const handleUpdateRaidLog = (logId, updates) => {
+    setRaidLogs(raidLogs.map(log => log.id === logId ? { ...log, ...updates } : log));
   };
 
   const updatePlayerStat = (playerId, field, value) => {
@@ -157,6 +175,7 @@ export default function useRosterData({
     calculateAttendance,
     handleSaveRaidLog,
     handleDeleteRaidLog,
+    handleUpdateRaidLog,
     updatePlayerStat,
     updatePlayerParse,
     updatePlayerManualAdjustment,

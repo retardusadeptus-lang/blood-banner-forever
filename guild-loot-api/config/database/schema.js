@@ -148,6 +148,10 @@ function ensureBattleNetAuthSchema(db) {
   if (!hasUserId) {
     db.exec('ALTER TABLE roster ADD COLUMN user_id INTEGER');
   }
+  const hasDiscordUserId = rosterColumns.some(column => column.name === 'discord_user_id');
+  if (!hasDiscordUserId) {
+    db.exec('ALTER TABLE roster ADD COLUMN discord_user_id TEXT');
+  }
 }
 
 function ensureTierTokenSupport(db) {
@@ -245,9 +249,31 @@ function ensureNormalizedOperationalTables(db) {
       gem_bonus REAL NOT NULL DEFAULT 10,
       att_weight REAL NOT NULL DEFAULT 0.5,
       afk_penalty REAL NOT NULL DEFAULT 5,
+      guild_role_ranks TEXT NOT NULL DEFAULT '[]',
+      default_site_phase TEXT NOT NULL DEFAULT 'T6',
+      default_site_tab TEXT NOT NULL DEFAULT 'recruitment.focus',
+      claim_game_version TEXT NOT NULL DEFAULT 'all',
+      claim_fallback_enabled INTEGER NOT NULL DEFAULT 0,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `).run();
+
+  const scoringConfigColumns = db.prepare("PRAGMA table_info('scoring_config_values')").all();
+  if (!scoringConfigColumns.some(column => column.name === 'guild_role_ranks')) {
+    db.prepare("ALTER TABLE scoring_config_values ADD COLUMN guild_role_ranks TEXT NOT NULL DEFAULT '[]'").run();
+  }
+  if (!scoringConfigColumns.some(column => column.name === 'default_site_phase')) {
+    db.prepare("ALTER TABLE scoring_config_values ADD COLUMN default_site_phase TEXT NOT NULL DEFAULT 'T6'").run();
+  }
+  if (!scoringConfigColumns.some(column => column.name === 'default_site_tab')) {
+    db.prepare("ALTER TABLE scoring_config_values ADD COLUMN default_site_tab TEXT NOT NULL DEFAULT 'recruitment.focus'").run();
+  }
+  if (!scoringConfigColumns.some(column => column.name === 'claim_game_version')) {
+    db.prepare("ALTER TABLE scoring_config_values ADD COLUMN claim_game_version TEXT NOT NULL DEFAULT 'all'").run();
+  }
+  if (!scoringConfigColumns.some(column => column.name === 'claim_fallback_enabled')) {
+    db.prepare("ALTER TABLE scoring_config_values ADD COLUMN claim_fallback_enabled INTEGER NOT NULL DEFAULT 0").run();
+  }
 
   db.prepare(`
     CREATE TABLE IF NOT EXISTS raid_assignment_config_bosses (
@@ -263,11 +289,11 @@ function ensureNormalizedOperationalTables(db) {
     const insertEntry = db.prepare('INSERT OR REPLACE INTO bis_priority_entries (phase, item_name, spec_name, status) VALUES (?, ?, ?, ?)');
     const migrateBis = db.transaction(() => {
       legacyRows.forEach(row => {
-        let parsed = {};
+        let parsed;
         try {
           parsed = JSON.parse(row.data || '{}');
-        } catch (e) {
-          parsed = {};
+        } catch {
+          return;
         }
 
         Object.entries(parsed).forEach(([itemKey, status]) => {
@@ -289,7 +315,7 @@ function ensureNormalizedOperationalTables(db) {
     if (legacyRow) {
       try {
         legacyConfig = JSON.parse(legacyRow.data || '{}');
-      } catch (e) {
+      } catch {
         legacyConfig = {};
       }
     }
@@ -301,12 +327,17 @@ function ensureNormalizedOperationalTables(db) {
       enchantBonus: legacyConfig.enchantBonus ?? 10,
       gemBonus: legacyConfig.gemBonus ?? 10,
       attWeight: legacyConfig.attWeight ?? 0.5,
-      afkPenalty: legacyConfig.afkPenalty ?? 5
+      afkPenalty: legacyConfig.afkPenalty ?? 5,
+      guildRoleRanks: legacyConfig.guildRoleRanks ?? [],
+      defaultSitePhase: legacyConfig.defaultSitePhase ?? 'T6',
+      defaultSiteTab: legacyConfig.defaultSiteTab ?? 'recruitment.focus',
+      claimGameVersion: legacyConfig.claimGameVersion ?? 'all',
+      claimFallbackEnabled: legacyConfig.claimFallbackEnabled ?? false
     };
 
     db.prepare(`
-      INSERT INTO scoring_config_values (id, parse_weight, support_multi, cons_bonus, enchant_bonus, gem_bonus, att_weight, afk_penalty)
-      VALUES (1, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO scoring_config_values (id, parse_weight, support_multi, cons_bonus, enchant_bonus, gem_bonus, att_weight, afk_penalty, guild_role_ranks, default_site_phase, default_site_tab, claim_game_version, claim_fallback_enabled)
+      VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       defaults.parseWeight,
       defaults.supportMulti,
@@ -314,7 +345,12 @@ function ensureNormalizedOperationalTables(db) {
       defaults.enchantBonus,
       defaults.gemBonus,
       defaults.attWeight,
-      defaults.afkPenalty
+      defaults.afkPenalty,
+      JSON.stringify(defaults.guildRoleRanks),
+      defaults.defaultSitePhase,
+      defaults.defaultSiteTab,
+      defaults.claimGameVersion,
+      defaults.claimFallbackEnabled ? 1 : 0
     );
   }
 
@@ -325,7 +361,7 @@ function ensureNormalizedOperationalTables(db) {
     if (legacyRow) {
       try {
         enabledBosses = JSON.parse(legacyRow.enabled_bosses || '[]');
-      } catch (e) {
+      } catch {
         enabledBosses = [];
       }
     }
@@ -386,17 +422,36 @@ function ensureBattleNetUserRolesTable(db) {
 
 function ensureWeakAurasTable(db) {
   db.prepare(`
+    CREATE TABLE IF NOT EXISTS weakaura_sections (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      created_by TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  db.prepare(`
     CREATE TABLE IF NOT EXISTS weakauras (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
+      section_id INTEGER REFERENCES weakaura_sections(id) ON DELETE SET NULL,
       title TEXT NOT NULL,
       import_code TEXT,
       wago_url TEXT,
       access_password TEXT,
       notes TEXT,
+      tags_json TEXT NOT NULL DEFAULT '[]',
       created_by TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `).run();
+
+  const columns = db.prepare('PRAGMA table_info(weakauras)').all();
+  if (!columns.some(column => column.name === 'section_id')) {
+    db.prepare('ALTER TABLE weakauras ADD COLUMN section_id INTEGER').run();
+  }
+  if (!columns.some(column => column.name === 'tags_json')) {
+    db.prepare("ALTER TABLE weakauras ADD COLUMN tags_json TEXT NOT NULL DEFAULT '[]'").run();
+  }
 }
 
 function ensureTacticsTable(db) {
@@ -499,6 +554,7 @@ function ensureRecruitmentApplicationsTables(db) {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER,
       battletag TEXT NOT NULL,
+      discord_id TEXT NOT NULL DEFAULT '',
       class_name TEXT NOT NULL,
       spec TEXT NOT NULL,
       name TEXT NOT NULL,
@@ -521,6 +577,7 @@ function ensureRecruitmentApplicationsTables(db) {
   const applicationColumns = db.prepare('PRAGMA table_info(recruitment_applications)').all();
   const existingColumnNames = new Set((applicationColumns || []).map(column => column.name));
   const migrationColumns = [
+    ['discord_id', "TEXT NOT NULL DEFAULT ''"],
     ['is_proxy', 'INTEGER NOT NULL DEFAULT 0'],
     ['proxy_name', 'TEXT'],
     ['proxy_battletag', 'TEXT'],
@@ -537,6 +594,38 @@ function ensureRecruitmentApplicationsTables(db) {
     if (!existingColumnNames.has(columnName)) {
       db.prepare(`ALTER TABLE recruitment_applications ADD COLUMN ${columnName} ${columnDefinition}`).run();
     }
+  }
+}
+
+function ensureSiteVisibilityTable(db) {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS site_visibility_config (
+      id INTEGER PRIMARY KEY CHECK (id = 1),
+      surface_roles_by_tab_json TEXT NOT NULL DEFAULT '{}',
+      group_by_tab_json TEXT NOT NULL DEFAULT '{}',
+      order_by_tab_json TEXT NOT NULL DEFAULT '{}',
+      section_visibility_by_id_json TEXT NOT NULL DEFAULT '{}',
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  const row = db.prepare('SELECT id FROM site_visibility_config WHERE id = 1').get();
+  if (!row) {
+    db.prepare(`
+      INSERT INTO site_visibility_config (id, surface_roles_by_tab_json, group_by_tab_json, order_by_tab_json)
+      VALUES (1, '{}', '{}', '{}')
+    `).run();
+  }
+
+  const columns = db.prepare("PRAGMA table_info('site_visibility_config')").all();
+  if (!columns.some(column => column.name === 'group_by_tab_json')) {
+    db.prepare("ALTER TABLE site_visibility_config ADD COLUMN group_by_tab_json TEXT NOT NULL DEFAULT '{}'").run();
+  }
+  if (!columns.some(column => column.name === 'order_by_tab_json')) {
+    db.prepare("ALTER TABLE site_visibility_config ADD COLUMN order_by_tab_json TEXT NOT NULL DEFAULT '{}'").run();
+  }
+  if (!columns.some(column => column.name === 'section_visibility_by_id_json')) {
+    db.prepare("ALTER TABLE site_visibility_config ADD COLUMN section_visibility_by_id_json TEXT NOT NULL DEFAULT '{}'").run();
   }
 }
 
@@ -586,6 +675,8 @@ function ensureRaidSignupTables(db) {
       status TEXT NOT NULL DEFAULT 'signup',
       spec_id INTEGER REFERENCES specs(id) ON DELETE SET NULL,
       role_bucket TEXT,
+      signup_order INTEGER,
+      signup_source TEXT NOT NULL DEFAULT 'discord',
       note TEXT DEFAULT '',
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       UNIQUE(event_id, discord_user_id)
@@ -595,6 +686,18 @@ function ensureRaidSignupTables(db) {
   const signupEntryColumns = db.prepare("PRAGMA table_info('raid_signup_entries')").all();
   if (!signupEntryColumns.some(col => col.name === 'note')) {
     db.prepare('ALTER TABLE raid_signup_entries ADD COLUMN note TEXT DEFAULT ""').run();
+  }
+  if (!signupEntryColumns.some(col => col.name === 'signup_source')) {
+    db.prepare('ALTER TABLE raid_signup_entries ADD COLUMN signup_source TEXT NOT NULL DEFAULT "discord"').run();
+  }
+  if (!signupEntryColumns.some(col => col.name === 'signup_order')) {
+    db.prepare('ALTER TABLE raid_signup_entries ADD COLUMN signup_order INTEGER').run();
+    const eventIds = db.prepare('SELECT DISTINCT event_id FROM raid_signup_entries').all();
+    const updateOrder = db.prepare('UPDATE raid_signup_entries SET signup_order = ? WHERE id = ?');
+    eventIds.forEach(({ event_id: eventId }) => {
+      const entries = db.prepare('SELECT id FROM raid_signup_entries WHERE event_id = ? ORDER BY id').all(eventId);
+      entries.forEach((entry, index) => updateOrder.run(index + 1, entry.id));
+    });
   }
 
   db.prepare(`
@@ -871,6 +974,15 @@ function ensureOperationalTables(db) {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 
+    CREATE TABLE IF NOT EXISTS bank_item_history (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      item_wowhead_id INTEGER NOT NULL UNIQUE,
+      name VARCHAR(255) NOT NULL,
+      category VARCHAR(100) NOT NULL DEFAULT '',
+      sub_type VARCHAR(100) DEFAULT '',
+      last_seen_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
     CREATE TABLE IF NOT EXISTS bank_uploads (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       item_count INTEGER NOT NULL,
@@ -913,6 +1025,11 @@ function ensureOperationalTables(db) {
     );
   `);
 
+  db.exec(`
+    INSERT OR IGNORE INTO bank_item_history (item_wowhead_id, name, category, sub_type)
+    SELECT item_wowhead_id, name, category, sub_type FROM bank_items;
+  `);
+
   const specColumns = db.prepare("PRAGMA table_info('specs')").all();
   const hasSpecTable = specColumns.length > 0;
   if (hasSpecTable && !specColumns.some(col => col.name === 'slug')) {
@@ -935,6 +1052,9 @@ function ensureOperationalTables(db) {
   if (!rosterColumns.some(col => col.name === 'user_id')) {
     db.exec('ALTER TABLE roster ADD COLUMN user_id INTEGER');
   }
+  if (!rosterColumns.some(col => col.name === 'guild_rank')) {
+    db.exec("ALTER TABLE roster ADD COLUMN guild_rank TEXT DEFAULT ''");
+  }
 }
 
 function ensureDatabaseIndexes(db) {
@@ -950,6 +1070,7 @@ function ensureDatabaseIndexes(db) {
     'CREATE INDEX IF NOT EXISTS idx_items_source ON items (source, source_type)',
     'CREATE INDEX IF NOT EXISTS idx_items_bis_item_spec ON items_bis (item_id, spec_id)',
     'CREATE INDEX IF NOT EXISTS idx_bank_items_category_name ON bank_items (category, name)',
+    'CREATE INDEX IF NOT EXISTS idx_bank_item_history_name ON bank_item_history (name)',
     'CREATE INDEX IF NOT EXISTS idx_bank_requests_status_created ON bank_requests (status, created_at)',
     'CREATE INDEX IF NOT EXISTS idx_bank_requests_group_id ON bank_requests (request_group_id)',
     'CREATE INDEX IF NOT EXISTS idx_raid_assignment_images_boss_created ON raid_assignment_images (boss_name, created_at)',
@@ -957,6 +1078,7 @@ function ensureDatabaseIndexes(db) {
     'CREATE INDEX IF NOT EXISTS idx_raid_signup_character_absences_roster_dates ON raid_signup_character_absences (roster_id, start_date, end_date)',
     'CREATE INDEX IF NOT EXISTS idx_bnet_user_roles_role ON bnet_user_roles (role)',
     'CREATE INDEX IF NOT EXISTS idx_weakauras_created_at ON weakauras (created_at DESC)',
+    'CREATE INDEX IF NOT EXISTS idx_weakauras_section_id ON weakauras (section_id)',
     'CREATE INDEX IF NOT EXISTS idx_raid_tactics_updated_at ON raid_tactics (updated_at DESC)',
     'CREATE INDEX IF NOT EXISTS idx_wipefest_created_at ON wipefest (created_at DESC)'
   ];
@@ -978,6 +1100,7 @@ function ensureDatabaseReady(db) {
     ensureTacticsTable(db);
     ensureWipefestTable(db);
     ensureDiscordBotConfigTable(db);
+    ensureSiteVisibilityTable(db);
     ensureRecruitmentPlanningTable(db);
     ensureRecruitmentApplicationsTables(db);
     ensureRaidSignupTables(db);

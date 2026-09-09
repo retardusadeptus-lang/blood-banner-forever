@@ -1,5 +1,4 @@
 ﻿const fs = require('fs');
-const path = require('path');
 const { db, ensureDatabaseReady } = require('./config/database');
 const { buildDiscordService } = require('./services/discord');
 const createTokenRedemptionService = require('./services/tokenRedemption');

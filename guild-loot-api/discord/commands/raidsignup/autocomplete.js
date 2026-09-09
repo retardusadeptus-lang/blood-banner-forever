@@ -40,6 +40,16 @@ async function autocomplete(interaction, db) {
     return;
   }
 
+  if (subcommand === 'restore' && focused.name === 'event') {
+    const events = listArchivedEvents(db)
+      .filter(e => `${e.id} ${e.title}`.toLowerCase().includes(String(focused.value || '').toLowerCase()))
+      .slice(0, 25)
+      .map(e => ({ name: `#${e.id} [${e.status}] ${e.title}`, value: String(e.id) }));
+
+    await interaction.respond(events);
+    return;
+  }
+
   await interaction.respond([]);
 }
 

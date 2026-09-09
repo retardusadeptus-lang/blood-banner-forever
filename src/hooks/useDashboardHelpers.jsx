@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { BOTTOM_SLOTS, PHASE_JSON_KEYS } from '../constants';
 import * as helpers from '../utils/helpers';
 
@@ -9,6 +9,7 @@ export default function useDashboardHelpers({
   playerStats,
   scoringConfig,
   raidLogs,
+  rosterClaims,
   setRoster,
   setRaidLogs,
   setSelectedItemName,
@@ -29,8 +30,6 @@ export default function useDashboardHelpers({
   handleUpdateItemId,
   renderItemLink,
   hideWowheadTooltip,
-  getDisplayFromId,
-  getSpecById,
 }) {
   const [expandedBisSlots, setExpandedBisSlots] = useState({});
 
@@ -38,10 +37,6 @@ export default function useDashboardHelpers({
   const parseRaidSignupDate = helpers.parseRaidSignupDate;
   const normalizeSlotKey = helpers.normalizeSlotKey;
   const isGroupedSlot = helpers.isGroupedSlot;
-
-  useEffect(() => {
-    setExpandedBisSlots({});
-  }, [selectedBisSpec]);
 
   const initializeDefaultBisPriorities = useCallback(async (phase) => {
     const phaseKey = PHASE_JSON_KEYS[phase] || phase;
@@ -55,7 +50,6 @@ export default function useDashboardHelpers({
       alert('Select a raid signup event first.');
       return false;
     }
-
     try {
       let event = null;
       let groups = [];
@@ -87,15 +81,45 @@ export default function useDashboardHelpers({
         }
       }
 
-      const groupedNames = [...new Set(
+      let groupedNames = [...new Set(
         groups
           .map(row => String(row?.player_name || '').trim())
           .filter(Boolean)
       )];
+      let importSource = 'grouped';
 
       if (groupedNames.length === 0) {
-        alert('This signup event has no grouped players assigned yet.');
-        return false;
+        const shouldUseSignups = window.confirm('This signup event has no grouped players assigned yet. Would you like to apply the signup history instead?');
+        if (!shouldUseSignups) return false;
+
+        const signupStatuses = new Set(['signup', 'late', 'tentative', 'bench']);
+        const claimedNamesByUserId = new Map();
+        (Array.isArray(rosterClaims) ? rosterClaims : []).forEach(claim => {
+          const userId = Number(claim?.userId || claim?.user_id);
+          const rosterName = String(claim?.rosterName || claim?.roster_name || '').trim();
+          if (!userId || !rosterName) return;
+          if (!claimedNamesByUserId.has(userId)) claimedNamesByUserId.set(userId, []);
+          claimedNamesByUserId.get(userId).push(rosterName);
+        });
+        groupedNames = [...new Set(
+          (Array.isArray(event?.entries) ? event.entries : [])
+            .filter(entry => signupStatuses.has(String(entry?.status || '').trim().toLowerCase()))
+            .flatMap(entry => [
+              ...(claimedNamesByUserId.get(Number(entry?.discord_user_id)) || []),
+              entry?.discord_username,
+              entry?.player_name,
+              entry?.character_name,
+              entry?.roster_name
+            ])
+            .map(value => String(value || '').trim())
+            .filter(Boolean)
+        )];
+        importSource = 'signup history';
+
+        if (groupedNames.length === 0) {
+          alert('This signup event has no grouped players assigned yet and no signup history attendees are available.');
+          return false;
+        }
       }
 
       const rosterByToken = new Map();
@@ -133,13 +157,36 @@ export default function useDashboardHelpers({
 
       const raidDate = parseRaidSignupDate(event?.scheduled_for);
       const raidZone = String(event?.title || 'Raid Signup Import').trim();
+      const normalizedRaidDate = String(raidDate || '').slice(0, 10);
+      const sameDayLogs = raidLogs.filter(log => String(log.date || '').slice(0, 10) === normalizedRaidDate);
+      let nextRaidLogs = raidLogs;
+
+      if (sameDayLogs.length > 0) {
+        const overwrite = window.confirm(`A raid log already exists for ${normalizedRaidDate}. Click OK to overwrite it, or Cancel to choose another option.`);
+        if (overwrite) {
+          nextRaidLogs = raidLogs.filter(log => String(log.date || '').slice(0, 10) !== normalizedRaidDate);
+        } else if (!window.confirm('Add this as a second raid on the same day? Click Cancel to leave the existing log unchanged.')) {
+          return false;
+        }
+      }
 
       setRoster(rosterWithRaidState);
-      setRaidLogs([{ id: Date.now(), date: raidDate, zone: raidZone, attendees: [...attendeeSet] }, ...raidLogs]);
+      setRaidLogs([{
+        id: Date.now(),
+        date: raidDate,
+        zone: raidZone,
+        attendees: [...attendeeSet],
+        attendeeNames: groupedNames,
+        includeInAttendance: true,
+        signupEventId: numericEventId,
+        note: importSource === 'signup history'
+          ? 'Attendees fell back to signed players because no saved groups were available.'
+          : ''
+      }, ...nextRaidLogs]);
       setNewRaidDate(raidDate);
       setNewRaidZone(raidZone);
 
-      let msg = `Imported ${attendeeSet.size} grouped attendees from signup #${numericEventId}.`;
+      let msg = `Imported ${attendeeSet.size} ${importSource} attendees from signup #${numericEventId}.`;
       if (unmatched.length > 0) {
         msg += `\nUnmatched (${unmatched.length}): ${unmatched.slice(0, 12).join(', ')}${unmatched.length > 12 ? ', ...' : ''}`;
       }
@@ -154,7 +201,7 @@ export default function useDashboardHelpers({
       alert(`Failed to import attendees from raid signup event.${detail}`);
       return false;
     }
-  }, [fetchData, normalizeRaidHelperToken, parseRaidSignupDate, roster, setRoster, setRaidLogs, setNewRaidDate, setNewRaidZone, raidLogs]);
+  }, [fetchData, normalizeRaidHelperToken, parseRaidSignupDate, raidLogs, roster, rosterClaims, setNewRaidDate, setNewRaidZone, setRaidLogs, setRoster]);
 
   const handleOpenItemForLootAssignment = useCallback((itemName) => {
     if (!itemName) return;
@@ -311,8 +358,24 @@ export default function useDashboardHelpers({
     };
 
     return (
-      <div key={slotName} className="flex gap-3 bg-slate-900 border border-slate-700 hover:border-slate-500 p-2.5 rounded-lg transition-colors shadow-sm">
-        <div key={`${slotName}-${selectedBisSpec}`} className="flex flex-col gap-2 flex-shrink-0">
+      <div
+        key={slotName}
+        className={`flex gap-3 bg-slate-900 border border-slate-700 hover:border-slate-500 p-2.5 rounded-lg transition-colors shadow-sm ${canExpand ? 'cursor-pointer' : ''}`}
+        onClick={event => {
+          if (!canExpand || event.target.closest('a')) return;
+          setExpandedBisSlots(prev => ({ ...prev, [expansionKey]: !prev[expansionKey] }));
+        }}
+        onKeyDown={event => {
+          if (!canExpand || (event.key !== 'Enter' && event.key !== ' ')) return;
+          event.preventDefault();
+          setExpandedBisSlots(prev => ({ ...prev, [expansionKey]: !prev[expansionKey] }));
+        }}
+        role={canExpand ? 'button' : undefined}
+        tabIndex={canExpand ? 0 : undefined}
+        aria-expanded={canExpand ? isExpanded : undefined}
+        aria-label={canExpand ? `${slotName} optional items` : undefined}
+      >
+        <div key={`${slotName}-${selectedBisSpec}`} className="flex flex-col items-center gap-2 flex-shrink-0">
           {iconItems.length > 0 ? (
             iconItems.map((item, index) => (
               <div key={`${item.name}-${index}`} className="w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex items-center justify-center relative shadow-inner overflow-hidden character-slot-icon">
@@ -340,21 +403,26 @@ export default function useDashboardHelpers({
               <span className="text-[9px] font-bold text-slate-500 uppercase z-10 rotate-45 opacity-30">{slotName}</span>
             </div>
           )}
+          {canExpand ? (
+            <button
+              type="button"
+              onClick={event => {
+                event.stopPropagation();
+                setExpandedBisSlots(prev => ({ ...prev, [expansionKey]: !prev[expansionKey] }));
+              }}
+              className="flex h-5 w-5 items-center justify-center text-slate-400 transition-colors hover:text-slate-100"
+              title={isExpanded ? 'Collapse optional items' : 'Expand optional items'}
+              aria-label={isExpanded ? 'Collapse optional items' : 'Expand optional items'}
+              aria-expanded={isExpanded}
+            >
+              <span aria-hidden="true" className={`inline-block transition-transform duration-150 ${isExpanded ? 'rotate-90' : ''}`}>&gt;</span>
+            </button>
+          ) : null}
         </div>
 
         <div className="flex flex-col min-w-0 justify-center">
           <div className="flex items-center justify-between gap-2 mb-1">
             <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none">{slotName}</span>
-            {canExpand ? (
-              <button
-                type="button"
-                onClick={() => setExpandedBisSlots(prev => ({ ...prev, [expansionKey]: !prev[expansionKey] }))}
-                className="text-[10px] font-bold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded px-1.5 py-0.5 leading-none"
-                title={isExpanded ? 'Collapse optional items' : 'Expand optional items'}
-              >
-                {isExpanded ? '-' : '+'}
-              </button>
-            ) : null}
           </div>
           {primaryBis.length > 0 ? (
             primaryBis.map(i => (
@@ -399,7 +467,7 @@ export default function useDashboardHelpers({
         </div>
       </div>
     );
-  }, [getItemsForSlotAndSpec, hideWowheadTooltip, renderItemLink, selectedBisSpec]);
+  }, [expandedBisSlots, getItemsForSlotAndSpec, hideWowheadTooltip, renderItemLink, selectedBisSpec]);
 
   return {
     initializeDefaultBisPriorities,

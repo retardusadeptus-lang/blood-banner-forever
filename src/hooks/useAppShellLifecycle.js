@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { STORAGE_KEYS } from '../constants';
 
-export default function useAppShellLifecycle({ activeTab, hasAnyUnsavedChanges }) {
+export default function useAppShellLifecycle({ activeTab, hasAnyUnsavedChanges, canSaveChanges = true }) {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.activeTab, activeTab);
   }, [activeTab]);
 
   useEffect(() => {
-    if (!hasAnyUnsavedChanges) return undefined;
+    if (!canSaveChanges || !hasAnyUnsavedChanges) return undefined;
 
     const handleBeforeUnload = (event) => {
       event.preventDefault();
@@ -16,5 +16,5 @@ export default function useAppShellLifecycle({ activeTab, hasAnyUnsavedChanges }
 
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [hasAnyUnsavedChanges]);
+  }, [canSaveChanges, hasAnyUnsavedChanges]);
 }

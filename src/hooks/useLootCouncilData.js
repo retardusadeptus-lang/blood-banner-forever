@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { PHASE_JSON_KEYS } from '../constants';
+import { getGuildRoleWeight } from '../utils/appShellHelpers';
 
 export default function useLootCouncilData({
   fetchData,
@@ -81,7 +82,7 @@ export default function useLootCouncilData({
     }, { dirty: true });
   };
 
-  const getPlayerItemPriorityStatus = (itemObj, specDisplay) => {
+  const getPlayerItemPriorityStatus = useCallback((itemObj, specDisplay) => {
     if (!itemObj) return '';
 
     if (!itemObj.is_token) {
@@ -101,9 +102,10 @@ export default function useLootCouncilData({
       if (rewardStatus === 'Opt') hasOpt = true;
     }
     return hasOpt ? 'Opt' : '';
-  };
+  }, [bisPriorities, tokenRedemptionsByItemId]);
 
-  const calculateScore = (playerId) => {
+  const calculateScore = useCallback((playerId) => {
+    const player = roster.find(rosterPlayer => Number(rosterPlayer.id) === Number(playerId));
     const stats = playerStats[playerId] || { cons: false, enchants: false, gems: false, afks: 0, parses: {}, manualAdjustment: { value: 0, note: '' } };
     let parseSum = 0; let parseCount = 0;
     Object.values(stats.parses || {}).forEach(p => {
@@ -116,14 +118,16 @@ export default function useLootCouncilData({
     const cons = stats.cons ? Number(scoringConfig.consBonus) : 0;
     const ench = stats.enchants ? Number(scoringConfig.enchantBonus) : 0;
     const gem = stats.gems ? Number(scoringConfig.gemBonus) : 0;
-    const att = (raidLogs.length === 0 ? 100 : Math.round((raidLogs.filter(log => (log.attendees || []).map(Number).includes(Number(playerId))).length / raidLogs.length) * 100)) * Number(scoringConfig.attWeight);
+    const includedLogs = raidLogs.filter(log => log.includeInAttendance !== false);
+    const att = (includedLogs.length === 0 ? 100 : Math.round((includedLogs.filter(log => (log.attendees || []).map(Number).includes(Number(playerId))).length / includedLogs.length) * 100)) * Number(scoringConfig.attWeight);
     const afkPenalty = (stats.afks || 0) * Number(scoringConfig.afkPenalty || 5);
     const manualAdj = stats.manualAdjustment?.value || 0;
 
-    return ((avgParse * Number(scoringConfig.parseWeight)) + cons + ench + gem + att - afkPenalty + manualAdj).toFixed(1);
-  };
+    const baseScore = (avgParse * Number(scoringConfig.parseWeight)) + cons + ench + gem + att - afkPenalty + manualAdj;
+    return (baseScore * getGuildRoleWeight(player, scoringConfig)).toFixed(1);
+  }, [playerStats, raidLogs, roster, scoringConfig]);
 
-  const sortPlayersByRank = (itemObj, playerList, assignmentData) => {
+  const sortPlayersByRank = useCallback((itemObj, playerList, assignmentData) => {
     return [...playerList].sort((a, b) => {
       const rankA = assignmentData[itemObj.name]?.[a.id];
       const rankB = assignmentData[itemObj.name]?.[b.id];
@@ -137,7 +141,7 @@ export default function useLootCouncilData({
       if (scoreA !== scoreB) return scoreB - scoreA;
       return a.name.localeCompare(b.name);
     });
-  };
+  }, [calculateScore]);
 
   const getItemSourceDetails = (item) => {
     const zone = String(item?.zone || item?.source || '').trim();
@@ -229,7 +233,7 @@ export default function useLootCouncilData({
     });
 
     return sortPlayersByRank(selectedItem, eligible, assignments);
-  }, [selectedItem, roster, assignments, playerStats, scoringConfig, raidLogs, bisPriorities, getSpecById, tokenRedemptionsByItemId]);
+  }, [selectedItem, roster, assignments, getDisplayFromId, getPlayerItemPriorityStatus, getSpecById, sortPlayersByRank]);
 
   const handleClearOverviewItemPriorities = (itemName) => {
     if (!itemName) return;

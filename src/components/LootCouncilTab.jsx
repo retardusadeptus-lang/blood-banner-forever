@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { normalizeSlotKey } from '../utils/helpers';
+import { PHASES } from '../constants';
 
 const UNKNOWN_ICON = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg';
 const CLASS_ICON_FALLBACKS = {
@@ -90,6 +91,9 @@ export default function LootCouncilTab({
   onClearItemAssignments,
   onToggleAwardedPriority,
   isSaving
+  ,priorityPhase,
+  setPriorityPhase,
+  siteTabMetadata
 }) {
   const [limitBosses, setLimitBosses] = useState(true);
   const [maxBossOptions, setMaxBossOptions] = useState(50);
@@ -100,8 +104,11 @@ export default function LootCouncilTab({
   const displayedBosses = limitBosses ? uniqueBosses.slice(0, maxBossOptions) : uniqueBosses;
 
   return (
-    <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
       <div className="flex justify-end mb-4 gap-2">
+        <select value={priorityPhase} onChange={event => setPriorityPhase(event.target.value)} className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs font-bold text-amber-400 uppercase tracking-wider">
+          {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
+        </select>
         <button
           type="button"
           onClick={() => onClearItemAssignments?.(selectedItemName)}

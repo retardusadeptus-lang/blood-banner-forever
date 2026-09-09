@@ -40,6 +40,13 @@ function formatSignupSummary(entries, options = {}) {
     return `\`${n}\``;
   }
 
+  function entryLabel(entry, prefix = '') {
+    const note = String(entry?.note || '').trim().slice(0, 180);
+    const webSuffix = String(entry?.signup_source || '').toLowerCase() === 'website' ? ' 🌐' : '';
+    const label = `${prefix}${entry.discord_username}${webSuffix}`;
+    return note ? `${label} - ${note}` : label;
+  }
+
   const resolveClassIcon = typeof options.classIconResolver === 'function'
     ? options.classIconResolver
     : classIconForEntry;
@@ -51,23 +58,23 @@ function formatSignupSummary(entries, options = {}) {
       const target = roleBuckets[bucket] || roleBuckets.ranged;
       const classIcon = resolveClassIcon(entry);
       const orderTag = entry.signup_order ? `${signupIndexToken(entry.signup_order)} ` : '';
-      target.push(`${orderTag}${classIcon}${entry.discord_username}`);
+      target.push(entryLabel(entry, `${orderTag}${classIcon}`));
       return;
     }
 
     if (status === 'absent') {
       const orderTag = entry.signup_order ? `${signupIndexToken(entry.signup_order)} ` : '';
       const classIcon = resolveClassIcon(entry);
-      const label = `${orderTag}${classIcon}${entry.discord_username}`;
-      statuses.absent.push(label);
-      statuses.absence.push(label);
+      const absentLabel = entryLabel(entry, `${orderTag}${classIcon}`);
+      statuses.absent.push(absentLabel);
+      statuses.absence.push(absentLabel);
       return;
     }
 
     if (statuses[status]) {
       const orderTag = entry.signup_order ? `${signupIndexToken(entry.signup_order)} ` : '';
       const classIcon = resolveClassIcon(entry);
-      statuses[status].push(`${orderTag}${classIcon}${entry.discord_username}`);
+      statuses[status].push(entryLabel(entry, `${orderTag}${classIcon}`));
     }
   });
 

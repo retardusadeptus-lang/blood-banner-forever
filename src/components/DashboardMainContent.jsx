@@ -4,19 +4,19 @@ import BankContainer from '../containers/BankContainer';
 import ItemsDatabaseContainer from '../containers/ItemsDatabaseContainer';
 import LootCouncilContainer from '../containers/LootCouncilContainer';
 import RaidAssignmentsContainer from '../containers/RaidAssignmentsContainer';
-import RaidAssignmentsHistory from './RaidAssignmentsHistory';
 import AssignedLootOverview from './AssignedLootOverview';
 import RaidSignupsContainer from '../containers/RaidSignupsContainer';
 import RecruitmentFocusTab from './RecruitmentFocusTab';
 import RecruitmentPlanningTab from './RecruitmentPlanningTab';
 import RecruitmentApplicationsTab from './RecruitmentApplicationsTab';
-import RosterContainer from '../containers/RosterContainer';
 import ScoringContainer from '../containers/ScoringContainer';
 import ResourcesTab from '../features/resources/ResourcesTab';
+import { getSiteTabContentOwner, getSiteTabMetadata } from '../config/siteRegistry';
 
 export default function DashboardMainContent({ viewModel }) {
   const {
     activeTab,
+    activeSiteTabId,
     bankSubTab,
     sharedRaidFilter,
     setSharedRaidFilter,
@@ -26,40 +26,22 @@ export default function DashboardMainContent({ viewModel }) {
     setRaidAssignmentsBossFilter,
     tacticsBossFilter,
     setTacticsBossFilter,
-    raidAssignmentsSubTab,
     raidSignupsSubTab,
     setRaidSignupsSubTab,
-    lootSubTab,
-    recruitmentSubTab,
+    priorityPhase,
+    setPriorityPhase,
     adminSubTab,
     resourcesSubTab,
     isAuthenticated,
+    canViewScoring,
     globalMyPlayerId,
     selectedBisSpec,
     setSelectedBisSpec,
     selectedMyPlayerName,
     bnetAuthState,
-    hasLootUnsavedChanges,
-    handleSaveLootCouncilChanges,
-    handleOpenItemForLootAssignment,
-    handleClearOverviewItemPriorities,
-    handleToggleAwardedPriority,
-    handleSaveRaidAssignmentsChanges,
-    isSavingRaidAssignments,
-    handleCopyRaidAssignmentsToArchive,
-    handleViewRaidAssignmentArchive,
-    handleDeleteRaidAssignmentArchive,
-    handleRestoreRaidAssignmentArchive,
-    handleToggleRaidRestoreBoss,
-    handleToggleZone,
-    handleToggleBoss,
-    handleMoveEnabledBoss,
-    handleAddCustomRaidBoss,
-    handleRemoveCustomRaidBoss,
-    fetchData,
-    putData,
-    postData,
-    deleteData,
+    loot,
+    raidAssignments,
+    api,
     roster,
     specsFromDb,
     specsByName,
@@ -70,47 +52,8 @@ export default function DashboardMainContent({ viewModel }) {
     renderItemLink,
     hideWowheadTooltip,
     calculateScore,
-    overviewSearch,
-    setOverviewSearch,
-    filteredOverviewItems,
-    assignments,
-    selectedItemName,
-    setSelectedItemName,
-    searchQuery,
-    setSearchQuery,
-    filterZone,
-    setFilterZone,
-    uniqueZones,
-    filterBoss,
-    setFilterBoss,
-    uniqueBosses,
-    filterSlot,
-    setFilterSlot,
-    uniqueSlots,
-    filterCategory,
-    setFilterCategory,
-    filteredItems,
-    selectedItem,
-    sortedEligiblePlayers,
-    getPlayerItemPriorityStatus,
-    handleSetPriority,
     PlayerNameWithScore,
-    assignmentsDirty,
-    isSavingLootCouncil,
-    mutableItems,
-    bisPriorities,
     globalPhase,
-    raidAssignmentArchives,
-    selectedRaidAssignmentArchiveId,
-    selectedRaidRestoreBosses,
-    setSelectedRaidRestoreBosses,
-    raidAssignmentData,
-    setRaidAssignmentData,
-    enabledBosses,
-    raidAssignmentDataDirty,
-    enabledBossesDirty,
-    raidZones,
-    customRaidGroups,
     recentRaidHelperImportedIds,
     recentRaidHelperSpecConflictIds,
     raidHelperImportSession,
@@ -118,9 +61,16 @@ export default function DashboardMainContent({ viewModel }) {
     handleUpdateRaidHelperImportEntry,
     handleApplyRaidHelperImport,
     handleCancelRaidHelperImport,
-    handleSaveScoringChanges,
-    scoringConfig,
-    setScoringConfig,
+    scoring,
+    itemsDb,
+    rosterModel,
+    admin,
+    renderItemSlot,
+  } = viewModel;
+
+  const {
+    config: scoringConfig,
+    setConfig: setScoringConfig,
     playerStats,
     expandedPlayerId,
     setExpandedPlayerId,
@@ -128,45 +78,52 @@ export default function DashboardMainContent({ viewModel }) {
     updatePlayerStat,
     updatePlayerParse,
     updatePlayerManualAdjustment,
-    scoringConfigDirty,
+    configDirty: scoringConfigDirty,
     playerStatsDirty,
-    isSavingScoring,
-    dbNewName,
-    setDbNewName,
-    dbNewSlot,
-    setDbNewSlot,
-    dbNewZone,
-    setDbNewZone,
-    dbNewBoss,
-    setDbNewBoss,
-    dbNewItemId,
-    setDbNewItemId,
-    handleAddItemToDb,
-    dbSearch,
-    setDbSearch,
-    dbPageSize,
-    setDbPageSize,
-    dbPage,
-    setDbPage,
+    isSaving: isSavingScoring,
+    onSaveChanges: handleSaveScoringChanges,
+  } = scoring;
+
+  const {
+    newName: dbNewName,
+    setNewName: setDbNewName,
+    newSlot: dbNewSlot,
+    setNewSlot: setDbNewSlot,
+    newZone: dbNewZone,
+    setNewZone: setDbNewZone,
+    newBoss: dbNewBoss,
+    setNewBoss: setDbNewBoss,
+    newItemId: dbNewItemId,
+    setNewItemId: setDbNewItemId,
+    handleAddItem: handleAddItemToDb,
+    search: dbSearch,
+    setSearch: setDbSearch,
+    pageSize: dbPageSize,
+    setPageSize: setDbPageSize,
+    page: dbPage,
+    setPage: setDbPage,
     showMissingWowheadFilter,
     setShowMissingWowheadFilter,
     showWowheadNameMismatchFilter,
     setShowWowheadNameMismatchFilter,
-    dbFilteredItems,
+    filteredItems: dbFilteredItems,
     specsSortedByClass,
-    dbBisPriorities,
+    bisPriorities: dbBisPriorities,
     handleUpdateItemEligibility,
     handleUpdateItemId,
     handleUpdateItemSource,
-    handleDeleteItemFromDb,
-    masterItemsDbPhase,
-    setMasterItemsDbPhase,
-    dbBisPrioritiesDirty,
+    handleDeleteItem: handleDeleteItemFromDb,
+    phase: masterItemsDbPhase,
+    setPhase: setMasterItemsDbPhase,
+    bisPrioritiesDirty: dbBisPrioritiesDirty,
     mutableItemsDirty,
-    isSavingItemsDb,
-    handleSaveItemsDbChanges,
-    onSaveRosterAttendanceChanges,
-    isSavingRosterAttendance,
+    isSaving: isSavingItemsDb,
+    onSaveChanges: handleSaveItemsDbChanges,
+  } = itemsDb;
+
+  const {
+    onSaveChanges: onSaveRosterAttendanceChanges,
+    isSaving: isSavingRosterAttendance,
     setNewRaidDate,
     setNewRaidZone,
     newRaidDate,
@@ -184,13 +141,98 @@ export default function DashboardMainContent({ viewModel }) {
     toggleRaidStatus,
     handleUpdatePlayer,
     handleRemovePlayer,
-    rosterDirty,
-    raidLogsDirty,
-    rosterClaims,
-    handleUnclaimClaim,
-    adminData,
-    renderItemSlot,
-  } = viewModel;
+    handleUpdateRaidLog,
+    dirty: rosterDirty,
+  } = rosterModel;
+
+  const { siteVisibility } = admin;
+
+  const { fetchData, putData, postData, deleteData } = api;
+
+  const directoryContext = {
+    roster,
+    specsFromDb,
+    specsByName,
+    getDisplayFromId,
+    getSpecById,
+    getSlugFromDisplay,
+    getRankBadgeStyle,
+    renderItemLink,
+    hideWowheadTooltip,
+    PlayerNameWithScore,
+    calculateScore,
+  };
+  const sessionContext = { isAuthenticated, bnetAuthState };
+  const navigationContext = {
+    activeTab,
+    bankSubTab,
+    sharedRaidFilter,
+    setSharedRaidFilter,
+    sharedPhaseFilter,
+    setSharedPhaseFilter,
+    globalPhase,
+    raidAssignmentsBossFilter,
+    setRaidAssignmentsBossFilter,
+    raidSignupsSubTab,
+    setRaidSignupsSubTab,
+  };
+  const raidSignupsAttendance = {
+    handleSaveRaidLog,
+    handleApplyRaidSignupGroupsToAttendance,
+    newRaidDate,
+    setNewRaidDate,
+    newRaidZone,
+    setNewRaidZone,
+    raidLogs,
+    handleDeleteRaidLog,
+    handleUpdateRaidLog,
+  };
+  const raidSignupsHelper = {
+    handleImportRaidHelperJson,
+    importedRaidHelperPlayerIds: recentRaidHelperImportedIds,
+    importedRaidHelperSpecConflictIds: recentRaidHelperSpecConflictIds,
+    raidHelperImportSession,
+    onUpdateRaidHelperImportEntry: handleUpdateRaidHelperImportEntry,
+    onApplyRaidHelperImport: handleApplyRaidHelperImport,
+    onCancelRaidHelperImport: handleCancelRaidHelperImport,
+  };
+  const adminNavigation = {
+    activeTab,
+    adminSubTab,
+    myPlayerId: globalMyPlayerId,
+    selectedMyPlayerName,
+  };
+  const adminSession = {
+    ...sessionContext,
+    fetchData,
+  };
+  const adminRosterModel = {
+    ...rosterModel,
+    guildRoleRanks: scoringConfig?.guildRoleRanks,
+  };
+
+  const {
+    hasUnsavedChanges: hasLootUnsavedChanges,
+    onSaveChanges: handleSaveLootCouncilChanges,
+    onOpenItemAssignment: handleOpenItemForLootAssignment,
+    onClearItemPriorities: handleClearOverviewItemPriorities,
+    overviewSearch,
+    setOverviewSearch,
+    filteredOverviewItems,
+    assignments,
+    setSelectedItemName,
+    setSearchQuery,
+    normalizeAwardedPlayerIds,
+    mutableItems,
+  } = loot;
+
+  const {
+    enabledBosses,
+    raidZones,
+  } = raidAssignments;
+
+  const activeContentOwner = getSiteTabContentOwner(activeSiteTabId);
+  const siteTabMetadata = getSiteTabMetadata(activeSiteTabId, siteVisibility);
 
   const scoringTabProps = {
     scoringConfig,
@@ -278,14 +320,14 @@ export default function DashboardMainContent({ viewModel }) {
     onCancelRaidHelperImport: handleCancelRaidHelperImport,
     specsByName,
     PlayerNameWithScore,
-    hasUnsavedChanges: rosterDirty || raidLogsDirty || playerStatsDirty,
+    hasUnsavedChanges: rosterDirty,
     onSaveChanges: onSaveRosterAttendanceChanges,
     isSaving: isSavingRosterAttendance,
   };
 
   return (
     <>
-      {activeTab === 'loot' && lootSubTab === 'overview' && (
+      {activeSiteTabId === 'loot.overview' && activeContentOwner === 'LootCouncilContainer' && (
         <OverviewTab
           filteredOverviewItems={filteredOverviewItems}
           overviewSearch={overviewSearch}
@@ -308,222 +350,99 @@ export default function DashboardMainContent({ viewModel }) {
           hasLootUnsavedChanges={hasLootUnsavedChanges}
           onSaveAssignments={handleSaveLootCouncilChanges}
           onEditItemId={() => {}}
+          priorityPhase={priorityPhase}
+          setPriorityPhase={setPriorityPhase}
+          siteTabMetadata={siteTabMetadata}
         />
       )}
 
-      {activeTab === 'bank' && (
+      {activeContentOwner === 'BankContainer' && activeSiteTabId?.startsWith('guild-bank.') && (
         <BankContainer
-          fetchData={fetchData}
-          putData={putData}
-          isAuthenticated={isAuthenticated}
-          bnetAuthState={bnetAuthState}
-          roster={roster}
-          specsByName={specsByName}
-          getDisplayFromId={getDisplayFromId}
-          bankSubTab={bankSubTab}
-          activeTab={activeTab}
-          globalMyPlayerId={globalMyPlayerId}
+          api={api}
+          session={sessionContext}
+          directory={{ roster, specsByName, getDisplayFromId }}
+          navigation={{ activeTab, bankSubTab, globalMyPlayerId }}
+          siteTabMetadata={siteTabMetadata}
         />
       )}
 
-      {activeTab === 'raidAssignments' && (
+      {activeContentOwner === 'RaidAssignmentsContainer' && activeSiteTabId === 'raid-assignments.overview' && (
         <div className="space-y-4">
-          {raidAssignmentsSubTab === 'overview' && (
             <RaidAssignmentsContainer
-              isAuthenticated={isAuthenticated}
-              roster={roster}
-              getSpecById={getSpecById}
-              enabledBosses={enabledBosses}
-              raidZones={raidZones}
-              handleToggleZone={handleToggleZone}
-              handleToggleBoss={handleToggleBoss}
-              handleMoveEnabledBoss={handleMoveEnabledBoss}
-              customRaidGroups={customRaidGroups}
-              handleAddCustomRaidBoss={handleAddCustomRaidBoss}
-              handleRemoveCustomRaidBoss={handleRemoveCustomRaidBoss}
-              raidAssignmentData={raidAssignmentData}
-              setRaidAssignmentData={setRaidAssignmentData}
-              hasUnsavedChanges={raidAssignmentDataDirty || enabledBossesDirty}
-              onSaveChanges={handleSaveRaidAssignmentsChanges}
-              isSaving={isSavingRaidAssignments}
-              myPlayerName={selectedMyPlayerName}
-              actorBattleTag={bnetAuthState.user?.battletag || ''}
-              onCopyToArchive={handleCopyRaidAssignmentsToArchive}
-              selectedRaid={sharedRaidFilter}
-              setSelectedRaid={setSharedRaidFilter}
-              selectedPhase={sharedPhaseFilter}
-              setSelectedPhase={setSharedPhaseFilter}
-              userBossFilter={raidAssignmentsBossFilter}
-              setUserBossFilter={setRaidAssignmentsBossFilter}
+              raidAssignments={raidAssignments}
+              session={{ ...sessionContext, myPlayerName: selectedMyPlayerName }}
+              directory={{ roster, getSpecById }}
+              navigation={navigationContext}
+              api={{ fetchData }}
+              siteTabMetadata={siteTabMetadata}
             />
-          )}
-          {raidAssignmentsSubTab === 'tactics' && (
-            <ResourcesTab
-              resourcesSubTab="tactics"
-              selectedBisSpec={selectedBisSpec}
-              setSelectedBisSpec={setSelectedBisSpec}
-              masterItemsDbPhase={masterItemsDbPhase}
-              setMasterItemsDbPhase={setMasterItemsDbPhase}
-              specsFromDb={specsFromDb}
-              renderItemSlot={renderItemSlot}
-              specsByName={specsByName}
-              fetchData={fetchData}
-              postData={postData}
-              putData={putData}
-              deleteData={deleteData}
-              canSubmitWeakauras={isAuthenticated}
-              isAuthenticated={isAuthenticated}
-              enabledBosses={enabledBosses}
-              raidZones={raidZones}
-              userBossFilter={tacticsBossFilter}
-              setUserBossFilter={setTacticsBossFilter}
-              roster={roster}
-              selectedCharacterId={globalMyPlayerId}
-            />
-          )}
-          {raidAssignmentsSubTab === 'history' && (
-            <RaidAssignmentsHistory
-              archives={raidAssignmentArchives}
-              onViewArchive={handleViewRaidAssignmentArchive}
-              onDeleteArchive={handleDeleteRaidAssignmentArchive}
-              onRestoreArchive={handleRestoreRaidAssignmentArchive}
-              selectedArchiveId={selectedRaidAssignmentArchiveId}
-              selectedRestoreBosses={selectedRaidRestoreBosses}
-              setSelectedRestoreBosses={setSelectedRaidRestoreBosses}
-              onToggleRestoreBoss={handleToggleRaidRestoreBoss}
-            />
-          )}
         </div>
       )}
 
-      {activeTab === 'raidSignups' && (
+      {activeContentOwner === 'RaidSignupsContainer' && activeSiteTabId?.startsWith('raid-signups.') && (
         <RaidSignupsContainer
-          fetchData={fetchData}
-          putData={putData}
-          postData={postData}
-          deleteData={deleteData}
-          isAuthenticated={isAuthenticated}
-          roster={roster}
-          getSpecById={getSpecById}
-          specsFromDb={specsFromDb}
-          bnetAuthState={bnetAuthState}
-          handleSaveRaidLog={handleSaveRaidLog}
-          handleApplyRaidSignupGroupsToAttendance={handleApplyRaidSignupGroupsToAttendance}
-          handleImportRaidHelperJson={handleImportRaidHelperJson}
-          newRaidDate={newRaidDate}
-          setNewRaidDate={setNewRaidDate}
-          newRaidZone={newRaidZone}
-          setNewRaidZone={setNewRaidZone}
-          raidLogs={raidLogs}
-          handleDeleteRaidLog={handleDeleteRaidLog}
-          importedRaidHelperPlayerIds={recentRaidHelperImportedIds}
-          importedRaidHelperSpecConflictIds={recentRaidHelperSpecConflictIds}
-          raidHelperImportSession={raidHelperImportSession}
-          onUpdateRaidHelperImportEntry={handleUpdateRaidHelperImportEntry}
-          onApplyRaidHelperImport={handleApplyRaidHelperImport}
-          onCancelRaidHelperImport={handleCancelRaidHelperImport}
-          activeSection={raidSignupsSubTab}
-          onSectionChange={(nextSection) => {
-            if (!nextSection) return;
-            setRaidSignupsSubTab?.(nextSection);
-          }}
+          api={api}
+          session={{ ...sessionContext, guildRoleRanks: scoringConfig?.guildRoleRanks, rosterClaims: admin.rosterClaims }}
+          directory={{ roster, getSpecById, specsFromDb }}
+          attendance={raidSignupsAttendance}
+          raidHelper={raidSignupsHelper}
+          navigation={navigationContext}
+              sectionVisibilityById={siteVisibility?.sectionVisibilityById}
+          siteTabMetadata={siteTabMetadata}
         />
       )}
 
-      {activeTab === 'bankRequests' && (
-        <BankContainer
-          fetchData={fetchData}
-          putData={putData}
-          isAuthenticated={isAuthenticated}
-          bnetAuthState={bnetAuthState}
-          roster={roster}
-          specsByName={specsByName}
-          getDisplayFromId={getDisplayFromId}
-          bankSubTab={bankSubTab}
-          activeTab={activeTab}
-          globalMyPlayerId={globalMyPlayerId}
-        />
-      )}
-
-      {activeTab === 'loot' && (
+      {activeContentOwner === 'LootCouncilContainer' && (
         <div className="space-y-4">
-          {lootSubTab === 'assignment' && isAuthenticated && (
+          {activeSiteTabId === 'loot.assignment' && isAuthenticated && (
             <LootCouncilContainer
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              filterZone={filterZone}
-              setFilterZone={setFilterZone}
-              uniqueZones={uniqueZones}
-              filterBoss={filterBoss}
-              setFilterBoss={setFilterBoss}
-              uniqueBosses={uniqueBosses}
-              filterSlot={filterSlot}
-              setFilterSlot={setFilterSlot}
-              uniqueSlots={uniqueSlots}
-              filterCategory={filterCategory}
-              setFilterCategory={setFilterCategory}
-              selectedItemName={selectedItemName}
-              setSelectedItemName={setSelectedItemName}
-              filteredItems={filteredItems}
-              selectedItem={selectedItem}
-              sortedEligiblePlayers={sortedEligiblePlayers}
-              getDisplayFromId={getDisplayFromId}
-              getSlugFromDisplay={getSlugFromDisplay}
-              bisPriorities={bisPriorities}
-              globalPhase={globalPhase}
-              assignments={assignments}
-              mutableItems={mutableItems}
-              getPlayerItemPriorityStatus={getPlayerItemPriorityStatus}
-              getSpecById={getSpecById}
-              getRankBadgeStyle={getRankBadgeStyle}
-              renderItemLink={renderItemLink}
-              handleSetPriority={handleSetPriority}
-              PlayerNameWithScore={PlayerNameWithScore}
-              hasUnsavedChanges={assignmentsDirty}
-              onSaveChanges={handleSaveLootCouncilChanges}
-              onClearItemAssignments={handleClearOverviewItemPriorities}
-              onToggleAwardedPriority={handleToggleAwardedPriority}
-              isSaving={isSavingLootCouncil}
+              loot={loot}
+              directory={directoryContext}
+              phase={{ globalPhase, priorityPhase, setPriorityPhase }}
+              siteTabMetadata={siteTabMetadata}
             />
           )}
-          {lootSubTab === 'scoring' && isAuthenticated && <ScoringContainer {...scoringTabProps} />}
-          {lootSubTab === 'assigned' && (
+          {activeSiteTabId === 'loot.assigned' && (
             <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
               <h3 className="text-lg font-bold text-slate-100">Assigned Loot Overview</h3>
               <p className="text-sm text-slate-400">The current loot council priorities are grouped here for a quick review.</p>
               <AssignedLootOverview
                 assignments={assignments}
                 mutableItems={mutableItems}
-                normalizeAwardedPlayerIds={() => []}
+                normalizeAwardedPlayerIds={normalizeAwardedPlayerIds}
                 renderItemLink={renderItemLink}
                 roster={roster}
+                getSpecById={getSpecById}
+                onOpenItemAssignment={handleOpenItemForLootAssignment}
+                isAuthenticated={isAuthenticated}
               />
             </div>
           )}
         </div>
       )}
 
-      {activeTab === 'roster' && isAuthenticated && <RosterContainer {...rosterTabProps} />}
-
-      {activeTab === 'recruitmentPlanning' && isAuthenticated && recruitmentSubTab === 'planning' && (
+      {activeSiteTabId === 'recruitment.planning' && isAuthenticated && (
         <RecruitmentPlanningTab
           roster={roster}
           specsFromDb={specsFromDb}
           fetchData={fetchData}
           putData={putData}
+          rosterManagementProps={rosterTabProps}
+          siteTabMetadata={siteTabMetadata}
         />
       )}
 
-      {activeTab === 'recruitmentFocus' && recruitmentSubTab === 'focus' && (
+      {activeSiteTabId === 'recruitment.focus' && (
         <RecruitmentFocusTab
           isAuthenticated={isAuthenticated}
           specsFromDb={specsFromDb}
           fetchData={fetchData}
           putData={putData}
+          siteTabMetadata={siteTabMetadata}
         />
       )}
 
-      {activeTab === 'recruitmentApplications' && recruitmentSubTab === 'applications' && (
+      {activeSiteTabId === 'recruitment.applications' && (
         <RecruitmentApplicationsTab
           isAuthenticated={Boolean(bnetAuthState?.authenticated || isAuthenticated)}
           bnetAuthState={bnetAuthState}
@@ -533,32 +452,46 @@ export default function DashboardMainContent({ viewModel }) {
           deleteData={deleteData}
           isOfficer={Boolean(bnetAuthState?.isOfficer || bnetAuthState?.isAdmin || isAuthenticated)}
           canManageBlurb={Boolean(bnetAuthState?.isOfficer || bnetAuthState?.isAdmin || isAuthenticated)}
+          siteTabMetadata={siteTabMetadata}
         />
       )}
 
-      {(activeTab === 'officerRoles' || activeTab === 'discordBotConfig') && isAuthenticated && (
+      {activeContentOwner === 'AdminContainer' && ['admin.officerRoles', 'admin.roster', 'admin.config', 'admin.todo'].includes(activeSiteTabId) && isAuthenticated && (
         <AdminContainer
-          activeTab={activeTab}
-          adminSubTab={adminSubTab}
-          roster={roster}
-          getSpecById={getSpecById}
-          specsByName={specsByName}
-          getDisplayFromId={getDisplayFromId}
-          myPlayerId={globalMyPlayerId}
-          selectedMyPlayerName={selectedMyPlayerName}
-          rosterClaims={rosterClaims}
-          handleUnclaimClaim={handleUnclaimClaim}
-          adminData={adminData}
-          setScoringConfig={setScoringConfig}
-          scoringConfig={scoringConfig}
-          scoringConfigDirty={scoringConfigDirty}
-          bnetAuthState={bnetAuthState}
+          navigation={adminNavigation}
+          directory={directoryContext}
+          admin={admin}
+          scoring={scoring}
+          session={adminSession}
+          rosterModel={adminRosterModel}
+          siteVisibility={siteVisibility}
+          siteTabMetadata={siteTabMetadata}
         />
       )}
 
-      {activeTab === 'scoring' && isAuthenticated && <ScoringContainer {...scoringTabProps} />}
+      {activeContentOwner === 'AdminContainer' && activeSiteTabId === 'admin.sitemap' && bnetAuthState?.isAdmin && (
+        <AdminContainer
+          navigation={adminNavigation}
+          directory={directoryContext}
+          admin={admin}
+          scoring={scoring}
+          session={adminSession}
+          rosterModel={adminRosterModel}
+          siteVisibility={siteVisibility}
+          siteTabMetadata={siteTabMetadata}
+        />
+      )}
 
-      {activeTab === 'bis' && (
+      {activeContentOwner === 'ItemsDatabaseContainer' && activeSiteTabId === 'admin.itemsdb' && isAuthenticated && (
+        <ItemsDatabaseContainer
+          itemsDb={itemsDbTabProps}
+          siteTabMetadata={siteTabMetadata}
+        />
+      )}
+
+      {activeSiteTabId === 'loot.scoring' && activeContentOwner === 'ScoringContainer' && canViewScoring && <ScoringContainer scoring={scoringTabProps} siteTabMetadata={siteTabMetadata} />}
+
+      {activeContentOwner === 'ResourcesTab' && activeSiteTabId !== 'raid-assignments.tactics' && (
         <ResourcesTab
           resourcesSubTab={resourcesSubTab}
           selectedBisSpec={selectedBisSpec}
@@ -568,22 +501,61 @@ export default function DashboardMainContent({ viewModel }) {
           specsFromDb={specsFromDb}
           renderItemSlot={renderItemSlot}
           specsByName={specsByName}
+          renderItemLink={renderItemLink}
+          mutableItems={mutableItems}
+          dbBisPriorities={dbBisPriorities}
           fetchData={fetchData}
           postData={postData}
           putData={putData}
           deleteData={deleteData}
-          canSubmitWeakauras={isAuthenticated}
+          canSubmitWeakauras={Boolean(bnetAuthState?.isOfficer || bnetAuthState?.isAdmin)}
+          canManageWeakauraSections={Boolean(bnetAuthState?.isAdmin)}
+          canManageCheatSheetJson={Boolean(bnetAuthState?.isAdmin)}
           isAuthenticated={isAuthenticated}
           enabledBosses={enabledBosses}
           raidZones={raidZones}
           userBossFilter={tacticsBossFilter}
           setUserBossFilter={setTacticsBossFilter}
+          defaultPhase={globalPhase}
           roster={roster}
           selectedCharacterId={globalMyPlayerId}
+          siteTabMetadata={siteTabMetadata}
         />
       )}
 
-      {activeTab === 'itemsdb' && isAuthenticated && <ItemsDatabaseContainer {...itemsDbTabProps} />}
+      {activeContentOwner === 'ResourcesTab' && activeSiteTabId === 'raid-assignments.tactics' && (
+        <ResourcesTab
+          resourcesSubTab="tactics"
+          selectedBisSpec={selectedBisSpec}
+          setSelectedBisSpec={setSelectedBisSpec}
+          masterItemsDbPhase={masterItemsDbPhase}
+          setMasterItemsDbPhase={setMasterItemsDbPhase}
+          specsFromDb={specsFromDb}
+          renderItemSlot={renderItemSlot}
+          specsByName={specsByName}
+          renderItemLink={renderItemLink}
+          mutableItems={mutableItems}
+          dbBisPriorities={dbBisPriorities}
+          fetchData={fetchData}
+          postData={postData}
+          putData={putData}
+          deleteData={deleteData}
+          canSubmitWeakauras={Boolean(bnetAuthState?.isOfficer || bnetAuthState?.isAdmin)}
+          canManageWeakauraSections={Boolean(bnetAuthState?.isAdmin)}
+          canManageCheatSheetJson={Boolean(bnetAuthState?.isAdmin)}
+          isAuthenticated={isAuthenticated}
+          enabledBosses={enabledBosses}
+          raidZones={raidZones}
+          userBossFilter={tacticsBossFilter}
+          setUserBossFilter={setTacticsBossFilter}
+          defaultPhase={globalPhase}
+          roster={roster}
+          selectedCharacterId={globalMyPlayerId}
+          siteTabMetadata={siteTabMetadata}
+        />
+      )}
+
+      {activeContentOwner === 'ItemsDatabaseContainer' && isAuthenticated && <ItemsDatabaseContainer itemsDb={itemsDbTabProps} siteTabMetadata={siteTabMetadata} />}
     </>
   );
 }

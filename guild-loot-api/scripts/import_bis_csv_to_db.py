@@ -39,6 +39,8 @@ PHASE_MAP = {
     'sunwell plateau': 'swp',
 }
 
+PHASE_ORDER = ['preraid', 't4', 't5', 't6', 'za', 'swp']
+
 SPEC_CLASS_HINTS = {
     'balance druid': 'Druid',
     'feral (tank)': 'Druid',
@@ -76,6 +78,12 @@ def normalize_phase(value: str) -> str:
     return PHASE_MAP.get(normalized, normalized)
 
 
+def is_earlier_phase(candidate: str, existing: str) -> bool:
+    candidate_index = PHASE_ORDER.index(candidate) if candidate in PHASE_ORDER else len(PHASE_ORDER)
+    existing_index = PHASE_ORDER.index(existing) if existing in PHASE_ORDER else len(PHASE_ORDER)
+    return candidate_index < existing_index
+
+
 def normalize_item_name(value: str) -> str:
     text = re.sub(r'\s+', ' ', (value or '').strip())
     parts = text.split()
@@ -104,9 +112,11 @@ def ensure_spec(conn: sqlite3.Connection, spec_name: str) -> int:
 
 def ensure_item(conn: sqlite3.Connection, item_name: str, phase: str) -> int:
     normalized_name = normalize_item_name(item_name)
-    existing = conn.execute('SELECT id FROM items WHERE lower(name) = lower(?) LIMIT 1', (normalized_name,)).fetchone()
+    existing = conn.execute('SELECT id, phase FROM items WHERE lower(name) = lower(?) LIMIT 1', (normalized_name,)).fetchone()
     if existing:
-        conn.execute('UPDATE items SET phase = ? WHERE id = ?', (phase, existing[0]))
+        existing_phase = normalize_phase(existing[1] or '')
+        if not existing_phase or is_earlier_phase(phase, existing_phase):
+            conn.execute('UPDATE items SET phase = ? WHERE id = ?', (phase, existing[0]))
         return existing[0]
 
     cursor = conn.execute('INSERT INTO items (name, slot, phase, source, source_type) VALUES (?, ?, ?, ?, ?)', (normalized_name, None, phase, None, None))

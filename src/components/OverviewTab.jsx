@@ -1,4 +1,4 @@
-import React from 'react';
+import { PHASES } from '../constants';
 
 export default function OverviewTab({
   filteredOverviewItems,
@@ -11,17 +11,16 @@ export default function OverviewTab({
   renderItemLink,
   hideWowheadTooltip,
   isAuthenticated,
-  setActiveTab,
-  setSearchQuery,
-  setSelectedItemName,
   onOpenItemAssignment,
   specsByName,
   getDisplayFromId,
   myPlayerName,
   onClearItemPriorities,
-  onEditItemId,
   hasLootUnsavedChanges,
   onSaveAssignments
+  ,priorityPhase,
+  setPriorityPhase,
+  siteTabMetadata
 }) {
   
   // Inline mini-component to keep player names styled beautifully with their scores
@@ -46,7 +45,7 @@ export default function OverviewTab({
   };
 
   return (
-    <section className="overview-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="overview-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
         <div>
           <h2 className="text-xl font-bold text-slate-100 mb-1">Master Priority Ledger</h2>
@@ -61,6 +60,9 @@ export default function OverviewTab({
             onChange={e => setOverviewSearch(e.target.value)}
           />
           <div className="flex items-center gap-2">
+            <select value={priorityPhase} onChange={event => setPriorityPhase(event.target.value)} className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2.5 text-xs font-bold text-amber-400 uppercase tracking-wider">
+              {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
+            </select>
             <button
               type="button"
               onClick={() => {

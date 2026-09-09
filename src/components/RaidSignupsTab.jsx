@@ -1,5 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { DateTime } from 'luxon';
+import healersIcon from '../assets/icons/healers.png';
+import meleeDpsIcon from '../assets/icons/melee_dps.png';
+import rangedDpsIcon from '../assets/icons/ranged_dps.png';
+import tanksIcon from '../assets/icons/tanks.png';
 import {
   getRaidSignupAbsences,
   getRaidSignupAbsenceTargets,
@@ -7,6 +11,7 @@ import {
   updateRaidSignupAbsence,
   deleteRaidSignupAbsence
 } from '../services/apiService';
+import { getDefaultGuildRoleName } from '../utils/appShellHelpers';
 
 const WEEKDAY_OPTIONS = [
   { value: 0, label: 'Sun' },
@@ -20,6 +25,7 @@ const WEEKDAY_OPTIONS = [
 
 const TEMPLATE_GROUP_SIZE_OPTIONS = [10, 25, 40];
 const RAID_SIGNUP_SYNC_INTERVAL_MS = 3 * 60 * 1000;
+const RAID_SIGNUPS_EVENT_STORAGE_KEY = 'raid-signups-selected-event-id';
 const TIMEZONE_OPTIONS = [
   { value: 'Europe/Paris', label: 'Europe/Paris' },
   { value: 'UTC', label: 'UTC' },
@@ -180,6 +186,7 @@ function buildDefaultGroupRows() {
 function buildGroupRows(savedRows = []) {
   const byKey = new Map(buildDefaultGroupRows().map(row => [row.localKey, row]));
   savedRows.forEach(row => {
+    if (Number(row.group_number) <= 0) return;
     const key = `${row.group_number}-${row.slot_index}`;
     if (!byKey.has(key)) return;
     byKey.set(key, {
@@ -196,6 +203,24 @@ function buildGroupRows(savedRows = []) {
   return [...byKey.values()];
 }
 
+function buildBenchAssignments(savedRows = []) {
+  return savedRows
+    .filter(row => Number(row.group_number) === 0 && String(row.player_name || '').trim())
+    .sort((a, b) => Number(a.slot_index) - Number(b.slot_index))
+    .map((row, index) => ({
+      localKey: row.id ? `bench-${row.id}` : `bench-${index + 1}-${String(row.player_name || '').trim().toLowerCase()}`,
+      group_number: 0,
+      group_name: row.group_name || 'Bench',
+      slot_index: Number(row.slot_index) || index + 1,
+      player_name: row.player_name || '',
+      spec_id: row.spec_id || null,
+      note: row.note || '',
+      spec_class: row.spec_class || null,
+      spec_name: row.spec_name || null,
+      class_name: row.class_name || null
+    }));
+}
+
 function roleSortKey(role) {
   const normalized = String(role || '').toLowerCase();
   if (normalized === 'tank') return 0;
@@ -204,12 +229,12 @@ function roleSortKey(role) {
   return 3;
 }
 
-function roleGlyph(role) {
+function roleIconAsset(role) {
   const normalized = String(role || '').toLowerCase();
-  if (normalized === 'tank') return '🛡';
-  if (normalized === 'healer') return '➕';
-  if (normalized === 'melee') return '⚔';
-  return '🏹';
+  if (normalized === 'tank') return tanksIcon;
+  if (normalized === 'healer') return healersIcon;
+  if (normalized === 'melee') return meleeDpsIcon;
+  return rangedDpsIcon;
 }
 
 function parseScheduledUnix(value) {
@@ -301,6 +326,8 @@ export default function RaidSignupsTab({
   isAuthenticated,
   bnetAuthState,
   roster,
+  rosterClaims = [],
+  guildRoleRanks = [],
   getSpecById,
   specsFromDb,
   handleSaveRaidLog,
@@ -312,44 +339,92 @@ export default function RaidSignupsTab({
   setNewRaidZone,
   raidLogs,
   handleDeleteRaidLog,
+  handleUpdateRaidLog,
   raidHelperImportSession,
   onUpdateRaidHelperImportEntry,
   onApplyRaidHelperImport,
   onCancelRaidHelperImport,
   activeSection
   ,
-  onSectionChange
+  onSectionChange,
+  sectionVisibilityById = {},
+  siteTabMetadata
 }) {
   const [events, setEvents] = useState([]);
   const [templates, setTemplates] = useState([]);
   const [archivedEvents, setArchivedEvents] = useState([]);
   const [isSavingTemplates, setIsSavingTemplates] = useState(false);
-  const [selectedEventId, setSelectedEventId] = useState('');
+  const [selectedEventId, setSelectedEventId] = useState(() => localStorage.getItem(RAID_SIGNUPS_EVENT_STORAGE_KEY) || '');
   const [eventEditDraft, setEventEditDraft] = useState({ title: '', description: '', scheduled_date: '', scheduled_time: '20:00', scheduled_timezone: 'Europe/Paris', public_groups: false });
   const [groupRows, setGroupRows] = useState(buildDefaultGroupRows());
+  const [benchAssignments, setBenchAssignments] = useState([]);
   const [isSavingGroups, setIsSavingGroups] = useState(false);
   const [isEchoing, setIsEchoing] = useState(false);
+  const [isUnsignedRaidersOpen, setIsUnsignedRaidersOpen] = useState(false);
+  const [isEchoingUnsignedRaiders, setIsEchoingUnsignedRaiders] = useState(false);
+  const [echoTagUnsignedRaiders, setEchoTagUnsignedRaiders] = useState(true);
+  const [selectedUnsignedRaiderIds, setSelectedUnsignedRaiderIds] = useState(new Set());
+  const [unsignedRaiderEchoResult, setUnsignedRaiderEchoResult] = useState(null);
   const [isSavingEventEdit, setIsSavingEventEdit] = useState(false);
   const [isSavingPublicGroups, setIsSavingPublicGroups] = useState(false);
   const [isChangingStatus, setIsChangingStatus] = useState(false);
   const [isDeletingEvent, setIsDeletingEvent] = useState(false);
-  const [clockNow, setClockNow] = useState(Date.now());
+  const [clockNow, setClockNow] = useState(() => Date.now());
   const [expandedLog, setExpandedLog] = useState(null);
+  const [expandedLogStatus, setExpandedLogStatus] = useState('');
+  const [expandedSummaryStatus, setExpandedSummaryStatus] = useState('');
   const [raidHelperJsonText, setRaidHelperJsonText] = useState('');
   const [raidSignupEvents, setRaidSignupEvents] = useState([]);
+  const [historyEventDetails, setHistoryEventDetails] = useState({});
+  const [attendanceSearch, setAttendanceSearch] = useState('');
+  const [attendanceStatusFilter, setAttendanceStatusFilter] = useState('');
+  const [attendanceColumnFilters, setAttendanceColumnFilters] = useState({});
+  const [attendanceSort, setAttendanceSort] = useState({ key: 'name', direction: 'asc' });
   const [selectedSignupEventId, setSelectedSignupEventId] = useState('');
   const [isApplyingSignupEvent, setIsApplyingSignupEvent] = useState(false);
   const [selectedEventDetails, setSelectedEventDetails] = useState(null);
   const [openSlotPickerKey, setOpenSlotPickerKey] = useState('');
   const [editingNoteByRow, setEditingNoteByRow] = useState({});
-  const [expandedSummaryStatus, setExpandedSummaryStatus] = useState('');
   const [echoTagAttendees, setEchoTagAttendees] = useState(false);
   const [isGroupConfigDirty, setIsGroupConfigDirty] = useState(false);
   const [isEventEditDirty, setIsEventEditDirty] = useState(false);
   const [isRefreshingSignups, setIsRefreshingSignups] = useState(false);
+  const [siteSignupDrafts, setSiteSignupDrafts] = useState({});
+  const [siteSignupBusy, setSiteSignupBusy] = useState({});
+  const [siteSignupErrors, setSiteSignupErrors] = useState({});
   const [loadedSelectedEventId, setLoadedSelectedEventId] = useState('');
-  const activeRaidSection = activeSection || 'templates';
+  const activeRaidSection = siteTabMetadata?.contentOwner === 'RaidSignupsContainer'
+    ? siteTabMetadata.route?.subTab || activeSection || 'templates'
+    : activeSection || 'templates';
   const isReadOnly = !isAuthenticated;
+  const claimedSignupCharacters = useMemo(() => {
+    const claimed = Array.isArray(bnetAuthState?.claimedCharacters) ? bnetAuthState.claimedCharacters : [];
+    return claimed
+      .map(claim => {
+        const rosterId = Number(claim?.rosterId || claim?.roster_id || 0);
+        const rosterName = String(claim?.rosterName || claim?.roster_name || '').trim();
+        const rosterPlayer = (roster || []).find(player => Number(player?.id) === rosterId)
+          || (rosterName ? (roster || []).find(player => String(player?.name || '').trim().toLowerCase() === rosterName.toLowerCase()) : null);
+        return rosterPlayer || (rosterId && rosterName ? { id: rosterId, name: rosterName, spec_id: null } : null);
+      })
+      .filter(character => character?.id && character?.name);
+  }, [bnetAuthState?.claimedCharacters, roster]);
+  const canSiteSignup = Boolean(bnetAuthState?.authenticated && claimedSignupCharacters.length > 0);
+  const isRaidHelperImportVisible = sectionVisibilityById['raid-signups.history.raid-helper-import'] !== false;
+
+  useEffect(() => {
+    if (selectedEventId) {
+      localStorage.setItem(RAID_SIGNUPS_EVENT_STORAGE_KEY, String(selectedEventId));
+    } else {
+      localStorage.removeItem(RAID_SIGNUPS_EVENT_STORAGE_KEY);
+    }
+  }, [selectedEventId]);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setExpandedSummaryStatus('');
+  }, [selectedEventId]);
+
   const [absences, setAbsences] = useState([]);
   const [isLoadingAbsences, setIsLoadingAbsences] = useState(false);
   const [isSavingAbsence, setIsSavingAbsence] = useState(false);
@@ -363,6 +438,57 @@ export default function RaidSignupsTab({
   const loadPublic = async () => {
     const data = await fetchData('public-raid-signups');
     setEvents(Array.isArray(data) ? data : []);
+  };
+
+  const getSiteSignupDraft = (event) => {
+    const firstCharacter = claimedSignupCharacters[0];
+    const defaultCharacter = firstCharacter?.id ? String(firstCharacter.id) : '';
+    const defaultSpec = firstCharacter?.spec_id ? String(firstCharacter.spec_id) : '';
+    const savedDraft = siteSignupDrafts[event.id];
+    const existing = (event?.entries || []).find(entry => (
+      String(entry?.discord_user_id || '') === `web:${bnetAuthState?.user?.id}`
+      || claimedSignupCharacters.some(character => (
+        String(character?.discord_user_id || '').trim() === String(entry?.discord_user_id || '').trim()
+        || String(character?.name || '').trim().toLowerCase() === String(entry?.discord_username || '').trim().toLowerCase()
+      ))
+    ));
+    const existingCharacter = claimedSignupCharacters.find(character => (
+      String(character?.discord_user_id || '').trim() === String(existing?.discord_user_id || '').trim()
+      || String(character?.name || '').trim().toLowerCase() === String(existing?.discord_username || '').trim().toLowerCase()
+    ));
+    const existingStatus = existing?.status === 'absent' ? 'absence' : existing?.status;
+    return savedDraft || {
+      roster_id: String(existingCharacter?.id || defaultCharacter),
+      spec_id: String(existing?.spec_id || existingCharacter?.spec_id || defaultSpec),
+      status: existingStatus || 'signup',
+      note: existing?.note || ''
+    };
+  };
+
+  const updateSiteSignupDraft = (eventId, patch) => {
+    setSiteSignupDrafts(current => ({
+      ...current,
+      [eventId]: { ...current[eventId], ...patch }
+    }));
+  };
+
+  const handleSiteSignup = async (event) => {
+    const draft = getSiteSignupDraft(event);
+    setSiteSignupBusy(current => ({ ...current, [event.id]: true }));
+    setSiteSignupErrors(current => ({ ...current, [event.id]: '' }));
+    try {
+      await postData(`raid-signup-events/${event.id}/signup`, {
+        roster_id: Number(draft.roster_id),
+        spec_id: Number(draft.spec_id) || null,
+        status: draft.status,
+        note: draft.note
+      });
+      await loadPublic();
+    } catch (error) {
+      setSiteSignupErrors(current => ({ ...current, [event.id]: error.message || 'Failed to save signup.' }));
+    } finally {
+      setSiteSignupBusy(current => ({ ...current, [event.id]: false }));
+    }
   };
 
   const loadTemplates = async () => {
@@ -408,8 +534,10 @@ export default function RaidSignupsTab({
   }, [fetchData]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadTemplates().catch(e => console.error('Failed to load raid signup templates', e));
     loadArchivedEvents().catch(e => console.error('Failed to load archived raid signup events', e));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
   useEffect(() => {
@@ -440,12 +568,10 @@ export default function RaidSignupsTab({
   }, [fetchData, isAuthenticated, selectedSignupEventId]);
 
   useEffect(() => {
-    setExpandedSummaryStatus('');
-  }, [selectedEventId]);
-
-  useEffect(() => {
     if (!selectedEventId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setGroupRows(buildDefaultGroupRows());
+      setBenchAssignments([]);
       setSelectedEventDetails(null);
       setOpenSlotPickerKey('');
       setEditingNoteByRow({});
@@ -460,6 +586,7 @@ export default function RaidSignupsTab({
       if (!isAuthenticated) {
         const publicEvent = (events || []).find(event => String(event?.id) === String(selectedEventId));
         setGroupRows(buildGroupRows(publicEvent?.groups || []));
+        setBenchAssignments(buildBenchAssignments(publicEvent?.groups || []));
         setSelectedEventDetails(publicEvent || null);
         setOpenSlotPickerKey('');
         setEditingNoteByRow({});
@@ -477,6 +604,7 @@ export default function RaidSignupsTab({
           fetchData(`raid-signup-events/${selectedEventId}`)
         ]);
         setGroupRows(buildGroupRows(rows || []));
+        setBenchAssignments(buildBenchAssignments(rows || []));
         setSelectedEventDetails(eventDetails && typeof eventDetails === 'object' ? eventDetails : null);
         setOpenSlotPickerKey('');
         setEditingNoteByRow({});
@@ -506,6 +634,7 @@ export default function RaidSignupsTab({
     const availableEventIds = new Set([...readableActiveEvents, ...readableArchivedEvents].map(event => String(event.id)));
     if (selectedEventId && availableEventIds.has(String(selectedEventId))) return;
     const firstEvent = [...readableActiveEvents, ...readableArchivedEvents][0];
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelectedEventId(firstEvent?.id ? String(firstEvent.id) : '');
   }, [readableActiveEvents, readableArchivedEvents, selectedEventId]);
 
@@ -541,6 +670,7 @@ export default function RaidSignupsTab({
 
   useEffect(() => {
     if (!selectedEvent) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setEventEditDraft({ title: '', description: '', scheduled_date: '', scheduled_time: '20:00', scheduled_timezone: 'Europe/Paris', public_groups: false });
       return;
     }
@@ -567,8 +697,9 @@ export default function RaidSignupsTab({
   const canUseAbsences = !!isAuthenticated || !!bnetAuthState?.authenticated;
 
   useEffect(() => {
-    if (activeRaidSection !== 'absences') return;
+    if (!['events', 'absences', 'history'].includes(activeRaidSection)) return;
     if (!canUseAbsences) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setAbsences([]);
       return;
     }
@@ -597,8 +728,28 @@ export default function RaidSignupsTab({
   }, [activeRaidSection, canUseAbsences, isAuthenticated, bnetAuthState?.authenticated]);
 
   useEffect(() => {
+    if (activeRaidSection !== 'history' || !isAuthenticated) return;
+    let mounted = true;
+    const historyEvents = [...readableActiveEvents, ...readableArchivedEvents];
+    Promise.all(historyEvents.map(async event => {
+      try {
+        const details = await fetchData(`raid-signup-events/${event.id}`);
+        return [String(event.id), details && typeof details === 'object' ? details : event];
+      } catch {
+        return [String(event.id), event];
+      }
+    })).then(entries => {
+      if (mounted) setHistoryEventDetails(Object.fromEntries(entries));
+    });
+    return () => {
+      mounted = false;
+    };
+  }, [activeRaidSection, fetchData, isAuthenticated, readableActiveEvents, readableArchivedEvents]);
+
+  useEffect(() => {
     if (activeRaidSection !== 'absences') return;
     if (!isAuthenticated) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setAbsenceTargets([]);
       return;
     }
@@ -609,7 +760,7 @@ export default function RaidSignupsTab({
         const rows = await getRaidSignupAbsenceTargets();
         if (!mounted) return;
         setAbsenceTargets(Array.isArray(rows) ? rows : []);
-      } catch (error) {
+      } catch {
         if (!mounted) return;
         setAbsenceTargets([]);
       }
@@ -623,6 +774,7 @@ export default function RaidSignupsTab({
 
   useEffect(() => {
     if (!isAuthenticated) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setAbsenceDraft(prev => ({ ...prev, target_key: `user:${String(currentBattleNetUserId || '')}` }));
       return;
     }
@@ -707,19 +859,27 @@ export default function RaidSignupsTab({
       .map(row => String(row.player_name || '').trim().toLowerCase())
   ), [groupRows]);
 
+  const benchAssignmentNames = useMemo(() => new Set(
+    benchAssignments
+      .filter(row => String(row.player_name || '').trim())
+      .map(row => String(row.player_name || '').trim().toLowerCase())
+  ), [benchAssignments]);
+
   const unassignedBenchCandidates = useMemo(() => signupCandidates.filter(candidate => {
     const status = String(candidate.status || '').trim().toLowerCase();
     const normalizedStatus = status === 'absence' ? 'absent' : status;
     const candidateName = String(candidate.discord_username || '').trim();
-    return normalizedStatus === 'bench' && !assignedGroupNames.has(candidateName.toLowerCase());
-  }), [assignedGroupNames, signupCandidates]);
+    const normalizedName = candidateName.toLowerCase();
+    return normalizedStatus === 'bench' && !assignedGroupNames.has(normalizedName) && !benchAssignmentNames.has(normalizedName);
+  }), [assignedGroupNames, benchAssignmentNames, signupCandidates]);
 
   const unassignedSignupCandidates = useMemo(() => signupCandidates.filter(candidate => {
     const status = String(candidate.status || '').trim().toLowerCase();
     const normalizedStatus = status === 'absence' ? 'absent' : status;
     const candidateName = String(candidate.discord_username || '').trim();
-    return ['signup', 'late', 'tentative'].includes(normalizedStatus) && !assignedGroupNames.has(candidateName.toLowerCase());
-  }), [assignedGroupNames, signupCandidates]);
+    const normalizedName = candidateName.toLowerCase();
+    return ['signup', 'late', 'tentative'].includes(normalizedStatus) && !assignedGroupNames.has(normalizedName) && !benchAssignmentNames.has(normalizedName);
+  }), [assignedGroupNames, benchAssignmentNames, signupCandidates]);
 
   const selectedEventEntries = useMemo(() => {
     if (!selectedEventId) return [];
@@ -728,6 +888,52 @@ export default function RaidSignupsTab({
     const publicEntries = Array.isArray(publicEvent?.entries) ? publicEvent.entries : [];
     return detailEntries.length > 0 ? detailEntries : publicEntries;
   }, [events, selectedEvent, selectedEventId]);
+
+  const unsignedRaiders = useMemo(() => {
+    const raiderRoleNames = new Set((Array.isArray(guildRoleRanks) ? guildRoleRanks : [])
+      .filter(role => role?.isRaider === true)
+      .map(role => String(role.name || '').trim().toLowerCase())
+      .filter(Boolean));
+    const defaultGuildRole = getDefaultGuildRoleName({ guildRoleRanks }).toLowerCase();
+    if (!selectedEventId || raiderRoleNames.size === 0) return [];
+
+    const signedNames = new Set();
+    selectedEventEntries.forEach(entry => {
+      [entry.discord_username, entry.player_name, entry.character_name, entry.roster_name]
+        .map(value => String(value || '').trim().toLowerCase())
+        .filter(Boolean)
+        .forEach(name => signedNames.add(name));
+    });
+
+    const eventUnix = parseScheduledUnix(selectedEvent?.scheduled_for);
+    const eventDate = eventUnix ? DateTime.fromSeconds(eventUnix).toISODate() : '';
+    return (roster || [])
+      .filter(player => {
+        const rankName = String(player.guild_rank || player.rank || defaultGuildRole).trim().toLowerCase();
+        const playerName = String(player.name || '').trim().toLowerCase();
+        return raiderRoleNames.has(rankName) && playerName && !signedNames.has(playerName);
+      })
+      .map(player => {
+        const playerName = String(player.name || '').trim().toLowerCase();
+        const absence = (absences || []).find(entry => {
+          const names = [entry.target_character_name, ...(Array.isArray(entry.claimed_characters) ? entry.claimed_characters : [])]
+            .map(value => String(value || '').trim().toLowerCase());
+          const matchesPlayer = names.includes(playerName);
+          const coversEvent = !eventDate || (String(entry.start_date || '') <= eventDate && String(entry.end_date || '') >= eventDate);
+          return matchesPlayer && coversEvent;
+        });
+        return { player, absence };
+      });
+  }, [absences, guildRoleRanks, roster, selectedEvent, selectedEventEntries, selectedEventId]);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setSelectedUnsignedRaiderIds(new Set(
+      unsignedRaiders
+        .filter(({ absence }) => !absence)
+        .map(({ player }) => String(player.id))
+    ));
+  }, [unsignedRaiders]);
 
   const selectedEventEntryByName = useMemo(() => {
     const map = new Map();
@@ -820,22 +1026,19 @@ export default function RaidSignupsTab({
 
   const statusMarker = (status) => {
     const normalized = String(status || '').trim().toLowerCase();
-    if (normalized === 'absence') return { glyph: '✕', color: 'text-rose-300' };
+    if (normalized === 'absence') return { glyph: 'x', color: 'text-rose-300' };
     if (normalized === 'signup') return { glyph: '✓', color: 'text-emerald-300' };
-    if (normalized === 'absent') return { glyph: '✕', color: 'text-rose-300' };
+    if (normalized === 'absent') return { glyph: 'x', color: 'text-rose-300' };
     if (normalized === 'bench') return { glyph: '✓', color: 'text-amber-300' };
-    if (normalized === 'late') return { glyph: '⏱', color: 'text-orange-300' };
-    if (normalized === 'tentative') return { glyph: '⚠', color: 'text-yellow-300' };
+    if (normalized === 'late') return { glyph: 'L', color: 'text-orange-300' };
+    if (normalized === 'tentative') return { glyph: '?', color: 'text-yellow-300' };
     return { glyph: '•', color: 'text-slate-400' };
   };
 
-  const specColorByKey = useMemo(() => {
-    const map = new Map();
-    specsFromDb.forEach(spec => {
-      map.set(`${String(spec.class || '').toLowerCase()}|${String(spec.spec || '').toLowerCase()}`, spec.color || '#e2e8f0');
-    });
-    return map;
-  }, [specsFromDb]);
+  const specColorByKey = new Map();
+  specsFromDb.forEach(spec => {
+    specColorByKey.set(`${String(spec.class || '').toLowerCase()}|${String(spec.spec || '').toLowerCase()}`, spec.color || '#e2e8f0');
+  });
 
   const groupedPublic = useMemo(() => {
     return events.map(event => {
@@ -852,30 +1055,18 @@ export default function RaidSignupsTab({
   }, [events]);
 
   const raidCalendarData = useMemo(() => {
-    if (!isAuthenticated) {
-      return {
-        scheduledItems: [],
-        plannedItems: [],
-        allItems: [],
-        blockedTemplates: []
-      };
-    }
-
-    const now = DateTime.now();
-    const allKnownEvents = [...(raidSignupEvents || []), ...(archivedEvents || [])];
-    const eventByTemplateId = new Map();
-    allKnownEvents.forEach(event => {
-      const templateId = Number(event?.template_id || 0);
-      if (!templateId) return;
-      if (!eventByTemplateId.has(templateId)) eventByTemplateId.set(templateId, []);
-      eventByTemplateId.get(templateId).push(event);
-    });
+    const publicEventSource = Array.isArray(events) ? events : [];
+    const allKnownEvents = isAuthenticated ? [...(raidSignupEvents || []), ...(archivedEvents || [])] : publicEventSource;
 
     const scheduledItems = allKnownEvents
-      .filter(event => String(event?.status || '').toLowerCase() !== 'archived')
+      .filter(event => {
+        if (!isAuthenticated) {
+          return String(event?.status || '').toLowerCase() !== 'archived';
+        }
+        return String(event?.status || '').toLowerCase() !== 'archived';
+      })
       .map(event => {
-        const template = templateById.get(String(event?.template_id || '')) || null;
-        const timezone = normalizeTimezoneOption(template?.timezone || template?.timezone_text || 'Europe/Paris');
+        const timezone = normalizeTimezoneOption((event?.timezone || event?.scheduled_timezone) || 'Europe/Paris');
         const start = parseScheduleDateTime(event?.scheduled_for || '', timezone);
         if (!start?.isValid) return null;
         return {
@@ -892,6 +1083,24 @@ export default function RaidSignupsTab({
       })
       .filter(Boolean)
       .sort((a, b) => a.start.toMillis() - b.start.toMillis());
+
+    if (!isAuthenticated) {
+      return {
+        scheduledItems,
+        plannedItems: [],
+        allItems: scheduledItems,
+        blockedTemplates: []
+      };
+    }
+
+    const now = DateTime.now();
+    const eventByTemplateId = new Map();
+    allKnownEvents.forEach(event => {
+      const templateId = Number(event?.template_id || 0);
+      if (!templateId) return;
+      if (!eventByTemplateId.has(templateId)) eventByTemplateId.set(templateId, []);
+      eventByTemplateId.get(templateId).push(event);
+    });
 
     const plannedItems = [];
     const blockedTemplates = [];
@@ -951,7 +1160,7 @@ export default function RaidSignupsTab({
 
     const allItems = [...scheduledItems, ...plannedItems].sort((a, b) => a.start.toMillis() - b.start.toMillis());
     return { scheduledItems, plannedItems, allItems, blockedTemplates };
-  }, [archivedEvents, isAuthenticated, raidSignupEvents, templateById, templates]);
+  }, [archivedEvents, events, isAuthenticated, raidSignupEvents, templates]);
 
   const raidCalendarByDay = useMemo(() => {
     const map = new Map();
@@ -999,13 +1208,18 @@ export default function RaidSignupsTab({
     }
   };
 
-  const selectedEventSignupSummary = useMemo(() => {
-    if (!selectedEventId) {
-      return { signup: 0, late: 0, bench: 0, absent: 0, tentative: 0, total: 0 };
-    }
+  const getHistoryEventForLog = (log) => {
+    if (!log) return null;
+    const byId = historyEventDetails[String(log.signupEventId)];
+    if (byId) return byId;
+    const eventDate = String(log.date || '');
+    return [...readableActiveEvents, ...readableArchivedEvents].find(event => {
+      return parseScheduleDateTime(event.scheduled_for)?.toISODate() === eventDate;
+    }) || null;
+  };
 
-    const entries = selectedEventEntries;
-
+  const getSignupSummary = (event) => {
+    const entries = Array.isArray(event?.entries) ? event.entries : [];
     const summary = entries.reduce((acc, entry) => {
       const status = String(entry?.status || '').trim().toLowerCase();
       const normalizedStatus = status === 'absence' ? 'absent' : status;
@@ -1018,24 +1232,24 @@ export default function RaidSignupsTab({
       return acc;
     }, { signup: 0, late: 0, bench: 0, absent: 0, tentative: 0, total: 0 });
 
-    if (summary.total === 0 && selectedEvent) {
-      const signup = Number(selectedEvent.signup_count || 0);
-      const late = Number(selectedEvent.late_count || 0);
-      const bench = Number(selectedEvent.bench_count || 0);
-      const absent = Number(selectedEvent.absent_count || 0);
-      const tentative = Number(selectedEvent.tentative_count || 0);
-      return {
-        signup,
-        late,
-        bench,
-        absent,
-        tentative,
-        total: signup + late + bench + absent + tentative
-      };
+    if (summary.total === 0 && event) {
+      const signup = Number(event.signup_count || 0);
+      const late = Number(event.late_count || 0);
+      const bench = Number(event.bench_count || 0);
+      const absent = Number(event.absent_count || 0);
+      const tentative = Number(event.tentative_count || 0);
+      return { signup, late, bench, absent, tentative, total: signup + late + bench + absent + tentative };
     }
 
     return summary;
-  }, [selectedEvent, selectedEventEntries, selectedEventId]);
+  };
+
+  const selectedEventSignupSummary = useMemo(() => {
+    if (!selectedEventId) {
+      return { signup: 0, late: 0, bench: 0, absent: 0, tentative: 0, total: 0 };
+    }
+    return getSignupSummary(selectedEvent);
+  }, [selectedEvent, selectedEventId]);
 
   const expandedSummaryGroups = useMemo(() => {
     if (!expandedSummaryStatus) return null;
@@ -1105,7 +1319,7 @@ export default function RaidSignupsTab({
       await putData('raid-signup-templates', payload);
       await loadTemplates();
       alert('Raid signup templates saved. Use /raidsignup post in Discord to publish one.');
-    } catch (e) {
+    } catch {
       alert('Failed to save raid signup templates.');
     } finally {
       setIsSavingTemplates(false);
@@ -1116,7 +1330,8 @@ export default function RaidSignupsTab({
     if (!selectedEventId) return;
     setIsSavingGroups(true);
     try {
-      const payload = groupRows
+      const payload = [
+        ...groupRows
         .filter(row => row.group_number <= visibleGroupCount && String(row.player_name || '').trim())
         .map(row => ({
           group_number: row.group_number,
@@ -1125,7 +1340,18 @@ export default function RaidSignupsTab({
           player_name: row.player_name,
           spec_id: row.spec_id || null,
           note: row.note || ''
-        }));
+        })),
+        ...benchAssignments
+          .filter(row => String(row.player_name || '').trim())
+          .map((row, index) => ({
+            group_number: 0,
+            group_name: 'Bench',
+            slot_index: index + 1,
+            player_name: row.player_name,
+            spec_id: row.spec_id || null,
+            note: row.note || ''
+          }))
+      ];
       await putData(`raid-signup-groups/${selectedEventId}`, payload);
       if (!!eventEditDraft.public_groups !== !!selectedEvent?.public_groups) {
         await putData(`raid-signup-events/${selectedEventId}`, {
@@ -1135,7 +1361,7 @@ export default function RaidSignupsTab({
       setIsGroupConfigDirty(false);
       await loadPublic();
       alert('Raid groups saved.');
-    } catch (e) {
+    } catch {
       alert('Failed to save raid groups.');
     } finally {
       setIsSavingGroups(false);
@@ -1148,10 +1374,35 @@ export default function RaidSignupsTab({
     try {
       await postData(`raid-signup-events/${selectedEventId}/echo`, { tag_attendees: echoTagAttendees });
       alert('Echo message sent to Discord channel for this event.');
-    } catch (e) {
+    } catch {
       alert('Failed to echo message. Make sure event is posted by bot and has a Discord channel binding.');
     } finally {
       setIsEchoing(false);
+    }
+  };
+
+  const echoUnsignedRaiders = async () => {
+    const selectedRaiders = unsignedRaiders.filter(({ player }) => selectedUnsignedRaiderIds.has(String(player.id)));
+    if (!selectedEventId || selectedRaiders.length === 0) return;
+    setIsEchoingUnsignedRaiders(true);
+    setUnsignedRaiderEchoResult(null);
+    try {
+      const result = await postData(`raid-signup-events/${selectedEventId}/echo-unsigned-raiders`, {
+        players: selectedRaiders.map(({ player }) => {
+          const spec = specById.get(Number(player.spec_id));
+          return {
+            name: player.name,
+            spec_name: spec?.spec || '',
+            spec_class: spec?.class || ''
+          };
+        }),
+        tag_raiders: echoTagUnsignedRaiders
+      });
+      setUnsignedRaiderEchoResult(result || { ok: true });
+    } catch (e) {
+      setUnsignedRaiderEchoResult({ error: e?.message || 'Failed to echo unsigned raiders.' });
+    } finally {
+      setIsEchoingUnsignedRaiders(false);
     }
   };
 
@@ -1178,12 +1429,14 @@ export default function RaidSignupsTab({
         if (selectedEventId) {
           setSelectedEventDetails(selectedDetails && typeof selectedDetails === 'object' ? selectedDetails : null);
           setGroupRows(buildGroupRows(Array.isArray(selectedGroups) ? selectedGroups : []));
+          setBenchAssignments(buildBenchAssignments(Array.isArray(selectedGroups) ? selectedGroups : []));
           setLoadedSelectedEventId(String(selectedEventId));
         }
       } else if (selectedEventId) {
         const publicEvent = normalizedPublicEvents.find(event => String(event?.id) === String(selectedEventId));
         setSelectedEventDetails(publicEvent || null);
         setGroupRows(buildGroupRows(publicEvent?.groups || []));
+        setBenchAssignments(buildBenchAssignments(publicEvent?.groups || []));
         setLoadedSelectedEventId(String(selectedEventId));
       }
 
@@ -1202,39 +1455,66 @@ export default function RaidSignupsTab({
   const updateGroupRow = (rowKey, patch) => {
     setIsGroupConfigDirty(true);
     setGroupRows(prev => prev.map(row => (row.localKey === rowKey ? { ...row, ...patch } : row)));
+    if (Object.prototype.hasOwnProperty.call(patch || {}, 'player_name')) {
+      const normalizedName = String(patch.player_name || '').trim().toLowerCase();
+      if (normalizedName) {
+        setBenchAssignments(prev => prev.filter(row => String(row.player_name || '').trim().toLowerCase() !== normalizedName));
+      }
+    }
   };
 
-  const updateEntryStatus = async (entry, nextStatus, noteOverride = undefined) => {
-    if (!selectedEventId || !entry) return;
-    const normalizedStatus = String(nextStatus || '').trim().toLowerCase();
-    if (!['signup', 'late', 'tentative', 'bench', 'absent'].includes(normalizedStatus)) return;
+  const addBenchAssignment = (entry) => {
+    if (!entry) return;
+    const playerName = String(entry.discord_username || entry.player_name || '').trim();
+    if (!playerName) return;
+    const normalizedName = playerName.toLowerCase();
+    if (benchAssignmentNames.has(normalizedName)) return;
 
-    try {
-      const response = await fetchData(`raid-signup-events/${selectedEventId}`);
-      const entries = Array.isArray(response?.entries) ? response.entries : [];
-      const current = entries.find(candidate => String(candidate.discord_user_id || candidate.discord_username || '').toLowerCase() === String(entry.discord_user_id || entry.discord_username || '').toLowerCase());
-      if (!current) {
-        alert('This player is not currently in the signup list.');
-        return;
+    setIsGroupConfigDirty(true);
+    setBenchAssignments(prev => ([
+      ...prev,
+      {
+        localKey: `bench-${Date.now()}-${normalizedName}`,
+        group_number: 0,
+        group_name: 'Bench',
+        slot_index: prev.length + 1,
+        player_name: playerName,
+        spec_id: entry.spec_id || null,
+        note: '',
+        spec_class: entry.spec_class || null,
+        spec_name: entry.spec_name || null,
+        class_name: entry.class_name || null
       }
+    ]));
+  };
 
-      const payload = {
-        status: normalizedStatus,
-        discord_user_id: current.discord_user_id || null,
-        discord_username: current.discord_username || entry.discord_username || ''
-      };
-      if (noteOverride !== undefined) payload.note = String(noteOverride || '').trim();
+  const assignToNextOpenGroupSlot = (entry) => {
+    if (!entry || isReadOnly) return;
+    const nextOpenSlot = [...groupRows]
+      .filter(row => Number(row.group_number) > 0 && Number(row.group_number) <= visibleGroupCount && !String(row.player_name || '').trim())
+      .sort((a, b) => Number(a.group_number) - Number(b.group_number) || Number(a.slot_index) - Number(b.slot_index))[0];
+    if (!nextOpenSlot) return;
 
-      await putData(`raid-signup-events/${selectedEventId}/status`, payload);
-      const updatedEvent = await fetchData(`raid-signup-events/${selectedEventId}`);
-      setSelectedEventDetails(updatedEvent || null);
-      setEvents(prev => prev.map(event => String(event.id) === String(selectedEventId) ? { ...event, ...updatedEvent } : event));
-      setExpandedSummaryStatus('');
-      alert(`Updated ${current.discord_username || entry.discord_username || 'player'} to ${normalizedStatus}.`);
-    } catch (error) {
-      console.error('Failed to update signup status', error);
-      alert('Failed to update the player status.');
-    }
+    const playerName = String(entry.discord_username || entry.player_name || '').trim();
+    updateGroupRow(nextOpenSlot.localKey, {
+      player_name: playerName,
+      spec_id: entry.spec_id || null,
+      spec_class: entry.spec_class || null,
+      spec_name: entry.spec_name || null,
+      class_name: entry.class_name || null,
+      note: ''
+    });
+    setBenchAssignments(prev => prev.filter(row => String(row.player_name || '').trim().toLowerCase() !== playerName.toLowerCase()));
+  };
+
+  const updateBenchAssignment = (rowKey, patch) => {
+    setIsGroupConfigDirty(true);
+    setBenchAssignments(prev => prev.map(row => (row.localKey === rowKey ? { ...row, ...patch } : row)));
+  };
+
+  const removeBenchAssignment = (rowKey) => {
+    setIsGroupConfigDirty(true);
+    setBenchAssignments(prev => prev.filter(row => row.localKey !== rowKey).map((row, index) => ({ ...row, slot_index: index + 1 })));
   };
 
   const updateGroupName = (groupNumber, groupName) => {
@@ -1259,7 +1539,7 @@ export default function RaidSignupsTab({
       setIsEventEditDirty(false);
       await loadPublic();
       alert('Event details updated.');
-    } catch (e) {
+    } catch {
       alert('Failed to update event details.');
     } finally {
       setIsSavingEventEdit(false);
@@ -1267,22 +1547,23 @@ export default function RaidSignupsTab({
   };
 
   const savePublicGroupsVisibility = async (nextValue) => {
-    setIsGroupConfigDirty(true);
-    setIsEventEditDirty(true);
-    setEventEditDraft(prev => ({ ...prev, public_groups: !!nextValue }));
-  };
-
-  const [benchNoteDrafts, setBenchNoteDrafts] = useState({});
-
-  useEffect(() => {
-    if (!selectedEventDetails?.entries) return;
-    const nextDrafts = {};
-    for (const entry of selectedEventDetails.entries) {
-      const key = String(entry.discord_user_id || entry.discord_username || '');
-      if (key) nextDrafts[key] = String(entry.note || '');
+    if (!selectedEventId || isReadOnly) return;
+    const publicGroups = !!nextValue;
+    setIsSavingPublicGroups(true);
+    setEventEditDraft(prev => ({ ...prev, public_groups: publicGroups }));
+    try {
+      await putData(`raid-signup-events/${selectedEventId}`, { public_groups: publicGroups });
+      await loadPublic();
+      setSelectedEventDetails(prev => prev ? { ...prev, public_groups: publicGroups } : prev);
+      setIsGroupConfigDirty(false);
+      setIsEventEditDirty(false);
+    } catch {
+      setEventEditDraft(prev => ({ ...prev, public_groups: !publicGroups }));
+      alert('Failed to update public group visibility.');
+    } finally {
+      setIsSavingPublicGroups(false);
     }
-    setBenchNoteDrafts(prev => ({ ...prev, ...nextDrafts }));
-  }, [selectedEventDetails]);
+  };
 
   const setEventStatus = async (status, confirmMessage) => {
     if (!selectedEventId) return;
@@ -1294,7 +1575,7 @@ export default function RaidSignupsTab({
       await loadPublic();
       await loadArchivedEvents();
       alert(`Event updated: ${status}.`);
-    } catch (e) {
+    } catch {
       alert(`Failed to set event status to ${status}.`);
     } finally {
       setIsChangingStatus(false);
@@ -1311,7 +1592,7 @@ export default function RaidSignupsTab({
       await loadPublic();
       setSelectedEventId('');
       alert('Raid deleted from website and Discord.');
-    } catch (e) {
+    } catch {
       alert('Failed to delete raid event.');
     } finally {
       setIsDeletingEvent(false);
@@ -1437,6 +1718,222 @@ export default function RaidSignupsTab({
     return days;
   }, [absenceCalendarMonth, officerAbsenceCalendar]);
 
+  const attendanceTracker = useMemo(() => {
+    const logs = [...(Array.isArray(raidLogs) ? raidLogs : [])].sort((a, b) => String(a.date || '').localeCompare(String(b.date || '')));
+    const includedLogs = logs.filter(log => log.includeInAttendance !== false);
+    const rosterPlayers = (Array.isArray(roster) ? roster : [])
+      .filter(player => String(player?.name || '').trim())
+      .sort((a, b) => String(a.name).localeCompare(String(b.name)));
+    const rankOrder = new Map((Array.isArray(guildRoleRanks) ? guildRoleRanks : []).map(role => [String(role.name || '').trim().toLowerCase(), Number(role.rank) || 9999]));
+    const claimByRosterId = new Map((Array.isArray(rosterClaims) ? rosterClaims : []).map(claim => [String(claim.rosterId || claim.roster_id || ''), claim]));
+    const grouped = new Map();
+    rosterPlayers.forEach(player => {
+      const claim = claimByRosterId.get(String(player.id));
+      const userId = claim?.userId || claim?.user_id;
+      const groupKey = userId ? `user:${userId}` : `roster:${player.id}`;
+      if (!grouped.has(groupKey)) grouped.set(groupKey, []);
+      grouped.get(groupKey).push(player);
+    });
+    const players = [...grouped.values()].map(members => {
+      const sortedMembers = [...members].sort((left, right) => {
+        const leftRank = rankOrder.get(String(left.guild_rank || left.rank || '').trim().toLowerCase()) ?? 9999;
+        const rightRank = rankOrder.get(String(right.guild_rank || right.rank || '').trim().toLowerCase()) ?? 9999;
+        return leftRank - rightRank || String(left.name).localeCompare(String(right.name));
+      });
+      return {
+        player: sortedMembers[0],
+        memberIds: sortedMembers.map(member => Number(member.id)),
+        memberNames: sortedMembers.map(member => member.name),
+        memberUserIds: sortedMembers
+          .map(member => claimByRosterId.get(String(member.id))?.userId || claimByRosterId.get(String(member.id))?.user_id)
+          .map(Number)
+          .filter(Boolean),
+      };
+    });
+    const eventsForHistory = [...readableActiveEvents, ...readableArchivedEvents].map(event => historyEventDetails[String(event.id)] || event);
+    const eventByDate = new Map();
+    eventsForHistory.forEach(event => {
+      const eventDate = parseScheduleDateTime(event.scheduled_for)?.toISODate();
+      if (eventDate && !eventByDate.has(eventDate)) eventByDate.set(eventDate, event);
+    });
+    const normalizeStatus = status => String(status || '').trim().toLowerCase() === 'absence' ? 'absent' : String(status || '').trim().toLowerCase();
+    const namesForEntry = entry => [entry?.discord_username, entry?.player_name, entry?.character_name, entry?.roster_name]
+      .map(value => String(value || '').trim().toLowerCase()).filter(Boolean);
+    const notifiedAbsence = (player, date) => (absences || []).some(absence => {
+      const covered = String(absence?.start_date || '') <= date && String(absence?.end_date || '') >= date;
+      const names = Array.isArray(absence?.claimed_characters) ? absence.claimed_characters : [];
+      return covered && (Number(absence?.roster_id) === Number(player.id) || names.some(name => String(name).trim().toLowerCase() === String(player.name).trim().toLowerCase()) || String(absence?.target_character_name || '').trim().toLowerCase() === String(player.name).trim().toLowerCase());
+    });
+    const statusForCell = (playerGroup, log) => {
+      const player = playerGroup.player;
+      const memberNames = new Set(playerGroup.memberNames.map(name => String(name).trim().toLowerCase()));
+      const memberUserIds = new Set((playerGroup.memberUserIds || []).map(Number));
+      const savedAttendeeNames = new Set((log.attendeeNames || []).map(name => String(name).trim().toLowerCase()));
+      const event = historyEventDetails[String(log.signupEventId)] || eventByDate.get(String(log.date || ''));
+      const entry = Array.isArray(event?.entries)
+        ? event.entries.find(candidate => namesForEntry(candidate).some(name => memberNames.has(name)) || memberUserIds.has(Number(candidate?.discord_user_id)))
+        : null;
+      const status = normalizeStatus(entry?.status);
+      const logDate = String(log.date || '').slice(0, 10);
+      const coveredAbsence = playerGroup.memberIds.some(memberId => notifiedAbsence({ ...player, id: memberId }, logDate));
+      if (status === 'absent' && coveredAbsence) return 'absence';
+      if (['signup', 'bench', 'late', 'tentative', 'absent'].includes(status)) return status;
+      if (!status && coveredAbsence) return 'absence';
+      return (log.attendees || []).map(Number).some(attendeeId => playerGroup.memberIds.includes(Number(attendeeId))) || [...memberNames].some(name => savedAttendeeNames.has(name)) ? 'signup' : 'no_signup';
+    };
+    const isAttendingLog = (playerGroup, log) => {
+      const memberNames = new Set(playerGroup.memberNames.map(name => String(name).trim().toLowerCase()));
+      if ((log.attendees || []).map(Number).some(attendeeId => playerGroup.memberIds.includes(Number(attendeeId))) || [...memberNames].some(name => (log.attendeeNames || []).map(attendeeName => String(attendeeName).trim().toLowerCase()).includes(name))) return true;
+      const event = historyEventDetails[String(log.signupEventId)] || eventByDate.get(String(log.date || ''));
+      const memberUserIds = new Set((playerGroup.memberUserIds || []).map(Number));
+      const entry = Array.isArray(event?.entries)
+        ? event.entries.find(candidate => namesForEntry(candidate).some(name => memberNames.has(name)) || memberUserIds.has(Number(candidate?.discord_user_id)))
+        : null;
+      return ['signup', 'bench', 'late', 'tentative'].includes(normalizeStatus(entry?.status));
+    };
+    const search = attendanceSearch.trim().toLowerCase();
+    const filteredPlayers = players.filter(player => {
+      const spec = getSpecById(player.player.spec_id);
+      const rank = player.player.guild_rank || player.player.rank || 'Unranked';
+      const className = player.player.class_name || player.player.class || spec?.class || '';
+      const matchesSearch = !search || [...player.memberNames, rank, className].some(value => String(value).toLowerCase().includes(search));
+      const statuses = includedLogs.map(log => statusForCell(player, log));
+      const attended = includedLogs.filter(log => isAttendingLog(player, log)).length;
+      const unnotified = statuses.filter(status => status === 'no_signup').length;
+      const responsePercent = includedLogs.length === 0 ? 100 : Math.round(((includedLogs.length - unnotified) / includedLogs.length) * 100);
+      const columnValues = {
+        name: player.player.name,
+        className,
+        rank,
+        attendance: includedLogs.length === 0 ? 100 : Math.round((attended / includedLogs.length) * 100),
+        unnotified,
+        response: responsePercent,
+        ...Object.fromEntries(includedLogs.map((log, index) => [`log:${log.id}`, statuses[index]]))
+      };
+      const matchesColumns = Object.entries(attendanceColumnFilters).every(([key, value]) => {
+        if (!value) return true;
+        return String(columnValues[key] ?? '').toLowerCase().includes(String(value).toLowerCase());
+      });
+      return matchesSearch && (!attendanceStatusFilter || statuses.includes(attendanceStatusFilter)) && matchesColumns;
+    });
+    filteredPlayers.sort((left, right) => {
+      const leftAttendance = includedLogs.filter(log => isAttendingLog(left, log)).length;
+      const rightAttendance = includedLogs.filter(log => isAttendingLog(right, log)).length;
+      const leftStatuses = includedLogs.map(log => statusForCell(left, log));
+      const rightStatuses = includedLogs.map(log => statusForCell(right, log));
+      const getSortValue = (player, statuses, attended) => {
+        if (attendanceSort.key === 'name') return player.player.name;
+        if (attendanceSort.key === 'className') return player.player.class_name || player.player.class || getSpecById(player.player.spec_id)?.class || '';
+        if (attendanceSort.key === 'rank') return player.player.guild_rank || player.player.rank || 'Unranked';
+        if (attendanceSort.key === 'attendance') return attended;
+        if (attendanceSort.key === 'unnotified') return statuses.filter(status => status === 'no_signup').length;
+        if (attendanceSort.key === 'response') return statuses.filter(status => status !== 'no_signup').length;
+        const logIndex = includedLogs.findIndex(log => `log:${log.id}` === attendanceSort.key);
+        return logIndex >= 0 ? statuses[logIndex] : '';
+      };
+      const leftValue = getSortValue(left, leftStatuses, leftAttendance);
+      const rightValue = getSortValue(right, rightStatuses, rightAttendance);
+      const comparison = typeof leftValue === 'number' && typeof rightValue === 'number'
+        ? leftValue - rightValue
+        : String(leftValue).localeCompare(String(rightValue), undefined, { sensitivity: 'base' });
+      return attendanceSort.direction === 'asc' ? comparison : -comparison;
+    });
+    return { logs, includedLogs, players: filteredPlayers, statusForCell, isAttendingLog };
+  }, [absences, attendanceColumnFilters, attendanceSearch, attendanceSort, attendanceStatusFilter, getSpecById, guildRoleRanks, historyEventDetails, raidLogs, readableActiveEvents, readableArchivedEvents, roster, rosterClaims]);
+
+  const toggleAttendanceSort = (key) => {
+    setAttendanceSort(current => current.key === key
+      ? { key, direction: current.direction === 'asc' ? 'desc' : 'asc' }
+      : { key, direction: 'asc' });
+  };
+
+  const attendanceSortIndicator = (key) => attendanceSort.key === key ? (attendanceSort.direction === 'asc' ? ' ^' : ' v') : '';
+  const attendanceColumnFilter = (key) => attendanceColumnFilters[key] || '';
+  const setAttendanceColumnFilter = (key, value) => setAttendanceColumnFilters(current => ({ ...current, [key]: value }));
+  const expandedSignupEvent = expandedLog ? getHistoryEventForLog(expandedLog) : null;
+  const expandedSignupSummary = getSignupSummary(expandedSignupEvent);
+  const expandedSignupEntries = Array.isArray(expandedSignupEvent?.entries) ? expandedSignupEvent.entries : [];
+  const expandedSignupGroups = Array.isArray(expandedSignupEvent?.groups)
+    ? expandedSignupEvent.groups.filter(group => String(group.player_name || '').trim())
+    : [];
+  const expandedStatusEntries = expandedLogStatus === 'total'
+    ? expandedSignupEntries
+    : expandedSignupEntries.filter(entry => {
+      const status = String(entry?.status || '').trim().toLowerCase();
+      return (status === 'absence' ? 'absent' : status) === expandedLogStatus;
+    });
+
+  const renderSiteSignupPanel = (event) => {
+    if (!canSiteSignup || !event) return null;
+    const signupDraft = getSiteSignupDraft(event);
+    const selectedCharacter = claimedSignupCharacters.find(character => String(character.id) === String(signupDraft.roster_id));
+    const currentEntry = (event.entries || []).find(entry => (
+      String(entry?.discord_user_id || '') === `web:${bnetAuthState?.user?.id}`
+      || claimedSignupCharacters.some(character => (
+        String(character?.discord_user_id || '').trim() === String(entry?.discord_user_id || '').trim()
+        || String(character?.name || '').trim().toLowerCase() === String(entry?.discord_username || '').trim().toLowerCase()
+      ))
+    ));
+
+    return (
+      <div className="mt-4 border-t border-slate-800 pt-4">
+        <div className="flex items-center justify-between gap-2 mb-2">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-cyan-300">Sign up online</h4>
+          {currentEntry?.status ? <span className="text-[10px] uppercase text-slate-500">Current: {currentEntry.status}</span> : null}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-2">
+          <select
+            value={signupDraft.roster_id}
+            onChange={change => {
+              const character = claimedSignupCharacters.find(item => String(item.id) === change.target.value);
+              updateSiteSignupDraft(event.id, { roster_id: change.target.value, spec_id: character?.spec_id ? String(character.spec_id) : '' });
+            }}
+            className="bg-slate-900 text-white border border-slate-700 rounded px-2 py-2 text-xs"
+          >
+            {claimedSignupCharacters.map(character => <option key={character.id} value={character.id}>{character.name}</option>)}
+          </select>
+          <select
+            value={signupDraft.spec_id}
+            onChange={change => updateSiteSignupDraft(event.id, { spec_id: change.target.value })}
+            className="bg-slate-900 text-white border border-slate-700 rounded px-2 py-2 text-xs"
+          >
+            <option value="">Select spec</option>
+            {(specsFromDb || []).map(spec => <option key={spec.id} value={spec.id}>{spec.class} - {spec.spec}</option>)}
+          </select>
+          <select
+            value={signupDraft.status}
+            onChange={change => updateSiteSignupDraft(event.id, { status: change.target.value })}
+            className="bg-slate-900 text-white border border-slate-700 rounded px-2 py-2 text-xs"
+          >
+            <option value="signup">Sign Up</option>
+            <option value="bench">Bench</option>
+            <option value="late">Late</option>
+            <option value="tentative">Tentative</option>
+            <option value="absence">Absence</option>
+          </select>
+          <input
+            type="text"
+            value={signupDraft.note}
+            onChange={change => updateSiteSignupDraft(event.id, { note: change.target.value })}
+            placeholder="Optional note"
+            maxLength={500}
+            className="bg-slate-900 text-white border border-slate-700 rounded px-2 py-2 text-xs"
+          />
+          <button
+            type="button"
+            onClick={() => handleSiteSignup(event)}
+            disabled={siteSignupBusy[event.id] || !selectedCharacter || (signupDraft.status !== 'absence' && !signupDraft.spec_id)}
+            className="bg-cyan-700 hover:bg-cyan-600 disabled:cursor-not-allowed disabled:opacity-50 text-white font-bold rounded px-3 py-2 text-xs"
+          >
+            {siteSignupBusy[event.id] ? 'Saving...' : 'Save Signup'}
+          </button>
+        </div>
+        {siteSignupErrors[event.id] ? <p className="text-xs text-rose-300 mt-2">{siteSignupErrors[event.id]}</p> : null}
+        <p className="text-[10px] text-slate-500 mt-2">This updates the linked Discord signup card immediately.</p>
+      </div>
+    );
+  };
+
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
       <div className="flex items-center justify-between gap-3">
@@ -1469,7 +1966,10 @@ export default function RaidSignupsTab({
                   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
                     {['tank', 'healer', 'melee', 'ranged'].map(role => (
                       <div key={role} className="bg-slate-900 border border-slate-800 rounded-lg p-3">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">{roleGlyph(role)} {role}</h4>
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
+                          <img src={roleIconAsset(role)} alt="" className="w-4 h-4 object-contain" />
+                          <span>{role}</span>
+                        </h4>
                         {byRole[role].length === 0 ? (
                           <p className="text-xs text-slate-600 italic">None</p>
                         ) : (
@@ -1491,6 +1991,8 @@ export default function RaidSignupsTab({
                       </div>
                     ))}
                   </div>
+
+                  {renderSiteSignupPanel(event)}
 
                   {event.public_groups && Array.isArray(event.groups) && event.groups.length > 0 && (
                     <div className="mt-4 border-t border-slate-800 pt-4">
@@ -1560,7 +2062,12 @@ export default function RaidSignupsTab({
               {templates.length === 0 ? (
                 <p className="text-xs text-slate-500 italic">No templates yet.</p>
               ) : templates.map((template, idx) => (
-                <div key={`${template.id}-${idx}`} className="border border-slate-800 rounded-lg p-3 bg-slate-900/50 space-y-2">
+                <details key={`${template.id}-${idx}`} open className="border border-slate-800 rounded-lg p-3 bg-slate-900/50 space-y-2">
+                  <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-bold text-slate-200">
+                    <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
+                    <span>{template.name || 'Untitled Template'}</span>
+                  </summary>
+                  <div className="space-y-2 pt-2">
                   <div className="flex justify-end">
                     <button
                       type="button"
@@ -1668,7 +2175,8 @@ export default function RaidSignupsTab({
                     />
                     Active template
                   </label>
-                </div>
+                  </div>
+                </details>
               ))}
             </div>
           </div>
@@ -1763,88 +2271,75 @@ export default function RaidSignupsTab({
                 <p className="text-xs text-slate-500">Choose an event to edit details or manage its status.</p>
               ) : (
                 <div className="space-y-4">
-                  <div className="bg-slate-900 border border-slate-800 rounded-lg p-3">
-                    <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-2">Signup Summary</p>
-                    <div className="grid grid-cols-2 md:grid-cols-6 gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setExpandedSummaryStatus(prev => (prev === 'signup' ? '' : 'signup'))}
-                        className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'signup' ? 'border-emerald-400 bg-emerald-900/35' : 'border-emerald-700/40 bg-emerald-900/20 hover:bg-emerald-900/30'}`}
-                      >
-                        <p className="text-[10px] text-emerald-300 uppercase tracking-wider">Sign-ups</p>
-                        <p className="text-sm font-bold text-emerald-200">{selectedEventSignupSummary.signup}</p>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setExpandedSummaryStatus(prev => (prev === 'late' ? '' : 'late'))}
-                        className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'late' ? 'border-orange-400 bg-orange-900/35' : 'border-orange-700/40 bg-orange-900/20 hover:bg-orange-900/30'}`}
-                      >
-                        <p className="text-[10px] text-orange-300 uppercase tracking-wider">Late</p>
-                        <p className="text-sm font-bold text-orange-200">{selectedEventSignupSummary.late}</p>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setExpandedSummaryStatus(prev => (prev === 'tentative' ? '' : 'tentative'))}
-                        className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'tentative' ? 'border-cyan-400 bg-cyan-900/35' : 'border-cyan-700/40 bg-cyan-900/20 hover:bg-cyan-900/30'}`}
-                      >
-                        <p className="text-[10px] text-cyan-300 uppercase tracking-wider">Tentative</p>
-                        <p className="text-sm font-bold text-cyan-200">{selectedEventSignupSummary.tentative}</p>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setExpandedSummaryStatus(prev => (prev === 'bench' ? '' : 'bench'))}
-                        className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'bench' ? 'border-amber-400 bg-amber-900/35' : 'border-amber-700/40 bg-amber-900/20 hover:bg-amber-900/30'}`}
-                      >
-                        <p className="text-[10px] text-amber-300 uppercase tracking-wider">Bench</p>
-                        <p className="text-sm font-bold text-amber-200">{selectedEventSignupSummary.bench}</p>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setExpandedSummaryStatus(prev => (prev === 'absent' ? '' : 'absent'))}
-                        className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'absent' ? 'border-rose-400 bg-rose-900/35' : 'border-rose-700/40 bg-rose-900/20 hover:bg-rose-900/30'}`}
-                      >
-                        <p className="text-[10px] text-rose-300 uppercase tracking-wider">Absent</p>
-                        <p className="text-sm font-bold text-rose-200">{selectedEventSignupSummary.absent}</p>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setExpandedSummaryStatus(prev => (prev === 'total' ? '' : 'total'))}
-                        className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'total' ? 'border-slate-300 bg-slate-800/70' : 'border-slate-700/60 bg-slate-950/80 hover:bg-slate-800/70'}`}
-                      >
-                        <p className="text-[10px] text-slate-300 uppercase tracking-wider">Total</p>
-                        <p className="text-sm font-bold text-slate-100">{selectedEventSignupSummary.total}</p>
-                      </button>
-                    </div>
-
-                    {expandedSummaryStatus ? (
-                      <div className="mt-3 border-t border-slate-800 pt-3 space-y-2">
-                        <p className="text-[11px] text-slate-400 uppercase tracking-wider font-bold">{summaryStatusLabel(expandedSummaryStatus)}</p>
-                        {expandedSummaryGroups && ['tank', 'healer', 'melee', 'ranged'].map(role => (
-                          <div key={`summary-${role}`} className="rounded border border-slate-800 bg-slate-950/70 p-2">
-                            <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-1">{roleGlyph(role)} {role}</p>
-                            {expandedSummaryGroups[role].length === 0 ? (
-                              <p className="text-xs text-slate-600 italic">None</p>
-                            ) : (
-                              <ul className="space-y-1">
-                                {expandedSummaryGroups[role].map(entry => {
-                                  const color = resolveEntryNameColor(entry);
-                                  const marker = statusMarker(entry.status);
-                                  return (
-                                    <li key={`summary-${entry.discord_user_id}-${entry.status}`} className="flex items-center gap-2 text-xs text-slate-200">
-                                      <span className={`${marker.color} font-bold w-3 text-center`}>{marker.glyph}</span>
-                                      <img src={resolveEntryIcon(entry)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
-                                      <span className="truncate" style={{ color }}>{entry.discord_username}</span>
-                                      {entry.spec_name ? <span className="text-[10px] text-slate-500">({entry.spec_name})</span> : null}
-                                    </li>
-                                  );
-                                })}
-                              </ul>
-                            )}
-                          </div>
-                        ))}
+                  {selectedEvent ? (
+                    <div className="bg-slate-900 border border-slate-800 rounded-lg p-3">
+                      <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-2">Signup Summary</p>
+                      <div className="grid grid-cols-2 md:grid-cols-7 gap-2">
+                        <button type="button" onClick={() => setExpandedSummaryStatus(prev => (prev === 'signup' ? '' : 'signup'))} className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'signup' ? 'border-emerald-400 bg-emerald-900/35' : 'border-emerald-700/40 bg-emerald-900/20 hover:bg-emerald-900/30'}`}>
+                          <p className="text-[10px] text-emerald-300 uppercase tracking-wider">Sign-ups</p>
+                          <p className="text-sm font-bold text-emerald-200">{selectedEventSignupSummary.signup}</p>
+                        </button>
+                        <button type="button" onClick={() => setExpandedSummaryStatus(prev => (prev === 'late' ? '' : 'late'))} className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'late' ? 'border-orange-400 bg-orange-900/35' : 'border-orange-700/40 bg-orange-900/20 hover:bg-orange-900/30'}`}>
+                          <p className="text-[10px] text-orange-300 uppercase tracking-wider">Late</p>
+                          <p className="text-sm font-bold text-orange-200">{selectedEventSignupSummary.late}</p>
+                        </button>
+                        <button type="button" onClick={() => setExpandedSummaryStatus(prev => (prev === 'tentative' ? '' : 'tentative'))} className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'tentative' ? 'border-cyan-400 bg-cyan-900/35' : 'border-cyan-700/40 bg-cyan-900/20 hover:bg-cyan-900/30'}`}>
+                          <p className="text-[10px] text-cyan-300 uppercase tracking-wider">Tentative</p>
+                          <p className="text-sm font-bold text-cyan-200">{selectedEventSignupSummary.tentative}</p>
+                        </button>
+                        <button type="button" onClick={() => setExpandedSummaryStatus(prev => (prev === 'bench' ? '' : 'bench'))} className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'bench' ? 'border-amber-400 bg-amber-900/35' : 'border-amber-700/40 bg-amber-900/20 hover:bg-amber-900/30'}`}>
+                          <p className="text-[10px] text-amber-300 uppercase tracking-wider">Bench</p>
+                          <p className="text-sm font-bold text-amber-200">{selectedEventSignupSummary.bench}</p>
+                        </button>
+                        <button type="button" onClick={() => setExpandedSummaryStatus(prev => (prev === 'absent' ? '' : 'absent'))} className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'absent' ? 'border-rose-400 bg-rose-900/35' : 'border-rose-700/40 bg-rose-900/20 hover:bg-rose-900/30'}`}>
+                          <p className="text-[10px] text-rose-300 uppercase tracking-wider">Absent</p>
+                          <p className="text-sm font-bold text-rose-200">{selectedEventSignupSummary.absent}</p>
+                        </button>
+                        <button type="button" onClick={() => setExpandedSummaryStatus(prev => (prev === 'total' ? '' : 'total'))} className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'total' ? 'border-slate-300 bg-slate-800/70' : 'border-slate-700/60 bg-slate-950/80 hover:bg-slate-800/70'}`}>
+                          <p className="text-[10px] text-slate-300 uppercase tracking-wider">Total</p>
+                          <p className="text-sm font-bold text-slate-100">{selectedEventSignupSummary.total}</p>
+                        </button>
+                        <button type="button" onClick={() => { setUnsignedRaiderEchoResult(null); setIsUnsignedRaidersOpen(true); }} className="text-left rounded border border-amber-700/60 bg-amber-900/20 px-2 py-1.5 hover:bg-amber-900/35">
+                          <p className="whitespace-nowrap text-[10px] text-amber-300 uppercase tracking-wider">Unsigned Raiders</p>
+                          <p className="text-sm font-bold text-amber-200">{unsignedRaiders.length}</p>
+                        </button>
                       </div>
-                    ) : null}
-                  </div>
+
+                      {expandedSummaryStatus ? (
+                        <div className="mt-3 border-t border-slate-800 pt-3 space-y-2">
+                          <p className="text-[11px] text-slate-400 uppercase tracking-wider font-bold">{summaryStatusLabel(expandedSummaryStatus)}</p>
+                          {expandedSummaryGroups && ['tank', 'healer', 'melee', 'ranged'].map(role => (
+                            <div key={`summary-${role}`} className="rounded border border-slate-800 bg-slate-950/70 p-2">
+                              <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-1 flex items-center gap-1.5">
+                                <img src={roleIconAsset(role)} alt="" className="w-3.5 h-3.5 object-contain" />
+                                <span>{role}</span>
+                              </p>
+                              {expandedSummaryGroups[role].length === 0 ? (
+                                <p className="text-xs text-slate-600 italic">None</p>
+                              ) : (
+                                <ul className="space-y-1">
+                                  {expandedSummaryGroups[role].map(entry => {
+                                    const color = resolveEntryNameColor(entry);
+                                    const marker = statusMarker(entry.status);
+                                    return (
+                                      <li key={`summary-${entry.discord_user_id}-${entry.status}`} className="flex items-center gap-2 text-xs text-slate-200">
+                                        <span className={`${marker.color} font-bold w-3 text-center`}>{marker.glyph}</span>
+                                        <img src={resolveEntryIcon(entry)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
+                                        <span className="truncate" style={{ color }}>{entry.discord_username}</span>
+                                        {entry.spec_name ? <span className="text-[10px] text-slate-500">({entry.spec_name})</span> : null}
+                                      </li>
+                                    );
+                                  })}
+                                </ul>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
+
+                  {renderSiteSignupPanel(selectedEvent)}
 
                   {isReadOnly ? (
                     <div className="space-y-2 text-sm">
@@ -1968,6 +2463,331 @@ export default function RaidSignupsTab({
                       </div>
                     </div>
                   ) : null}
+
+                  {!isReadOnly ? (
+                    <div className="space-y-4 border-t border-slate-800 pt-4">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                      <div>
+                        <h4 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Group Config</h4>
+                        <p className="text-xs text-slate-500">Manage group assignments for the selected raid.</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {!isReadOnly ? (
+                          <button
+                            type="button"
+                            onClick={saveGroups}
+                            disabled={!selectedEventId || isSavingGroups}
+                            className="text-xs font-bold bg-amber-600 hover:bg-amber-500 text-slate-950 px-3 py-2 rounded"
+                          >
+                            {isSavingGroups ? 'Saving...' : 'Save Groups'}
+                          </button>
+                        ) : null}
+                        {!isReadOnly ? (
+                          <button
+                            type="button"
+                            onClick={echoGroups}
+                            disabled={!selectedEventId || isEchoing}
+                            className="text-xs font-bold bg-purple-700 hover:bg-purple-600 text-white px-3 py-2 rounded"
+                          >
+                            {isEchoing ? 'Echoing...' : 'Echo To Discord'}
+                          </button>
+                        ) : null}
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-slate-400">
+                      Template group size: <span className="text-amber-300 font-bold">{selectedTemplate ? `${normalizeTemplateGroupSize(selectedTemplate.group_size)}-man` : 'Unknown template'}</span>
+                      {' '}• showing <span className="text-amber-300 font-bold">{visibleGroupCount}</span> groups
+                    </p>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      {['tank', 'healer', 'ranged', 'melee'].map(role => (
+                        <div key={`group-summary-${role}`} className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
+                          <div className="text-[10px] uppercase tracking-wider text-slate-500">{role === 'tank' ? 'Tanks' : role === 'healer' ? 'Healers' : role === 'ranged' ? 'Ranged' : 'Melee'}</div>
+                          <div className="mt-1 text-lg font-bold text-amber-300">{groupRoleSummary[role] || 0}</div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="rounded-lg border border-slate-800 bg-slate-900 p-3 space-y-3">
+                      {(benchAssignments.length > 0 || unassignedBenchCandidates.length > 0) ? (
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between gap-2">
+                            <p className="text-[11px] font-bold uppercase tracking-wider text-amber-300">Bench</p>
+                            <span className="text-[10px] text-slate-400">{benchAssignments.length + unassignedBenchCandidates.length} players</span>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
+                            {benchAssignments.map(row => {
+                              const matchedEntry = selectedEventEntryByName.get(String(row.player_name || '').trim().toLowerCase()) || null;
+                              const candidateColor = resolveEntryNameColor(matchedEntry || row);
+                              return (
+                                <div key={row.localKey} className="rounded border border-amber-700 bg-amber-950/20 p-2 text-xs space-y-2">
+                                  <div className="flex items-center gap-2">
+                                    <img src={resolveEntryIcon(matchedEntry || row)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
+                                    <span className="truncate flex-1" style={{ color: candidateColor }}>{row.player_name}</span>
+                                    {!isReadOnly ? (
+                                      <button
+                                        type="button"
+                                        onClick={() => removeBenchAssignment(row.localKey)}
+                                        className="text-[10px] font-bold text-amber-200 hover:text-amber-100"
+                                        title="Remove from officer bench"
+                                      >
+                                        Remove
+                                      </button>
+                                    ) : null}
+                                  </div>
+                                  {!isReadOnly ? (
+                                    <input
+                                      type="text"
+                                      value={String(row.note || '')}
+                                      onChange={event => updateBenchAssignment(row.localKey, { note: event.target.value })}
+                                      placeholder="Bench note"
+                                      className="w-full bg-slate-950 text-slate-200 border border-amber-700/50 rounded px-2 py-1 text-[11px] focus:outline-none"
+                                    />
+                                  ) : null}
+                                  {row.note && isReadOnly ? <div className="text-[10px] text-amber-200">{row.note}</div> : null}
+                                </div>
+                              );
+                            })}
+                            {unassignedBenchCandidates.map(candidate => {
+                              const candidateColor = resolveEntryNameColor(candidate);
+                              return (
+                                <div key={`bench-${candidate.discord_user_id || candidate.discord_username}`} className="rounded border border-amber-700 bg-amber-950/20 p-2 text-xs space-y-2">
+                                  <div className="flex items-center gap-2">
+                                    <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
+                                    <span className="truncate flex-1" style={{ color: candidateColor }}>{candidate.discord_username}</span>
+                                  </div>
+                                  <div className="text-[10px] text-slate-400">Signed as bench</div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ) : null}
+
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-slate-300">Not assigned to group</p>
+                        <span className="text-[10px] text-slate-400">{unassignedSignupCandidates.length} players</span>
+                      </div>
+
+                      {unassignedSignupCandidates.length === 0 ? (
+                        <p className="text-xs text-slate-500">All available signups are already assigned to a group or bench.</p>
+                      ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
+                          {unassignedSignupCandidates.map(candidate => {
+                            const candidateColor = resolveEntryNameColor(candidate);
+                            const normalizedStatus = String(candidate.status || '').trim().toLowerCase();
+                            const isTentative = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'tentative';
+                            const isLate = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'late';
+                            const isBench = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'bench';
+                            return (
+                              <div key={`unassigned-${candidate.discord_user_id || candidate.discord_username}`} className={`flex items-center gap-2 rounded border px-2 py-1.5 text-xs ${isTentative || isLate ? 'border-yellow-600 bg-yellow-950/20' : 'border-slate-700 bg-slate-950'}`}>
+                                <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
+                                <span className="truncate" style={{ color: candidateColor }}>{candidate.discord_username}</span>
+                                {isTentative ? <span className="text-yellow-300" title="Tentative player">⚠</span> : null}
+                                {isLate ? <span className="text-orange-300" title="Late player">⏱</span> : null}
+                                {!isReadOnly && !isBench ? (
+                                  <div className="ml-auto flex items-center gap-1">
+                                    <button
+                                      type="button"
+                                      onClick={() => assignToNextOpenGroupSlot(candidate)}
+                                      className="w-6 h-6 rounded border border-cyan-800 hover:bg-cyan-900/40 inline-flex items-center justify-center"
+                                      title="Assign to next open group slot"
+                                      aria-label={`Assign ${candidate.discord_username} to the next open group slot`}
+                                    >
+                                      <img src={healersIcon} alt="" className="w-4 h-4 object-contain grayscale opacity-70" />
+                                    </button>
+                                    <button
+                                      type="button"
+                                      onClick={() => addBenchAssignment(candidate)}
+                                      className="w-6 h-6 rounded border border-cyan-800 hover:bg-cyan-900/40 inline-flex items-center justify-center"
+                                      title="Add to officer bench"
+                                      aria-label={`Add ${candidate.discord_username} to officer bench`}
+                                    >
+                                      🪑
+                                    </button>
+                                  </div>
+                                ) : null}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+
+                      <label className="inline-flex items-center gap-2 text-xs text-slate-300">
+                        <input
+                          type="checkbox"
+                          checked={!!eventEditDraft.public_groups}
+                          disabled={isSavingPublicGroups || isReadOnly}
+                          onChange={e => savePublicGroupsVisibility(e.target.checked)}
+                        />
+                        Make groups visible in public view
+                        {isSavingPublicGroups ? <span className="text-cyan-300">(saving...)</span> : null}
+                      </label>
+
+                      {!isReadOnly ? (
+                        <label className="inline-flex items-center gap-2 text-xs text-slate-300">
+                          <input
+                            type="checkbox"
+                            checked={!!echoTagAttendees}
+                            onChange={e => setEchoTagAttendees(e.target.checked)}
+                          />
+                          Tag Attendees/Bench
+                        </label>
+                      ) : null}
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
+                        {Array.from({ length: visibleGroupCount }, (_, idx) => idx + 1).map(groupNumber => {
+                          const rows = groupRows.filter(row => row.group_number === groupNumber).sort((a, b) => a.slot_index - b.slot_index);
+                          return (
+                            <div key={groupNumber} className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                              <input
+                                type="text"
+                                value={rows[0]?.group_name || `Group ${groupNumber}`}
+                                disabled={isReadOnly}
+                                onChange={e => updateGroupName(groupNumber, e.target.value)}
+                                className="w-full bg-slate-950 text-amber-300 border border-slate-700 rounded px-3 py-2 text-xs font-bold uppercase tracking-wider"
+                              />
+
+                              <div className="space-y-2">
+                                {rows.map(row => {
+                                  const normalizedPlayerName = String(row.player_name || '').trim().toLowerCase();
+                                  const selectedCandidate = signupCandidates.find(candidate => String(candidate.discord_username || '').trim().toLowerCase() === normalizedPlayerName)
+                                    || selectedEventEntryByName.get(normalizedPlayerName)
+                                    || null;
+                                  const assignedElsewhereNames = new Set(
+                                    groupRows
+                                      .filter(other => other.localKey !== row.localKey)
+                                      .map(other => String(other.player_name || '').trim())
+                                      .filter(Boolean)
+                                  );
+                                  const availableCandidates = signupCandidates.filter(candidate => {
+                                    const candidateName = String(candidate.discord_username || '').trim();
+                                    if (!candidateName) return false;
+                                    if (candidateName === String(row.player_name || '').trim()) return true;
+                                    return !assignedElsewhereNames.has(candidateName);
+                                  });
+                                  const selectedColor = selectedCandidate
+                                    ? resolveEntryNameColor(selectedCandidate)
+                                    : resolveEntryNameColor(row);
+                                  const isPickerOpen = openSlotPickerKey === row.localKey;
+                                  const isEditingNote = !!editingNoteByRow[row.localKey];
+                                  const hasAssignedPlayer = String(row.player_name || '').trim().length > 0;
+                                  const isTentativeAssignment = String(selectedCandidate?.status || '').trim().toLowerCase() === 'tentative';
+                                  const isAbsentAssignment = ['absence', 'absent'].includes(String(selectedCandidate?.status || '').trim().toLowerCase());
+
+                                  return (
+                                    <div key={row.localKey} className={`relative rounded-lg border p-2 space-y-2 ${isAbsentAssignment ? 'border-red-600 bg-red-950/20' : isTentativeAssignment ? 'border-yellow-600 bg-yellow-950/20' : 'border-slate-800 bg-slate-950'}`}>
+                                      <div className="flex items-center gap-2 w-full min-w-0">
+                                        <button
+                                          type="button"
+                                          disabled={isReadOnly}
+                                          onClick={() => setOpenSlotPickerKey(prev => (prev === row.localKey ? '' : row.localKey))}
+                                          className="min-w-0 flex-1 flex items-center justify-between gap-2 bg-slate-900 text-sm border border-slate-700 rounded px-2 py-2 text-left"
+                                        >
+                                          <span className="flex items-center gap-2 min-w-0">
+                                            <img src={hasAssignedPlayer ? resolveEntryIcon(selectedCandidate || row) : UNKNOWN_ICON} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800 flex-shrink-0" />
+                                            <span className="truncate flex items-center gap-1" style={{ color: selectedColor }}>
+                                              {isAbsentAssignment ? <span className="text-red-300" title="Grouped player is now absent">🚫</span> : null}
+                                              {isTentativeAssignment ? <span className="text-yellow-300" title="Tentative player">⚠</span> : null}
+                                              {hasAssignedPlayer ? row.player_name : 'Open slot'}
+                                            </span>
+                                          </span>
+                                          <span className="text-[10px] text-slate-400">▼</span>
+                                        </button>
+
+                                        {!isReadOnly && hasAssignedPlayer ? (
+                                          <>
+                                            <button
+                                              type="button"
+                                              onClick={() => {
+                                                updateGroupRow(row.localKey, { player_name: '', spec_id: null, note: '' });
+                                                setEditingNoteByRow(prev => ({ ...prev, [row.localKey]: false }));
+                                                setOpenSlotPickerKey('');
+                                              }}
+                                              className="w-8 h-8 flex items-center justify-center shrink-0 rounded border text-xs font-bold bg-slate-900 border-slate-700 text-slate-300 hover:bg-slate-800"
+                                              title="Clear slot"
+                                            >
+                                              ↻
+                                            </button>
+                                            <button
+                                              type="button"
+                                              onClick={() => setEditingNoteByRow(prev => ({ ...prev, [row.localKey]: !prev[row.localKey] }))}
+                                              className={`w-8 h-8 flex items-center justify-center shrink-0 rounded border text-xs font-bold ${isEditingNote ? 'bg-cyan-700 border-cyan-500 text-white' : 'bg-slate-900 border-slate-700 text-slate-300 hover:bg-slate-800'}`}
+                                              title="Add or edit note"
+                                            >
+                                              ✎
+                                            </button>
+                                          </>
+                                        ) : null}
+                                      </div>
+
+                                      {!isReadOnly && isPickerOpen ? (
+                                        <div className="absolute left-2 right-2 top-[calc(100%-2px)] z-20 max-h-56 overflow-y-auto rounded-md border border-slate-700 bg-slate-900 shadow-xl">
+                                          <button
+                                            type="button"
+                                            onClick={() => {
+                                              updateGroupRow(row.localKey, { player_name: '', spec_id: null, note: '' });
+                                              setEditingNoteByRow(prev => ({ ...prev, [row.localKey]: false }));
+                                              setOpenSlotPickerKey('');
+                                            }}
+                                            className="w-full text-left px-2.5 py-2 text-sm text-slate-200 hover:bg-slate-800"
+                                          >
+                                            Open slot
+                                          </button>
+                                          {availableCandidates.length === 0 ? (
+                                            <div className="px-2.5 py-2 text-xs text-slate-500">No unassigned signup players available.</div>
+                                          ) : availableCandidates.map(candidate => {
+                                            const color = resolveEntryNameColor(candidate);
+                                            return (
+                                              <button
+                                                key={`${candidate.discord_user_id}-${candidate.discord_username}`}
+                                                type="button"
+                                                onClick={() => {
+                                                  updateGroupRow(row.localKey, {
+                                                    player_name: candidate.discord_username,
+                                                    spec_id: candidate.spec_id || null
+                                                  });
+                                                  setOpenSlotPickerKey('');
+                                                }}
+                                                className="w-full text-left px-2.5 py-2 text-sm hover:bg-slate-800"
+                                              >
+                                                <span className="flex items-center gap-2">
+                                                  <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800 flex-shrink-0" />
+                                                  <span className="truncate" style={{ color }}>
+                                                    {candidate.discord_username}
+                                                  </span>
+                                                </span>
+                                              </button>
+                                            );
+                                          })}
+                                        </div>
+                                      ) : null}
+
+                                      {hasAssignedPlayer && row.note && !isEditingNote ? (
+                                        <p className="text-xs text-slate-400">{row.note}</p>
+                                      ) : null}
+
+                                      {!isReadOnly && hasAssignedPlayer && isEditingNote ? (
+                                        <input
+                                          type="text"
+                                          value={row.note || ''}
+                                          onChange={e => updateGroupRow(row.localKey, { note: e.target.value })}
+                                          placeholder="Optional note"
+                                          className="w-full bg-slate-900 text-slate-200 border border-slate-700 rounded px-2 py-1.5 text-xs focus:outline-none"
+                                        />
+                                      ) : null}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                  ) : null}
                 </div>
               )}
             </div>
@@ -2089,348 +2909,17 @@ export default function RaidSignupsTab({
                     </div>
                   )}
                 </div>
+
               </div>
-          )}
-
-          {activeRaidSection === 'group-config' && (
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
-                <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Group Config</h3>
-                <div className="flex items-center gap-2">
-                  <select
-                    value={selectedEventId}
-                    onChange={e => setSelectedEventId(e.target.value)}
-                    className="bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm"
-                  >
-                    <option value="">Select event...</option>
-                    {readableActiveEvents.length > 0 && (
-                      <optgroup label="Active events">
-                        {readableActiveEvents.map(event => (
-                          <option key={`active-${event.id}`} value={event.id}>#{event.id} [{event.status}] {event.title}</option>
-                        ))}
-                      </optgroup>
-                    )}
-                    {readableArchivedEvents.length > 0 && (
-                      <optgroup label="Archived events">
-                        {readableArchivedEvents.map(event => (
-                          <option key={`archived-${event.id}`} value={event.id}>#{event.id} [{event.status}] {event.title}</option>
-                        ))}
-                      </optgroup>
-                    )}
-                  </select>
-                  <button
-                    type="button"
-                    onClick={refreshSignups}
-                    disabled={isRefreshingSignups}
-                    className="text-xs font-bold bg-cyan-700 hover:bg-cyan-600 disabled:opacity-60 text-white px-3 py-2 rounded"
-                  >
-                    {isRefreshingSignups ? 'Refreshing...' : 'Refresh Signups'}
-                  </button>
-                  {isReadOnly ? <span className="text-[11px] text-slate-400">Read-only view</span> : null}
-                  {!isReadOnly ? (
-                    <button
-                      type="button"
-                      onClick={saveGroups}
-                      disabled={!selectedEventId || isSavingGroups}
-                      className="text-xs font-bold bg-amber-600 hover:bg-amber-500 text-slate-950 px-3 py-2 rounded"
-                    >
-                      {isSavingGroups ? 'Saving...' : 'Save Groups'}
-                    </button>
-                  ) : null}
-                  {!isReadOnly ? (
-                    <button
-                      type="button"
-                      onClick={echoGroups}
-                      disabled={!selectedEventId || isEchoing}
-                      className="text-xs font-bold bg-purple-700 hover:bg-purple-600 text-white px-3 py-2 rounded"
-                    >
-                      {isEchoing ? 'Echoing...' : 'Echo To Discord'}
-                    </button>
-                  ) : null}
-                </div>
-              </div>
-
-              {!selectedEventId ? (
-                <p className="text-xs text-slate-500">Choose an event to configure groups and echo them to Discord.</p>
-              ) : (
-                <>
-                  <p className="text-xs text-slate-400">
-                    Template group size: <span className="text-amber-300 font-bold">{selectedTemplate ? `${normalizeTemplateGroupSize(selectedTemplate.group_size)}-man` : 'Unknown template'}</span>
-                    {' '}• showing <span className="text-amber-300 font-bold">{visibleGroupCount}</span> groups
-                  </p>
-
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    {['tank', 'healer', 'ranged', 'melee'].map(role => (
-                      <div key={`group-summary-${role}`} className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
-                        <div className="text-[10px] uppercase tracking-wider text-slate-500">{role === 'tank' ? 'Tanks' : role === 'healer' ? 'Healers' : role === 'ranged' ? 'Ranged' : 'Melee'}</div>
-                        <div className="mt-1 text-lg font-bold text-amber-300">{groupRoleSummary[role] || 0}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="rounded-lg border border-slate-800 bg-slate-900 p-3 space-y-3">
-                    {unassignedBenchCandidates.length > 0 ? (
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between gap-2">
-                          <p className="text-[11px] font-bold uppercase tracking-wider text-amber-300">Bench</p>
-                          <span className="text-[10px] text-slate-400">{unassignedBenchCandidates.length} players</span>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
-                          {unassignedBenchCandidates.map(candidate => {
-                            const candidateColor = resolveEntryNameColor(candidate);
-                            const key = String(candidate.discord_user_id || candidate.discord_username || '');
-                            const currentBenchNote = String(benchNoteDrafts[key] ?? candidate.note ?? '');
-                            return (
-                              <div key={`bench-${candidate.discord_user_id || candidate.discord_username}`} className="rounded border border-amber-700 bg-amber-950/20 p-2 text-xs space-y-2">
-                                <div className="flex items-center gap-2">
-                                  <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
-                                  <span className="truncate flex-1" style={{ color: candidateColor }}>{candidate.discord_username}</span>
-                                  {!isReadOnly ? (
-                                    <button
-                                      type="button"
-                                      onClick={() => updateEntryStatus(candidate, 'signup')}
-                                      className="text-[10px] font-bold text-amber-200 hover:text-amber-100"
-                                      title="Remove from bench"
-                                    >
-                                      Remove
-                                    </button>
-                                  ) : null}
-                                </div>
-                                {!isReadOnly ? (
-                                  <input
-                                    type="text"
-                                    value={currentBenchNote}
-                                    onChange={event => {
-                                      const nextValue = event.target.value;
-                                      setBenchNoteDrafts(prev => ({ ...prev, [key]: nextValue }));
-                                    }}
-                                    onBlur={() => updateEntryStatus(candidate, 'bench', currentBenchNote)}
-                                    placeholder="Bench note"
-                                    className="w-full bg-slate-950 text-slate-200 border border-amber-700/50 rounded px-2 py-1 text-[11px] focus:outline-none"
-                                  />
-                                ) : null}
-                                {candidate.note && !isReadOnly ? <div className="text-[10px] text-amber-200">{candidate.note}</div> : null}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    ) : null}
-
-                    <div className="flex items-center justify-between gap-2">
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-slate-300">Not assigned to group</p>
-                      <span className="text-[10px] text-slate-400">{unassignedSignupCandidates.length} players</span>
-                    </div>
-
-                    {unassignedSignupCandidates.length === 0 ? (
-                      <p className="text-xs text-slate-500">All available signups are already assigned to a group or bench.</p>
-                    ) : (
-                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
-                        {unassignedSignupCandidates.map(candidate => {
-                          const candidateColor = resolveEntryNameColor(candidate);
-                          const normalizedStatus = String(candidate.status || '').trim().toLowerCase();
-                          const isTentative = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'tentative';
-                          const isLate = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'late';
-                          const isBench = (normalizedStatus === 'absence' ? 'absent' : normalizedStatus) === 'bench';
-                          return (
-                            <div key={`unassigned-${candidate.discord_user_id || candidate.discord_username}`} className={`flex items-center gap-2 rounded border px-2 py-1.5 text-xs ${isTentative || isLate ? 'border-yellow-600 bg-yellow-950/20' : 'border-slate-700 bg-slate-950'}`}>
-                              <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800" />
-                              <span className="truncate" style={{ color: candidateColor }}>{candidate.discord_username}</span>
-                              {isTentative ? <span className="text-yellow-300" title="Tentative player">⚠</span> : null}
-                              {isLate ? <span className="text-orange-300" title="Late player">⏱</span> : null}
-                              {!isReadOnly && !isBench ? (
-                                <button
-                                  type="button"
-                                  onClick={() => updateEntryStatus(candidate, 'bench')}
-                                  className="ml-auto text-amber-300 hover:text-amber-200"
-                                  title="Move to bench"
-                                  aria-label={`Move ${candidate.discord_username} to bench`}
-                                >
-                                  🪑
-                                </button>
-                              ) : null}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-
-                  <label className="inline-flex items-center gap-2 text-xs text-slate-300">
-                    <input
-                      type="checkbox"
-                      checked={!!eventEditDraft.public_groups}
-                      disabled={isSavingPublicGroups || isReadOnly}
-                      onChange={e => savePublicGroupsVisibility(e.target.checked)}
-                    />
-                    Make groups visible in public view
-                    {isSavingPublicGroups ? <span className="text-cyan-300">(saving...)</span> : null}
-                  </label>
-
-                  {!isReadOnly ? (
-                    <label className="inline-flex items-center gap-2 text-xs text-slate-300">
-                      <input
-                        type="checkbox"
-                        checked={!!echoTagAttendees}
-                        onChange={e => setEchoTagAttendees(e.target.checked)}
-                      />
-                      Tag Attendees/Bench
-                    </label>
-                  ) : null}
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
-                  {Array.from({ length: visibleGroupCount }, (_, idx) => idx + 1).map(groupNumber => {
-                    const rows = groupRows.filter(row => row.group_number === groupNumber).sort((a, b) => a.slot_index - b.slot_index);
-                    return (
-                      <div key={groupNumber} className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
-                        <input
-                          type="text"
-                          value={rows[0]?.group_name || `Group ${groupNumber}`}
-                          disabled={isReadOnly}
-                          onChange={e => updateGroupName(groupNumber, e.target.value)}
-                          className="w-full bg-slate-950 text-amber-300 border border-slate-700 rounded px-3 py-2 text-xs font-bold uppercase tracking-wider"
-                        />
-
-                        <div className="space-y-2">
-                          {rows.map(row => {
-                            const selectedCandidate = signupCandidates.find(candidate => String(candidate.discord_username || '') === String(row.player_name || '')) || null;
-                            const assignedElsewhereNames = new Set(
-                              groupRows
-                                .filter(other => other.localKey !== row.localKey)
-                                .map(other => String(other.player_name || '').trim())
-                                .filter(Boolean)
-                            );
-                            const availableCandidates = signupCandidates.filter(candidate => {
-                              const candidateName = String(candidate.discord_username || '').trim();
-                              if (!candidateName) return false;
-                              if (candidateName === String(row.player_name || '').trim()) return true;
-                              return !assignedElsewhereNames.has(candidateName);
-                            });
-                            const selectedColor = selectedCandidate
-                              ? resolveEntryNameColor(selectedCandidate)
-                              : resolveEntryNameColor(row);
-                            const isPickerOpen = openSlotPickerKey === row.localKey;
-                            const isEditingNote = !!editingNoteByRow[row.localKey];
-                            const hasAssignedPlayer = String(row.player_name || '').trim().length > 0;
-                            const isTentativeAssignment = String(selectedCandidate?.status || '').trim().toLowerCase() === 'tentative';
-                            const isAbsentAssignment = ['absence', 'absent'].includes(String(selectedCandidate?.status || '').trim().toLowerCase());
-
-                            return (
-                              <div key={row.localKey} className={`relative rounded-lg border p-2 space-y-2 ${isAbsentAssignment ? 'border-red-600 bg-red-950/20' : isTentativeAssignment ? 'border-yellow-600 bg-yellow-950/20' : 'border-slate-800 bg-slate-950'}`}>
-                                <div className="flex items-center gap-2 w-full min-w-0">
-                                  <button
-                                    type="button"
-                                    disabled={isReadOnly}
-                                    onClick={() => setOpenSlotPickerKey(prev => (prev === row.localKey ? '' : row.localKey))}
-                                    className="min-w-0 flex-1 flex items-center justify-between gap-2 bg-slate-900 text-sm border border-slate-700 rounded px-2 py-2 text-left"
-                                  >
-                                    <span className="flex items-center gap-2 min-w-0">
-                                      <img src={hasAssignedPlayer ? resolveEntryIcon(selectedCandidate || row) : UNKNOWN_ICON} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800 flex-shrink-0" />
-                                      <span className="truncate flex items-center gap-1" style={{ color: selectedColor }}>
-                                        {isAbsentAssignment ? <span className="text-red-300" title="Grouped player is now absent">🚫</span> : null}
-                                        {isTentativeAssignment ? <span className="text-yellow-300" title="Tentative player">⚠</span> : null}
-                                        {hasAssignedPlayer ? row.player_name : 'Open slot'}
-                                      </span>
-                                    </span>
-                                    <span className="text-[10px] text-slate-400">▼</span>
-                                  </button>
-
-                                  {!isReadOnly && hasAssignedPlayer ? (
-                                    <>
-                                      <button
-                                        type="button"
-                                        onClick={() => {
-                                          updateGroupRow(row.localKey, { player_name: '', spec_id: null, note: '' });
-                                          setEditingNoteByRow(prev => ({ ...prev, [row.localKey]: false }));
-                                          setOpenSlotPickerKey('');
-                                        }}
-                                        className="w-8 h-8 flex items-center justify-center shrink-0 rounded border text-xs font-bold bg-slate-900 border-slate-700 text-slate-300 hover:bg-slate-800"
-                                        title="Clear slot"
-                                      >
-                                        ↻
-                                      </button>
-                                      <button
-                                        type="button"
-                                        onClick={() => setEditingNoteByRow(prev => ({ ...prev, [row.localKey]: !prev[row.localKey] }))}
-                                        className={`w-8 h-8 flex items-center justify-center shrink-0 rounded border text-xs font-bold ${isEditingNote ? 'bg-cyan-700 border-cyan-500 text-white' : 'bg-slate-900 border-slate-700 text-slate-300 hover:bg-slate-800'}`}
-                                        title="Add or edit note"
-                                      >
-                                        ✎
-                                      </button>
-                                    </>
-                                  ) : null}
-                                </div>
-
-                                {!isReadOnly && isPickerOpen ? (
-                                  <div className="absolute left-2 right-2 top-[calc(100%-2px)] z-20 max-h-56 overflow-y-auto rounded-md border border-slate-700 bg-slate-900 shadow-xl">
-                                    <button
-                                      type="button"
-                                      onClick={() => {
-                                        updateGroupRow(row.localKey, { player_name: '', spec_id: null, note: '' });
-                                        setEditingNoteByRow(prev => ({ ...prev, [row.localKey]: false }));
-                                        setOpenSlotPickerKey('');
-                                      }}
-                                      className="w-full text-left px-2.5 py-2 text-sm text-slate-200 hover:bg-slate-800"
-                                    >
-                                      Open slot
-                                    </button>
-                                    {availableCandidates.length === 0 ? (
-                                      <div className="px-2.5 py-2 text-xs text-slate-500">No unassigned signup players available.</div>
-                                    ) : availableCandidates.map(candidate => {
-                                      const color = resolveEntryNameColor(candidate);
-                                      return (
-                                        <button
-                                          key={`${candidate.discord_user_id}-${candidate.discord_username}`}
-                                          type="button"
-                                          onClick={() => {
-                                            updateGroupRow(row.localKey, {
-                                              player_name: candidate.discord_username,
-                                              spec_id: candidate.spec_id || null
-                                            });
-                                            setOpenSlotPickerKey('');
-                                          }}
-                                          className="w-full text-left px-2.5 py-2 text-sm hover:bg-slate-800"
-                                        >
-                                          <span className="flex items-center gap-2">
-                                            <img src={resolveEntryIcon(candidate)} alt="" className="w-4 h-4 rounded border border-slate-700 bg-slate-800 flex-shrink-0" />
-                                            <span className="truncate" style={{ color }}>
-                                              {candidate.discord_username}
-                                            </span>
-                                          </span>
-                                        </button>
-                                      );
-                                    })}
-                                  </div>
-                                ) : null}
-
-                                {hasAssignedPlayer && row.note && !isEditingNote ? (
-                                  <p className="text-xs text-slate-400">{row.note}</p>
-                                ) : null}
-
-                                {!isReadOnly && hasAssignedPlayer && isEditingNote ? (
-                                  <input
-                                    type="text"
-                                    value={row.note || ''}
-                                    onChange={e => updateGroupRow(row.localKey, { note: e.target.value })}
-                                    placeholder="Optional note"
-                                    className="w-full bg-slate-900 text-slate-200 border border-slate-700 rounded px-2 py-1.5 text-xs focus:outline-none"
-                                  />
-                                ) : null}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-                </>
-              )}
-            </div>
           )}
 
           {activeRaidSection === 'absences' && (
             <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+              <style>{`
+                details[open] > summary .absence-section-indicator {
+                  transform: rotate(90deg);
+                }
+              `}</style>
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                 <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Absences</h3>
                 {isAuthenticated ? <span className="text-[11px] text-slate-400">Officer view includes all declared absences</span> : null}
@@ -2442,7 +2931,11 @@ export default function RaidSignupsTab({
                 </div>
               ) : (
                 <>
-                  <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                  <details open className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                    <summary className="flex cursor-pointer list-none items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-300">
+                      <span aria-hidden="true" className="absence-section-indicator inline-block transition-transform duration-150">&gt;</span>
+                      Declare absence
+                    </summary>
                     <p className="text-xs text-slate-400">Declare your holiday window. Any characters claimed on your Battle.net account are marked as <span className="font-bold text-amber-300">on holiday</span> for officers.</p>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                       {isAuthenticated ? (
@@ -2505,10 +2998,13 @@ export default function RaidSignupsTab({
                         <button type="button" onClick={resetAbsenceDraft} className="text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded">Cancel Edit</button>
                       ) : null}
                     </div>
-                  </div>
+                  </details>
 
-                  <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
-                    <p className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">My Absences</p>
+                  <details open className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
+                    <summary className="flex cursor-pointer list-none items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-300">
+                      <span aria-hidden="true" className="absence-section-indicator inline-block transition-transform duration-150">&gt;</span>
+                      My Absences
+                    </summary>
                     {isLoadingAbsences ? (
                       <p className="text-xs text-slate-500">Loading absences...</p>
                     ) : myAbsences.length === 0 ? (
@@ -2531,11 +3027,14 @@ export default function RaidSignupsTab({
                         ))}
                       </div>
                     )}
-                  </div>
+                  </details>
 
                   {isAuthenticated ? (
-                    <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
-                      <p className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">All Absences</p>
+                    <details open className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
+                      <summary className="flex cursor-pointer list-none items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-300">
+                        <span aria-hidden="true" className="absence-section-indicator inline-block transition-transform duration-150">&gt;</span>
+                        All Absences
+                      </summary>
                       {isLoadingAbsences ? (
                         <p className="text-xs text-slate-500">Loading absences...</p>
                       ) : allAbsences.length === 0 ? (
@@ -2557,13 +3056,16 @@ export default function RaidSignupsTab({
                           ))}
                         </div>
                       )}
-                    </div>
+                    </details>
                   ) : null}
 
                   {isAuthenticated ? (
-                    <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                    <details open className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                      <summary className="flex cursor-pointer list-none items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-300">
+                        <span aria-hidden="true" className="absence-section-indicator inline-block transition-transform duration-150">&gt;</span>
+                        Officer Holiday Calendar
+                      </summary>
                       <div className="flex items-center justify-between gap-2">
-                        <p className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Officer Holiday Calendar</p>
                         <div className="flex items-center gap-2">
                           <button
                             type="button"
@@ -2605,7 +3107,7 @@ export default function RaidSignupsTab({
                           </div>
                         ))}
                       </div>
-                    </div>
+                    </details>
                   ) : null}
                 </>
               )}
@@ -2617,7 +3119,8 @@ export default function RaidSignupsTab({
               <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
               <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Raid History</h3>
 
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+              <div className="space-y-4">
+
                 <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-4">
                   <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Log Current Raid</h4>
                   <form onSubmit={handleSaveRaidLog} className="flex flex-col gap-3">
@@ -2634,7 +3137,8 @@ export default function RaidSignupsTab({
                     <button type="submit" className="bg-amber-600 hover:bg-amber-500 text-white font-bold py-2 rounded-lg transition shadow-lg text-sm">Save Active Roster to History</button>
                   </form>
 
-                  <div className="pt-3 border-t border-slate-800">
+                  {isRaidHelperImportVisible ? <details className="pt-3 border-t border-slate-800">
+                    <summary className="cursor-pointer list-none text-[10px] text-slate-500 uppercase font-bold">RaidHelper import</summary>
                     <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Paste RaidHelper JSON</label>
                     <textarea
                       value={raidHelperJsonText}
@@ -2650,7 +3154,7 @@ export default function RaidSignupsTab({
                       Import RaidHelper to Roster + Attendance
                     </button>
                     <p className="text-[10px] text-slate-500 mt-1">You will be prompted to map unknown names and resolve spec mismatches.</p>
-                  </div>
+                  </details> : null}
 
                   <div className="pt-3 border-t border-slate-800">
                     <label className="block text-[10px] text-slate-500 uppercase font-bold mb-1">Import Attendees From Raid Signup Groups</label>
@@ -2689,19 +3193,160 @@ export default function RaidSignupsTab({
                     <p className="text-xs text-slate-600 italic py-4">No raids logged yet.</p>
                   ) : (
                     <ul className="max-h-[200px] overflow-y-auto pr-2 custom-scrollbar space-y-2">
-                      {raidLogs.map(log => (
+                      {[...raidLogs].sort((left, right) => String(right.date || '').localeCompare(String(left.date || ''))).map(log => {
+                        const signupEvent = getHistoryEventForLog(log);
+                        const summary = getSignupSummary(signupEvent);
+                        const groupCount = Array.isArray(signupEvent?.groups)
+                          ? new Set(signupEvent.groups.filter(group => Number(group.group_number) > 0).map(group => Number(group.group_number))).size
+                          : 0;
+                        return (
                         <li key={log.id} className="flex justify-between items-center bg-slate-950 border border-slate-800 p-2.5 rounded hover:border-slate-700 transition group">
-                          <div>
+                          <div className="min-w-0">
                             <span className="font-bold text-sm text-amber-500 block leading-tight">{log.date}</span>
-                            <span className="text-[10px] text-slate-400 uppercase tracking-wider">{log.zone} • {(log.attendees || []).length} Attendees</span>
+                            <span className="text-[10px] text-slate-400 uppercase tracking-wider">{log.zone} • {Math.max((log.attendees || []).length, (log.attendeeNames || []).length)} Attendees • {log.includeInAttendance === false ? 'Excluded from metrics' : 'Included in metrics'}</span>
+                            {summary.total > 0 ? (
+                              <span className="text-[10px] text-slate-500 block mt-1">
+                                <span className="text-emerald-300">{summary.signup} signed</span>
+                                <span> • </span>
+                                <span className="text-orange-300">{summary.late} late</span>
+                                <span> • </span>
+                                <span className="text-amber-300">{summary.bench} bench</span>
+                                <span> • </span>
+                                <span className="text-rose-300">{summary.absent} absent</span>
+                                {summary.tentative > 0 ? <><span> • </span><span className="text-cyan-300">{summary.tentative} tentative</span></> : null}
+                                {groupCount > 0 ? <><span> • </span><span>{groupCount} groups</span></> : null}
+                              </span>
+                            ) : null}
+                            {log.note ? <span className="text-[10px] text-cyan-300 block mt-1">{log.note}</span> : null}
                           </div>
-                          <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <button onClick={() => setExpandedLog(log)} className="text-cyan-400 hover:text-cyan-300 text-xs font-bold px-2">Pop-out</button>
+                          <div className="flex items-center gap-2">
+                            <label className="flex items-center gap-1.5 text-[10px] text-slate-400" title="Include this raid in attendance percentages and scoring">
+                              <input type="checkbox" checked={log.includeInAttendance !== false} onChange={event => handleUpdateRaidLog(log.id, { includeInAttendance: event.target.checked })} className="accent-emerald-600" />
+                              Metrics
+                            </label>
+                            <button onClick={() => { setExpandedLogStatus(''); setExpandedLog(log); }} className="text-cyan-400 hover:text-cyan-300 text-xs font-bold px-2">Pop-out</button>
                             <button onClick={() => handleDeleteRaidLog(log.id)} className="text-slate-600 hover:text-red-400 text-xs font-bold px-2">Delete</button>
                           </div>
                         </li>
-                      ))}
+                        );
+                      })}
                     </ul>
+                  )}
+                </div>
+
+                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+                  <div className="flex flex-col gap-2 mb-3 md:flex-row md:items-center md:justify-between">
+                    <div>
+                      <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Attendance Tracker</h4>
+                      <p className="text-[10px] text-slate-500 mt-1">Signup status by raid. Green cells are confirmed attendance or approved absences.</p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <input type="search" value={attendanceSearch} onChange={event => setAttendanceSearch(event.target.value)} placeholder="Filter character, rank, class" className="w-full md:w-56 rounded border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] text-slate-200 placeholder:text-slate-600" />
+                      <select value={attendanceStatusFilter} onChange={event => setAttendanceStatusFilter(event.target.value)} className="rounded border border-slate-700 bg-slate-950 px-2 py-1.5 text-[11px] text-slate-300">
+                        <option value="">All statuses</option>
+                        <option value="signup">Signed up</option>
+                        <option value="absence">Notified absence</option>
+                        <option value="bench">Bench</option>
+                        <option value="late">Late</option>
+                        <option value="tentative">Tentative</option>
+                        <option value="absent">Absent</option>
+                        <option value="no_signup">No signup</option>
+                      </select>
+                    </div>
+                  </div>
+                  {attendanceTracker.includedLogs.length === 0 || attendanceTracker.players.length === 0 ? (
+                    <p className="text-xs text-slate-600 italic py-4">Log an included raid and save an active roster to populate attendance.</p>
+                  ) : (
+                    <div className="overflow-x-auto custom-scrollbar">
+                      <table className="w-max min-w-full table-fixed border-collapse text-xs">
+                        <colgroup>
+                          <col style={{ width: '260px' }} />
+                          <col style={{ width: '110px' }} />
+                          <col style={{ width: '110px' }} />
+                          <col style={{ width: '70px' }} />
+                          <col style={{ width: '78px' }} />
+                          <col style={{ width: '70px' }} />
+                          {attendanceTracker.includedLogs.map(log => <col key={`width-${log.id}`} style={{ width: '88px' }} />)}
+                        </colgroup>
+                        <thead>
+                          <tr className="border-b border-slate-800">
+                            {[
+                              ['name', 'Name', 'text-left'],
+                              ['className', 'Class', 'text-left'],
+                              ['rank', 'Guild Rank', 'text-left'],
+                              ['attendance', 'Att.%', 'text-center'],
+                              ['unnotified', 'Unnotified', 'text-center'],
+                              ['response', 'Resp.%', 'text-center']
+                            ].map(([key, label, alignment]) => (
+                              <th key={key} title={key === 'unnotified' ? 'Raids with no signup and no absence record' : key === 'response' ? 'Raids with any signup or absence response' : undefined} className={`sticky ${key === 'name' ? 'left-0 z-10' : ''} bg-slate-900 px-2 py-2 ${alignment} text-[10px] font-bold uppercase tracking-wider text-slate-500`}>
+                                <div className="flex h-full flex-col justify-end gap-1">
+                                  <button type="button" onClick={() => toggleAttendanceSort(key)} className={`${alignment} hover:text-cyan-300`}>{label}{attendanceSortIndicator(key)}</button>
+                                  {!['attendance', 'unnotified', 'response'].includes(key) && <input type="search" value={attendanceColumnFilter(key)} onChange={event => setAttendanceColumnFilter(key, event.target.value)} placeholder="Filter" className="w-full rounded border border-slate-700 bg-slate-950 px-1 py-1 text-[10px] font-normal normal-case tracking-normal text-slate-300 placeholder:text-slate-600" />}
+                                </div>
+                              </th>
+                            ))}
+                            {attendanceTracker.includedLogs.map(log => (
+                              <th key={log.id} className="min-w-[84px] px-2 py-2 text-center text-[10px] font-bold text-slate-400">
+                                <div className="flex h-full flex-col justify-end gap-1">
+                                  <button type="button" onClick={() => toggleAttendanceSort(`log:${log.id}`)} className="hover:text-cyan-300"><span className="block text-amber-500">{log.zone || 'Raid'}</span><span className="block text-slate-500">{log.date}{attendanceSortIndicator(`log:${log.id}`)}</span></button>
+                                  <input type="search" value={attendanceColumnFilter(`log:${log.id}`)} onChange={event => setAttendanceColumnFilter(`log:${log.id}`, event.target.value)} placeholder="Filter" className="w-full rounded border border-slate-700 bg-slate-950 px-1 py-1 text-[10px] font-normal tracking-normal text-slate-300 placeholder:text-slate-600" />
+                                </div>
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {attendanceTracker.players.map(player => {
+                            const playerStatuses = attendanceTracker.includedLogs.map(log => attendanceTracker.statusForCell(player, log));
+                            const attended = attendanceTracker.includedLogs.filter(log => attendanceTracker.isAttendingLog(player, log)).length;
+                            const unnotifiedAbsences = playerStatuses.filter(status => status === 'no_signup').length;
+                            const responseCount = playerStatuses.filter(status => status !== 'no_signup').length;
+                            const responsePercent = attendanceTracker.includedLogs.length === 0
+                              ? 100
+                              : Math.round((responseCount / attendanceTracker.includedLogs.length) * 100);
+                            const spec = getSpecById(player.player.spec_id);
+                            const className = String(player.player.class_name || player.player.class || spec?.class || '').trim().toLowerCase();
+                            const nameColor = CLASS_NAME_COLORS[className] || '#e2e8f0';
+                            const rankName = player.player.guild_rank || player.player.rank || 'Unranked';
+                            return (
+                              <tr key={player.memberIds.join('-')} className="border-b border-slate-800/70 last:border-0">
+                                <th className="sticky left-0 z-10 whitespace-nowrap bg-slate-900 px-3 py-2 text-left font-semibold" style={{ color: nameColor }}>
+                                  {player.player.name} <span className="font-normal text-slate-500">{player.memberNames.length > 1 ? `(alts: ${player.memberNames.slice(1).join(', ')})` : ''}</span>
+                                </th>
+                                <td className="bg-slate-900 px-3 py-2 text-left text-slate-300">{player.player.class_name || player.player.class || spec?.class || 'Unknown'}</td>
+                                <td className="bg-slate-900 px-3 py-2 text-left text-slate-500">{rankName}</td>
+                                <td className="bg-slate-900 px-3 py-2 text-center font-bold text-slate-300">{attendanceTracker.includedLogs.length === 0 ? '100%' : `${Math.round((attended / attendanceTracker.includedLogs.length) * 100)}%`}</td>
+                                <td className="bg-slate-900 px-2 py-2 text-center font-bold text-rose-300">{unnotifiedAbsences}</td>
+                                <td className="bg-slate-900 px-2 py-2 text-center font-bold text-cyan-300">{responsePercent}%</td>
+                                {attendanceTracker.includedLogs.map(log => {
+                                  const status = attendanceTracker.statusForCell(player, log);
+                                  const statusMeta = {
+                                    signup: { symbol: '✓', label: 'Signed up', color: 'bg-emerald-700/80 text-emerald-50' },
+                                    absence: { symbol: 'A', label: 'Notified absence', color: 'bg-emerald-700/80 text-emerald-50' },
+                                    bench: {
+                                      symbol: (
+                                        <svg viewBox="0 0 24 24" className="inline-block h-4 w-4" fill="none" aria-hidden="true" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                                          <path d="M5 5l14 14" />
+                                          <path d="M9 5h6a4 4 0 0 1 4 4v6" />
+                                          <path d="M5 9v6a4 4 0 0 0 4 4h6" />
+                                        </svg>
+                                      ),
+                                      label: 'Bench',
+                                      color: 'bg-emerald-700/80 text-emerald-50'
+                                    },
+                                    late: { symbol: 'L', label: 'Late', color: 'bg-yellow-900/75 text-yellow-100' },
+                                    tentative: { symbol: '?', label: 'Tentative', color: 'bg-yellow-900/75 text-yellow-100' },
+                                    absent: { symbol: '×', label: 'Absent', color: 'bg-red-950/90 text-red-100' },
+                                    no_signup: { symbol: '−', label: 'No signup', color: 'bg-slate-800/80 text-slate-400' }
+                                  }[status];
+                                  return <td key={log.id} className={`px-2 py-2 text-center font-bold ${statusMeta.color}`} aria-label={`${player.name}: ${statusMeta.label} for ${log.zone || 'raid'} ${log.date}`} title={statusMeta.label}>{statusMeta.symbol}</td>;
+                                })}
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
                   )}
                 </div>
               </div>
@@ -2747,22 +3392,98 @@ export default function RaidSignupsTab({
               <div>
                 <h3 className="text-lg font-bold text-slate-100">Raid Roster Snapshot</h3>
                 <p className="text-xs text-slate-500 uppercase tracking-wider">{expandedLog.date} • {expandedLog.zone}</p>
+                {expandedLog.note ? <p className="text-xs text-cyan-300 mt-1">{expandedLog.note}</p> : null}
               </div>
               <button onClick={() => setExpandedLog(null)} className="text-slate-400 hover:text-slate-200 text-xl leading-none">✕</button>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-              {(roster || [])
-                .filter(player => (expandedLog.attendees || []).map(Number).includes(Number(player.id)))
-                .map(player => {
-                  const spec = getSpecById(player.spec_id);
-                  return (
-                    <div key={player.id} className="bg-slate-950 border border-slate-800 rounded p-2.5">
-                      <div className="text-sm font-bold" style={{ color: spec?.color || '#e2e8f0' }}>{player.name}</div>
-                      <div className="text-[10px] text-slate-500 uppercase tracking-wider">{spec?.class || 'Unknown'} • {spec?.spec || 'Unknown'}</div>
+            {expandedSignupEvent ? (
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+                  {[
+                    ['signup', 'Sign-ups', expandedSignupSummary.signup, 'border-emerald-700/50 text-emerald-300'],
+                    ['late', 'Late', expandedSignupSummary.late, 'border-orange-700/50 text-orange-300'],
+                    ['tentative', 'Tentative', expandedSignupSummary.tentative, 'border-cyan-700/50 text-cyan-300'],
+                    ['bench', 'Bench', expandedSignupSummary.bench, 'border-amber-700/50 text-amber-300'],
+                    ['absent', 'Absent', expandedSignupSummary.absent, 'border-rose-700/50 text-rose-300'],
+                    ['total', 'Total', expandedSignupSummary.total, 'border-slate-700 text-slate-200']
+                  ].map(([status, label, count, color]) => (
+                    <button
+                      key={`expanded-summary-${status}`}
+                      type="button"
+                      onClick={() => setExpandedLogStatus(current => current === status ? '' : status)}
+                      className={`rounded border bg-slate-950 px-2 py-2 text-left ${color} ${expandedLogStatus === status ? 'ring-1 ring-cyan-400' : ''}`}
+                    >
+                      <div className="text-[10px] uppercase tracking-wider text-slate-500">{label}</div>
+                      <div className="mt-1 text-lg font-bold">{count}</div>
+                    </button>
+                  ))}
+                </div>
+
+                {expandedLogStatus ? (
+                  <div className="border-t border-slate-800 pt-3">
+                    <h4 className="text-[11px] text-slate-400 uppercase tracking-wider font-bold mb-2">{summaryStatusLabel(expandedLogStatus)}</h4>
+                    {expandedStatusEntries.length === 0 ? (
+                      <p className="text-xs text-slate-600 italic">None</p>
+                    ) : (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                        {expandedStatusEntries.map(entry => {
+                          return (
+                            <div key={`expanded-entry-${entry.discord_user_id}-${entry.status}`} className="bg-slate-950 border border-slate-800 rounded p-2.5">
+                              <div className="flex items-center gap-2 text-sm font-bold" style={{ color: resolveEntryNameColor(entry) }}>
+                                <img src={resolveEntryIcon(entry)} alt="" className="h-5 w-5 shrink-0 rounded border border-slate-700 bg-slate-800" />
+                                <span className="truncate">{entry.discord_username || entry.character_name || entry.player_name}</span>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                ) : null}
+
+                {expandedSignupGroups.length > 0 ? (
+                  <div className="border-t border-slate-800 pt-3 space-y-2">
+                    <h4 className="text-[11px] text-slate-400 uppercase tracking-wider font-bold">Groups</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      {[...new Set(expandedSignupGroups.map(group => Number(group.group_number)))].sort((a, b) => a - b).map(groupNumber => {
+                        const groupMembers = expandedSignupGroups.filter(group => Number(group.group_number) === groupNumber);
+                        const groupName = groupMembers[0]?.group_name || (groupNumber === 0 ? 'Bench' : `Group ${groupNumber}`);
+                        return (
+                          <div key={`expanded-group-${groupNumber}`} className="bg-slate-950 border border-slate-800 rounded p-2.5">
+                            <div className="text-xs font-bold text-slate-200 mb-1">{groupName}</div>
+                            <div className="space-y-1">
+                              {groupMembers.map((member, index) => (
+                                <div key={`expanded-group-member-${groupNumber}-${member.id || index}`} className="text-xs text-slate-300 flex items-center justify-between gap-2">
+                                  <span className="flex min-w-0 items-center gap-1.5">
+                                    <img src={resolveEntryIcon(member)} alt="" className="h-4 w-4 shrink-0 rounded border border-slate-700 bg-slate-800" />
+                                    <span className="truncate" style={{ color: resolveEntryNameColor(member) }}>{member.player_name}</span>
+                                  </span>
+                                  {member.spec_name ? <span className="shrink-0 text-[10px] text-slate-500">{member.spec_name}</span> : null}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
-                  );
-                })}
-            </div>
+                  </div>
+                ) : null}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                {(roster || [])
+                  .filter(player => (expandedLog.attendees || []).map(Number).includes(Number(player.id)))
+                  .map(player => {
+                    const spec = getSpecById(player.spec_id);
+                    return (
+                      <div key={player.id} className="bg-slate-950 border border-slate-800 rounded p-2.5">
+                        <div className="text-sm font-bold" style={{ color: spec?.color || '#e2e8f0' }}>{player.name}</div>
+                        <div className="text-[10px] text-slate-500 uppercase tracking-wider">{spec?.class || 'Unknown'} • {spec?.spec || 'Unknown'}</div>
+                      </div>
+                    );
+                  })}
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -2872,6 +3593,83 @@ export default function RaidSignupsTab({
           </div>
         </div>
       )}
+
+      {isUnsignedRaidersOpen ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4" onClick={() => setIsUnsignedRaidersOpen(false)}>
+          <div className="w-full max-w-lg rounded-xl border border-slate-700 bg-slate-900 p-5 shadow-2xl" onClick={event => event.stopPropagation()}>
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <h3 className="text-lg font-bold text-slate-100">Unsigned Raiders</h3>
+                <p className="mt-1 text-xs text-slate-400">{selectedEvent?.title || 'Selected event'}</p>
+              </div>
+              <button type="button" onClick={() => setIsUnsignedRaidersOpen(false)} className="text-xl text-slate-400 hover:text-white" aria-label="Close unsigned raiders">×</button>
+            </div>
+
+            <div className="mt-4 flex items-center justify-between gap-3">
+              <p className="text-xs text-slate-400">{selectedUnsignedRaiderIds.size} of {unsignedRaiders.length} selected</p>
+              {unsignedRaiders.length > 0 ? (
+                <div className="flex items-center gap-2">
+                  <button type="button" onClick={() => setSelectedUnsignedRaiderIds(new Set(unsignedRaiders.map(({ player }) => String(player.id))))} className="text-[11px] font-semibold text-cyan-300 hover:text-cyan-200">Select all</button>
+                  <button type="button" onClick={() => setSelectedUnsignedRaiderIds(new Set())} className="text-[11px] font-semibold text-slate-400 hover:text-slate-200">Clear all</button>
+                </div>
+              ) : null}
+            </div>
+
+            <div className="mt-2 space-y-2">
+              {unsignedRaiders.length === 0 ? (
+                <p className="rounded border border-slate-800 bg-slate-950 p-3 text-sm text-slate-500">No unsigned raiders for this event.</p>
+              ) : unsignedRaiders.map(({ player, absence }) => (
+                <label key={`unsigned-raider-${player.id}`} className="flex cursor-pointer items-center justify-between gap-3 rounded border border-slate-800 bg-slate-950 px-3 py-2 hover:border-slate-600">
+                  <span className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={selectedUnsignedRaiderIds.has(String(player.id))}
+                      onChange={() => setSelectedUnsignedRaiderIds(current => {
+                        const next = new Set(current);
+                        const playerId = String(player.id);
+                        if (next.has(playerId)) next.delete(playerId);
+                        else next.add(playerId);
+                        return next;
+                      })}
+                    />
+                    <img src={resolveEntryIcon(player)} alt="" className="h-5 w-5 rounded border border-slate-700 bg-slate-800" />
+                    <span className="text-sm" style={{ color: resolveEntryNameColor(player) }}>{player.name}</span>
+                  </span>
+                  <span className={absence ? 'text-xs font-semibold text-amber-300' : 'text-xs text-slate-500'}>{absence ? 'Absence recorded' : 'No absence recorded'}</span>
+                </label>
+              ))}
+            </div>
+
+            {!isReadOnly && unsignedRaiders.length > 0 ? (
+              <>
+                <label className="mt-4 inline-flex items-center gap-2 text-xs text-slate-300">
+                  <input type="checkbox" checked={echoTagUnsignedRaiders} onChange={event => setEchoTagUnsignedRaiders(event.target.checked)} />
+                  Ping linked raiders in Discord
+                </label>
+                <p className="mt-2 text-xs text-slate-500">Only Discord users who have previously saved one of these character names will be pinged.</p>
+                <button
+                  type="button"
+                  onClick={echoUnsignedRaiders}
+                      disabled={isEchoingUnsignedRaiders || selectedUnsignedRaiderIds.size === 0}
+                  className="mt-4 w-full rounded bg-amber-600 px-3 py-2 text-xs font-bold text-slate-950 hover:bg-amber-500 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {isEchoingUnsignedRaiders ? 'Sending...' : 'Echo Unsigned Raiders to Discord'}
+                </button>
+              </>
+            ) : null}
+
+            {unsignedRaiderEchoResult?.error ? (
+              <p className="mt-3 rounded border border-rose-800/60 bg-rose-950/30 p-2 text-xs text-rose-300">{unsignedRaiderEchoResult.error}</p>
+            ) : null}
+            {unsignedRaiderEchoResult?.ok ? (
+              <div className="mt-3 rounded border border-emerald-800/60 bg-emerald-950/30 p-2 text-xs text-emerald-300">
+                <p>Discord message sent.</p>
+                {unsignedRaiderEchoResult.unmatched?.length > 0 ? <p className="mt-1 text-amber-300">No Discord ID found for: {unsignedRaiderEchoResult.unmatched.join(', ')}</p> : null}
+              </div>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }

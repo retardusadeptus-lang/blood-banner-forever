@@ -67,10 +67,11 @@ function createDb() {
               id: nextId++,
               user_id: args[0],
               battletag: args[1],
-              class_name: args[2],
-              spec: args[3],
-              name: args[4],
-              about_me: args[5],
+              discord_id: args[2],
+              class_name: args[3],
+              spec: args[4],
+              name: args[5],
+              about_me: args[6],
               status: 'pending',
               officer_note: '',
               reviewed_by_user_id: null,
@@ -145,6 +146,7 @@ test('POST /api/recruitment-applications stores the applicant and returns the cr
         className: 'Mage',
         spec: 'Fire',
         name: 'Applicant',
+        discordId: 'applicant.1234',
         aboutMe: 'I have prior raid experience\n\nand I want a chill environment.'
       })
     });
@@ -154,6 +156,7 @@ test('POST /api/recruitment-applications stores the applicant and returns the cr
     assert.equal(payload.className, 'Mage');
     assert.equal(payload.name, 'Applicant');
     assert.equal(payload.applicantBattletag, 'Applicant#1234');
+    assert.equal(payload.discordId, 'applicant.1234');
     assert.equal(payload.status, 'pending');
     assert.equal(payload.aboutMe, 'I have prior raid experience\n\nand I want a chill environment.');
   } finally {

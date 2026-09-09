@@ -18,6 +18,7 @@ const buildWeakAuraRoutes = require('./routes/weakauras');
 const buildTacticsRoutes = require('./routes/tactics');
 const buildWipefestRoutes = require('./routes/wipefest');
 const buildWarcraftLogsRoutes = require('./routes/warcraftlogs');
+const buildAssetProxyRoutes = require('./routes/assetProxy');
 
 function getGitCommitSha() {
   if (process.env.GIT_COMMIT) return String(process.env.GIT_COMMIT).trim();
@@ -30,7 +31,7 @@ function getGitCommitSha() {
       return fs.readFileSync(refPath, 'utf8').trim();
     }
     return head;
-  } catch (e) {
+  } catch {
     return 'unknown';
   }
 }
@@ -76,6 +77,7 @@ function buildApp({ db, sessionSecret, bnetConfig, discordService, tokenRedempti
   app.use('/api', buildTacticsRoutes({ db, sessionSecret }));
   app.use('/api', buildWipefestRoutes({ db, sessionSecret }));
   app.use('/api', buildWarcraftLogsRoutes({ db }));
+  app.use('/api', buildAssetProxyRoutes());
   app.use('/api', buildAdminRoutes({ db, configService, sessionSecret }));
   app.use('/api', buildRaidSignupRoutes({ db, sessionSecret }));
 

@@ -97,10 +97,6 @@ function normalizeSlot(slot) {
     'two-hand': 'Two-Hand',
     'off hand frill': 'Off Hand',
     'thrown': 'Ranged',
-    'idol': 'Idol',
-    'libram': 'Libram',
-    'totem': 'Totem',
-    'relic': 'Totem',
     'amulet': 'Neck',
     'cloak': 'Back',
     'belt': 'Waist',
@@ -113,7 +109,6 @@ function normalizeSlot(slot) {
     'pants': 'Legs',
     'shoulderpad': 'Shoulder',
     'shoulderpads': 'Shoulder',
-    'shoulders': 'Shoulder',
     'mail armor': 'Mail Armor',
     'cloth armor': 'Cloth Armor',
     'leather armor': 'Leather Armor',
@@ -278,7 +273,7 @@ function importWowheadItemList() {
   const blocks = readBlocks();
   let importedCount = 0;
 
-  blocks.forEach((block, blockIndex) => {
+  blocks.forEach(block => {
     const [idLine, nameLine, slotLine, sourceLine, armorLine] = block;
     const itemIds = parseCsvLine(idLine);
     const itemNames = parseCsvLine(nameLine);

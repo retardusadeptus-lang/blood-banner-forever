@@ -1,10 +1,12 @@
 const express = require('express');
 const { getBattleNetSessionFromRequest, getBattleNetRoleFromRequest } = require('../middleware/auth');
+const { sendDirectMessage } = require('../services/discordBot');
 
 const APPLICATION_FIELD_LIMITS = {
   className: 40,
   spec: 80,
   name: 80,
+  discordId: 80,
   aboutMe: 5000
 };
 
@@ -36,12 +38,17 @@ function buildStatusHistory(previousHistory, status, actorLabel, at) {
   return JSON.stringify(nextHistory.slice(-20));
 }
 
-function titleCase(value) {
-  return String(value || '').split(/\s+/).filter(Boolean).map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()).join(' ');
-}
-
-function buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl }) {
+function buildRecruitmentApplicationsRoutes({ db, webhookUrl }) {
   const router = express.Router();
+
+  const notifyApplicant = async (discordId, message) => {
+    if (!/^\d{17,20}$/.test(String(discordId || '').trim())) return;
+    try {
+      await sendDirectMessage(discordId, message);
+    } catch (error) {
+      console.error('Failed to send recruitment applicant Discord DM:', error.message || error);
+    }
+  };
 
   function ensureOfficer(req, res) {
     const roleInfo = getBattleNetRoleFromRequest(req, db);
@@ -85,11 +92,12 @@ function buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl }) {
       const roleInfo = getBattleNetRoleFromRequest(req, db);
       const isOfficer = Boolean(roleInfo.isOfficer);
 
-      const rows = db.prepare('SELECT id, user_id, battletag, class_name, spec, name, about_me, is_proxy, proxy_name, proxy_battletag, status, officer_note, reviewed_by_user_id, reviewed_by_battletag, reviewed_at, status_changed_at, status_history_json, created_at, updated_at FROM recruitment_applications ORDER BY created_at DESC').all();
+      const rows = db.prepare('SELECT id, user_id, battletag, discord_id, class_name, spec, name, about_me, is_proxy, proxy_name, proxy_battletag, status, officer_note, reviewed_by_user_id, reviewed_by_battletag, reviewed_at, status_changed_at, status_history_json, created_at, updated_at FROM recruitment_applications ORDER BY created_at DESC').all();
       const applications = rows.map(row => ({
         id: row.id,
         userId: row.user_id,
         applicantBattletag: row.battletag,
+        discordId: row.discord_id || '',
         className: row.class_name,
         spec: row.spec,
         name: row.name,
@@ -116,7 +124,7 @@ function buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl }) {
     }
   });
 
-  router.put('/recruitment-applications/:id', (req, res) => {
+  router.put('/recruitment-applications/:id', async (req, res) => {
     try {
       const session = getBattleNetSessionFromRequest(req);
       if (!session?.userId) {
@@ -144,6 +152,9 @@ function buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl }) {
       const className = sanitizeText(req.body?.className || row.class_name, APPLICATION_FIELD_LIMITS.className);
       const spec = sanitizeText(req.body?.spec || row.spec, APPLICATION_FIELD_LIMITS.spec);
       const name = sanitizeText(req.body?.name || row.name, APPLICATION_FIELD_LIMITS.name);
+      const discordId = Object.prototype.hasOwnProperty.call(req.body || {}, 'discordId')
+        ? sanitizeText(req.body.discordId, APPLICATION_FIELD_LIMITS.discordId)
+        : (row.discord_id || '');
       const aboutMe = sanitizeRichText(req.body?.aboutMe || row.about_me, APPLICATION_FIELD_LIMITS.aboutMe);
       const isProxy = isOfficer ? Boolean(req.body?.isProxy) : Boolean(Number(row.is_proxy || 0));
       const proxyName = isOfficer ? sanitizeText(req.body?.proxyName || row.proxy_name || '', APPLICATION_FIELD_LIMITS.name) : (row.proxy_name || '');
@@ -158,15 +169,17 @@ function buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl }) {
 
       db.prepare(`
         UPDATE recruitment_applications
-        SET user_id = ?, battletag = ?, class_name = ?, spec = ?, name = ?, about_me = ?, is_proxy = ?, proxy_name = ?, proxy_battletag = ?, updated_at = CURRENT_TIMESTAMP
+        SET user_id = ?, battletag = ?, discord_id = ?, class_name = ?, spec = ?, name = ?, about_me = ?, is_proxy = ?, proxy_name = ?, proxy_battletag = ?, updated_at = CURRENT_TIMESTAMP
         WHERE id = ?
-      `).run(updatedUserId, applicantBattletag, className, spec, name, aboutMe, isProxy ? 1 : 0, isProxy ? proxyName : null, isProxy ? proxyBattletag : null, applicationId);
+      `).run(updatedUserId, applicantBattletag, discordId, className, spec, name, aboutMe, isProxy ? 1 : 0, isProxy ? proxyName : null, isProxy ? proxyBattletag : null, applicationId);
 
-      const updated = db.prepare('SELECT id, user_id, battletag, class_name, spec, name, about_me, is_proxy, proxy_name, proxy_battletag, status, officer_note, reviewed_by_user_id, reviewed_by_battletag, reviewed_at, status_changed_at, status_history_json, created_at, updated_at FROM recruitment_applications WHERE id = ?').get(applicationId);
+      const updated = db.prepare('SELECT id, user_id, battletag, discord_id, class_name, spec, name, about_me, is_proxy, proxy_name, proxy_battletag, status, officer_note, reviewed_by_user_id, reviewed_by_battletag, reviewed_at, status_changed_at, status_history_json, created_at, updated_at FROM recruitment_applications WHERE id = ?').get(applicationId);
+      await notifyApplicant(updated.discord_id, `Your recruitment application has been updated on the guild site. Current status: ${updated.status || 'pending'}.`);
       return res.json({
         id: updated.id,
         userId: updated.user_id,
         applicantBattletag: updated.battletag,
+        discordId: updated.discord_id || '',
         className: updated.class_name,
         spec: updated.spec,
         name: updated.name,
@@ -189,7 +202,7 @@ function buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl }) {
     }
   });
 
-  router.put('/recruitment-applications/:id/status', (req, res) => {
+  router.put('/recruitment-applications/:id/status', async (req, res) => {
     try {
       const session = getBattleNetSessionFromRequest(req);
       if (!session?.userId) {
@@ -225,11 +238,14 @@ function buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl }) {
         return res.status(404).json({ error: 'Application not found.' });
       }
 
-      const updated = db.prepare('SELECT id, user_id, battletag, class_name, spec, name, about_me, is_proxy, proxy_name, proxy_battletag, status, officer_note, reviewed_by_user_id, reviewed_by_battletag, reviewed_at, status_changed_at, status_history_json, created_at, updated_at FROM recruitment_applications WHERE id = ?').get(applicationId);
+      const updated = db.prepare('SELECT id, user_id, battletag, discord_id, class_name, spec, name, about_me, is_proxy, proxy_name, proxy_battletag, status, officer_note, reviewed_by_user_id, reviewed_by_battletag, reviewed_at, status_changed_at, status_history_json, created_at, updated_at FROM recruitment_applications WHERE id = ?').get(applicationId);
+      const noteSuffix = officerNote ? ` Officer note: ${officerNote}` : '';
+      await notifyApplicant(updated.discord_id, `Your recruitment application status changed from ${previousStatus} to ${updated.status || normalizedStatus}.${noteSuffix}`);
       return res.json({
         id: updated.id,
         userId: updated.user_id,
         applicantBattletag: updated.battletag,
+        discordId: updated.discord_id || '',
         className: updated.class_name,
         spec: updated.spec,
         name: updated.name,
@@ -287,6 +303,7 @@ function buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl }) {
       const className = sanitizeText(req.body?.className || '', APPLICATION_FIELD_LIMITS.className);
       const spec = sanitizeText(req.body?.spec || '', APPLICATION_FIELD_LIMITS.spec);
       const name = sanitizeText(req.body?.name || '', APPLICATION_FIELD_LIMITS.name);
+      const discordId = sanitizeText(req.body?.discordId || '', APPLICATION_FIELD_LIMITS.discordId);
       const aboutMe = sanitizeRichText(req.body?.aboutMe || '', APPLICATION_FIELD_LIMITS.aboutMe);
 
       if (!className || !spec || !name || !aboutMe) {
@@ -306,11 +323,12 @@ function buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl }) {
       const initialHistory = buildStatusHistory([], 'pending', isProxyRequest ? 'Proxy Application' : 'Applicant', timestamp);
 
       const result = db.prepare(`
-        INSERT INTO recruitment_applications (user_id, battletag, class_name, spec, name, about_me, is_proxy, proxy_name, proxy_battletag, status, officer_note, reviewed_by_user_id, reviewed_by_battletag, reviewed_at, status_changed_at, status_history_json, created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', '', ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+        INSERT INTO recruitment_applications (user_id, battletag, discord_id, class_name, spec, name, about_me, is_proxy, proxy_name, proxy_battletag, status, officer_note, reviewed_by_user_id, reviewed_by_battletag, reviewed_at, status_changed_at, status_history_json, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', '', ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
       `).run(
         isProxyRequest ? null : session.userId,
         applicantBattletag,
+        discordId,
         className,
         spec,
         name,
@@ -325,7 +343,9 @@ function buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl }) {
         initialHistory
       );
 
-      const created = db.prepare('SELECT id, user_id, battletag, class_name, spec, name, about_me, is_proxy, proxy_name, proxy_battletag, status, officer_note, reviewed_by_user_id, reviewed_by_battletag, reviewed_at, status_changed_at, status_history_json, created_at, updated_at FROM recruitment_applications WHERE id = ?').get(result.lastInsertRowid);
+      const created = db.prepare('SELECT id, user_id, battletag, discord_id, class_name, spec, name, about_me, is_proxy, proxy_name, proxy_battletag, status, officer_note, reviewed_by_user_id, reviewed_by_battletag, reviewed_at, status_changed_at, status_history_json, created_at, updated_at FROM recruitment_applications WHERE id = ?').get(result.lastInsertRowid);
+
+      await notifyApplicant(created.discord_id, 'Your recruitment application has been received by the guild. We will review it and update you when its status changes.');
 
       if (webhookUrl) {
         try {
@@ -338,6 +358,7 @@ function buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl }) {
                 { name: 'Class', value: className, inline: true },
                 { name: 'Spec', value: spec, inline: true },
                 { name: 'Applicant', value: applicantBattletag, inline: true },
+                ...(discordId ? [{ name: 'Discord ID', value: discordId, inline: true }] : []),
                 { name: 'About Me', value: aboutMe.slice(0, 1000) }
               ],
               timestamp: new Date().toISOString()
@@ -358,6 +379,7 @@ function buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl }) {
         id: created.id,
         userId: created.user_id,
         applicantBattletag: created.battletag,
+        discordId: created.discord_id || '',
         className: created.class_name,
         spec: created.spec,
         name: created.name,

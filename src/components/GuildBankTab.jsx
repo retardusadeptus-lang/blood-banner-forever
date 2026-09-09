@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { submitBankRequest } from '../services/apiService';
+import { CATEGORY_MAP } from '../constants';
 
 const FALLBACK_BANK_ICON = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_questionmark.jpg';
 const MAX_BASKET_ITEMS = 5;
 
+const normalizeBankCategory = category => CATEGORY_MAP[category] || category || 'Other';
+
 export default function GuildBankTab({
   bankItems,
+  bankItemHistory,
   bankSearch,
   setBankSearch,
-  isAuthenticated,
   bnetAuthState,
   roster,
   myPlayerId
@@ -22,6 +25,8 @@ export default function GuildBankTab({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   React.useEffect(() => {
+    // Keep the requester selection aligned with the active character.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (myPlayerId) setSelectedPlayerId(myPlayerId);
   }, [myPlayerId]);
   
@@ -31,9 +36,20 @@ export default function GuildBankTab({
 
   const categories = ['All', 'Gear', 'Materials', 'Consumable', 'Recipe'];
 
+  const requestableBankItems = React.useMemo(() => {
+    const currentItemIds = new Set(bankItems.map(item => Number(item.item_wowhead_id)));
+    const outOfStockItems = bankItemHistory
+      .filter(item => !currentItemIds.has(Number(item.item_wowhead_id)))
+      .map(item => ({ ...item, count: 0 }));
+    return [...bankItems, ...outOfStockItems].map(item => ({
+      ...item,
+      category: normalizeBankCategory(item.category)
+    }));
+  }, [bankItems, bankItemHistory]);
+
   const uniqueSubCategories = React.useMemo(() => {
     const subs = new Set();
-    bankItems.forEach(item => {
+    requestableBankItems.forEach(item => {
       if (!item) return;
       const itemCat = item.category || 'Other';
       if ((selectedCategory === 'All' || itemCat === selectedCategory) && item.sub_type) {
@@ -41,11 +57,15 @@ export default function GuildBankTab({
       }
     });
     return ['All', ...Array.from(subs).sort()];
-  }, [bankItems, selectedCategory]);
+  }, [requestableBankItems, selectedCategory]);
 
-  React.useEffect(() => { setSelectedSubCategory('All'); }, [selectedCategory]);
+  React.useEffect(() => {
+    // Reset subcategory options when the main category changes.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setSelectedSubCategory('All');
+  }, [selectedCategory]);
 
-  const filteredBankItems = bankItems.filter(item => {
+  const filteredBankItems = requestableBankItems.filter(item => {
     if (!item) return false;
     const matchesSearch = item.name.toLowerCase().includes(bankSearch.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || (item.category || 'Other') === selectedCategory;
@@ -124,10 +144,19 @@ export default function GuildBankTab({
         </div>
       )}
 
+      <style>{`
+        details[open] > summary .bank-section-indicator {
+          transform: rotate(90deg);
+        }
+      `}</style>
+
       {basket.length > 0 && (
-        <div className="bg-amber-950/30 border border-amber-700 p-4 rounded-xl mb-6 space-y-3">
-          <div className="flex items-center justify-between gap-3">
-            <span className="text-amber-500 font-bold text-sm">🛒 {basket.length}/{MAX_BASKET_ITEMS} Items in Basket</span>
+        <details open className="bg-amber-950/30 border border-amber-700 p-4 rounded-xl mb-6 space-y-3">
+          <summary className="flex cursor-pointer list-none items-center gap-2 text-amber-500 font-bold text-sm">
+            <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150">&gt;</span>
+            <span>🛒 {basket.length}/{MAX_BASKET_ITEMS} Items in Basket</span>
+          </summary>
+          <div className="flex justify-end">
             <button onClick={submitBasket} disabled={isSubmitting || !canSubmitWebsiteRequest} className="bg-amber-600 hover:bg-amber-500 disabled:bg-slate-700 disabled:text-slate-300 disabled:cursor-not-allowed text-slate-950 font-bold px-4 py-2 rounded-lg transition">
               {isSubmitting ? 'Sending...' : 'Submit Basket'}
             </button>
@@ -150,11 +179,16 @@ export default function GuildBankTab({
                 </span>
               ))}
           </div>
-        </div>
+        </details>
       )}
 
       {/* 🔍 Control Bar */}
-      <div className="flex flex-col gap-4 bg-slate-950/50 p-4 rounded-xl border border-slate-800/60">
+      <details open className="bg-slate-950/50 p-4 rounded-xl border border-slate-800/60">
+        <summary className="flex cursor-pointer list-none items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-300">
+          <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150">&gt;</span>
+          Filters and Search
+        </summary>
+        <div className="flex flex-col gap-4 mt-4">
         <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
           <div className="flex flex-wrap gap-2">
             {categories.map(cat => (
@@ -163,7 +197,7 @@ export default function GuildBankTab({
               </button>
             ))}
           </div>
-          <input type="text" placeholder="Search vault inventory..." className="w-full xl:w-80 bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none" value={bankSearch} onChange={e => setBankSearch(e.target.value)} />
+          <input type="text" placeholder="Search bank inventory..." className="w-full xl:w-80 bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none" value={bankSearch} onChange={e => setBankSearch(e.target.value)} />
         </div>
         {uniqueSubCategories.length > 1 && (
           <div className="flex flex-wrap items-center gap-2">
@@ -183,10 +217,16 @@ export default function GuildBankTab({
             <span className="text-xs text-slate-500 ml-auto">{filteredBankItems.length} items</span>
           </div>
         )}
-      </div>
+        </div>
+      </details>
 
       {/* 📦 Items List */}
-      <div className="flex flex-wrap gap-1.5">
+      <details open className="border border-slate-800/60 rounded-xl p-4">
+        <summary className="flex cursor-pointer list-none items-center gap-2 mb-4 text-xs font-bold uppercase tracking-wider text-slate-300">
+          <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150">&gt;</span>
+          Bank Inventory ({filteredBankItems.length} items)
+        </summary>
+        <div className="flex flex-wrap gap-1.5">
         {filteredBankItems.map((item, idx) => (
           <div key={`${item.item_wowhead_id || 'no-id'}-${item.name || 'unknown'}-${idx}`} className="bank-item-icon group relative h-[66px] w-[66px] overflow-hidden rounded-md border border-slate-800/80 bg-slate-900 shadow-[0_4px_10px_rgba(0,0,0,0.22)] transition-all hover:-translate-y-0.5 hover:border-amber-600/60 hover:shadow-[0_8px_14px_rgba(0,0,0,0.3)]">
             {item.item_wowhead_id ? (
@@ -234,13 +274,14 @@ export default function GuildBankTab({
             </span>
           </div>
         ))}
-      </div>
-
-      {filteredBankItems.length === 0 && (
-        <div className="text-center text-sm text-slate-500 border border-slate-800 rounded-xl bg-slate-950/60 py-6">
-          No items match your current filters.
         </div>
-      )}
+
+        {filteredBankItems.length === 0 && (
+          <div className="text-center text-sm text-slate-500 border border-slate-800 rounded-xl bg-slate-950/60 py-6 mt-4">
+            No items match your current filters.
+          </div>
+        )}
+      </details>
 
       {/* Request Modal */}
       {requestItem && (

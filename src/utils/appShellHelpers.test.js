@@ -51,3 +51,23 @@ test('getRankBadgeStyle returns the expected styles for common ranks', () => {
     'bg-slate-800 text-white border border-slate-600'
   );
 });
+
+test('calculatePlayerScore applies the configured guild role weight', () => {
+  const score = calculatePlayerScore({
+    playerId: 7,
+    player: { guild_rank: 'Raider' },
+    playerStats: { 7: { cons: true } },
+    scoringConfig: {
+      parseWeight: 1,
+      supportMulti: 1,
+      consBonus: 100,
+      enchantBonus: 0,
+      gemBonus: 0,
+      attWeight: 0,
+      afkPenalty: 0,
+      guildRoleRanks: [{ name: 'Raider', rank: 1, weight: 0.5 }]
+    }
+  });
+
+  assert.equal(score, '50.0');
+});

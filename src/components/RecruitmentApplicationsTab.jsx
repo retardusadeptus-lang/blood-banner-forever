@@ -4,6 +4,7 @@ const EMPTY_FORM = {
   className: '',
   spec: '',
   name: '',
+  discordId: '',
   aboutMe: '',
   isProxy: false,
   proxyName: '',
@@ -43,7 +44,8 @@ export default function RecruitmentApplicationsTab({
   putData,
   deleteData,
   isOfficer,
-  canManageBlurb = false
+  canManageBlurb = false,
+  siteTabMetadata
 }) {
   const [blurb, setBlurb] = useState('');
   const [savedBlurb, setSavedBlurb] = useState('');
@@ -108,6 +110,7 @@ export default function RecruitmentApplicationsTab({
         className: form.className.trim(),
         spec: form.spec.trim(),
         name: form.name.trim(),
+        discordId: form.discordId.trim(),
         aboutMe: form.aboutMe.trim(),
         ...(isOfficer ? { isProxy: Boolean(form.isProxy), proxyName: form.proxyName.trim(), proxyBattletag: form.proxyBattletag.trim() } : {})
       };
@@ -188,6 +191,7 @@ export default function RecruitmentApplicationsTab({
       className: application.className || '',
       spec: application.spec || '',
       name: application.name || '',
+      discordId: application.discordId || '',
       aboutMe: application.aboutMe || '',
       isProxy: Boolean(application.isProxy),
       proxyName: application.proxyName || '',
@@ -203,7 +207,7 @@ export default function RecruitmentApplicationsTab({
   };
 
   return (
-    <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 space-y-6">
+    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 space-y-6">
       <div className="space-y-3">
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <div>
@@ -292,6 +296,17 @@ export default function RecruitmentApplicationsTab({
             />
           </label>
 
+          <label className="space-y-1 text-sm text-slate-300 block">
+            <span className="text-[10px] uppercase tracking-wider text-slate-500">Discord ID (optional)</span>
+            <input
+              value={form.discordId}
+              onChange={(event) => handleInputChange('discordId', event.target.value.slice(0, 80))}
+              placeholder="Username or Discord ID"
+              className="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none"
+              disabled={!isAuthenticated}
+            />
+          </label>
+
           {isOfficer ? (
             <label className="flex items-center gap-2 text-sm text-slate-300">
               <input
@@ -375,16 +390,20 @@ export default function RecruitmentApplicationsTab({
           ) : (
             <div className="space-y-3 max-h-[700px] overflow-y-auto pr-1">
               {visibleApplications.map((application) => (
-                <article key={application.id} className="rounded-lg border border-slate-800 bg-slate-900/70 p-3 space-y-2">
-                  <div className="flex items-center justify-between gap-2">
+                <details key={application.id} open className="rounded-lg border border-slate-800 bg-slate-900/70 p-3 space-y-2">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-2">
                     <div>
-                      <div className="font-bold text-slate-100">{application.name}</div>
+                      <div className="flex items-center gap-2 font-bold text-slate-100">
+                        <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
+                        {application.name}
+                      </div>
                       <div className="text-xs text-slate-400">{application.applicantBattletag}</div>
+                      {application.discordId ? <div className="text-xs text-cyan-400">Discord: {application.discordId}</div> : null}
                     </div>
                     <div className="text-right text-[10px] uppercase tracking-wider text-cyan-400">
                       {application.className} / {application.spec}
                     </div>
-                  </div>
+                  </summary>
                   <div className="flex items-center justify-between gap-2 flex-wrap">
                     <span className={`inline-flex rounded-full border px-2 py-1 text-[10px] font-bold uppercase tracking-wider ${getStatusStyle(application.status)}`}>
                       {String(application.status || 'pending').toLowerCase()}
@@ -426,7 +445,7 @@ export default function RecruitmentApplicationsTab({
                     </div>
                   ) : null}
                   <div className="text-sm text-slate-300 whitespace-pre-wrap">{application.aboutMe.slice(0, 220)}{application.aboutMe.length > 220 ? '…' : ''}</div>
-                </article>
+                </details>
               ))}
             </div>
           )}
@@ -452,6 +471,11 @@ export default function RecruitmentApplicationsTab({
                 <span className="text-[10px] uppercase tracking-wider text-cyan-400">
                   {selectedApplication.className} / {selectedApplication.spec}
                 </span>
+                {selectedApplication.discordId ? (
+                  <span className="text-[10px] uppercase tracking-wider text-cyan-400">
+                    Discord: {selectedApplication.discordId}
+                  </span>
+                ) : null}
                 {selectedApplication.statusChangedAt ? (
                   <span className="text-[10px] uppercase tracking-wider text-slate-400">
                     Changed {new Date(selectedApplication.statusChangedAt).toLocaleString()}

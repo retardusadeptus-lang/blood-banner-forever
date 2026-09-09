@@ -16,17 +16,28 @@ export default function useSpecData({ initialSpecId, initialSpecName, onSpecSele
   const specsSortedByClass = useMemo(() => sortSpecsByClass(specsFromDb), [specsFromDb]);
 
   useEffect(() => {
+    let mounted = true;
+    let retryTimeout;
+
     const loadSpecs = async () => {
       try {
         const specs = await fetchData('specs');
+        if (!mounted) return;
         setSpecsFromDb(specs);
         selectInitialSpec(specs);
       } catch (error) {
         console.error('Failed to load specs:', error);
+        if (mounted) {
+          retryTimeout = setTimeout(loadSpecs, 1000);
+        }
       }
     };
 
     loadSpecs();
+    return () => {
+      mounted = false;
+      clearTimeout(retryTimeout);
+    };
   }, []);
 
   return {

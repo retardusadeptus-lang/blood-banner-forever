@@ -3,6 +3,21 @@ const crypto = require('crypto');
 const { getBattleNetSessionFromRequest } = require('../middleware/auth');
 const MAX_BASKET_ITEMS = 5;
 
+const BANK_CATEGORY_MAP = {
+  'Trade Goods': 'Materials',
+  'Item Enhancement': 'Materials',
+  Gem: 'Materials',
+  Armor: 'Gear',
+  Weapon: 'Gear',
+  Consumable: 'Consumable',
+  Recipe: 'Recipe'
+};
+
+function normalizeBankCategory(category) {
+  const value = String(category || '').trim();
+  return BANK_CATEGORY_MAP[value] || value || 'Other';
+}
+
 function buildBankRoutes({ db, discordService }) {
   const router = express.Router();
   const { sendBankInventoryWebhook, sendBankBulkResolutionWebhook, sendBankResolutionWebhook } = discordService;
@@ -16,8 +31,54 @@ function buildBankRoutes({ db, discordService }) {
 
   router.get('/bank-items', (req, res) => {
     try {
-      const rows = db.prepare('SELECT * FROM bank_items ORDER BY category, name').all();
+      const rows = db.prepare('SELECT * FROM bank_items ORDER BY category, name').all()
+        .map(row => ({ ...row, category: normalizeBankCategory(row.category) }));
       res.json(rows);
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  router.get('/bank-item-history', (req, res) => {
+    try {
+      const rows = db.prepare(`
+        SELECT
+          history.*,
+          COALESCE(current_items.count, 0) AS current_count
+        FROM bank_item_history history
+        LEFT JOIN bank_items current_items
+          ON current_items.item_wowhead_id = history.item_wowhead_id
+        ORDER BY history.name COLLATE NOCASE
+      `).all().map(row => ({ ...row, category: normalizeBankCategory(row.category) }));
+      res.json(rows);
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  router.post('/bank-item-history/:itemWowheadId/restore', (req, res) => {
+    try {
+      const itemWowheadId = Number(req.params.itemWowheadId);
+      const quantity = Number(req.body?.quantity ?? 1);
+      if (!Number.isInteger(itemWowheadId) || itemWowheadId <= 0 || !Number.isInteger(quantity) || quantity <= 0) {
+        return res.status(400).json({ error: 'A valid item and positive quantity are required.' });
+      }
+
+      const historyItem = db.prepare('SELECT * FROM bank_item_history WHERE item_wowhead_id = ?').get(itemWowheadId);
+      if (!historyItem) return res.status(404).json({ error: 'Bank item history entry not found.' });
+
+      const currentItem = db.prepare('SELECT * FROM bank_items WHERE item_wowhead_id = ?').get(itemWowheadId);
+      if (currentItem) {
+        db.prepare('UPDATE bank_items SET count = count + ? WHERE item_wowhead_id = ?').run(quantity, itemWowheadId);
+      } else {
+        db.prepare(`
+          INSERT INTO bank_items (item_wowhead_id, name, category, count, sub_type)
+          VALUES (?, ?, ?, ?, ?)
+        `).run(itemWowheadId, historyItem.name, historyItem.category, quantity, historyItem.sub_type || '');
+      }
+
+      const updated = db.prepare('SELECT * FROM bank_items WHERE item_wowhead_id = ?').get(itemWowheadId);
+      res.json({ ok: true, item: updated });
     } catch (e) {
       res.status(500).json({ error: e.message });
     }
@@ -25,24 +86,41 @@ function buildBankRoutes({ db, discordService }) {
 
   router.put('/bank-items', async (req, res) => {
     try {
-      const items = req.body;
+      const items = Array.isArray(req.body) ? req.body : req.body.items;
+      const normalizedItems = items.map(item => ({
+        ...item,
+        category: normalizeBankCategory(item.category)
+      }));
+      const notifyDiscord = Array.isArray(req.body) || req.body.notifyDiscord !== false;
 
       db.prepare('DELETE FROM bank_items').run();
       const insert = db.prepare(`
         INSERT INTO bank_items (item_wowhead_id, name, category, count, sub_type)
         VALUES (?, ?, ?, ?, ?)
       `);
+      const remember = db.prepare(`
+        INSERT INTO bank_item_history (item_wowhead_id, name, category, sub_type, last_seen_at)
+        VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+        ON CONFLICT(item_wowhead_id) DO UPDATE SET
+          name = excluded.name,
+          category = excluded.category,
+          sub_type = excluded.sub_type,
+          last_seen_at = CURRENT_TIMESTAMP
+      `);
 
       const insertAll = db.transaction(() => {
-        items.forEach(item => {
+        normalizedItems.forEach(item => {
           insert.run(item.item_wowhead_id, item.name, item.category, item.count, item.sub_type || '');
+          remember.run(item.item_wowhead_id, item.name, item.category, item.sub_type || '');
         });
       });
       insertAll();
 
-      db.prepare('INSERT INTO bank_uploads (item_count) VALUES (?)').run(items.length);
-      await sendBankInventoryWebhook(items);
-      res.json({ ok: true, count: items.length });
+      db.prepare('INSERT INTO bank_uploads (item_count) VALUES (?)').run(normalizedItems.length);
+      if (notifyDiscord) {
+        await sendBankInventoryWebhook(normalizedItems);
+      }
+      res.json({ ok: true, count: normalizedItems.length, discordNotified: notifyDiscord });
     } catch (e) {
       res.status(500).json({ error: e.message });
     }

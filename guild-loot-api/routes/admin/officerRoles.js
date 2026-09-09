@@ -108,7 +108,7 @@ function buildAdminOfficerRolesRoutes({ db, sessionSecret }) {
           const computedRole = isPrimaryAdminBattletag(user.battletag)
             ? 'admin'
             : (explicit?.role || null);
-          if (computedRole !== 'admin' && computedRole !== 'officer') return null;
+          if (computedRole !== 'admin' && computedRole !== 'officer' && computedRole !== 'guild_member') return null;
 
           return {
             user_id: userId,
@@ -120,8 +120,8 @@ function buildAdminOfficerRolesRoutes({ db, sessionSecret }) {
         })
         .filter(Boolean)
         .sort((a, b) => {
-          const rankA = a.role === 'admin' ? 0 : 1;
-          const rankB = b.role === 'admin' ? 0 : 1;
+          const rankA = a.role === 'admin' ? 0 : a.role === 'officer' ? 1 : 2;
+          const rankB = b.role === 'admin' ? 0 : b.role === 'officer' ? 1 : 2;
           if (rankA !== rankB) return rankA - rankB;
           return String(a.battletag || '').localeCompare(String(b.battletag || ''));
         });
@@ -166,8 +166,8 @@ function buildAdminOfficerRolesRoutes({ db, sessionSecret }) {
       if (!userId) {
         return res.status(400).json({ error: 'Valid userId is required.' });
       }
-      if (requestedRole !== 'officer' && requestedRole !== 'admin') {
-        return res.status(400).json({ error: "Role must be 'officer' or 'admin'." });
+      if (requestedRole !== 'guild_member' && requestedRole !== 'officer' && requestedRole !== 'admin') {
+        return res.status(400).json({ error: "Role must be 'guild_member', 'officer', or 'admin'." });
       }
 
       const user = db.prepare('SELECT id, battletag, blizzard_id FROM users WHERE id = ?').get(userId);

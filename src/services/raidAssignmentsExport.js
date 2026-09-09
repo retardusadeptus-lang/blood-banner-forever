@@ -19,7 +19,7 @@ function cleanText(value) {
   return typeof value === 'string' ? value.trim() : value;
 }
 
-function getBossOrder({ bossName, bossData, bossOrderMap, fallbackIndex }) {
+function getBossOrder({ bossName, bossOrderMap, fallbackIndex }) {
   const order = bossOrderMap?.[bossName];
   if (typeof order === 'number' && Number.isFinite(order)) {
     return order;
@@ -226,6 +226,19 @@ export function buildRaidAssignmentsExport({
 }) {
   const globalData = raidAssignmentData?.global || {};
   const bossOrderMap = Object.fromEntries((enabledBosses || []).map((bossName, index) => [bossName, index]));
+  const globalPayload = {
+    tankSlots: (globalData.tankSlots || []).map(slot => ({ id: slot.id || null, playerName: cleanText(slot.playerName) || null })).filter(slot => slot.playerName),
+    healerSlots: (globalData.healerSlots || []).map(slot => ({ id: slot.id || null, playerName: cleanText(slot.playerName) || null })).filter(slot => slot.playerName),
+    judgements: Object.fromEntries(
+      Object.entries(globalData.judgements || {})
+        .filter(([playerName]) => Boolean(playerName))
+        .map(([playerName, judgement]) => [playerName, cleanText(judgement) || null])
+        .filter(([, value]) => value)
+    ),
+    sheep: globalData.sheep || [],
+    banish: globalData.banish || [],
+    curses: globalData.curses || []
+  };
 
   const zones = (raidZones || [])
     .map(zone => {
@@ -235,7 +248,7 @@ export function buildRaidAssignmentsExport({
           bossName,
           bossData: raidAssignmentData?.[bossName] || {},
           zoneName: zone?.name || null,
-          order: getBossOrder({ bossName, bossData: raidAssignmentData?.[bossName] || {}, bossOrderMap, fallbackIndex: index }),
+          order: getBossOrder({ bossName, bossOrderMap, fallbackIndex: index }),
           globalData
         }));
 
@@ -261,6 +274,7 @@ export function buildRaidAssignmentsExport({
   return {
     exported_at: exportTimestamp,
     enabled_bosses: [...enabledBosses],
+    global: globalPayload,
     zones,
     roster: rosterPayload
   };

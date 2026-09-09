@@ -1,12 +1,3 @@
-const path = require('path');
-const DISCORD_ICON_TAGS = (() => {
-  try {
-    return require(path.resolve(__dirname, '..', '..', '..', 'discord_icons.json'));
-  } catch (error) {
-    return [];
-  }
-})();
-
 const ROLE_EMOJI_NAME = {
   tank: 'role_tank',
   healer: 'role_healer',
@@ -20,6 +11,64 @@ const ROLE_FALLBACK = {
   melee: '⚔️',
   ranged: '🏹'
 };
+
+const LIVE_EMOJI_IDS = {
+  role_tank: '1545556146646159542',
+  role_melee: '1545556145513439253',
+  role_healer: '1545556144230113321',
+  role_ranged: '1545556132620275772',
+  priest: '1538305997565722695',
+  paladin: '1538305996403773610',
+  mage: '1538305992297807972',
+  hunter: '1538305990934397019',
+  druid: '1538305989885952140',
+  warrior: '1538305988879454318',
+  warlock: '1538305987692335154',
+  shaman: '1538305986639433798',
+  rogue: '1538305985448517672',
+  restoration_druid: '1537969982506278962',
+  holy_paladin: '1537969976668069898',
+  holy_priest: '1537969972356186193',
+  resto_shaman: '1537969966043762689',
+  protection_warrior: '1537969960733646858',
+  balance: '1528191600201568406',
+  feral: '1528191599216033953',
+  guardian: '1528191598238765206',
+  beastmastery: '1528191595969777874',
+  marksman: '1528191594996564018',
+  survival: '1528191593956511906',
+  arcane: '1528191592094240798',
+  fire: '1528191590991003731',
+  frost: '1528191590043226202',
+  discipline: '1528191583017631904',
+  shadow: '1528191580882866267',
+  assassination: '1528191579716849756',
+  combat: '1528191578961875015',
+  subtlety: '1528191577946722464',
+  elemental: '1528191576281710672',
+  enhancement: '1528191575031808165',
+  affliction: '1528191572498186281',
+  demonology: '1528191571214995639',
+  destruction: '1528191570053042306',
+  arms: '1528191569088483408',
+  fury: '1528191567859548272',
+  retribution: '1528191490726170684',
+  protpaladin: '1528191489564344491',
+  restorationshaman: '1537969966043762689'
+};
+
+const LIVE_EMOJI_NAMES = {
+  protpaladin: 'ProtPaladin',
+  resto_shaman: 'restorationShaman',
+  restorationshaman: 'restorationShaman'
+};
+
+let legacyEmojiByName = new Map();
+try {
+  legacyEmojiByName = new Map(require('../../../discord_icons.json').map(emoji => [String(emoji.name || '').toLowerCase(), emoji]));
+} catch {
+  // The legacy catalog is optional in packaged bot deployments.
+}
 
 const CLASS_EMOJI_NAME = {
   warrior: 'Warrior',
@@ -43,38 +92,6 @@ const CLASS_FALLBACK = {
   mage: '❄️',
   warlock: '🔥',
   druid: '🌙'
-};
-
-const SPEC_EMOJI_NAME = {
-  affliction: 'Affliction',
-  demonology: 'Demonology',
-  destruction: 'Destruction',
-  balance: 'Balance',
-  feral: 'Feral',
-  guardian: 'Guardian',
-  restoration: 'Restoration',
-  resto: 'Restoration',
-  beastmastery: 'Beast Mastery',
-  beast: 'Beast Mastery',
-  marksmanship: 'Marksmanship',
-  marksman: 'Marksmanship',
-  survival: 'Survival',
-  arcane: 'Arcane',
-  fire: 'Fire',
-  frost: 'Frost',
-  holy: 'Holy',
-  protection: 'Protection',
-  prot: 'Protection',
-  retribution: 'Retribution',
-  ret: 'Retribution',
-  shadow: 'Shadow',
-  elemental: 'Elemental',
-  enhancement: 'Enhancement',
-  enhance: 'Enhancement',
-  assassination: 'Assassination',
-  combat: 'Combat',
-  sublety: 'Subtlety',
-  subtlety: 'Subtlety'
 };
 
 const SPEC_FALLBACK = {
@@ -129,6 +146,12 @@ function resolveNamedEmoji(guildOrClient, desiredName, fallback = '') {
 
   const wanted = String(desiredName).toLowerCase();
 
+  const liveId = LIVE_EMOJI_IDS[wanted];
+  if (liveId) return `<:${LIVE_EMOJI_NAMES[wanted] || wanted}:${liveId}>`;
+
+  const legacyEmoji = legacyEmojiByName.get(wanted);
+  if (legacyEmoji?.id && legacyEmoji?.name) return toEmojiToken(legacyEmoji);
+
   for (const cache of emojiCaches) {
     const exact = cache.find(emoji => String(emoji.name || '').toLowerCase() === wanted);
     if (exact) return toEmojiToken(exact);
@@ -140,87 +163,24 @@ function resolveNamedEmoji(guildOrClient, desiredName, fallback = '') {
   return fallback;
 }
 
-function lookupDiscordIconEntryByName(name) {
-  const raw = String(name || '').trim();
-  if (!raw) return null;
-
-  const normalized = raw
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '')
-    .replace(/^guild_/, '');
-
-  const directMatch = DISCORD_ICON_TAGS.find(icon => {
-    const candidate = String(icon?.name || '').trim();
-    if (!candidate) return false;
-    const candidateNormalized = candidate.toLowerCase().replace(/[^a-z0-9]+/g, '').replace(/^guild_/, '');
-    return candidateNormalized === normalized;
-  });
-
-  if (directMatch) return directMatch;
-
-  return DISCORD_ICON_TAGS.find(icon => {
-    const candidate = String(icon?.name || '').trim();
-    if (!candidate) return false;
-    const candidateNormalized = candidate.toLowerCase().replace(/[^a-z0-9]+/g, '').replace(/^guild_/, '');
-
-    if (candidateNormalized === normalized) return true;
-    if (candidateNormalized.length <= normalized.length + 3 && (candidateNormalized.includes(normalized) || normalized.includes(candidateNormalized))) {
-      return true;
-    }
-    return false;
-  }) || null;
-}
-
-function lookupDiscordIconTagByName(name) {
-  return lookupDiscordIconEntryByName(name)?.discord_tag || '';
-}
-
 function resolveRoleEmojiToken(guild, roleBucket) {
   const key = String(roleBucket || '').toLowerCase();
-  const exactTag = lookupDiscordIconTagByName(ROLE_EMOJI_NAME[key]) || lookupDiscordIconTagByName(key);
-  if (exactTag) return exactTag;
   return resolveNamedEmoji(guild, ROLE_EMOJI_NAME[key], ROLE_FALLBACK[key] || '');
 }
 
 function resolveClassEmojiToken(guild, className) {
   const key = String(className || '').toLowerCase();
-  const exactTag = lookupDiscordIconTagByName(CLASS_EMOJI_NAME[key]) || lookupDiscordIconTagByName(key);
-  if (exactTag) return exactTag;
   return resolveNamedEmoji(guild, CLASS_EMOJI_NAME[key], CLASS_FALLBACK[key] || '');
 }
 
 function resolveClassEmojiData(guild, className) {
   const key = String(className || '').toLowerCase();
-  const iconEntry = lookupDiscordIconEntryByName(CLASS_EMOJI_NAME[key]) || lookupDiscordIconEntryByName(key);
-  if (iconEntry) {
-    return { id: String(iconEntry.id), name: String(iconEntry.name), animated: false };
-  }
-
   const resolved = resolveNamedEmoji(guild, CLASS_EMOJI_NAME[key], '');
   if (!resolved) return null;
 
   const match = /<a?:([^:]+):([0-9]+)>/.exec(resolved);
   if (!match) return null;
   return { id: match[2], name: match[1], animated: match[0].startsWith('<a:') };
-}
-
-function normalizeEmojiNameCandidates(value) {
-  const raw = String(value || '').trim();
-  if (!raw) return [];
-
-  const normalized = raw
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '')
-    .replace(/^guild_/, '');
-
-  const names = new Set();
-  const base = String(value || '').trim();
-  names.add(base);
-  names.add(base.toLowerCase());
-  names.add(base.replace(/\s+/g, ''));
-  names.add(base.toLowerCase().replace(/\s+/g, ''));
-  names.add(normalized);
-  return [...names].filter(Boolean);
 }
 
 function normalizedSpecKey(value) {
@@ -350,11 +310,6 @@ function resolveSpecEmojiData(guild, specName, className = '') {
       const match = /<a?:([^:]+):([0-9]+)>/.exec(emoji);
       if (match) return { id: match[2], name: match[1], animated: match[0].startsWith('<a:') };
     }
-  }
-
-  for (const candidate of candidateNames) {
-    const entry = DISCORD_ICON_TAGS.find(icon => String(icon?.name || '').toLowerCase() === String(candidate).toLowerCase());
-    if (entry) return { id: String(entry.id), name: String(entry.name), animated: false };
   }
 
   return null;

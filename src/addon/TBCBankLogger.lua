@@ -76,14 +76,12 @@ local FLAT_BACKDROP = {
 
 local CATEGORY_MAP = {
     ["Consumable"] = "Consumable",
-    ["Trade Goods"] = "Trade Goods",
-    ["Gem"] = "Gem",
-    ["Armor"] = "Armor",
-    ["Weapon"] = "Weapon",
-    ["Recipe"] = "Recipe",
-    ["Miscellaneous"] = "Miscellaneous",
-    ["Quest"] = "Quest",
-    ["Key"] = "Key"
+    ["Trade Goods"] = "Materials",
+    ["Item Enhancement"] = "Materials",
+    ["Gem"] = "Materials",
+    ["Armor"] = "Gear",
+    ["Weapon"] = "Gear",
+    ["Recipe"] = "Recipe"
 }
 
 local frame = CreateFrame("Frame")
@@ -234,6 +232,25 @@ local function getItemCategory(itemType)
     return CATEGORY_MAP[itemType] or "Misc"
 end
 
+local function getItemClassification(itemID)
+    local itemType
+    local itemSubType
+
+    if GetItemInfoInstant then
+        local _, instantType, instantSubType = GetItemInfoInstant(itemID)
+        itemType = instantType
+        itemSubType = instantSubType
+    end
+
+    if not itemType then
+        local _, _, _, _, _, infoType, infoSubType = GetItemInfo(itemID)
+        itemType = infoType
+        itemSubType = infoSubType
+    end
+
+    return getItemCategory(itemType), itemSubType or ""
+end
+
 local function scanTab(tab)
     for slot = 1, SLOTS_PER_TAB do
         local link = GetGuildBankItemLink(tab, slot)
@@ -243,12 +260,22 @@ local function scanTab(tab)
                 local _, count = GetGuildBankItemInfo(tab, slot)
                 count = count or 1
 
-                local itemName, _, _, _, _, itemType, itemSubType = GetItemInfo(itemID)
+                local itemName = GetItemInfo(itemID)
                 itemName = itemName or ("Unknown Item " .. itemID)
-                local category = getItemCategory(itemType)
+                local category, itemSubType = getItemClassification(itemID)
 
                 if TBCBankDB[itemID] then
-                    TBCBankDB[itemID]["count"] = TBCBankDB[itemID]["count"] + count
+                    local existing = TBCBankDB[itemID]
+                    existing["count"] = existing["count"] + count
+                    if itemName ~= "Unknown Item " .. itemID then
+                        existing["name"] = itemName
+                    end
+                    if category ~= "Misc" or not existing["category"] then
+                        existing["category"] = category
+                    end
+                    if itemSubType ~= "" then
+                        existing["subtype"] = itemSubType
+                    end
                 else
                     TBCBankDB[itemID] = {
                         ["count"] = count,

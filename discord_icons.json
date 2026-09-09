@@ -1,23 +1,23 @@
 [
   {
     "name": "role_tank",
-    "id": "1537947419344642189",
-    "discord_tag": "<:role_tank:1537947419344642189>"
+    "id": "1545556773803663422",
+    "discord_tag": "<:role_tank:1545556773803663422>"
   },
   {
     "name": "role_healer",
-    "id": "1537947420493619210",
-    "discord_tag": "<:role_healer:1537947420493619210>"
+    "id": "1545556769257029763",
+    "discord_tag": "<:role_healer:1545556769257029763>"
   },
   {
     "name": "role_melee",
-    "id": "1537947421324218542",
-    "discord_tag": "<:role_melee:1537947421324218542>"
+    "id": "1545556771467174019",
+    "discord_tag": "<:role_melee:1545556771467174019>"
   },
   {
     "name": "role_ranged",
-    "id": "1537947422683173044",
-    "discord_tag": "<:role_ranged:1537947422683173044>"
+    "id": "1545556768065716335",
+    "discord_tag": "<:role_ranged:1545556768065716335>"
   },
   {
     "name": "healers",

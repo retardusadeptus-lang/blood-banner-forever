@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+details[open] > summary .bank-section-indicator {
+  transform: rotate(90deg);
+}
+
 body {
   background-color: #020617;
   color: #f8fafc;

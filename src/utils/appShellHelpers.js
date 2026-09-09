@@ -1,8 +1,26 @@
+export function getDefaultGuildRoleName(scoringConfig) {
+  const configuredRoles = Array.isArray(scoringConfig?.guildRoleRanks) ? scoringConfig.guildRoleRanks : [];
+  const bottomRole = configuredRoles.reduce((current, role) => {
+    if (!current || Number(role?.rank) > Number(current.rank)) return role;
+    return current;
+  }, null);
+  return String(bottomRole?.name || 'Guild Member').trim() || 'Guild Member';
+}
+
+export function getGuildRoleWeight(player, scoringConfig) {
+  const roleName = String(player?.guild_rank || player?.rank || getDefaultGuildRoleName(scoringConfig)).trim().toLowerCase();
+  const role = (Array.isArray(scoringConfig?.guildRoleRanks) ? scoringConfig.guildRoleRanks : [])
+    .find(configuredRole => String(configuredRole?.name || '').trim().toLowerCase() === roleName);
+  const weight = Number(role?.weight);
+  return Number.isFinite(weight) ? weight : 1;
+}
+
 export function calculatePlayerScore({
   playerId,
   playerStats,
   scoringConfig,
-  attendanceScore = 0
+  attendanceScore = 0,
+  player
 }) {
   const stats = playerStats[playerId] || {
     cons: false,
@@ -32,7 +50,8 @@ export function calculatePlayerScore({
   const afkPenalty = (stats.afks || 0) * Number(scoringConfig.afkPenalty || 5);
   const manualAdj = stats.manualAdjustment?.value || 0;
 
-  return ((avgParse * Number(scoringConfig.parseWeight)) + cons + ench + gem + att - afkPenalty + manualAdj).toFixed(1);
+  const baseScore = (avgParse * Number(scoringConfig.parseWeight)) + cons + ench + gem + att - afkPenalty + manualAdj;
+  return (baseScore * getGuildRoleWeight(player, scoringConfig)).toFixed(1);
 }
 
 export function getRankBadgeStyle(rank) {

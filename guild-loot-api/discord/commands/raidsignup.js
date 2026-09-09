@@ -7,6 +7,7 @@ const {
   lockEvent,
   archiveEvent,
   unlockEvent,
+  restoreEvent,
   deleteEvent,
   echoEvent
 } = require('./raidsignup/actions');
@@ -19,7 +20,7 @@ module.exports = {
   },
 
   async execute(interaction, { db }) {
-    const hasAccess = await enforceRoleAccess(interaction, db, 'bench');
+    const hasAccess = await enforceRoleAccess(interaction, db, 'signup');
     if (!hasAccess) return;
 
     const subcommand = interaction.options.getSubcommand();
@@ -46,6 +47,11 @@ module.exports = {
 
     if (subcommand === 'unlock') {
       await unlockEvent(interaction, db);
+      return;
+    }
+
+    if (subcommand === 'restore') {
+      await restoreEvent(interaction, db);
       return;
     }
 

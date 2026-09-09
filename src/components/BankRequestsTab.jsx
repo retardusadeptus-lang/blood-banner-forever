@@ -1,10 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 
 export default function BankRequestsTab({
   bankRequests,
   roster,
-  specsByName,
-  getDisplayFromId,
   handleResolveBankRequest,
   // NEW: implement this in the parent. It receives the array of resolved
   // items (with the same shape handleResolveBankRequest expects, plus the
@@ -13,9 +11,7 @@ export default function BankRequestsTab({
   //   handleBulkResolveBankRequests(resolutions, summaryMessage)
   //   resolutions: [{ id, status: 'approved'|'denied', price, note, quantity, item_name, requester }]
   handleBulkResolveBankRequests,
-  archivedBankRequests = [],
-  onArchiveBankRequests,
-  onRestoreArchivedBankRequests
+  onArchiveBankRequests
 }) {
   const [basket, setBasket] = useState([]);
   const [bulkModalOpen, setBulkModalOpen] = useState(false);
@@ -379,6 +375,11 @@ export default function BankRequestsTab({
 
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+      <style>{`
+        details[open] > summary .bank-section-indicator {
+          transform: rotate(90deg);
+        }
+      `}</style>
       <div className="flex items-center justify-between gap-3 mb-6">
         <h2 className="text-xl font-bold text-slate-100">Bank Requests</h2>
         <div className="flex items-center gap-2 flex-wrap">
@@ -408,9 +409,14 @@ export default function BankRequestsTab({
           <button
             type="button"
             onClick={copyVisibleApprovedRequestsJson}
-            className="text-xs font-bold bg-purple-700 hover:bg-purple-600 text-white px-3 py-2 rounded"
+            aria-label="Copy approved JSON"
+            title="Copy approved JSON"
+            className="inline-flex items-center justify-center bg-purple-700 hover:bg-purple-600 text-white p-2.5 rounded"
           >
-            Copy Approved JSON
+            <svg aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+              <rect x="9" y="9" width="11" height="11" rx="2" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
           </button>
           <button
             type="button"
@@ -542,8 +548,12 @@ export default function BankRequestsTab({
           </div>
         </div>
       )}
-      <div className="flex items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-2">
+      <details open className="mb-8">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-2">
+        <span className="flex items-center gap-2">
+          <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
         <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Pending Requests</h3>
+        </span>
         {pendingRequestIds.length > 0 && (
           <label className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
             <input
@@ -555,7 +565,7 @@ export default function BankRequestsTab({
             Select all pending
           </label>
         )}
-      </div>
+      </summary>
       {pendingRequestGroups.length === 0 ? (
         <p className="text-slate-600 italic py-4 mb-8">No pending requests.</p>
       ) : (
@@ -674,9 +684,14 @@ export default function BankRequestsTab({
           })}
         </div>
       )}
+      </details>
 
-      <div className="flex items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-2">
+      <details open>
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-2">
+        <span className="flex items-center gap-2">
+          <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
         <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Resolved Requests</h3>
+        </span>
         {resolvedRequestGroups.length > 0 && (
           <label className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
             <input
@@ -688,7 +703,7 @@ export default function BankRequestsTab({
             Select all
           </label>
         )}
-      </div>
+      </summary>
       {resolvedRequestGroups.length === 0 ? (
         <p className="text-slate-600 italic py-4">No resolved requests yet.</p>
       ) : (
@@ -734,6 +749,7 @@ export default function BankRequestsTab({
           })}
         </div>
       )}
+      </details>
     </section>
   );
 }

@@ -3,6 +3,21 @@ const path = require('path');
 const { db, DB_PATH } = require('../config/db');
 const { ensureDatabaseReady } = require('../config/database/schema');
 
+const BANK_CATEGORY_MAP = {
+  'Trade Goods': 'Materials',
+  'Item Enhancement': 'Materials',
+  Gem: 'Materials',
+  Armor: 'Gear',
+  Weapon: 'Gear',
+  Consumable: 'Consumable',
+  Recipe: 'Recipe'
+};
+
+function normalizeBankCategory(category) {
+  const value = String(category || '').trim();
+  return BANK_CATEGORY_MAP[value] || value || 'Other';
+}
+
 function parseField(block, fieldName) {
   const match = block.match(new RegExp(`\\["${fieldName}"\\]\\s*=\\s*"([^"]*)"`));
   return match ? match[1] : '';
@@ -37,7 +52,7 @@ function parseLuaBankFile(fileText) {
     items.push({
       item_wowhead_id: itemId,
       name,
-      category,
+      category: normalizeBankCategory(category),
       count,
       sub_type: subtype,
     });

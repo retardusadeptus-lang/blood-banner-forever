@@ -13,7 +13,7 @@ const {
 const router = express.Router();
 
 function buildAuthRoutes({ db, sessionSecret, bnetConfig }) {
-  const { BNET_CLIENT_ID, BNET_CLIENT_SECRET, BNET_REDIRECT_URI, BNET_AUTHORIZE_URL, BNET_TOKEN_URL, BNET_USERINFO_URL, BNET_API_BASE_URL, BNET_LOCALE, SITE_URL, ADMIN_API_TOKEN } = bnetConfig;
+  const { BNET_CLIENT_ID, BNET_CLIENT_SECRET, BNET_REDIRECT_URI, BNET_AUTHORIZE_URL, BNET_TOKEN_URL, BNET_USERINFO_URL, SITE_URL, ADMIN_API_TOKEN } = bnetConfig;
 
   const isBattleNetAuthConfigured = () => Boolean(BNET_CLIENT_ID && BNET_CLIENT_SECRET && BNET_REDIRECT_URI);
 
@@ -74,7 +74,7 @@ function buildAuthRoutes({ db, sessionSecret, bnetConfig }) {
     if (originHeader) {
       try {
         return new URL(originHeader).origin;
-      } catch (error) {
+      } catch {
         // Ignore malformed origins and continue with the next fallback.
       }
     }
@@ -83,7 +83,7 @@ function buildAuthRoutes({ db, sessionSecret, bnetConfig }) {
     if (refererHeader) {
       try {
         return new URL(refererHeader).origin;
-      } catch (error) {
+      } catch {
         // Ignore malformed referrers and continue with the next fallback.
       }
     }
@@ -98,7 +98,7 @@ function buildAuthRoutes({ db, sessionSecret, bnetConfig }) {
     if (SITE_URL) {
       try {
         return new URL(SITE_URL).origin;
-      } catch (error) {
+      } catch {
         // Ignore malformed site URLs.
       }
     }

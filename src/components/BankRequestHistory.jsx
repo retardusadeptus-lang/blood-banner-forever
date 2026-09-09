@@ -56,13 +56,15 @@ export default function BankRequestHistory({
   };
 
   return (
-    <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-6">
-      <div className="space-y-2">
+    <details open className="bg-slate-950 border border-slate-800 rounded-xl">
+      <summary className="cursor-pointer list-none p-6">
+        <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500 mr-2">&gt;</span>
+        <h3 className="text-lg font-bold text-slate-100">Request History</h3>
+        <p className="mt-1 text-sm text-slate-400">Archived requests stay here until an officer restores them for review or follow-up.</p>
+      </summary>
+      <div className="space-y-2 border-t border-slate-800 p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <h3 className="text-lg font-bold text-slate-100">Request History</h3>
-            <p className="text-sm text-slate-400">Archived requests stay here until an officer restores them for review or follow-up.</p>
-          </div>
+          <div />
           <div className="flex flex-wrap items-center gap-2">
             {archivedBankRequests.length > 0 && (
               <label className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
@@ -133,6 +135,6 @@ export default function BankRequestHistory({
           </div>
         )}
       </div>
-    </div>
+    </details>
   );
 }

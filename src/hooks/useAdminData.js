@@ -9,6 +9,7 @@ export default function useAdminData({
   scoringConfigDirty,
   setScoringConfigDirty,
   scoringConfig,
+  setScoringConfigLocal,
   refreshRosterClaims
 }) {
   const [officerRoles, setOfficerRoles] = useState([]);
@@ -19,9 +20,9 @@ export default function useAdminData({
   const [bnetAccessRolesBaseline, setBnetAccessRolesBaseline] = useState({});
   const [discordBotConfig, setDiscordBotConfig] = useState({
     request_roles: [],
-    signup_roles: [],
-    bench_roles: []
+    signup_roles: []
   });
+  const [discordRoles, setDiscordRoles] = useState([]);
   const [discordBotConfigDirty, setDiscordBotConfigDirty] = useState(false);
   const [isSavingOfficerRoles, setIsSavingOfficerRoles] = useState(false);
   const [isSavingBnetAccessRoles, setIsSavingBnetAccessRoles] = useState(false);
@@ -58,7 +59,7 @@ export default function useAdminData({
     if (!numericUserId) return;
 
     setBnetAccessRoles(prev => {
-      const normalizedRole = role === 'admin' ? 'admin' : 'officer';
+      const normalizedRole = role === 'admin' ? 'admin' : role === 'guild_member' ? 'guild_member' : 'officer';
       const existing = prev.find(item => Number(item.user_id) === numericUserId);
       if (!existing) {
         const user = bnetAccessRoleCandidates.find(candidate => Number(candidate.user_id) === numericUserId);
@@ -118,7 +119,7 @@ export default function useAdminData({
   };
 
   useEffect(() => {
-    const shouldLoadOfficerRoles = activeTab === 'officerRoles' || adminSubTab === 'officerRoles';
+    const shouldLoadOfficerRoles = activeTab === 'officerRoles' || adminSubTab === 'officerRoles' || activeTab === 'config' || adminSubTab === 'config';
     if (!shouldLoadOfficerRoles || officerRolesDirty || bnetAccessRolesDirty) return;
     let mounted = true;
 
@@ -160,13 +161,16 @@ export default function useAdminData({
     const loadDiscordBotConfig = async () => {
       if (document.hidden) return;
       try {
-        const data = await fetchData('discord-bot-config');
+        const [data, roles] = await Promise.all([
+          fetchData('discord-bot-config'),
+          fetchData('discord-bot-roles').catch(() => [])
+        ]);
         if (!mounted) return;
         setDiscordBotConfig({
           request_roles: Array.isArray(data?.request_roles) ? data.request_roles : [],
-          signup_roles: Array.isArray(data?.signup_roles) ? data.signup_roles : [],
-          bench_roles: Array.isArray(data?.bench_roles) ? data.bench_roles : []
+          signup_roles: Array.isArray(data?.signup_roles) ? data.signup_roles : []
         });
+        setDiscordRoles(Array.isArray(roles) ? roles : []);
       } catch (error) {
         console.error('Failed to load Discord bot config:', error);
       }
@@ -201,6 +205,19 @@ export default function useAdminData({
       }
       if (scoringConfigDirty) {
         await putData('scoring-config', scoringConfig);
+        const savedScoringConfig = await fetchData('scoring-config');
+        const normalizeGuildRoleRanks = roles => (Array.isArray(roles) ? roles : []).map(role => ({
+          name: String(role?.name || '').trim(),
+          rank: Number(role?.rank) || 0,
+          weight: Number(role?.weight ?? 1),
+          isRaider: role?.isRaider === true
+        }));
+        const expectedGuildRoleRanks = normalizeGuildRoleRanks(scoringConfig?.guildRoleRanks);
+        const savedGuildRoleRanks = normalizeGuildRoleRanks(savedScoringConfig?.guildRoleRanks);
+        if (JSON.stringify(savedGuildRoleRanks) !== JSON.stringify(expectedGuildRoleRanks)) {
+          throw new Error('The API did not return the saved guild role rankings. Restart or update the API server before saving scoring config.');
+        }
+        setScoringConfigLocal(savedScoringConfig);
       }
       setDiscordBotConfigDirty(false);
       setScoringConfigDirty(false);
@@ -222,7 +239,7 @@ export default function useAdminData({
       bnetAccessRoles.forEach(item => {
         const id = Number(item.user_id || 0);
         const role = String(item.role || '').toLowerCase();
-        if (!id || (role !== 'admin' && role !== 'officer')) return;
+        if (!id || (role !== 'admin' && role !== 'officer' && role !== 'guild_member')) return;
         nextMap[id] = role;
       });
 
@@ -296,6 +313,7 @@ export default function useAdminData({
     removeBnetAccessRoleForUser,
     discordBotConfig,
     setDiscordBotConfig: setDiscordBotConfigData,
+    discordRoles,
     discordBotConfigDirty,
     isSavingOfficerRoles,
     isSavingBnetAccessRoles,

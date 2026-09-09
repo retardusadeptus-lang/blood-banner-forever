@@ -49,7 +49,7 @@ db.prepare('DELETE FROM items_bis').run();
 db.prepare('DELETE FROM items').run();
 db.prepare('DELETE FROM specs').run();
 const insertSpec = db.prepare('INSERT INTO specs (class, spec) VALUES (?, ?)');
-for (const [key, val] of Object.entries(specMapping)) {
+for (const [, val] of Object.entries(specMapping)) {
   insertSpec.run(val.class, val.spec);
 }
 
@@ -143,7 +143,7 @@ for (const row of aggregatedBisData) {
 
 const insertBisStmt = db.transaction(() => {
   let count = 0;
-  for (const [key, val] of Object.entries(bisMap)) {
+  for (const [, val] of Object.entries(bisMap)) {
     const itemId = itemIdLookup[val.name];
     const specId = specIdLookup[val.spec];
     if (!itemId || !specId) continue;

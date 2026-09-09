@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
-const { resolveRoleEmojiToken, resolveClassEmojiToken, resolveSpecEmojiToken } = require('../utils/discordEmojiTokens');
+const { resolveRoleEmojiToken, resolveSpecEmojiToken } = require('../utils/discordEmojiTokens');
 const { parseScheduledUnix } = require('../../utils/raidSignupTime');
 const {
   getEventById,
@@ -116,7 +116,12 @@ async function refreshEventMessage(db, client, eventId, userId = null) {
     await client.application.emojis.fetch().catch(() => {});
   }
 
-  const embed = buildSignupEmbed(event, entries, client || channel.guild || null);
+  if (channel.guild?.emojis && typeof channel.guild.emojis.fetch === 'function') {
+    await channel.guild.emojis.fetch().catch(() => {});
+  }
+
+  const discordContext = channel.guild || client || null;
+  const embed = buildSignupEmbed(event, entries, discordContext);
 
   const message = await channel.messages.fetch(event.discord_message_id).catch(() => null);
   if (!message) return;
@@ -131,7 +136,7 @@ async function refreshEventMessage(db, client, eventId, userId = null) {
       event.status !== 'open',
       preferredCharacter,
       preferredSpecId,
-      client || channel.guild || null
+      discordContext
     )
   });
 }

@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
 
 export default function useAppShellState({
+  canSaveChanges = true,
   hasLootUnsavedChanges,
   hasItemsDbUnsavedChanges,
   hasRosterUnsavedChanges,
   hasScoringUnsavedChanges,
+  hasConfigUnsavedChanges,
   hasRaidAssignmentsUnsavedChanges,
   adminData,
   handleSaveLootCouncilChanges,
@@ -15,8 +17,9 @@ export default function useAppShellState({
   handleSaveAdminChanges,
 }) {
   const hasAnyUnsavedChanges = useMemo(() =>
-    hasLootUnsavedChanges || hasItemsDbUnsavedChanges || hasRosterUnsavedChanges || hasScoringUnsavedChanges || hasRaidAssignmentsUnsavedChanges || adminData?.hasAdminUnsavedChanges,
+    canSaveChanges && (hasLootUnsavedChanges || hasItemsDbUnsavedChanges || hasRosterUnsavedChanges || hasScoringUnsavedChanges || hasRaidAssignmentsUnsavedChanges || adminData?.hasAdminUnsavedChanges),
     [
+      canSaveChanges,
       hasLootUnsavedChanges,
       hasItemsDbUnsavedChanges,
       hasRosterUnsavedChanges,
@@ -27,27 +30,32 @@ export default function useAppShellState({
   );
 
   const unsavedSections = useMemo(() => [
-    hasLootUnsavedChanges ? 'Loot Council' : null,
-    hasRaidAssignmentsUnsavedChanges ? 'Raid Assignments' : null,
-    hasRosterUnsavedChanges ? 'Roster' : null,
-    hasScoringUnsavedChanges ? 'Scoring' : null,
-    hasItemsDbUnsavedChanges ? 'Items DB' : null,
-    adminData?.officerRolesDirty ? 'Officer Roles' : null,
-    adminData?.discordBotConfigDirty ? 'Discord Config' : null,
-    adminData?.todoDirty ? 'To-do List' : null,
+    canSaveChanges && hasLootUnsavedChanges ? 'Loot Council' : null,
+    canSaveChanges && hasRaidAssignmentsUnsavedChanges ? 'Raid Assignments' : null,
+    canSaveChanges && hasRosterUnsavedChanges ? 'Roster' : null,
+    canSaveChanges && hasConfigUnsavedChanges ? 'Config' : null,
+    canSaveChanges && adminData?.bnetAccessRolesDirty ? 'Config' : null,
+    canSaveChanges && adminData?.discordBotConfigDirty ? 'Config' : null,
+    canSaveChanges && hasScoringUnsavedChanges && !hasConfigUnsavedChanges ? 'Scoring' : null,
+    canSaveChanges && hasItemsDbUnsavedChanges ? 'Items DB' : null,
+    canSaveChanges && adminData?.officerRolesDirty ? 'Officer Roles' : null,
+    canSaveChanges && adminData?.todoDirty ? 'To-do List' : null,
   ].filter(Boolean), [
+    canSaveChanges,
     hasLootUnsavedChanges,
     hasRaidAssignmentsUnsavedChanges,
     hasRosterUnsavedChanges,
     hasScoringUnsavedChanges,
+    hasConfigUnsavedChanges,
     hasItemsDbUnsavedChanges,
     adminData?.officerRolesDirty,
+    adminData?.bnetAccessRolesDirty,
     adminData?.discordBotConfigDirty,
     adminData?.todoDirty,
   ]);
 
   const handleSaveAllChanges = async () => {
-    if (!hasAnyUnsavedChanges) return;
+    if (!canSaveChanges || !hasAnyUnsavedChanges) return;
     try {
       if (hasLootUnsavedChanges) await handleSaveLootCouncilChanges({ silent: true });
       if (hasRaidAssignmentsUnsavedChanges) await handleSaveRaidAssignmentsChanges({ silent: true });

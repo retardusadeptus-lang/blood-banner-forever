@@ -86,32 +86,35 @@ function CustomDropdown({ value, options, onSelect, renderTrigger, renderOption,
   const selected = options.find((item) => item.type === 'option' && item.value === value) || null;
 
   return (
-    <div ref={rootRef} className="relative">
+    <div ref={rootRef} className="relative w-full md:w-max md:max-w-full">
       <button
         type="button"
         disabled={disabled}
         onClick={() => setOpen(prev => !prev)}
-        className="w-full flex items-center justify-between gap-2 bg-slate-950 border border-slate-700 rounded px-2 py-1 text-sm text-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="flex w-full items-center justify-between gap-2 rounded border border-slate-700 bg-slate-950 px-2 py-1 text-sm text-slate-100 disabled:cursor-not-allowed disabled:opacity-50 md:w-max md:min-w-[220px] md:max-w-full"
       >
         <div className="min-w-0 flex-1 text-left">{renderTrigger(selected)}</div>
         <span className="text-slate-500 text-xs">▾</span>
       </button>
-      {open && !disabled ? (
-        <div className="mt-1 w-full max-h-72 overflow-y-auto rounded border border-slate-700 bg-slate-950 shadow-xl">
+      {!disabled ? (
+        <div className={open
+          ? 'mt-1 max-h-72 w-full overflow-y-auto rounded border border-slate-700 bg-slate-950 shadow-xl md:w-max md:min-w-full md:max-w-[min(100vw-2rem,42rem)]'
+          : 'pointer-events-none mt-1 h-0 w-full overflow-hidden md:w-max md:min-w-full md:max-w-[min(100vw-2rem,42rem)]'}>
           {options.map((item, index) => {
             if (item.type === 'label') {
-              return <div key={`label-${item.label}-${index}`} className="px-2 py-1 text-[10px] uppercase tracking-wider text-slate-500 bg-slate-900/70">{item.label}</div>;
+              return <div key={`label-${item.label}-${index}`} className="whitespace-nowrap bg-slate-900/70 px-2 py-1 text-[10px] uppercase tracking-wider text-slate-500">{item.label}</div>;
             }
             const isSelected = item.value === value;
             return (
               <button
                 key={`opt-${item.value}-${index}`}
                 type="button"
+                tabIndex={open ? 0 : -1}
                 onClick={() => {
                   setOpen(false);
                   onSelect(item.value);
                 }}
-                className={`w-full text-left px-2 py-1.5 hover:bg-slate-800 transition ${isSelected ? 'bg-slate-800/80' : 'bg-transparent'}`}
+                className={`w-full whitespace-nowrap px-2 py-1.5 text-left transition hover:bg-slate-800 ${isSelected ? 'bg-slate-800/80' : 'bg-transparent'}`}
               >
                 {renderOption(item, isSelected)}
               </button>
@@ -123,7 +126,7 @@ function CustomDropdown({ value, options, onSelect, renderTrigger, renderOption,
   );
 }
 
-export default function RecruitmentFocusTab({ isAuthenticated, specsFromDb, fetchData, putData }) {
+export default function RecruitmentFocusTab({ isAuthenticated, specsFromDb, fetchData, putData, siteTabMetadata }) {
   const [focusEntries, setFocusEntries] = useState([]);
   const [lastSavedFocusEntries, setLastSavedFocusEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -279,21 +282,21 @@ export default function RecruitmentFocusTab({ isAuthenticated, specsFromDb, fetc
         const spec = specById.get(entry.specId);
         return (
           <div key={entry.id} className="rounded-xl border border-slate-800 bg-slate-950 p-4 space-y-3">
-            <div className="grid grid-cols-1 md:grid-cols-[140px_120px_auto] gap-3 items-start">
+            <div className="grid grid-cols-1 items-start gap-3 md:grid-cols-[max-content_120px_auto]">
               <CustomDropdown
                 value={entry.specId}
                 options={specOptions}
                 onSelect={(nextValue) => updateEntry(entry.id, { specId: String(nextValue || '') })}
                 renderTrigger={(selected) => (
-                  <div className="flex items-center gap-2 min-w-0">
+                  <div className="flex items-center gap-2 min-w-0 whitespace-nowrap">
                     <img src={selected?.icon || UNKNOWN_ICON} alt={selected?.label || 'Select spec'} className="w-8 h-8 rounded border border-slate-700" />
-                    <span className="truncate" style={{ color: selected?.color || '#e2e8f0' }}>{selected?.label || 'Select spec'}</span>
+                    <span style={{ color: selected?.color || '#e2e8f0' }}>{selected?.label || 'Select spec'}</span>
                   </div>
                 )}
                 renderOption={(item, isSelected) => (
-                  <div className="flex items-center gap-2 min-w-0">
+                  <div className="flex items-center gap-2 min-w-0 whitespace-nowrap">
                     <img src={item.icon || UNKNOWN_ICON} alt="" className="w-8 h-8 rounded border border-slate-700" />
-                    <span className="truncate" style={{ color: item.color || '#e2e8f0' }}>{item.label}</span>
+                    <span style={{ color: item.color || '#e2e8f0' }}>{item.label}</span>
                     {isSelected ? <span className="ml-auto text-[10px] text-cyan-400">Selected</span> : null}
                   </div>
                 )}
@@ -352,7 +355,7 @@ export default function RecruitmentFocusTab({ isAuthenticated, specsFromDb, fetc
   const showReadOnlyState = !isAuthenticated || !isEditMode;
 
   return (
-    <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 space-y-4">
+    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-xl font-bold text-slate-100">Recruitment Focus</h2>
