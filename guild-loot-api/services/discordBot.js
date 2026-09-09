@@ -132,5 +132,15 @@ function initDiscordBot({ db }) {
 
 module.exports = {
   initDiscordBot,
-  getDiscordClient: () => activeDiscordClient
+  getDiscordClient: () => activeDiscordClient,
+  sendDirectMessage: async (userId, content) => {
+    const normalizedUserId = String(userId || '').trim();
+    if (!activeDiscordClient || !/^\d{17,20}$/.test(normalizedUserId)) {
+      return false;
+    }
+
+    const user = await activeDiscordClient.users.fetch(normalizedUserId);
+    await user.send({ content: String(content || '').slice(0, 2000) });
+    return true;
+  }
 };

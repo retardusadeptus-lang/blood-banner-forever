@@ -10,6 +10,7 @@ const {
   getUserPreferredCharacter,
   upsertSignupEntry,
   ensureRosterPlayerForSignup,
+  linkDiscordUserToCharacter,
   setEventClassFilter
 } = require('../utils/raidSignupStore');
 const { refreshEventMessage } = require('./raidSignupEmbed');
@@ -147,6 +148,7 @@ async function handleStatusButton(interaction, db, eventId, status) {
   }
 
   const displayName = preferredCharacter || (interaction.member?.displayName || interaction.user.username);
+  linkDiscordUserToCharacter(db, displayName, interaction.user.id);
   upsertSignupEntry(db, eventId, interaction.user.id, displayName, normalizedStatus, specId);
   if (specId && ['signup', 'bench', 'late', 'tentative'].includes(normalizedStatus)) {
     ensureRosterPlayerForSignup(db, displayName, specId);

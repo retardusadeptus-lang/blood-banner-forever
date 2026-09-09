@@ -119,11 +119,19 @@ function buildRaidSignupEchoRoutes({ db }) {
         const name = player.name;
         const match = db.prepare(`
           SELECT discord_user_id
-          FROM raid_signup_user_prefs
-          WHERE lower(trim(character_name)) = lower(trim(?))
+          FROM (
+            SELECT discord_user_id, updated_at
+            FROM raid_signup_user_prefs
+            WHERE lower(trim(character_name)) = lower(trim(?))
+            UNION ALL
+            SELECT discord_user_id, NULL AS updated_at
+            FROM roster
+            WHERE lower(trim(name)) = lower(trim(?))
+          )
+          WHERE discord_user_id IS NOT NULL AND trim(discord_user_id) <> ''
           ORDER BY updated_at DESC
           LIMIT 1
-        `).get(name);
+        `).get(name, name);
         return { ...player, discordUserId: match?.discord_user_id || null };
       });
       const tagRaiders = req.body?.tag_raiders !== false;

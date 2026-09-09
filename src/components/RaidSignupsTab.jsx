@@ -389,11 +389,27 @@ export default function RaidSignupsTab({
   const [isGroupConfigDirty, setIsGroupConfigDirty] = useState(false);
   const [isEventEditDirty, setIsEventEditDirty] = useState(false);
   const [isRefreshingSignups, setIsRefreshingSignups] = useState(false);
+  const [siteSignupDrafts, setSiteSignupDrafts] = useState({});
+  const [siteSignupBusy, setSiteSignupBusy] = useState({});
+  const [siteSignupErrors, setSiteSignupErrors] = useState({});
   const [loadedSelectedEventId, setLoadedSelectedEventId] = useState('');
   const activeRaidSection = siteTabMetadata?.contentOwner === 'RaidSignupsContainer'
     ? siteTabMetadata.route?.subTab || activeSection || 'templates'
     : activeSection || 'templates';
   const isReadOnly = !isAuthenticated;
+  const claimedSignupCharacters = useMemo(() => {
+    const claimed = Array.isArray(bnetAuthState?.claimedCharacters) ? bnetAuthState.claimedCharacters : [];
+    return claimed
+      .map(claim => {
+        const rosterId = Number(claim?.rosterId || claim?.roster_id || 0);
+        const rosterName = String(claim?.rosterName || claim?.roster_name || '').trim();
+        const rosterPlayer = (roster || []).find(player => Number(player?.id) === rosterId)
+          || (rosterName ? (roster || []).find(player => String(player?.name || '').trim().toLowerCase() === rosterName.toLowerCase()) : null);
+        return rosterPlayer || (rosterId && rosterName ? { id: rosterId, name: rosterName, spec_id: null } : null);
+      })
+      .filter(character => character?.id && character?.name);
+  }, [bnetAuthState?.claimedCharacters, roster]);
+  const canSiteSignup = Boolean(bnetAuthState?.authenticated && claimedSignupCharacters.length > 0);
   const isRaidHelperImportVisible = sectionVisibilityById['raid-signups.history.raid-helper-import'] !== false;
 
   useEffect(() => {
@@ -422,6 +438,57 @@ export default function RaidSignupsTab({
   const loadPublic = async () => {
     const data = await fetchData('public-raid-signups');
     setEvents(Array.isArray(data) ? data : []);
+  };
+
+  const getSiteSignupDraft = (event) => {
+    const firstCharacter = claimedSignupCharacters[0];
+    const defaultCharacter = firstCharacter?.id ? String(firstCharacter.id) : '';
+    const defaultSpec = firstCharacter?.spec_id ? String(firstCharacter.spec_id) : '';
+    const savedDraft = siteSignupDrafts[event.id];
+    const existing = (event?.entries || []).find(entry => (
+      String(entry?.discord_user_id || '') === `web:${bnetAuthState?.user?.id}`
+      || claimedSignupCharacters.some(character => (
+        String(character?.discord_user_id || '').trim() === String(entry?.discord_user_id || '').trim()
+        || String(character?.name || '').trim().toLowerCase() === String(entry?.discord_username || '').trim().toLowerCase()
+      ))
+    ));
+    const existingCharacter = claimedSignupCharacters.find(character => (
+      String(character?.discord_user_id || '').trim() === String(existing?.discord_user_id || '').trim()
+      || String(character?.name || '').trim().toLowerCase() === String(existing?.discord_username || '').trim().toLowerCase()
+    ));
+    const existingStatus = existing?.status === 'absent' ? 'absence' : existing?.status;
+    return savedDraft || {
+      roster_id: String(existingCharacter?.id || defaultCharacter),
+      spec_id: String(existing?.spec_id || existingCharacter?.spec_id || defaultSpec),
+      status: existingStatus || 'signup',
+      note: existing?.note || ''
+    };
+  };
+
+  const updateSiteSignupDraft = (eventId, patch) => {
+    setSiteSignupDrafts(current => ({
+      ...current,
+      [eventId]: { ...current[eventId], ...patch }
+    }));
+  };
+
+  const handleSiteSignup = async (event) => {
+    const draft = getSiteSignupDraft(event);
+    setSiteSignupBusy(current => ({ ...current, [event.id]: true }));
+    setSiteSignupErrors(current => ({ ...current, [event.id]: '' }));
+    try {
+      await postData(`raid-signup-events/${event.id}/signup`, {
+        roster_id: Number(draft.roster_id),
+        spec_id: Number(draft.spec_id) || null,
+        status: draft.status,
+        note: draft.note
+      });
+      await loadPublic();
+    } catch (error) {
+      setSiteSignupErrors(current => ({ ...current, [event.id]: error.message || 'Failed to save signup.' }));
+    } finally {
+      setSiteSignupBusy(current => ({ ...current, [event.id]: false }));
+    }
   };
 
   const loadTemplates = async () => {
@@ -1796,6 +1863,77 @@ export default function RaidSignupsTab({
       return (status === 'absence' ? 'absent' : status) === expandedLogStatus;
     });
 
+  const renderSiteSignupPanel = (event) => {
+    if (!canSiteSignup || !event) return null;
+    const signupDraft = getSiteSignupDraft(event);
+    const selectedCharacter = claimedSignupCharacters.find(character => String(character.id) === String(signupDraft.roster_id));
+    const currentEntry = (event.entries || []).find(entry => (
+      String(entry?.discord_user_id || '') === `web:${bnetAuthState?.user?.id}`
+      || claimedSignupCharacters.some(character => (
+        String(character?.discord_user_id || '').trim() === String(entry?.discord_user_id || '').trim()
+        || String(character?.name || '').trim().toLowerCase() === String(entry?.discord_username || '').trim().toLowerCase()
+      ))
+    ));
+
+    return (
+      <div className="mt-4 border-t border-slate-800 pt-4">
+        <div className="flex items-center justify-between gap-2 mb-2">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-cyan-300">Sign up online</h4>
+          {currentEntry?.status ? <span className="text-[10px] uppercase text-slate-500">Current: {currentEntry.status}</span> : null}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-2">
+          <select
+            value={signupDraft.roster_id}
+            onChange={change => {
+              const character = claimedSignupCharacters.find(item => String(item.id) === change.target.value);
+              updateSiteSignupDraft(event.id, { roster_id: change.target.value, spec_id: character?.spec_id ? String(character.spec_id) : '' });
+            }}
+            className="bg-slate-900 text-white border border-slate-700 rounded px-2 py-2 text-xs"
+          >
+            {claimedSignupCharacters.map(character => <option key={character.id} value={character.id}>{character.name}</option>)}
+          </select>
+          <select
+            value={signupDraft.spec_id}
+            onChange={change => updateSiteSignupDraft(event.id, { spec_id: change.target.value })}
+            className="bg-slate-900 text-white border border-slate-700 rounded px-2 py-2 text-xs"
+          >
+            <option value="">Select spec</option>
+            {(specsFromDb || []).map(spec => <option key={spec.id} value={spec.id}>{spec.class} - {spec.spec}</option>)}
+          </select>
+          <select
+            value={signupDraft.status}
+            onChange={change => updateSiteSignupDraft(event.id, { status: change.target.value })}
+            className="bg-slate-900 text-white border border-slate-700 rounded px-2 py-2 text-xs"
+          >
+            <option value="signup">Sign Up</option>
+            <option value="bench">Bench</option>
+            <option value="late">Late</option>
+            <option value="tentative">Tentative</option>
+            <option value="absence">Absence</option>
+          </select>
+          <input
+            type="text"
+            value={signupDraft.note}
+            onChange={change => updateSiteSignupDraft(event.id, { note: change.target.value })}
+            placeholder="Optional note"
+            maxLength={500}
+            className="bg-slate-900 text-white border border-slate-700 rounded px-2 py-2 text-xs"
+          />
+          <button
+            type="button"
+            onClick={() => handleSiteSignup(event)}
+            disabled={siteSignupBusy[event.id] || !selectedCharacter || (signupDraft.status !== 'absence' && !signupDraft.spec_id)}
+            className="bg-cyan-700 hover:bg-cyan-600 disabled:cursor-not-allowed disabled:opacity-50 text-white font-bold rounded px-3 py-2 text-xs"
+          >
+            {siteSignupBusy[event.id] ? 'Saving...' : 'Save Signup'}
+          </button>
+        </div>
+        {siteSignupErrors[event.id] ? <p className="text-xs text-rose-300 mt-2">{siteSignupErrors[event.id]}</p> : null}
+        <p className="text-[10px] text-slate-500 mt-2">This updates the linked Discord signup card immediately.</p>
+      </div>
+    );
+  };
+
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
       <div className="flex items-center justify-between gap-3">
@@ -1853,6 +1991,8 @@ export default function RaidSignupsTab({
                       </div>
                     ))}
                   </div>
+
+                  {renderSiteSignupPanel(event)}
 
                   {event.public_groups && Array.isArray(event.groups) && event.groups.length > 0 && (
                     <div className="mt-4 border-t border-slate-800 pt-4">
@@ -1922,7 +2062,12 @@ export default function RaidSignupsTab({
               {templates.length === 0 ? (
                 <p className="text-xs text-slate-500 italic">No templates yet.</p>
               ) : templates.map((template, idx) => (
-                <div key={`${template.id}-${idx}`} className="border border-slate-800 rounded-lg p-3 bg-slate-900/50 space-y-2">
+                <details key={`${template.id}-${idx}`} open className="border border-slate-800 rounded-lg p-3 bg-slate-900/50 space-y-2">
+                  <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-bold text-slate-200">
+                    <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
+                    <span>{template.name || 'Untitled Template'}</span>
+                  </summary>
+                  <div className="space-y-2 pt-2">
                   <div className="flex justify-end">
                     <button
                       type="button"
@@ -2030,7 +2175,8 @@ export default function RaidSignupsTab({
                     />
                     Active template
                   </label>
-                </div>
+                  </div>
+                </details>
               ))}
             </div>
           </div>
@@ -2192,6 +2338,8 @@ export default function RaidSignupsTab({
                       ) : null}
                     </div>
                   ) : null}
+
+                  {renderSiteSignupPanel(selectedEvent)}
 
                   {isReadOnly ? (
                     <div className="space-y-2 text-sm">

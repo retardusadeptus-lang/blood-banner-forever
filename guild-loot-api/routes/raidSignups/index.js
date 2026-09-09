@@ -4,6 +4,7 @@ const buildRaidSignupEventRoutes = require('./events');
 const buildRaidSignupPublicRoutes = require('./public');
 const buildRaidSignupEchoRoutes = require('./echo');
 const buildRaidSignupAbsenceRoutes = require('./absences');
+const buildRaidSignupSelfRoutes = require('./selfSignup');
 
 function buildRaidSignupRoutes({ db, sessionSecret }) {
   const router = express.Router();
@@ -13,6 +14,7 @@ function buildRaidSignupRoutes({ db, sessionSecret }) {
   router.use(buildRaidSignupPublicRoutes({ db }));
   router.use(buildRaidSignupEchoRoutes({ db }));
   router.use(buildRaidSignupAbsenceRoutes({ db, sessionSecret }));
+  router.use(buildRaidSignupSelfRoutes({ db }));
 
   return router;
 }

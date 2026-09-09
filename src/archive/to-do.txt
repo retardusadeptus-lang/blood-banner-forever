@@ -161,6 +161,7 @@
 ## Analytics, WarcraftLogs & Community Resources
 
 ### WarcraftLogs (WCL) & Integrations
+- [ ] Read raid-log webhook posts with the Discord bot: enable Message Content, Guild Messages, and Read Message History access, extract Warcraft Logs URLs, and sync them into the Raid Logs page.
 - [/] WCL GraphQL Pipeline:
   - Build GraphQL queries to fetch parse percentile and healing metrics.
   - Schedule nightly cron job to sync WCL guild logs into player_parses database table.
@@ -229,6 +230,7 @@
 [ ] can we add the page we're on to the URL without actually having to make separate URLs for each tab? Idea would be to be able to link to e.g. guild-name-tbc.top/raid-assignments and show only the raid assignments tab in read-only mode for unsophisticated users of the app
 [x] role icons not working on live discord bot
 [x] is there spam retrying to post recurring events?
+[x] add raid bis items filter to bis config
 
 ## Phase 3: Raid, Roster & Attendance Workflows
 
@@ -242,31 +244,38 @@
 ## Phase 4: Guild Bank & Addon Workflow
 
 [08/09] review why subcategory doesn't work on gbank export/import
-[ ] add additional webhook for guild bank updates
-[ ] add guild bank addon instructions (commands etc)
+[?] add additional webhook for guild bank updates
+[x] add guild bank addon instructions (commands etc)
 [ ] add auto populate trade window back into addon
-[ ] make the sections on gbank history tab collapsible
+[x] make the sections on gbank history tab collapsible
 [ ] Add feature to site/addon to extract full in-game Guild Roster alongside guild ranks.
 [ ] WeakAura Assignment Exporter:
   [ ] Write companion Lua WeakAura with embedded JSON parser to render dynamic text on-screen based on logged-in character name.
 
 ## Phase 5: Applications, Recruitment & Community
 
-[ ] Add discord and battletag sections to applications
-[ ] Add echo to discord (direct to applicant if possible) that tells them when they have added an application and notifies them of any changes
-[ ] consider if allowing people to sign directly on site is possible and a good idea
-[ ] add a guild info tab with links to discord, hyperlink to jump to applications
+[x] Add discord and battletag sections to applications
+[x] Add echo to Discord (direct to applicant when a numeric Discord user ID is provided) for new applications and application changes
+[ ] Verify applicant Discord DMs: confirm the bot is online, can fetch the numeric user ID, has permission to DM/shared-server access, and surface/log delivery failures clearly.
+[x] Consider direct website raid signups: allow authenticated users with a claimed character to sign up, change status, or cancel; do not allow anonymous name-only submissions.
+[?] add a guild info tab with links to discord, hyperlink to jump to applications
 
 ## Phase 6: Resources, Loot Data & Third-Party Integrations
 
-[ ] Finish Site Instructions tab
-[ ] allow creation of sections on weakauras tab (only admins can create sections so options should be visible only to admins)
-[ ] add search and filter on weakauras page
-[ ] add a tags section (comma separated tags) to each weakaura that feed into the filter/search
+[-] Finish Site Instructions tab
+[x] allow creation of sections on weakauras tab (only admins can create sections so options should be visible only to admins)
+[x] add search and filter on weakauras page
+[x] add a tags section (comma separated tags) to each weakaura that feed into the filter/search
 [ ] Drop Sources: Fix drop source mapping for Tier tokens and add explicit zone tags to drops on BiS lists.
-[ ] Explore direct SoftRes integration with the Discord bot.
+[/] Explore direct SoftRes integration with the Discord bot.
+  [ ] Confirm the legacy Softres.it create API payload, authentication, and current availability.
+  [ ] Add a feature-flagged SoftRes service for creating a raid from a local signup event.
+  [ ] Map event title, raid, faction, schedule, and reserve settings to SoftRes fields.
+  [ ] Persist the returned SoftRes raid ID and URL against the signup event.
+  [ ] Add an officer-only Discord action to create or update the linked SoftRes raid.
+  [ ] Add a clear manual-link fallback if the legacy API is unavailable or retired.
 [ ] Third-Party Integrations: Explore integration options for WowAudit and RCLootCouncil (RCLC).
-[ ] Is there a way to proxy icons for Serbs instead of wowhead?
+[x] Is there a way to proxy icons for Serbs instead of wowhead?
 
 ## Phase 7: WarcraftLogs & Analytics
 

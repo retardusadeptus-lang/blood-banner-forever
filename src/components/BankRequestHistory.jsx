@@ -58,6 +58,7 @@ export default function BankRequestHistory({
   return (
     <details open className="bg-slate-950 border border-slate-800 rounded-xl">
       <summary className="cursor-pointer list-none p-6">
+        <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500 mr-2">&gt;</span>
         <h3 className="text-lg font-bold text-slate-100">Request History</h3>
         <p className="mt-1 text-sm text-slate-400">Archived requests stay here until an officer restores them for review or follow-up.</p>
       </summary>

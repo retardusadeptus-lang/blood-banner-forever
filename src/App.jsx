@@ -26,6 +26,7 @@ import useDataSync from './hooks/useDataSync';
 
 export default function App() {
   const previousActiveTabRef = useRef('');
+  const previousBisTabRef = useRef('');
   // ==========================================
   // SPECS DATA FROM DATABASE
   // ==========================================
@@ -393,12 +394,12 @@ export default function App() {
 
   // When opening BiS Config, default the spec selector to the selected character.
   useEffect(() => {
-    if (activeTab !== 'bis') return;
-    if (!selectedMyPlayerBisSpec) return;
-    if (selectedBisSpec !== selectedMyPlayerBisSpec) {
+    const enteredBisTab = activeTab === 'bis' && previousBisTabRef.current !== 'bis';
+    if (enteredBisTab && selectedMyPlayerBisSpec) {
       setSelectedBisSpec(selectedMyPlayerBisSpec);
     }
-  }, [activeTab, selectedBisSpec, selectedMyPlayerBisSpec]);
+    previousBisTabRef.current = activeTab;
+  }, [activeTab, selectedMyPlayerBisSpec]);
 
   // RaidHelper import handling (extracted to hook)
   const {
@@ -414,13 +415,21 @@ export default function App() {
     if (window.$WowheadPower && window.$WowheadPower.hideTooltip) { window.$WowheadPower.hideTooltip(); }
   };
 
-  const renderItemLink = (item, className = "") => {
+  const renderItemLink = (item, className = "", iconSize = '') => {
     const url = item.itemId
       ? `https://www.wowhead.com/tbc/item=${item.itemId}`
       : `https://www.wowhead.com/tbc/search?q=${encodeURIComponent(item.name)}`;
 
     return (
-      <a href={url} target="_blank" rel="noreferrer" className={`hover:underline cursor-help ${className}`} onMouseLeave={hideWowheadTooltip}>
+      <a
+        href={url}
+        target="_blank"
+        rel="noreferrer"
+        className={`hover:underline cursor-help ${iconSize ? 'item-link' : ''} ${className}`}
+        data-wh-rename-link={iconSize ? 'false' : undefined}
+        data-wh-icon-size={iconSize || undefined}
+        onMouseLeave={hideWowheadTooltip}
+      >
         {item.name}
       </a>
     );

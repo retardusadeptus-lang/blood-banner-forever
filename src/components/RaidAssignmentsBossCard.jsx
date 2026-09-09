@@ -195,10 +195,14 @@ function MarkerBadge({ markerId }) {
 
 function SectionWrapper({ title, isAuthenticated, onAdd, onAutoFill, onRemoveSection, hasItems, emptyText, children }) {
   return (
-    <div className="bg-slate-900/40 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
-      <div>
-        <div className="flex items-center justify-between mb-3 border-b border-slate-800 pb-1.5">
-          <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">{title}</h4>
+    <details open className="bg-slate-900/40 p-4 rounded-lg border border-slate-800">
+      <summary className="flex cursor-pointer list-none items-center gap-2 mb-3 border-b border-slate-800 pb-1.5">
+        <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
+        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">{title}</h4>
+      </summary>
+      <div className="flex flex-col justify-between">
+        <div>
+          <div className="flex items-center justify-end gap-2 mb-3">
           <div className="flex items-center gap-2">
             {isAuthenticated && onAdd && (
               <button onClick={onAdd} className="text-[10px] bg-slate-800 hover:bg-slate-700 text-purple-400 font-bold px-2 py-0.5 rounded">+</button>
@@ -210,10 +214,11 @@ function SectionWrapper({ title, isAuthenticated, onAdd, onAutoFill, onRemoveSec
               <button onClick={onRemoveSection} className="text-[10px] text-red-500 hover:text-red-400 font-bold px-1" title="Remove entire section">✕ Section</button>
             )}
           </div>
-        </div>
+          </div>
         {!hasItems ? <p className="text-xs text-slate-600 italic mb-2">{emptyText}</p> : <div className="space-y-2 mb-2">{children}</div>}
+        </div>
       </div>
-    </div>
+    </details>
   );
 }
 
@@ -275,16 +280,21 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
   ], [activeRaiders, getPlayersByClasses, getPlayersBySpec]);
 
   return (
-    <div className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-2xl p-5 space-y-6">
-      <div className="border-b border-slate-800 pb-3 flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-baseline gap-4">
-          <h3 className="text-xl font-bold text-purple-400 font-serif italic tracking-wide">{boss}</h3>
-          {canEdit && (
-            <button onClick={() => handleClearBoss(boss)} className="text-[10px] font-bold text-red-500 uppercase hover:underline">
-              Reset Boss
-            </button>
-          )}
-        </div>
+    <details open className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-2xl p-5">
+      <summary className="cursor-pointer list-none border-b border-slate-800 pb-3 flex items-center gap-2">
+        <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
+        <h3 className="text-xl font-bold text-purple-400 font-serif italic tracking-wide">{boss}</h3>
+      </summary>
+
+      <div className="space-y-6 pt-4">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-baseline gap-4">
+            {canEdit && (
+              <button onClick={() => handleClearBoss(boss)} className="text-[10px] font-bold text-red-500 uppercase hover:underline">
+                Reset Boss
+              </button>
+            )}
+          </div>
         <div className="flex items-center gap-2 flex-wrap bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
           <div className="flex items-center gap-2">
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Bloodlust:</span>
@@ -730,6 +740,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
         ) : <div className="text-xs text-slate-600 italic py-2">No custom tactics layout screenshot mapped via URL context references.</div>}
       </div>
     </div>
+    </details>
   );
 });
 

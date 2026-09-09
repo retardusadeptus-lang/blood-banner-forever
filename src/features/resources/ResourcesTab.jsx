@@ -23,6 +23,25 @@ const CHEAT_SHEET_STORAGE_KEY = 'cheat-sheet-data-v1';
 const CHEAT_SHEET_PHASE_STORAGE_KEY = 'cheat-sheet-phase-v1';
 const CHEAT_SHEET_EXPORT_FILENAME = 'cheat-sheet-export.json';
 
+function CopyIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="9" y="9" width="11" height="11" rx="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  );
+}
+
+function UploadIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M12 16V4" />
+      <path d="m7 9 5-5 5 5" />
+      <path d="M5 20h14" />
+    </svg>
+  );
+}
+
 const normalizeTacticsMediaItem = (item = {}, index = 0) => {
   const url = String(item?.url || '').trim();
   const label = String(item?.label || '').trim();
@@ -396,11 +415,16 @@ export default function ResourcesTab({
   specsFromDb,
   renderItemSlot,
   specsByName,
+  renderItemLink,
+  mutableItems,
+  dbBisPriorities,
   fetchData,
   postData,
   putData,
   deleteData,
   canSubmitWeakauras,
+  canManageWeakauraSections,
+  canManageCheatSheetJson = false,
   isAuthenticated = false,
   enabledBosses = [],
   raidZones = [],
@@ -1054,18 +1078,6 @@ export default function ResourcesTab({
     }
   };
 
-  const handleResetToSeedData = () => {
-    const seededBosses = (bossData || []).map(normalizeBoss);
-
-    if (typeof window !== 'undefined') {
-      window.localStorage.removeItem(CHEAT_SHEET_STORAGE_KEY);
-    }
-
-    setBosses(seededBosses);
-    setDraftBosses(seededBosses);
-    setIsEditMode(false);
-  };
-
   const handleAddWipefestEntry = () => {
     const defaultEntry = normalizeWipefestEntry({}, recentReports[0] || null);
     const newEntry = {
@@ -1158,6 +1170,9 @@ export default function ResourcesTab({
           specsFromDb={specsFromDb}
           renderItemSlot={renderItemSlot}
           specsByName={specsByName}
+          renderItemLink={renderItemLink}
+          mutableItems={mutableItems}
+          dbBisPriorities={dbBisPriorities}
         />
       )}
 
@@ -1295,19 +1310,26 @@ export default function ResourcesTab({
                 const mediaItems = Array.isArray(draftEntry.media) ? draftEntry.media : [];
 
                 return (
-                  <section key={bossName} className="rounded-xl border border-slate-800 bg-slate-900/80 p-4">
-                    <div className="mb-3 flex items-center justify-between gap-2">
-                      <h4 className="text-base font-bold text-slate-100">{bossName}</h4>
+                  <details key={bossName} open className="rounded-xl border border-slate-800 bg-slate-900/80 p-4">
+                    <summary className="mb-3 flex cursor-pointer list-none items-center justify-between gap-3">
+                      <div className="flex min-w-0 items-center gap-2">
+                        <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
+                        <h4 className="text-base font-bold text-slate-100">{bossName}</h4>
+                      </div>
                       {isAuthenticated && (
                         <button
                           type="button"
-                          onClick={() => handleAddTacticsMedia(bossName)}
+                          onClick={(event) => {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            handleAddTacticsMedia(bossName);
+                          }}
                           className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-200 transition hover:bg-amber-500/20"
                         >
                           Add Media
                         </button>
                       )}
-                    </div>
+                    </summary>
 
                     {isAuthenticated && isTacticsEditMode ? (
                       <>
@@ -1606,7 +1628,7 @@ export default function ResourcesTab({
                         )}
                       </div>
                     )}
-                  </section>
+                  </details>
                 );
               })}
             </div>
@@ -1619,6 +1641,7 @@ export default function ResourcesTab({
           fetchData={fetchData}
           postData={postData}
           canSubmit={canSubmitWeakauras}
+          canManageSections={canManageWeakauraSections}
         />
       )}
 
@@ -1661,6 +1684,27 @@ export default function ResourcesTab({
                 <div className="flex items-center gap-2 flex-wrap">
                   {!isEditMode ? (
                     <>
+                      {canManageCheatSheetJson && (
+                        <>
+                          <button
+                            type="button"
+                            onClick={handleExportCheatSheetJson}
+                            aria-label="Copy Cheat Sheet JSON"
+                            title="Copy Cheat Sheet JSON"
+                            className="rounded-lg border border-emerald-500/40 bg-emerald-500/10 p-2 text-emerald-200 transition hover:bg-emerald-500/20"
+                          >
+                            <CopyIcon />
+                          </button>
+                          <label
+                            aria-label="Upload Cheat Sheet JSON"
+                            title="Upload Cheat Sheet JSON"
+                            className="cursor-pointer rounded-lg border border-sky-500/40 bg-sky-500/10 p-2 text-sky-200 transition hover:bg-sky-500/20"
+                          >
+                            <UploadIcon />
+                            <input type="file" accept="application/json" className="hidden" onChange={handleImportCheatSheetJson} />
+                          </label>
+                        </>
+                      )}
                       <button
                         type="button"
                         onClick={() => setIsEditMode(true)}
@@ -1668,24 +1712,6 @@ export default function ResourcesTab({
                       >
                         Enter Edit Mode
                       </button>
-                      <button
-                        type="button"
-                        onClick={handleResetToSeedData}
-                        className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-200 transition hover:border-slate-500"
-                      >
-                        Reset Seed Data
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleExportCheatSheetJson}
-                        className="rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-200 transition hover:bg-emerald-500/20"
-                      >
-                        Export JSON
-                      </button>
-                      <label className="cursor-pointer rounded-lg border border-sky-500/40 bg-sky-500/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-sky-200 transition hover:bg-sky-500/20">
-                        Import JSON
-                        <input type="file" accept="application/json" className="hidden" onChange={handleImportCheatSheetJson} />
-                      </label>
                     </>
                   ) : (
                     <>
@@ -1704,24 +1730,27 @@ export default function ResourcesTab({
                       >
                         Add Boss Card
                       </button>
-                      <button
-                        type="button"
-                        onClick={handleResetToSeedData}
-                        className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-200 transition hover:border-slate-500"
-                      >
-                        Reset Seed Data
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleExportCheatSheetJson}
-                        className="rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-200 transition hover:bg-emerald-500/20"
-                      >
-                        Export JSON
-                      </button>
-                      <label className="cursor-pointer rounded-lg border border-sky-500/40 bg-sky-500/10 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-sky-200 transition hover:bg-sky-500/20">
-                        Import JSON
-                        <input type="file" accept="application/json" className="hidden" onChange={handleImportCheatSheetJson} />
-                      </label>
+                      {canManageCheatSheetJson && (
+                        <>
+                          <button
+                            type="button"
+                            onClick={handleExportCheatSheetJson}
+                            aria-label="Copy Cheat Sheet JSON"
+                            title="Copy Cheat Sheet JSON"
+                            className="rounded-lg border border-emerald-500/40 bg-emerald-500/10 p-2 text-emerald-200 transition hover:bg-emerald-500/20"
+                          >
+                            <CopyIcon />
+                          </button>
+                          <label
+                            aria-label="Upload Cheat Sheet JSON"
+                            title="Upload Cheat Sheet JSON"
+                            className="cursor-pointer rounded-lg border border-sky-500/40 bg-sky-500/10 p-2 text-sky-200 transition hover:bg-sky-500/20"
+                          >
+                            <UploadIcon />
+                            <input type="file" accept="application/json" className="hidden" onChange={handleImportCheatSheetJson} />
+                          </label>
+                        </>
+                      )}
                       <button
                         type="button"
                         onClick={handleExitEditMode}
@@ -1993,7 +2022,7 @@ export default function ResourcesTab({
                               const spellId = spellList[iconIndex] || spellList[0];
                               const image = (
                                 <img
-                                  src={`https://wow.zamimg.com/images/wow/icons/large/${icon}.jpg`}
+                                  src={`/api/proxy/asset?url=${encodeURIComponent(`https://wow.zamimg.com/images/wow/icons/large/${icon}.jpg`)}`}
                                   alt={icon}
                                   className="block h-9 w-9 rounded-md border border-slate-700 bg-slate-950 object-cover"
                                 />

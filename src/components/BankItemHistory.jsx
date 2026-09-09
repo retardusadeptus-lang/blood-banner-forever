@@ -28,6 +28,7 @@ export default function BankItemHistory({ bankItemHistory, onRestoreBankItem }) 
   return (
     <details open className="bg-slate-950 border border-slate-800 rounded-xl">
       <summary className="cursor-pointer list-none p-6">
+        <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500 mr-2">&gt;</span>
         <h3 className="text-lg font-bold text-slate-100">Item History</h3>
         <p className="mt-1 text-sm text-slate-400">Items that have previously been in the guild bank remain requestable while out of stock.</p>
       </summary>

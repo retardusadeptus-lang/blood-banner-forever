@@ -148,6 +148,10 @@ function ensureBattleNetAuthSchema(db) {
   if (!hasUserId) {
     db.exec('ALTER TABLE roster ADD COLUMN user_id INTEGER');
   }
+  const hasDiscordUserId = rosterColumns.some(column => column.name === 'discord_user_id');
+  if (!hasDiscordUserId) {
+    db.exec('ALTER TABLE roster ADD COLUMN discord_user_id TEXT');
+  }
 }
 
 function ensureTierTokenSupport(db) {
@@ -418,17 +422,36 @@ function ensureBattleNetUserRolesTable(db) {
 
 function ensureWeakAurasTable(db) {
   db.prepare(`
+    CREATE TABLE IF NOT EXISTS weakaura_sections (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      created_by TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  db.prepare(`
     CREATE TABLE IF NOT EXISTS weakauras (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
+      section_id INTEGER REFERENCES weakaura_sections(id) ON DELETE SET NULL,
       title TEXT NOT NULL,
       import_code TEXT,
       wago_url TEXT,
       access_password TEXT,
       notes TEXT,
+      tags_json TEXT NOT NULL DEFAULT '[]',
       created_by TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `).run();
+
+  const columns = db.prepare('PRAGMA table_info(weakauras)').all();
+  if (!columns.some(column => column.name === 'section_id')) {
+    db.prepare('ALTER TABLE weakauras ADD COLUMN section_id INTEGER').run();
+  }
+  if (!columns.some(column => column.name === 'tags_json')) {
+    db.prepare("ALTER TABLE weakauras ADD COLUMN tags_json TEXT NOT NULL DEFAULT '[]'").run();
+  }
 }
 
 function ensureTacticsTable(db) {
@@ -531,6 +554,7 @@ function ensureRecruitmentApplicationsTables(db) {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER,
       battletag TEXT NOT NULL,
+      discord_id TEXT NOT NULL DEFAULT '',
       class_name TEXT NOT NULL,
       spec TEXT NOT NULL,
       name TEXT NOT NULL,
@@ -553,6 +577,7 @@ function ensureRecruitmentApplicationsTables(db) {
   const applicationColumns = db.prepare('PRAGMA table_info(recruitment_applications)').all();
   const existingColumnNames = new Set((applicationColumns || []).map(column => column.name));
   const migrationColumns = [
+    ['discord_id', "TEXT NOT NULL DEFAULT ''"],
     ['is_proxy', 'INTEGER NOT NULL DEFAULT 0'],
     ['proxy_name', 'TEXT'],
     ['proxy_battletag', 'TEXT'],
@@ -650,6 +675,8 @@ function ensureRaidSignupTables(db) {
       status TEXT NOT NULL DEFAULT 'signup',
       spec_id INTEGER REFERENCES specs(id) ON DELETE SET NULL,
       role_bucket TEXT,
+      signup_order INTEGER,
+      signup_source TEXT NOT NULL DEFAULT 'discord',
       note TEXT DEFAULT '',
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       UNIQUE(event_id, discord_user_id)
@@ -659,6 +686,18 @@ function ensureRaidSignupTables(db) {
   const signupEntryColumns = db.prepare("PRAGMA table_info('raid_signup_entries')").all();
   if (!signupEntryColumns.some(col => col.name === 'note')) {
     db.prepare('ALTER TABLE raid_signup_entries ADD COLUMN note TEXT DEFAULT ""').run();
+  }
+  if (!signupEntryColumns.some(col => col.name === 'signup_source')) {
+    db.prepare('ALTER TABLE raid_signup_entries ADD COLUMN signup_source TEXT NOT NULL DEFAULT "discord"').run();
+  }
+  if (!signupEntryColumns.some(col => col.name === 'signup_order')) {
+    db.prepare('ALTER TABLE raid_signup_entries ADD COLUMN signup_order INTEGER').run();
+    const eventIds = db.prepare('SELECT DISTINCT event_id FROM raid_signup_entries').all();
+    const updateOrder = db.prepare('UPDATE raid_signup_entries SET signup_order = ? WHERE id = ?');
+    eventIds.forEach(({ event_id: eventId }) => {
+      const entries = db.prepare('SELECT id FROM raid_signup_entries WHERE event_id = ? ORDER BY id').all(eventId);
+      entries.forEach((entry, index) => updateOrder.run(index + 1, entry.id));
+    });
   }
 
   db.prepare(`
@@ -1039,6 +1078,7 @@ function ensureDatabaseIndexes(db) {
     'CREATE INDEX IF NOT EXISTS idx_raid_signup_character_absences_roster_dates ON raid_signup_character_absences (roster_id, start_date, end_date)',
     'CREATE INDEX IF NOT EXISTS idx_bnet_user_roles_role ON bnet_user_roles (role)',
     'CREATE INDEX IF NOT EXISTS idx_weakauras_created_at ON weakauras (created_at DESC)',
+    'CREATE INDEX IF NOT EXISTS idx_weakauras_section_id ON weakauras (section_id)',
     'CREATE INDEX IF NOT EXISTS idx_raid_tactics_updated_at ON raid_tactics (updated_at DESC)',
     'CREATE INDEX IF NOT EXISTS idx_wipefest_created_at ON wipefest (created_at DESC)'
   ];

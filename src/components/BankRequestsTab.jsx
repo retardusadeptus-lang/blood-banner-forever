@@ -375,6 +375,11 @@ export default function BankRequestsTab({
 
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+      <style>{`
+        details[open] > summary .bank-section-indicator {
+          transform: rotate(90deg);
+        }
+      `}</style>
       <div className="flex items-center justify-between gap-3 mb-6">
         <h2 className="text-xl font-bold text-slate-100">Bank Requests</h2>
         <div className="flex items-center gap-2 flex-wrap">
@@ -543,8 +548,12 @@ export default function BankRequestsTab({
           </div>
         </div>
       )}
-      <div className="flex items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-2">
+      <details open className="mb-8">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-2">
+        <span className="flex items-center gap-2">
+          <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
         <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Pending Requests</h3>
+        </span>
         {pendingRequestIds.length > 0 && (
           <label className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
             <input
@@ -556,7 +565,7 @@ export default function BankRequestsTab({
             Select all pending
           </label>
         )}
-      </div>
+      </summary>
       {pendingRequestGroups.length === 0 ? (
         <p className="text-slate-600 italic py-4 mb-8">No pending requests.</p>
       ) : (
@@ -675,9 +684,14 @@ export default function BankRequestsTab({
           })}
         </div>
       )}
+      </details>
 
-      <div className="flex items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-2">
+      <details open>
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 mb-4 border-b border-slate-800 pb-2">
+        <span className="flex items-center gap-2">
+          <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
         <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Resolved Requests</h3>
+        </span>
         {resolvedRequestGroups.length > 0 && (
           <label className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
             <input
@@ -689,7 +703,7 @@ export default function BankRequestsTab({
             Select all
           </label>
         )}
-      </div>
+      </summary>
       {resolvedRequestGroups.length === 0 ? (
         <p className="text-slate-600 italic py-4">No resolved requests yet.</p>
       ) : (
@@ -735,6 +749,7 @@ export default function BankRequestsTab({
           })}
         </div>
       )}
+      </details>
     </section>
   );
 }

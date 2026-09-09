@@ -236,6 +236,13 @@ function createWriteGuard(sessionSecret, db) {
       }
     }
 
+    if (req.method === 'POST' && /^\/api\/raid-signup-events\/\d+\/signup$/.test(req.path)) {
+      const bnetSession = getBattleNetSessionFromRequest(req);
+      if (bnetSession?.userId) {
+        return next();
+      }
+    }
+
     if (req.method === 'POST' && /\/bank-requests$/.test(req.path)) {
       return next();
     }

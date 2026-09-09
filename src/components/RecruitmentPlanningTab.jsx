@@ -434,14 +434,17 @@ export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData,
       {saveError ? <p className="text-xs text-rose-400">{saveError}</p> : null}
       {isSaving ? <p className="text-xs text-cyan-400">Saving...</p> : null}
 
-      <div className="rounded-xl border border-slate-800 bg-slate-950 p-4 space-y-3">
-        <div className="flex flex-wrap items-center justify-between gap-2">
+      <details open className="rounded-xl border border-slate-800 bg-slate-950 p-4 space-y-3">
+        <summary className="flex cursor-pointer list-none flex-wrap items-center justify-between gap-2">
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-widest text-slate-300">Roster</h3>
+            <h3 className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-slate-300">
+              <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
+              Roster
+            </h3>
             <p className="mt-1 text-xs text-slate-500">Add a roster member to the next available planning slot.</p>
           </div>
           {rosterAddStatus ? <span className="text-xs text-cyan-400">{rosterAddStatus}</span> : null}
-        </div>
+        </summary>
         {roster.length === 0 ? (
           <p className="text-sm text-slate-500">No roster members yet.</p>
         ) : (
@@ -481,7 +484,7 @@ export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData,
             })}
           </div>
         )}
-      </div>
+      </details>
 
       {editingRosterPlayer && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4" onClick={() => setEditingRosterPlayer(null)}>
@@ -525,7 +528,11 @@ export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData,
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 items-start">
         {groups.map((group) => (
-          <div key={group.id} className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+          <details key={group.id} open className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+            <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-bold uppercase tracking-widest text-slate-300">
+              <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
+              {group.groupName || 'Untitled Group'}
+            </summary>
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-2">
                 <label className="text-xs uppercase tracking-wider text-slate-400">Group Name</label>
@@ -629,13 +636,14 @@ export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData,
                 );
               })}
             </div>
-          </div>
+          </details>
         ))}
       </div>
 
       {rosterManagementProps ? (
         <details className="rounded-xl border border-slate-800 bg-slate-950">
-          <summary className="cursor-pointer list-none p-4 text-sm font-bold uppercase tracking-widest text-slate-300">
+          <summary className="flex cursor-pointer list-none items-center gap-2 p-4 text-sm font-bold uppercase tracking-widest text-slate-300">
+            <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
             Manage Roster
           </summary>
           <div className="border-t border-slate-800">

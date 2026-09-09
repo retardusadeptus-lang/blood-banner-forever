@@ -358,8 +358,24 @@ export default function useDashboardHelpers({
     };
 
     return (
-      <div key={slotName} className="flex gap-3 bg-slate-900 border border-slate-700 hover:border-slate-500 p-2.5 rounded-lg transition-colors shadow-sm">
-        <div key={`${slotName}-${selectedBisSpec}`} className="flex flex-col gap-2 flex-shrink-0">
+      <div
+        key={slotName}
+        className={`flex gap-3 bg-slate-900 border border-slate-700 hover:border-slate-500 p-2.5 rounded-lg transition-colors shadow-sm ${canExpand ? 'cursor-pointer' : ''}`}
+        onClick={event => {
+          if (!canExpand || event.target.closest('a')) return;
+          setExpandedBisSlots(prev => ({ ...prev, [expansionKey]: !prev[expansionKey] }));
+        }}
+        onKeyDown={event => {
+          if (!canExpand || (event.key !== 'Enter' && event.key !== ' ')) return;
+          event.preventDefault();
+          setExpandedBisSlots(prev => ({ ...prev, [expansionKey]: !prev[expansionKey] }));
+        }}
+        role={canExpand ? 'button' : undefined}
+        tabIndex={canExpand ? 0 : undefined}
+        aria-expanded={canExpand ? isExpanded : undefined}
+        aria-label={canExpand ? `${slotName} optional items` : undefined}
+      >
+        <div key={`${slotName}-${selectedBisSpec}`} className="flex flex-col items-center gap-2 flex-shrink-0">
           {iconItems.length > 0 ? (
             iconItems.map((item, index) => (
               <div key={`${item.name}-${index}`} className="w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex items-center justify-center relative shadow-inner overflow-hidden character-slot-icon">
@@ -387,21 +403,26 @@ export default function useDashboardHelpers({
               <span className="text-[9px] font-bold text-slate-500 uppercase z-10 rotate-45 opacity-30">{slotName}</span>
             </div>
           )}
+          {canExpand ? (
+            <button
+              type="button"
+              onClick={event => {
+                event.stopPropagation();
+                setExpandedBisSlots(prev => ({ ...prev, [expansionKey]: !prev[expansionKey] }));
+              }}
+              className="flex h-5 w-5 items-center justify-center text-slate-400 transition-colors hover:text-slate-100"
+              title={isExpanded ? 'Collapse optional items' : 'Expand optional items'}
+              aria-label={isExpanded ? 'Collapse optional items' : 'Expand optional items'}
+              aria-expanded={isExpanded}
+            >
+              <span aria-hidden="true" className={`inline-block transition-transform duration-150 ${isExpanded ? 'rotate-90' : ''}`}>&gt;</span>
+            </button>
+          ) : null}
         </div>
 
         <div className="flex flex-col min-w-0 justify-center">
           <div className="flex items-center justify-between gap-2 mb-1">
             <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none">{slotName}</span>
-            {canExpand ? (
-              <button
-                type="button"
-                onClick={() => setExpandedBisSlots(prev => ({ ...prev, [expansionKey]: !prev[expansionKey] }))}
-                className="text-[10px] font-bold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded px-1.5 py-0.5 leading-none"
-                title={isExpanded ? 'Collapse optional items' : 'Expand optional items'}
-              >
-                {isExpanded ? '-' : '+'}
-              </button>
-            ) : null}
           </div>
           {primaryBis.length > 0 ? (
             primaryBis.map(i => (

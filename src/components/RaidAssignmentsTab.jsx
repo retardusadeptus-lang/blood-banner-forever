@@ -171,9 +171,12 @@ function SignupRosterReference({ event, entries, groups, getSpecById, isLoading,
   return (
     <details open={isOpen} onToggle={event => onToggle(event.currentTarget.open)} className="bg-slate-950 border border-cyan-900/60 rounded-xl shadow-inner">
       <summary className="cursor-pointer list-none flex items-center justify-between gap-4 px-5 py-4">
-        <div>
+        <div className="flex items-start gap-2">
+          <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500 mt-1">&gt;</span>
+          <div>
           <h3 className="text-sm font-bold text-cyan-300 uppercase tracking-widest">Signed-up Roster Reference</h3>
           <p className="text-xs text-slate-500 mt-1">The selected signup event is the player pool used by assignment selectors.</p>
+          </div>
         </div>
         <span className="text-xs font-bold text-slate-400">{isOpen ? 'Hide' : 'Show'}</span>
       </summary>
@@ -1224,8 +1227,11 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
       )}
 
       {/* GLOBAL ROSTER ASSIGNMENTS PANEL */}
-      <div className="bg-slate-950 border border-slate-800 rounded-xl shadow-xl p-5 space-y-6">
-        <h3 className="text-sm font-bold text-amber-400 uppercase tracking-widest border-b border-slate-800 pb-2">Raid-Wide Global Setup</h3>
+      <details open className="bg-slate-950 border border-slate-800 rounded-xl shadow-xl p-5 space-y-6">
+        <summary className="cursor-pointer list-none flex items-center gap-2 border-b border-slate-800 pb-2">
+          <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
+          <h3 className="text-sm font-bold text-amber-400 uppercase tracking-widest">Raid-Wide Global Setup</h3>
+        </summary>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
           {/* TANKS */}
@@ -1389,7 +1395,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
             );
           })}
         </div>
-      </div>
+      </details>
 
       {/* DYNAMIC LIST OF ENCOUNTERS COMPONENT SHEETS */}
       {orderedActiveBosses.length === 0 ? (

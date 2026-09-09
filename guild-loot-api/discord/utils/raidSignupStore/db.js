@@ -44,6 +44,18 @@ function ensureRosterPlayerForSignup(db, playerName, specId) {
   return Number(info.lastInsertRowid);
 }
 
+function linkDiscordUserToCharacter(db, playerName, discordUserId) {
+  const cleanedName = String(playerName || '').trim();
+  const cleanedDiscordUserId = String(discordUserId || '').trim();
+  if (!cleanedName || !cleanedDiscordUserId) return;
+
+  db.prepare(`
+    UPDATE roster
+    SET discord_user_id = ?
+    WHERE lower(trim(name)) = lower(trim(?))
+  `).run(cleanedDiscordUserId, cleanedName);
+}
+
 function getRoleBucketForSpec(spec) {
   const slug = String(spec?.slug || '').toLowerCase();
   const specName = String(spec?.spec || '').toLowerCase();
@@ -330,7 +342,39 @@ function getDraft(db, eventId, discordUserId) {
   `).get(eventId, discordUserId);
 }
 
-function upsertSignupEntry(db, eventId, discordUserId, discordUsername, status, specId) {
+function upsertSignupEntry(db, eventId, discordUserId, discordUsername, status, specId, note, signupSource = 'discord') {
+  let effectiveDiscordUserId = String(discordUserId || '').trim();
+  const existingByIdentity = db.prepare(`
+    SELECT discord_user_id
+    FROM raid_signup_entries
+    WHERE event_id = ? AND discord_user_id = ?
+    LIMIT 1
+  `).get(eventId, effectiveDiscordUserId);
+  const existingByCharacter = db.prepare(`
+    SELECT discord_user_id
+    FROM raid_signup_entries
+    WHERE event_id = ? AND lower(trim(discord_username)) = lower(trim(?))
+    LIMIT 1
+  `).get(eventId, discordUsername);
+
+  if (!existingByIdentity && existingByCharacter) {
+    const existingIdentity = String(existingByCharacter.discord_user_id || '').trim();
+    const incomingIsWebsite = effectiveDiscordUserId.startsWith('web:');
+    const existingIsWebsite = existingIdentity.startsWith('web:');
+    if (incomingIsWebsite || existingIsWebsite) {
+      if (!incomingIsWebsite && existingIsWebsite) {
+        db.prepare(`
+          UPDATE raid_signup_entries
+          SET discord_user_id = ?
+          WHERE event_id = ? AND discord_user_id = ?
+        `).run(effectiveDiscordUserId, eventId, existingIdentity);
+        effectiveDiscordUserId = String(discordUserId || '').trim();
+      } else {
+        effectiveDiscordUserId = existingIdentity;
+      }
+    }
+  }
+
   let spec = null;
   let roleBucket = null;
 
@@ -345,22 +389,71 @@ function upsertSignupEntry(db, eventId, discordUserId, discordUsername, status, 
     ensureRosterPlayerForSignup(db, discordUsername, spec ? spec.id : null);
   }
 
+  const entryColumns = db.prepare("PRAGMA table_info('raid_signup_entries')").all();
+  const hasSourceColumn = entryColumns.some(column => column.name === 'signup_source');
+  const hasOrderColumn = entryColumns.some(column => column.name === 'signup_order');
+  const normalizedSource = String(signupSource || '').trim().toLowerCase() === 'website' ? 'website' : 'discord';
+
+  if (!hasSourceColumn) {
+    db.prepare(`
+      INSERT INTO raid_signup_entries (event_id, discord_user_id, discord_username, status, spec_id, role_bucket, note, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+      ON CONFLICT(event_id, discord_user_id)
+      DO UPDATE SET
+        discord_username = excluded.discord_username,
+        status = excluded.status,
+        spec_id = excluded.spec_id,
+        role_bucket = excluded.role_bucket,
+        note = COALESCE(excluded.note, raid_signup_entries.note),
+        updated_at = CURRENT_TIMESTAMP
+    `).run(eventId, effectiveDiscordUserId, discordUsername, status, spec ? spec.id : null, roleBucket, note === undefined ? null : String(note || '').trim());
+    return;
+  }
+
+  if (!hasOrderColumn) {
+    db.prepare(`
+      INSERT INTO raid_signup_entries (event_id, discord_user_id, discord_username, status, spec_id, role_bucket, signup_source, note, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+      ON CONFLICT(event_id, discord_user_id)
+      DO UPDATE SET
+        discord_username = excluded.discord_username,
+        status = excluded.status,
+        spec_id = excluded.spec_id,
+        role_bucket = excluded.role_bucket,
+        signup_source = excluded.signup_source,
+        note = COALESCE(excluded.note, raid_signup_entries.note),
+        updated_at = CURRENT_TIMESTAMP
+    `).run(eventId, effectiveDiscordUserId, discordUsername, status, spec ? spec.id : null, roleBucket, normalizedSource, note === undefined ? null : String(note || '').trim());
+    return;
+  }
+
+  const nextSignupOrder = Number(db.prepare(`
+    SELECT COALESCE(MAX(signup_order), 0) + 1 AS next_order
+    FROM raid_signup_entries
+    WHERE event_id = ?
+  `).get(eventId)?.next_order || 1);
+
   db.prepare(`
-    INSERT INTO raid_signup_entries (event_id, discord_user_id, discord_username, status, spec_id, role_bucket, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+    INSERT INTO raid_signup_entries (event_id, discord_user_id, discord_username, status, spec_id, role_bucket, signup_order, signup_source, note, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
     ON CONFLICT(event_id, discord_user_id)
     DO UPDATE SET
       discord_username = excluded.discord_username,
       status = excluded.status,
       spec_id = excluded.spec_id,
       role_bucket = excluded.role_bucket,
+        signup_order = raid_signup_entries.signup_order,
+        signup_source = CASE WHEN raid_signup_entries.signup_source = 'website' OR excluded.signup_source = 'website' THEN 'website' ELSE excluded.signup_source END,
+      note = COALESCE(excluded.note, raid_signup_entries.note),
       updated_at = CURRENT_TIMESTAMP
-  `).run(eventId, discordUserId, discordUsername, status, spec ? spec.id : null, roleBucket);
+      `).run(eventId, effectiveDiscordUserId, discordUsername, status, spec ? spec.id : null, roleBucket, nextSignupOrder, normalizedSource, note === undefined ? null : String(note || '').trim());
 }
 
 function listEntriesForEvent(db, eventId) {
   const entryColumns = db.prepare("PRAGMA table_info('raid_signup_entries')").all();
   const hasNoteColumn = entryColumns.some(column => column.name === 'note');
+  const hasSourceColumn = entryColumns.some(column => column.name === 'signup_source');
+  const hasOrderColumn = entryColumns.some(column => column.name === 'signup_order');
   const userPrefColumns = db.prepare("PRAGMA table_info('raid_signup_user_prefs')").all();
   const hasUserPrefsTable = userPrefColumns.length > 0;
 
@@ -373,6 +466,8 @@ function listEntriesForEvent(db, eventId) {
       e.status,
       e.spec_id,
       e.role_bucket,
+      ${hasOrderColumn ? 'e.signup_order,' : 'NULL AS signup_order,'}
+      ${hasSourceColumn ? 'e.signup_source,' : "'discord' AS signup_source,"}
       ${hasUserPrefsTable ? "COALESCE(p.character_name, '')" : "''"} AS character_name,
       ${hasNoteColumn ? 'e.note,' : "'' AS note,"}
       e.updated_at,
@@ -402,26 +497,26 @@ function listEntriesForEvent(db, eventId) {
     absence: 4
   };
 
-  const byOrder = [...normalizedRows].sort((a, b) => {
+  const byStatus = [...normalizedRows].sort((a, b) => {
     const aStatus = String(a.status || '').toLowerCase();
     const bStatus = String(b.status || '').toLowerCase();
     const aPriority = statusPriority[aStatus] ?? 99;
     const bPriority = statusPriority[bStatus] ?? 99;
 
     if (aPriority !== bPriority) return aPriority - bPriority;
-
     const aTime = Date.parse(a.updated_at || '') || 0;
     const bTime = Date.parse(b.updated_at || '') || 0;
     if (aTime !== bTime) return aTime - bTime;
     return Number(a.id) - Number(b.id);
   });
 
-  const orderMap = new Map();
-  byOrder.forEach((row, idx) => {
-    orderMap.set(row.id, idx + 1);
-  });
+  const orderRows = hasOrderColumn ? normalizedRows : byStatus;
+  const orderMap = new Map(orderRows.map((row, index) => [
+    row.id,
+    row.signup_order === null ? index + 1 : Number(row.signup_order)
+  ]));
 
-  return byOrder.map(row => ({ ...row, signup_order: orderMap.get(row.id) || null }));
+  return byStatus.map(row => ({ ...row, signup_order: orderMap.get(row.id) || null }));
 }
 
 function listGroupsForEvent(db, eventId) {
@@ -437,6 +532,7 @@ function listGroupsForEvent(db, eventId) {
 
 module.exports = {
   ensureRosterPlayerForSignup,
+  linkDiscordUserToCharacter,
   getRoleBucketForSpec,
   listTemplates,
   getTemplateById,
