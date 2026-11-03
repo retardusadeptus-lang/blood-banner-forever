@@ -2,6 +2,7 @@ import AdminTodoTab from '../features/admin/AdminTodoTab';
 import SiteInstructionsAdminTab from '../features/admin/SiteInstructionsAdminTab';
 import OfficerRolesTab from '../components/OfficerRolesTab';
 import DiscordBotConfigTab from '../components/DiscordBotConfigTab';
+import RaidBossManager from '../components/RaidBossManager';
 
 export default function AdminContainer({
   activeTab,
@@ -18,7 +19,19 @@ export default function AdminContainer({
   setScoringConfig,
   scoringConfig,
   scoringConfigDirty,
-  bnetAuthState
+  bnetAuthState,
+  customRaidGroups,
+  enabledBosses,
+  handleAddCustomRaidBoss,
+  handleAddTrashBefore,
+  handleSetBossVisibility,
+  handleRenameCustomRaidBoss,
+  handleRemoveCustomRaidBoss,
+  handleMoveEnabledBoss,
+  handleReorderEnabledBoss,
+  hasRaidAssignmentsUnsavedChanges,
+  handleSaveRaidAssignmentsChanges,
+  isSavingRaidAssignments
 }) {
   const {
     officerRoles,
@@ -98,6 +111,22 @@ export default function AdminContainer({
         )}
         {adminSubTab === 'instructions' && (
           <SiteInstructionsAdminTab />
+        )}
+        {adminSubTab === 'bosses' && (
+          <RaidBossManager
+            customRaidGroups={customRaidGroups}
+            enabledBosses={enabledBosses}
+            handleAddCustomRaidBoss={handleAddCustomRaidBoss}
+            handleAddTrashBefore={handleAddTrashBefore}
+            handleSetBossVisibility={handleSetBossVisibility}
+            handleRenameCustomRaidBoss={handleRenameCustomRaidBoss}
+            handleRemoveCustomRaidBoss={handleRemoveCustomRaidBoss}
+            handleMoveEnabledBoss={handleMoveEnabledBoss}
+            handleReorderEnabledBoss={handleReorderEnabledBoss}
+            hasUnsavedChanges={hasRaidAssignmentsUnsavedChanges}
+            onSaveChanges={handleSaveRaidAssignmentsChanges}
+            isSaving={isSavingRaidAssignments}
+          />
         )}
       </div>
     );

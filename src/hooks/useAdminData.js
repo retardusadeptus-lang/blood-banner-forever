@@ -6,6 +6,7 @@ export default function useAdminData({
   deleteData,
   activeTab,
   adminSubTab,
+  isAuthenticated,
   scoringConfigDirty,
   setScoringConfigDirty,
   scoringConfig,
@@ -119,7 +120,7 @@ export default function useAdminData({
 
   useEffect(() => {
     const shouldLoadOfficerRoles = activeTab === 'officerRoles' || adminSubTab === 'officerRoles';
-    if (!shouldLoadOfficerRoles || officerRolesDirty || bnetAccessRolesDirty) return;
+    if (!isAuthenticated || !shouldLoadOfficerRoles || officerRolesDirty || bnetAccessRolesDirty) return;
     let mounted = true;
 
     const loadOfficerRoles = async () => {
@@ -150,11 +151,11 @@ export default function useAdminData({
 
     loadOfficerRoles();
     return () => { mounted = false; };
-  }, [fetchData, activeTab, adminSubTab, officerRolesDirty, bnetAccessRolesDirty]);
+  }, [fetchData, activeTab, adminSubTab, isAuthenticated, officerRolesDirty, bnetAccessRolesDirty]);
 
   useEffect(() => {
     const shouldLoadDiscordConfig = activeTab === 'discordBotConfig' || adminSubTab === 'config';
-    if (!shouldLoadDiscordConfig || discordBotConfigDirty) return;
+    if (!isAuthenticated || !shouldLoadDiscordConfig || discordBotConfigDirty) return;
     let mounted = true;
 
     const loadDiscordBotConfig = async () => {
@@ -175,7 +176,7 @@ export default function useAdminData({
 
     loadDiscordBotConfig();
     return () => { mounted = false; };
-  }, [fetchData, activeTab, adminSubTab, discordBotConfigDirty, refreshRosterClaims]);
+  }, [fetchData, activeTab, adminSubTab, isAuthenticated, discordBotConfigDirty, refreshRosterClaims]);
 
   const handleSaveOfficerRoles = async ({ silent = false } = {}) => {
     if (!officerRolesDirty) return;

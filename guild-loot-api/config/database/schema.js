@@ -1,3 +1,34 @@
+const SPEC_SEED_ROWS = [
+  [1, 'Druid', 'Balance Druid', 'balance-druid', '#FF7D0A', 'spell_nature_starfall'],
+  [2, 'Druid', 'Feral (DPS)', 'feral-dps-druid', '#FF7D0A', 'ability_druid_catform'],
+  [3, 'Druid', 'Feral (Tank)', 'feral-tank-druid', '#FF7D0A', 'ability_racial_bearform'],
+  [4, 'Druid', 'Resto Druid', 'restoration-druid', '#FF7D0A', 'spell_nature_healingtouch'],
+  [5, 'Hunter', 'BM Hunter', 'BM-hunter', '#ABD473', 'ability_hunter_beasttaming'],
+  [6, 'Hunter', 'MM Hunter', 'marksmanship-hunter', '#ABD473', 'ability_marksmanship'],
+  [7, 'Hunter', 'Survival Hunter', 'survival-hunter', '#ABD473', 'ability_hunter_swiftstrike'],
+  [8, 'Mage', 'Arcane Mage', 'arcane-mage', '#69CCF0', 'spell_holy_magicalsentry'],
+  [9, 'Mage', 'Fire Mage', 'fire-mage', '#69CCF0', 'spell_fire_firebolt02'],
+  [10, 'Mage', 'Frost Mage', 'frost-mage', '#69CCF0', 'spell_frost_frostbolt02'],
+  [11, 'Paladin', 'Holy Paladin', 'holy-paladin', '#F58CBA', 'spell_holy_holybolt'],
+  [12, 'Paladin', 'Prot Paladin', 'prot-paladin', '#F58CBA', 'spell_holy_devotionaura'],
+  [13, 'Paladin', 'Ret Paladin', 'retribution-paladin', '#F58CBA', 'spell_holy_auraoflight'],
+  [14, 'Priest', 'Discipline Priest', 'discipline-priest', '#FFFFFF', 'spell_holy_wordfortitude'],
+  [15, 'Priest', 'Holy Priest', 'holy-priest', '#FFFFFF', 'spell_holy_guardianspirit'],
+  [16, 'Priest', 'Shadow Priest', 'shadow-priest', '#FFFFFF', 'spell_shadow_shadowwordpain'],
+  [17, 'Rogue', 'Combat Rogue', 'combat-rogue', '#FFF569', 'ability_backstab'],
+  [18, 'Rogue', 'Assassination Rogue', 'assassination-rogue', '#FFF569', 'ability_rogue_eviscerate'],
+  [19, 'Rogue', 'Subtlety Rogue', 'subtlety-rogue', '#FFF569', 'ability_stealth'],
+  [20, 'Shaman', 'Elemental Shaman', 'elemental-shaman', '#0070DE', 'spell_nature_lightning'],
+  [21, 'Shaman', 'Enhance Shaman', 'enhancement-shaman', '#0070DE', 'spell_nature_lightningshield'],
+  [22, 'Shaman', 'Resto Shaman', 'restoration-shaman', '#0070DE', 'spell_nature_magicimmunity'],
+  [23, 'Warlock', 'Affliction Warlock', 'affliction-warlock', '#8788EE', 'spell_shadow_deathcoil'],
+  [24, 'Warlock', 'Demo Warlock', 'demonology-warlock', '#8788EE', 'spell_shadow_metamorphosis'],
+  [25, 'Warlock', 'Destro Warlock', 'destruction-warlock', '#8788EE', 'spell_shadow_rainoffire'],
+  [26, 'Warrior', 'Arms Warrior', 'arms-warrior', '#C79C6E', 'ability_warrior_savageblow'],
+  [27, 'Warrior', 'Fury Warrior', 'fury-warrior', '#C79C6E', 'ability_warrior_innerrage'],
+  [28, 'Warrior', 'Prot Warrior', 'prot-warrior', '#C79C6E', 'inv_shield_06']
+];
+
 const TIER_TOKEN_SEED_ROWS = [
   { name: 'Helm of the Fallen Champion', phase: 'T4', zone: 'Karazhan', boss: 'Prince Malchezaar', tokenGroup: 'Fallen Champion', tokenSlot: 'head', classes: ['Paladin', 'Rogue', 'Shaman'] },
   { name: 'Gauntlets of the Fallen Champion', phase: 'T4', zone: 'Karazhan', boss: 'The Curator', tokenGroup: 'Fallen Champion', tokenSlot: 'hands', classes: ['Paladin', 'Rogue', 'Shaman'] },
@@ -120,6 +151,93 @@ function runWithBusyRetries(operation, { retries = 5, initialDelayMs = 250 } = {
   throw lastError;
 }
 
+function ensureCoreSchema(db) {
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS specs (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      class VARCHAR(100) NOT NULL,
+      spec VARCHAR(100) NOT NULL,
+      slug TEXT DEFAULT '',
+      color TEXT DEFAULT '#e2e8f0',
+      icon_small TEXT DEFAULT '',
+      icon_medium TEXT DEFAULT '',
+      icon_large TEXT DEFAULT ''
+    );
+
+    CREATE TABLE IF NOT EXISTS items (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name VARCHAR(255) NOT NULL,
+      slot VARCHAR(100),
+      phase VARCHAR(100),
+      source VARCHAR(255),
+      source_type VARCHAR(100),
+      drop_chance REAL,
+      rarity VARCHAR(100),
+      wowhead_id INTEGER
+    );
+
+    CREATE TABLE IF NOT EXISTS items_bis (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      item_id INTEGER NOT NULL REFERENCES items(id),
+      spec_id INTEGER NOT NULL REFERENCES specs(id),
+      preraid_bis INTEGER DEFAULT 0,
+      t4_bis INTEGER DEFAULT 0,
+      t5_bis INTEGER DEFAULT 0,
+      t6_bis INTEGER DEFAULT 0,
+      za_bis INTEGER DEFAULT 0,
+      swp_bis INTEGER DEFAULT 0,
+      preraid_opt INTEGER DEFAULT 0,
+      t4_opt INTEGER DEFAULT 0,
+      t5_opt INTEGER DEFAULT 0,
+      t6_opt INTEGER DEFAULT 0,
+      za_opt INTEGER DEFAULT 0,
+      swp_opt INTEGER DEFAULT 0,
+      ongoing_bis INTEGER DEFAULT 0,
+      ongoing_opt INTEGER DEFAULT 0
+    );
+  `);
+
+  const itemsBisColumns = db.prepare("PRAGMA table_info('items_bis')").all().map(column => column.name);
+  if (!itemsBisColumns.includes('ongoing_bis')) {
+    db.exec('ALTER TABLE items_bis ADD COLUMN ongoing_bis INTEGER DEFAULT 0');
+  }
+  if (!itemsBisColumns.includes('ongoing_opt')) {
+    db.exec('ALTER TABLE items_bis ADD COLUMN ongoing_opt INTEGER DEFAULT 0');
+  }
+}
+
+function ensureSpecsSeeded(db) {
+  const upsertSpec = db.prepare(`
+    INSERT INTO specs (id, class, spec, slug, color, icon_small, icon_medium, icon_large)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(id) DO UPDATE SET
+      class = excluded.class,
+      spec = excluded.spec,
+      slug = excluded.slug,
+      color = excluded.color,
+      icon_small = excluded.icon_small,
+      icon_medium = excluded.icon_medium,
+      icon_large = excluded.icon_large
+  `);
+
+  const seedSpecs = db.transaction(() => {
+    SPEC_SEED_ROWS.forEach(([id, className, specName, slug, color, icon]) => {
+      upsertSpec.run(
+        id,
+        className,
+        specName,
+        slug,
+        color,
+        `https://wow.zamimg.com/images/wow/icons/small/${icon}.jpg`,
+        `https://wow.zamimg.com/images/wow/icons/medium/${icon}.jpg`,
+        `https://wow.zamimg.com/images/wow/icons/large/${icon}.jpg`
+      );
+    });
+  });
+
+  seedSpecs();
+}
+
 function ensureBattleNetAuthSchema(db) {
   db.exec(`
     CREATE TABLE IF NOT EXISTS users (
@@ -127,6 +245,27 @@ function ensureBattleNetAuthSchema(db) {
       battletag TEXT NOT NULL UNIQUE,
       blizzard_id TEXT NOT NULL UNIQUE,
       created_at TEXT DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS character_profiles (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      character_name TEXT NOT NULL,
+      realm TEXT DEFAULT '',
+      race TEXT DEFAULT '',
+      class_name TEXT DEFAULT '',
+      spec TEXT DEFAULT '',
+      subclass TEXT DEFAULT '',
+      level INTEGER,
+      role TEXT DEFAULT '',
+      professions TEXT DEFAULT '',
+      pronouns TEXT DEFAULT '',
+      personality TEXT DEFAULT '',
+      rp_hooks TEXT DEFAULT '',
+      backstory TEXT DEFAULT '',
+      avatar_data TEXT DEFAULT '',
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      updated_at TEXT DEFAULT CURRENT_TIMESTAMP
     );
 
     CREATE TABLE IF NOT EXISTS roster_claim_audit (
@@ -142,6 +281,17 @@ function ensureBattleNetAuthSchema(db) {
       created_at TEXT DEFAULT CURRENT_TIMESTAMP
     );
   `);
+
+  const profileColumns = db.prepare("PRAGMA table_info('character_profiles')").all().map(column => column.name);
+  if (!profileColumns.includes('pronouns')) {
+    db.exec("ALTER TABLE character_profiles ADD COLUMN pronouns TEXT DEFAULT ''");
+  }
+  if (!profileColumns.includes('rp_hooks')) {
+    db.exec("ALTER TABLE character_profiles ADD COLUMN rp_hooks TEXT DEFAULT ''");
+  }
+  if (!profileColumns.includes('subclass')) {
+    db.exec("ALTER TABLE character_profiles ADD COLUMN subclass TEXT DEFAULT ''");
+  }
 
   const rosterColumns = db.prepare('PRAGMA table_info(roster)').all();
   const hasUserId = rosterColumns.some(column => column.name === 'user_id');
@@ -217,7 +367,6 @@ function ensureTierTokenSupport(db) {
     }
   });
 
-  seedAll();
 }
 
 function ensureNormalizedOperationalTables(db) {
@@ -253,9 +402,28 @@ function ensureNormalizedOperationalTables(db) {
     CREATE TABLE IF NOT EXISTS raid_assignment_config_bosses (
       boss_name TEXT PRIMARY KEY,
       enabled INTEGER NOT NULL DEFAULT 1,
+      sort_order INTEGER NOT NULL DEFAULT 0,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `).run();
+
+  const bossConfigColumns = db.prepare("PRAGMA table_info('raid_assignment_config_bosses')").all();
+  let addedBossSortOrder = false;
+  if (!bossConfigColumns.some(column => column.name === 'sort_order')) {
+    db.prepare('ALTER TABLE raid_assignment_config_bosses ADD COLUMN sort_order INTEGER NOT NULL DEFAULT 0').run();
+    addedBossSortOrder = true;
+  }
+  const bossSortOrderState = db.prepare('SELECT COUNT(*) as count, MAX(sort_order) as max_order FROM raid_assignment_config_bosses').get();
+  if (addedBossSortOrder || (bossSortOrderState.count > 1 && bossSortOrderState.max_order === 0)) {
+    db.prepare(`
+      UPDATE raid_assignment_config_bosses
+      SET sort_order = (
+        SELECT COUNT(*)
+        FROM raid_assignment_config_bosses AS earlier
+        WHERE earlier.rowid < raid_assignment_config_bosses.rowid
+      )
+    `).run();
+  }
 
   const bisCount = db.prepare('SELECT COUNT(*) as count FROM bis_priority_entries').get().count;
   if (bisCount === 0) {
@@ -330,9 +498,9 @@ function ensureNormalizedOperationalTables(db) {
       }
     }
 
-    const insertBoss = db.prepare('INSERT OR REPLACE INTO raid_assignment_config_bosses (boss_name, enabled) VALUES (?, ?)');
+    const insertBoss = db.prepare('INSERT OR REPLACE INTO raid_assignment_config_bosses (boss_name, enabled, sort_order) VALUES (?, ?, ?)');
     const migrateBosses = db.transaction(() => {
-      enabledBosses.forEach(bossName => insertBoss.run(bossName, 1));
+      enabledBosses.forEach((bossName, index) => insertBoss.run(bossName, 1, index));
     });
     migrateBosses();
   }
@@ -908,6 +1076,8 @@ function ensureDatabaseIndexes(db) {
     'CREATE INDEX IF NOT EXISTS idx_raid_signup_absences_user_dates ON raid_signup_absences (user_id, start_date, end_date)',
     'CREATE INDEX IF NOT EXISTS idx_raid_signup_character_absences_roster_dates ON raid_signup_character_absences (roster_id, start_date, end_date)',
     'CREATE INDEX IF NOT EXISTS idx_bnet_user_roles_role ON bnet_user_roles (role)',
+    'CREATE INDEX IF NOT EXISTS idx_character_profiles_user_updated ON character_profiles (user_id, updated_at DESC)',
+    'CREATE UNIQUE INDEX IF NOT EXISTS idx_character_profiles_user_name ON character_profiles (user_id, character_name COLLATE NOCASE)',
     'CREATE INDEX IF NOT EXISTS idx_weakauras_created_at ON weakauras (created_at DESC)',
     'CREATE INDEX IF NOT EXISTS idx_raid_tactics_updated_at ON raid_tactics (updated_at DESC)',
     'CREATE INDEX IF NOT EXISTS idx_wipefest_created_at ON wipefest (created_at DESC)'
@@ -918,10 +1088,12 @@ function ensureDatabaseIndexes(db) {
 
 function ensureDatabaseReady(db) {
   runWithBusyRetries(() => {
+    ensureCoreSchema(db);
+    ensureSpecsSeeded(db);
+    ensureOperationalTables(db);
     ensureBattleNetAuthSchema(db);
     ensureTierTokenSupport(db);
     ensureWarcraftLogsTables(db);
-    ensureOperationalTables(db);
     ensureNormalizedOperationalTables(db);
     ensureBankRequestSchema(db);
     ensureOfficerRolesTable(db);

@@ -223,7 +223,7 @@ function SectionWrapper({ title, isAuthenticated, onAdd, onRemoveSection, hasIte
   );
 }
 
-function BossSelector({ raidZones, enabledBosses, handleToggleZone, handleToggleBoss, isAuthenticated, showManageBosses, onToggleManageBosses }) {
+function BossSelector({ raidZones, enabledBosses, handleToggleZone, handleToggleBoss }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="relative">
@@ -235,17 +235,6 @@ function BossSelector({ raidZones, enabledBosses, handleToggleZone, handleToggle
         <>
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
           <div className="absolute right-0 mt-2 z-20 w-80 max-h-96 overflow-y-auto custom-scrollbar bg-slate-950 border border-slate-700 rounded-xl shadow-2xl p-3 space-y-1">
-            {isAuthenticated && (
-              <button
-                onClick={() => {
-                  onToggleManageBosses(!showManageBosses);
-                  setOpen(false);
-                }}
-                className="w-full text-left bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-700 rounded px-3 py-2 text-xs font-bold uppercase tracking-wider mb-2"
-              >
-                {showManageBosses ? 'Hide Manage Bosses' : 'Manage Bosses'}
-              </button>
-            )}
             {raidZones.map(zone => {
               const zoneBossesEnabled = zone.bosses.filter(b => enabledBosses.includes(b)).length;
               const allEnabled = zoneBossesEnabled === zone.bosses.length;
@@ -705,7 +694,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
         </div>
       </div>
 
-      {isAuthenticated && showManageBosses && (
+      {false && (
         <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 shadow-inner">
           <div className="flex flex-col md:flex-row md:items-center gap-3">
             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Custom Boss Builder</h3>

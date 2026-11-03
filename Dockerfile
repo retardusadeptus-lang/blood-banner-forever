@@ -55,9 +55,10 @@ COPY src/archive/wowheaditemlist.csv /app/src/wowheaditemlist.csv
 # Ensure the working app root is the same in all environments when scripts are run on the container.
 ENV BIS_CSV_PATH="/app/guild-loot-api/BIS Lists/all-bis-items.csv"
 
-# API listens on API_PORT (nginx proxies /api/ to it); nginx serves the SPA on 3000.
-# API_PORT can be overridden at runtime (e.g. --env-file); nginx follows it.
-ENV API_PORT=4000
-EXPOSE 3000 4000
+# API listens on API_PORT (nginx proxies /api/ to it); nginx serves the SPA on PORT.
+# Both ports can be overridden at runtime by Coolify environment variables.
+ENV PORT=3002
+ENV API_PORT=4002
+EXPOSE 3002 4002
 
 CMD ["/docker-entrypoint.sh"]

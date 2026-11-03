@@ -76,6 +76,7 @@ function buildBisRoutes({ db }) {
   router.get('/bis-defaults/:phase', (req, res) => {
     try {
       const phaseMap = {
+        ongoing: 'ongoing',
         'pre-bis': 'preraid',
         't4': 't4',
         't5': 't5',
@@ -115,9 +116,9 @@ function buildBisRoutes({ db }) {
       const { spec, phase } = req.query;
       if (!spec || !phase) return res.status(400).json({ error: 'spec and phase are required' });
 
-      const validPhases = ['preraid', 't4', 't5', 't6', 'za', 'swp'];
+      const validPhases = ['ongoing', 'preraid', 't4', 't5', 't6', 'za', 'swp'];
       const phaseKey = String(phase || '').toLowerCase().replace('-', '').replace('pre-bis', 'preraid');
-      const safePhase = validPhases.includes(phaseKey) ? phaseKey : 't5';
+      const safePhase = validPhases.includes(phaseKey) ? phaseKey : 'ongoing';
 
       const rows = db.prepare(`
         SELECT
@@ -148,9 +149,9 @@ function buildBisRoutes({ db }) {
   router.get('/bis/item/:itemId', (req, res) => {
     try {
       const { phase } = req.query;
-      const validPhases = ['preraid', 't4', 't5', 't6', 'za', 'swp'];
-      const phaseKey = String(phase || 't5').toLowerCase().replace('-', '').replace('pre-bis', 'preraid');
-      const safePhase = validPhases.includes(phaseKey) ? phaseKey : 't5';
+      const validPhases = ['ongoing', 'preraid', 't4', 't5', 't6', 'za', 'swp'];
+      const phaseKey = String(phase || 'ongoing').toLowerCase().replace('-', '').replace('pre-bis', 'preraid');
+      const safePhase = validPhases.includes(phaseKey) ? phaseKey : 'ongoing';
 
       const rows = db.prepare(`
         SELECT

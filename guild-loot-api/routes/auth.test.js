@@ -15,7 +15,7 @@ function createApp() {
     bnetConfig: {
       BNET_CLIENT_ID: 'client-id',
       BNET_CLIENT_SECRET: 'client-secret',
-      BNET_REDIRECT_URI: 'http://localhost:4000/api/auth/bnet/callback',
+      BNET_REDIRECT_URI: 'http://localhost:4002/api/auth/bnet/callback',
       BNET_AUTHORIZE_URL: 'https://eu.battle.net/oauth/authorize',
       BNET_TOKEN_URL: 'https://eu.battle.net/oauth/token',
       BNET_USERINFO_URL: 'https://eu.battle.net/oauth/userinfo',
@@ -38,14 +38,14 @@ test('uses the configured Battle.net redirect URI when the request arrives throu
       headers: {
         'x-forwarded-host': 'localhost:3001',
         'x-forwarded-proto': 'http',
-        host: 'localhost:4000'
+        host: 'localhost:4002'
       },
       redirect: 'manual'
     });
 
     assert.equal(response.status, 302);
     const location = response.headers.get('location');
-    assert.match(location, /redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fapi%2Fauth%2Fbnet%2Fcallback/);
+    assert.match(location, /redirect_uri=http%3A%2F%2Flocalhost%3A4002%2Fapi%2Fauth%2Fbnet%2Fcallback/);
   } finally {
     await new Promise((resolve) => server.close(resolve));
   }
@@ -60,7 +60,7 @@ test('redirects back to the frontend origin captured during login', async () => 
     const startResponse = await fetch(`http://127.0.0.1:${port}/api/auth/bnet`, {
       headers: {
         origin: 'http://localhost:3001',
-        host: 'localhost:4000'
+        host: 'localhost:4002'
       },
       redirect: 'manual'
     });
@@ -76,7 +76,7 @@ test('redirects back to the frontend origin captured during login', async () => 
 
     const callbackResponse = await fetch(`http://127.0.0.1:${port}/api/auth/bnet/callback?code=test-code&state=${encodeURIComponent(state)}`, {
       headers: {
-        host: 'localhost:4000',
+        host: 'localhost:4002',
         cookie: sessionCookie
       },
       redirect: 'manual'

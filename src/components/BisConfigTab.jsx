@@ -1,11 +1,9 @@
 import React from 'react';
-import { LEFT_SLOTS, BOTTOM_SLOTS, PHASES } from '../constants';
+import { LEFT_SLOTS, BOTTOM_SLOTS } from '../constants';
 
 export default function BisConfigTab({
   selectedBisSpec,
   setSelectedBisSpec,
-  masterItemsDbPhase,
-  setMasterItemsDbPhase,
   specsFromDb,
   renderItemSlot,
   specsByName
@@ -130,16 +128,6 @@ export default function BisConfigTab({
           <p className="text-sm text-slate-500">View primary BiS and alternate options mapped to the paper doll interface.</p>
         </div>
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Phase:</span>
-            <select
-              className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[120px] focus:outline-none focus:ring-1 focus:ring-purple-500 cursor-pointer font-bold text-sm"
-              value={masterItemsDbPhase}
-              onChange={e => setMasterItemsDbPhase(e.target.value)}
-            >
-              {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
-            </select>
-          </div>
           <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">Select Spec:</span>
           <select 
             className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 min-w-[200px] focus:outline-none focus:ring-1 focus:ring-purple-500 cursor-pointer font-bold text-sm" 

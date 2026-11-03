@@ -229,8 +229,6 @@ export default function LootCouncilTab({
                     ? currentItemAssignments.awardedPlayerIds.map(id => String(id))
                     : (currentItemAssignments.awardedPlayerId ? [String(currentItemAssignments.awardedPlayerId)] : []);
                   const isAwardedPlayer = awardedPlayerIds.includes(String(player.id));
-                  const PHASE_ORDER = ["PRE-BIS", "T4", "T5", "T6", "ZA", "SWP"];
-                  const currentPhaseIndex = PHASE_ORDER.indexOf(String(globalPhase || '').toUpperCase());
                   const selectedNormalizedSlot = normalizeSlotKey(selectedItem.slot);
 
                   const playerAlts = selectedItem.is_token ? [] : mutableItems.filter(i => {
@@ -244,16 +242,6 @@ export default function LootCouncilTab({
                     const altStatus = altBisPriority || altEligibilityStatus || (hasSpecMatch ? 'BiS' : '');
                     if (!altStatus) return false;
 
-                    // Only show alternates from the current phase or earlier.
-                    // i.phase is expected to be a single string ("T5"). If it's
-                    // an array or anything else non-string, we can't trust it
-                    // represents a real phase, so exclude rather than guess.
-                    if (i.phase) {
-                      if (typeof i.phase !== 'string') return false;
-                      const itemPhaseIndex = PHASE_ORDER.indexOf(String(i.phase || '').toUpperCase());
-                      if (itemPhaseIndex === -1) return false; // unrecognized phase tag, exclude
-                      if (currentPhaseIndex !== -1 && itemPhaseIndex > currentPhaseIndex) return false;
-                    }
                     return true;
                   }).map(i => {
                     const altItemKey = `${i.name}|${specDisplay}`;

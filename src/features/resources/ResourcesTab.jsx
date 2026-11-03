@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import BisConfigTab from '../../components/BisConfigTab';
 import WeakaurasTab from './WeakaurasTab';
 import bossData from '../../cheat_sheet_extractv2.json';
-import { CHEAT_SHEET_PHASE_MAP, DEFAULT_GLOBAL_PHASE, PHASES } from '../../constants';
 
 const CHEAT_SHEET_STORAGE_KEY = 'cheat-sheet-data-v1';
 const CHEAT_SHEET_EXPORT_FILENAME = 'cheat-sheet-export.json';
@@ -139,20 +138,6 @@ const normalizeBoss = (boss = {}) => ({
   },
 });
 
-const PHASE_BY_RAID = {
-  'Karazhan': 'T4',
-  "Gruul's Lair": 'T4',
-  "Magtheridon's Lair": 'T4',
-  'Tempest Keep': 'T5',
-  'Serpentshrine Cavern': 'T5',
-  'Black Temple': 'T6',
-  'Mount Hyjal': 'T6',
-  "Zul'Aman": 'ZA',
-  'Sunwell Plateau': 'SWP',
-};
-
-const getPhaseFromRaid = (raid) => PHASE_BY_RAID[raid] || CHEAT_SHEET_PHASE_MAP[raid] || 'T5';
-
 const loadCheatSheetBosses = () => {
   if (typeof window === 'undefined') return (bossData || []).map(normalizeBoss);
 
@@ -173,7 +158,6 @@ const CHEAT_SHEET_RAIDS = [
   'All Raids',
   ...[...new Set((bossData || []).map(boss => boss.raid).filter(Boolean))].sort((a, b) => a.localeCompare(b))
 ];
-const CHEAT_SHEET_PHASE_OPTIONS = ['All Phases', ...PHASES];
 
 export default function ResourcesTab({
   resourcesSubTab,
@@ -196,11 +180,8 @@ export default function ResourcesTab({
   const [draftBosses, setDraftBosses] = useState(bosses);
   const [isEditMode, setIsEditMode] = useState(false);
   const [internalSelectedRaid, setInternalSelectedRaid] = useState('All Raids');
-  const [internalSelectedPhase, setInternalSelectedPhase] = useState(DEFAULT_GLOBAL_PHASE);
   const selectedRaid = internalSelectedRaid;
-  const selectedPhase = internalSelectedPhase;
   const setSelectedRaid = setInternalSelectedRaid;
-  const setSelectedPhase = setInternalSelectedPhase;
   const [recentReports, setRecentReports] = useState([]);
   const [recentReportsError, setRecentReportsError] = useState('');
   const [isTacticsEditMode, setIsTacticsEditMode] = useState(false);
@@ -353,12 +334,10 @@ export default function ResourcesTab({
       .filter(boss => {
         if (!isEditMode && boss.hidden) return false;
         const matchesRaid = selectedRaid === 'All Raids' || boss.raid === selectedRaid;
-        const bossPhase = getPhaseFromRaid(boss.raid);
-        const matchesPhase = selectedPhase === 'All Phases' || bossPhase === selectedPhase;
-        return matchesRaid && matchesPhase;
+        return matchesRaid;
       })
       .sort((a, b) => Number(Boolean(a.hidden)) - Number(Boolean(b.hidden)));
-  }, [bosses, draftBosses, isEditMode, selectedPhase, selectedRaid]);
+  }, [bosses, draftBosses, isEditMode, selectedRaid]);
 
   const currentBosses = isEditMode ? draftBosses : bosses;
   const hasPendingChanges = JSON.stringify(draftBosses) !== JSON.stringify(bosses);
@@ -901,19 +880,6 @@ export default function ResourcesTab({
                 >
                   {CHEAT_SHEET_RAIDS.map(raid => (
                     <option key={raid} value={raid}>{raid}</option>
-                  ))}
-                </select>
-              </label>
-
-              <label className="flex flex-col text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                Phase
-                <select
-                  className="mt-1 min-w-[140px] rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
-                  value={selectedPhase}
-                  onChange={event => setSelectedPhase(event.target.value)}
-                >
-                  {CHEAT_SHEET_PHASE_OPTIONS.map(phase => (
-                    <option key={phase} value={phase}>{phase}</option>
                   ))}
                 </select>
               </label>

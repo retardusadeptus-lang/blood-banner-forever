@@ -6,6 +6,8 @@ export default function useAppShellState({
   hasRosterUnsavedChanges,
   hasScoringUnsavedChanges,
   hasRaidAssignmentsUnsavedChanges,
+  raidAssignmentDataDirty,
+  enabledBossesDirty,
   adminData,
   handleSaveLootCouncilChanges,
   handleSaveRaidAssignmentsChanges,
@@ -28,7 +30,8 @@ export default function useAppShellState({
 
   const unsavedSections = useMemo(() => [
     hasLootUnsavedChanges ? 'Loot Council' : null,
-    hasRaidAssignmentsUnsavedChanges ? 'Raid Assignments' : null,
+    raidAssignmentDataDirty ? 'Raid Assignments' : null,
+    enabledBossesDirty ? 'Manage Bosses' : null,
     hasRosterUnsavedChanges ? 'Roster' : null,
     hasScoringUnsavedChanges ? 'Scoring' : null,
     hasItemsDbUnsavedChanges ? 'Items DB' : null,
@@ -38,6 +41,8 @@ export default function useAppShellState({
   ].filter(Boolean), [
     hasLootUnsavedChanges,
     hasRaidAssignmentsUnsavedChanges,
+    raidAssignmentDataDirty,
+    enabledBossesDirty,
     hasRosterUnsavedChanges,
     hasScoringUnsavedChanges,
     hasItemsDbUnsavedChanges,

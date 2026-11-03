@@ -9,7 +9,8 @@ const NAV_STORAGE_KEYS = {
   lootSubTab: 'loot-sub-tab',
   recruitmentSubTab: 'recruitment-sub-tab',
   adminSubTab: 'admin-sub-tab',
-  resourcesSubTab: 'resources-sub-tab'
+  resourcesSubTab: 'resources-sub-tab',
+  profilesSubTab: 'profiles-sub-tab'
 };
 
 export default function useDashboardNavigation({ isAuthenticated }) {
@@ -24,12 +25,14 @@ export default function useDashboardNavigation({ isAuthenticated }) {
     if (savedRecruitmentSubTab) return savedRecruitmentSubTab;
 
     const savedActiveTab = localStorage.getItem(NAV_STORAGE_KEYS.activeTab) || 'loot';
+    if (savedActiveTab === 'recruitmentAbout') return 'about';
     if (savedActiveTab === 'recruitmentPlanning') return 'planning';
     if (savedActiveTab === 'recruitmentFocus') return 'focus';
-    return 'roster';
+    return 'about';
   });
   const [adminSubTab, setAdminSubTab] = useState(() => localStorage.getItem(NAV_STORAGE_KEYS.adminSubTab) || 'officerRoles');
   const [resourcesSubTab, setResourcesSubTab] = useState(() => localStorage.getItem(NAV_STORAGE_KEYS.resourcesSubTab) || 'bis');
+  const [profilesSubTab, setProfilesSubTab] = useState(() => localStorage.getItem(NAV_STORAGE_KEYS.profilesSubTab) || 'my-characters');
 
   useEffect(() => {
     localStorage.setItem(NAV_STORAGE_KEYS.activeTab, activeTab);
@@ -62,6 +65,10 @@ export default function useDashboardNavigation({ isAuthenticated }) {
   useEffect(() => {
     localStorage.setItem(NAV_STORAGE_KEYS.resourcesSubTab, resourcesSubTab);
   }, [resourcesSubTab]);
+
+  useEffect(() => {
+    localStorage.setItem(NAV_STORAGE_KEYS.profilesSubTab, profilesSubTab);
+  }, [profilesSubTab]);
 
   useEffect(() => {
     if (isAuthenticated) return;
@@ -110,6 +117,11 @@ export default function useDashboardNavigation({ isAuthenticated }) {
   }, [activeTab, bankSubTab, isAuthenticated, lootSubTab, raidAssignmentsSubTab, raidSignupsSubTab, recruitmentSubTab]);
 
   useEffect(() => {
+    if (activeTab === 'recruitmentAbout' && recruitmentSubTab !== 'about') {
+      setRecruitmentSubTab('about');
+      return;
+    }
+
     if (activeTab === 'recruitmentPlanning' && recruitmentSubTab !== 'planning') {
       setRecruitmentSubTab('planning');
       return;
@@ -160,16 +172,18 @@ export default function useDashboardNavigation({ isAuthenticated }) {
         setLootSubTab(subTab || 'overview');
       }
     } else if (mainTab === 'recruitment') {
-      if (subTab === 'planning') {
+      if (subTab === 'about') {
+        setActiveTab('recruitmentAbout');
+      } else if (subTab === 'planning') {
         setActiveTab('recruitmentPlanning');
       } else if (subTab === 'focus') {
         setActiveTab('recruitmentFocus');
       } else if (subTab === 'applications') {
         setActiveTab('recruitmentApplications');
       } else {
-        setActiveTab('roster');
+        setActiveTab('recruitmentAbout');
       }
-      setRecruitmentSubTab(subTab || 'roster');
+      setRecruitmentSubTab(subTab || 'about');
     } else if (mainTab === 'admin') {
       if (subTab === 'config') {
         setActiveTab('discordBotConfig');
@@ -185,6 +199,9 @@ export default function useDashboardNavigation({ isAuthenticated }) {
     } else if (mainTab === 'resources') {
       setActiveTab('bis');
       setResourcesSubTab(subTab || 'bis');
+    } else if (mainTab === 'profiles') {
+      setActiveTab('profiles');
+      setProfilesSubTab(subTab || 'my-characters');
     } else {
       setActiveTab(mainTab);
     }
@@ -210,6 +227,7 @@ export default function useDashboardNavigation({ isAuthenticated }) {
     }
 
     if (groupKey === 'recruitment') {
+      if (subTab === 'about') return activeTab === 'recruitmentAbout';
       if (subTab === 'planning') return activeTab === 'recruitmentPlanning';
       if (subTab === 'focus') return activeTab === 'recruitmentFocus';
       if (subTab === 'applications') return activeTab === 'recruitmentApplications';
@@ -222,6 +240,7 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       if (subTab === 'itemsdb') return activeTab === 'itemsdb';
       if (subTab === 'todo') return activeTab === 'officerRoles' && adminSubTab === 'todo';
       if (subTab === 'instructions') return activeTab === 'officerRoles' && adminSubTab === 'instructions';
+      if (subTab === 'bosses') return activeTab === 'officerRoles' && adminSubTab === 'bosses';
       return false;
     }
 
@@ -229,8 +248,12 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       return activeTab === 'bis' && resourcesSubTab === subTab;
     }
 
+    if (groupKey === 'profiles') {
+      return activeTab === 'profiles' && profilesSubTab === subTab;
+    }
+
     return activeTab === groupKey;
-  }, [activeTab, adminSubTab, bankSubTab, lootSubTab, raidAssignmentsSubTab, raidSignupsSubTab, resourcesSubTab]);
+  }, [activeTab, adminSubTab, bankSubTab, lootSubTab, profilesSubTab, raidAssignmentsSubTab, raidSignupsSubTab, resourcesSubTab]);
 
   const subTabs = useMemo(() => {
     const allTabs = {
@@ -261,6 +284,7 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       { value: 'assigned', label: 'Assigned Loot', authOnly: true }
       ],
       recruitment: [
+      { value: 'about', label: 'About Us' },
       { value: 'roster', label: 'Roster', authOnly: true },
       { value: 'planning', label: 'Roster Planning', authOnly: true },
       { value: 'focus', label: 'Recruitment Focus' },
@@ -271,6 +295,7 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       { value: 'config', label: 'Config', authOnly: true },
       { value: 'itemsdb', label: 'Master Items DB', authOnly: true },
       { value: 'instructions', label: 'Site Instructions', authOnly: true },
+      { value: 'bosses', label: 'Manage Bosses', authOnly: true },
       { value: 'todo', label: 'To-do List', authOnly: true }
       ],
       resources: [
@@ -279,6 +304,10 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       { value: 'cheatsheets', label: 'Cheat Sheets' },
       { value: 'raidlogs', label: 'Raid Logs' },
       { value: 'wipefest', label: 'Wipefest' }
+      ],
+      profiles: [
+      { value: 'my-characters', label: 'My Characters' },
+      { value: 'meet-guild', label: 'Meet the Guild' }
       ]
     };
 
@@ -289,9 +318,10 @@ export default function useDashboardNavigation({ isAuthenticated }) {
       raidAssignments: allTabs.raidAssignments.filter(tab => tab.value === 'overview' || tab.value === 'tactics'),
       raidSignups: allTabs.raidSignups.filter(tab => tab.value === 'events' || tab.value === 'absences'),
       loot: allTabs.loot.filter(tab => tab.value === 'overview' || tab.value === 'assigned'),
-      recruitment: allTabs.recruitment.filter(tab => tab.value === 'focus' || tab.value === 'applications'),
+      recruitment: allTabs.recruitment.filter(tab => tab.value === 'about' || tab.value === 'focus' || tab.value === 'applications'),
       admin: [],
       resources: allTabs.resources,
+      profiles: allTabs.profiles,
     };
   }, [isAuthenticated]);
 
@@ -314,6 +344,8 @@ export default function useDashboardNavigation({ isAuthenticated }) {
     setAdminSubTab,
     resourcesSubTab,
     setResourcesSubTab,
+    profilesSubTab,
+    setProfilesSubTab,
     handleMainNavSelect,
     getDropdownItemActiveState,
     subTabs,

@@ -16,7 +16,7 @@ const WARCRAFTLOGS_GUILD_ID = String(process.env.WARCRAFTLOGS_GUILD_ID || proces
 const WARCRAFTLOGS_API_KEY = String(process.env.WARCRAFTLOGS_API_KEY || process.env.WCL_API_KEY || '').trim();
 const WARCRAFTLOGS_API_BASE_URL = String(process.env.WARCRAFTLOGS_API_BASE_URL || process.env.WCL_API_BASE_URL || 'https://classic.warcraftlogs.com/api/v2/client').trim();
 const SESSION_SECRET = process.env.SESSION_SECRET || crypto.randomBytes(32).toString('hex');
-const API_PORT = process.env.API_PORT || process.env.PORT || 4000;
+const API_PORT = process.env.API_PORT || process.env.PORT || 4002;
 
 if (!ADMIN_API_TOKEN) {
   console.warn('ADMIN_API_TOKEN is not set; officer login will not work until this environment variable is configured.');

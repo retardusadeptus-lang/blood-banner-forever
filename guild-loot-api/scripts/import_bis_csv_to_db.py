@@ -72,8 +72,7 @@ SPEC_CLASS_HINTS = {
 
 
 def normalize_phase(value: str) -> str:
-    normalized = re.sub(r'\s+', ' ', (value or '').strip()).lower()
-    return PHASE_MAP.get(normalized, normalized)
+    return 'ongoing'
 
 
 def normalize_item_name(value: str) -> str:

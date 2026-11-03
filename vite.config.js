@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig(({ mode }) => {
   // Load .env so the dev proxy targets whatever port the backend uses (API_PORT preferred).
   const env = loadEnv(mode, process.cwd(), '')
-  const apiPort = env.API_PORT || env.PORT || '4000'
+  const apiPort = env.API_PORT || env.PORT || '4002'
 
   return {
     plugins: [
@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
       tailwindcss(),
     ],
     server: {
-      port: 3000,
+      port: 3002,
       strictPort: false,
       // Forward /api to the backend so the frontend can use a same-origin relative
       // path in dev (matches the nginx proxy used in the Docker image).

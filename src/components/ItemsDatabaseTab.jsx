@@ -1,5 +1,5 @@
 import React from 'react';
-import { LEFT_SLOTS, RIGHT_SLOTS, BOTTOM_SLOTS, PHASES } from '../constants';
+import { LEFT_SLOTS, RIGHT_SLOTS, BOTTOM_SLOTS } from '../constants';
 
 export default function ItemsDatabaseTab({
   dbNewName,
@@ -96,12 +96,6 @@ export default function ItemsDatabaseTab({
           {isSaving ? 'Saving...' : hasUnsavedChanges ? 'Save Changes' : 'No Changes'}
         </button>
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto items-start sm:items-center">
-          <div>
-            <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-widest">BiS Phase:</label>
-            <select value={masterItemsDbPhase} onChange={e => setMasterItemsDbPhase(e.target.value)} className="bg-slate-950 text-white border border-slate-700 rounded-lg px-4 py-2 text-sm focus:outline-none cursor-pointer font-bold shadow-inner">
-              {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
-            </select>
-          </div>
           <div>
             <label className="block text-xs font-semibold text-slate-400 mb-1 uppercase tracking-widest">Rows:</label>
             <select

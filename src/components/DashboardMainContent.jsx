@@ -7,9 +7,12 @@ import RaidAssignmentsContainer from '../containers/RaidAssignmentsContainer';
 import RaidAssignmentsHistory from './RaidAssignmentsHistory';
 import AssignedLootOverview from './AssignedLootOverview';
 import RaidSignupsContainer from '../containers/RaidSignupsContainer';
+import RecruitmentAboutTab from './RecruitmentAboutTab';
 import RecruitmentFocusTab from './RecruitmentFocusTab';
 import RecruitmentPlanningTab from './RecruitmentPlanningTab';
 import RecruitmentApplicationsTab from './RecruitmentApplicationsTab';
+import ProfilesMyCharactersTab from './ProfilesMyCharactersTab';
+import ProfilesMeetGuildTab from './ProfilesMeetGuildTab';
 import RosterContainer from '../containers/RosterContainer';
 import ScoringContainer from '../containers/ScoringContainer';
 import ResourcesTab from '../features/resources/ResourcesTab';
@@ -29,12 +32,20 @@ export default function DashboardMainContent({ viewModel }) {
     recruitmentSubTab,
     adminSubTab,
     resourcesSubTab,
+    profilesSubTab,
     isAuthenticated,
     globalMyPlayerId,
     selectedBisSpec,
     setSelectedBisSpec,
     selectedMyPlayerName,
     bnetAuthState,
+    handleBattleNetLogin,
+    profiles,
+    profilesLoading,
+    profilesError,
+    createProfile,
+    updateProfile,
+    deleteProfile,
     hasLootUnsavedChanges,
     handleSaveLootCouncilChanges,
     handleOpenItemForLootAssignment,
@@ -50,7 +61,11 @@ export default function DashboardMainContent({ viewModel }) {
     handleToggleZone,
     handleToggleBoss,
     handleMoveEnabledBoss,
+    handleReorderEnabledBoss,
     handleAddCustomRaidBoss,
+    handleAddTrashBefore,
+    handleSetBossVisibility,
+    handleRenameCustomRaidBoss,
     handleRemoveCustomRaidBoss,
     fetchData,
     putData,
@@ -105,6 +120,7 @@ export default function DashboardMainContent({ viewModel }) {
     enabledBosses,
     raidAssignmentDataDirty,
     enabledBossesDirty,
+    hasRaidAssignmentsUnsavedChanges,
     raidZones,
     customRaidGroups,
     recentRaidHelperImportedIds,
@@ -334,6 +350,7 @@ export default function DashboardMainContent({ viewModel }) {
               handleToggleZone={handleToggleZone}
               handleToggleBoss={handleToggleBoss}
               handleMoveEnabledBoss={handleMoveEnabledBoss}
+              handleReorderEnabledBoss={handleReorderEnabledBoss}
               customRaidGroups={customRaidGroups}
               handleAddCustomRaidBoss={handleAddCustomRaidBoss}
               handleRemoveCustomRaidBoss={handleRemoveCustomRaidBoss}
@@ -492,6 +509,8 @@ export default function DashboardMainContent({ viewModel }) {
         </div>
       )}
 
+      {activeTab === 'recruitmentAbout' && recruitmentSubTab === 'about' && <RecruitmentAboutTab />}
+
       {activeTab === 'roster' && isAuthenticated && <RosterContainer {...rosterTabProps} />}
 
       {activeTab === 'recruitmentPlanning' && isAuthenticated && recruitmentSubTab === 'planning' && (
@@ -524,6 +543,27 @@ export default function DashboardMainContent({ viewModel }) {
         />
       )}
 
+      {activeTab === 'profiles' && profilesSubTab === 'my-characters' && (
+        <ProfilesMyCharactersTab
+          profiles={profiles}
+          loading={profilesLoading}
+          error={profilesError}
+          isAuthenticated={Boolean(bnetAuthState?.authenticated)}
+          onLogin={handleBattleNetLogin}
+          onCreate={createProfile}
+          onUpdate={updateProfile}
+          onDelete={deleteProfile}
+        />
+      )}
+
+      {activeTab === 'profiles' && profilesSubTab === 'meet-guild' && (
+        <ProfilesMeetGuildTab
+          profiles={profiles}
+          loading={profilesLoading}
+          error={profilesError}
+        />
+      )}
+
       {(activeTab === 'officerRoles' || activeTab === 'discordBotConfig') && isAuthenticated && (
         <AdminContainer
           activeTab={activeTab}
@@ -541,6 +581,18 @@ export default function DashboardMainContent({ viewModel }) {
           scoringConfig={scoringConfig}
           scoringConfigDirty={scoringConfigDirty}
           bnetAuthState={bnetAuthState}
+          customRaidGroups={customRaidGroups}
+          enabledBosses={enabledBosses}
+          handleAddCustomRaidBoss={handleAddCustomRaidBoss}
+          handleAddTrashBefore={handleAddTrashBefore}
+          handleSetBossVisibility={handleSetBossVisibility}
+          handleRenameCustomRaidBoss={handleRenameCustomRaidBoss}
+          handleRemoveCustomRaidBoss={handleRemoveCustomRaidBoss}
+          handleMoveEnabledBoss={handleMoveEnabledBoss}
+          handleReorderEnabledBoss={handleReorderEnabledBoss}
+          hasRaidAssignmentsUnsavedChanges={hasRaidAssignmentsUnsavedChanges}
+          handleSaveRaidAssignmentsChanges={handleSaveRaidAssignmentsChanges}
+          isSavingRaidAssignments={isSavingRaidAssignments}
         />
       )}
 

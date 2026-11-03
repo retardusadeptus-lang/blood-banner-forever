@@ -7,7 +7,6 @@ export function useItemsDatabase({
   deleteData,
   phaseJsonKeys,
   leftSlots,
-  p2Bosses,
   globalPhase,
   setSelectedItemName,
 }) {
@@ -16,11 +15,11 @@ export function useItemsDatabase({
   const [bisPriorities, setBisPrioritiesLocal] = useState({});
   const [dbBisPriorities, setDbBisPrioritiesLocal] = useState({});
   const [dbBisPrioritiesBaseline, setDbBisPrioritiesBaseline] = useState({});
-  const [masterItemsDbPhase, setMasterItemsDbPhaseLocal] = useState('T5');
+  const [masterItemsDbPhase, setMasterItemsDbPhaseLocal] = useState('Ongoing');
   const [dbNewName, setDbNewName] = useState('');
   const [dbNewSlot, setDbNewSlot] = useState(leftSlots[0]);
-  const [dbNewZone, setDbNewZone] = useState('SSC');
-  const [dbNewBoss, setDbNewBoss] = useState(p2Bosses[0]);
+  const [dbNewZone, setDbNewZone] = useState('');
+  const [dbNewBoss, setDbNewBoss] = useState('');
   const [dbNewItemId, setDbNewItemId] = useState('');
   const [dbSearch, setDbSearchLocal] = useState('');
   const [dbPageSize, setDbPageSize] = useState(25);

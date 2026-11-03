@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { DEFAULT_BOSS_ENCOUNTERS, RAID_ZONES } from '../constants';
+import { DEFAULT_BOSS_ENCOUNTERS } from '../constants';
 
 const RAID_ASSIGNMENTS_SYNC_INTERVAL_MS = 30000;
 
@@ -105,6 +105,7 @@ export default function useRaidAssignmentsData({
   fetchData,
   putData,
   activeTab,
+  adminSubTab,
   setActiveTab,
   setRaidAssignmentsSubTab,
   isAuthenticated,
@@ -136,18 +137,12 @@ export default function useRaidAssignmentsData({
   const raidZones = useMemo(() => {
     const mergedByZone = new Map();
 
-    RAID_ZONES.forEach(zone => {
-      mergedByZone.set(zone.name.toLowerCase(), {
-        name: zone.name,
-        bosses: [...zone.bosses]
-      });
-    });
-
     customRaidGroups
       .filter(group => group && group.zone)
       .forEach(group => {
         const key = String(group.zone).toLowerCase();
-        const incomingBosses = Array.isArray(group.bosses) ? group.bosses : [];
+        const incomingBosses = (Array.isArray(group.bosses) ? group.bosses : [])
+          .filter(boss => group.bossMeta?.[boss]?.isPublic !== false);
         if (!incomingBosses.length) return;
 
         const existing = mergedByZone.get(key);
@@ -179,7 +174,9 @@ export default function useRaidAssignmentsData({
   }, [raidAssignmentArchives]);
 
   useEffect(() => {
-    if (activeTab !== 'raidAssignments') return;
+    const shouldLoadBossData = activeTab === 'raidAssignments' || (activeTab === 'officerRoles' && adminSubTab === 'bosses');
+    if (!shouldLoadBossData) return;
+    let cancelled = false;
 
     const loadRaidAssignments = async () => {
       if (document.hidden) return;
@@ -188,8 +185,16 @@ export default function useRaidAssignmentsData({
           fetchData('raid-assignment-data'),
           fetchData('raid-assignment-config')
         ]);
-        if (!raidAssignmentDataDirty) setRaidAssignmentDataLocal(normalizeRaidAssignmentData(data));
-        if (!enabledBossesDirty) setEnabledBossesLocal(config);
+        if (cancelled) return;
+        const normalizedData = normalizeRaidAssignmentData(data);
+        const configuredBosses = Array.isArray(config) ? config : [];
+        const customGroups = normalizedData.__customBossGroups || (
+          Array.isArray(normalizedData.__customBosses) ? [{ bosses: normalizedData.__customBosses }] : []
+        );
+        const customBosses = new Set(customGroups.flatMap(group => group.bosses || []));
+        const publicBosses = new Set(customGroups.flatMap(group => (group.bosses || []).filter(boss => group.bossMeta?.[boss]?.isPublic !== false)));
+        if (!raidAssignmentDataDirty) setRaidAssignmentDataLocal(normalizedData);
+        if (!enabledBossesDirty) setEnabledBossesLocal(configuredBosses.filter(boss => customBosses.has(boss) && publicBosses.has(boss)));
       } catch (e) {
         console.error('Failed to load raid assignments:', e);
       }
@@ -197,8 +202,11 @@ export default function useRaidAssignmentsData({
 
     loadRaidAssignments();
     const interval = setInterval(loadRaidAssignments, RAID_ASSIGNMENTS_SYNC_INTERVAL_MS);
-    return () => clearInterval(interval);
-  }, [activeTab, fetchData, raidAssignmentDataDirty, enabledBossesDirty]);
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+    };
+  }, [activeTab, adminSubTab, fetchData, raidAssignmentDataDirty, enabledBossesDirty]);
 
   const handleSaveRaidAssignmentsChanges = async ({ silent = false } = {}) => {
     if (!raidAssignmentDataDirty && !enabledBossesDirty) return;
@@ -340,12 +348,29 @@ export default function useRaidAssignmentsData({
     });
   };
 
+  const handleReorderEnabledBoss = (draggedBoss, targetBoss) => {
+    if (Array.isArray(draggedBoss)) {
+      setEnabledBosses(draggedBoss);
+      return;
+    }
+    if (!draggedBoss || !targetBoss || draggedBoss === targetBoss) return;
+    setEnabledBosses(prev => {
+      const current = [...(prev || [])];
+      const fromIndex = current.indexOf(draggedBoss);
+      const targetIndex = current.indexOf(targetBoss);
+      if (fromIndex === -1 || targetIndex === -1) return current;
+      current.splice(fromIndex, 1);
+      current.splice(current.indexOf(targetBoss), 0, draggedBoss);
+      return current;
+    });
+  };
+
   const handleAddCustomRaidBoss = (zoneName, bossName) => {
     const zone = String(zoneName || '').trim();
     const boss = String(bossName || '').trim();
     if (!zone || !boss) return;
 
-    const allKnownBosses = new Set(raidZones.flatMap(z => z.bosses.map(b => b.toLowerCase())));
+    const allKnownBosses = new Set(customRaidGroups.flatMap(group => (group.bosses || []).map(b => b.toLowerCase())));
     if (allKnownBosses.has(boss.toLowerCase())) {
       alert('Boss already exists in the selector.');
       return;
@@ -354,13 +379,18 @@ export default function useRaidAssignmentsData({
     setRaidAssignmentData(prev => {
       const next = { ...(prev || {}) };
       const existingGroups = Array.isArray(next.__customBossGroups) ? next.__customBossGroups : [];
-      const clone = existingGroups.map(group => ({ zone: group.zone, bosses: [...(group.bosses || [])] }));
+      const clone = existingGroups.map(group => ({
+        zone: group.zone,
+        bosses: [...(group.bosses || [])],
+        bossMeta: { ...(group.bossMeta || {}) }
+      }));
       const found = clone.find(group => String(group.zone).toLowerCase() === zone.toLowerCase());
 
       if (found) {
-        found.bosses = [...new Set([...(found.bosses || []), boss])].sort((a, b) => a.localeCompare(b));
+        found.bosses = [...new Set([...(found.bosses || []), boss])];
+        found.bossMeta[boss] = { isTrash: false, isPublic: true };
       } else {
-        clone.push({ zone, bosses: [boss] });
+        clone.push({ zone, bosses: [boss], bossMeta: { [boss]: { isTrash: false, isPublic: true } } });
       }
 
       next.__customBossGroups = clone.sort((a, b) => String(a.zone).localeCompare(String(b.zone)));
@@ -369,6 +399,98 @@ export default function useRaidAssignmentsData({
     });
 
     setEnabledBosses(prev => [...new Set([...(prev || []), boss])]);
+  };
+
+  const handleAddTrashBefore = (bossName) => {
+    const boss = String(bossName || '').trim();
+    if (!boss) return;
+    const sourceGroup = customRaidGroups.find(group => (group.bosses || []).includes(boss));
+    if (!sourceGroup) return;
+
+    const trashName = `Trash before ${boss}`;
+    if (customRaidGroups.some(group => (group.bosses || []).some(name => name.toLowerCase() === trashName.toLowerCase()))) {
+      alert('Trash entry already exists for this boss.');
+      return;
+    }
+
+    setRaidAssignmentData(prev => {
+      const next = { ...(prev || {}) };
+      const groups = (Array.isArray(next.__customBossGroups) ? next.__customBossGroups : []).map(group => ({
+        zone: group.zone,
+        bosses: [...(group.bosses || [])],
+        bossMeta: { ...(group.bossMeta || {}) }
+      }));
+      const group = groups.find(item => String(item.zone).toLowerCase() === String(sourceGroup.zone).toLowerCase());
+      const bossIndex = group.bosses.indexOf(boss);
+      group.bosses.splice(Math.max(bossIndex, 0), 0, trashName);
+      group.bossMeta[trashName] = { isTrash: true, isPublic: true };
+      next.__customBossGroups = groups;
+      delete next.__customBosses;
+      return next;
+    });
+    setEnabledBosses(prev => {
+      const current = [...(prev || [])];
+      const bossIndex = current.indexOf(boss);
+      current.splice(Math.max(bossIndex, 0), 0, trashName);
+      return current;
+    });
+  };
+
+  const handleSetBossVisibility = (zoneName, bossName, isPublic) => {
+    setRaidAssignmentData(prev => {
+      const next = { ...(prev || {}) };
+      next.__customBossGroups = (Array.isArray(next.__customBossGroups) ? next.__customBossGroups : []).map(group => {
+        if (String(group.zone).toLowerCase() !== String(zoneName).toLowerCase()) return group;
+        return {
+          ...group,
+          bossMeta: {
+            ...(group.bossMeta || {}),
+            [bossName]: {
+              isTrash: group.bossMeta?.[bossName]?.isTrash ?? bossName.startsWith('Trash before '),
+              isPublic: Boolean(isPublic)
+            }
+          }
+        };
+      });
+      return next;
+    });
+    setEnabledBosses(prev => {
+      const current = (prev || []).filter(boss => boss !== bossName);
+      return isPublic ? [...current, bossName] : current;
+    });
+  };
+
+  const handleRenameCustomRaidBoss = (zoneName, oldBossName, newBossName) => {
+    const zone = String(zoneName || '').trim();
+    const oldBoss = String(oldBossName || '').trim();
+    const newBoss = String(newBossName || '').trim();
+    if (!zone || !oldBoss || !newBoss || oldBoss === newBoss) return;
+    const duplicate = customRaidGroups.some(group => (group.bosses || []).some(boss => boss.toLowerCase() === newBoss.toLowerCase() && boss !== oldBoss));
+    if (duplicate) {
+      alert('A boss with that name already exists.');
+      return;
+    }
+
+    setRaidAssignmentData(prev => {
+      const next = { ...(prev || {}) };
+      next.__customBossGroups = (Array.isArray(next.__customBossGroups) ? next.__customBossGroups : []).map(group => {
+        if (String(group.zone).toLowerCase() !== zone.toLowerCase()) return group;
+        const bosses = (group.bosses || []).map(boss => boss === oldBoss ? newBoss : boss);
+        const bossMeta = { ...(group.bossMeta || {}) };
+        if (bossMeta[oldBoss]) {
+          bossMeta[newBoss] = bossMeta[oldBoss];
+          delete bossMeta[oldBoss];
+        }
+        return { ...group, bosses, bossMeta };
+      });
+      if (next[oldBoss] !== undefined) {
+        next[newBoss] = next[oldBoss];
+        delete next[oldBoss];
+      }
+      delete next.__customBosses;
+      return next;
+    });
+    setEnabledBosses(prev => (prev || []).map(boss => boss === oldBoss ? newBoss : boss));
   };
 
   const handleRemoveCustomRaidBoss = (zoneName, bossName) => {
@@ -381,8 +503,13 @@ export default function useRaidAssignmentsData({
       const existingGroups = Array.isArray(next.__customBossGroups) ? next.__customBossGroups : [];
       const updatedGroups = existingGroups
         .map(group => {
-          if (String(group.zone).toLowerCase() !== zone.toLowerCase()) return { zone: group.zone, bosses: [...(group.bosses || [])] };
-          return { zone: group.zone, bosses: (group.bosses || []).filter(b => b !== boss) };
+          if (String(group.zone).toLowerCase() !== zone.toLowerCase()) {
+            return { zone: group.zone, bosses: [...(group.bosses || [])], bossMeta: { ...(group.bossMeta || {}) } };
+          }
+          const bosses = (group.bosses || []).filter(b => b !== boss);
+          const bossMeta = { ...(group.bossMeta || {}) };
+          delete bossMeta[boss];
+          return { zone: group.zone, bosses, bossMeta };
         })
         .filter(group => (group.bosses || []).length > 0);
 
@@ -417,7 +544,11 @@ export default function useRaidAssignmentsData({
     handleToggleZone,
     handleToggleBoss,
     handleMoveEnabledBoss,
+    handleReorderEnabledBoss,
     handleAddCustomRaidBoss,
+    handleAddTrashBefore,
+    handleSetBossVisibility,
+    handleRenameCustomRaidBoss,
     handleRemoveCustomRaidBoss,
   };
 }

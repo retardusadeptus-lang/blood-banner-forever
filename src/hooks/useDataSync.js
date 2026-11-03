@@ -34,8 +34,8 @@ export default function useDataSync({
       isSyncInFlight = true;
       try {
         const phaseKey = PHASE_JSON_KEYS[globalPhase];
-        const assignmentsDocName = globalPhase === 'T5' ? 't5' : phaseKey;
-        const bisPrioritiesDocName = globalPhase === 'T5' ? 't5' : phaseKey;
+        const assignmentsDocName = phaseKey;
+        const bisPrioritiesDocName = phaseKey;
 
         const [rosterData, assignmentsData, bisData, configData, statsData, logsData] = await Promise.all([
           fetchData('roster'),

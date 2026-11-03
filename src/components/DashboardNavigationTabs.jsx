@@ -14,6 +14,7 @@ export default function DashboardNavigationTabs({
     { keyName: 'raidAssignments', label: 'Raid Assignments', mainTab: 'raidAssignments', items: subTabs?.raidAssignments || [] },
     { keyName: 'raidSignups', label: 'Raid Signups', mainTab: 'raidSignups', items: subTabs?.raidSignups || [] },
     { keyName: 'recruitment', label: 'Recruitment', mainTab: 'recruitment', items: subTabs?.recruitment || [] },
+    { keyName: 'profiles', label: 'Profiles', mainTab: 'profiles', items: subTabs?.profiles || [] },
     { keyName: 'resources', label: 'Resources', mainTab: 'resources', items: subTabs?.resources || [] },
     { keyName: 'loot', label: 'Loot Council', mainTab: 'loot', items: subTabs?.loot || [] },
     { keyName: 'admin', label: 'Admin', mainTab: 'admin', items: subTabs?.admin || [] },
@@ -29,7 +30,7 @@ export default function DashboardNavigationTabs({
       return activeTab === 'loot' || activeTab === 'scoring';
     }
     if (keyName === 'recruitment') {
-      return activeTab === 'roster' || activeTab === 'recruitmentPlanning' || activeTab === 'recruitmentFocus' || activeTab === 'recruitmentApplications';
+      return activeTab === 'recruitmentAbout' || activeTab === 'roster' || activeTab === 'recruitmentPlanning' || activeTab === 'recruitmentFocus' || activeTab === 'recruitmentApplications';
     }
     if (keyName === 'admin') {
       return activeTab === 'officerRoles' || activeTab === 'discordBotConfig' || activeTab === 'itemsdb';

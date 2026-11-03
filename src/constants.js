@@ -2,31 +2,24 @@
 // GUILD LOOT SYSTEM - CODES, PHASES, & CLASS CONFIGURATIONS
 // ============================================================
 
-export const PHASES = ["Pre-BiS", "T4", "T5", "T6", "ZA", "SWP"];
+export const PHASES = ['Ongoing'];
 
-export const DEFAULT_GLOBAL_PHASE = 'T5';
+export const DEFAULT_GLOBAL_PHASE = 'Ongoing';
 export const CORE_SYNC_INTERVAL_MS = 15000;
 export const STORAGE_KEYS = {
   activeTab: 'active-tab',
   myPlayerId: 'my-player-id',
 };
 
-export const PHASE_JSON_KEYS = { 
-  "Pre-BiS": "pre-bis", 
-  "T4": "t4", 
-  "T5": "t5", 
-  "T6": "t6", 
-  "ZA": "za", 
-  "SWP": "swp" 
-};
+export const PHASE_JSON_KEYS = { Ongoing: 'ongoing' };
 
 export const CHEAT_SHEET_PHASE_MAP = {
-  1: 'Pre-BiS',
-  2: 'T4',
-  3: 'T5',
-  4: 'T6',
-  5: 'ZA',
-  9: 'SWP',
+  1: 'Ongoing',
+  2: 'Ongoing',
+  3: 'Ongoing',
+  4: 'Ongoing',
+  5: 'Ongoing',
+  9: 'Ongoing',
 };
 
 export const LEFT_SLOTS = ["Head", "Neck", "Shoulder", "Back", "Chest", "Wrist"];
@@ -411,39 +404,4 @@ export const JUDGEMENT_TYPES = [
   "Justice",
   "Crusader",
   "Custom"
-];
-
-export const RAID_ZONES = [
-  { 
-    name: "Tempest Keep", 
-    bosses: ["Trash before Al'ar", "Al'ar", "Trash before Void Reaver", "Void Reaver", "Trash before High Astromancer Solarian", "High Astromancer Solarian", "Trash before Kael'thas Sunstrider", "Kael'thas Sunstrider"] 
-  },
-  { 
-    name: "Serpentshrine Cavern", 
-    bosses: ["Trash before Hydross the Unstable", "Hydross the Unstable", "Trash before The Lurker Below", "The Lurker Below", "Trash before Leotheras the Blind", "Leotheras the Blind", "Trash before Fathom-Lord Karathress", "Fathom-Lord Karathress", "Trash before Morogrim Tidewalker", "Morogrim Tidewalker", "Trash before Lady Vashj", "Lady Vashj"] 
-  },
-  { 
-    name: "Gruul's Lair", 
-    bosses: ["Trash before High King Maulgar", "High King Maulgar", "Trash before Gruul the Dragonkiller", "Gruul the Dragonkiller"] 
-  },
-  { 
-    name: "Magtheridon's Lair", 
-    bosses: ["Trash before Magtheridon", "Magtheridon"] 
-  },
-  { 
-    name: "Battle for Mount Hyjal", 
-    bosses: ["Trash before Rage Winterchill", "Rage Winterchill", "Trash before Anetheron", "Anetheron", "Trash before Kaz'rogal", "Kaz'rogal", "Trash before Azgalor", "Azgalor", "Trash before Archimonde", "Archimonde"] 
-  },
-  { 
-    name: "Black Temple", 
-    bosses: ["Trash before High Warlord Naj'entus", "High Warlord Naj'entus", "Trash before Supremus", "Supremus", "Trash before Shade of Akama", "Shade of Akama", "Trash before Teron Gorefiend", "Teron Gorefiend", "Trash before Gurtogg Bloodboil", "Gurtogg Bloodboil", "Trash before Reliquary of Souls", "Reliquary of Souls", "Trash before Mother Shahraz", "Mother Shahraz", "Trash before Illidari Council", "Illidari Council", "Trash before Illidan Stormrage", "Illidan Stormrage"] 
-  },
-  { 
-    name: "Zul'Aman", 
-    bosses: ["Trash before Akil'zon", "Akil'zon", "Trash before Nalorakk", "Nalorakk", "Trash before Jan'alai", "Jan'alai", "Trash before Halazzi", "Halazzi", "Trash before Hexxlord Jin'zakk", "Hexxlord Jin'zakk", "Trash before Zul'jin", "Zul'jin"] 
-  },
-  { 
-    name: "Sunwell Plateau", 
-    bosses: ["Trash before Kalecgos", "Kalecgos", "Trash before Sathrovarr", "Sathrovarr", "Trash before Brutallus", "Brutallus", "Trash before Felmyst", "Felmyst", "Trash before Alythess", "Alythess", "Trash before Sacrolash", "Sacrolash", "Trash before M'uru", "M'uru", "Trash before Entropius", "Entropius", "Trash before Kil'jaeden", "Kil'jaeden"] 
-  }
 ];

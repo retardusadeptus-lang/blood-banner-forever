@@ -13,11 +13,14 @@ If Coolify is using Nixpacks, this repository is now configured to run the backe
 Copy the contents of `coolify.env` into Coolify environment variables.
 
 ### Important values
-- `PORT=3000`
-- `API_PORT=4000`
+- `PORT=3002`
+- `API_PORT=4002`
 - `VITE_API_BASE_URL=/api`
 - `NIXPACKS_NODE_VERSION=22`
 - `NIXPACKS_INSTALL_CMD=npm install`
+
+### Local development
+Run `npm start` to start the Vite frontend and API together. The API also starts the Discord bot when `DISCORD_BOT_TOKEN` and `DISCORD_CLIENT_ID` are configured. Open `http://localhost:3002` in a browser; API requests are proxied to port `4002`.
 
 ### Required app secrets
 - `ADMIN_API_TOKEN`

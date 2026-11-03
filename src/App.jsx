@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, BOTTOM_SLOTS, P2_BOSSES, DEFAULT_GLOBAL_PHASE, CORE_SYNC_INTERVAL_MS, STORAGE_KEYS } from './constants';
+import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, BOTTOM_SLOTS, DEFAULT_GLOBAL_PHASE, CORE_SYNC_INTERVAL_MS, STORAGE_KEYS } from './constants';
 import { fetchData, putData, postData, deleteData } from './services/apiService';
 import { useItemsDatabase } from './hooks/useItemsDatabase';
 import useSpecData from './hooks/useSpecData';
@@ -32,6 +32,7 @@ import * as helpers from './utils/helpers';
 import { calculatePlayerScore, getRankBadgeStyle as getAppShellRankBadgeStyle } from './utils/appShellHelpers';
 import useRaidHelperImport from './hooks/useRaidHelperImport';
 import useAuthSession from './hooks/useAuthSession';
+import useCharacterProfiles from './hooks/useCharacterProfiles';
 import useDashboardNavigation from './hooks/useDashboardNavigation';
 import useDashboardMainContentViewModel from './hooks/useDashboardMainContentViewModel';
 import useDashboardHelpers from './hooks/useDashboardHelpers.jsx';
@@ -59,7 +60,7 @@ export default function App() {
   // ==========================================
   // 1. ALL LOCAL UI AND FILTER STATES
   // ==========================================
-  const [passwordInput, setPasswordInput] = useState('');
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [globalMyPlayerId, setGlobalMyPlayerId] = useState(() => localStorage.getItem(STORAGE_KEYS.myPlayerId) || '');
 
   // Global phase selector (controls which phase's assignments are shown)
@@ -105,6 +106,21 @@ export default function App() {
     handleUnclaimClaim
   } = useAuthSession({ fetchData, setRoster: setRosterLocal, setRosterDirty });
 
+  const {
+    profiles,
+    profilesLoading,
+    profilesError,
+    createProfile,
+    updateProfile,
+    deleteProfile
+  } = useCharacterProfiles({
+    fetchData,
+    postData,
+    putData,
+    deleteData,
+    isAuthenticated: bnetAuthState.authenticated
+  });
+
   const hasOfficerAccess = isAuthenticated || bnetAuthState.isOfficer || bnetAuthState.isAdmin;
 
   const {
@@ -125,6 +141,7 @@ export default function App() {
     setAdminSubTab,
     resourcesSubTab,
     setResourcesSubTab,
+    profilesSubTab,
     handleMainNavSelect,
     getDropdownItemActiveState,
     subTabs,
@@ -224,7 +241,6 @@ export default function App() {
     deleteData,
     phaseJsonKeys: PHASE_JSON_KEYS,
     leftSlots: LEFT_SLOTS,
-    p2Bosses: P2_BOSSES,
     globalPhase,
     setSelectedItemName: setSelectedLootItemName,
   });
@@ -294,7 +310,11 @@ export default function App() {
     handleToggleZone,
     handleToggleBoss,
     handleMoveEnabledBoss,
+    handleReorderEnabledBoss,
     handleAddCustomRaidBoss,
+    handleAddTrashBefore,
+    handleSetBossVisibility,
+    handleRenameCustomRaidBoss,
     handleRemoveCustomRaidBoss,
     customRaidGroups,
     raidZones,
@@ -302,6 +322,7 @@ export default function App() {
     fetchData,
     putData,
     activeTab,
+    adminSubTab,
     setActiveTab,
     setRaidAssignmentsSubTab,
     isAuthenticated: hasOfficerAccess,
@@ -313,6 +334,7 @@ export default function App() {
     deleteData,
     activeTab,
     adminSubTab,
+    isAuthenticated: hasOfficerAccess,
     scoringConfigDirty,
     setScoringConfigDirty,
     scoringConfig,
@@ -445,6 +467,8 @@ export default function App() {
     hasRosterUnsavedChanges,
     hasScoringUnsavedChanges,
     hasRaidAssignmentsUnsavedChanges,
+    raidAssignmentDataDirty,
+    enabledBossesDirty,
     adminData,
     handleSaveLootCouncilChanges,
     handleSaveRaidAssignmentsChanges,
@@ -523,20 +547,18 @@ export default function App() {
 
 
   // Auth/session handlers are provided by `useAuthSession` hook.
-  const handleLoginSubmit = async (e) => {
+  const handleLoginSubmit = async (e, password) => {
     if (e) e.preventDefault();
     try {
-      const ok = await handleLogin(passwordInput);
+      const ok = await handleLogin(password || '');
       if (ok) {
-        setPasswordInput('');
+        return true;
       } else {
-        alert('Incorrect password or login request failed.');
-        setPasswordInput('');
+        return false;
       }
     } catch (error) {
       console.error('Officer login submit failed:', error);
-      alert('Officer login request failed. Check that the local API is running.');
-      setPasswordInput('');
+      return false;
     }
   };
 
@@ -602,13 +624,22 @@ export default function App() {
     recruitmentSubTab,
     adminSubTab,
     resourcesSubTab,
+    profilesSubTab,
     isAuthenticated: hasOfficerAccess,
     globalMyPlayerId,
     selectedBisSpec,
     setSelectedBisSpec,
     selectedMyPlayerName,
     bnetAuthState,
+    handleBattleNetLogin,
+    profiles,
+    profilesLoading,
+    profilesError,
+    createProfile,
+    updateProfile,
+    deleteProfile,
     hasLootUnsavedChanges,
+    hasRaidAssignmentsUnsavedChanges,
     handleSaveLootCouncilChanges,
     handleOpenItemForLootAssignment,
     handleClearOverviewItemPriorities,
@@ -623,7 +654,11 @@ export default function App() {
     handleToggleZone,
     handleToggleBoss,
     handleMoveEnabledBoss,
+    handleReorderEnabledBoss,
     handleAddCustomRaidBoss,
+    handleAddTrashBefore,
+    handleSetBossVisibility,
+    handleRenameCustomRaidBoss,
     handleRemoveCustomRaidBoss,
     fetchData,
     putData,
@@ -807,14 +842,9 @@ export default function App() {
           currentUserClaimedRosterIds={currentUserClaimedRosterIds}
           selectedGlobalPlayerIsClaimed={selectedGlobalPlayerIsClaimed}
           setShowBnetClaimModal={setShowBnetClaimModal}
+          setShowLoginModal={setShowLoginModal}
           bnetAuthState={bnetAuthState}
-          handleBattleNetLogin={handleBattleNetLogin}
-          handleBattleNetLogout={handleBattleNetLogout}
           isAuthenticated={isAuthenticated}
-          handleLoginSubmit={handleLoginSubmit}
-          passwordInput={passwordInput}
-          setPasswordInput={setPasswordInput}
-          handleLogout={handleLogout}
           roster={roster}
           getDisplayFromId={getDisplayFromId}
           specsByName={specsByName}
@@ -840,12 +870,17 @@ export default function App() {
         <DashboardModals
           showBnetClaimModal={showBnetClaimModal}
           setShowBnetClaimModal={setShowBnetClaimModal}
+          showLoginModal={showLoginModal}
+          setShowLoginModal={setShowLoginModal}
           bnetAuthState={bnetAuthState}
           bnetClaimBusy={bnetClaimBusy}
           handleBattleNetClaim={handleBattleNetClaim}
           handleBattleNetManualClaim={handleBattleNetManualClaim}
           handleBattleNetLogin={handleBattleNetLogin}
           handleBattleNetLogout={handleBattleNetLogout}
+          handleAdminLogin={handleLoginSubmit}
+          handleAdminLogout={handleLogout}
+          isAdminAuthenticated={isAuthenticated}
           roster={roster}
           itemIdEditor={itemIdEditor}
           setItemIdEditor={setItemIdEditor}
