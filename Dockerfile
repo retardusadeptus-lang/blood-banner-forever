@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY package*.json ./
 COPY guild-loot-api/package*.json ./guild-loot-api/
-RUN npm ci
+RUN npm ci --fetch-retries=5 --fetch-retry-factor=2 --fetch-retry-mintimeout=1000 --fetch-retry-maxtimeout=120000
 
 # Vite inlines VITE_* vars at build time. Only the API base URL is build-time;
 # the admin secret is NOT shipped to the browser (auth goes via POST /api/login).
@@ -42,7 +42,7 @@ RUN chmod +x /docker-entrypoint.sh
 
 # Install API production dependencies
 COPY guild-loot-api/package*.json ./guild-loot-api/
-RUN cd guild-loot-api && npm ci --omit=dev
+RUN cd guild-loot-api && npm ci --omit=dev --fetch-retries=5 --fetch-retry-factor=2 --fetch-retry-mintimeout=1000 --fetch-retry-maxtimeout=120000
 
 # Copy API source, including BIS data and helper scripts needed for deployment
 COPY guild-loot-api/ ./guild-loot-api/
