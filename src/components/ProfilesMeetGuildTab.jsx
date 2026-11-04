@@ -79,7 +79,7 @@ export default function ProfilesMeetGuildTab({ profiles, loading, error }) {
   }, [profiles, search]);
 
   return (
-    <section className="space-y-5">
+    <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-100">The people behind the raid frames</h2>

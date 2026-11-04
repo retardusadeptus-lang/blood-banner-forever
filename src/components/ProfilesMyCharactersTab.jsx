@@ -204,9 +204,8 @@ export default function ProfilesMyCharactersTab({ profiles, loading, error, isAu
 
   if (!isAuthenticated) {
     return (
-      <section className="mx-auto max-w-3xl rounded-xl border border-cyan-800/40 bg-slate-900/60 p-6 text-center shadow-xl shadow-black/10 md:p-10">
-        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400">My characters</p>
-        <h2 className="mt-2 text-2xl font-black text-slate-100">Sign in to build your character shelf</h2>
+      <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 text-center animate-in fade-in duration-300 md:p-10">
+        <h2 className="text-2xl font-black text-slate-100">Sign in to build your character shelf</h2>
         <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-slate-400">Use Battle.net sign-in to add multiple characters and share their stories with the guild.</p>
         <button type="button" onClick={onLogin} className="mt-6 rounded bg-cyan-600 px-4 py-2.5 text-xs font-black uppercase tracking-wider text-white hover:bg-cyan-500">Sign in with Battle.net</button>
       </section>
@@ -214,7 +213,7 @@ export default function ProfilesMyCharactersTab({ profiles, loading, error, isAu
   }
 
   return (
-    <section className="space-y-5">
+    <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div><h2 className="text-2xl font-black text-slate-100">Your guild-facing characters</h2><p className="mt-1 text-sm text-slate-400">Create one profile for each character you bring into the story.</p></div>
         {!editingId && <button type="button" onClick={() => setEditingId('new')} className="rounded bg-cyan-600 px-4 py-2.5 text-xs font-black uppercase tracking-wider text-white hover:bg-cyan-500">Add character</button>}
