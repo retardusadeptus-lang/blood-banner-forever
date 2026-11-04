@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import BisConfigTab from '../../components/BisConfigTab';
+import BossFilterDropdown from '../../components/BossFilterDropdown';
 import WeakaurasTab from './WeakaurasTab';
 import { CHEAT_SHEET_PHASE_MAP, DEFAULT_GLOBAL_PHASE } from '../../constants';
 import { filterBossesByPhase } from '../../utils/bossFilterState.js';
@@ -274,127 +275,6 @@ const loadCheatSheetBosses = () => {
 
   return [];
 };
-
-function BossFilterSelector({ raidZones = [], enabledBosses = [], userBossFilter = null, setUserBossFilter, label = 'Boss Selector' }) {
-  const [open, setOpen] = useState(false);
-
-  const isBossVisible = (bossName) => {
-    if (userBossFilter === null || userBossFilter === undefined) return true;
-    return userBossFilter.includes(bossName);
-  };
-
-  const toggleBoss = (bossName, checked) => {
-    if (!setUserBossFilter) return;
-    setUserBossFilter(prev => {
-      const current = Array.isArray(prev) ? prev : null;
-      if (current === null) {
-        return checked ? [bossName] : [];
-      }
-      if (checked) {
-        return [...new Set([...current, bossName])];
-      }
-      return current.filter(name => name !== bossName);
-    });
-  };
-
-  const allZoneBosses = useMemo(() => {
-    if (Array.isArray(raidZones) && raidZones.length > 0) {
-      return raidZones.flatMap(zone => Array.isArray(zone?.bosses) ? zone.bosses : []);
-    }
-    return enabledBosses;
-  }, [raidZones, enabledBosses]);
-
-  const toggleZoneBosses = (zoneBosses, checked) => {
-    if (!setUserBossFilter) return;
-    setUserBossFilter(prev => {
-      const current = Array.isArray(prev) ? prev : null;
-      const nextSet = new Set(current ?? []);
-
-      if (checked) {
-        zoneBosses.forEach(boss => nextSet.add(boss));
-        return [...nextSet];
-      }
-
-      zoneBosses.forEach(boss => nextSet.delete(boss));
-      return [...nextSet];
-    });
-  };
-
-  return (
-    <div className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 text-sm font-bold flex items-center gap-2 hover:border-purple-500 transition"
-      >
-        {label} ({userBossFilter === null || userBossFilter === undefined ? allZoneBosses.length : Math.min(userBossFilter.length, allZoneBosses.length)}/{allZoneBosses.length})
-        <span className="text-slate-500 text-xs">{open ? '▲' : '▼'}</span>
-      </button>
-      {open && (
-        <>
-          <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 mt-2 z-20 w-80 max-h-96 overflow-y-auto custom-scrollbar bg-slate-950 border border-slate-700 rounded-xl shadow-2xl p-3 space-y-2">
-            <div className="flex items-center justify-between gap-2 border-b border-slate-800 pb-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Visible bosses</span>
-              <button
-                type="button"
-                onClick={() => setUserBossFilter?.(null)}
-                className="text-[10px] font-bold text-amber-300 hover:text-amber-200"
-              >
-                All
-              </button>
-            </div>
-            {raidZones.map(zone => {
-              const zoneBosses = zone.bosses || [];
-              const zoneBossesEnabled = zoneBosses.filter(boss => isBossVisible(boss)).length;
-              const allEnabled = zoneBosses.length > 0 && zoneBossesEnabled === zoneBosses.length;
-              const someEnabled = zoneBossesEnabled > 0 && !allEnabled;
-
-              return (
-                <div key={zone.name} className="border-b border-slate-900 last:border-0 pb-1.5 mb-1.5">
-                  <label className="flex items-center gap-2 cursor-pointer py-1 px-1 rounded hover:bg-slate-900/60">
-                    <input
-                      type="checkbox"
-                      checked={allEnabled}
-                      ref={el => { if (el) el.indeterminate = someEnabled; }}
-                      onChange={(event) => toggleZoneBosses(zoneBosses, event.target.checked)}
-                      className="rounded bg-slate-800 border-slate-600 text-amber-500 w-3.5 h-3.5 cursor-pointer flex-shrink-0"
-                    />
-                    <span className="text-sm font-bold text-slate-200">{zone.name}</span>
-                  </label>
-                  <div className="pl-7 space-y-0.5 mt-0.5">
-                    {zoneBosses.map(boss => (
-                      <label key={boss} className="flex items-center gap-2 cursor-pointer py-1 px-1 rounded hover:bg-slate-900/60">
-                        <input
-                          type="checkbox"
-                          checked={isBossVisible(boss)}
-                          onChange={(event) => toggleBoss(boss, event.target.checked)}
-                          className="rounded bg-slate-800 border-slate-600 text-amber-500 w-3.5 h-3.5 cursor-pointer flex-shrink-0"
-                        />
-                        <span className="text-xs text-slate-200">{boss}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-            {((!raidZones || raidZones.length === 0) && Array.isArray(enabledBosses)) && enabledBosses.map((boss) => (
-              <label key={boss} className="flex items-center gap-2 cursor-pointer py-1 px-1 rounded hover:bg-slate-900/60">
-                <input
-                  type="checkbox"
-                  checked={isBossVisible(boss)}
-                  onChange={(event) => toggleBoss(boss, event.target.checked)}
-                  className="rounded bg-slate-800 border-slate-600 text-amber-500 w-3.5 h-3.5 cursor-pointer flex-shrink-0"
-                />
-                <span className="text-xs text-slate-200">{boss}</span>
-              </label>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
 
 export default function ResourcesTab({
   resourcesSubTab,
@@ -1166,11 +1046,11 @@ export default function ResourcesTab({
 
             <div className="ml-auto flex flex-wrap items-center gap-2 md:justify-end">
               {setUserBossFilter && (
-                <BossFilterSelector
+                <BossFilterDropdown
                   raidZones={raidZones}
-                  enabledBosses={tacticsBossOptions}
-                  userBossFilter={userBossFilter}
-                  setUserBossFilter={setUserBossFilter}
+                  availableBosses={tacticsBossOptions}
+                  selectedBosses={userBossFilter}
+                  onSelectionChange={setUserBossFilter}
                 />
               )}
 

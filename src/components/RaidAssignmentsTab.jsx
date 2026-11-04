@@ -11,6 +11,7 @@ import { buildRaidAssignmentsExport, serializeRaidAssignmentsExport } from '../s
 import { normalizeBossState } from '../utils/raidAssignmentState.js';
 import { filterBossesByPhase } from '../utils/bossFilterState.js';
 import RaidAssignmentsBossCard from './RaidAssignmentsBossCard.jsx';
+import BossFilterDropdown from './BossFilterDropdown.jsx';
 
 // --- HELPER COMPONENTS ---
 
@@ -275,57 +276,6 @@ function MarkerBadge({ markerId }) {
   return <span title={marker.label} style={{ color: marker.color }} className="text-sm leading-none flex-shrink-0">{marker.glyph}</span>;
 }
 
-function BossSelector({ raidZones, enabledBosses, handleToggleZone, handleToggleBoss, isAuthenticated, showManageBosses, onToggleManageBosses }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="relative">
-      <button onClick={() => setOpen(!open)} className="bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 text-sm font-bold flex items-center gap-2 hover:border-purple-500 transition">
-        Boss Selector ({enabledBosses.length} active)
-        <span className="text-slate-500 text-xs">{open ? '▲' : '▼'}</span>
-      </button>
-      {open && (
-        <>
-          <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 mt-2 z-20 w-80 max-h-96 overflow-y-auto custom-scrollbar bg-slate-950 border border-slate-700 rounded-xl shadow-2xl p-3 space-y-1">
-            {isAuthenticated && (
-              <button
-                onClick={() => {
-                  onToggleManageBosses(!showManageBosses);
-                  setOpen(false);
-                }}
-                className="w-full text-left bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-700 rounded px-3 py-2 text-xs font-bold uppercase tracking-wider mb-2"
-              >
-                {showManageBosses ? 'Hide Manage Bosses' : 'Manage Bosses'}
-              </button>
-            )}
-            {raidZones.map(zone => {
-              const zoneBossesEnabled = zone.bosses.filter(b => enabledBosses.includes(b)).length;
-              const allEnabled = zoneBossesEnabled === zone.bosses.length;
-              const someEnabled = zoneBossesEnabled > 0 && !allEnabled;
-              return (
-                <div key={zone.name} className="border-b border-slate-900 last:border-0 pb-1.5 mb-1.5">
-                  <label className="flex items-center gap-2 cursor-pointer py-1 px-1 rounded hover:bg-slate-900/60">
-                    <input type="checkbox" checked={allEnabled} ref={el => { if (el) el.indeterminate = someEnabled; }} onChange={e => handleToggleZone(zone.name, e.target.checked)} className="rounded bg-slate-800 border-slate-600 text-amber-500 w-4 h-4 cursor-pointer flex-shrink-0" />
-                    <span className="text-sm font-bold text-slate-200">{zone.name}</span>
-                  </label>
-                  <div className="pl-7 space-y-0.5 mt-0.5">
-                    {zone.bosses.map(boss => (
-                      <label key={boss} className="flex items-center gap-2 cursor-pointer py-0.5 px-1 rounded hover:bg-slate-900/60">
-                        <input type="checkbox" checked={enabledBosses.includes(boss)} onChange={e => handleToggleBoss(boss, e.target.checked)} className="rounded bg-slate-800 border-slate-600 text-amber-500 w-3.5 h-3.5 cursor-pointer flex-shrink-0" />
-                        <span className="text-xs text-slate-400">{boss}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
-
 function createDefaultBossState(boss, generateId) {
   const bossDefaults = null;
   const defaultTargets = (bossDefaults?.targets || []).flatMap((target) => {
@@ -358,11 +308,11 @@ function createDefaultBossState(boss, generateId) {
 
 // --- MAIN CONTAINER COMPONENT ---
 const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
-  isAuthenticated, roster, getSpecById, enabledBosses = [], raidZones = [], handleToggleZone, handleToggleBoss, handleMoveEnabledBoss, customRaidGroups = [], handleAddCustomRaidBoss, handleRemoveCustomRaidBoss, raidAssignmentData, setRaidAssignmentData: setStoredRaidAssignmentData,
+  isAuthenticated, roster, getSpecById, enabledBosses = [], raidZones = [], handleToggleBoss, handleMoveEnabledBoss, customRaidGroups = [], handleAddCustomRaidBoss, handleRemoveCustomRaidBoss, raidAssignmentData, setRaidAssignmentData: setStoredRaidAssignmentData,
   hasUnsavedChanges, onSaveChanges, isSaving, myPlayerName,
   userBossFilter = null, setUserBossFilter, defaultPhase = DEFAULT_GLOBAL_PHASE, fetchData, siteTabMetadata,
 }) {
-  const [showManageBosses, setShowManageBosses] = useState(false);
+  const [showManageBosses] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [newCustomZoneName, setNewCustomZoneName] = useState('');
   const [newCustomBossName, setNewCustomBossName] = useState('');
@@ -996,14 +946,18 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
               Import Previous Raid
             </button>
           )}
-          <BossSelector
+          <BossFilterDropdown
             raidZones={raidZones}
-            enabledBosses={enabledBosses}
-            handleToggleZone={handleToggleZone}
-            handleToggleBoss={handleToggleBoss}
-            isAuthenticated={isAuthenticated}
-            showManageBosses={showManageBosses}
-            onToggleManageBosses={setShowManageBosses}
+            selectedBosses={enabledBosses}
+            onSelectionChange={nextSelection => {
+              const nextSet = new Set(nextSelection || raidZones.flatMap(zone => zone.bosses || []));
+              enabledBosses.forEach(boss => {
+                if (!nextSet.has(boss)) handleToggleBoss(boss, false);
+              });
+              nextSet.forEach(boss => {
+                if (!enabledBosses.includes(boss)) handleToggleBoss(boss, true);
+              });
+            }}
           />
         </div>
       </div>
