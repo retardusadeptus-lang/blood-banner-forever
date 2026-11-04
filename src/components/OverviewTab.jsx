@@ -1,5 +1,3 @@
-import { PHASES } from '../constants';
-
 export default function OverviewTab({
   filteredOverviewItems,
   overviewSearch,
@@ -17,9 +15,7 @@ export default function OverviewTab({
   myPlayerName,
   onClearItemPriorities,
   hasLootUnsavedChanges,
-  onSaveAssignments
-  ,priorityPhase,
-  setPriorityPhase,
+  onSaveAssignments,
   siteTabMetadata
 }) {
   
@@ -60,9 +56,6 @@ export default function OverviewTab({
             onChange={e => setOverviewSearch(e.target.value)}
           />
           <div className="flex items-center gap-2">
-            <select value={priorityPhase} onChange={event => setPriorityPhase(event.target.value)} className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2.5 text-xs font-bold text-amber-400 uppercase tracking-wider">
-              {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
-            </select>
             <button
               type="button"
               onClick={() => {

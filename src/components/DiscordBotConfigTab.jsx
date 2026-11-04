@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from 'react';
-import { DEFAULT_GLOBAL_PHASE, PHASES } from '../constants';
 
 const CONFIG_SECTION_STORAGE_KEY = 'admin-config-section-state';
 const CONFIG_SECTION_KEYS = ['site', 'access', 'scoring', 'rankings', 'discord', 'claims'];
@@ -185,13 +184,6 @@ export default function DiscordBotConfigTab({
         {sectionSummary('Site defaults and claims', 'Choose the default dashboard destination and character claim behavior.')}
         <div className="border-t border-slate-800 px-4 py-3">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Default Site Phase</label>
-            <select value={scoringConfig?.defaultSitePhase || DEFAULT_GLOBAL_PHASE} onChange={event => updateScoringField('defaultSitePhase', event.target.value)} className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none">
-              {PHASES.map(phase => <option key={phase} value={phase}>{phase}</option>)}
-            </select>
-            <p className="text-[11px] text-slate-500 mt-2">Sets the initial phase used by priority views.</p>
-          </div>
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Default Site Tab</label>
             <select value={scoringConfig?.defaultSiteTab || 'recruitment.focus'} onChange={event => updateScoringField('defaultSiteTab', event.target.value)} className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none">

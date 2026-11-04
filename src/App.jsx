@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { PHASES, PHASE_JSON_KEYS, LEFT_SLOTS, P2_BOSSES, DEFAULT_GLOBAL_PHASE, DEFAULT_SITE_TAB, STORAGE_KEYS } from './constants';
+import { PHASE_JSON_KEYS, LEFT_SLOTS, P2_BOSSES, DEFAULT_GLOBAL_PHASE, DEFAULT_SITE_TAB, STORAGE_KEYS } from './constants';
 import { fetchData, putData, postData, deleteData } from './services/apiService';
 import { useItemsDatabase } from './hooks/useItemsDatabase';
 import useSpecData from './hooks/useSpecData';
@@ -51,10 +51,8 @@ export default function App() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [globalMyPlayerId, setGlobalMyPlayerId] = useState(() => localStorage.getItem(STORAGE_KEYS.myPlayerId) || '');
 
-  // Global phase selector (controls which phase's assignments are shown)
-  const storedPriorityPhase = localStorage.getItem(STORAGE_KEYS.priorityPhase);
-  const [globalPhase, setGlobalPhase] = useState(() => storedPriorityPhase || DEFAULT_GLOBAL_PHASE);
-  const priorityPhaseWasStored = useRef(Boolean(storedPriorityPhase));
+  // Keep the legacy phase key internal while the site presents one ongoing phase.
+  const [globalPhase, setGlobalPhase] = useState(DEFAULT_GLOBAL_PHASE);
 
   const [overviewSearch, setOverviewSearch] = useState('');
   const [sharedRaidFilter, setSharedRaidFilter] = useState('All Raids');
@@ -110,14 +108,6 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.priorityPhase, globalPhase);
   }, [globalPhase]);
-
-  useEffect(() => {
-    const configuredPhase = scoringConfig?.defaultSitePhase;
-    if (PHASES.includes(configuredPhase) && !priorityPhaseWasStored.current) {
-      setGlobalPhase(configuredPhase);
-      priorityPhaseWasStored.current = true;
-    }
-  }, [scoringConfig?.defaultSitePhase]);
 
   const {
     isAuthenticated,

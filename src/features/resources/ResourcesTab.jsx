@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import BisConfigTab from '../../components/BisConfigTab';
 import WeakaurasTab from './WeakaurasTab';
-import { CHEAT_SHEET_PHASE_MAP, DEFAULT_GLOBAL_PHASE, PHASES } from '../../constants';
+import { CHEAT_SHEET_PHASE_MAP, DEFAULT_GLOBAL_PHASE } from '../../constants';
 import { filterBossesByPhase } from '../../utils/bossFilterState.js';
 import druidIcon from '../../assets/icons/druid.png';
 import generalIcon from '../../assets/icons/general.png';
@@ -19,7 +19,6 @@ import warlockIcon from '../../assets/icons/warlock.png';
 import warriorIcon from '../../assets/icons/warrior.png';
 
 const CHEAT_SHEET_STORAGE_KEY = 'cheat-sheet-data-v2';
-const CHEAT_SHEET_PHASE_STORAGE_KEY = 'cheat-sheet-phase-v1';
 const CHEAT_SHEET_EXPORT_FILENAME = 'cheat-sheet-export.json';
 
 function CopyIcon() {
@@ -276,14 +275,6 @@ const loadCheatSheetBosses = () => {
   return [];
 };
 
-const CHEAT_SHEET_PHASE_OPTIONS = ['All Phases', ...PHASES];
-
-const loadCheatSheetPhase = () => {
-  if (typeof window === 'undefined') return DEFAULT_GLOBAL_PHASE;
-  const savedPhase = window.localStorage.getItem(CHEAT_SHEET_PHASE_STORAGE_KEY);
-  return CHEAT_SHEET_PHASE_OPTIONS.includes(savedPhase) ? savedPhase : DEFAULT_GLOBAL_PHASE;
-};
-
 function BossFilterSelector({ raidZones = [], enabledBosses = [], userBossFilter = null, setUserBossFilter, label = 'Boss Selector' }) {
   const [open, setOpen] = useState(false);
 
@@ -441,11 +432,9 @@ export default function ResourcesTab({
   const [draftBosses, setDraftBosses] = useState(bosses);
   const [isEditMode, setIsEditMode] = useState(false);
   const [internalSelectedRaid, setInternalSelectedRaid] = useState('All Raids');
-  const [internalSelectedPhase, setInternalSelectedPhase] = useState(loadCheatSheetPhase);
   const selectedRaid = internalSelectedRaid;
-  const selectedPhase = internalSelectedPhase;
   const setSelectedRaid = setInternalSelectedRaid;
-  const setSelectedPhase = setInternalSelectedPhase;
+  const selectedPhase = 'All Phases';
   const [recentReports, setRecentReports] = useState([]);
   const [recentReportsError, setRecentReportsError] = useState('');
   const [isTacticsEditMode, setIsTacticsEditMode] = useState(false);
@@ -465,12 +454,6 @@ export default function ResourcesTab({
       window.localStorage.setItem(CHEAT_SHEET_STORAGE_KEY, JSON.stringify(bosses));
     }
   }, [bosses]);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.localStorage.setItem(CHEAT_SHEET_PHASE_STORAGE_KEY, selectedPhase);
-    }
-  }, [selectedPhase]);
 
   const tacticsBossOptions = useMemo(() => {
     const availableBosses = Array.isArray(raidZones) && raidZones.length > 0
@@ -1660,19 +1643,6 @@ export default function ResourcesTab({
                 >
                   {cheatSheetRaidOptions.map(raid => (
                     <option key={raid} value={raid}>{raid}</option>
-                  ))}
-                </select>
-              </label>
-
-              <label className="flex flex-col text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                Phase
-                <select
-                  className="mt-1 min-w-[140px] rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none"
-                  value={selectedPhase}
-                  onChange={event => setSelectedPhase(event.target.value)}
-                >
-                  {CHEAT_SHEET_PHASE_OPTIONS.map(phase => (
-                    <option key={phase} value={phase}>{phase}</option>
                   ))}
                 </select>
               </label>
