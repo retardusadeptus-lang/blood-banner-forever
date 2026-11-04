@@ -24,12 +24,12 @@ export default function DashboardNavigationTabs({
   const getRestrictedTabTone = (tab, isActive = false) => {
     const roles = tab?.surfaceRoles || [];
     if (roles.length === 1 && roles[0] === 'Admin') {
-      return isActive ? 'text-pink-300' : 'text-pink-300 hover:text-pink-200';
+      return 'theme-nav-subitem-admin';
     }
     if (roles.includes('Officer') && !roles.includes('Public') && !roles.includes('Guild Member')) {
-      return isActive ? 'text-violet-300' : 'text-violet-300 hover:text-violet-200';
+      return 'theme-nav-subitem-officer';
     }
-    return isActive ? 'text-cyan-400' : 'text-amber-300 hover:text-slate-300';
+    return isActive ? 'theme-nav-subitem-active' : 'theme-nav-subitem-default';
   };
 
   const isTabActive = useCallback((items = []) => {
@@ -69,7 +69,7 @@ export default function DashboardNavigationTabs({
                   }
                     handleMainNavSelect(item.items?.[0]?.id);
                 }}
-                className={`relative z-20 whitespace-nowrap px-4 py-2.5 font-bold text-xs uppercase tracking-wider rounded-t-lg transition-colors ${isActive
+                className={`theme-nav-item relative z-20 whitespace-nowrap px-4 py-2.5 rounded-t-lg transition-colors ${isActive
                   ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800 -mb-px'
                   : isOpen && shouldShowDropdown
                     ? 'bg-slate-900/70 text-slate-200 border border-slate-800'
@@ -90,7 +90,7 @@ export default function DashboardNavigationTabs({
                   key={tab.value}
                   type="button"
                   onClick={() => handleMainNavSelect(tab.id)}
-                  className={`flex-none whitespace-nowrap px-3 py-2 font-semibold text-xs uppercase tracking-wider transition-colors rounded-lg text-center ${isSubActive ? `bg-slate-900 border border-slate-800 ${getRestrictedTabTone(tab, true)}` : `${getRestrictedTabTone(tab)} hover:bg-slate-900/50`}`}
+                  className={`theme-nav-subitem flex-none whitespace-nowrap px-3 py-2 transition-colors rounded-lg text-center ${isSubActive ? `bg-slate-900 border border-slate-800 ${getRestrictedTabTone(tab, true)}` : `${getRestrictedTabTone(tab)} hover:bg-slate-900/50`}`}
                 >
                   {tab.label}
                 </button>
@@ -116,7 +116,7 @@ export default function DashboardNavigationTabs({
               <button
                 type="button"
                 onClick={() => handleMainNavSelect(item.items?.[0]?.id)}
-                className={`relative z-20 whitespace-nowrap px-5 py-3 font-bold text-sm uppercase tracking-wider rounded-t-lg transition-colors ${isActive
+                className={`theme-nav-item relative z-20 whitespace-nowrap px-5 py-3 rounded-t-lg transition-colors ${isActive
                   ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800 -mb-px'
                   : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}
               >
@@ -134,7 +134,7 @@ export default function DashboardNavigationTabs({
                         key={tab.value}
                         type="button"
                         onClick={() => handleMainNavSelect(tab.id)}
-                        className={`flex-none whitespace-nowrap px-3 py-2 font-semibold text-xs uppercase tracking-wider transition-colors rounded-lg text-center ${isSubActive ? `bg-slate-900 border border-slate-800 ${getRestrictedTabTone(tab, true)}` : `${getRestrictedTabTone(tab)} hover:bg-slate-900/50`}`}
+                        className={`theme-nav-subitem flex-none whitespace-nowrap px-3 py-2 transition-colors rounded-lg text-center ${isSubActive ? `bg-slate-900 border border-slate-800 ${getRestrictedTabTone(tab, true)}` : `${getRestrictedTabTone(tab)} hover:bg-slate-900/50`}`}
                       >
                         {tab.label}
                       </button>

@@ -14,7 +14,7 @@ export default function AdminTodoTab({
   const displayedTodoItems = todoDraftItems.filter(item => !todoFilterMine || String(item.owner || '').trim() === String(selectedMyPlayerName || ''));
 
   return (
-    <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+    <div className="theme-surface rounded-xl p-6 space-y-4">
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
           <h3 className="text-lg font-bold text-slate-100">Officer To-do List</h3>
@@ -28,7 +28,7 @@ export default function AdminTodoTab({
           <button type="button" onClick={onSaveTodoItems} disabled={!todoDirty} className={`rounded-lg px-3 py-2 text-xs font-bold uppercase tracking-wider transition ${todoDirty ? 'bg-emerald-600 text-white hover:bg-emerald-500' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}>Save Changes</button>
         </div>
       </div>
-      <div className="space-y-2 rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-300">
+      <div className="theme-surface-raised space-y-2 rounded-lg p-4 text-sm text-slate-300">
         <div className="hidden md:grid md:grid-cols-[minmax(0,1fr)_180px_160px_96px] gap-3 px-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-800">
           <span>Task</span>
           <span>Owner</span>

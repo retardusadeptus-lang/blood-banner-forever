@@ -41,7 +41,7 @@ export default function OverviewTab({
   };
 
   return (
-    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="overview-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="overview-tab theme-panel theme-panel-tab p-6 animate-in fade-in duration-300">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
         <div>
           <h2 className="text-xl font-bold text-slate-100 mb-1">Master Priority Ledger</h2>
@@ -51,7 +51,7 @@ export default function OverviewTab({
           <input
             type="text"
             placeholder="Search by item or player name..."
-            className="w-full md:w-96 bg-slate-900 text-white border border-slate-700 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-inner"
+            className="theme-field w-full md:w-96 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-inner"
             value={overviewSearch}
             onChange={e => setOverviewSearch(e.target.value)}
           />
@@ -109,7 +109,7 @@ export default function OverviewTab({
             });
 
             return (
-              <div key={item.name} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-lg flex flex-col break-inside-avoid mb-6">
+              <div key={item.name} className="theme-surface rounded-xl overflow-hidden shadow-lg flex flex-col break-inside-avoid mb-6">
                 <div className="bg-slate-900 border-b border-slate-800 p-4">
                   <div className="flex items-center gap-3 mb-1">
                     <div className="character-slot-icon w-10 h-10 rounded border border-purple-500/50 bg-slate-950 flex-shrink-0 flex items-center justify-center overflow-hidden relative shadow-inner">

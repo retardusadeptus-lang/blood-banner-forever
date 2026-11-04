@@ -1004,7 +1004,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
       )}
 
       {isAuthenticated && showManageBosses && (
-        <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 shadow-inner">
+        <div className="theme-surface rounded-xl p-4 shadow-inner">
           <div className="flex flex-col md:flex-row md:items-center gap-3">
             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Custom Boss Builder</h3>
             <div className="flex-1 flex flex-col sm:flex-row gap-2">
@@ -1134,7 +1134,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Raid-Wide</h4>
               <div className="flex flex-wrap gap-2">
                 {myAssignmentsSummary.globalLines.map((line, i) => (
-                  <div key={i} className="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-xs">
+                  <div key={i} className="theme-surface-raised rounded-lg px-3 py-2 text-xs">
                     <span className="text-slate-500 uppercase font-bold tracking-wider mr-1">{line.label}:</span>
                     <span className="text-slate-200 font-bold">{line.value}</span>
                   </div>
@@ -1153,7 +1153,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             {myAssignmentsSummary.bosses.map(({ boss, bossLines }) => (
-              <div key={boss} className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
+              <div key={boss} className="theme-surface-raised rounded-xl p-4 space-y-3">
                 <h4 className="text-sm font-bold text-purple-400 font-serif italic">{boss}</h4>
                 <div className="space-y-1.5">
                   {bossLines.map((entry, i) => {
@@ -1185,7 +1185,7 @@ const RaidAssignmentsTab = React.memo(function RaidAssignmentsTab({
       )}
 
       {/* GLOBAL ROSTER ASSIGNMENTS PANEL */}
-      <details open className="bg-slate-950 border border-slate-800 rounded-xl shadow-xl p-5 space-y-6">
+      <details open className="theme-surface rounded-xl shadow-xl p-5 space-y-6">
         <summary className="cursor-pointer list-none flex items-center gap-2 border-b border-slate-800 pb-2">
           <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
           <h3 className="text-sm font-bold text-amber-400 uppercase tracking-widest">Raid-Wide Global Setup</h3>

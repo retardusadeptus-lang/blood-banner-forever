@@ -226,7 +226,7 @@ export default function BisConfigTab({
   );
 
   return (
-    <section className="bis-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">            
+    <section className="bis-tab theme-panel theme-panel-tab p-6 animate-in fade-in duration-300">
       
       {/* Control Selector Header Panel */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">

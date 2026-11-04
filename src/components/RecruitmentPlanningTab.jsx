@@ -403,7 +403,7 @@ export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData,
   };
 
   return (
-    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 space-y-4">
+    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="theme-panel theme-panel-tab p-6 space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-xl font-bold text-slate-100">Roster Planning</h2>
@@ -528,7 +528,7 @@ export default function RecruitmentPlanningTab({ roster, specsFromDb, fetchData,
 
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 items-start">
         {groups.map((group) => (
-          <details key={group.id} open className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+          <details key={group.id} open className="theme-surface rounded-xl p-4 space-y-3">
             <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-bold uppercase tracking-widest text-slate-300">
               <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
               {group.groupName || 'Untitled Group'}

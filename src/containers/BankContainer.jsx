@@ -88,7 +88,7 @@ export default function BankContainer({
   if (resolvedActiveTab === 'bankRequests') {
     if (!isAuthenticated) {
       return (
-        <div className="bg-slate-950 border border-slate-800 rounded-xl p-8 text-center text-slate-400">
+        <div className="theme-surface rounded-xl p-8 text-center text-slate-400">
           <h3 className="text-lg font-bold text-slate-200 mb-2">Officer login required</h3>
           <p className="text-sm">Use the officer unlock bar above to manage bank requests and inventory updates.</p>
         </div>
@@ -118,7 +118,7 @@ export default function BankContainer({
         isAuthenticated ? (
           <BankRequestsTab {...bankRequestsProps} />
         ) : (
-          <div className="bg-slate-950 border border-slate-800 rounded-xl p-8 text-center text-slate-400">
+          <div className="theme-surface rounded-xl p-8 text-center text-slate-400">
             <h3 className="text-lg font-bold text-slate-200 mb-2">Officer login required</h3>
             <p className="text-sm">Use the officer unlock bar above to manage bank requests and inventory updates.</p>
           </div>
@@ -126,12 +126,12 @@ export default function BankContainer({
       )}
       {resolvedBankSubTab === 'addon' && (
         <div className="space-y-4">
-          <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+          <div className="theme-surface rounded-xl p-6 space-y-4">
             <h3 className="text-lg font-bold text-amber-400">Guild Bank Addon</h3>
             <p className="text-sm text-slate-400">Install the TBC Bank Logger addon to export live bank snapshots into the dashboard.</p>
             <a href="/addon/TBCBankLogger.zip" className="inline-flex items-center rounded-lg border border-amber-600/40 bg-amber-600/10 px-4 py-2 text-sm font-bold text-amber-400 transition hover:bg-amber-600/20">Download Addon (.zip)</a>
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-300 space-y-2">
+              <div className="theme-surface-raised rounded-lg p-4 text-sm text-slate-300 space-y-2">
                 <h4 className="font-bold text-slate-100">Install and export</h4>
                 <p>1. Extract the zip so the addon folder is directly inside your WoW <code className="text-amber-300">Interface/AddOns</code> folder.</p>
                 <p>2. Reload the UI with <code className="text-amber-300">/reload</code>, then open the guild bank with a character who can view its tabs.</p>
@@ -139,7 +139,7 @@ export default function BankContainer({
                 <p>4. Use <code className="text-amber-300">/gbexport</code>, copy all of the JSON, and paste it into the Bank Update box below.</p>
                 <p>5. Preview the changes, then save the update when the inventory looks correct.</p>
               </div>
-              <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-300 space-y-2">
+              <div className="theme-surface-raised rounded-lg p-4 text-sm text-slate-300 space-y-2">
                 <h4 className="font-bold text-slate-100">Commands</h4>
                 <p><code className="text-amber-300">/gbscan</code> - scan all guild bank tabs you can view.</p>
                 <p><code className="text-amber-300">/gbexport</code> - open the latest scan as JSON for copying.</p>

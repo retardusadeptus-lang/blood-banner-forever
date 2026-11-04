@@ -8,6 +8,7 @@
     "build": "vite build",
     "build:prod": "vite build --mode production",
     "test:registry": "node --test src/config/siteRegistry.test.js",
+    "test:theme": "node --test src/config/theme.test.js",
     "test:view-model": "node --test src/hooks/useDashboardMainContentViewModel.test.js",
     "start": "node scripts/dev-full.mjs",
     "lint": "eslint .",

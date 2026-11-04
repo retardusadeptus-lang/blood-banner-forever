@@ -1037,7 +1037,7 @@ export default function ResourcesTab({
       )}
 
       {activeResourcesSubTab === 'tactics' && (
-        <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-5">
+        <div className="theme-surface rounded-xl p-6 space-y-5">
           <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
             <div className="flex-1 min-w-0 pr-2">
               <h3 className="text-lg font-bold text-slate-100">Raid Tactics</h3>
@@ -1506,7 +1506,7 @@ export default function ResourcesTab({
       )}
 
       {activeResourcesSubTab === 'cheatsheets' && (
-        <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-5">
+        <div className="theme-surface rounded-xl p-6 space-y-5">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <h3 className="text-lg font-bold text-slate-100">Cheat Sheets</h3>
@@ -1968,7 +1968,7 @@ export default function ResourcesTab({
       )}
 
       {activeResourcesSubTab === 'raidlogs' && (
-        <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+        <div className="theme-surface rounded-xl p-6 space-y-4">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
               <h3 className="text-lg font-bold text-slate-100">Raid Logs</h3>
@@ -2047,15 +2047,15 @@ export default function ResourcesTab({
       )}
 
       {activeResourcesSubTab === 'wowaudit' && (
-        <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+        <div className="theme-surface rounded-xl p-6 space-y-4">
           <h3 className="text-lg font-bold text-slate-100">WoWAudit</h3>
           <p className="text-sm text-slate-400">Keep a short list of important WoWAudit links, profiles, or notes for known raid goals and progress.</p>
-          <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-400">Add the relevant audit links here whenever you want them close at hand during planning.</div>
+          <div className="theme-surface-raised rounded-lg p-4 text-sm text-slate-400">Add the relevant audit links here whenever you want them close at hand during planning.</div>
         </div>
       )}
 
       {activeResourcesSubTab === 'wipefest' && (
-        <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+        <div className="theme-surface rounded-xl p-6 space-y-4">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <h3 className="text-lg font-bold text-slate-100">Wipefest</h3>

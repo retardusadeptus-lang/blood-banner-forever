@@ -280,7 +280,7 @@ const RaidAssignmentsBossCard = React.memo(function RaidAssignmentsBossCard({
   ], [activeRaiders, getPlayersByClasses, getPlayersBySpec]);
 
   return (
-    <details open className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden shadow-2xl p-5">
+    <details open className="theme-surface rounded-xl overflow-hidden shadow-2xl p-5">
       <summary className="cursor-pointer list-none border-b border-slate-800 pb-3 flex items-center gap-2">
         <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500">&gt;</span>
         <h3 className="text-xl font-bold text-purple-400 font-serif italic tracking-wide">{boss}</h3>

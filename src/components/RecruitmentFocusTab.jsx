@@ -355,7 +355,7 @@ export default function RecruitmentFocusTab({ isAuthenticated, specsFromDb, fetc
   const showReadOnlyState = !isAuthenticated || !isEditMode;
 
   return (
-    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 space-y-4">
+    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="theme-panel theme-panel-tab p-6 space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-xl font-bold text-slate-100">Recruitment Focus</h2>

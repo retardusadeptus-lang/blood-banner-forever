@@ -101,7 +101,7 @@ export default function LootCouncilTab({
   const displayedBosses = limitBosses ? uniqueBosses.slice(0, maxBossOptions) : uniqueBosses;
 
   return (
-    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="theme-panel theme-panel-tab p-6 animate-in fade-in duration-300">
       <div className="flex justify-end mb-4 gap-2">
         <button
           type="button"

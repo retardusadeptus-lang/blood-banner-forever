@@ -128,15 +128,15 @@ export default function AssignedLootOverview({ assignments, mutableItems, normal
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center gap-2 rounded-lg border border-slate-800 bg-slate-950 p-3">
+      <div className="theme-surface flex flex-wrap items-center gap-2 rounded-lg p-3">
         <input
           type="search"
           value={search}
           onChange={event => setSearch(event.target.value)}
           placeholder="Search items, characters, class, or spec"
-          className="min-w-[220px] flex-1 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-500/50"
+          className="theme-field min-w-[220px] flex-1 rounded-lg px-3 py-2 text-sm"
         />
-        <select value={classFilter} onChange={event => setClassFilter(event.target.value)} className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:outline-none">
+        <select value={classFilter} onChange={event => setClassFilter(event.target.value)} className="theme-field rounded-lg px-3 py-2 text-sm">
           <option value="all">All classes</option>
           {classOptions.map(className => <option key={className} value={className}>{className}</option>)}
         </select>
@@ -161,7 +161,7 @@ export default function AssignedLootOverview({ assignments, mutableItems, normal
                       value={columnFilters[key]}
                       onChange={event => setColumnFilters(current => ({ ...current, [key]: event.target.value }))}
                       placeholder="Filter"
-                      className="w-full min-w-[90px] rounded border border-slate-700 bg-slate-900 px-2 py-1 text-[10px] font-normal normal-case tracking-normal text-slate-300 placeholder:text-slate-600"
+                      className="theme-field w-full min-w-[90px] rounded px-2 py-1 text-[10px] font-normal normal-case tracking-normal"
                     />
                   </div>
                 </th>
@@ -169,7 +169,7 @@ export default function AssignedLootOverview({ assignments, mutableItems, normal
               <th className="px-3 py-3">
                 <div className="flex flex-col gap-2">
                   <span>Status</span>
-                  <select value={columnFilters.status} onChange={event => setColumnFilters(current => ({ ...current, status: event.target.value }))} className="w-full min-w-[90px] rounded border border-slate-700 bg-slate-900 px-2 py-1 text-[10px] font-normal normal-case tracking-normal text-slate-300">
+                  <select value={columnFilters.status} onChange={event => setColumnFilters(current => ({ ...current, status: event.target.value }))} className="theme-field w-full min-w-[90px] rounded px-2 py-1 text-[10px] font-normal normal-case tracking-normal">
                     <option value="">All</option>
                     <option value="Assigned">Assigned</option>
                     <option value="Awarded">Awarded</option>

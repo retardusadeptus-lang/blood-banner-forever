@@ -51,7 +51,7 @@ export default function ScoringTab({
   siteTabMetadata
 }) {
   return (
-    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+    <section data-site-tab-id={siteTabMetadata?.id} data-site-tab-group={siteTabMetadata?.groupKey} className="theme-panel theme-panel-tab p-6 animate-in fade-in duration-300">
       <div className="flex justify-end mb-4">
         <button
           type="button"
@@ -70,7 +70,7 @@ export default function ScoringTab({
           const isExpanded = expandedPlayerId === player.id;
           const stats = playerStats[player.id] || { cons: false, enchants: false, gems: false, afks: 0, parses: {} };
           return (
-            <div key={player.id} className="bg-slate-950 border border-slate-800 rounded-xl overflow-hidden transition-all duration-300">
+            <div key={player.id} className="theme-surface rounded-xl overflow-hidden transition-all duration-300">
               <div className="p-4 flex items-center justify-between cursor-pointer hover:bg-slate-900 transition-colors" onClick={() => setExpandedPlayerId(isExpanded ? null : player.id)}>
                 <div className="flex items-center gap-4">
                   <img src={getSpecIcon(getSpecById(player.spec_id))} alt="" className="w-10 h-10 rounded border border-slate-600 bg-slate-800 object-cover" onError={event => { event.currentTarget.src = UNKNOWN_ICON; }} />

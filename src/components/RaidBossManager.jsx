@@ -82,7 +82,7 @@ export default function RaidBossManager({
   }, [handleReorderEnabledBoss]);
 
   return (
-    <div className="w-full space-y-4 bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+    <div className="theme-panel theme-panel-tab w-full p-6 space-y-4 animate-in fade-in duration-300">
       <div className="rounded-xl border border-slate-800 bg-slate-950 p-6 shadow-inner">
         <div className="mb-4 flex flex-col gap-1">
           <h2 className="text-xl font-bold text-slate-100">Manage Bosses</h2>

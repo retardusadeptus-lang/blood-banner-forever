@@ -1,6 +1,6 @@
 export default function BankContentsHistory({ bankContentsHistory, exportBankContentsHistoryCsv }) {
   return (
-    <details open className="bg-slate-950 border border-slate-800 rounded-xl">
+    <details open className="theme-surface rounded-xl">
       <summary className="cursor-pointer list-none p-6">
         <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500 mr-2">&gt;</span>
         <h3 className="text-lg font-bold text-slate-100">Contents History</h3>
@@ -15,7 +15,7 @@ export default function BankContentsHistory({ bankContentsHistory, exportBankCon
         ) : (
           <div className="space-y-2">
             {bankContentsHistory.map(snapshot => (
-              <div key={snapshot.id} className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm">
+              <div key={snapshot.id} className="theme-surface-raised rounded-lg px-3 py-2 text-sm">
                 <div className="flex items-center justify-between gap-3">
                   <div className="font-semibold text-slate-200">{snapshot.itemCount || 0} items</div>
                   <div className="text-[11px] text-slate-500">{new Date(snapshot.timestamp).toLocaleString()}</div>

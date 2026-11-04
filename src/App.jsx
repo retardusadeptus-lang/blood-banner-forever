@@ -24,10 +24,12 @@ import useDashboardNavigation from './hooks/useDashboardNavigation';
 import useDashboardMainContentViewModel from './hooks/useDashboardMainContentViewModel';
 import useDashboardHelpers from './hooks/useDashboardHelpers.jsx';
 import useDataSync from './hooks/useDataSync';
+import useThemePreferences from './hooks/useThemePreferences';
 
 export default function App() {
   const previousActiveTabRef = useRef('');
   const previousBisTabRef = useRef('');
+  const theme = useThemePreferences();
   // ==========================================
   // SPECS DATA FROM DATABASE
   // ==========================================
@@ -891,6 +893,7 @@ export default function App() {
           roster={roster}
           getDisplayFromId={getDisplayFromId}
           specsByName={specsByName}
+          theme={theme}
         />
       )}
       navigation={(

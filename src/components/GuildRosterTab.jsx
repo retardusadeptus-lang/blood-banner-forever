@@ -216,7 +216,7 @@ export default function GuildRosterTab({
   ]));
 
   return (
-    <section className="bg-slate-900 rounded-xl border border-slate-800 shadow-xl p-6 space-y-4">
+    <section className="theme-panel p-6 space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-xl font-bold text-slate-100">Guild Roster</h2>
@@ -360,7 +360,7 @@ export default function GuildRosterTab({
                 <div className="rounded-lg border border-slate-800 bg-slate-950 p-4">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Phase 2 Parse Logs</h4>
                   <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                    {P2_BOSSES.map(boss => { const parse = selectedStats.parses?.[boss] || { val: '', support: false }; return <div key={boss} className="flex justify-between gap-2 rounded border border-slate-800 bg-slate-900 px-3 py-2 text-xs"><span className="truncate text-slate-300">{boss}</span><span className="font-bold text-amber-400">{parse.val || '—'}{parse.support ? ' · Support' : ''}</span></div>; })}
+                    {P2_BOSSES.map(boss => { const parse = selectedStats.parses?.[boss] || { val: '', support: false }; return <div key={boss} className="theme-surface-raised flex justify-between gap-2 rounded px-3 py-2 text-xs"><span className="truncate text-slate-300">{boss}</span><span className="font-bold text-amber-400">{parse.val || '—'}{parse.support ? ' · Support' : ''}</span></div>; })}
                   </div>
                 </div>
               </div>
@@ -408,7 +408,7 @@ export default function GuildRosterTab({
             {detailType === 'bank' && (
               <div className="mt-5 rounded-lg border border-slate-800 bg-slate-950 p-4">
                 <div className="mb-3 flex items-center justify-between"><h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Guild Bank Requests</h4><span className="text-sm font-bold text-slate-200">{selectedRequests.reduce((total, request) => total + (Number(request.price) || 0) * (Number(request.quantity) || 0), 0).toLocaleString()}g total</span></div>
-                {isLoadingRequests ? <p className="text-sm text-slate-500">Loading requests...</p> : selectedRequests.length === 0 ? <p className="text-sm text-slate-500">No bank requests found.</p> : <div className="space-y-2">{selectedRequests.map(request => <div key={request.id} className="flex justify-between gap-3 rounded border border-slate-800 bg-slate-900 px-3 py-2 text-sm"><span className="text-slate-200">{request.item_name} × {request.quantity}</span><span className="text-right text-xs text-slate-500">{(Number(request.price) || 0) * (Number(request.quantity) || 0)}g · {request.status}</span></div>)}</div>}
+                {isLoadingRequests ? <p className="text-sm text-slate-500">Loading requests...</p> : selectedRequests.length === 0 ? <p className="text-sm text-slate-500">No bank requests found.</p> : <div className="space-y-2">{selectedRequests.map(request => <div key={request.id} className="theme-surface-raised flex justify-between gap-3 rounded px-3 py-2 text-sm"><span className="text-slate-200">{request.item_name} × {request.quantity}</span><span className="text-right text-xs text-slate-500">{(Number(request.price) || 0) * (Number(request.quantity) || 0)}g · {request.status}</span></div>)}</div>}
               </div>
             )}
 

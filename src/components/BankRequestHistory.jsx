@@ -56,7 +56,7 @@ export default function BankRequestHistory({
   };
 
   return (
-    <details open className="bg-slate-950 border border-slate-800 rounded-xl">
+    <details open className="theme-surface rounded-xl">
       <summary className="cursor-pointer list-none p-6">
         <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500 mr-2">&gt;</span>
         <h3 className="text-lg font-bold text-slate-100">Request History</h3>
@@ -72,7 +72,7 @@ export default function BankRequestHistory({
                   type="checkbox"
                   checked={archivedRequestIds.length > 0 && archivedRequestIds.every(id => isArchivedRequestSelected(id))}
                   onChange={toggleAllArchivedRequestsSelection}
-                  className="rounded border-slate-700 bg-slate-950"
+                  className="theme-field rounded"
                 />
                 Select all
               </label>
@@ -101,13 +101,13 @@ export default function BankRequestHistory({
         ) : (
           <div className="space-y-2">
             {archivedBankRequests.map(request => (
-              <div key={request.id} className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm gap-3">
+              <div key={request.id} className="theme-surface-raised flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm">
                 <div className="flex items-center gap-3 flex-1 min-w-0">
                   <input
                     type="checkbox"
                     checked={isArchivedRequestSelected(request.id)}
                     onChange={() => toggleArchivedRequestSelection(request.id)}
-                    className="rounded border-slate-700 bg-slate-950 shrink-0"
+                    className="theme-field shrink-0 rounded"
                   />
                   <div className="min-w-0">
                     <div className="font-semibold text-slate-200">{request.item_name || 'Bank request'}</div>

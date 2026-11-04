@@ -63,7 +63,7 @@ export default function RosterTab({
   const conflictIds = useMemo(() => new Set((importedRaidHelperSpecConflictIds || []).map(Number)), [importedRaidHelperSpecConflictIds]);
 
   return (
-    <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+    <section className="theme-panel theme-panel-tab p-6 animate-in fade-in duration-300">
       <div className="flex justify-end mb-4">
         <div className="flex items-center gap-2">
           <button

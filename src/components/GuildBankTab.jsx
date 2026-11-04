@@ -135,7 +135,7 @@ export default function GuildBankTab({
   const generateId = () => Math.random().toString(36).substr(2, 9);
 
   return (
-    <section className="bank-tab bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-4">
+    <section className="bank-tab theme-panel theme-panel-tab p-6 animate-in fade-in duration-300 space-y-4">
       
       {/* 🛒 Shopping Basket Header */}
       {!canSubmitWebsiteRequest && (
@@ -286,7 +286,7 @@ export default function GuildBankTab({
       {/* Request Modal */}
       {requestItem && (
         <div className="fixed inset-0 z-50 bg-slate-950/80 flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-xl max-w-md w-full p-6 shadow-2xl">
+          <div className="theme-surface-raised rounded-xl max-w-md w-full p-6 shadow-2xl">
             <h3 className="text-lg font-bold text-slate-100 mb-4">Add to Basket: {requestItem.name}</h3>
             <form onSubmit={addToBasket} className="space-y-4">
               <div>

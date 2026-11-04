@@ -1,3 +1,5 @@
+import ThemeControls from './ThemeControls';
+
 export default function DashboardHeader({
   hasAnyUnsavedChanges,
   unsavedSections,
@@ -15,7 +17,8 @@ export default function DashboardHeader({
   isAuthenticated,
   handleLogout,
   getDisplayFromId,
-  specsByName
+  specsByName,
+  theme
 }) {
   return (
     <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -29,8 +32,18 @@ export default function DashboardHeader({
       </div>
 
       <div className="flex w-full items-stretch justify-end gap-4 flex-wrap lg:w-fit lg:flex-nowrap">
+        {theme && (
+          <div className="order-3 flex items-start">
+            <ThemeControls
+              palette={theme.palette}
+              font={theme.font}
+              onPaletteChange={theme.setPalette}
+              onFontChange={theme.setFont}
+            />
+          </div>
+        )}
         {canSaveChanges && hasAnyUnsavedChanges && (
-          <div className="w-80 flex flex-col justify-between bg-slate-900 border border-slate-800 rounded-lg p-2.5">
+          <div className="theme-surface-raised w-80 flex flex-col justify-between rounded-lg p-2.5">
           <div className="flex items-center justify-between gap-2">
             <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Unsaved Changes</span>
             <button
@@ -83,7 +96,7 @@ export default function DashboardHeader({
             <select
               value={globalMyPlayerId}
               onChange={e => onCharacterSelect(e.target.value)}
-              className="origin-left scale-x-[1] w-auto max-w-full bg-slate-950 text-amber-400 font-bold border border-slate-700 rounded-lg px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+              className="theme-field origin-left scale-x-[1] w-auto max-w-full rounded-lg px-2 py-1.5 text-xs font-bold focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
             >
               <option value="">— Select Character —</option>
               {sortedRosterForSelector.map(player => {

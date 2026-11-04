@@ -11,10 +11,10 @@ export default function BankUpdate({
   bankUploadParsed
 }) {
   return (
-    <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+    <div className="theme-surface rounded-xl p-6 space-y-4">
       <h3 className="text-lg font-bold text-slate-100">Bank Inventory Update</h3>
       <p className="text-sm text-slate-400">Paste the latest JSON export from the TBC Bank Logger addon to refresh the guild bank inventory.</p>
-      <div className="rounded-xl border border-slate-800 bg-slate-900 p-4 space-y-3">
+      <div className="theme-surface-raised rounded-xl p-4 space-y-3">
         <div>
           <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2">Paste Bank JSON</label>
           <textarea
@@ -53,7 +53,7 @@ export default function BankUpdate({
         <div className="text-xs font-semibold text-amber-400">Detected guild gold: {bankUploadMeta.gold}</div>
       )}
       {bankUploadParsed && (
-        <pre className="max-h-64 overflow-auto rounded-lg border border-slate-800 bg-slate-900 p-4 text-[11px] leading-5 text-slate-300 whitespace-pre-wrap">
+        <pre className="theme-surface-raised max-h-64 overflow-auto rounded-lg p-4 text-[11px] leading-5 text-slate-300 whitespace-pre-wrap">
           {JSON.stringify(bankUploadParsed, null, 2)}
         </pre>
       )}

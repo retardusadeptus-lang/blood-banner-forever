@@ -374,7 +374,7 @@ export default function BankRequestsTab({
   };
 
   return (
-    <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+    <section className="theme-panel theme-panel-tab p-6 animate-in fade-in duration-300">
       <style>{`
         details[open] > summary .bank-section-indicator {
           transform: rotate(90deg);

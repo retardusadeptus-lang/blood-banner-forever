@@ -9,10 +9,10 @@ export default function RaidAssignmentsHistory({
   onToggleRestoreBoss
 }) {
   return (
-    <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+    <div className="theme-surface rounded-xl p-6 space-y-4">
       <h3 className="text-lg font-bold text-slate-100">Raid Assignment History</h3>
       <p className="text-sm text-slate-400">Saved assignment snapshots remain visible here so officers can review the latest raid planning state.</p>
-      <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-300">
+      <div className="theme-surface-raised rounded-lg p-4 text-sm text-slate-300">
         {Object.keys(archives?.live || {}).length === 0 ? 'No saved assignment data yet.' : `The current assignment data contains ${Object.keys(archives?.live || {}).length} tracked section${Object.keys(archives?.live || {}).length === 1 ? '' : 's'}.`}
       </div>
       {archives.length === 0 ? (
@@ -20,7 +20,7 @@ export default function RaidAssignmentsHistory({
       ) : (
         <div className="space-y-2">
           {archives.map(entry => (
-            <div key={entry.id} className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm">
+            <div key={entry.id} className="theme-surface-raised rounded-lg px-3 py-2 text-sm">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <div className="font-semibold text-slate-200">{entry.boss || 'Active bosses'}</div>
@@ -64,7 +64,7 @@ export default function RaidAssignmentsHistory({
                       </div>
                     </div>
                   )}
-                  <pre className="max-h-80 overflow-auto rounded-lg border border-slate-800 bg-slate-900 p-3 text-[11px] leading-5 text-slate-300 whitespace-pre-wrap">
+                  <pre className="theme-surface-raised max-h-80 overflow-auto rounded-lg p-3 text-[11px] leading-5 text-slate-300 whitespace-pre-wrap">
                     {JSON.stringify(entry.payload, null, 2)}
                   </pre>
                 </div>

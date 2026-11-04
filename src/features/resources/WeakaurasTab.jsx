@@ -290,7 +290,7 @@ export default function WeakaurasTab({ fetchData, postData, canSubmit, canManage
   };
 
   return (
-    <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+    <div className="theme-surface rounded-xl p-6 space-y-4">
       <div>
         <h3 className="text-lg font-bold text-slate-100">Weakauras</h3>
         <p className="text-sm text-slate-400">Officer-submitted WeakAuras with one-click copy for in-game import.</p>
@@ -497,9 +497,9 @@ export default function WeakaurasTab({ fetchData, postData, canSubmit, canManage
       )}
 
       {isLoading ? (
-        <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-400">Loading WeakAuras...</div>
+        <div className="theme-surface-raised rounded-lg p-4 text-sm text-slate-400">Loading WeakAuras...</div>
       ) : filteredEntries.length === 0 ? (
-        <div className="rounded-lg border border-slate-800 bg-slate-900 p-4 text-sm text-slate-400">
+        <div className="theme-surface-raised rounded-lg p-4 text-sm text-slate-400">
           {sortedEntries.length === 0 ? 'No WeakAuras submitted yet.' : 'No WeakAuras match the current search and section filter.'}
         </div>
       ) : (

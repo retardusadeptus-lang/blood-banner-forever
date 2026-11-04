@@ -148,7 +148,7 @@ export default function OfficerRolesTab({
   );
 
   return (
-    <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+    <section className="theme-panel theme-panel-tab p-6 animate-in fade-in duration-300">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
           <h2 className="text-xl font-bold text-slate-100 mb-1">Officer Roles</h2>
@@ -196,7 +196,7 @@ export default function OfficerRolesTab({
       </div>
 
       {isEditMode && (
-        <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 mb-6">
+        <div className="theme-surface rounded-xl p-4 mb-6">
           <div className="flex flex-col sm:flex-row gap-2">
             <input
               type="text"

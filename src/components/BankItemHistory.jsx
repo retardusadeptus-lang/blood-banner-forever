@@ -26,7 +26,7 @@ export default function BankItemHistory({ bankItemHistory, onRestoreBankItem }) 
   };
 
   return (
-    <details open className="bg-slate-950 border border-slate-800 rounded-xl">
+    <details open className="theme-surface rounded-xl">
       <summary className="cursor-pointer list-none p-6">
         <span aria-hidden="true" className="bank-section-indicator inline-block transition-transform duration-150 text-slate-500 mr-2">&gt;</span>
         <h3 className="text-lg font-bold text-slate-100">Item History</h3>
@@ -39,7 +39,7 @@ export default function BankItemHistory({ bankItemHistory, onRestoreBankItem }) 
             value={search}
             onChange={event => setSearch(event.target.value)}
             placeholder="Search item history..."
-            className="w-full max-w-md rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:outline-none"
+            className="theme-field w-full max-w-md rounded-lg px-3 py-2 text-sm"
           />
           <span className="text-xs text-slate-500">{filteredItems.length} items</span>
         </div>
@@ -49,7 +49,7 @@ export default function BankItemHistory({ bankItemHistory, onRestoreBankItem }) 
         ) : (
           <div className="space-y-2">
             {filteredItems.map(item => (
-              <div key={item.item_wowhead_id} className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
+              <div key={item.item_wowhead_id} className="theme-surface-raised flex flex-wrap items-center justify-between gap-3 rounded-lg px-3 py-2">
                 <div className="min-w-0">
                   <div className="font-semibold text-slate-200">{item.name}</div>
                   <div className="text-xs text-slate-500">{item.category || 'Other'} · Current stock: {item.current_count || 0}</div>
@@ -61,7 +61,7 @@ export default function BankItemHistory({ bankItemHistory, onRestoreBankItem }) 
                     value={quantities[item.item_wowhead_id] || 1}
                     onChange={event => setQuantities(prev => ({ ...prev, [item.item_wowhead_id]: event.target.value }))}
                     aria-label={`Quantity of ${item.name} to add`}
-                    className="w-20 rounded-lg border border-slate-700 bg-slate-950 px-2 py-1.5 text-sm text-slate-200"
+                    className="theme-field w-20 rounded-lg px-2 py-1.5 text-sm"
                   />
                   <button
                     type="button"

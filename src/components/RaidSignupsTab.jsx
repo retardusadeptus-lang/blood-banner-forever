@@ -1935,7 +1935,7 @@ export default function RaidSignupsTab({
   };
 
   return (
-    <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-6">
+    <section className="theme-panel theme-panel-tab p-6 animate-in fade-in duration-300 space-y-6">
       <div className="flex items-center justify-between gap-3">
         <div>
           <h2 className="text-xl font-bold text-slate-100 mb-1">Raid Signups</h2>
@@ -1952,7 +1952,7 @@ export default function RaidSignupsTab({
           ) : (
             <div className="space-y-4">
               {groupedPublic.map(({ event, byRole }) => (
-                <div key={event.id} className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                <div key={event.id} className="theme-surface rounded-xl p-4">
                   <div className="flex items-start justify-between gap-3 mb-4">
                     <div>
                       <h3 className="text-lg font-bold text-amber-400">{event.title}</h3>
@@ -1965,7 +1965,7 @@ export default function RaidSignupsTab({
 
                   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
                     {['tank', 'healer', 'melee', 'ranged'].map(role => (
-                      <div key={role} className="bg-slate-900 border border-slate-800 rounded-lg p-3">
+                      <div key={role} className="theme-surface-raised rounded-lg p-3">
                         <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
                           <img src={roleIconAsset(role)} alt="" className="w-4 h-4 object-contain" />
                           <span>{role}</span>
@@ -2004,7 +2004,7 @@ export default function RaidSignupsTab({
                             .sort((a, b) => Number(a.slot_index) - Number(b.slot_index));
                           const groupName = rows[0]?.group_name || `Group ${groupNumber}`;
                           return (
-                            <div key={`${event.id}-pub-${groupNumber}`} className="bg-slate-900 border border-slate-800 rounded-lg p-3">
+                            <div key={`${event.id}-pub-${groupNumber}`} className="theme-surface-raised rounded-lg p-3">
                               <h5 className="text-xs font-bold text-amber-300 mb-2">{groupName}</h5>
                               <ul className="space-y-1.5">
                                 {rows.map(row => {
@@ -2034,7 +2034,7 @@ export default function RaidSignupsTab({
       <>
           {activeRaidSection === 'templates' && (
             isAuthenticated ? (
-              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+              <div className="theme-surface rounded-xl p-4 space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Raid Templates (Bot Source)</h3>
               <div className="flex items-center gap-2">
@@ -2181,14 +2181,14 @@ export default function RaidSignupsTab({
             </div>
           </div>
             ) : (
-              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+              <div className="theme-surface rounded-xl p-4">
                 <p className="text-sm text-slate-300">Officer login required to manage raid templates.</p>
               </div>
             )
           )}
 
           {activeRaidSection === 'events' && (
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+            <div className="theme-surface rounded-xl p-4 space-y-4">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                 <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Events & Status</h3>
                 <div className="flex items-center gap-2">
@@ -2272,7 +2272,7 @@ export default function RaidSignupsTab({
               ) : (
                 <div className="space-y-4">
                   {selectedEvent ? (
-                    <div className="bg-slate-900 border border-slate-800 rounded-lg p-3">
+                    <div className="theme-surface-raised rounded-lg p-3">
                       <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-2">Signup Summary</p>
                       <div className="grid grid-cols-2 md:grid-cols-7 gap-2">
                         <button type="button" onClick={() => setExpandedSummaryStatus(prev => (prev === 'signup' ? '' : 'signup'))} className={`text-left rounded border px-2 py-1.5 ${expandedSummaryStatus === 'signup' ? 'border-emerald-400 bg-emerald-900/35' : 'border-emerald-700/40 bg-emerald-900/20 hover:bg-emerald-900/30'}`}>
@@ -2359,7 +2359,7 @@ export default function RaidSignupsTab({
                       ) : null}
                     </div>
                   ) : (
-                    <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 grid grid-cols-1 md:grid-cols-3 gap-2">
+                    <div className="theme-surface-raised rounded-lg p-3 grid grid-cols-1 md:grid-cols-3 gap-2">
                       <input
                         type="text"
                         value={eventEditDraft.title}
@@ -2446,7 +2446,7 @@ export default function RaidSignupsTab({
                           const rows = selectedEventGroups.filter(row => Number(row.group_number) === groupNumber);
                           const groupName = rows[0]?.group_name || `Group ${groupNumber}`;
                           return (
-                            <div key={`selected-group-${groupNumber}`} className={isReadOnly ? 'space-y-1.5' : 'bg-slate-900 border border-slate-800 rounded-lg p-3'}>
+                            <div key={`selected-group-${groupNumber}`} className={isReadOnly ? 'space-y-1.5' : 'theme-surface-raised rounded-lg p-3'}>
                               <h4 className="text-xs font-bold text-amber-300">{groupName}</h4>
                               <ul className="space-y-1.5">
                                 {rows.map(row => (
@@ -2640,7 +2640,7 @@ export default function RaidSignupsTab({
                         {Array.from({ length: visibleGroupCount }, (_, idx) => idx + 1).map(groupNumber => {
                           const rows = groupRows.filter(row => row.group_number === groupNumber).sort((a, b) => a.slot_index - b.slot_index);
                           return (
-                            <div key={groupNumber} className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                            <div key={groupNumber} className="theme-surface-raised rounded-lg p-3 space-y-3">
                               <input
                                 type="text"
                                 value={rows[0]?.group_name || `Group ${groupNumber}`}
@@ -2794,7 +2794,7 @@ export default function RaidSignupsTab({
           )}
 
           {activeRaidSection === 'calendar' && (
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+            <div className="theme-surface rounded-xl p-4 space-y-4">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                   <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Officer Scheduling Calendar</h3>
                   <div className="flex items-center gap-2 text-[11px] text-slate-400">
@@ -2914,7 +2914,7 @@ export default function RaidSignupsTab({
           )}
 
           {activeRaidSection === 'absences' && (
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+            <div className="theme-surface rounded-xl p-4 space-y-4">
               <style>{`
                 details[open] > summary .absence-section-indicator {
                   transform: rotate(90deg);
@@ -2931,7 +2931,7 @@ export default function RaidSignupsTab({
                 </div>
               ) : (
                 <>
-                  <details open className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                  <details open className="theme-surface-raised rounded-lg p-3 space-y-3">
                     <summary className="flex cursor-pointer list-none items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-300">
                       <span aria-hidden="true" className="absence-section-indicator inline-block transition-transform duration-150">&gt;</span>
                       Declare absence
@@ -3000,7 +3000,7 @@ export default function RaidSignupsTab({
                     </div>
                   </details>
 
-                  <details open className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
+                  <details open className="theme-surface-raised rounded-lg p-3 space-y-2">
                     <summary className="flex cursor-pointer list-none items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-300">
                       <span aria-hidden="true" className="absence-section-indicator inline-block transition-transform duration-150">&gt;</span>
                       My Absences
@@ -3030,7 +3030,7 @@ export default function RaidSignupsTab({
                   </details>
 
                   {isAuthenticated ? (
-                    <details open className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2">
+                    <details open className="theme-surface-raised rounded-lg p-3 space-y-2">
                       <summary className="flex cursor-pointer list-none items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-300">
                         <span aria-hidden="true" className="absence-section-indicator inline-block transition-transform duration-150">&gt;</span>
                         All Absences
@@ -3060,7 +3060,7 @@ export default function RaidSignupsTab({
                   ) : null}
 
                   {isAuthenticated ? (
-                    <details open className="bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-3">
+                    <details open className="theme-surface-raised rounded-lg p-3 space-y-3">
                       <summary className="flex cursor-pointer list-none items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-300">
                         <span aria-hidden="true" className="absence-section-indicator inline-block transition-transform duration-150">&gt;</span>
                         Officer Holiday Calendar
@@ -3116,12 +3116,12 @@ export default function RaidSignupsTab({
 
           {activeRaidSection === 'history' && (
             isAuthenticated ? (
-              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-4">
+              <div className="theme-surface rounded-xl p-4 space-y-4">
               <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider">Raid History</h3>
 
               <div className="space-y-4">
 
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-4">
+                <div className="theme-surface-raised rounded-xl p-4 space-y-4">
                   <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Log Current Raid</h4>
                   <form onSubmit={handleSaveRaidLog} className="flex flex-col gap-3">
                     <div className="flex gap-3">
@@ -3184,7 +3184,7 @@ export default function RaidSignupsTab({
                   </div>
                 </div>
 
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+                <div className="theme-surface-raised rounded-xl p-4">
                   <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center justify-between">
                     <span>Raid History Logs</span>
                     <span className="bg-slate-800 text-slate-400 px-2 py-0.5 rounded text-[10px]">{raidLogs.length} Records</span>
@@ -3234,7 +3234,7 @@ export default function RaidSignupsTab({
                   )}
                 </div>
 
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+                <div className="theme-surface-raised rounded-xl p-4">
                   <div className="flex flex-col gap-2 mb-3 md:flex-row md:items-center md:justify-between">
                     <div>
                       <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Attendance Tracker</h4>
@@ -3377,7 +3377,7 @@ export default function RaidSignupsTab({
               </div>
             </div>
             ) : (
-              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4">
+              <div className="theme-surface rounded-xl p-4">
                 <p className="text-sm text-slate-300">Officer login required to view raid history.</p>
               </div>
             )

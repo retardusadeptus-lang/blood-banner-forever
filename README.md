@@ -50,6 +50,12 @@ Copy the contents of `coolify.env` into Coolify environment variables.
 - Proxy browser requests under `/api` to the backend
 - Allow the bot code to run when Discord env vars are present
 
+## Appearance customization
+
+The dashboard header includes an **Appearance** control with selectable colour palettes and site fonts. The selected palette and font are applied across the shared page, panel, navigation, field, and button styles.
+
+Appearance preferences are stored in the current browser's local storage, so they persist for that browser without changing the guild-wide configuration or database. A new browser or cleared site data starts with the default **Azure & Banner** palette and **Modern System** font. Available palettes include **Blood & Banner** (Horde red), **Classic Blood & Banner** (the original palette), **Charcoal Banner**, **Blood & Banter**, **Blood & Brass**, **Banner & Bone**, **Blood & Iron**, **Blood & Shadow**, **Midnight & Banner**, and **Blood & Ash** alongside the other fantasy themes. Available fonts include **Modern System**, **Guild Chronicle**, **Tactical Mono**, **Warband Condensed**, **Runestone Serif**, **Guild Scribe**, and **War Room Typewriter**.
+
 ## Notes
 
 - `GUILD_LOOT_DB_PATH` can be left blank to use the default DB file at `guild-loot-api/mydb.db`.

@@ -413,7 +413,7 @@ export default function DashboardMainContent({ viewModel }) {
             />
           )}
           {activeSiteTabId === 'loot.assigned' && (
-            <div className="bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-4">
+            <div className="theme-surface rounded-xl p-6 space-y-4">
               <h3 className="text-lg font-bold text-slate-100">Assigned Loot Overview</h3>
               <p className="text-sm text-slate-400">The current loot council priorities are grouped here for a quick review.</p>
               <AssignedLootOverview

@@ -61,7 +61,7 @@ export default function DiscordBotConfigTab({
     onToggle: event => {
       if (event.currentTarget.open !== openSections[section]) toggleSection(section);
     },
-    className: 'bg-slate-950 border border-slate-800 rounded-xl',
+    className: 'theme-surface rounded-xl',
     id: `config-section-${section}`
   });
 
@@ -141,7 +141,7 @@ export default function DiscordBotConfigTab({
   };
 
   return (
-    <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-3">
+    <section className="theme-panel theme-panel-tab p-6 animate-in fade-in duration-300 space-y-3">
       <style>{`
         details[open] > summary .config-section-indicator {
           transform: rotate(90deg);
@@ -430,7 +430,7 @@ export default function DiscordBotConfigTab({
               const specDisplay = rosterEntry ? getDisplayFromId?.(rosterEntry.spec_id) : null;
               const color = specsByName?.[specDisplay]?.color || '#e2e8f0';
               return (
-                <div key={`${claim.rosterId}-${claim.userId}`} className="flex items-center justify-between gap-3 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2">
+                <div key={`${claim.rosterId}-${claim.userId}`} className="theme-surface-raised flex items-center justify-between gap-3 rounded-lg px-3 py-2">
                   <div>
                     <p className="text-sm font-semibold text-slate-100" style={{ color }}>{claim.rosterName}</p>
                     <p className="text-xs text-slate-500">
