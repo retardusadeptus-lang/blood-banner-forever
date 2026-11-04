@@ -7,17 +7,24 @@ This repository contains a React frontend and an Express backend (`guild-loot-ap
 ### Recommended deployment mode
 Use Docker deployment if possible.
 
-If Coolify is using Nixpacks, this repository is now configured to run the backend and frontend in a single service.
+If Coolify is using Nixpacks, this repository is now configured to run the backend and frontend in a single service, but Docker is preferred because it includes the native SQLite dependency build and the shared nginx/API startup contract.
 
 ### Environment variables
 Copy the contents of `coolify.env` into Coolify environment variables.
 
 ### Important values
-- `PORT=3000`
-- `API_PORT=4000`
+- `FRONTEND_PORT=3002`
+- `API_PORT=4002`
+- `PORT=3002`
 - `VITE_API_BASE_URL=/api`
 - `NIXPACKS_NODE_VERSION=22`
 - `NIXPACKS_INSTALL_CMD=npm install`
+
+For Docker deployment, set Coolify's exposed/service port to `3002`, matching `FRONTEND_PORT`. `API_PORT` is an internal container port and must remain different from the frontend port.
+
+### Database persistence
+
+The SQLite database is intentionally not committed to Git. Mount a Coolify persistent volume at `/app/data` and set `GUILD_LOOT_DB_PATH=/app/data/mydb.db`. Restore the populated `mydb.db` into that volume before deploying if the site should retain the local roster, items, and configuration. Without a restored database, the API now creates its schema automatically but starts with empty reference and operational tables.
 
 ### Required app secrets
 - `ADMIN_API_TOKEN`

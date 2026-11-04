@@ -34,6 +34,7 @@ FROM node:20-alpine AS production
 
 # Tools needed for API scripts and SQLite-based DB work on deployment
 RUN apk add --no-cache python3 sqlite make g++ nginx gettext
+RUN mkdir -p /app/data
 
 # Verify nginx installation
 RUN nginx -v
@@ -73,6 +74,8 @@ ENV BIS_CSV_PATH="/app/guild-loot-api/BIS Lists/all-bis-items.csv"
 # Both ports can be overridden at runtime by Coolify environment variables.
 ENV FRONTEND_PORT=3002
 ENV API_PORT=4002
+ENV GUILD_LOOT_DB_PATH=/app/data/mydb.db
 EXPOSE 3002 4002
+VOLUME ["/app/data"]
 
 CMD ["/docker-entrypoint.sh"]

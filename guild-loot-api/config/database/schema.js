@@ -186,6 +186,53 @@ function ensureBattleNetAuthSchema(db) {
   }
 }
 
+function ensureReferenceTables(db) {
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS specs (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      class VARCHAR(100) NOT NULL,
+      spec VARCHAR(100) NOT NULL,
+      slug TEXT DEFAULT '',
+      color TEXT DEFAULT '#e2e8f0',
+      icon_small TEXT DEFAULT '',
+      icon_medium TEXT DEFAULT '',
+      icon_large TEXT DEFAULT ''
+    );
+
+    CREATE TABLE IF NOT EXISTS items (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name VARCHAR(255) NOT NULL,
+      slot VARCHAR(100),
+      phase VARCHAR(100),
+      source VARCHAR(255),
+      source_type VARCHAR(100),
+      drop_chance REAL,
+      rarity VARCHAR(100),
+      wowhead_id INTEGER
+    );
+
+    CREATE TABLE IF NOT EXISTS items_bis (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      item_id INTEGER NOT NULL REFERENCES items(id),
+      spec_id INTEGER NOT NULL REFERENCES specs(id),
+      preraid_bis INTEGER DEFAULT 0,
+      t4_bis INTEGER DEFAULT 0,
+      t5_bis INTEGER DEFAULT 0,
+      t6_bis INTEGER DEFAULT 0,
+      za_bis INTEGER DEFAULT 0,
+      swp_bis INTEGER DEFAULT 0,
+      preraid_opt INTEGER DEFAULT 0,
+      t4_opt INTEGER DEFAULT 0,
+      t5_opt INTEGER DEFAULT 0,
+      t6_opt INTEGER DEFAULT 0,
+      za_opt INTEGER DEFAULT 0,
+      swp_opt INTEGER DEFAULT 0,
+      ongoing_bis INTEGER DEFAULT 0,
+      ongoing_opt INTEGER DEFAULT 0
+    );
+  `);
+}
+
 function ensureTierTokenSupport(db) {
   db.prepare(`
     CREATE TABLE IF NOT EXISTS tier_token_metadata (
@@ -1131,10 +1178,11 @@ function ensureDatabaseIndexes(db) {
 
 function ensureDatabaseReady(db) {
   runWithBusyRetries(() => {
+    ensureReferenceTables(db);
+    ensureOperationalTables(db);
     ensureBattleNetAuthSchema(db);
     ensureTierTokenSupport(db);
     ensureWarcraftLogsTables(db);
-    ensureOperationalTables(db);
     ensureNormalizedOperationalTables(db);
     ensureBankRequestSchema(db);
     ensureOfficerRolesTable(db);
