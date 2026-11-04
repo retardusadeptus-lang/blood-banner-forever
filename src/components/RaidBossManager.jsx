@@ -82,11 +82,11 @@ export default function RaidBossManager({
   }, [handleReorderEnabledBoss]);
 
   return (
-    <div className="w-full space-y-4">
-      <div className="rounded-xl border border-slate-800 bg-slate-950 p-5 shadow-inner">
+    <div className="w-full space-y-4 bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300">
+      <div className="rounded-xl border border-slate-800 bg-slate-950 p-6 shadow-inner">
         <div className="mb-4 flex flex-col gap-1">
           <h2 className="text-xl font-bold text-slate-100">Manage Bosses</h2>
-          <p className="text-sm text-slate-500">Create the raid zones and encounters used by the boss selector.</p>
+          <p className="text-sm text-slate-400">Create the raid zones and encounters used by the boss selector.</p>
         </div>
         <div className="flex flex-col gap-2 sm:flex-row">
           <input type="text" value={zoneName} onChange={event => setZoneName(event.target.value)} placeholder="Raid / Zone" className="rounded border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none sm:w-56" />
