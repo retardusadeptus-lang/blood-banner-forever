@@ -33,7 +33,9 @@ CREATE TABLE IF NOT EXISTS items_bis (
     t5_opt INTEGER DEFAULT 0,
     t6_opt INTEGER DEFAULT 0,
     za_opt INTEGER DEFAULT 0,
-    swp_opt INTEGER DEFAULT 0
+    swp_opt INTEGER DEFAULT 0,
+    ongoing_bis INTEGER DEFAULT 0,
+    ongoing_opt INTEGER DEFAULT 0
 );
 
 CREATE INDEX IF NOT EXISTS idx_items_name ON items (name);
