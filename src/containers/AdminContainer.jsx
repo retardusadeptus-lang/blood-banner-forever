@@ -3,9 +3,10 @@ import AdminTodoTab from '../features/admin/AdminTodoTab';
 import OfficerRolesTab from '../components/OfficerRolesTab';
 import DiscordBotConfigTab from '../components/DiscordBotConfigTab';
 import GuildRosterTab from '../components/GuildRosterTab';
+import RaidBossManager from '../components/RaidBossManager';
 import SitemapTab from '../components/SitemapTab';
 
-export default function AdminContainer({ navigation, directory, admin, scoring, session, rosterModel, siteVisibility, siteTabMetadata }) {
+export default function AdminContainer({ navigation, directory, admin, scoring, session, rosterModel, siteVisibility, siteTabMetadata, raidAssignments }) {
   const {
     activeTab,
     adminSubTab,
@@ -62,6 +63,20 @@ export default function AdminContainer({ navigation, directory, admin, scoring, 
     handleSaveBnetAccessRoles,
     handleSaveDiscordBotConfig
   } = adminData;
+  const {
+    customRaidGroups = [],
+    enabledBosses = [],
+    addCustomBoss,
+    addTrashBefore,
+    setBossVisibility,
+    renameCustomBoss,
+    removeCustomBoss,
+    reorderEnabledBoss,
+    dataDirty: raidAssignmentDataDirty,
+    enabledBossesDirty,
+    onSaveChanges: onSaveRaidAssignmentsChanges,
+    isSaving: isSavingRaidAssignments
+  } = raidAssignments || {};
 
   const registryRoute = siteTabMetadata?.contentOwner === 'AdminContainer' ? siteTabMetadata.route : null;
   const resolvedActiveTab = registryRoute?.activeTab || activeTab;
@@ -136,6 +151,21 @@ export default function AdminContainer({ navigation, directory, admin, scoring, 
             onRemoveBnetAccessRole={removeBnetAccessRoleForUser}
             onSaveBnetAccessRoles={handleSaveBnetAccessRoles}
             isSavingBnetAccessRoles={isSavingBnetAccessRoles}
+          />
+        )}
+        {resolvedAdminSubTab === 'bosses' && (
+          <RaidBossManager
+            customRaidGroups={customRaidGroups}
+            enabledBosses={enabledBosses}
+            handleAddCustomRaidBoss={addCustomBoss}
+            handleAddTrashBefore={addTrashBefore}
+            handleSetBossVisibility={setBossVisibility}
+            handleRenameCustomRaidBoss={renameCustomBoss}
+            handleRemoveCustomRaidBoss={removeCustomBoss}
+            handleReorderEnabledBoss={reorderEnabledBoss}
+            hasUnsavedChanges={Boolean(raidAssignmentDataDirty || enabledBossesDirty)}
+            onSaveChanges={onSaveRaidAssignmentsChanges}
+            isSaving={isSavingRaidAssignments}
           />
         )}
         {resolvedAdminSubTab === 'itemsdb' && (

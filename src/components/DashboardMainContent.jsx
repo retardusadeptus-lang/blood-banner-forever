@@ -9,6 +9,9 @@ import RaidSignupsContainer from '../containers/RaidSignupsContainer';
 import RecruitmentFocusTab from './RecruitmentFocusTab';
 import RecruitmentPlanningTab from './RecruitmentPlanningTab';
 import RecruitmentApplicationsTab from './RecruitmentApplicationsTab';
+import RecruitmentAboutTab from './RecruitmentAboutTab';
+import ProfilesMyCharactersTab from './ProfilesMyCharactersTab';
+import ProfilesMeetGuildTab from './ProfilesMeetGuildTab';
 import ScoringContainer from '../containers/ScoringContainer';
 import ResourcesTab from '../features/resources/ResourcesTab';
 import { getSiteTabContentOwner, getSiteTabMetadata } from '../config/siteRegistry';
@@ -39,6 +42,13 @@ export default function DashboardMainContent({ viewModel }) {
     setSelectedBisSpec,
     selectedMyPlayerName,
     bnetAuthState,
+    profiles,
+    profilesLoading,
+    profilesError,
+    createProfile,
+    updateProfile,
+    deleteProfile,
+    onOpenLogin,
     loot,
     raidAssignments,
     api,
@@ -456,7 +466,28 @@ export default function DashboardMainContent({ viewModel }) {
         />
       )}
 
-      {activeContentOwner === 'AdminContainer' && ['admin.officerRoles', 'admin.roster', 'admin.config', 'admin.todo'].includes(activeSiteTabId) && isAuthenticated && (
+      {activeSiteTabId === 'recruitment.about' && activeContentOwner === 'RecruitmentAboutTab' && (
+        <RecruitmentAboutTab siteTabMetadata={siteTabMetadata} />
+      )}
+
+      {activeContentOwner === 'Profiles' && activeSiteTabId === 'profiles.my-characters' && (
+        <ProfilesMyCharactersTab
+          profiles={profiles}
+          loading={profilesLoading}
+          error={profilesError}
+          isAuthenticated={Boolean(bnetAuthState?.authenticated)}
+          onLogin={onOpenLogin}
+          onCreate={createProfile}
+          onUpdate={updateProfile}
+          onDelete={deleteProfile}
+        />
+      )}
+
+      {activeContentOwner === 'Profiles' && activeSiteTabId === 'profiles.meet-guild' && (
+        <ProfilesMeetGuildTab profiles={profiles} loading={profilesLoading} error={profilesError} />
+      )}
+
+      {activeContentOwner === 'AdminContainer' && ['admin.officerRoles', 'admin.roster', 'admin.bosses', 'admin.config', 'admin.todo'].includes(activeSiteTabId) && isAuthenticated && (
         <AdminContainer
           navigation={adminNavigation}
           directory={directoryContext}
@@ -465,6 +496,7 @@ export default function DashboardMainContent({ viewModel }) {
           session={adminSession}
           rosterModel={adminRosterModel}
           siteVisibility={siteVisibility}
+          raidAssignments={raidAssignments}
           siteTabMetadata={siteTabMetadata}
         />
       )}
@@ -478,6 +510,7 @@ export default function DashboardMainContent({ viewModel }) {
           session={adminSession}
           rosterModel={adminRosterModel}
           siteVisibility={siteVisibility}
+          raidAssignments={raidAssignments}
           siteTabMetadata={siteTabMetadata}
         />
       )}
@@ -555,7 +588,6 @@ export default function DashboardMainContent({ viewModel }) {
         />
       )}
 
-      {activeContentOwner === 'ItemsDatabaseContainer' && isAuthenticated && <ItemsDatabaseContainer itemsDb={itemsDbTabProps} siteTabMetadata={siteTabMetadata} />}
     </>
   );
 }

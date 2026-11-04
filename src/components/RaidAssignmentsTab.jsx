@@ -1,7 +1,11 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import {
-  CURSE_TYPES, JUDGEMENT_TYPES,
-  RAID_WIDE_LABEL, BOSS_TARGET_ID, RAID_MARKERS, DEFAULT_BOSS_ENCOUNTERS, DEFAULT_GLOBAL_PHASE
+  CURSE_TYPES,
+  JUDGEMENT_TYPES,
+  RAID_WIDE_LABEL,
+  BOSS_TARGET_ID,
+  RAID_MARKERS,
+  DEFAULT_GLOBAL_PHASE,
 } from '../constants';
 import { buildRaidAssignmentsExport, serializeRaidAssignmentsExport } from '../services/raidAssignmentsExport.js';
 import { normalizeBossState } from '../utils/raidAssignmentState.js';
@@ -323,7 +327,7 @@ function BossSelector({ raidZones, enabledBosses, handleToggleZone, handleToggle
 }
 
 function createDefaultBossState(boss, generateId) {
-  const bossDefaults = DEFAULT_BOSS_ENCOUNTERS[boss] || null;
+  const bossDefaults = null;
   const defaultTargets = (bossDefaults?.targets || []).flatMap((target) => {
     return Array.from({ length: target.count || 1 }, () => ({
       id: generateId(),

@@ -15,6 +15,7 @@ export default function DashboardNavigationTabs({
     { keyName: 'recruitment', label: 'Recruitment', mainTab: 'recruitment', items: subTabs?.recruitment || [] },
     { keyName: 'resources', label: 'Resources', mainTab: 'resources', items: subTabs?.resources || [] },
     { keyName: 'loot', label: 'Loot Council', mainTab: 'loot', items: subTabs?.loot || [] },
+    { keyName: 'profiles', label: 'Profiles', mainTab: 'profiles', items: subTabs?.profiles || [] },
     { keyName: 'admin', label: 'Admin', mainTab: 'admin', items: subTabs?.admin || [] },
   ];
 

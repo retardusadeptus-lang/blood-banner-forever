@@ -10,7 +10,7 @@ import {
 
 test('site registry has complete, valid metadata for every tab', () => {
   assert.deepEqual(getSiteRegistryValidationErrors(), []);
-  assert.equal(SITE_TABS.length, 29);
+  assert.equal(SITE_TABS.length, 33);
   assert.ok(SITE_TABS.every(tab => tab.id && tab.route && tab.contentOwner));
 });
 

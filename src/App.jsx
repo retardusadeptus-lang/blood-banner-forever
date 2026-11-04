@@ -19,6 +19,7 @@ import DashboardModals from './components/DashboardModals';
 import { calculatePlayerScore, getRankBadgeStyle as getAppShellRankBadgeStyle, getDefaultGuildRoleName } from './utils/appShellHelpers';
 import useRaidHelperImport from './hooks/useRaidHelperImport';
 import useAuthSession from './hooks/useAuthSession';
+import useCharacterProfiles from './hooks/useCharacterProfiles';
 import useDashboardNavigation from './hooks/useDashboardNavigation';
 import useDashboardMainContentViewModel from './hooks/useDashboardMainContentViewModel';
 import useDashboardHelpers from './hooks/useDashboardHelpers.jsx';
@@ -47,6 +48,7 @@ export default function App() {
   // ==========================================
   // 1. ALL LOCAL UI AND FILTER STATES
   // ==========================================
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [globalMyPlayerId, setGlobalMyPlayerId] = useState(() => localStorage.getItem(STORAGE_KEYS.myPlayerId) || '');
 
   // Global phase selector (controls which phase's assignments are shown)
@@ -119,6 +121,7 @@ export default function App() {
 
   const {
     isAuthenticated,
+    handleLogin,
     handleLogout,
     bnetAuthState,
     bnetClaimBusy,
@@ -132,6 +135,21 @@ export default function App() {
     refreshRosterClaims,
     handleUnclaimClaim
   } = useAuthSession({ fetchData, setRoster: setRosterLocal, setRosterDirty });
+
+  const {
+    profiles,
+    profilesLoading,
+    profilesError,
+    createProfile,
+    updateProfile,
+    deleteProfile
+  } = useCharacterProfiles({
+    fetchData,
+    postData,
+    putData,
+    deleteData,
+    isAuthenticated: bnetAuthState.authenticated
+  });
 
   const hasOfficerAccess = isAuthenticated || bnetAuthState.isOfficer || bnetAuthState.isAdmin;
   const siteVisibility = useSiteVisibility({
@@ -333,7 +351,11 @@ export default function App() {
     handleToggleZone,
     handleToggleBoss,
     handleMoveEnabledBoss,
+    handleReorderEnabledBoss,
     handleAddCustomRaidBoss,
+    handleAddTrashBefore,
+    handleSetBossVisibility,
+    handleRenameCustomRaidBoss,
     handleRemoveCustomRaidBoss,
     customRaidGroups,
     raidZones,
@@ -342,6 +364,7 @@ export default function App() {
     putData,
     activeTab,
     activeSiteTabId,
+    adminSubTab,
     setActiveTab,
     setRaidAssignmentsSubTab,
     isAuthenticated: hasOfficerAccess,
@@ -587,6 +610,16 @@ export default function App() {
   }, [activeTab, roster, assignments, mutableItems, selectedItemName, searchQuery, filterBoss, filterZone, filterSlot, dbSearch, overviewSearch, selectedBisSpec]);
 
 
+  const handleLoginSubmit = async (event, password) => {
+    if (event) event.preventDefault();
+    try {
+      return await handleLogin(password || '');
+    } catch (error) {
+      console.error('Officer login submit failed:', error);
+      return false;
+    }
+  };
+
   const calculateScore = (playerId) => {
     const player = roster.find(rosterPlayer => Number(rosterPlayer.id) === Number(playerId)) || { guild_rank: getDefaultGuildRoleName(scoringConfig) };
     return calculatePlayerScore({
@@ -666,6 +699,13 @@ export default function App() {
     setSelectedBisSpec,
     selectedMyPlayerName,
     bnetAuthState,
+    profiles,
+    profilesLoading,
+    profilesError,
+    createProfile,
+    updateProfile,
+    deleteProfile,
+    onOpenLogin: () => setShowLoginModal(true),
     hasLootUnsavedChanges,
     handleSaveLootCouncilChanges,
     handleOpenItemForLootAssignment,
@@ -678,7 +718,11 @@ export default function App() {
     handleToggleZone,
     handleToggleBoss,
     handleMoveEnabledBoss,
+    handleReorderEnabledBoss,
     handleAddCustomRaidBoss,
+    handleAddTrashBefore,
+    handleSetBossVisibility,
+    handleRenameCustomRaidBoss,
     handleRemoveCustomRaidBoss,
     fetchData,
     putData,
@@ -847,10 +891,10 @@ export default function App() {
           sortedRosterForSelector={sortedRosterForSelector}
           currentUserClaimedRosterIds={currentUserClaimedRosterIds}
           selectedGlobalPlayerIsClaimed={selectedGlobalPlayerIsClaimed}
+          setShowLoginModal={setShowLoginModal}
           setShowBnetClaimModal={setShowBnetClaimModal}
           canSaveChanges={hasOfficerAccess}
           bnetAuthState={bnetAuthState}
-          handleBattleNetLogin={handleBattleNetLogin}
           handleBattleNetLogout={handleBattleNetLogout}
           isAuthenticated={isAuthenticated}
           handleLogout={handleLogout}
@@ -877,6 +921,12 @@ export default function App() {
       )}
       modalContent={(
         <DashboardModals
+          showLoginModal={showLoginModal}
+          setShowLoginModal={setShowLoginModal}
+          adminAuthenticated={isAuthenticated}
+          handleAdminLogin={handleLoginSubmit}
+          handleAdminLogout={handleLogout}
+          battletag={bnetAuthState.user?.battletag}
           showBnetClaimModal={showBnetClaimModal}
           setShowBnetClaimModal={setShowBnetClaimModal}
           claimGameVersion={scoringConfig?.claimGameVersion || 'all'}

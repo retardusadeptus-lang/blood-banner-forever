@@ -1,7 +1,14 @@
 import BnetClaimModal from './BnetClaimModal';
 import ItemIdEditorModal from './ItemIdEditorModal';
+import LoginModal from './LoginModal';
 
 export default function DashboardModals({
+  showLoginModal,
+  setShowLoginModal,
+  adminAuthenticated,
+  handleAdminLogin,
+  handleAdminLogout,
+  battletag,
   showBnetClaimModal,
   setShowBnetClaimModal,
   bnetAuthState,
@@ -19,6 +26,18 @@ export default function DashboardModals({
 }) {
   return (
     <>
+      <LoginModal
+        open={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        bnetAuthenticated={bnetAuthState.authenticated}
+        battletag={battletag || bnetAuthState.user?.battletag}
+        onBattleNetLogin={handleBattleNetLogin}
+        onBattleNetLogout={handleBattleNetLogout}
+        adminAuthenticated={adminAuthenticated}
+        onAdminLogin={handleAdminLogin}
+        onAdminLogout={handleAdminLogout}
+      />
+
       <BnetClaimModal
         open={showBnetClaimModal}
         onClose={() => setShowBnetClaimModal(false)}

@@ -129,6 +129,27 @@ function ensureBattleNetAuthSchema(db) {
       created_at TEXT DEFAULT CURRENT_TIMESTAMP
     );
 
+    CREATE TABLE IF NOT EXISTS character_profiles (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      character_name TEXT NOT NULL,
+      realm TEXT DEFAULT '',
+      race TEXT DEFAULT '',
+      class_name TEXT DEFAULT '',
+      spec TEXT DEFAULT '',
+      subclass TEXT DEFAULT '',
+      level INTEGER,
+      role TEXT DEFAULT '',
+      professions TEXT DEFAULT '',
+      pronouns TEXT DEFAULT '',
+      personality TEXT DEFAULT '',
+      rp_hooks TEXT DEFAULT '',
+      backstory TEXT DEFAULT '',
+      avatar_data TEXT DEFAULT '',
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+    );
+
     CREATE TABLE IF NOT EXISTS roster_claim_audit (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       action TEXT NOT NULL,
@@ -142,6 +163,17 @@ function ensureBattleNetAuthSchema(db) {
       created_at TEXT DEFAULT CURRENT_TIMESTAMP
     );
   `);
+
+  const profileColumns = db.prepare("PRAGMA table_info('character_profiles')").all().map(column => column.name);
+  if (!profileColumns.includes('pronouns')) {
+    db.exec("ALTER TABLE character_profiles ADD COLUMN pronouns TEXT DEFAULT ''");
+  }
+  if (!profileColumns.includes('rp_hooks')) {
+    db.exec("ALTER TABLE character_profiles ADD COLUMN rp_hooks TEXT DEFAULT ''");
+  }
+  if (!profileColumns.includes('subclass')) {
+    db.exec("ALTER TABLE character_profiles ADD COLUMN subclass TEXT DEFAULT ''");
+  }
 
   const rosterColumns = db.prepare('PRAGMA table_info(roster)').all();
   const hasUserId = rosterColumns.some(column => column.name === 'user_id');
@@ -174,6 +206,8 @@ function ensureTierTokenSupport(db) {
       reward_wowhead_id INTEGER
     )
   `).run();
+
+  return;
 
   const insertItem = db.prepare(`
     INSERT INTO items (name, slot, phase, source, source_type)
@@ -279,9 +313,16 @@ function ensureNormalizedOperationalTables(db) {
     CREATE TABLE IF NOT EXISTS raid_assignment_config_bosses (
       boss_name TEXT PRIMARY KEY,
       enabled INTEGER NOT NULL DEFAULT 1,
+      sort_order INTEGER NOT NULL DEFAULT 0,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `).run();
+
+  const bossConfigColumns = db.prepare("PRAGMA table_info('raid_assignment_config_bosses')").all();
+  if (!bossConfigColumns.some(column => column.name === 'sort_order')) {
+    db.exec('ALTER TABLE raid_assignment_config_bosses ADD COLUMN sort_order INTEGER NOT NULL DEFAULT 0');
+    db.prepare('UPDATE raid_assignment_config_bosses SET sort_order = rowid - 1').run();
+  }
 
   const bisCount = db.prepare('SELECT COUNT(*) as count FROM bis_priority_entries').get().count;
   if (bisCount === 0) {
@@ -1077,6 +1118,8 @@ function ensureDatabaseIndexes(db) {
     'CREATE INDEX IF NOT EXISTS idx_raid_signup_absences_user_dates ON raid_signup_absences (user_id, start_date, end_date)',
     'CREATE INDEX IF NOT EXISTS idx_raid_signup_character_absences_roster_dates ON raid_signup_character_absences (roster_id, start_date, end_date)',
     'CREATE INDEX IF NOT EXISTS idx_bnet_user_roles_role ON bnet_user_roles (role)',
+    'CREATE INDEX IF NOT EXISTS idx_character_profiles_user_updated ON character_profiles (user_id, updated_at DESC)',
+    'CREATE UNIQUE INDEX IF NOT EXISTS idx_character_profiles_user_name ON character_profiles (user_id, character_name COLLATE NOCASE)',
     'CREATE INDEX IF NOT EXISTS idx_weakauras_created_at ON weakauras (created_at DESC)',
     'CREATE INDEX IF NOT EXISTS idx_weakauras_section_id ON weakauras (section_id)',
     'CREATE INDEX IF NOT EXISTS idx_raid_tactics_updated_at ON raid_tactics (updated_at DESC)',

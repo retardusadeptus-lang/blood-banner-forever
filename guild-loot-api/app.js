@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const { createWriteGuard } = require('./middleware/auth');
 const buildAuthRoutes = require('./routes/auth');
+const buildProfilesRoutes = require('./routes/profiles');
 const buildRosterRoutes = require('./routes/roster');
 const buildBankRoutes = require('./routes/bank');
 const buildItemRoutes = require('./routes/items');
@@ -65,6 +66,7 @@ function buildApp({ db, sessionSecret, bnetConfig, discordService, tokenRedempti
   });
 
   app.use('/api', buildAuthRoutes({ db, sessionSecret, bnetConfig }));
+  app.use('/api', buildProfilesRoutes({ db }));
   app.use('/api', buildRosterRoutes({ db, sessionSecret, bnetConfig }));
   app.use('/api', buildBankRoutes({ db, discordService }));
   app.use('/api', buildItemRoutes({ db, tokenRedemptionService }));

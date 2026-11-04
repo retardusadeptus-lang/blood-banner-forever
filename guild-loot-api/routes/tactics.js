@@ -145,19 +145,6 @@ function buildTacticsRoutes({ db, sessionSecret }) {
         media: [],
       });
 
-      const extraBosses = rows
-        .map(row => String(row.boss_name || '').trim())
-        .filter(Boolean)
-        .filter(bossName => !orderedBosses.includes(bossName));
-
-      extraBosses.forEach((bossName) => {
-        entries.push(entriesByBoss.get(bossName) || {
-          bossName,
-          notes: '',
-          media: [],
-        });
-      });
-
       return res.json({
         bossOrder: orderedBosses,
         entries,

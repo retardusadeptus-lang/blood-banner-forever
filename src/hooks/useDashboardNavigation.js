@@ -8,6 +8,7 @@ function getNavigationSubTab(activeTab, state) {
   if (activeTab === 'raidSignups') return state.raidSignupsSubTab;
   if (activeTab === 'loot') return state.lootSubTab;
   if (activeTab === 'recruitmentPlanning' || activeTab === 'recruitmentFocus' || activeTab === 'recruitmentApplications') return state.recruitmentSubTab;
+  if (activeTab === 'profiles') return state.profilesSubTab;
   if (activeTab === 'officerRoles' || activeTab === 'discordBotConfig' || activeTab === 'roster' || activeTab === 'itemsdb' || activeTab === 'sitemap') return state.adminSubTab;
   if (activeTab === 'bis') return state.resourcesSubTab;
   return null;
@@ -19,6 +20,7 @@ const NAV_STORAGE_KEYS = {
   raidSignupsSubTab: 'raid-signups-sub-tab',
   lootSubTab: 'loot-sub-tab',
   recruitmentSubTab: 'recruitment-sub-tab',
+  profilesSubTab: 'profiles-sub-tab',
   adminSubTab: 'admin-sub-tab',
   resourcesSubTab: 'resources-sub-tab'
 };
@@ -42,6 +44,7 @@ export function readNavigationState(storage = globalThis.localStorage) {
           ? 'focus'
           : 'roster'
     ),
+            profilesSubTab: read(NAV_STORAGE_KEYS.profilesSubTab) || 'my-characters',
     adminSubTab: read(NAV_STORAGE_KEYS.adminSubTab) || 'officerRoles',
     resourcesSubTab: read(NAV_STORAGE_KEYS.resourcesSubTab) || 'bis'
   };
@@ -56,6 +59,7 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
   const [raidSignupsSubTab, setRaidSignupsSubTab] = useState(() => initialNavigationState.raidSignupsSubTab);
   const [lootSubTab, setLootSubTab] = useState(() => initialNavigationState.lootSubTab);
   const [recruitmentSubTab, setRecruitmentSubTab] = useState(() => initialNavigationState.recruitmentSubTab);
+  const [profilesSubTab, setProfilesSubTab] = useState(() => initialNavigationState.profilesSubTab);
   const [adminSubTab, setAdminSubTab] = useState(() => initialNavigationState.adminSubTab);
   const [resourcesSubTab, setResourcesSubTab] = useState(() => initialNavigationState.resourcesSubTab);
   const initialRouteAppliedRef = useRef(false);
@@ -84,6 +88,10 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
   useEffect(() => {
     localStorage.setItem(NAV_STORAGE_KEYS.recruitmentSubTab, recruitmentSubTab);
   }, [recruitmentSubTab]);
+
+  useEffect(() => {
+    localStorage.setItem(NAV_STORAGE_KEYS.profilesSubTab, profilesSubTab);
+  }, [profilesSubTab]);
 
   useEffect(() => {
     localStorage.setItem(NAV_STORAGE_KEYS.adminSubTab, adminSubTab);
@@ -120,6 +128,7 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
       raidAssignmentsSubTab,
       raidSignupsSubTab,
       recruitmentSubTab,
+      profilesSubTab,
       resourcesSubTab
     }))) {
       if (activeTab === 'recruitmentPlanning') {
@@ -164,10 +173,13 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
       return;
     }
 
-    if (activeTab === 'recruitmentFocus' && recruitmentSubTab !== 'focus') {
+    if (activeTab === 'recruitmentFocus' && !['focus', 'about'].includes(recruitmentSubTab)) {
       setRecruitmentSubTab('focus');
     }
-  }, [activeTab, adminSubTab, bankSubTab, canViewScoring, canViewSitemap, isAuthenticated, lootSubTab, raidAssignmentsSubTab, raidSignupsSubTab, recruitmentSubTab, resourcesSubTab]);
+    if (activeTab === 'profiles' && !['my-characters', 'meet-guild'].includes(profilesSubTab)) {
+      setProfilesSubTab('my-characters');
+    }
+  }, [activeTab, adminSubTab, bankSubTab, canViewScoring, canViewSitemap, isAuthenticated, lootSubTab, profilesSubTab, raidAssignmentsSubTab, raidSignupsSubTab, recruitmentSubTab, resourcesSubTab]);
 
   useEffect(() => {
     if (activeTab === 'recruitmentPlanning' && recruitmentSubTab !== 'planning') {
@@ -177,7 +189,7 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
       return;
     }
 
-    if (activeTab === 'recruitmentFocus' && recruitmentSubTab !== 'focus') {
+    if (activeTab === 'recruitmentFocus' && !['focus', 'about'].includes(recruitmentSubTab)) {
       setRecruitmentSubTab('focus');
       return;
     }
@@ -187,10 +199,14 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
       return;
     }
 
-  }, [activeTab, recruitmentSubTab]);
+    if (activeTab === 'profiles' && !['my-characters', 'meet-guild'].includes(profilesSubTab)) {
+      setProfilesSubTab('my-characters');
+    }
+
+  }, [activeTab, profilesSubTab, recruitmentSubTab]);
 
   const subTabs = useMemo(() => Object.fromEntries(
-    ['bank', 'raidAssignments', 'raidSignups', 'recruitment', 'resources', 'loot', 'admin'].map(groupKey => [
+    ['bank', 'raidAssignments', 'raidSignups', 'recruitment', 'resources', 'loot', 'profiles', 'admin'].map(groupKey => [
       groupKey,
       getVisibleSiteTabs(groupKey, {
         audience: siteAudience,
@@ -211,6 +227,7 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
     raidAssignmentsSubTab,
     raidSignupsSubTab,
     recruitmentSubTab,
+    profilesSubTab,
     resourcesSubTab
   }));
 
@@ -225,6 +242,7 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
     if (route.activeTab === 'raidSignups') setRaidSignupsSubTab(route.subTab);
     if (route.activeTab === 'loot') setLootSubTab(route.subTab);
     if (route.activeTab === 'recruitmentPlanning' || route.activeTab === 'recruitmentFocus' || route.activeTab === 'recruitmentApplications') setRecruitmentSubTab(route.subTab);
+    if (route.activeTab === 'profiles') setProfilesSubTab(route.subTab);
     if (route.activeTab === 'officerRoles' || route.activeTab === 'discordBotConfig' || route.activeTab === 'roster' || route.activeTab === 'itemsdb' || route.activeTab === 'sitemap') setAdminSubTab(route.subTab);
     if (route.activeTab === 'bis') setResourcesSubTab(route.subTab);
     return true;
@@ -281,10 +299,11 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
       raidAssignmentsSubTab,
       raidSignupsSubTab,
       recruitmentSubTab,
+      profilesSubTab,
       resourcesSubTab
     }));
     return activeSiteTabId === tabId;
-  }, [activeTab, adminSubTab, bankSubTab, lootSubTab, raidAssignmentsSubTab, raidSignupsSubTab, recruitmentSubTab, resourcesSubTab]);
+  }, [activeTab, adminSubTab, bankSubTab, lootSubTab, profilesSubTab, raidAssignmentsSubTab, raidSignupsSubTab, recruitmentSubTab, resourcesSubTab]);
 
   useEffect(() => {
     if (activeTab !== 'bis') return;
@@ -309,6 +328,8 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
     setLootSubTab,
     recruitmentSubTab,
     setRecruitmentSubTab,
+    profilesSubTab,
+    setProfilesSubTab,
     adminSubTab,
     setAdminSubTab,
     resourcesSubTab,

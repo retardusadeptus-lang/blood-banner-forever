@@ -10,6 +10,8 @@ export const SITE_CONTENT_OWNERS = [
   'RecruitmentPlanningTab',
   'RecruitmentFocusTab',
   'RecruitmentApplicationsTab',
+  'RecruitmentAboutTab',
+  'Profiles',
   'ItemsDatabaseContainer'
 ];
 export const SITE_VISIBILITY_CAPABILITIES = ['scoring', 'sitemap'];
@@ -59,7 +61,16 @@ export const SITE_NAV_GROUPS = [
     tabs: [
       tab('recruitment.planning', 'planning', 'Roster Planning', ['Officer', 'Admin'], { authOnly: true, contentOwner: 'RecruitmentPlanningTab', route: { activeTab: 'recruitmentPlanning', subTab: 'planning' } }),
       tab('recruitment.focus', 'focus', 'Recruitment Focus', SITE_ROLES, { contentOwner: 'RecruitmentFocusTab', route: { activeTab: 'recruitmentFocus', subTab: 'focus' } }),
-      tab('recruitment.applications', 'applications', 'Applications', SITE_ROLES, { contentOwner: 'RecruitmentApplicationsTab', route: { activeTab: 'recruitmentApplications', subTab: 'applications' } })
+      tab('recruitment.applications', 'applications', 'Applications', SITE_ROLES, { contentOwner: 'RecruitmentApplicationsTab', route: { activeTab: 'recruitmentApplications', subTab: 'applications' } }),
+      tab('recruitment.about', 'about', 'About Us', SITE_ROLES, { contentOwner: 'RecruitmentAboutTab', route: { activeTab: 'recruitmentFocus', subTab: 'about' } })
+    ]
+  },
+  {
+    key: 'profiles',
+    label: 'Profiles',
+    tabs: [
+      tab('profiles.my-characters', 'my-characters', 'My Characters', SITE_ROLES, { contentOwner: 'Profiles', route: { activeTab: 'profiles', subTab: 'my-characters' } }),
+      tab('profiles.meet-guild', 'meet-guild', 'Meet the Guild', SITE_ROLES, { contentOwner: 'Profiles', route: { activeTab: 'profiles', subTab: 'meet-guild' } })
     ]
   },
   {
@@ -89,6 +100,7 @@ export const SITE_NAV_GROUPS = [
     tabs: [
       tab('admin.officerRoles', 'officerRoles', 'Officer Roles', ['Officer', 'Admin'], { authOnly: true, contentOwner: 'AdminContainer', route: { activeTab: 'officerRoles', subTab: 'officerRoles' } }),
       tab('admin.roster', 'roster', 'Roster', ['Officer', 'Admin'], { authOnly: true, contentOwner: 'AdminContainer', route: { activeTab: 'roster', subTab: 'roster' } }),
+      tab('admin.bosses', 'bosses', 'Manage Bosses', ['Officer', 'Admin'], { authOnly: true, contentOwner: 'AdminContainer', route: { activeTab: 'officerRoles', subTab: 'bosses' } }),
       tab('admin.config', 'config', 'Config', ['Officer', 'Admin'], { authOnly: true, contentOwner: 'AdminContainer', route: { activeTab: 'discordBotConfig', subTab: 'config' } }),
       tab('admin.itemsdb', 'itemsdb', 'Master Items DB', ['Officer', 'Admin'], { authOnly: true, contentOwner: 'ItemsDatabaseContainer', route: { activeTab: 'itemsdb', subTab: 'itemsdb' } }),
       tab('admin.todo', 'todo', 'To-do List', ['Officer', 'Admin'], { authOnly: true, contentOwner: 'AdminContainer', route: { activeTab: 'officerRoles', subTab: 'todo' } }),

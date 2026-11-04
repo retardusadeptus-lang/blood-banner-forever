@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import BisConfigTab from '../../components/BisConfigTab';
 import WeakaurasTab from './WeakaurasTab';
-import bossData from '../../cheat_sheet_extractv2.json';
 import { CHEAT_SHEET_PHASE_MAP, DEFAULT_GLOBAL_PHASE, PHASES } from '../../constants';
 import { filterBossesByPhase } from '../../utils/bossFilterState.js';
 import druidIcon from '../../assets/icons/druid.png';
@@ -19,7 +18,7 @@ import tanksIcon from '../../assets/icons/tanks.png';
 import warlockIcon from '../../assets/icons/warlock.png';
 import warriorIcon from '../../assets/icons/warrior.png';
 
-const CHEAT_SHEET_STORAGE_KEY = 'cheat-sheet-data-v1';
+const CHEAT_SHEET_STORAGE_KEY = 'cheat-sheet-data-v2';
 const CHEAT_SHEET_PHASE_STORAGE_KEY = 'cheat-sheet-phase-v1';
 const CHEAT_SHEET_EXPORT_FILENAME = 'cheat-sheet-export.json';
 
@@ -262,10 +261,10 @@ const PHASE_BY_RAID = {
 const getPhaseFromRaid = (raid) => PHASE_BY_RAID[raid] || CHEAT_SHEET_PHASE_MAP[raid] || 'T5';
 
 const loadCheatSheetBosses = () => {
-  if (typeof window === 'undefined') return (bossData || []).map(normalizeBoss);
+  if (typeof window === 'undefined') return [];
 
   const saved = window.localStorage.getItem(CHEAT_SHEET_STORAGE_KEY);
-  if (!saved) return (bossData || []).map(normalizeBoss);
+  if (!saved) return [];
 
   try {
     const parsed = JSON.parse(saved);
@@ -274,7 +273,7 @@ const loadCheatSheetBosses = () => {
     console.warn('Failed to parse cheat sheet saved data:', error);
   }
 
-  return (bossData || []).map(normalizeBoss);
+  return [];
 };
 
 const CHEAT_SHEET_PHASE_OPTIONS = ['All Phases', ...PHASES];
@@ -549,10 +548,8 @@ export default function ResourcesTab({
     return [...new Set([
       ...(Array.isArray(raidTacticsBossOrder) ? raidTacticsBossOrder : []),
       ...(Array.isArray(tacticsBossOptions) ? tacticsBossOptions : []),
-      ...Object.keys(raidTacticsDraft || {}),
-      ...Object.keys(raidTacticsSaved || {}),
-    ])];
-  }, [raidTacticsBossOrder, tacticsBossOptions, raidTacticsDraft, raidTacticsSaved]);
+    ])].filter(bossName => tacticsBossOptions.includes(bossName));
+  }, [raidTacticsBossOrder, tacticsBossOptions]);
 
   const filteredRaidTacticsBossOrder = useMemo(() => {
     const allAvailableBosses = [...new Set(tacticsBossNamesForSave)];
@@ -609,14 +606,14 @@ export default function ResourcesTab({
           }
         });
 
+        const managedBosses = new Set(tacticsBossOptions);
         const fallbackBossOrder = [...new Set([
           ...(Array.isArray(payload?.bossOrder) ? payload.bossOrder : []),
           ...tacticsBossOptions,
-          ...Object.keys(byBoss),
-        ])];
+        ])].filter(bossName => managedBosses.has(bossName));
 
         const bossOrder = Array.isArray(payload?.bossOrder) && payload.bossOrder.length > 0
-          ? payload.bossOrder
+          ? payload.bossOrder.filter(bossName => managedBosses.has(bossName))
           : fallbackBossOrder;
 
         const nextDraft = {};

@@ -53,10 +53,7 @@ export const RIGHT_SLOTS = ["Hands", "Waist", "Legs", "Feet", "Ring 1", "Ring 2"
 
 export const BOTTOM_SLOTS = ["Weapon", "Main Hand", "Off Hand", "Shield", "Ranged", "Wand", "Totem", "Libram", "Idol"];
 
-export const P2_BOSSES = [
-  "Hydross the Unstable", "The Lurker Below", "Leotheras the Blind", "Fathom-Lord Karathress",
-  "Morogrim Tidewalker", "Lady Vashj", "Al'ar", "Void Reaver", "High Astromancer Solarian", "Kael'thas"
-];
+export const P2_BOSSES = [];
 
 export const CATEGORY_MAP = {
   'Consumable': 'Consumable',
@@ -431,7 +428,8 @@ export const JUDGEMENT_TYPES = [
   "Custom"
 ];
 
-export const RAID_ZONES = [
+export const RAID_ZONES = [];
+/*
   { 
     name: "Tempest Keep", 
     bosses: ["Trash before Al'ar", "Al'ar", "Trash before Void Reaver", "Void Reaver", "Trash before High Astromancer Solarian", "High Astromancer Solarian", "Trash before Kael'thas Sunstrider", "Kael'thas Sunstrider"] 
@@ -465,3 +463,4 @@ export const RAID_ZONES = [
     bosses: ["Trash before Kalecgos", "Kalecgos", "Trash before Sathrovarr", "Sathrovarr", "Trash before Brutallus", "Brutallus", "Trash before Felmyst", "Felmyst", "Trash before Alythess", "Alythess", "Trash before Sacrolash", "Sacrolash", "Trash before M'uru", "M'uru", "Trash before Entropius", "Entropius", "Trash before Kil'jaeden", "Kil'jaeden"] 
   }
 ];
+*/

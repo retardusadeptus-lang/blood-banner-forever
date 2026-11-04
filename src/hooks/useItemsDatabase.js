@@ -21,8 +21,8 @@ export function useItemsDatabase({
   const masterItemsDbPhaseWasSelected = useRef(false);
   const [dbNewName, setDbNewName] = useState('');
   const [dbNewSlot, setDbNewSlot] = useState(leftSlots[0]);
-  const [dbNewZone, setDbNewZone] = useState('SSC');
-  const [dbNewBoss, setDbNewBoss] = useState(p2Bosses[0]);
+  const [dbNewZone, setDbNewZone] = useState('');
+  const [dbNewBoss, setDbNewBoss] = useState('');
   const [dbNewItemId, setDbNewItemId] = useState('');
   const [dbSearch, setDbSearchLocal] = useState('');
   const [dbPageSize, setDbPageSize] = useState(25);

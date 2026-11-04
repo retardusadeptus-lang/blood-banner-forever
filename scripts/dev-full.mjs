@@ -8,6 +8,7 @@ const runCommand = (command, args = []) => spawn(command, args, {
   cwd: rootDir,
   stdio: 'inherit',
   env: { ...process.env },
+  shell: isWindows && command.endsWith('.cmd'),
 });
 
 const frontend = runCommand(isWindows ? 'npm.cmd' : 'npm', ['run', 'dev']);

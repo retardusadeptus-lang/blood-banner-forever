@@ -7,10 +7,10 @@ export default function DashboardHeader({
   sortedRosterForSelector,
   currentUserClaimedRosterIds,
   selectedGlobalPlayerIsClaimed,
+  setShowLoginModal,
   setShowBnetClaimModal,
   bnetAuthState,
   canSaveChanges,
-  handleBattleNetLogin,
   handleBattleNetLogout,
   isAuthenticated,
   handleLogout,
@@ -21,7 +21,7 @@ export default function DashboardHeader({
     <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div className="flex flex-col justify-center">
         <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600 tracking-tight font-serif italic drop-shadow-sm">
-          &lt;Guild Name TBC&gt;
+          Blood and Banner
         </h1>
         <p className="text-slate-400 mt-2 font-medium uppercase tracking-widest text-sm">
           Guild management dashboard
@@ -68,7 +68,7 @@ export default function DashboardHeader({
                 <button onClick={handleBattleNetLogout} className="ml-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 hover:text-slate-200 h-6 flex items-center">Logout</button>
               </>
             ) : (
-              <button onClick={handleBattleNetLogin} className="w-full bg-cyan-700 hover:bg-cyan-600 text-white font-bold py-1 px-3 rounded text-[11px] uppercase tracking-wider h-6 flex items-center justify-center">Log in with Battle.net</button>
+              <button onClick={() => setShowLoginModal(true)} className="w-full bg-cyan-700 hover:bg-cyan-600 text-white font-bold py-1 px-3 rounded text-[11px] uppercase tracking-wider h-6 flex items-center justify-center">Login</button>
             )}
           </div>
 

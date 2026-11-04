@@ -258,6 +258,13 @@ function createWriteGuard(sessionSecret, db) {
       }
     }
 
+    if (/^\/api\/profiles(?:\/\d+)?$/.test(req.path)) {
+      const bnetSession = getBattleNetSessionFromRequest(req);
+      if (bnetSession?.userId) {
+        return next();
+      }
+    }
+
     const token = extractAdminToken(req);
     const tokenAuthorized = verifySession(token, sessionSecret);
     if (!tokenAuthorized) {

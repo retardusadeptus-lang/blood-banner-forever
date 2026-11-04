@@ -9,7 +9,7 @@
     "build:prod": "vite build --mode production",
     "test:registry": "node --test src/config/siteRegistry.test.js",
     "test:view-model": "node --test src/hooks/useDashboardMainContentViewModel.test.js",
-    "start": "node guild-loot-api/server.js",
+    "start": "node scripts/dev-full.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "dev:api": "node --env-file=.env guild-loot-api/server.js",
