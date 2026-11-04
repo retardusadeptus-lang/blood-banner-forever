@@ -82,8 +82,7 @@ export default function ProfilesMeetGuildTab({ profiles, loading, error }) {
     <section className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-400">Meet the guild</p>
-          <h2 className="mt-1 text-2xl font-black text-slate-100">The people behind the raid frames</h2>
+          <h2 className="text-2xl font-black text-slate-100">The people behind the raid frames</h2>
           <p className="mt-1 text-sm text-slate-400">Character stories, familiar faces, and a few good reasons to start a tavern scene.</p>
         </div>
         <label className="w-full sm:w-64">
