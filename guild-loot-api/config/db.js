@@ -11,10 +11,19 @@ function normalizeCandidate(rawPath) {
 }
 
 function resolveDbPath() {
-  const candidates = [
+  const configuredCandidates = [
     process.env.GUILD_LOOT_DB_PATH,
     process.env.LOCAL_GUILD_LOOT_DB_PATH,
     process.env.WOW_LOOT_DB_PATH,
+  ].map(normalizeCandidate).filter(Boolean);
+
+  // An explicitly configured path must also work before the database file exists.
+  // This is required for first-start initialization of a mounted deployment volume.
+  if (configuredCandidates.length > 0) {
+    return configuredCandidates[0];
+  }
+
+  const candidates = [
     process.env.USERPROFILE && path.join(process.env.USERPROFILE, 'Projects', 'wow-loot-dashboard-addon-json-export', 'guild-loot-api', 'mydb.db'),
     process.env.HOME && path.join(process.env.HOME, 'Projects', 'wow-loot-dashboard-addon-json-export', 'guild-loot-api', 'mydb.db'),
     LOCAL_DB_PATH

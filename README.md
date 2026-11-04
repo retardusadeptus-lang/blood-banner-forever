@@ -24,7 +24,9 @@ For Docker deployment, set Coolify's exposed/service port to `3002`, matching `F
 
 ### Database persistence
 
-The SQLite database is intentionally not committed to Git. Mount a Coolify persistent volume at `/app/data` and set `GUILD_LOOT_DB_PATH=/app/data/mydb.db`. Restore the populated `mydb.db` into that volume before deploying if the site should retain the local roster, items, and configuration. Without a restored database, the API now creates its schema automatically but starts with empty reference and operational tables.
+The SQLite database is intentionally not committed to Git. Mount a Coolify persistent volume at `/app/data` and set `GUILD_LOOT_DB_PATH=/app/data/mydb.db`. Docker startup initializes the schema and seeds the canonical 28 class/spec records into a new or empty database volume. It does not import BiS items, demo roster members, Discord data, or other local-only data. Existing database rows are preserved, and rerunning the container startup is safe.
+
+Set `SEED_DEPLOYMENT_DATABASE=false` only if startup seeding should be disabled. To seed a local database manually, run `npm run seed:deployment`.
 
 ### Required app secrets
 - `ADMIN_API_TOKEN`

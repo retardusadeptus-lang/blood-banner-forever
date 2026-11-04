@@ -6,6 +6,7 @@
   "scripts": {
     "start:pm2": "pm2 start server.js --name guild-loot-bot",
     "start": "node server.js",
+    "test:seed-deployment": "node --test scripts/seed-deployment-database.test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
