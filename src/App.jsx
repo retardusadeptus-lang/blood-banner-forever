@@ -373,7 +373,8 @@ export default function App() {
     scoringConfig,
     setScoringConfigLocal,
     setScoringConfig,
-    refreshRosterClaims
+    refreshRosterClaims,
+    hasOfficerAccess
   });
 
   const sortedRosterForSelector = useMemo(() => {

@@ -10,7 +10,8 @@ export default function useAdminData({
   setScoringConfigDirty,
   scoringConfig,
   setScoringConfigLocal,
-  refreshRosterClaims
+  refreshRosterClaims,
+  hasOfficerAccess = false
 }) {
   const [officerRoles, setOfficerRoles] = useState([]);
   const [officerRolesDirty, setOfficerRolesDirty] = useState(false);
@@ -120,7 +121,7 @@ export default function useAdminData({
 
   useEffect(() => {
     const shouldLoadOfficerRoles = activeTab === 'officerRoles' || adminSubTab === 'officerRoles' || activeTab === 'config' || adminSubTab === 'config';
-    if (!shouldLoadOfficerRoles || officerRolesDirty || bnetAccessRolesDirty) return;
+    if (!hasOfficerAccess || !shouldLoadOfficerRoles || officerRolesDirty || bnetAccessRolesDirty) return;
     let mounted = true;
 
     const loadOfficerRoles = async () => {
@@ -151,7 +152,7 @@ export default function useAdminData({
 
     loadOfficerRoles();
     return () => { mounted = false; };
-  }, [fetchData, activeTab, adminSubTab, officerRolesDirty, bnetAccessRolesDirty]);
+  }, [fetchData, activeTab, adminSubTab, officerRolesDirty, bnetAccessRolesDirty, hasOfficerAccess]);
 
   useEffect(() => {
     const shouldLoadDiscordConfig = activeTab === 'discordBotConfig' || adminSubTab === 'config';
