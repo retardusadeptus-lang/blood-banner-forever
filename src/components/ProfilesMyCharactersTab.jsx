@@ -214,7 +214,7 @@ export default function ProfilesMyCharactersTab({ profiles, loading, error, isAu
 
   return (
     <section className="bg-slate-900 rounded-b-xl rounded-tr-xl border border-slate-800 shadow-xl p-6 animate-in fade-in duration-300 space-y-5">
-      <div className="flex flex-wrap items-end justify-between gap-4">
+      <div className="flex flex-wrap items-end justify-between gap-4 bg-slate-950 p-6 rounded-xl border border-slate-800 shadow-inner">
         <div><h2 className="text-2xl font-black text-slate-100">Your guild-facing characters</h2><p className="mt-1 text-sm text-slate-400">Create one profile for each character you bring into the story.</p></div>
         {!editingId && <button type="button" onClick={() => setEditingId('new')} className="rounded bg-cyan-600 px-4 py-2.5 text-xs font-black uppercase tracking-wider text-white hover:bg-cyan-500">Add character</button>}
       </div>
