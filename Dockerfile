@@ -3,9 +3,23 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+RUN apk add --no-cache python3 make g++
+
 COPY package*.json ./
 COPY guild-loot-api/package*.json ./guild-loot-api/
-RUN npm ci --fetch-retries=5 --fetch-retry-factor=2 --fetch-retry-mintimeout=1000 --fetch-retry-maxtimeout=120000
+RUN npm ci --ignore-scripts --fetch-retries=5 --fetch-retry-factor=2 --fetch-retry-mintimeout=1000 --fetch-retry-maxtimeout=120000
+
+# Install API production dependencies once and reuse them in the runtime image.
+# A transient registry reset should not force the entire deployment to fail.
+RUN cd guild-loot-api && \
+    for attempt in 1 2 3 4 5; do \
+      if npm ci --omit=dev --fetch-retries=5 --fetch-retry-factor=2 --fetch-retry-mintimeout=1000 --fetch-retry-maxtimeout=120000; then \
+        exit 0; \
+      fi; \
+      echo "API dependency install attempt ${attempt} failed."; \
+      if [ "${attempt}" -lt 5 ]; then sleep $((attempt * 10)); fi; \
+    done; \
+    exit 1
 
 # Vite inlines VITE_* vars at build time. Only the API base URL is build-time;
 # the admin secret is NOT shipped to the browser (auth goes via POST /api/login).
@@ -40,9 +54,9 @@ COPY nginx.conf /etc/nginx/http.d/default.conf.template
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
-# Install API production dependencies
-COPY guild-loot-api/package*.json ./guild-loot-api/
-RUN cd guild-loot-api && npm ci --omit=dev --fetch-retries=5 --fetch-retry-factor=2 --fetch-retry-mintimeout=1000 --fetch-retry-maxtimeout=120000
+# Reuse the dependencies built in the builder stage so deployment does not
+# download the API dependency tree a second time.
+COPY --from=builder /app/guild-loot-api/node_modules ./guild-loot-api/node_modules
 
 # Copy API source, including BIS data and helper scripts needed for deployment
 COPY guild-loot-api/ ./guild-loot-api/
