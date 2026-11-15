@@ -10,6 +10,8 @@ const APPLICATION_FIELD_LIMITS = {
   aboutMe: 5000
 };
 
+const CONTACT_MESSAGE_LIMIT = 1800;
+
 function sanitizeText(value, maxLength) {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   if (!maxLength) return text;
@@ -38,7 +40,11 @@ function buildStatusHistory(previousHistory, status, actorLabel, at) {
   return JSON.stringify(nextHistory.slice(-20));
 }
 
-function buildRecruitmentApplicationsRoutes({ db, discordService }) {
+function buildRecruitmentApplicationsRoutes({
+  db,
+  discordService,
+  sendDirectMessage: directMessageSender = sendDirectMessage
+}) {
   const router = express.Router();
   const sendRecruitmentApplicationNotification = discordService?.sendRecruitmentApplicationNotification;
 
@@ -48,7 +54,7 @@ function buildRecruitmentApplicationsRoutes({ db, discordService }) {
     }
 
     try {
-      const sent = await sendDirectMessage(discordId, message);
+      const sent = await directMessageSender(discordId, message);
       return { sent, reason: sent ? undefined : 'bot-unavailable' };
     } catch (error) {
       console.error('Failed to send recruitment applicant Discord DM:', error.message || error);
@@ -297,6 +303,59 @@ function buildRecruitmentApplicationsRoutes({ db, discordService }) {
       });
     } catch (error) {
       return res.status(500).json({ error: error.message || 'Failed to update recruitment application status.' });
+    }
+  });
+
+  router.post('/recruitment-applications/:id/contact', async (req, res) => {
+    try {
+      const session = getBattleNetSessionFromRequest(req);
+      if (!session?.userId) {
+        return res.status(401).json({ error: 'Battle.net authentication required.' });
+      }
+      if (!ensureOfficer(req, res)) return;
+
+      const applicationId = Number(req.params?.id || 0);
+      if (!applicationId) {
+        return res.status(400).json({ error: 'Valid application id is required.' });
+      }
+
+      const application = db.prepare('SELECT id, battletag, discord_id FROM recruitment_applications WHERE id = ?').get(applicationId);
+      if (!application) {
+        return res.status(404).json({ error: 'Application not found.' });
+      }
+
+      const message = sanitizeRichText(req.body?.message, CONTACT_MESSAGE_LIMIT);
+      if (!message) {
+        return res.status(400).json({ error: 'A contact message is required.' });
+      }
+
+      const discordId = String(application.discord_id || '').trim();
+      if (!/^\d{17,20}$/.test(discordId)) {
+        return res.status(400).json({
+          error: 'This application does not have a valid numeric Discord user ID.',
+          reason: 'invalid-discord-id'
+        });
+      }
+
+      const officerLabel = sanitizeText(session.battletag || '', 80) || 'Guild Officer';
+      const contactMessage = `Message from guild officer ${officerLabel}:\n\n${message}`;
+      const notification = await notifyApplicant(discordId, contactMessage);
+      if (!notification.sent) {
+        const errorMessage = notification.reason === 'dm-failed'
+          ? 'Discord rejected the direct message.'
+          : 'The Discord bot is unavailable. The message was not sent.';
+        console.error(`Failed to send bespoke recruitment applicant message for application ${applicationId}: ${notification.reason || 'unknown'}`);
+        return res.status(503).json({ error: errorMessage, reason: notification.reason || 'dm-failed' });
+      }
+
+      return res.json({
+        sent: true,
+        applicationId,
+        applicantBattletag: application.battletag || '',
+        discordId
+      });
+    } catch (error) {
+      return res.status(500).json({ error: error.message || 'Failed to send recruitment applicant contact message.' });
     }
   });
 

@@ -15,7 +15,7 @@ async function autocomplete(interaction, db) {
     return;
   }
 
-  if (['lock', 'archive', 'delete', 'echo', 'edit'].includes(subcommand) && focused.name === 'event') {
+  if (['lock', 'archive', 'delete', 'echo', 'chase', 'edit'].includes(subcommand) && focused.name === 'event') {
     const events = listManageableEvents(db)
       .filter(e => `${e.id} ${e.title}`.toLowerCase().includes(String(focused.value || '').toLowerCase()))
       .slice(0, 25)

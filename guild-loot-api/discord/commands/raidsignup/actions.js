@@ -12,6 +12,7 @@ const {
   refreshEventMessage
 } = require('../../interactions/raidSignupInteractions');
 const { buildEchoEmbed } = require('./summary');
+const { chaseEvent } = require('./chase');
 const { normalizeScheduledForText, normalizeTimezone, DEFAULT_RAID_TIMEZONE } = require('../../../utils/raidSignupTime');
 
 async function postEvent(interaction, db) {
@@ -230,5 +231,6 @@ module.exports = {
   unlockEvent,
   restoreEvent,
   deleteEvent,
-  echoEvent
+  echoEvent,
+  chaseEvent
 };

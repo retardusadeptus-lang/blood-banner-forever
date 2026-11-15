@@ -186,7 +186,10 @@ async function sendDirectMessage(userId, content) {
   }
 
   const user = await activeDiscordClient.users.fetch(normalizedUserId);
-  await user.send({ content: String(content || '').slice(0, 2000) });
+  await user.send({
+    content: String(content || '').slice(0, 2000),
+    allowedMentions: { parse: [] }
+  });
   return true;
 }
 

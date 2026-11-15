@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import { THEME_FONTS, THEME_PALETTES } from '../config/theme';
 
 const CONFIG_SECTION_STORAGE_KEY = 'admin-config-section-state';
 const CONFIG_SECTION_KEYS = ['site', 'access', 'scoring', 'rankings', 'discord', 'claims'];
@@ -181,15 +182,29 @@ export default function DiscordBotConfigTab({
         </nav>
         <div className="space-y-2">
       <details {...sectionProps('site')}>
-        {sectionSummary('Site defaults and claims', 'Choose the default dashboard destination and character claim behavior.')}
+        {sectionSummary('Site defaults, appearance, and claims', 'Choose the default dashboard destination, appearance, and character claim behavior.')}
         <div className="border-t border-slate-800 px-4 py-3">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Default Site Tab</label>
             <select value={scoringConfig?.defaultSiteTab || 'recruitment.focus'} onChange={event => updateScoringField('defaultSiteTab', event.target.value)} className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none">
               <option value="recruitment.focus">Recruitment Focus</option><option value="guild-bank.contents">Guild Bank</option><option value="raid-assignments.overview">Raid Assignments</option><option value="raid-signups.events">Raid Signups</option><option value="recruitment.applications">Recruitment Applications</option><option value="resources.bis">BiS Lists</option><option value="resources.weakauras">Weakauras</option><option value="resources.cheatsheets">Cheat Sheets</option><option value="resources.raidlogs">Raid Logs</option><option value="resources.wipefest">Wipefest</option><option value="loot.overview">Priority Overview</option><option value="loot.assigned">Assigned Loot</option>
             </select>
             <p className="text-[11px] text-slate-500 mt-2">Sets the first tab for visitors without a saved tab.</p>
+          </div>
+          <div>
+            <label className="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Default Colour Palette</label>
+            <select value={scoringConfig?.defaultThemePalette || 'azure'} onChange={event => updateScoringField('defaultThemePalette', event.target.value)} className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none">
+              {THEME_PALETTES.map(option => <option key={option.id} value={option.id}>{option.label}</option>)}
+            </select>
+            <p className="text-[11px] text-slate-500 mt-2">{THEME_PALETTES.find(option => option.id === (scoringConfig?.defaultThemePalette || 'azure'))?.description}</p>
+          </div>
+          <div>
+            <label className="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Default Site Font</label>
+            <select value={scoringConfig?.defaultThemeFont || 'system'} onChange={event => updateScoringField('defaultThemeFont', event.target.value)} className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none">
+              {THEME_FONTS.map(option => <option key={option.id} value={option.id}>{option.label}</option>)}
+            </select>
+            <p className="text-[11px] text-slate-500 mt-2">{THEME_FONTS.find(option => option.id === (scoringConfig?.defaultThemeFont || 'system'))?.description}</p>
           </div>
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Claim Character Game Version</label>
@@ -335,9 +350,12 @@ export default function DiscordBotConfigTab({
           </summary>
           <div className="mt-3 space-y-2 border-t border-slate-800 pt-3 text-xs text-slate-400">
             <p><strong className="text-slate-200">/request</strong> lets an authorized member request an item for a character. Choose the character and item, then submit the request.</p>
+            <p><strong className="text-slate-200">/absence list, add, remove</strong> privately manage your upcoming raid absences. Your Discord account must be linked to a claimed roster character; dates accept comma-separated values or ranges such as <code>2026-10-05 to 2026-10-15</code>.</p>
             <p><strong className="text-slate-200">/raidsignup post</strong> creates a signup card from a saved template. Members use the buttons on that card to sign up, choose a class, or remove their signup.</p>
             <p><strong className="text-slate-200">/raidsignup echo</strong> posts a summary of the selected event and its groups in the current channel.</p>
             <p><strong className="text-slate-200">/raidsignup edit, lock, archive, unlock, restore, delete</strong> manage an existing signup event.</p>
+            <p><strong className="text-slate-200">/raidsignup chase</strong> identifies active roster members who have not responded to an event and sends direct messages, a reminder in the signup channel, or both. This uses the configured signup command roles.</p>
+            <p>Automatic unsigned-member reminders run for posted open events in the 24-hour and 8-hour windows before the scheduled start. Successful reminders are recorded per member and window so restarts do not duplicate them; stale windows are skipped.</p>
             <p>Empty permission columns mean that command is unrestricted. A member needs at least one selected role for a restricted command.</p>
           </div>
         </details>

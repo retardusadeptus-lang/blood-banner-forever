@@ -64,9 +64,33 @@ Set `SEED_DEPLOYMENT_DATABASE=false` only if startup seeding should be disabled.
 
 ## Appearance customization
 
-The dashboard header includes an **Appearance** control with selectable colour palettes and site fonts. The selected palette and font are applied across the shared page, panel, navigation, field, and button styles.
+The dashboard header includes an **Appearance** control with selectable colour palettes and site fonts. The selected palette and font are applied across the shared page, panel, navigation, field, and button styles. Expand **Advanced colours** to override individual surface, text, accent, state, or navigation colour tokens; each token can be reset independently or all custom colours can be cleared at once.
 
-Appearance preferences are stored in the current browser's local storage, so they persist for that browser without changing the guild-wide configuration or database. A new browser or cleared site data starts with the default **Azure & Banner** palette and **Modern System** font. Available palettes include **Blood & Banner** (Horde red), **Classic Blood & Banner** (the original palette), **Charcoal Banner**, **Blood & Banter**, **Blood & Brass**, **Banner & Bone**, **Blood & Iron**, **Blood & Shadow**, **Midnight & Banner**, and **Blood & Ash** alongside the other fantasy themes. Available fonts include **Modern System**, **Guild Chronicle**, **Tactical Mono**, **Warband Condensed**, **Runestone Serif**, **Guild Scribe**, and **War Room Typewriter**.
+Appearance preferences are stored in the current browser's local storage, so they persist for that browser without changing the guild-wide configuration or database. Granular overrides are sparse: colours that have not been customized continue to follow the selected palette and administrator defaults, and resetting an override restores that behavior. A new browser or cleared site data starts with the default **Azure & Banner** palette and **Modern System** font. Available palettes include **Blood & Banner** (Horde red), **Classic Blood & Banner** (the original palette), **Charcoal Banner**, **Blood & Banter**, **Blood & Brass**, **Banner & Bone**, **Blood & Iron**, **Blood & Shadow**, **Midnight & Banner**, and **Blood & Ash** alongside the other fantasy themes. Available fonts include **Modern System**, **Guild Chronicle**, **Tactical Mono**, **Warband Condensed**, **Runestone Serif**, **Guild Scribe**, and **War Room Typewriter**.
+
+## Navigation customization
+
+Battle.net administrators can open **Admin > Sitemap** and use **Move up** or **Move down** on a group or expanded subtab to reorder the main navigation or a subtab within its group. The controls include tabs hidden from some audiences. Select **Save site settings** to persist the layout for all visitors; unsaved changes are only local to the current session. A subtab can also be moved to another group using the Group selector. Changing the order does not change the configured default page.
+
+Navigation links include a `page` query marker based on the stable site-tab ID. For example, `/?page=admin.config` opens Config directly; the same format works for every registered subtab. In-app navigation updates the marker without reloading, and browser Back/Forward follows page-marker history.
+
+## About Us content
+
+Officers and administrators can open **Recruitment > About Us**, choose **Edit Content**, and update the page introduction, guild information, Discord links, and its three content sections. The page always includes a direct **Apply to join** link to the Applications subtab. **Save Changes** persists the content for all visitors; **Discard** leaves the saved version unchanged.
+
+## Recruitment applicant contact
+
+Officers can select **Contact** on an application to send a bespoke Discord DM with joining instructions or a named officer's Discord or Battle.net identity. The application must contain the applicant's numeric 17–20 digit Discord user ID; usernames cannot be resolved by the bot. Each message includes the sending officer's Battle.net identity, is limited to Discord's message size, and reports bot or delivery failures without claiming the message was sent.
+
+## Profile visibility
+
+Character profiles are public by default. In **Profiles > My Characters**, owners can change a profile to **Private**; private profiles remain available to their owner in My Characters but are excluded from **Meet the Guild** for every viewer.
+
+Meet the Guild shows compact public character summaries. Select a summary to open the full character details; matching roster entries add the character's guild role to the summary.
+
+## Default appearance
+
+Officers and administrators can set the default colour palette and site font in **Admin > Config > Site defaults, appearance, and claims**. These defaults apply to visitors who have not chosen a local appearance preference; an individual's Appearance controls continue to override the administrator defaults.
 
 ## Notes
 

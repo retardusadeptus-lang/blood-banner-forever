@@ -29,7 +29,6 @@ import useThemePreferences from './hooks/useThemePreferences';
 export default function App() {
   const previousActiveTabRef = useRef('');
   const previousBisTabRef = useRef('');
-  const theme = useThemePreferences();
   // ==========================================
   // SPECS DATA FROM DATABASE
   // ==========================================
@@ -95,7 +94,9 @@ export default function App() {
     defaultSitePhase: DEFAULT_GLOBAL_PHASE,
     defaultSiteTab: DEFAULT_SITE_TAB,
     claimGameVersion: 'all',
-    claimFallbackEnabled: false
+    claimFallbackEnabled: false,
+    defaultThemePalette: 'azure',
+    defaultThemeFont: 'system'
   });
   const [playerStats, setPlayerStatsLocal] = useState({});
   const [raidLogs, setRaidLogsLocal] = useState([]);
@@ -106,6 +107,12 @@ export default function App() {
   const [raidLogsDirty, setRaidLogsDirty] = useState(false);
 
   const [isSavingScoring, setIsSavingScoring] = useState(false);
+  const theme = useThemePreferences({
+    defaultPreferences: {
+      palette: scoringConfig.defaultThemePalette,
+      font: scoringConfig.defaultThemeFont,
+    },
+  });
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.priorityPhase, globalPhase);
@@ -906,6 +913,7 @@ export default function App() {
           getDropdownItemActiveState={getDropdownItemActiveState}
           isAuthenticated={hasOfficerAccess}
           subTabs={subTabs}
+          orderByGroup={siteVisibility.orderByGroup}
         />
       )}
       mainContent={(

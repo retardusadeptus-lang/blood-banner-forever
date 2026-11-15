@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { getEffectiveGroupKey, getEffectiveSurfaceRoles, getEffectiveTabOrder, getSiteTabMetadata, SITE_NAV_GROUPS, SITE_ROLES, SITE_TABS } from '../config/siteRegistry';
+import { getEffectiveGroupKey, getEffectiveSurfaceRoles, getSiteNavigationGroups, getSiteTabsInGroup, moveSiteGroup, moveSiteTabInGroup, SITE_NAV_GROUPS, SITE_ROLES, SITE_TABS } from '../config/siteRegistry';
 
 const ROLE_COLUMNS = ['Public', 'Guild Member', 'Officer', 'Admin'];
 const tab = (registryTabId, label, visibleRoles, sections, actions = []) => ({ registryTabId, label, visibleRoles, sections, actions });
@@ -84,6 +84,14 @@ const SITE_MAP = [
       tab('recruitment.planning', 'Roster Planning', ['Officer', 'Admin'], ['Recruitment roster', 'Class and spec needs', 'Planning notes']),
       tab('recruitment.focus', 'Recruitment Focus', ['Public', 'Guild Member', 'Officer', 'Admin'], ['Recruitment summary', 'Class and spec focus', 'Officer-only notes'], [action('Enter edit mode', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Add or remove focus', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Save recruitment focus', ['Officer', 'Admin'], ['Officer', 'Admin'])]),
       tab('recruitment.applications', 'Applications', ['Public', 'Guild Member', 'Officer', 'Admin'], ['Application form', 'Applicant status list', 'Officer review controls'], [action('Submit application', ['Public', 'Guild Member', 'Officer', 'Admin'], ['Public', 'Guild Member', 'Officer', 'Admin']), action('Edit application instructions', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Review, approve, or reject application', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Delete application', ['Officer', 'Admin'], ['Officer', 'Admin'])]),
+      tab('recruitment.about', 'About Us', ['Public', 'Guild Member', 'Officer', 'Admin'], ['Guild information']),
+    ],
+  },
+  {
+    group: 'Profiles',
+    tabs: [
+      tab('profiles.my-characters', 'My Characters', ['Public', 'Guild Member', 'Officer', 'Admin'], ['Character profiles']),
+      tab('profiles.meet-guild', 'Meet the Guild', ['Public', 'Guild Member', 'Officer', 'Admin'], ['Guild character profiles']),
     ],
   },
   {
@@ -110,6 +118,7 @@ const SITE_MAP = [
     tabs: [
       tab('admin.officerRoles', 'Officer Roles', ['Officer', 'Admin'], ['Officer role rankings', 'Battle.net access roles', 'Role save controls'], [action('Enter edit mode', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Add or remove role', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Save officer roles', ['Officer', 'Admin'], ['Officer', 'Admin'])]),
       tab('admin.roster', 'Roster', ['Officer', 'Admin'], ['Guild roster', 'Character claims', 'Roster and attendance editing'], [action('Edit member', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Add member', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Delete member', ['Officer', 'Admin'], ['Officer', 'Admin'])]),
+      tab('admin.bosses', 'Manage Bosses', ['Officer', 'Admin'], ['Boss management']),
       tab('admin.config', 'Config', ['Officer', 'Admin'], ['Default site phase', 'Discord and guild configuration', 'Scoring weights', 'Battle.net access configuration'], [action('Save configuration', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Add or remove Battle.net access role', ['Officer', 'Admin'], ['Admin'])]),
       tab('admin.itemsdb', 'Master Items DB', ['Officer', 'Admin'], ['Item database search and filters', 'Item eligibility and source fields', 'BiS priority maintenance'], [action('Add or edit item', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Delete item', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Save item database changes', ['Officer', 'Admin'], ['Officer', 'Admin'])]),
       tab('admin.todo', 'To-do List', ['Officer', 'Admin'], ['Task list', 'Personal task filter', 'Task editing and save controls'], [action('Add or edit task', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Delete task', ['Officer', 'Admin'], ['Officer', 'Admin']), action('Save to-do list', ['Officer', 'Admin'], ['Officer', 'Admin'])]),
@@ -126,16 +135,20 @@ export default function SitemapTab({
   surfaceRolesByTab = {},
   groupByTab = {},
   orderByTab = {},
+  orderByGroup = {},
   sectionVisibilityById = {},
   updateSiteVisibility,
   updateSiteLayout,
+  updateSiteOrder,
+  updateSiteGroupOrder,
   updateSectionVisibility,
   saveSiteVisibility,
   siteVisibilityDirty = false,
   isSavingSiteVisibility = false,
+  siteVisibilityError = '',
   siteTabMetadata
 }) {
-  const [openGroups, setOpenGroups] = useState(() => new Set(SITE_MAP.map(section => section.group)));
+  const [openGroups, setOpenGroups] = useState(() => new Set(SITE_NAV_GROUPS.map(group => group.label)));
   const [openTabs, setOpenTabs] = useState(() => new Set());
 
   const getVisibleRoles = entry => {
@@ -143,12 +156,10 @@ export default function SitemapTab({
     return registryTab ? getEffectiveSurfaceRoles(registryTab, surfaceRolesByTab) : entry.visibleRoles;
   };
 
-  const effectiveSiteMap = SITE_NAV_GROUPS.map(registryGroup => ({
+  const effectiveSiteMap = getSiteNavigationGroups({ orderByGroup }).map(registryGroup => ({
     group: registryGroup.label,
-    tabs: SITE_TABS.map(tabItem => getSiteTabMetadata(tabItem.id, { groupByTab, orderByTab }))
-      .filter(registryTab => registryTab.groupKey === registryGroup.key)
-      .slice()
-      .sort((left, right) => left.order - right.order)
+    groupKey: registryGroup.key,
+    tabs: getSiteTabsInGroup(registryGroup.key, { groupByTab, orderByTab })
       .map(registryTab => {
         return SITE_TAB_DETAILS_BY_ID[registryTab.id] || null;
       })
@@ -158,34 +169,38 @@ export default function SitemapTab({
   const getTabPosition = registryTab => {
     if (!registryTab) return { groupKey: null, tabs: [], index: -1 };
     const groupKey = getEffectiveGroupKey(registryTab, groupByTab);
-    const tabs = SITE_TABS.map(tabItem => getSiteTabMetadata(tabItem.id, { groupByTab, orderByTab }))
-      .filter(tabItem => tabItem.groupKey === groupKey)
-      .slice()
-      .sort((left, right) => left.order - right.order);
+    const tabs = getSiteTabsInGroup(groupKey, { groupByTab, orderByTab });
     return { groupKey, tabs, index: tabs.findIndex(tabItem => tabItem.id === registryTab.id) };
   };
 
+  const getGroupPosition = groupKey => {
+    const groups = getSiteNavigationGroups({ orderByGroup });
+    return { groups, index: groups.findIndex(group => group.key === groupKey) };
+  };
+
+  const moveGroup = (groupKey, direction) => {
+    if (!updateSiteGroupOrder) return;
+    const orders = moveSiteGroup(groupKey, direction, { orderByGroup });
+    if (orders) updateSiteGroupOrder(orders);
+  };
+
   const moveTab = (registryTab, direction) => {
-    if (!registryTab || !updateSiteLayout) return;
-    const { groupKey, tabs, index } = getTabPosition(registryTab);
-    const targetIndex = index + direction;
-    if (!groupKey || index < 0 || targetIndex < 0 || targetIndex >= tabs.length) return;
-    const targetTab = tabs[targetIndex];
-    updateSiteLayout(registryTab.id, groupKey, getEffectiveTabOrder(targetTab, orderByTab));
-    updateSiteLayout(targetTab.id, groupKey, getEffectiveTabOrder(registryTab, orderByTab));
+    if (!registryTab || !updateSiteOrder) return;
+    const orders = moveSiteTabInGroup(registryTab.id, direction, { groupByTab, orderByTab });
+    if (orders) updateSiteOrder(orders);
   };
 
   const moveTabToGroup = (registryTab, nextGroupKey) => {
     if (!registryTab || !updateSiteLayout || !nextGroupKey) return;
-    const targetTabs = SITE_TABS.map(tabItem => getSiteTabMetadata(tabItem.id, { groupByTab, orderByTab }))
-      .filter(tabItem => tabItem.groupKey === nextGroupKey && tabItem.id !== registryTab.id);
+    const targetTabs = getSiteTabsInGroup(nextGroupKey, { groupByTab, orderByTab })
+      .filter(tabItem => tabItem.id !== registryTab.id);
     const nextOrder = targetTabs.length > 0
-      ? Math.max(...targetTabs.map(tabItem => getEffectiveTabOrder(tabItem, orderByTab))) + 1
+      ? Math.max(...targetTabs.map(tabItem => tabItem.order)) + 1
       : 0;
     updateSiteLayout(registryTab.id, nextGroupKey, nextOrder);
   };
 
-  const tabKeys = useMemo(() => SITE_MAP.flatMap(section => section.tabs.map(entry => `${section.group}-${entry.label}`)), []);
+  const tabKeys = useMemo(() => SITE_TABS.map(entry => entry.id), []);
 
   const toggleSetValue = (setter, key) => {
     setter(previous => {
@@ -197,8 +212,8 @@ export default function SitemapTab({
   };
 
   const expandAll = () => {
-    if (openGroups.size < SITE_MAP.length) {
-      setOpenGroups(new Set(SITE_MAP.map(section => section.group)));
+    if (openGroups.size < SITE_NAV_GROUPS.length) {
+      setOpenGroups(new Set(SITE_NAV_GROUPS.map(group => group.label)));
       return;
     }
 
@@ -223,12 +238,12 @@ export default function SitemapTab({
       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div>
           <h2 className="text-xl font-bold text-slate-100">Site Sitemap</h2>
-          <p className="mt-1 text-sm text-slate-400">Visibility by access level. Guild Member means a roster character claimed through Battle.net. Visibility does not imply edit access.</p>
+          <p className="mt-1 text-sm text-slate-400">Expand a tab to change its group, order, or visibility. Save site settings to apply changes for everyone. Visibility does not imply edit access; Guild Member means a roster character claimed through Battle.net.</p>
         </div>
         <div className="flex shrink-0 gap-2">
           {saveSiteVisibility && (
             <button type="button" onClick={saveSiteVisibility} disabled={!siteVisibilityDirty || isSavingSiteVisibility} className={`rounded-lg border px-3 py-2 text-xs font-bold uppercase tracking-wider ${siteVisibilityDirty ? 'border-emerald-700/50 bg-emerald-950/30 text-emerald-300 hover:bg-emerald-900/40' : 'border-slate-800 bg-slate-900 text-slate-600'}`}>
-              {isSavingSiteVisibility ? 'Saving...' : 'Save visibility'}
+              {isSavingSiteVisibility ? 'Saving...' : 'Save site settings'}
             </button>
           )}
           <button type="button" onClick={expandAll} className="rounded-lg border border-cyan-700/50 bg-cyan-950/30 px-3 py-2 text-xs font-bold uppercase tracking-wider text-cyan-300 hover:bg-cyan-900/40">Expand all</button>
@@ -236,7 +251,8 @@ export default function SitemapTab({
         </div>
       </div>
 
-      <div className="space-y-3 overflow-x-auto">
+      {siteVisibilityError && <p role="alert" className="text-sm text-red-400">Failed to save site settings: {siteVisibilityError}</p>}
+      <fieldset disabled={isSavingSiteVisibility} className="min-w-0 space-y-3 overflow-x-auto">
         <div className="sticky top-0 z-20 grid min-w-[760px] grid-cols-[minmax(220px,1fr)_repeat(4,minmax(90px,1fr))] items-center rounded-xl border border-slate-800 bg-slate-950/95 px-4 py-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 shadow-lg backdrop-blur">
           <span>Visibility</span>
           {ROLE_COLUMNS.map(role => (
@@ -248,21 +264,30 @@ export default function SitemapTab({
 
         {effectiveSiteMap.map(section => {
           const groupOpen = openGroups.has(section.group);
+          const groupPosition = getGroupPosition(section.groupKey);
           const groupEntries = section.tabs.flatMap(entry => entry.sections.map(() => ({
             ...entry,
             visibleRoles: getVisibleRoles(entry)
           })));
           return (
             <div key={section.group} className="min-w-[760px] overflow-hidden rounded-xl border border-slate-800 bg-slate-950/60">
-              <button type="button" onClick={() => toggleSetValue(setOpenGroups, section.group)} className="grid w-full grid-cols-[minmax(220px,1fr)_repeat(4,minmax(90px,1fr))] items-center bg-slate-900/80 px-4 py-3 text-left hover:bg-slate-900">
-                <span className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-cyan-300"><span className="text-slate-500">{groupOpen ? '−' : '+'}</span>{section.group}</span>
-                <VisibilitySummary entries={groupEntries} />
-              </button>
+              <div className="flex items-center gap-2 bg-slate-900/80 px-4 py-3">
+                <button type="button" onClick={() => toggleSetValue(setOpenGroups, section.group)} className="grid min-w-0 flex-1 grid-cols-[minmax(220px,1fr)_repeat(4,minmax(90px,1fr))] items-center text-left hover:bg-slate-900">
+                  <span className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-cyan-300"><span className="text-slate-500">{groupOpen ? '−' : '+'}</span>{section.group}</span>
+                  <VisibilitySummary entries={groupEntries} />
+                </button>
+                {updateSiteGroupOrder && (
+                  <div className="flex shrink-0 gap-1">
+                    <button type="button" onClick={() => moveGroup(section.groupKey, -1)} disabled={groupPosition.index <= 0} aria-label={`Move ${section.group} up`} className="rounded border border-slate-700 px-2 py-1 text-[10px] text-slate-300 disabled:cursor-not-allowed disabled:text-slate-700">Move up</button>
+                    <button type="button" onClick={() => moveGroup(section.groupKey, 1)} disabled={groupPosition.index < 0 || groupPosition.index >= groupPosition.groups.length - 1} aria-label={`Move ${section.group} down`} className="rounded border border-slate-700 px-2 py-1 text-[10px] text-slate-300 disabled:cursor-not-allowed disabled:text-slate-700">Move down</button>
+                  </div>
+                )}
+              </div>
 
               {groupOpen && (
                 <div className="space-y-2 p-3">
                   {section.tabs.map(entry => {
-                    const tabKey = `${section.group}-${entry.label}`;
+                    const tabKey = entry.registryTabId;
                     const tabOpen = openTabs.has(tabKey);
                     const visibleRoles = getVisibleRoles(entry);
                     const registryTab = getRegistryTabById(entry.registryTabId);
@@ -270,7 +295,7 @@ export default function SitemapTab({
                     return (
                       <div key={tabKey} className="overflow-hidden rounded-lg border border-slate-800 bg-slate-900/50">
                         <button type="button" onClick={() => toggleSetValue(setOpenTabs, tabKey)} className="grid w-full grid-cols-[minmax(220px,1fr)_repeat(4,minmax(90px,1fr))] items-center px-4 py-3 text-left hover:bg-slate-900">
-                          <span className="flex items-center gap-3"><span className="text-slate-500">{tabOpen ? '−' : '+'}</span><span className="font-semibold text-slate-200">{entry.label}</span>{entry.label === section.tabs[0].label && <span className="rounded-full border border-amber-600/40 bg-amber-950/30 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-300">Default tab</span>}</span>
+                          <span className="flex items-center gap-3"><span className="text-slate-500">{tabOpen ? '−' : '+'}</span><span className="font-semibold text-slate-200">{entry.label}</span></span>
                           <VisibilitySummary entries={entry.sections.map(() => ({ ...entry, visibleRoles }))} />
                         </button>
 
@@ -306,8 +331,8 @@ export default function SitemapTab({
                                     {SITE_NAV_GROUPS.map(group => <option key={group.key} value={group.key}>{group.label}</option>)}
                                   </select>
                                 </label>
-                                <button type="button" onClick={() => moveTab(registryTab, -1)} disabled={tabPosition.index <= 0} className="rounded border border-slate-700 px-2 py-1 text-[10px] text-slate-300 disabled:cursor-not-allowed disabled:text-slate-700">Move up</button>
-                                <button type="button" onClick={() => moveTab(registryTab, 1)} disabled={tabPosition.index < 0 || tabPosition.index >= tabPosition.tabs.length - 1} className="rounded border border-slate-700 px-2 py-1 text-[10px] text-slate-300 disabled:cursor-not-allowed disabled:text-slate-700">Move down</button>
+                                <button type="button" onClick={() => moveTab(registryTab, -1)} disabled={!updateSiteOrder || tabPosition.index <= 0} aria-label={`Move ${entry.label} up`} className="rounded border border-slate-700 px-2 py-1 text-[10px] text-slate-300 disabled:cursor-not-allowed disabled:text-slate-700">Move up</button>
+                                <button type="button" onClick={() => moveTab(registryTab, 1)} disabled={!updateSiteOrder || tabPosition.index < 0 || tabPosition.index >= tabPosition.tabs.length - 1} aria-label={`Move ${entry.label} down`} className="rounded border border-slate-700 px-2 py-1 text-[10px] text-slate-300 disabled:cursor-not-allowed disabled:text-slate-700">Move down</button>
                               </div>
                             )}
                             {entry.sections.map(item => (
@@ -358,7 +383,7 @@ export default function SitemapTab({
             </div>
           );
         })}
-      </div>
+      </fieldset>
     </section>
   );
 }

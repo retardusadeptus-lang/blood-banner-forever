@@ -1,4 +1,5 @@
 const { getDiscordClient } = require('../bot');
+const { runAutomaticChase } = require('../discord/commands/raidsignup/chase');
 const {
   listTemplates,
   createEventFromTemplate,
@@ -34,11 +35,21 @@ function createRaidSignupCron({ db }) {
 
     try {
       const templates = listTemplates(db).filter(template => template.is_active && template.recurrence_enabled && Array.isArray(template.recurrence_days) && template.recurrence_days.length > 0);
-      if (templates.length === 0) return;
-
       const client = getDiscordClient();
       if (!client) return;
+      if (typeof client.isReady === 'function' && !client.isReady()) return;
       await client.application.emojis.fetch().catch(() => {});
+
+      try {
+        const chaseResult = await runAutomaticChase({ db, client });
+        if (chaseResult.sent > 0 || chaseResult.failed > 0) {
+          console.log(`[RaidSignup] Automatic chase sent ${chaseResult.sent} reminder(s); ${chaseResult.failed} failed.`);
+        }
+      } catch (error) {
+        console.error('[RaidSignup] Automatic chase failed:', error.message || error);
+      }
+
+      if (templates.length === 0) return;
 
       const { buildSignupEmbed, buildMainSignupComponents } = require('../discord/interactions/raidSignupInteractions');
       const now = Date.now();

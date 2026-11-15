@@ -174,6 +174,181 @@ test('POST /api/recruitment-applications stores the applicant and returns the cr
   }
 });
 
+test('POST /api/recruitment-applications/:id/contact lets officers send bespoke Discord messages', async () => {
+  const db = createDb();
+  const sentMessages = [];
+  const app = express();
+  app.use(express.json());
+  app.use('/api', buildRecruitmentApplicationsRoutes({
+    db,
+    sessionSecret: 'test-secret',
+    discordService: createDiscordService(),
+    sendDirectMessage: async (discordId, message) => {
+      sentMessages.push({ discordId, message });
+      return true;
+    }
+  }));
+
+  const server = app.listen(0);
+  try {
+    const port = server.address().port;
+    const { token: applicantToken } = createBattleNetSession({ userId: 42, battletag: 'Applicant#1234' });
+    const { token: officerToken } = createBattleNetSession({ userId: 99, battletag: 'Officer#0001' });
+
+    const submission = await fetch(`http://127.0.0.1:${port}/api/recruitment-applications`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: `wow_loot_bnet_sid=${applicantToken}`
+      },
+      body: JSON.stringify({
+        className: 'Priest',
+        spec: 'Holy',
+        name: 'ApplicantThree',
+        discordId: '123456789012345678',
+        aboutMe: 'I enjoy healing and helping the group.'
+      })
+    });
+
+    assert.equal(submission.status, 201);
+    const created = await submission.json();
+
+    const forbidden = await fetch(`http://127.0.0.1:${port}/api/recruitment-applications/${created.id}/contact`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: `wow_loot_bnet_sid=${applicantToken}`
+      },
+      body: JSON.stringify({ message: 'Please join the guild Discord.' })
+    });
+
+    assert.equal(forbidden.status, 403);
+
+    const contact = await fetch(`http://127.0.0.1:${port}/api/recruitment-applications/${created.id}/contact`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: `wow_loot_bnet_sid=${officerToken}`
+      },
+      body: JSON.stringify({ message: 'Please join the guild Discord and message OfficerName when you arrive.' })
+    });
+
+    assert.equal(contact.status, 200);
+    const payload = await contact.json();
+    assert.equal(payload.sent, true);
+    assert.equal(payload.applicationId, created.id);
+    assert.deepEqual(sentMessages, [
+      {
+        discordId: '123456789012345678',
+        message: 'Your recruitment application has been received by the guild. We will review it and update you when its status changes.'
+      },
+      {
+        discordId: '123456789012345678',
+        message: 'Message from guild officer Officer#0001:\n\nPlease join the guild Discord and message OfficerName when you arrive.'
+      }
+    ]);
+  } finally {
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
+test('POST /api/recruitment-applications/:id/contact reports invalid recipients, bot failures, and missing applications', async () => {
+  const db = createDb();
+  const app = express();
+  app.use(express.json());
+  app.use('/api', buildRecruitmentApplicationsRoutes({
+    db,
+    sessionSecret: 'test-secret',
+    discordService: createDiscordService(),
+    sendDirectMessage: async () => false
+  }));
+
+  const server = app.listen(0);
+  try {
+    const port = server.address().port;
+    const { token: applicantToken } = createBattleNetSession({ userId: 42, battletag: 'Applicant#1234' });
+    const { token: officerToken } = createBattleNetSession({ userId: 99, battletag: 'Officer#0001' });
+
+    const invalidSubmission = await fetch(`http://127.0.0.1:${port}/api/recruitment-applications`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: `wow_loot_bnet_sid=${applicantToken}`
+      },
+      body: JSON.stringify({
+        className: 'Warrior',
+        spec: 'Protection',
+        name: 'ApplicantFour',
+        discordId: 'applicant.1234',
+        aboutMe: 'I am looking for a reliable team.'
+      })
+    });
+
+    assert.equal(invalidSubmission.status, 201);
+    const invalidApplication = await invalidSubmission.json();
+
+    const invalidRecipient = await fetch(`http://127.0.0.1:${port}/api/recruitment-applications/${invalidApplication.id}/contact`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: `wow_loot_bnet_sid=${officerToken}`
+      },
+      body: JSON.stringify({ message: 'Please join the guild Discord.' })
+    });
+
+    assert.equal(invalidRecipient.status, 400);
+    const invalidPayload = await invalidRecipient.json();
+    assert.equal(invalidPayload.reason, 'invalid-discord-id');
+
+    const validSubmission = await fetch(`http://127.0.0.1:${port}/api/recruitment-applications`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: `wow_loot_bnet_sid=${officerToken}`
+      },
+      body: JSON.stringify({
+        className: 'Druid',
+        spec: 'Restoration',
+        name: 'ProxyApplicant',
+        discordId: '123456789012345679',
+        aboutMe: 'A proxy application for testing delivery failures.',
+        isProxy: true,
+        proxyName: 'ProxyApplicant',
+        proxyBattletag: 'ProxyApplicant#1234'
+      })
+    });
+
+    assert.equal(validSubmission.status, 201);
+    const validApplication = await validSubmission.json();
+
+    const botFailure = await fetch(`http://127.0.0.1:${port}/api/recruitment-applications/${validApplication.id}/contact`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: `wow_loot_bnet_sid=${officerToken}`
+      },
+      body: JSON.stringify({ message: 'Please join the guild Discord.' })
+    });
+
+    assert.equal(botFailure.status, 503);
+    const botFailurePayload = await botFailure.json();
+    assert.equal(botFailurePayload.reason, 'bot-unavailable');
+
+    const missingApplication = await fetch(`http://127.0.0.1:${port}/api/recruitment-applications/999/contact`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: `wow_loot_bnet_sid=${officerToken}`
+      },
+      body: JSON.stringify({ message: 'Please join the guild Discord.' })
+    });
+
+    assert.equal(missingApplication.status, 404);
+  } finally {
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
 test('PUT /api/recruitment-applications/:id/status lets officers approve or reject applications and DELETE removes them', async () => {
   const db = createDb();
   const app = express();

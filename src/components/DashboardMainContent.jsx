@@ -467,7 +467,12 @@ export default function DashboardMainContent({ viewModel }) {
       )}
 
       {activeSiteTabId === 'recruitment.about' && activeContentOwner === 'RecruitmentAboutTab' && (
-        <RecruitmentAboutTab siteTabMetadata={siteTabMetadata} />
+        <RecruitmentAboutTab
+          canEdit={Boolean(bnetAuthState?.isOfficer || bnetAuthState?.isAdmin || isAuthenticated)}
+          fetchData={fetchData}
+          putData={putData}
+          siteTabMetadata={siteTabMetadata}
+        />
       )}
 
       {activeContentOwner === 'Profiles' && activeSiteTabId === 'profiles.my-characters' && (
@@ -484,7 +489,7 @@ export default function DashboardMainContent({ viewModel }) {
       )}
 
       {activeContentOwner === 'Profiles' && activeSiteTabId === 'profiles.meet-guild' && (
-        <ProfilesMeetGuildTab profiles={profiles} loading={profilesLoading} error={profilesError} />
+        <ProfilesMeetGuildTab profiles={profiles} roster={roster} loading={profilesLoading} error={profilesError} />
       )}
 
       {activeContentOwner === 'AdminContainer' && ['admin.officerRoles', 'admin.roster', 'admin.bosses', 'admin.config', 'admin.todo'].includes(activeSiteTabId) && isAuthenticated && (

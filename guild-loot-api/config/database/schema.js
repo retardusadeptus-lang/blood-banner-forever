@@ -146,6 +146,7 @@ function ensureBattleNetAuthSchema(db) {
       rp_hooks TEXT DEFAULT '',
       backstory TEXT DEFAULT '',
       avatar_data TEXT DEFAULT '',
+      visibility TEXT NOT NULL DEFAULT 'public',
       created_at TEXT DEFAULT CURRENT_TIMESTAMP,
       updated_at TEXT DEFAULT CURRENT_TIMESTAMP
     );
@@ -173,6 +174,9 @@ function ensureBattleNetAuthSchema(db) {
   }
   if (!profileColumns.includes('subclass')) {
     db.exec("ALTER TABLE character_profiles ADD COLUMN subclass TEXT DEFAULT ''");
+  }
+  if (!profileColumns.includes('visibility')) {
+    db.exec("ALTER TABLE character_profiles ADD COLUMN visibility TEXT NOT NULL DEFAULT 'public'");
   }
 
   const rosterColumns = db.prepare('PRAGMA table_info(roster)').all();
@@ -335,6 +339,8 @@ function ensureNormalizedOperationalTables(db) {
       default_site_tab TEXT NOT NULL DEFAULT 'recruitment.focus',
       claim_game_version TEXT NOT NULL DEFAULT 'all',
       claim_fallback_enabled INTEGER NOT NULL DEFAULT 0,
+      default_theme_palette TEXT NOT NULL DEFAULT 'azure',
+      default_theme_font TEXT NOT NULL DEFAULT 'system',
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `).run();
@@ -354,6 +360,12 @@ function ensureNormalizedOperationalTables(db) {
   }
   if (!scoringConfigColumns.some(column => column.name === 'claim_fallback_enabled')) {
     db.prepare("ALTER TABLE scoring_config_values ADD COLUMN claim_fallback_enabled INTEGER NOT NULL DEFAULT 0").run();
+  }
+  if (!scoringConfigColumns.some(column => column.name === 'default_theme_palette')) {
+    db.prepare("ALTER TABLE scoring_config_values ADD COLUMN default_theme_palette TEXT NOT NULL DEFAULT 'azure'").run();
+  }
+  if (!scoringConfigColumns.some(column => column.name === 'default_theme_font')) {
+    db.prepare("ALTER TABLE scoring_config_values ADD COLUMN default_theme_font TEXT NOT NULL DEFAULT 'system'").run();
   }
 
   db.prepare(`
@@ -420,12 +432,14 @@ function ensureNormalizedOperationalTables(db) {
       defaultSitePhase: legacyConfig.defaultSitePhase ?? 'T6',
       defaultSiteTab: legacyConfig.defaultSiteTab ?? 'recruitment.focus',
       claimGameVersion: legacyConfig.claimGameVersion ?? 'all',
-      claimFallbackEnabled: legacyConfig.claimFallbackEnabled ?? false
+      claimFallbackEnabled: legacyConfig.claimFallbackEnabled ?? false,
+      defaultThemePalette: legacyConfig.defaultThemePalette ?? 'azure',
+      defaultThemeFont: legacyConfig.defaultThemeFont ?? 'system'
     };
 
     db.prepare(`
-      INSERT INTO scoring_config_values (id, parse_weight, support_multi, cons_bonus, enchant_bonus, gem_bonus, att_weight, afk_penalty, guild_role_ranks, default_site_phase, default_site_tab, claim_game_version, claim_fallback_enabled)
-      VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO scoring_config_values (id, parse_weight, support_multi, cons_bonus, enchant_bonus, gem_bonus, att_weight, afk_penalty, guild_role_ranks, default_site_phase, default_site_tab, claim_game_version, claim_fallback_enabled, default_theme_palette, default_theme_font)
+      VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       defaults.parseWeight,
       defaults.supportMulti,
@@ -438,7 +452,9 @@ function ensureNormalizedOperationalTables(db) {
       defaults.defaultSitePhase,
       defaults.defaultSiteTab,
       defaults.claimGameVersion,
-      defaults.claimFallbackEnabled ? 1 : 0
+      defaults.claimFallbackEnabled ? 1 : 0,
+      defaults.defaultThemePalette,
+      defaults.defaultThemeFont
     );
   }
 
@@ -620,6 +636,24 @@ function ensureRecruitmentPlanningTable(db) {
   }
 }
 
+function ensureRecruitmentAboutTable(db) {
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS recruitment_about_config (
+      id INTEGER PRIMARY KEY CHECK (id = 1),
+      data_json TEXT NOT NULL DEFAULT '{}',
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+
+  const row = db.prepare('SELECT id FROM recruitment_about_config WHERE id = 1').get();
+  if (!row) {
+    db.prepare(`
+      INSERT INTO recruitment_about_config (id, data_json)
+      VALUES (1, '{}')
+    `).run();
+  }
+}
+
 function ensureRecruitmentApplicationsTables(db) {
   db.prepare(`
     CREATE TABLE IF NOT EXISTS recruitment_applications_config (
@@ -692,6 +726,7 @@ function ensureSiteVisibilityTable(db) {
       surface_roles_by_tab_json TEXT NOT NULL DEFAULT '{}',
       group_by_tab_json TEXT NOT NULL DEFAULT '{}',
       order_by_tab_json TEXT NOT NULL DEFAULT '{}',
+      order_by_group_json TEXT NOT NULL DEFAULT '{}',
       section_visibility_by_id_json TEXT NOT NULL DEFAULT '{}',
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
@@ -700,8 +735,8 @@ function ensureSiteVisibilityTable(db) {
   const row = db.prepare('SELECT id FROM site_visibility_config WHERE id = 1').get();
   if (!row) {
     db.prepare(`
-      INSERT INTO site_visibility_config (id, surface_roles_by_tab_json, group_by_tab_json, order_by_tab_json)
-      VALUES (1, '{}', '{}', '{}')
+      INSERT INTO site_visibility_config (id, surface_roles_by_tab_json, group_by_tab_json, order_by_tab_json, order_by_group_json)
+      VALUES (1, '{}', '{}', '{}', '{}')
     `).run();
   }
 
@@ -711,6 +746,9 @@ function ensureSiteVisibilityTable(db) {
   }
   if (!columns.some(column => column.name === 'order_by_tab_json')) {
     db.prepare("ALTER TABLE site_visibility_config ADD COLUMN order_by_tab_json TEXT NOT NULL DEFAULT '{}'").run();
+  }
+  if (!columns.some(column => column.name === 'order_by_group_json')) {
+    db.prepare("ALTER TABLE site_visibility_config ADD COLUMN order_by_group_json TEXT NOT NULL DEFAULT '{}'").run();
   }
   if (!columns.some(column => column.name === 'section_visibility_by_id_json')) {
     db.prepare("ALTER TABLE site_visibility_config ADD COLUMN section_visibility_by_id_json TEXT NOT NULL DEFAULT '{}'").run();
@@ -768,6 +806,21 @@ function ensureRaidSignupTables(db) {
       note TEXT DEFAULT '',
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       UNIQUE(event_id, discord_user_id)
+    )
+  `).run();
+
+  db.prepare(`
+    CREATE TABLE IF NOT EXISTS raid_signup_chase_notifications (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      event_id INTEGER NOT NULL REFERENCES raid_signup_events(id) ON DELETE CASCADE,
+      discord_user_id TEXT NOT NULL,
+      window_key TEXT NOT NULL,
+      last_attempted_at INTEGER,
+      last_sent_at INTEGER,
+      failure_reason TEXT NOT NULL DEFAULT '',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      UNIQUE(event_id, discord_user_id, window_key)
     )
   `).run();
 
@@ -1164,6 +1217,7 @@ function ensureDatabaseIndexes(db) {
     'CREATE INDEX IF NOT EXISTS idx_raid_assignment_images_boss_created ON raid_assignment_images (boss_name, created_at)',
     'CREATE INDEX IF NOT EXISTS idx_raid_signup_absences_user_dates ON raid_signup_absences (user_id, start_date, end_date)',
     'CREATE INDEX IF NOT EXISTS idx_raid_signup_character_absences_roster_dates ON raid_signup_character_absences (roster_id, start_date, end_date)',
+    'CREATE INDEX IF NOT EXISTS idx_raid_signup_chase_notifications_event_window ON raid_signup_chase_notifications (event_id, window_key, last_sent_at)',
     'CREATE INDEX IF NOT EXISTS idx_bnet_user_roles_role ON bnet_user_roles (role)',
     'CREATE INDEX IF NOT EXISTS idx_character_profiles_user_updated ON character_profiles (user_id, updated_at DESC)',
     'CREATE UNIQUE INDEX IF NOT EXISTS idx_character_profiles_user_name ON character_profiles (user_id, character_name COLLATE NOCASE)',
@@ -1193,6 +1247,7 @@ function ensureDatabaseReady(db) {
     ensureDiscordBotConfigTable(db);
     ensureSiteVisibilityTable(db);
     ensureRecruitmentPlanningTable(db);
+    ensureRecruitmentAboutTable(db);
     ensureRecruitmentApplicationsTables(db);
     ensureRaidSignupTables(db);
     ensureDatabaseIndexes(db);

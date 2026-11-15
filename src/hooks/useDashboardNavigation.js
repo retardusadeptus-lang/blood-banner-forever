@@ -1,6 +1,6 @@
 import { startTransition, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DEFAULT_SITE_TAB } from '../constants.js';
-import { getSiteTabIdForRoute, getSiteTabRoute, getVisibleSiteTabs, isSiteActiveTabAuthOnly } from '../config/siteRegistry.js';
+import { getSiteTabIdForRoute, getSiteTabIdFromUrl, getSiteTabRoute, getSiteTabUrl, getVisibleSiteTabs, isSiteActiveTabAuthOnly } from '../config/siteRegistry.js';
 
 function getNavigationSubTab(activeTab, state) {
   if (activeTab === 'bank') return state.bankSubTab;
@@ -44,10 +44,18 @@ export function readNavigationState(storage = globalThis.localStorage) {
           ? 'focus'
           : 'roster'
     ),
-            profilesSubTab: read(NAV_STORAGE_KEYS.profilesSubTab) || 'my-characters',
+    profilesSubTab: read(NAV_STORAGE_KEYS.profilesSubTab) || 'my-characters',
     adminSubTab: read(NAV_STORAGE_KEYS.adminSubTab) || 'officerRoles',
     resourcesSubTab: read(NAV_STORAGE_KEYS.resourcesSubTab) || 'bis'
   };
+}
+
+function updateSiteTabUrl(tabId, { replace = false } = {}) {
+  if (typeof window === 'undefined' || !window.history) return;
+  const nextUrl = getSiteTabUrl(tabId, window.location);
+  if (!nextUrl || getSiteTabIdFromUrl(window.location) === tabId) return;
+  const method = replace ? 'replaceState' : 'pushState';
+  window.history[method]({}, '', nextUrl);
 }
 
 export default function useDashboardNavigation({ isAuthenticated, canViewScoring = false, canViewSitemap = false, siteAudience = 'Public', surfaceRolesByTab = {}, groupByTab = {}, orderByTab = {}, defaultSiteTab = DEFAULT_SITE_TAB, bnetUserId = null, bnetAuthReady = false, defaultSiteTabReady = false }) {
@@ -231,10 +239,11 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
     resourcesSubTab
   }));
 
-  const applySiteTabRoute = useCallback((tabId) => {
+  const applySiteTabRoute = useCallback((tabId, { updateUrl = true, replaceUrl = false } = {}) => {
     const route = getSiteTabRoute(tabId);
     if (!route) return false;
 
+    if (updateUrl) updateSiteTabUrl(tabId, { replace: replaceUrl });
     setActiveTab(route.activeTab);
     if (!route.subTab) return true;
     if (route.activeTab === 'bank') setBankSubTab(route.subTab);
@@ -249,23 +258,35 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
   }, []);
 
   const isVisibleSiteTab = useCallback((tabId) => Object.values(subTabs).some(tabs => tabs.some(tabItem => tabItem.id === tabId)), [subTabs]);
+  const getFallbackSiteTabId = useCallback(() => {
+    if (isVisibleSiteTab(defaultSiteTab)) return defaultSiteTab;
+    if (isVisibleSiteTab(DEFAULT_SITE_TAB)) return DEFAULT_SITE_TAB;
+    return Object.values(subTabs).flat().find(tabItem => tabItem?.id)?.id || null;
+  }, [defaultSiteTab, isVisibleSiteTab, subTabs]);
+
+  useEffect(() => {
+    if (!initialRouteAppliedRef.current || !activeSiteTabId) return;
+    updateSiteTabUrl(activeSiteTabId, { replace: true });
+  }, [activeSiteTabId]);
 
   useEffect(() => {
     if (!bnetAuthReady || !defaultSiteTabReady) return;
 
-    const fallbackTabId = isVisibleSiteTab(defaultSiteTab)
-      ? defaultSiteTab
-      : isVisibleSiteTab(DEFAULT_SITE_TAB) ? DEFAULT_SITE_TAB : null;
-    let requestedTabId = fallbackTabId;
+    const urlTabId = getSiteTabIdFromUrl();
+    const fallbackTabId = getFallbackSiteTabId();
+    const requestedUrlTabId = isVisibleSiteTab(urlTabId) ? urlTabId : null;
+    let requestedTabId = requestedUrlTabId || fallbackTabId;
 
     if (bnetUserId) {
       const normalizedUserId = String(bnetUserId);
       if (restoredBnetUserIdRef.current === normalizedUserId) return;
-      try {
-        const savedTabId = localStorage.getItem(`${BNET_LAST_SITE_TAB_PREFIX}${normalizedUserId}`);
-        if (isVisibleSiteTab(savedTabId)) requestedTabId = savedTabId;
-      } catch {
-        requestedTabId = fallbackTabId;
+      if (!requestedUrlTabId) {
+        try {
+          const savedTabId = localStorage.getItem(`${BNET_LAST_SITE_TAB_PREFIX}${normalizedUserId}`);
+          if (isVisibleSiteTab(savedTabId)) requestedTabId = savedTabId;
+        } catch {
+          requestedTabId = fallbackTabId;
+        }
       }
       restoredBnetUserIdRef.current = normalizedUserId;
     } else {
@@ -273,9 +294,20 @@ export default function useDashboardNavigation({ isAuthenticated, canViewScoring
       if (initialRouteAppliedRef.current) return;
     }
 
-    if (requestedTabId) applySiteTabRoute(requestedTabId);
+    if (requestedTabId) applySiteTabRoute(requestedTabId, { replaceUrl: true });
     initialRouteAppliedRef.current = true;
-  }, [applySiteTabRoute, bnetAuthReady, bnetUserId, defaultSiteTab, defaultSiteTabReady, isVisibleSiteTab]);
+  }, [applySiteTabRoute, bnetAuthReady, bnetUserId, defaultSiteTabReady, getFallbackSiteTabId, isVisibleSiteTab]);
+
+  useEffect(() => {
+    if (!bnetAuthReady || !defaultSiteTabReady) return undefined;
+    const handlePopState = () => {
+      const requestedTabId = getSiteTabIdFromUrl();
+      const tabId = isVisibleSiteTab(requestedTabId) ? requestedTabId : getFallbackSiteTabId();
+      if (tabId) applySiteTabRoute(tabId, { updateUrl: false });
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [applySiteTabRoute, bnetAuthReady, defaultSiteTabReady, getFallbackSiteTabId, isVisibleSiteTab]);
 
   useEffect(() => {
     if (!bnetUserId || !activeSiteTabId) return;

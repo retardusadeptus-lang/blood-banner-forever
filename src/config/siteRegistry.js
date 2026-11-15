@@ -110,9 +110,46 @@ export const SITE_NAV_GROUPS = [
 ];
 
 export const SITE_TABS = SITE_NAV_GROUPS.flatMap(group => group.tabs.map(item => ({ ...item, groupKey: group.key })));
+export const SITE_PAGE_QUERY_PARAM = 'page';
+
+export function getEffectiveGroupOrder(group, orderByGroup = {}) {
+  const order = Number(orderByGroup?.[group.key]);
+  return Number.isFinite(order) ? order : SITE_NAV_GROUPS.findIndex(item => item.key === group.key);
+}
+
+export function getSiteNavigationGroups({ orderByGroup = {} } = {}) {
+  return SITE_NAV_GROUPS
+    .map(group => ({ ...group, order: getEffectiveGroupOrder(group, orderByGroup) }))
+    .sort((left, right) => left.order - right.order);
+}
+
+export function moveSiteGroup(groupKey, direction, { orderByGroup = {} } = {}) {
+  if (![-1, 1].includes(direction)) return null;
+  const groups = getSiteNavigationGroups({ orderByGroup });
+  const index = groups.findIndex(group => group.key === groupKey);
+  const targetIndex = index + direction;
+  if (index < 0 || targetIndex < 0 || targetIndex >= groups.length) return null;
+  [groups[index], groups[targetIndex]] = [groups[targetIndex], groups[index]];
+  return Object.fromEntries(groups.map((group, position) => [group.key, position]));
+}
 
 export function getSiteTabById(tabId) {
   return SITE_TABS.find(item => item.id === tabId) || null;
+}
+
+export function getSiteTabIdFromUrl(location = null) {
+  const currentLocation = location || (typeof window !== 'undefined' ? window.location : null);
+  const tabId = new URLSearchParams(currentLocation?.search || '').get(SITE_PAGE_QUERY_PARAM);
+  return tabId && getSiteTabById(tabId) ? tabId : null;
+}
+
+export function getSiteTabUrl(tabId, location = null) {
+  if (!getSiteTabById(tabId)) return null;
+  const currentLocation = location || (typeof window !== 'undefined' ? window.location : null);
+  const params = new URLSearchParams(currentLocation?.search || '');
+  params.set(SITE_PAGE_QUERY_PARAM, tabId);
+  const query = params.toString();
+  return `${currentLocation?.pathname || '/'}${query ? `?${query}` : ''}${currentLocation?.hash || ''}`;
 }
 
 export function getSiteTabRoute(tabId) {
@@ -151,6 +188,24 @@ export function getSiteTabMetadata(tabId, { surfaceRolesByTab = {}, groupByTab =
     groupKey: getEffectiveGroupKey(tabItem, groupByTab),
     order: getEffectiveTabOrder(tabItem, orderByTab)
   };
+}
+
+export function getSiteTabsInGroup(groupKey, { surfaceRolesByTab = {}, groupByTab = {}, orderByTab = {} } = {}) {
+  return SITE_TABS.map(tabItem => getSiteTabMetadata(tabItem.id, { surfaceRolesByTab, groupByTab, orderByTab }))
+    .filter(tabItem => tabItem.groupKey === groupKey)
+    .sort((left, right) => left.order - right.order);
+}
+
+export function moveSiteTabInGroup(tabId, direction, layout = {}) {
+  const tabItem = getSiteTabById(tabId);
+  if (!tabItem || ![-1, 1].includes(direction)) return null;
+  const groupKey = getEffectiveGroupKey(tabItem, layout.groupByTab);
+  const tabs = getSiteTabsInGroup(groupKey, layout);
+  const index = tabs.findIndex(item => item.id === tabId);
+  const targetIndex = index + direction;
+  if (index < 0 || targetIndex < 0 || targetIndex >= tabs.length) return null;
+  [tabs[index], tabs[targetIndex]] = [tabs[targetIndex], tabs[index]];
+  return Object.fromEntries(tabs.map((item, position) => [item.id, position]));
 }
 
 export function getSiteTabContentOwner(tabId) {
@@ -212,14 +267,13 @@ export function getVisibleSiteTabs(groupKey, { audience = 'Public', isAuthentica
   const group = SITE_NAV_GROUPS.find(item => item.key === groupKey);
   if (!group) return [];
 
-  return SITE_TABS.map(tabItem => getSiteTabMetadata(tabItem.id, { surfaceRolesByTab, groupByTab, orderByTab }))
+  return getSiteTabsInGroup(groupKey, { surfaceRolesByTab, groupByTab, orderByTab })
     .filter(tabItem => {
-    if (tabItem.groupKey !== groupKey) return false;
     const effectiveRoles = tabItem.surfaceRoles;
     if (!effectiveRoles.includes(audience)) return false;
     if (tabItem.authOnly && !isAuthenticated) return false;
     if (tabItem.visibilityCapability === 'scoring' && !canViewScoring) return false;
     if (tabItem.visibilityCapability === 'sitemap' && !canViewSitemap) return false;
     return true;
-  }).sort((left, right) => left.order - right.order);
+  });
 }

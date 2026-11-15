@@ -9,7 +9,8 @@ const {
   unlockEvent,
   restoreEvent,
   deleteEvent,
-  echoEvent
+  echoEvent,
+  chaseEvent
 } = require('./raidsignup/actions');
 
 module.exports = {
@@ -62,6 +63,11 @@ module.exports = {
 
     if (subcommand === 'echo') {
       await echoEvent(interaction, db);
+      return;
+    }
+
+    if (subcommand === 'chase') {
+      await chaseEvent(interaction, db);
       return;
     }
   }

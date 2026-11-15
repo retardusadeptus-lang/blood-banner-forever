@@ -54,7 +54,7 @@ export default function useDataSync({
         const defaults = Object.keys(bisData).length ? bisData : await initializeDefaultBisPriorities(globalPhase);
         setBisPrioritiesLocal(defaults);
         if (!scoringConfigDirty) {
-          setScoringConfigLocal(Object.keys(configData).length ? configData : { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5, afkPenalty: 5, defaultSitePhase: 'T6', defaultSiteTab: 'recruitment.focus', claimGameVersion: 'all', claimFallbackEnabled: false });
+          setScoringConfigLocal(Object.keys(configData).length ? configData : { parseWeight: 1, supportMulti: 1.5, consBonus: 10, enchantBonus: 10, gemBonus: 10, attWeight: 0.5, afkPenalty: 5, defaultSitePhase: 'T6', defaultSiteTab: 'recruitment.focus', claimGameVersion: 'all', claimFallbackEnabled: false, defaultThemePalette: 'azure', defaultThemeFont: 'system' });
         }
         if (!playerStatsDirty) setPlayerStatsLocal(statsData);
         if (!raidLogsDirty) setRaidLogsLocal(logsData);

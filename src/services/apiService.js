@@ -149,6 +149,8 @@ export const getBattleNetAuthMe = async () => {
 };
 
 export const startBattleNetLogin = () => {
+  const page = new URLSearchParams(window.location.search).get('page');
+  if (page) sessionStorage.setItem('bnet-pending-site-page', page);
   window.location.href = apiUrl('auth/bnet');
 };
 

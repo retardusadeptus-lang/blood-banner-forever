@@ -37,8 +37,11 @@ export default function DashboardHeader({
             <ThemeControls
               palette={theme.palette}
               font={theme.font}
+              colors={theme.colors}
               onPaletteChange={theme.setPalette}
               onFontChange={theme.setFont}
+              onColorChange={theme.setColor}
+              onResetColors={theme.resetColors}
             />
           </div>
         )}

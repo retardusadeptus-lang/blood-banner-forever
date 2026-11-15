@@ -11,6 +11,9 @@ const EMPTY_FORM = {
   proxyBattletag: ''
 };
 
+const CONTACT_MESSAGE_LIMIT = 1800;
+const DISCORD_USER_ID_PATTERN = /^\d{17,20}$/;
+
 function escapeHtml(value = '') {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -58,6 +61,11 @@ export default function RecruitmentApplicationsTab({
   const [editingBlurb, setEditingBlurb] = useState(false);
   const [editingApplicationId, setEditingApplicationId] = useState(null);
   const [selectedApplication, setSelectedApplication] = useState(null);
+  const [contactApplication, setContactApplication] = useState(null);
+  const [contactMessage, setContactMessage] = useState('');
+  const [contactError, setContactError] = useState('');
+  const [contactSuccess, setContactSuccess] = useState('');
+  const [isSendingContact, setIsSendingContact] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -175,6 +183,51 @@ export default function RecruitmentApplicationsTab({
     } catch (error) {
       console.error('Failed to delete recruitment application:', error);
       setSubmitError(error?.message || 'Failed to delete application.');
+    }
+  };
+
+  const hasDiscordUserId = (application) => DISCORD_USER_ID_PATTERN.test(String(application?.discordId || '').trim());
+
+  const openContactDialog = (application) => {
+    setContactApplication(application);
+    setContactMessage('');
+    setContactError('');
+    setContactSuccess('');
+  };
+
+  const closeContactDialog = () => {
+    if (isSendingContact) return;
+    setContactApplication(null);
+    setContactMessage('');
+    setContactError('');
+    setContactSuccess('');
+  };
+
+  const handleContactSubmit = async (event) => {
+    event.preventDefault();
+    if (!contactApplication || !isOfficer) return;
+
+    const message = contactMessage.trim();
+    if (!message) {
+      setContactError('Enter a message before sending.');
+      setContactSuccess('');
+      return;
+    }
+
+    setIsSendingContact(true);
+    setContactError('');
+    setContactSuccess('');
+    try {
+      const result = await postData(`recruitment-applications/${contactApplication.id}/contact`, { message });
+      if (!result?.sent) {
+        throw new Error('The Discord message was not sent.');
+      }
+      setContactMessage('');
+      setContactSuccess(`Message sent to ${contactApplication.name}.`);
+    } catch (error) {
+      setContactError(error?.message || 'Failed to send the Discord message.');
+    } finally {
+      setIsSendingContact(false);
     }
   };
 
@@ -297,7 +350,7 @@ export default function RecruitmentApplicationsTab({
           </label>
 
           <label className="space-y-1 text-sm text-slate-300 block">
-            <span className="text-[10px] uppercase tracking-wider text-slate-500">Discord ID (optional)</span>
+            <span className="text-[10px] uppercase tracking-wider text-slate-500">Discord username or user ID (optional)</span>
             <input
               value={form.discordId}
               onChange={(event) => handleInputChange('discordId', event.target.value.slice(0, 80))}
@@ -305,6 +358,7 @@ export default function RecruitmentApplicationsTab({
               className="w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:outline-none"
               disabled={!isAuthenticated}
             />
+            <span className="block text-[10px] text-slate-500">Officer direct messages require the numeric 17–20 digit user ID.</span>
           </label>
 
           {isOfficer ? (
@@ -414,6 +468,15 @@ export default function RecruitmentApplicationsTab({
                           <button type="button" onClick={() => setSelectedApplication(application)} className="rounded bg-cyan-700 hover:bg-cyan-600 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Pop out</button>
                           <button type="button" onClick={() => updateApplicationStatus(application.id, 'approved')} className="rounded bg-emerald-700 hover:bg-emerald-600 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Approve</button>
                           <button type="button" onClick={() => updateApplicationStatus(application.id, 'rejected')} className="rounded bg-rose-700 hover:bg-rose-600 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Reject</button>
+                          <button
+                            type="button"
+                            onClick={() => openContactDialog(application)}
+                            disabled={!hasDiscordUserId(application)}
+                            title={hasDiscordUserId(application) ? 'Send a bespoke Discord message' : 'A numeric Discord user ID is required'}
+                            className={`rounded px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white ${hasDiscordUserId(application) ? 'bg-violet-700 hover:bg-violet-600' : 'cursor-not-allowed bg-slate-700 text-slate-500'}`}
+                          >
+                            Contact
+                          </button>
                           <button type="button" onClick={() => handleDeleteApplication(application.id)} className="rounded bg-slate-700 hover:bg-slate-600 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Delete</button>
                         </>
                       ) : null}
@@ -451,6 +514,46 @@ export default function RecruitmentApplicationsTab({
           )}
         </div>
       </div>
+
+      {contactApplication ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4" role="dialog" aria-modal="true" aria-labelledby="contact-applicant-title">
+          <div className="w-full max-w-xl rounded-2xl border border-slate-700 bg-slate-900 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-slate-700 px-4 py-3">
+              <div>
+                <h3 id="contact-applicant-title" className="text-lg font-bold text-slate-100">Contact applicant</h3>
+                <div className="text-xs text-slate-400">{contactApplication.name} · Discord {contactApplication.discordId}</div>
+              </div>
+              <button type="button" onClick={closeContactDialog} disabled={isSendingContact} className="rounded bg-slate-800 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-slate-200 disabled:cursor-not-allowed disabled:opacity-50">Close</button>
+            </div>
+
+            <form onSubmit={handleContactSubmit} className="space-y-4 p-4">
+              <p className="text-sm text-slate-300">Send a bespoke direct message from the guild officer account. Include any joining instructions or the officer identity the applicant should contact.</p>
+              <textarea
+                value={contactMessage}
+                onChange={(event) => setContactMessage(event.target.value.slice(0, CONTACT_MESSAGE_LIMIT))}
+                rows={8}
+                maxLength={CONTACT_MESSAGE_LIMIT}
+                placeholder="For example: Please join our Discord using the link on the About Us page. Once there, message OfficerName..."
+                className="w-full rounded border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:outline-none"
+                disabled={isSendingContact}
+                autoFocus
+              />
+              <div className="flex items-center justify-between gap-2 text-[10px] text-slate-500">
+                <span>Messages are sent as a Discord DM and include your Battle.net identity.</span>
+                <span>{contactMessage.length}/{CONTACT_MESSAGE_LIMIT}</span>
+              </div>
+              {contactError ? <p className="text-sm text-rose-400">{contactError}</p> : null}
+              {contactSuccess ? <p className="text-sm text-emerald-400">{contactSuccess}</p> : null}
+              <div className="flex justify-end gap-2">
+                <button type="button" onClick={closeContactDialog} disabled={isSendingContact} className="rounded-lg bg-slate-800 px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-200 disabled:cursor-not-allowed disabled:opacity-50">Cancel</button>
+                <button type="submit" disabled={isSendingContact || !contactMessage.trim()} className={`rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider ${isSendingContact || !contactMessage.trim() ? 'cursor-not-allowed bg-slate-800 text-slate-500' : 'bg-violet-700 text-white hover:bg-violet-600'}`}>
+                  {isSendingContact ? 'Sending...' : 'Send Discord DM'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      ) : null}
 
       {selectedApplication ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4" role="dialog" aria-modal="true">

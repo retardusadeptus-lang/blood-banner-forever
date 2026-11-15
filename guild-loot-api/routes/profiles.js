@@ -19,6 +19,10 @@ const PROFILE_LIMITS = {
 };
 const MAX_AVATAR_DATA_LENGTH = 900000;
 
+function normalizeVisibility(value) {
+  return String(value || '').toLowerCase() === 'private' ? 'private' : 'public';
+}
+
 function sanitizeText(value, maxLength) {
   return String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, maxLength);
 }
@@ -52,7 +56,8 @@ function readProfilePayload(body = {}) {
     personality: sanitizeMultilineText(body.personality, PROFILE_LIMITS.personality),
     rpHooks: sanitizeMultilineText(body.rpHooks, PROFILE_LIMITS.rpHooks),
     backstory: sanitizeMultilineText(body.backstory, PROFILE_LIMITS.backstory),
-    avatarData: sanitizeAvatarData(body.avatarData)
+    avatarData: sanitizeAvatarData(body.avatarData),
+    visibility: normalizeVisibility(body.visibility)
   };
 }
 
@@ -73,6 +78,7 @@ function serializeProfile(row, session) {
     rpHooks: row.rp_hooks || '',
     backstory: row.backstory || '',
     avatarData: row.avatar_data || '',
+    visibility: normalizeVisibility(row.visibility),
     createdAt: row.created_at,
     updatedAt: row.updated_at
   };
@@ -89,7 +95,11 @@ function buildProfilesRoutes({ db }) {
   router.get('/profiles', (req, res) => {
     try {
       const session = getBattleNetSessionFromRequest(req);
-      const rows = db.prepare(`${selectProfile} ORDER BY profiles.updated_at DESC, profiles.id DESC`).all();
+      const sessionUserId = Number(session?.userId || 0);
+      const rows = db.prepare(`${selectProfile}
+        WHERE COALESCE(profiles.visibility, 'public') = 'public' OR profiles.user_id = ?
+        ORDER BY profiles.updated_at DESC, profiles.id DESC
+      `).all(sessionUserId);
       return res.json(rows.map(row => serializeProfile(row, session)));
     } catch (error) {
       return res.status(500).json({ error: error.message || 'Failed to load character profiles.' });
@@ -114,8 +124,8 @@ function buildProfilesRoutes({ db }) {
       const result = db.prepare(`
         INSERT INTO character_profiles (
           user_id, character_name, realm, race, class_name, spec, subclass, role,
-          professions, personality, rp_hooks, backstory, avatar_data, created_at, updated_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+          professions, personality, rp_hooks, backstory, avatar_data, visibility, created_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
       `).run(
         req.bnetSession.userId,
         profile.characterName,
@@ -129,7 +139,8 @@ function buildProfilesRoutes({ db }) {
         profile.personality,
         profile.rpHooks,
         profile.backstory,
-        profile.avatarData
+        profile.avatarData,
+        profile.visibility
       );
 
       const created = db.prepare(`${selectProfile} WHERE profiles.id = ?`).get(result.lastInsertRowid);
@@ -142,13 +153,20 @@ function buildProfilesRoutes({ db }) {
   router.put('/profiles/:id', requireBattleNetAuth, (req, res) => {
     try {
       const profileId = Number(req.params.id);
-      const profile = readProfilePayload(req.body);
-      if (!profileId || !profile.characterName) {
+      const body = req.body || {};
+      if (!profileId) {
         return res.status(400).json({ error: 'Character name is required.' });
       }
 
-      const owned = db.prepare('SELECT id FROM character_profiles WHERE id = ? AND user_id = ?').get(profileId, req.bnetSession.userId);
+      const owned = db.prepare('SELECT id, visibility FROM character_profiles WHERE id = ? AND user_id = ?').get(profileId, req.bnetSession.userId);
       if (!owned) return res.status(404).json({ error: 'Character profile not found.' });
+      const profile = readProfilePayload({
+        ...body,
+        visibility: Object.prototype.hasOwnProperty.call(body, 'visibility') ? body.visibility : owned.visibility
+      });
+      if (!profile.characterName) {
+        return res.status(400).json({ error: 'Character name is required.' });
+      }
 
       const duplicate = db.prepare(`
         SELECT id FROM character_profiles
@@ -161,7 +179,7 @@ function buildProfilesRoutes({ db }) {
       db.prepare(`
         UPDATE character_profiles
         SET character_name = ?, realm = ?, race = ?, class_name = ?, spec = ?, subclass = ?, role = ?,
-          professions = ?, personality = ?, rp_hooks = ?, backstory = ?, avatar_data = ?, updated_at = CURRENT_TIMESTAMP
+          professions = ?, personality = ?, rp_hooks = ?, backstory = ?, avatar_data = ?, visibility = ?, updated_at = CURRENT_TIMESTAMP
         WHERE id = ? AND user_id = ?
       `).run(
         profile.characterName,
@@ -176,6 +194,7 @@ function buildProfilesRoutes({ db }) {
         profile.rpHooks,
         profile.backstory,
         profile.avatarData,
+        profile.visibility,
         profileId,
         req.bnetSession.userId
       );

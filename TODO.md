@@ -13,13 +13,22 @@ items were added below.
 
 - [ ] **In progress:** Complete login fallback behavior:
   - [ ] Fall back to guild-member password authentication if Battle.net OAuth fails.
-  - [ ] Require authentication for Guild Bank baskets while keeping the bank viewable read-only.
-  - [ ] Hide Loot Council Priority Overview behind password authentication.
+  - [x] Require authentication for Guild Bank baskets while keeping the bank viewable read-only.
+  - [x] Hide Loot Council Priority Overview behind password authentication.
 - [ ] Add Discord OAuth2 login.
 - [ ] **In progress:** Automatically add new Discord members to the web roster through bot integration.
-- [ ] Add Discord absence commands so users can add and remove absences directly from Discord.
-- [ ] Add a raid signup chase command that identifies missing signups and supports follow-up notifications.
-- [ ] Allow the bot to ping people directly when they are unsigned for a raid, with safeguards against duplicate or stale notifications.
+- [X] Add Discord absence commands so users can add and remove absences directly from Discord.
+  - [X] Add private `/absence list`, `/absence add`, and `/absence remove` slash commands.
+  - [X] Support comma-separated dates and date ranges with duplicate-safe updates.
+  - [X] Use the existing raid absence records so Discord and website absence views stay aligned.
+- [X] Add a raid signup chase command that identifies missing signups and supports follow-up notifications.
+  - [X] Compare active roster members with existing event responses.
+  - [X] Support direct messages, signup-channel reminders, or both.
+  - [X] Report unlinked members and delivery failures explicitly.
+- [X] Allow the bot to ping people directly when they are unsigned for a raid, with safeguards against duplicate or stale notifications.
+  - [X] Send automatic direct reminders in the 24-hour and 8-hour pre-raid windows.
+  - [X] Persist per-event, per-member notification markers across restarts.
+  - [X] Skip closed, started, and expired reminder windows; throttle failed-delivery retries.
 
 ## Applications and Recruitment
 
@@ -29,26 +38,30 @@ items were added below.
   - [X] Confirm the bot is online and can fetch the numeric Discord user ID.
   - [X] Confirm the bot has permission to DM the applicant or shares a server with them.
   - [X] Surface and log delivery failures clearly.
-- [ ] Allow authorized officers to send bespoke contact messages directly to applicants through the bot, including instructions such as joining Discord or messaging a named officer by Discord or Battle.net identity.
-- [ ] Add a guild information tab with Discord links and a direct link to applications.
+- [X] Allow authorized officers to send bespoke contact messages directly to applicants through the bot, including instructions such as joining Discord or messaging a named officer by Discord or Battle.net identity.
+  - [X] Add an officer-only contact endpoint with explicit recipient, bot, and delivery failure responses.
+  - [X] Add a Contact Applicant modal with message length limits and delivery feedback.
+  - [X] Require the application's Discord value to be a numeric Discord user ID for direct messages.
+- [X] Add guild information to About Us with Discord links and a direct link to applications.
 
 ## Navigation, Routing, and Site Content
 
-- [ ] Allow administrators to reorder subtabs within each navigation group and persist the order.
-- [ ] Add URL page markers for direct links to pages such as Config, including links that resolve correctly for every subtab.
-- [ ] Make About Us sections editable from the site configuration rather than hard-coded.
+- [X] Allow administrators to reorder subtabs within each navigation group and persist the order.
+- [X] Allow administrators to reorder the main navigation groups and persist the order.
+- [X] Add URL page markers for direct links to pages such as Config, including links that resolve correctly for every subtab.
+- [X] Make About Us sections editable via enter edit mode rather than hard-coded.
 
 ## Profiles and Guild Presentation
 
-- [ ] Add public/private visibility controls to character details in My Characters; show only public characters to other users.
-- [ ] Show compact character summaries in Meet the Guild and open full details in a modal when a card is selected.
-- [ ] Include the character's guild role from the roster in the Meet the Guild summary.
-- [ ] Remove Realm from character cards and related character-detail presentation.
+- [X] Add public/private visibility controls to character details in My Characters; show only public characters to other users via the Meet the Guild tab.
+- [X] Show compact character summaries in Meet the Guild and open full details in a modal when a card is selected.
+- [X] Include the character's guild role from the roster in the Meet the Guild summary.
+- [X] Remove Realm from character cards and related character-detail presentation.
 
 ## Appearance and Theming
 
-- [ ] Add administrator-configurable default appearance settings to the Config tab.
-- [ ] Allow users to customize individual appearance elements with advanced, granular colour controls while preserving administrator defaults.
+- [X] Add administrator-configurable default appearance settings to the Config tab.
+- [X] Allow users to customize individual appearance elements with advanced, granular colour controls while preserving administrator defaults.
 - [X] Test the red-hue site redesign.
 
 ## Raid Signups, Assignments, and Attendance

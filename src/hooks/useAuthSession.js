@@ -82,7 +82,12 @@ export default function useAuthSession({ fetchData, setRoster, setRosterDirty })
     const params = new URLSearchParams(window.location.search);
     const authState = params.get('auth');
     if (authState === 'success' || authState === 'failed') {
-      const nextUrl = `${window.location.pathname}${window.location.hash}`;
+      const page = params.get('page') || sessionStorage.getItem('bnet-pending-site-page');
+      const nextParams = new URLSearchParams();
+      if (page) nextParams.set('page', page);
+      sessionStorage.removeItem('bnet-pending-site-page');
+      const query = nextParams.toString();
+      const nextUrl = `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`;
       window.history.replaceState({}, '', nextUrl);
     }
     refreshBattleNetAuth();

@@ -13,6 +13,7 @@ function createApp() {
       surface_roles_by_tab_json TEXT NOT NULL DEFAULT '{}',
       group_by_tab_json TEXT NOT NULL DEFAULT '{}',
       order_by_tab_json TEXT NOT NULL DEFAULT '{}',
+      order_by_group_json TEXT NOT NULL DEFAULT '{}',
       section_visibility_by_id_json TEXT NOT NULL DEFAULT '{}',
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
@@ -45,6 +46,7 @@ test('GET /api/site-visibility returns the public persisted configuration', asyn
       surface_roles_by_tab: {},
       group_by_tab: {},
       order_by_tab: {},
+      order_by_group: {},
       section_visibility_by_id: {}
     });
   });
@@ -82,11 +84,19 @@ test('admin site-visibility writes are normalized and persist across reads', asy
         },
         group_by_tab: {
           'loot.overview': 'resources',
+          'loot.scoring': 'profiles',
           'loot.assigned': 'not-a-group'
         },
         order_by_tab: {
           'loot.overview': '2',
+          'profiles.meet-guild': 0,
+          'profiles.my-characters': 1,
           'loot.assigned': 'not-a-number'
+        },
+        order_by_group: {
+          recruitment: '0',
+          bank: 'not-a-number',
+          unknown: 2
         },
         section_visibility_by_id: {
           'raid-signups.history.raid-helper-import': false,
@@ -103,10 +113,16 @@ test('admin site-visibility writes are normalized and persist across reads', asy
         'loot.assigned': []
       },
       group_by_tab: {
-        'loot.overview': 'resources'
+        'loot.overview': 'resources',
+        'loot.scoring': 'profiles'
       },
       order_by_tab: {
-        'loot.overview': 2
+        'loot.overview': 2,
+        'profiles.meet-guild': 0,
+        'profiles.my-characters': 1
+      },
+      order_by_group: {
+        recruitment: 0
       },
       section_visibility_by_id: {
         'raid-signups.history.raid-helper-import': false,
@@ -122,10 +138,16 @@ test('admin site-visibility writes are normalized and persist across reads', asy
         'loot.assigned': []
       },
       group_by_tab: {
-        'loot.overview': 'resources'
+        'loot.overview': 'resources',
+        'loot.scoring': 'profiles'
       },
       order_by_tab: {
-        'loot.overview': 2
+        'loot.overview': 2,
+        'profiles.meet-guild': 0,
+        'profiles.my-characters': 1
+      },
+      order_by_group: {
+        recruitment: 0
       },
       section_visibility_by_id: {
         'raid-signups.history.raid-helper-import': false,

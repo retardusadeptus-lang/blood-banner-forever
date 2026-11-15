@@ -29,6 +29,7 @@ test('recovers the persisted active tab and each subtab from storage', () => {
     raidSignupsSubTab: 'absences',
     lootSubTab: 'assigned',
     recruitmentSubTab: 'focus',
+    profilesSubTab: 'my-characters',
     adminSubTab: 'sitemap',
     resourcesSubTab: 'cheatsheets'
   });

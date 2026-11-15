@@ -102,6 +102,29 @@ function buildRaidsignupCommand() {
     )
     .addSubcommand(subcommand =>
       subcommand
+        .setName('chase')
+        .setDescription('Remind active roster members who have not responded')
+        .addStringOption(option =>
+          option
+            .setName('event')
+            .setDescription('Event id')
+            .setRequired(true)
+            .setAutocomplete(true)
+        )
+        .addStringOption(option =>
+          option
+            .setName('delivery')
+            .setDescription('Where to send the reminder')
+            .setRequired(true)
+            .addChoices(
+              { name: 'Direct messages', value: 'direct' },
+              { name: 'Server channel', value: 'server' },
+              { name: 'Both', value: 'both' }
+            )
+        )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
         .setName('edit')
         .setDescription('Edit title/description/start time for an event')
         .addStringOption(option =>

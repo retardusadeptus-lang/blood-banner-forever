@@ -2,10 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   SITE_TABS,
+  getSiteNavigationGroups,
   getSiteRegistryValidationErrors,
+  getSiteTabIdFromUrl,
   getSiteTabIdForRoute,
   getSiteTabMetadata,
-  getVisibleSiteTabs
+  getSiteTabUrl,
+  getVisibleSiteTabs,
+  moveSiteGroup,
+  moveSiteTabInGroup
 } from './siteRegistry.js';
 
 test('site registry has complete, valid metadata for every tab', () => {
@@ -21,6 +26,24 @@ test('route resolution distinguishes exact subtabs and preserves aliases', () =>
   assert.equal(getSiteTabIdForRoute('bankRequests', 'unexpected'), null);
   assert.equal(getSiteTabIdForRoute('raidSignups', 'events'), 'raid-signups.events');
   assert.equal(getSiteTabIdForRoute('raidSignups', 'history'), 'raid-signups.history');
+});
+
+test('URL page markers resolve every registered subtab and preserve existing URL state', () => {
+  const location = {
+    pathname: '/dashboard',
+    search: '?theme=blood&page=admin.config',
+    hash: '#details'
+  };
+
+  assert.equal(getSiteTabIdFromUrl(location), 'admin.config');
+  assert.equal(getSiteTabIdFromUrl({ search: '?page=not-a-tab' }), null);
+  assert.equal(getSiteTabUrl('admin.config', location), '/dashboard?theme=blood&page=admin.config#details');
+  assert.equal(getSiteTabUrl('not-a-tab', location), null);
+
+  SITE_TABS.forEach(tab => {
+    const url = getSiteTabUrl(tab.id, { pathname: '/', search: '', hash: '' });
+    assert.equal(getSiteTabIdFromUrl(new URL(url, 'https://example.test')), tab.id);
+  });
 });
 
 test('auth-only recovery checks the exact subtab instead of the whole group', async () => {
@@ -106,4 +129,54 @@ test('moving a tab changes layout metadata without changing its component contra
   assert.deepEqual(metadata.surfaceRoles, ['Admin']);
   assert.equal(metadata.contentOwner, 'BankContainer');
   assert.deepEqual(metadata.route, { activeTab: 'bank', subTab: 'history' });
+});
+
+test('reordering handles tied values, hidden tabs, and group moves', () => {
+  const layout = {
+    groupByTab: { 'loot.assigned': 'profiles' },
+    orderByTab: { 'profiles.my-characters': 0, 'profiles.meet-guild': 0, 'loot.assigned': 0 }
+  };
+  const orders = moveSiteTabInGroup('profiles.meet-guild', -1, layout);
+  assert.deepEqual(orders, {
+    'profiles.meet-guild': 0,
+    'profiles.my-characters': 1,
+    'loot.assigned': 2
+  });
+  assert.deepEqual(getVisibleSiteTabs('profiles', { ...layout, orderByTab: orders }).map(tab => tab.id), [
+    'profiles.meet-guild', 'profiles.my-characters', 'loot.assigned'
+  ]);
+  assert.equal(moveSiteTabInGroup('profiles.my-characters', -1, layout), null);
+  assert.equal(moveSiteTabInGroup('missing', 1, layout), null);
+
+  const bankOrders = moveSiteTabInGroup('guild-bank.history', -1);
+  assert.deepEqual(Object.keys(bankOrders), ['guild-bank.contents', 'guild-bank.requests', 'guild-bank.history', 'guild-bank.addon']);
+  assert.deepEqual(getVisibleSiteTabs('bank', { audience: 'Officer', isAuthenticated: true, orderByTab: bankOrders }).map(tab => tab.id), Object.keys(bankOrders));
+  assert.deepEqual(getVisibleSiteTabs('bank', { audience: 'Public', orderByTab: bankOrders }).map(tab => tab.id), ['guild-bank.contents']);
+});
+
+test('each navigation group can reorder its tabs without changing another group', () => {
+  for (const groupKey of ['bank', 'raidAssignments', 'raidSignups', 'recruitment', 'profiles', 'resources', 'loot', 'admin']) {
+    const tabs = SITE_TABS.filter(tab => tab.groupKey === groupKey);
+    const orderByTab = moveSiteTabInGroup(tabs[1].id, -1);
+    assert.equal(orderByTab[tabs[1].id], 0);
+    assert.equal(orderByTab[tabs[0].id], 1);
+    assert.equal(Object.keys(orderByTab).length, tabs.length);
+  }
+});
+
+test('main navigation groups honor persisted order overrides', () => {
+  const defaultGroups = getSiteNavigationGroups().map(group => group.key);
+  assert.deepEqual(defaultGroups, ['bank', 'raidAssignments', 'raidSignups', 'recruitment', 'profiles', 'resources', 'loot', 'admin']);
+
+  let orderByGroup = {};
+  for (let index = 0; index < 3; index += 1) {
+    orderByGroup = moveSiteGroup('recruitment', -1, { orderByGroup });
+  }
+
+  assert.deepEqual(getSiteNavigationGroups({ orderByGroup }).map(group => group.key), [
+    'recruitment', 'bank', 'raidAssignments', 'raidSignups', 'profiles', 'resources', 'loot', 'admin'
+  ]);
+  assert.deepEqual(Object.keys(orderByGroup), ['recruitment', 'bank', 'raidAssignments', 'raidSignups', 'profiles', 'resources', 'loot', 'admin']);
+  assert.equal(moveSiteGroup('recruitment', -1, { orderByGroup }), null);
+  assert.equal(moveSiteGroup('admin', 1, { orderByGroup }), null);
 });

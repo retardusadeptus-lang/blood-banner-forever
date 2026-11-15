@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { getSiteNavigationGroups, getSiteTabUrl } from '../config/siteRegistry';
 
 export default function DashboardNavigationTabs({
   activeSiteTabId,
@@ -7,17 +8,14 @@ export default function DashboardNavigationTabs({
   handleMainNavSelect,
   getDropdownItemActiveState,
   subTabs,
+  orderByGroup = {},
 }) {
-  const navItems = [
-    { keyName: 'bank', label: 'Guild Bank', mainTab: 'bank', items: subTabs?.bank || [] },
-    { keyName: 'raidAssignments', label: 'Raid Assignments', mainTab: 'raidAssignments', items: subTabs?.raidAssignments || [] },
-    { keyName: 'raidSignups', label: 'Raid Signups', mainTab: 'raidSignups', items: subTabs?.raidSignups || [] },
-    { keyName: 'recruitment', label: 'Recruitment', mainTab: 'recruitment', items: subTabs?.recruitment || [] },
-    { keyName: 'resources', label: 'Resources', mainTab: 'resources', items: subTabs?.resources || [] },
-    { keyName: 'loot', label: 'Loot Council', mainTab: 'loot', items: subTabs?.loot || [] },
-    { keyName: 'profiles', label: 'Profiles', mainTab: 'profiles', items: subTabs?.profiles || [] },
-    { keyName: 'admin', label: 'Admin', mainTab: 'admin', items: subTabs?.admin || [] },
-  ];
+  const navItems = getSiteNavigationGroups({ orderByGroup }).map(group => ({
+    keyName: group.key,
+    label: group.label,
+    mainTab: group.key,
+    items: subTabs?.[group.key] || []
+  }));
 
   const visibleNavItems = navItems.filter(item => item.items.length > 0);
 
@@ -49,6 +47,12 @@ export default function DashboardNavigationTabs({
   }, [activeNavKey]);
 
   const mobileOpenItem = visibleNavItems.find(item => item.keyName === (mobileOpenKey || activeNavKey)) || null;
+  const handleNavigationClick = (event, tabId, callback = null) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    callback?.();
+    handleMainNavSelect(tabId);
+  };
 
   return (
     <>
@@ -60,14 +64,15 @@ export default function DashboardNavigationTabs({
             const shouldShowDropdown = item.items.length > 1;
 
             return (
-              <button
+              <a
                 key={item.keyName}
-                type="button"
-                onClick={() => {
+                href={getSiteTabUrl(item.items?.[0]?.id) || '#'}
+                onClick={event => {
                   if (shouldShowDropdown) {
-                    setMobileOpenKey(item.keyName);
+                    handleNavigationClick(event, item.items?.[0]?.id, () => setMobileOpenKey(item.keyName));
+                    return;
                   }
-                    handleMainNavSelect(item.items?.[0]?.id);
+                  handleNavigationClick(event, item.items?.[0]?.id);
                 }}
                 className={`theme-nav-item relative z-20 whitespace-nowrap px-4 py-2.5 rounded-t-lg transition-colors ${isActive
                   ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800 -mb-px'
@@ -76,7 +81,7 @@ export default function DashboardNavigationTabs({
                     : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}
               >
                 {item.label}
-              </button>
+              </a>
             );
           })}
         </div>
@@ -86,14 +91,14 @@ export default function DashboardNavigationTabs({
             {mobileOpenItem.items.map(tab => {
               const isSubActive = getDropdownItemActiveState(tab.id);
               return (
-                <button
+                <a
                   key={tab.value}
-                  type="button"
-                  onClick={() => handleMainNavSelect(tab.id)}
+                  href={getSiteTabUrl(tab.id) || '#'}
+                  onClick={event => handleNavigationClick(event, tab.id)}
                   className={`theme-nav-subitem flex-none whitespace-nowrap px-3 py-2 transition-colors rounded-lg text-center ${isSubActive ? `bg-slate-900 border border-slate-800 ${getRestrictedTabTone(tab, true)}` : `${getRestrictedTabTone(tab)} hover:bg-slate-900/50`}`}
                 >
                   {tab.label}
-                </button>
+                </a>
               );
             })}
           </div>
@@ -113,31 +118,31 @@ export default function DashboardNavigationTabs({
               onMouseEnter={() => !shouldShowDropdown ? setHoveredNavTab(null) : setHoveredNavTab(item.keyName)}
               onMouseLeave={() => setHoveredNavTab(null)}
             >
-              <button
-                type="button"
-                onClick={() => handleMainNavSelect(item.items?.[0]?.id)}
+              <a
+                href={getSiteTabUrl(item.items?.[0]?.id) || '#'}
+                onClick={event => handleNavigationClick(event, item.items?.[0]?.id)}
                 className={`theme-nav-item relative z-20 whitespace-nowrap px-5 py-3 rounded-t-lg transition-colors ${isActive
                   ? 'bg-slate-900 text-amber-500 border-t border-l border-r border-slate-800 -mb-px'
                   : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900/50'}`}
               >
                 {item.label}
-              </button>
+              </a>
               {shouldShowDropdown && isHovered && (
                 <div
-                  className={`absolute top-full z-[60] flex flex-wrap gap-1 border-l border-r border-b border-slate-800 rounded-b-lg bg-slate-950/95 px-2 py-2 shadow-[0_14px_40px_rgba(0,0,0,0.35)] overflow-visible ${item.keyName === 'bank' ? 'left-0 justify-start' : 'left-1/2 -translate-x-1/2 justify-center'}`}
+                  className={`absolute top-full z-[60] flex flex-wrap gap-1 border-l border-r border-b border-slate-800 rounded-b-lg bg-slate-950/95 px-2 py-2 shadow-[0_14px_40px_rgba(0,0,0,0.35)] overflow-visible ${item.keyName === visibleNavItems[0]?.keyName ? 'left-0 justify-start' : 'left-1/2 -translate-x-1/2 justify-center'}`}
                   style={{ minWidth: '240px', width: 'max-content', maxWidth: 'min(95vw, 760px)' }}
                 >
                   {item.items.map(tab => {
                     const isSubActive = getDropdownItemActiveState(tab.id);
                     return (
-                      <button
+                      <a
                         key={tab.value}
-                        type="button"
-                        onClick={() => handleMainNavSelect(tab.id)}
+                        href={getSiteTabUrl(tab.id) || '#'}
+                        onClick={event => handleNavigationClick(event, tab.id)}
                         className={`theme-nav-subitem flex-none whitespace-nowrap px-3 py-2 transition-colors rounded-lg text-center ${isSubActive ? `bg-slate-900 border border-slate-800 ${getRestrictedTabTone(tab, true)}` : `${getRestrictedTabTone(tab)} hover:bg-slate-900/50`}`}
                       >
                         {tab.label}
-                      </button>
+                      </a>
                     );
                   })}
                 </div>

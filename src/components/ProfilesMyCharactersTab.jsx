@@ -12,7 +12,8 @@ const EMPTY_PROFILE = {
   personality: '',
   rpHooks: '',
   backstory: '',
-  avatarData: ''
+  avatarData: '',
+  visibility: 'public'
 };
 
 const inputClassName = 'w-full rounded-lg border border-slate-700 bg-slate-950/80 px-3 py-2.5 text-sm text-slate-100 outline-none transition-colors placeholder:text-slate-600 focus:border-cyan-500/70 focus:ring-1 focus:ring-cyan-500/30';
@@ -135,7 +136,7 @@ function ProfileForm({ initialProfile, onCancel, onSave, onDelete }) {
         <div>
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400">{isEditing ? 'Edit character' : 'New character'}</p>
           <h3 className="mt-1 text-xl font-black text-slate-100">Tell the guild who they are</h3>
-          <p className="mt-1 max-w-2xl text-sm text-slate-400">Add as much or as little RP flavor as feels right. Everything here is visible to guild members.</p>
+          <p className="mt-1 max-w-2xl text-sm text-slate-400">{form.visibility === 'private' ? 'Private profiles stay in My Characters and are not shown in Meet the Guild.' : 'Public profiles are shown to guild members in Meet the Guild.'}</p>
         </div>
         <button type="button" onClick={onCancel} className="rounded-lg border border-slate-700 px-3 py-2 text-xs font-bold uppercase tracking-wider text-slate-300 transition-colors hover:border-slate-500 hover:text-white">Cancel</button>
       </div>
@@ -160,6 +161,7 @@ function ProfileForm({ initialProfile, onCancel, onSave, onDelete }) {
           <label><span className={labelClassName}>Subclass</span><input className={inputClassName} value={form.subclass} onChange={event => updateField('subclass', event.target.value)} maxLength={100} placeholder="A custom path, school, or archetype" /></label>
           <label><span className={labelClassName}>Gameplay role</span><select className={inputClassName} value={form.role} onChange={event => updateField('role', event.target.value)}><option value="">Choose a role</option><option value="Tank">Tank</option><option value="Healer">Healer</option><option value="DPS">DPS</option><option value="Support">Support</option><option value="Flexible">Flexible</option></select></label>
           <label className="sm:col-span-2"><span className={labelClassName}>Professions</span><input className={inputClassName} value={form.professions} onChange={event => updateField('professions', event.target.value)} maxLength={200} placeholder="Alchemy, Herbalism, Cooking" /></label>
+          <label className="sm:col-span-2"><span className={labelClassName}>Profile visibility</span><select className={inputClassName} value={form.visibility} onChange={event => updateField('visibility', event.target.value)}><option value="public">Public - show in Meet the Guild</option><option value="private">Private - show only in My Characters</option></select></label>
         </div>
       </div>
 
@@ -187,10 +189,10 @@ function ProfileSummary({ profile, onEdit }) {
       <ProfileAvatar profile={profile} size="small" />
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-start justify-between gap-2">
-          <div><h3 className="truncate text-lg font-black text-slate-100">{profile.characterName}</h3><p className="text-xs text-slate-500">{[metadata, profile.realm].filter(Boolean).join(' - ') || 'Character details coming soon'}</p></div>
+          <div><h3 className="truncate text-lg font-black text-slate-100">{profile.characterName}</h3><p className="text-xs text-slate-500">{metadata || 'Character details coming soon'}</p></div>
           <button type="button" onClick={onEdit} className="rounded-md border border-slate-700 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-cyan-300 hover:border-cyan-500/70 hover:text-cyan-200">Edit</button>
         </div>
-        <div className="mt-3 flex flex-wrap gap-2 text-[11px] text-slate-400">{profile.role && <span className="rounded-full border border-amber-700/50 bg-amber-950/20 px-2 py-1 text-amber-300">{profile.role}</span>}{profile.professions && <span className="rounded-full border border-slate-700 px-2 py-1">{profile.professions}</span>}</div>
+        <div className="mt-3 flex flex-wrap gap-2 text-[11px] text-slate-400">{profile.role && <span className="rounded-full border border-amber-700/50 bg-amber-950/20 px-2 py-1 text-amber-300">{profile.role}</span>}{profile.professions && <span className="rounded-full border border-slate-700 px-2 py-1">{profile.professions}</span>}<span className={`rounded-full border px-2 py-1 ${profile.visibility === 'private' ? 'border-slate-600 text-slate-400' : 'border-emerald-700/50 bg-emerald-950/20 text-emerald-300'}`}>{profile.visibility === 'private' ? 'Private' : 'Public'}</span></div>
         {(profile.personality || profile.rpHooks) && <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-slate-400">{profile.personality || profile.rpHooks}</p>}
       </div>
     </article>
