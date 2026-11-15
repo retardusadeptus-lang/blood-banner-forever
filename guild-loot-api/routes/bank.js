@@ -20,7 +20,11 @@ function normalizeBankCategory(category) {
 
 function buildBankRoutes({ db, discordService }) {
   const router = express.Router();
-  const { sendBankInventoryWebhook, sendBankBulkResolutionWebhook, sendBankResolutionWebhook } = discordService;
+  const {
+    sendBankInventoryNotification,
+    sendBankBulkResolutionNotification,
+    sendBankResolutionNotification
+  } = discordService;
 
   function generateRequestGroupId() {
     if (typeof crypto?.randomUUID === 'function') {
@@ -117,10 +121,11 @@ function buildBankRoutes({ db, discordService }) {
       insertAll();
 
       db.prepare('INSERT INTO bank_uploads (item_count) VALUES (?)').run(normalizedItems.length);
+      let notificationResult = { sent: false, reason: 'not-requested' };
       if (notifyDiscord) {
-        await sendBankInventoryWebhook(normalizedItems);
+        notificationResult = await sendBankInventoryNotification(normalizedItems);
       }
-      res.json({ ok: true, count: normalizedItems.length, discordNotified: notifyDiscord });
+      res.json({ ok: true, count: normalizedItems.length, discordNotified: notificationResult.sent });
     } catch (e) {
       res.status(500).json({ error: e.message });
     }
@@ -285,11 +290,12 @@ function buildBankRoutes({ db, discordService }) {
 
       applyAll();
       const groups = Array.from(groupsByPlayer.values());
+      let notificationResult = { sent: false, reason: 'no-groups' };
       if (groups.length > 0) {
-        await sendBankBulkResolutionWebhook({ groups, mentions });
+        notificationResult = await sendBankBulkResolutionNotification({ groups, mentions });
       }
 
-      res.json({ ok: true, count: resolutions.length });
+      res.json({ ok: true, count: resolutions.length, discordNotified: notificationResult.sent });
     } catch (e) {
       res.status(500).json({ error: e.message });
     }
@@ -309,10 +315,11 @@ function buildBankRoutes({ db, discordService }) {
       `).run(status, price || null, officer_note || '', approved_quantity || null, requestId);
 
       const request = getRequest.get(requestId);
+      let notificationResult = { sent: false, reason: 'request-not-found' };
       if (request) {
         const player = getPlayer.get(request.player_id);
         const playerName = player?.name || request.requester_name || 'Unknown';
-        await sendBankResolutionWebhook({
+        notificationResult = await sendBankResolutionNotification({
           player_name: playerName,
           item_name: request.item_name,
           quantity: request.quantity,
@@ -324,7 +331,7 @@ function buildBankRoutes({ db, discordService }) {
         });
       }
 
-      res.json({ ok: true });
+      res.json({ ok: true, discordNotified: notificationResult.sent });
     } catch (e) {
       res.status(500).json({ error: e.message });
     }

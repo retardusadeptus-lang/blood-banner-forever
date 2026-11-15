@@ -1,40 +1,37 @@
-const fetch = global.fetch || (() => { throw new Error('Fetch is not available in this Node runtime.'); });
+const { sendChannelMessage: sendDiscordChannelMessage } = require('./discordBot');
 
-function buildDiscordService({ siteUrl, webhookUrl }) {
-  const DISCORD_WEBHOOK_URL = String(webhookUrl || '').trim();
+function buildDiscordService({
+  siteUrl,
+  bankChannelId,
+  recruitmentChannelId,
+  sendChannelMessage = sendDiscordChannelMessage
+}) {
   const SITE_URL = String(siteUrl || '').trim();
-  const DEFAULT_AVATAR = 'https://wow.zamimg.com/images/wow/icons/large/inv_misc_bag_10_green.jpg';
+  const BANK_CHANNEL_ID = String(bankChannelId || '').trim();
+  const RECRUITMENT_CHANNEL_ID = String(recruitmentChannelId || '').trim();
 
   function buildDiscordMentionPayload(mentions = []) {
-    const validMentions = (mentions || []).filter(Boolean);
+    const validMentions = [...new Set((mentions || [])
+      .map(mention => String(mention || '').trim())
+      .filter(mention => /^\d{17,20}$/.test(mention)))];
     if (validMentions.length === 0) return null;
 
     return {
       content: validMentions.map(id => `<@${id}>`).join(' '),
-      allowed_mentions: { parse: ['users'] }
+      allowedMentions: { parse: [], users: validMentions }
     };
   }
 
-  async function postToDiscord(payload) {
-    if (!DISCORD_WEBHOOK_URL) return;
-
-    try {
-      const response = await fetch(DISCORD_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      if (!response.ok) {
-        const bodyText = await response.text().catch(() => '');
-        console.error(`Discord webhook returned ${response.status}: ${bodyText}`);
-      }
-    } catch (error) {
-      console.error('Discord webhook failed:', error.message || error);
+  async function sendToChannel(channelId, payload, label) {
+    if (!String(channelId || '').trim()) {
+      console.error(`[Discord] ${label} skipped: no channel ID is configured.`);
+      return { sent: false, reason: 'missing-channel-id' };
     }
+
+    return sendChannelMessage(channelId, payload, label);
   }
 
-  async function sendBankInventoryWebhook(items) {
+  async function sendBankInventoryNotification(items) {
     const sorted = [...items].sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')));
 
     const getCategoryBlock = (category) => {
@@ -48,9 +45,8 @@ function buildDiscordService({ siteUrl, webhookUrl }) {
       return text;
     };
 
-    await postToDiscord({
-      username: 'Guild Banker',
-      avatar_url: DEFAULT_AVATAR,
+    return sendToChannel(BANK_CHANNEL_ID, {
+      allowedMentions: { parse: [] },
       embeds: [{
         title: '📦 Guild Bank Inventory Report',
         description: SITE_URL ? `[**Click here to view full inventory**](${SITE_URL})` : 'Guild bank inventory has been updated.',
@@ -63,13 +59,12 @@ function buildDiscordService({ siteUrl, webhookUrl }) {
         ],
         timestamp: new Date().toISOString()
       }]
-    });
+    }, 'bank inventory notification');
   }
 
-  async function sendBankRequestWebhook({ player_name, item_name, quantity, reason }) {
-    await postToDiscord({
-      username: 'Guild Banker',
-      avatar_url: DEFAULT_AVATAR,
+  async function sendBankRequestNotification({ player_name, item_name, quantity, reason }) {
+    return sendToChannel(BANK_CHANNEL_ID, {
+      allowedMentions: { parse: [] },
       embeds: [{
         title: '📥 New Bank Request',
         color: 15844367,
@@ -81,18 +76,16 @@ function buildDiscordService({ siteUrl, webhookUrl }) {
         ],
         timestamp: new Date().toISOString()
       }]
-    });
+    }, 'bank request notification');
   }
 
-  async function sendBankResolutionWebhook({ player_name, item_name, quantity, status, price, officer_note, approved_quantity, requester_discord_user_id }) {
+  async function sendBankResolutionNotification({ player_name, item_name, quantity, status, price, officer_note, approved_quantity, requester_discord_user_id }) {
     const isApproved = String(status || '').toLowerCase() === 'approved';
     const isPartial = isApproved && approved_quantity && Number(approved_quantity) < Number(quantity);
     const mentionPayload = buildDiscordMentionPayload(requester_discord_user_id ? [requester_discord_user_id] : []);
 
-    await postToDiscord({
-      username: 'Guild Banker',
-      avatar_url: DEFAULT_AVATAR,
-      ...(mentionPayload || {}),
+    return sendToChannel(BANK_CHANNEL_ID, {
+      ...(mentionPayload || { allowedMentions: { parse: [] } }),
       embeds: [{
         title: isApproved ? (isPartial ? '✔️ Bank Request Partially Approved' : '✅ Bank Request Approved') : '❌ Bank Request Denied',
         color: isApproved ? 3066993 : 15158332,
@@ -106,10 +99,10 @@ function buildDiscordService({ siteUrl, webhookUrl }) {
         ],
         timestamp: new Date().toISOString()
       }]
-    });
+    }, 'bank resolution notification');
   }
 
-  async function sendBankBulkResolutionWebhook({ groups = [], mentions = [], title = '📦 Bank Basket Resolved' }) {
+  async function sendBankBulkResolutionNotification({ groups = [], mentions = [], title = '📦 Bank Basket Resolved' }) {
     const MAX_FIELD_LENGTH = 1024;
     const MAX_EMBED_LENGTH = 5800;
     const safeGroups = Array.isArray(groups) && groups.length > 0
@@ -202,12 +195,12 @@ function buildDiscordService({ siteUrl, webhookUrl }) {
     safeGroups.forEach(addGroupToPages);
     if (page.length > 0) pages.push(page);
 
+    let sent = true;
     for (const [pageIndex, pageGroups] of pages.entries()) {
       const values = buildFieldValues(pageGroups);
-      await postToDiscord({
-        username: 'Guild Banker',
-        avatar_url: DEFAULT_AVATAR,
+      const result = await sendToChannel(BANK_CHANNEL_ID, {
         ...(pageIndex === 0 ? (mentionPayload || {}) : {}),
+        ...(pageIndex > 0 || !mentionPayload ? { allowedMentions: { parse: [] } } : {}),
         embeds: [{
           title: pages.length > 1 ? `${title} (${pageIndex + 1}/${pages.length})` : title,
           color: 3447003,
@@ -219,15 +212,83 @@ function buildDiscordService({ siteUrl, webhookUrl }) {
           ],
           timestamp: new Date().toISOString()
         }]
+      }, 'bank bulk resolution notification');
+      sent = result.sent && sent;
+    }
+
+    return { sent };
+  }
+
+  async function sendRecruitmentApplicationNotification({ event, application, previousStatus }) {
+    const applicationName = String(application?.name || 'Unknown applicant').trim() || 'Unknown applicant';
+    const normalizedEvent = String(event || 'updated').trim().toLowerCase();
+    const eventDetails = {
+      received: {
+        title: `📝 New recruitment application: ${applicationName}`,
+        color: 15548997
+      },
+      updated: {
+        title: `✏️ Recruitment application updated: ${applicationName}`,
+        color: 3447003
+      },
+      status_changed: {
+        title: `📣 Recruitment application status changed: ${applicationName}`,
+        color: 3066993
+      },
+      deleted: {
+        title: `🗑️ Recruitment application deleted: ${applicationName}`,
+        color: 15158332
+      }
+    }[normalizedEvent] || {
+      title: `📣 Recruitment application update: ${applicationName}`,
+      color: 3447003
+    };
+
+    const status = String(application?.status || 'pending');
+    const fields = [
+      { name: 'Class', value: String(application?.class_name || application?.className || 'Unknown'), inline: true },
+      { name: 'Spec', value: String(application?.spec || 'Unknown'), inline: true },
+      { name: 'Applicant', value: String(application?.battletag || application?.applicantBattletag || 'Unknown'), inline: true },
+      { name: 'Status', value: status, inline: true }
+    ];
+
+    const discordId = String(application?.discord_id || application?.discordId || '').trim();
+    if (discordId) {
+      fields.push({ name: 'Discord ID', value: discordId, inline: true });
+    }
+
+    if (previousStatus && normalizedEvent === 'status_changed') {
+      fields.push({ name: 'Previous status', value: String(previousStatus), inline: true });
+    }
+
+    if (application?.officer_note) {
+      fields.push({ name: 'Officer note', value: String(application.officer_note).slice(0, 1000) });
+    }
+
+    if (normalizedEvent !== 'deleted') {
+      fields.push({
+        name: 'About Me',
+        value: String(application?.about_me || application?.aboutMe || '_No information provided_').slice(0, 1000)
       });
     }
+
+    return sendToChannel(RECRUITMENT_CHANNEL_ID, {
+      allowedMentions: { parse: [] },
+      embeds: [{
+        title: eventDetails.title,
+        color: eventDetails.color,
+        fields,
+        timestamp: new Date().toISOString()
+      }]
+    }, 'recruitment application notification');
   }
 
   return {
-    sendBankInventoryWebhook,
-    sendBankRequestWebhook,
-    sendBankResolutionWebhook,
-    sendBankBulkResolutionWebhook
+    sendBankInventoryNotification,
+    sendBankRequestNotification,
+    sendBankResolutionNotification,
+    sendBankBulkResolutionNotification,
+    sendRecruitmentApplicationNotification
   };
 }
 

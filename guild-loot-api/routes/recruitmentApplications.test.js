@@ -125,11 +125,21 @@ function createDb() {
   };
 }
 
+function createDiscordService() {
+  return {
+    sendRecruitmentApplicationNotification: async () => ({ sent: true })
+  };
+}
+
 test('POST /api/recruitment-applications stores the applicant and returns the created record', async () => {
   const db = createDb();
   const app = express();
   app.use(express.json());
-  app.use('/api', buildRecruitmentApplicationsRoutes({ db, sessionSecret: 'test-secret', webhookUrl: 'https://example.test/hook' }));
+  app.use('/api', buildRecruitmentApplicationsRoutes({
+    db,
+    sessionSecret: 'test-secret',
+    discordService: createDiscordService()
+  }));
 
   const server = app.listen(0);
   try {
@@ -168,7 +178,11 @@ test('PUT /api/recruitment-applications/:id/status lets officers approve or reje
   const db = createDb();
   const app = express();
   app.use(express.json());
-  app.use('/api', buildRecruitmentApplicationsRoutes({ db, sessionSecret: 'test-secret', webhookUrl: '' }));
+  app.use('/api', buildRecruitmentApplicationsRoutes({
+    db,
+    sessionSecret: 'test-secret',
+    discordService: createDiscordService()
+  }));
 
   const server = app.listen(0);
   try {

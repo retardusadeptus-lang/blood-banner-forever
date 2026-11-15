@@ -10,13 +10,24 @@ const appPath = require.resolve('./app');
 console.log('[DEBUG] resolved app path', appPath);
 console.log('[DEBUG] app.js mtime', fs.statSync(appPath).mtime);
 const { buildApp } = require(appPath);
-const { BNET_CONFIG, SITE_URL, DISCORD_WEBHOOK_URL, SESSION_SECRET, API_PORT } = require('./config');
+const {
+  BNET_CONFIG,
+  SITE_URL,
+  DISCORD_BANK_CHANNEL_ID,
+  DISCORD_RECRUITMENT_CHANNEL_ID,
+  SESSION_SECRET,
+  API_PORT
+} = require('./config');
 console.log('[DEBUG] SERVER SESSION_SECRET defined?', !!SESSION_SECRET, 'length=', SESSION_SECRET?.length);
 console.log('[DEBUG] SERVER ADMIN_API_TOKEN defined?', Boolean(BNET_CONFIG.ADMIN_API_TOKEN));
 
 ensureDatabaseReady();
 
-const discordService = buildDiscordService({ siteUrl: SITE_URL, webhookUrl: DISCORD_WEBHOOK_URL });
+const discordService = buildDiscordService({
+  siteUrl: SITE_URL,
+  bankChannelId: DISCORD_BANK_CHANNEL_ID,
+  recruitmentChannelId: DISCORD_RECRUITMENT_CHANNEL_ID
+});
 const tokenRedemptionService = createTokenRedemptionService(db);
 const configService = createConfigService(db);
 const signupCron = createRaidSignupCron({ db });
@@ -31,7 +42,6 @@ const app = buildApp({
   discordService,
   tokenRedemptionService,
   configService,
-  discordWebhookUrl: DISCORD_WEBHOOK_URL
 });
 
 initDiscordBot({ db });

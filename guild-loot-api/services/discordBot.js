@@ -130,17 +130,69 @@ function initDiscordBot({ db }) {
   return client;
 }
 
+async function sendChannelMessage(channelId, payload, label = 'channel notification') {
+  const normalizedChannelId = String(channelId || '').trim();
+  if (!activeDiscordClient) {
+    console.error(`[Discord] Cannot send ${label}: bot client is not initialized.`);
+    return { sent: false, reason: 'bot-not-initialized' };
+  }
+
+  if (typeof activeDiscordClient.isReady === 'function' && !activeDiscordClient.isReady()) {
+    console.error(`[Discord] Cannot send ${label}: bot client is not ready.`);
+    return { sent: false, reason: 'bot-not-ready' };
+  }
+
+  if (!normalizedChannelId) {
+    console.error(`[Discord] Cannot send ${label}: channel ID is not configured.`);
+    return { sent: false, reason: 'missing-channel-id' };
+  }
+
+  let channel;
+  try {
+    channel = await activeDiscordClient.channels.fetch(normalizedChannelId);
+  } catch (error) {
+    console.error(`[Discord] Failed to fetch channel for ${label}:`, error.message || error);
+    return { sent: false, reason: 'channel-fetch-failed' };
+  }
+
+  const configuredGuildId = String(process.env.DISCORD_GUILD_ID || '').trim();
+  if (!channel || typeof channel.send !== 'function') {
+    console.error(`[Discord] Cannot send ${label}: channel ${normalizedChannelId} is unavailable or not messageable.`);
+    return { sent: false, reason: 'channel-not-messageable' };
+  }
+
+  if (configuredGuildId && String(channel.guildId || '') !== configuredGuildId) {
+    console.error(`[Discord] Refusing ${label}: channel ${normalizedChannelId} is outside configured guild ${configuredGuildId}.`);
+    return { sent: false, reason: 'channel-guild-mismatch' };
+  }
+
+  try {
+    await channel.send(payload);
+    return { sent: true };
+  } catch (error) {
+    console.error(`[Discord] Failed to send ${label}:`, error.message || error);
+    return { sent: false, reason: 'channel-send-failed' };
+  }
+}
+
+async function sendDirectMessage(userId, content) {
+  const normalizedUserId = String(userId || '').trim();
+  if (!activeDiscordClient || !/^\d{17,20}$/.test(normalizedUserId)) {
+    return false;
+  }
+
+  if (typeof activeDiscordClient.isReady === 'function' && !activeDiscordClient.isReady()) {
+    return false;
+  }
+
+  const user = await activeDiscordClient.users.fetch(normalizedUserId);
+  await user.send({ content: String(content || '').slice(0, 2000) });
+  return true;
+}
+
 module.exports = {
   initDiscordBot,
   getDiscordClient: () => activeDiscordClient,
-  sendDirectMessage: async (userId, content) => {
-    const normalizedUserId = String(userId || '').trim();
-    if (!activeDiscordClient || !/^\d{17,20}$/.test(normalizedUserId)) {
-      return false;
-    }
-
-    const user = await activeDiscordClient.users.fetch(normalizedUserId);
-    await user.send({ content: String(content || '').slice(0, 2000) });
-    return true;
-  }
+  sendChannelMessage,
+  sendDirectMessage
 };

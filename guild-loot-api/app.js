@@ -37,7 +37,7 @@ function getGitCommitSha() {
   }
 }
 
-function buildApp({ db, sessionSecret, bnetConfig, discordService, tokenRedemptionService, configService, discordWebhookUrl }) {
+function buildApp({ db, sessionSecret, bnetConfig, discordService, tokenRedemptionService, configService }) {
   const app = express();
 
   app.use(cors({ origin: true, credentials: true }));
@@ -74,7 +74,7 @@ function buildApp({ db, sessionSecret, bnetConfig, discordService, tokenRedempti
   app.use('/api', buildAssignmentsRoutes({ db }));
   app.use('/api', buildMutableItemsRoutes({ db }));
   app.use('/api', buildRecruitmentPlanningRoutes({ db }));
-  app.use('/api', buildRecruitmentApplicationsRoutes({ db, sessionSecret, webhookUrl: discordWebhookUrl }));
+  app.use('/api', buildRecruitmentApplicationsRoutes({ db, sessionSecret, discordService }));
   app.use('/api', buildWeakAuraRoutes({ db, sessionSecret }));
   app.use('/api', buildTacticsRoutes({ db, sessionSecret }));
   app.use('/api', buildWipefestRoutes({ db, sessionSecret }));

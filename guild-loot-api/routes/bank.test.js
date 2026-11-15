@@ -66,9 +66,9 @@ function createApp() {
   app.use('/api', buildBankRoutes({
     db: createDb(),
     discordService: {
-      sendBankInventoryWebhook: async () => {},
-      sendBankBulkResolutionWebhook: async () => {},
-      sendBankResolutionWebhook: async () => {}
+      sendBankInventoryNotification: async () => ({ sent: true }),
+      sendBankBulkResolutionNotification: async () => ({ sent: true }),
+      sendBankResolutionNotification: async () => ({ sent: true })
     }
   }));
   return app;

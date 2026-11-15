@@ -38,15 +38,36 @@ function buildStatusHistory(previousHistory, status, actorLabel, at) {
   return JSON.stringify(nextHistory.slice(-20));
 }
 
-function buildRecruitmentApplicationsRoutes({ db, webhookUrl }) {
+function buildRecruitmentApplicationsRoutes({ db, discordService }) {
   const router = express.Router();
+  const sendRecruitmentApplicationNotification = discordService?.sendRecruitmentApplicationNotification;
 
   const notifyApplicant = async (discordId, message) => {
-    if (!/^\d{17,20}$/.test(String(discordId || '').trim())) return;
+    if (!/^\d{17,20}$/.test(String(discordId || '').trim())) {
+      return { sent: false, reason: 'invalid-discord-id' };
+    }
+
     try {
-      await sendDirectMessage(discordId, message);
+      const sent = await sendDirectMessage(discordId, message);
+      return { sent, reason: sent ? undefined : 'bot-unavailable' };
     } catch (error) {
       console.error('Failed to send recruitment applicant Discord DM:', error.message || error);
+      return { sent: false, reason: 'dm-failed' };
+    }
+  };
+
+  const notifyRecruitmentChannel = async payload => {
+    if (typeof sendRecruitmentApplicationNotification !== 'function') {
+      console.error('[Discord] Recruitment application notification service is not configured.');
+      return { sent: false, reason: 'service-not-configured' };
+    }
+
+    try {
+      const result = await sendRecruitmentApplicationNotification(payload);
+      return result || { sent: false, reason: 'notification-result-missing' };
+    } catch (error) {
+      console.error('Failed to send recruitment application Discord notification:', error.message || error);
+      return { sent: false, reason: 'channel-notification-failed' };
     }
   };
 
@@ -174,7 +195,8 @@ function buildRecruitmentApplicationsRoutes({ db, webhookUrl }) {
       `).run(updatedUserId, applicantBattletag, discordId, className, spec, name, aboutMe, isProxy ? 1 : 0, isProxy ? proxyName : null, isProxy ? proxyBattletag : null, applicationId);
 
       const updated = db.prepare('SELECT id, user_id, battletag, discord_id, class_name, spec, name, about_me, is_proxy, proxy_name, proxy_battletag, status, officer_note, reviewed_by_user_id, reviewed_by_battletag, reviewed_at, status_changed_at, status_history_json, created_at, updated_at FROM recruitment_applications WHERE id = ?').get(applicationId);
-      await notifyApplicant(updated.discord_id, `Your recruitment application has been updated on the guild site. Current status: ${updated.status || 'pending'}.`);
+      const applicantNotification = await notifyApplicant(updated.discord_id, `Your recruitment application has been updated on the guild site. Current status: ${updated.status || 'pending'}.`);
+      const channelNotification = await notifyRecruitmentChannel({ event: 'updated', application: updated });
       return res.json({
         id: updated.id,
         userId: updated.user_id,
@@ -195,7 +217,9 @@ function buildRecruitmentApplicationsRoutes({ db, webhookUrl }) {
         statusChangedAt: updated.status_changed_at || null,
         statusHistory: parseStatusHistory(updated.status_history_json),
         createdAt: updated.created_at,
-        updatedAt: updated.updated_at
+        updatedAt: updated.updated_at,
+        applicantDiscordNotified: applicantNotification.sent,
+        discordNotified: channelNotification.sent
       });
     } catch (error) {
       return res.status(500).json({ error: error.message || 'Failed to update recruitment application.' });
@@ -240,7 +264,12 @@ function buildRecruitmentApplicationsRoutes({ db, webhookUrl }) {
 
       const updated = db.prepare('SELECT id, user_id, battletag, discord_id, class_name, spec, name, about_me, is_proxy, proxy_name, proxy_battletag, status, officer_note, reviewed_by_user_id, reviewed_by_battletag, reviewed_at, status_changed_at, status_history_json, created_at, updated_at FROM recruitment_applications WHERE id = ?').get(applicationId);
       const noteSuffix = officerNote ? ` Officer note: ${officerNote}` : '';
-      await notifyApplicant(updated.discord_id, `Your recruitment application status changed from ${previousStatus} to ${updated.status || normalizedStatus}.${noteSuffix}`);
+      const applicantNotification = await notifyApplicant(updated.discord_id, `Your recruitment application status changed from ${previousStatus} to ${updated.status || normalizedStatus}.${noteSuffix}`);
+      const channelNotification = await notifyRecruitmentChannel({
+        event: 'status_changed',
+        application: updated,
+        previousStatus
+      });
       return res.json({
         id: updated.id,
         userId: updated.user_id,
@@ -262,14 +291,16 @@ function buildRecruitmentApplicationsRoutes({ db, webhookUrl }) {
         statusChangedAt: updated.status_changed_at || null,
         statusHistory: parseStatusHistory(updated.status_history_json),
         createdAt: updated.created_at,
-        updatedAt: updated.updated_at
+        updatedAt: updated.updated_at,
+        applicantDiscordNotified: applicantNotification.sent,
+        discordNotified: channelNotification.sent
       });
     } catch (error) {
       return res.status(500).json({ error: error.message || 'Failed to update recruitment application status.' });
     }
   });
 
-  router.delete('/recruitment-applications/:id', (req, res) => {
+  router.delete('/recruitment-applications/:id', async (req, res) => {
     try {
       const session = getBattleNetSessionFromRequest(req);
       if (!session?.userId) {
@@ -282,12 +313,14 @@ function buildRecruitmentApplicationsRoutes({ db, webhookUrl }) {
         return res.status(400).json({ error: 'Valid application id is required.' });
       }
 
+      const existing = db.prepare('SELECT * FROM recruitment_applications WHERE id = ?').get(applicationId);
       const result = db.prepare('DELETE FROM recruitment_applications WHERE id = ?').run(applicationId);
       if (!result.changes) {
         return res.status(404).json({ error: 'Application not found.' });
       }
 
-      return res.json({ deleted: true, id: applicationId });
+      const channelNotification = await notifyRecruitmentChannel({ event: 'deleted', application: existing || { id: applicationId } });
+      return res.json({ deleted: true, id: applicationId, discordNotified: channelNotification.sent });
     } catch (error) {
       return res.status(500).json({ error: error.message || 'Failed to delete recruitment application.' });
     }
@@ -345,35 +378,8 @@ function buildRecruitmentApplicationsRoutes({ db, webhookUrl }) {
 
       const created = db.prepare('SELECT id, user_id, battletag, discord_id, class_name, spec, name, about_me, is_proxy, proxy_name, proxy_battletag, status, officer_note, reviewed_by_user_id, reviewed_by_battletag, reviewed_at, status_changed_at, status_history_json, created_at, updated_at FROM recruitment_applications WHERE id = ?').get(result.lastInsertRowid);
 
-      await notifyApplicant(created.discord_id, 'Your recruitment application has been received by the guild. We will review it and update you when its status changes.');
-
-      if (webhookUrl) {
-        try {
-          const payload = {
-            username: 'Recruitment Application',
-            embeds: [{
-              title: `📝 New recruitment application: ${name}`,
-              color: 15548997,
-              fields: [
-                { name: 'Class', value: className, inline: true },
-                { name: 'Spec', value: spec, inline: true },
-                { name: 'Applicant', value: applicantBattletag, inline: true },
-                ...(discordId ? [{ name: 'Discord ID', value: discordId, inline: true }] : []),
-                { name: 'About Me', value: aboutMe.slice(0, 1000) }
-              ],
-              timestamp: new Date().toISOString()
-            }]
-          };
-
-          await fetch(webhookUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-        } catch (error) {
-          console.error('Failed to send recruitment application webhook:', error.message || error);
-        }
-      }
+      const applicantNotification = await notifyApplicant(created.discord_id, 'Your recruitment application has been received by the guild. We will review it and update you when its status changes.');
+      const channelNotification = await notifyRecruitmentChannel({ event: 'received', application: created });
 
       return res.status(201).json({
         id: created.id,
@@ -395,7 +401,9 @@ function buildRecruitmentApplicationsRoutes({ db, webhookUrl }) {
         statusChangedAt: created.status_changed_at || null,
         statusHistory: parseStatusHistory(created.status_history_json),
         createdAt: created.created_at,
-        updatedAt: created.updated_at
+        updatedAt: created.updated_at,
+        applicantDiscordNotified: applicantNotification.sent,
+        discordNotified: channelNotification.sent
       });
     } catch (error) {
       return res.status(500).json({ error: error.message || 'Failed to submit recruitment application.' });

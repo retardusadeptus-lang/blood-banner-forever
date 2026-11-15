@@ -35,12 +35,15 @@ Set `SEED_DEPLOYMENT_DATABASE=false` only if startup seeding should be disabled.
 - `DISCORD_BOT_TOKEN`
 - `DISCORD_CLIENT_ID`
 - `DISCORD_GUILD_ID`
-- `DISCORD_WEBHOOK_URL`
+- `DISCORD_BANK_CHANNEL_ID`
+- `DISCORD_RECRUITMENT_CHANNEL_ID`
 - `BNET_CLIENT_ID`
 - `BNET_CLIENT_SECRET`
 - `BNET_REGION`
 - `REDIRECT_URI`
 - `SITE_URL`
+
+`DISCORD_BANK_CHANNEL_ID` and `DISCORD_RECRUITMENT_CHANNEL_ID` are the Discord text-channel IDs where the bot should post bank and recruitment notifications. Enable Developer Mode in Discord, right-click each channel, and choose **Copy Channel ID**. The bot must be able to view and send messages in both channels, and must have **Embed Links** permission for the formatted notifications.
 
 ### Battle.net RBAC bootstrapping
 - Set `BNET_PRIMARY_ADMIN_BATTLETAG` to the Battle.net account that should be treated as the permanent primary admin (example: `Steve#2506`).

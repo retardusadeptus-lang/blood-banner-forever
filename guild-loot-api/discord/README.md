@@ -9,10 +9,13 @@ Create or edit guild-loot-api/.env:
 DISCORD_BOT_TOKEN=your_bot_token
 DISCORD_CLIENT_ID=1523795701811908819
 DISCORD_GUILD_ID=your_discord_server_id
+DISCORD_BANK_CHANNEL_ID=your_bank_notification_channel_id
+DISCORD_RECRUITMENT_CHANNEL_ID=your_recruitment_channel_id
 
 Notes:
 - DISCORD_GUILD_ID is recommended for fast command registration while testing.
 - If DISCORD_GUILD_ID is not set, commands register globally and can take longer to appear.
+- The channel IDs are where the bot posts bank and recruitment notifications. The bot needs View Channel, Send Messages, and Embed Links permissions there.
 
 ## 2) Start the backend and bot
 
