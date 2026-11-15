@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { THEME_FONTS, THEME_PALETTES } from '../config/theme';
+import { SITE_NAV_GROUPS } from '../config/siteRegistry';
 
 const CONFIG_SECTION_STORAGE_KEY = 'admin-config-section-state';
 const CONFIG_SECTION_KEYS = ['site', 'access', 'scoring', 'rankings', 'discord', 'claims'];
@@ -12,6 +13,16 @@ const CONFIG_SECTION_LABELS = {
   discord: 'Discord bot',
   claims: 'Battle.net claims'
 };
+const CLAIM_GAME_VERSION_OPTIONS = [
+  { value: 'all', label: 'All game versions' },
+  { value: 'Forever', label: 'Forever' },
+  { value: 'TBC', label: 'TBC' },
+  { value: 'World of Warcraft', label: 'World of Warcraft' },
+  { value: 'Classic Anniversary', label: 'Classic Anniversary' },
+  { value: 'Classic Era', label: 'Classic Era' },
+  { value: 'Classic Progression', label: 'Classic Progression' },
+  { value: 'WoW Classic', label: 'WoW Classic' }
+];
 
 function readSectionState() {
   try {
@@ -188,7 +199,11 @@ export default function DiscordBotConfigTab({
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Default Site Tab</label>
             <select value={scoringConfig?.defaultSiteTab || 'recruitment.focus'} onChange={event => updateScoringField('defaultSiteTab', event.target.value)} className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none">
-              <option value="recruitment.focus">Recruitment Focus</option><option value="guild-bank.contents">Guild Bank</option><option value="raid-assignments.overview">Raid Assignments</option><option value="raid-signups.events">Raid Signups</option><option value="recruitment.applications">Recruitment Applications</option><option value="resources.bis">BiS Lists</option><option value="resources.weakauras">Weakauras</option><option value="resources.cheatsheets">Cheat Sheets</option><option value="resources.raidlogs">Raid Logs</option><option value="resources.wipefest">Wipefest</option><option value="loot.overview">Priority Overview</option><option value="loot.assigned">Assigned Loot</option>
+              {SITE_NAV_GROUPS.map(group => (
+                <optgroup key={group.key} label={group.label}>
+                  {group.tabs.map(tab => <option key={tab.id} value={tab.id}>{tab.label}</option>)}
+                </optgroup>
+              ))}
             </select>
             <p className="text-[11px] text-slate-500 mt-2">Sets the first tab for visitors without a saved tab.</p>
           </div>
@@ -209,7 +224,7 @@ export default function DiscordBotConfigTab({
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Claim Character Game Version</label>
             <select value={scoringConfig?.claimGameVersion || 'all'} onChange={event => updateScoringField('claimGameVersion', event.target.value)} className="w-full bg-slate-900 text-white border border-slate-700 rounded px-3 py-2 text-sm focus:outline-none">
-              <option value="all">All game versions</option><option value="World of Warcraft">World of Warcraft</option><option value="Classic Anniversary">Classic Anniversary</option><option value="Classic Era">Classic Era</option><option value="Classic Progression">Classic Progression</option><option value="WoW Classic">WoW Classic</option>
+              {CLAIM_GAME_VERSION_OPTIONS.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
             </select>
             <p className="text-[11px] text-slate-500 mt-2">Controls which characters appear in the claim modal.</p>
           </div>

@@ -19,6 +19,7 @@ export default function BnetClaimModal({
   const [rosterFilter, setRosterFilter] = useState('');
 
   const accountCharacterChoices = useMemo(() => {
+    const selectedVersion = String(selectedGameVersion || 'all').trim().toLowerCase();
     const rosterByName = new Map(
       (Array.isArray(roster) ? roster : [])
         .filter(player => !player?.user_id)
@@ -29,7 +30,7 @@ export default function BnetClaimModal({
       .filter(character => String(character?.name || '').trim())
       .filter(character => {
         const version = String(character?.gameVersion || character?.gameType || 'World of Warcraft').trim();
-        return selectedGameVersion === 'all' || version === selectedGameVersion;
+        return selectedVersion === 'all' || version.toLowerCase() === selectedVersion;
       })
       .filter(character => rosterByName.has(String(character.name || '').trim().toLowerCase()))
       .map(character => ({

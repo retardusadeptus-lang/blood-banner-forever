@@ -88,9 +88,9 @@ Character profiles are public by default. In **Profiles > My Characters**, owner
 
 Meet the Guild shows compact public character summaries. Select a summary to open the full character details; matching roster entries add the character's guild role to the summary.
 
-## Default appearance
+## Site defaults and character claims
 
-Officers and administrators can set the default colour palette and site font in **Admin > Config > Site defaults, appearance, and claims**. These defaults apply to visitors who have not chosen a local appearance preference; an individual's Appearance controls continue to override the administrator defaults.
+Officers and administrators can set the default site tab, colour palette, site font, and Battle.net claim game version in **Admin > Config > Site defaults, appearance, and claims**. Every registered site tab is available as a default destination, and the claim filter includes both **TBC** and **Forever**. Appearance defaults apply to visitors who have not chosen a local preference; an individual's Appearance controls continue to override the administrator defaults.
 
 ## Notes
 
